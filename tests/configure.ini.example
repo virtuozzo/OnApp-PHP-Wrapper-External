@@ -1,0 +1,43 @@
+; This is a test configuration file
+; Comments start with ';', as in php.ini
+
+hostname = http://hostname.com/
+
+username = admin
+password = password
+
+suite_file = tests.ini
+
+;VM create options
+vm_hostname = test.com
+vm_required_ip_address_assignment = 1
+vm_memory = 256
+vm_cpus = 1
+vm_initial_root_password = testpwd
+vm_primary_disk_size = 5
+
+;posible values: linux, windows. Default linux.
+vm_operating_system = linux
+
+;only for linux. Posible values: ubuntu, gentoo, rhel, slackware.
+vm_operating_system_distro =
+
+vm_create_delay = 5
+vm_create_time = 60
+
+;VM build options
+vm_build_delay = 10
+vm_build_time = 120
+
+;Disk create options
+disk_disk_size = 5
+disk_create_delay = 5
+disk_create_time = 60
+
+;Backup create options
+backup_create_delay = 5
+backup_create_time = 60
+
+;Backup convert options
+backup_convert_delay = 5
+backup_convert_time = 60

@@ -1,0 +1,4 @@
+REQUIREMENTS:
+PHP 5.1.2+
+JSON extension (is builtin since PHP 5.2+ or could be installed from PECL http://php.net/manual/en/json.installation.php )
+SimpleXML extension (http://php.net/manual/en/book.simplexml.php)
