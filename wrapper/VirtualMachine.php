@@ -785,7 +785,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 */
 	function startup( $recovery = false ) {
 		if( !$recovery ) {
-			$this->sendPost( ONAPP_GETRESOURCE_STARTUP );
+			$this->sendPost( ONAPP_GETRESOURCE_STARTUP, '' );
 		}
 		else {
 			$data = array(
