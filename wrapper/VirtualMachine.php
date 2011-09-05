@@ -928,14 +928,6 @@ class OnApp_VirtualMachine extends OnApp {
 		if( $id ) {
 			$this->_id = $id;
 		}
-
-		$this->fields = array();
-		$this->fields[ 'admin_note' ] = array(
-			ONAPP_FIELD_MAP => '_admin_note',
-			ONAPP_FIELD_TYPE => 'string',
-			ONAPP_FIELD_REQUIRED => true,
-		);
-
 		parent::save();
 	}
 }
