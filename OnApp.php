@@ -580,7 +580,6 @@ class OnApp {
 	 * @access public
 	 */
 	function auth( $url, $user, $pass, $proxy = '' ) {
-		$this->curl_url = $url;
 		$this->logger->setDebug( $this->options[ ONAPP_OPTION_DEBUG_MODE ] );
 
 		$this->logger->setTimezone();
@@ -1320,7 +1319,7 @@ class OnApp {
 				$this->setAPIResource( $this->getResource( $resource ) );
 				$response = $this->sendRequest( $method, $data );
 
-				$result = $this->_castResponseToClass( $response );     
+				$result = $this->_castResponseToClass( $response );
 
 				if( $response[ 'info' ][ 'http_code' ] > 400 ) {
 					if( is_null($result) ){
