@@ -710,7 +710,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 * @access public
 	 */
 	function suspend() {
-		$this->sendPost( ONAPP_GETRESOURCE_SUSPEND_VM );
+		$this->sendPost( ONAPP_GETRESOURCE_SUSPEND_VM, '' );
 	}
 
 	/**
@@ -719,7 +719,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 * @access public
 	 */
 	function shutdown() {
-		$this->sendPost( ONAPP_GETRESOURCE_SHUTDOWN );
+		$this->sendPost( ONAPP_GETRESOURCE_SHUTDOWN, '' );
 	}
 
 	/**
