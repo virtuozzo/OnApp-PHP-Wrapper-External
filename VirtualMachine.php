@@ -683,7 +683,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 */
 	function reboot( $recovery = false ) {
 		if( !$recovery ) {
-			$this->sendPost( ONAPP_GETRESOURCE_REBOOT );
+			$this->sendPost( ONAPP_GETRESOURCE_REBOOT, '' );
 		}
 		else {
 			$data = array(
@@ -815,7 +815,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 * @access public
 	 */
 	function build() {
-		$this->sendPost( ONAPP_GETRESOURCE_BUILD );
+		$this->sendPost( ONAPP_GETRESOURCE_BUILD, '' );
 	}
 
 	/**
