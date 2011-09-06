@@ -466,6 +466,12 @@ class OnApp_Disk extends OnApp {
 		if( $disk_id ) {
 			$this->_id = $disk_id;
 		}
+        // workaround because we get backup data in response
+		$this->_tagRoot = 'backup';
+		$this->className = 'OnApp_VirtualMachine_Backup';
+		$backup = new OnApp_VirtualMachine_Backup();
+		$backup->initFields( $this->getAPIVersion() );
+		$this->fields = $backup->getClassFields();
 		$this->sendPost( ONAPP_GETRESOURCE_TAKE_BACKUP );
 	}
 }

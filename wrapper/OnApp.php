@@ -1320,7 +1320,7 @@ class OnApp {
 				$this->setAPIResource( $this->getResource( $resource ) );
 				$response = $this->sendRequest( $method, $data );
 
-				$result = $this->_castResponseToClass( $response );
+				$result = $this->_castResponseToClass( $response );     
 
 				if( $response[ 'info' ][ 'http_code' ] > 400 ) {
 					if( is_null($result) ){
