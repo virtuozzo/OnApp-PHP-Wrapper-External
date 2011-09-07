@@ -17,7 +17,7 @@
 /**
  * Current OnApp PHP API wrapper version
  */
-define( 'ONAPP_VERSION', '1.0' );
+define( 'ONAPP_VERSION', '2.0' );
 
 /**
  * The ONAPP class uses this variable to define the Proxy server used by cURL
@@ -601,6 +601,7 @@ class OnApp {
 			if( $this->getClassName() != 'OnApp' ) {
 				$this->initFields( $this->version );
 			}
+			$this->setErrors();
 		}
 		else {
 			$this->setErrors( 'Can\'t get OnApp version.' );
@@ -1322,7 +1323,7 @@ class OnApp {
 				$result = $this->_castResponseToClass( $response );
 
 				if( $response[ 'info' ][ 'http_code' ] > 400 ) {
-					if( is_null($result) ){
+					if( is_null( $result ) ) {
 						$this->_obj = clone $this;
 					}
 					else {
@@ -1366,8 +1367,13 @@ class OnApp {
 	 * @param mixed $errors
 	 * @return void
 	 */
-	protected function setErrors( $errors ) {
-		$this->errors = (array)$errors;
+	protected function setErrors( $errors = null ) {
+		if( is_null( $errors ) ) {
+			$this->errors = null;
+		}
+		else {
+			$this->errors = (array)$errors;
+		}
 	}
 
 	/**
