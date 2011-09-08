@@ -443,7 +443,6 @@ class OnApp_Disk extends OnApp {
 				ONAPP_FIELD_REQUIRED => true,
 				ONAPP_FIELD_DEFAULT_VALUE => false,
 			);
-			$this->fields[ 'mount_point' ][ ONAPP_FIELD_REQUIRED ] = true;
 		}
 
 		if( $this->_id ) {
