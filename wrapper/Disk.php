@@ -432,11 +432,7 @@ class OnApp_Disk extends OnApp {
 	 * @return mixed Serialized API Response
 	 * @access private
 	 */
-	function save( $vm_id = null ) {
-		if( $vm_id ) {
-			$this->_virtual_machine_id = $vm_id;
-		}
-
+	function save() {
 		if( $this->_virtual_machine_id ) {
 			$this->fields[ 'require_format_disk' ] = array(
 				ONAPP_FIELD_MAP => '_require_format_disk',
@@ -444,7 +440,6 @@ class OnApp_Disk extends OnApp {
 				ONAPP_FIELD_REQUIRED => true,
 				ONAPP_FIELD_DEFAULT_VALUE => false,
 			);
-			$this->fields[ 'mount_point' ][ ONAPP_FIELD_REQUIRED ] = true;
 		}
 
 		if( $this->_id ) {
