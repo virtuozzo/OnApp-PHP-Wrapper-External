@@ -265,6 +265,25 @@ class OnApp_Template extends OnApp {
 					ONAPP_FIELD_READ_ONLY => true,
 				);
 				break;
+
+			case 2.3:
+				$this->fields = $this->initFields( 2.2 );
+				$this->fields[ 'disk_target_device' ] = array(
+					ONAPP_FIELD_MAP => 'disk_target_device',
+					ONAPP_FIELD_TYPE => 'string',
+					ONAPP_FIELD_READ_ONLY => true,
+				);
+				$this->fields[ 'cdn' ] = array(
+					ONAPP_FIELD_MAP => 'cdn',
+					ONAPP_FIELD_TYPE => 'boolean',
+					ONAPP_FIELD_READ_ONLY => true,
+				);
+				// nested class
+				$this->fields[ 'template_set_ids' ] = array(
+					ONAPP_FIELD_MAP => 'template_set_ids',
+					ONAPP_FIELD_READ_ONLY => true,
+				);
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );

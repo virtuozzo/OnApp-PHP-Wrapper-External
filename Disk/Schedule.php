@@ -271,6 +271,7 @@ class OnApp_Disk_Schedule extends OnApp {
 				break;
 
 			case 2.2:
+			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
 		}
@@ -336,11 +337,7 @@ class OnApp_Disk_Schedule extends OnApp {
 		return ( is_array( $result ) || ! $result ) ? $result : array($result);
 	}
 
-	function save( $id ) {
-		if( $id ) {
-			$this->_id = $id;
-		}
-
+	function save() {
 		if( $this->_target_id ) {
 			$this->fields[ 'target_id' ][ ONAPP_FIELD_REQUIRED ] = true;
 			$this->fields[ 'target_type' ][ ONAPP_FIELD_REQUIRED ] = true;

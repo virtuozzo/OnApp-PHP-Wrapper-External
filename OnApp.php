@@ -1219,7 +1219,6 @@ class OnApp {
 
 			$property = $value[ ONAPP_FIELD_MAP ];
 			if( isset( $value[ ONAPP_FIELD_REQUIRED ] ) && $value[ ONAPP_FIELD_REQUIRED ] ) {
-
 				if( isset( $this->$property ) && !empty( $this->$property ) ) {
 					$result[ $key ] = $this->$property;
 				}

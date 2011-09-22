@@ -107,6 +107,7 @@ class OnApp_User_UsedIpAddress extends OnApp_IpAddress {
 				break;
 
 			case 2.2:
+			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
 		}

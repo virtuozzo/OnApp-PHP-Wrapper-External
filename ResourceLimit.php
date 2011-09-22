@@ -201,6 +201,7 @@ class OnApp_ResourceLimit extends OnApp {
 				break;
 
 			case 2.2:
+			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 
 				$this->fields[ 'ip_address_count' ] = array(

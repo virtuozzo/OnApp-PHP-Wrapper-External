@@ -69,6 +69,7 @@ class OnApp_Role_Permission extends OnApp {
 				break;
 
 			case 2.2:
+			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
 		}

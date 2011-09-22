@@ -230,6 +230,13 @@ class OnApp_Transaction extends OnApp {
 					ONAPP_FIELD_READ_ONLY => true
 				);
 				break;
+
+			case 2.3:
+				$this->fields = $this->initFields( 2.2 );
+				$fields = array(
+					'finished_at',
+				);
+				$this->unsetFields( $fields );
 		}
 
 		parent::initFields( $version, __CLASS__ );
