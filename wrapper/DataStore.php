@@ -222,6 +222,20 @@ class OnApp_DataStore extends OnApp {
 					ONAPP_FIELD_READ_ONLY => true,
 				);
 				break;
+
+
+			case 2.3:
+				$this->fields = $this->initFields( 2.2 );
+				$fields = array(
+					'raw_stats',
+				);
+				$this->unsetFields( $fields );
+				$this->fields[ 'usage' ] = array(
+					ONAPP_FIELD_MAP => 'usage',
+					ONAPP_FIELD_TYPE => 'integer',
+					ONAPP_FIELD_READ_ONLY => true,
+				);
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );

@@ -178,6 +178,14 @@ class OnApp_Role extends OnApp {
 			case 2.2:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
+			case 2.3:
+				$this->fields = $this->initFields( 2.2 );
+				$fields = array(
+					'permission_ids',
+				);
+				$this->unsetFields( $fields );
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );

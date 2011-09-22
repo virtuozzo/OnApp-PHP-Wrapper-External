@@ -314,7 +314,7 @@ class OnApp_User extends OnApp {
 				);
 				$this->fields[ 'locale' ] = array(
 					ONAPP_FIELD_MAP => '_locale',
-					ONAPP_FIELD_TYPE => 'integer',
+					ONAPP_FIELD_TYPE => 'string',
 					ONAPP_FIELD_DEFAULT_VALUE => 'en',
 				);
 				break;
@@ -325,6 +325,39 @@ class OnApp_User extends OnApp {
 					ONAPP_FIELD_MAP => 'update_billing_stat',
 					ONAPP_FIELD_TYPE => 'string',
 					ONAPP_FIELD_READ_ONLY => true
+				);
+				break;
+
+			case 2.3:
+				$this->fields = $this->initFields( 2.2 );
+				$this->fields[ 'aflexi_username' ] = array(
+					ONAPP_FIELD_MAP => 'aflexi_username',
+					ONAPP_FIELD_TYPE => 'string',
+					ONAPP_FIELD_READ_ONLY => true,
+				);
+				$this->fields[ 'aflexi_key' ] = array(
+					ONAPP_FIELD_MAP => 'aflexi_key',
+					ONAPP_FIELD_READ_ONLY => true,
+				);
+				$this->fields[ 'cdn_status' ] = array(
+					ONAPP_FIELD_MAP => 'cdn_status',
+					ONAPP_FIELD_TYPE => 'string',
+					ONAPP_FIELD_READ_ONLY => true,
+				);
+				$this->fields[ 'cdn_account_status' ] = array(
+					ONAPP_FIELD_MAP => 'cdn_account_status',
+					ONAPP_FIELD_TYPE => 'string',
+					ONAPP_FIELD_READ_ONLY => true,
+				);
+				$this->fields[ 'aflexi_password' ] = array(
+					ONAPP_FIELD_MAP => 'aflexi_password',
+					ONAPP_FIELD_TYPE => 'string',
+					ONAPP_FIELD_READ_ONLY => true,
+				);
+				$this->fields[ 'aflexi_user_id' ] = array(
+					ONAPP_FIELD_MAP => 'aflexi_user_id',
+					ONAPP_FIELD_TYPE => 'integer',
+					ONAPP_FIELD_READ_ONLY => true,
 				);
 				break;
 		}

@@ -21,7 +21,7 @@
  */
 
 /**
-* 
+*
 */
 define( 'ONAPP_GETRESOURCE_JOIN', 'ip_address_join');
 
@@ -106,6 +106,7 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 				break;
 
 			case 2.2:
+			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
 		}
