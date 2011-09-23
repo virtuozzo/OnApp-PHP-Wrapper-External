@@ -833,7 +833,6 @@ class OnApp {
 			switch( $result[ 'info' ][ 'http_code' ] ) {
 				case 200:
 				case 201:
-					$this->last_errors = null;
 					break;
 
 				case 422:
