@@ -864,7 +864,18 @@ class OnApp_VirtualMachine extends OnApp {
 	 * @access public
 	 */
 	function build() {
-		$this->sendPost( ONAPP_GETRESOURCE_BUILD, '' );
+		if( $this->_template_id != $this->_obj->_template_id ) {
+			$data = array(
+				'root' => 'virtual_machine',
+				'data' => array(
+					'template_id' => $this->_template_id
+				)
+			);
+		}
+		else {
+			$data = '';
+		}
+		$this->sendPost( ONAPP_GETRESOURCE_BUILD, $data );
 	}
 
 	/**
