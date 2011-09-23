@@ -253,10 +253,6 @@ class OnApp_Hypervisor extends OnApp {
 					'raw_stats',
 				);
 				$this->unsetFields( $fields );
-				$this->fields[ 'redis_password' ] = array(
-					ONAPP_FIELD_MAP => 'redis_password',
-					ONAPP_FIELD_READ_ONLY => true,
-				);
 				$this->fields[ 'cpu_cores' ] = array(
 					ONAPP_FIELD_MAP => 'cpu_cores',
 					ONAPP_FIELD_TYPE => 'integer',
@@ -280,11 +276,6 @@ class OnApp_Hypervisor extends OnApp {
 				$this->fields[ 'used_cpu_resources' ] = array(
 					ONAPP_FIELD_MAP => 'used_cpu_resources',
 					ONAPP_FIELD_TYPE => 'integer',
-					ONAPP_FIELD_READ_ONLY => true,
-				);
-				$this->fields[ 'collect_stats' ] = array(
-					ONAPP_FIELD_MAP => 'collect_stats',
-					ONAPP_FIELD_TYPE => 'boolean',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
 				break;
