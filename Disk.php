@@ -390,7 +390,7 @@ class OnApp_Disk extends OnApp {
 		if( $id ) {
 			$this->_id = $id;
 		}
-		$this->sendPost( ONAPP_GETRESOURCE_AUTOBACKUP_ENABLE );
+		$this->sendPost( ONAPP_GETRESOURCE_AUTOBACKUP_ENABLE, '' );
 	}
 
 	/**
@@ -405,7 +405,7 @@ class OnApp_Disk extends OnApp {
 			$this->_id = $id;
 		}
 
-		$this->sendPost( ONAPP_GETRESOURCE_AUTOBACKUP_DISABLE );
+		$this->sendPost( ONAPP_GETRESOURCE_AUTOBACKUP_DISABLE, '' );
 	}
 
 	/**
