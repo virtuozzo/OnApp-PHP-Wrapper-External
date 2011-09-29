@@ -66,7 +66,7 @@ class OnApp_Helper_Caster {
 		$tmp_obj = new $className;
 		$tmp_obj->initFields( $object->APIVersion );
 		$tmp_obj->options = self::$obj->options;
-		$tmp_obj->_ch = curl_copy_handle( self::$obj->_ch );
+		$tmp_obj->_ch = self::$obj->_ch;
 		$tmp_obj->_is_auth = self::$obj->_is_auth;
 
 		$tmp = array();
