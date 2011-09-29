@@ -113,7 +113,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 	private function process( $item ) {
 		$obj = new $this->className;
 		$obj->options = parent::$obj->options;
-		$obj->_ch = curl_copy_handle( parent::$obj->_ch );
+		$obj->_ch = parent::$obj->_ch;
 		$obj->_is_auth = parent::$obj->_is_auth;
 		$obj->initFields( parent::$APIVersion );
 
