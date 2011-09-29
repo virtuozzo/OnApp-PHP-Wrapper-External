@@ -151,7 +151,7 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 			$this->_network_interface_id = $network_interface_id;
 		}
 		if( $ip_address_id ) {
-			$this->_network_interface_id = $network_interface_id;
+			$this->_id = $ip_address_id;
 		}
 
         $data = array(
