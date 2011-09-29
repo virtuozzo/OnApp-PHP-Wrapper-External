@@ -1206,7 +1206,7 @@ class OnApp {
 	 * @access private
 	 */
 	protected function getFieldsToSend() {
-		$this->logger->debug( 'getFieldsToSent: Prepare data array:' );
+		$this->logger->debug( 'getFieldsToSend: Prepare data array:' );
 		$result = array();
 
 		foreach( $this->fields as $key => $value ) {
@@ -1219,6 +1219,9 @@ class OnApp {
 			$property = $value[ ONAPP_FIELD_MAP ];
 			if( isset( $value[ ONAPP_FIELD_REQUIRED ] ) && $value[ ONAPP_FIELD_REQUIRED ] ) {
 				if( isset( $this->$property ) && !empty( $this->$property ) ) {
+					$result[ $key ] = $this->$property;
+				}
+				elseif( isset( $this->$property ) && is_bool( $this->$property ) ) {
 					$result[ $key ] = $this->$property;
 				}
 				elseif( isset( $this->_obj->$property ) ) {
@@ -1365,7 +1368,7 @@ class OnApp {
 	 * @param mixed $errors
 	 * @return void
 	 */
-	protected function setErrors( $errors = null ) {
+	public function setErrors( $errors = null ) {
 		if( is_null( $errors ) ) {
 			$this->errors = null;
 		}
