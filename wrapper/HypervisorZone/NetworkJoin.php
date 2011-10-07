@@ -219,6 +219,51 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 		}
 	}
 
+    /**
+     * Creates new interface in particular Hypervisor Zone and joins network to
+     * this interface
+     *
+     * @param integer $target_join_id hypervisor zone id to create interface in
+     * @param string $interface_label label of interface
+     * @param integer $network_id network id to join to interface
+     *
+     * @return void
+     * @todo change to save function as soon as Ticket #2972 is fixed. note: works only json..
+     */
+    function joinNetworkToInterface( $target_join_id = null, $interface_label = '', $network_id = null ) {
+        if( ! $target_join_id ) {
+			$this->logger->error(
+				"_GETAction: Target join Hypervisor Zone id should be specified
+				(apiVersion => '" . $this->_apiVersion . "').", __FILE__, __LINE__
+			);
+		}
+        if( ! $interface_label ) {
+			$this->logger->error(
+				"_GETAction: Interface label should be specified
+				(apiVersion => '" . $this->_apiVersion . "').", __FILE__, __LINE__
+			);
+		}
+        if( ! $network_id ) {
+			$this->logger->error(
+				"_GETAction: Network id join to should be specified
+				(apiVersion => '" . $this->_apiVersion . "').", __FILE__, __LINE__
+			);
+		}
+
+        $this->_target_join_id = $target_join_id;
+
+        $data = array(
+                        'root' => 'tmp_holder',
+                        'data' => array (
+                            'interface'  => $interface_label,
+                            'network_id' => $network_id
+                        )
+                     
+				);                                             
+
+        $this->sendPost( ONAPP_GETRESOURCE_DEFAULT, $data );
+    }
+
 	/**
 	 * Activates action performed with object
 	 *
@@ -228,6 +273,7 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 	 */
 	function activate( $action_name ) {
 		switch( $action_name ) {
+            case ONAPP_ACTIVATE_SAVE:
 			case ONAPP_ACTIVATE_LOAD:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
 				break;
