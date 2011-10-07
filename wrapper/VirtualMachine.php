@@ -493,6 +493,11 @@ class OnApp_VirtualMachine extends OnApp {
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
+				$this->fields[ 'state' ] = array(
+					ONAPP_FIELD_MAP => 'state',
+					ONAPP_FIELD_TYPE => 'string',
+					ONAPP_FIELD_READ_ONLY => true,
+				);
 				break;
 		}
 
@@ -534,7 +539,7 @@ class OnApp_VirtualMachine extends OnApp {
 				ONAPP_FIELD_MAP => '_required_virtual_machine_build',
 				ONAPP_FIELD_TYPE => 'boolean',
 				ONAPP_FIELD_REQUIRED => true,
-				ONAPP_FIELD_DEFAULT_VALUE => ''
+				ONAPP_FIELD_DEFAULT_VALUE => false
 			);
 		}
 
@@ -864,17 +869,28 @@ class OnApp_VirtualMachine extends OnApp {
 	 * @access public
 	 */
 	function build() {
-		if( $this->_template_id != $this->_obj->_template_id ) {
+		if( $this->getAPIVersion() < 2.3 ) {
+			if( isset( $this->_template_id ) && ( $this->_template_id != $this->_obj->_template_id ) ) {
+				$data = array(
+					'root' => 'virtual_machine',
+					'data' => array(
+						'template_id' => $this->_template_id
+					)
+				);
+			}
+			else {
+				$data = '';
+			}
+		}
+		else {
 			$data = array(
 				'root' => 'virtual_machine',
 				'data' => array(
-					'template_id' => $this->_template_id
+					'template_id' => $this->_template_id ? $this->_template_id : $this->_obj->_template_id
 				)
 			);
 		}
-		else {
-			$data = '';
-		}
+
 		$this->sendPost( ONAPP_GETRESOURCE_BUILD, $data );
 	}
 
