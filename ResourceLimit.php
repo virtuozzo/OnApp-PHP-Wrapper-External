@@ -219,6 +219,11 @@ class OnApp_ResourceLimit extends OnApp {
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
+				$this->fields[ 'rate' ] = array(
+					ONAPP_FIELD_MAP => 'rate',
+					ONAPP_FIELD_TYPE => 'integer',
+					ONAPP_FIELD_READ_ONLY => true,
+				);
 
 				$fields = array(
 					'id'
