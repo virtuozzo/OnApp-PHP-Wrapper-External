@@ -1,0 +1,21 @@
+# PLEASE do not delete this file from repository
+#
+# this file specifies untracked files that git should ignore
+# so it prevents unnecessary files to be committed
+#
+# see more documentation at
+# http://www.kernel.org/pub/software/scm/git/docs/gitignore.html
+#
+# feel free to add any pattern you need
+
+# FOLDERS
+.idea/
+stuff/
+
+
+# FILES
+.gitignore1
+.DS_Store
+PHP_ERRORS.log
+configure.ini
+full.ini.bak
