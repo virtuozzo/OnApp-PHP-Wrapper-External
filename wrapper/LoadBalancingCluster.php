@@ -144,6 +144,33 @@ class OnApp_LoadBalancingCluster extends OnApp {
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                 );
+                break;
+            case '2.3':
+                $this->fields = $this->initFields( 2.2 );
+                $this->fields['auto_scaling_out_cpu'] = array(
+                    ONAPP_FIELD_MAP => '_auto_scaling_out_cpu',
+                    ONAPP_FIELD_TYPE => 'array',
+                    ONAPP_FIELD_REQUIRED => 'LoadBalancingCluster_AutoScalingOutCpu',
+                );
+                $this->fields['auto_scaling_out_memory'] = array(
+                    ONAPP_FIELD_MAP => '_auto_scaling_out_memory',
+                    ONAPP_FIELD_TYPE => 'array',
+                    ONAPP_FIELD_REQUIRED => 'LoadBalancingCluster_AutoScalingOutMemory',
+                );
+                $this->fields['auto_scaling_in_cpu'] = array(
+                    ONAPP_FIELD_MAP => '_auto_scaling_in_cpu',
+                    ONAPP_FIELD_TYPE => 'array',
+                    ONAPP_FIELD_REQUIRED => 'LoadBalancingCluster_AutoScalingInCpu',
+                );
+                $this->fields['auto_scaling_in_memory'] = array(
+                    ONAPP_FIELD_MAP => '_auto_scaling_in_memory',
+                    ONAPP_FIELD_TYPE => 'array',
+                    ONAPP_FIELD_REQUIRED => 'LoadBalancingCluster_AutoScalingInMemory',
+                );
+
+
+
+                break;
         }
 
         parent::initFields($version, __CLASS__);
