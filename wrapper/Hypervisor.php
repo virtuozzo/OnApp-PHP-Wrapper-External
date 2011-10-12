@@ -33,6 +33,11 @@
  *
  */
 define( 'ONAPP_GETRESOURCE_HYPERVISORS_BY_HYPERVISOR_GROUP_ID', 'hypervisors' );
+/**
+ *
+ *
+ */
+define( 'ONAPP_GETRESOURCE_HYPERVISOR_REBOOT', 'hypervisor_reboot' );
 
 /**
  * Hypervisors
@@ -336,6 +341,16 @@ class OnApp_Hypervisor extends OnApp {
 				 */
 				$resource = parent::getResource( $action );
 				break;
+            case ONAPP_GETRESOURCE_HYPERVISOR_REBOOT:
+                /**
+				 * ROUTE :
+				 * @name reboot_hypervisor
+				 * @method POST
+				 * @alias  /settings/hypervisors/:id/reboot(.:format)
+				 * @format  {:action=>"reboot", :controller=>"settings_hypervisors"}
+				 */
+                $resource = $this->_resource . '/' . $this->_id . '/reboot';
+                break;
 
 			default:
 				$resource = parent::getResource( $action );
@@ -378,4 +393,41 @@ class OnApp_Hypervisor extends OnApp {
 
 		return ( is_array( $result ) || ! $result ) ? $result : array($result);
 	}
+
+    /**
+     * Reboots hypervisor
+     * 
+     * @param integer $hypervisor_id hypervisor id
+     * @return void
+     *
+     */
+    function reboot ( $hypervisor_id ) {
+        if ( $hypervisor_id ) {
+            $this->_id = $hypervisor_id;
+        }
+        else {
+			$this->logger->error(
+				'reboot: argument _hypervisor_id not set.',
+				__FILE__,
+				__LINE__
+			);
+		}
+
+        $data = array(
+			'root' => 'tmp_holder',
+			'data' => array(
+				'confirm' => '1',
+			),
+		);
+
+        $this->sendPost( ONAPP_GETRESOURCE_HYPERVISOR_REBOOT, $data );
+    }
+
+    function save() {
+        if ( $this->_id ) {
+            $this->fields[ 'hypervisor_group_id' ][ONAPP_FIELD_REQUIRED] = false;
+        }
+
+        return parent::save();
+    }
 }
