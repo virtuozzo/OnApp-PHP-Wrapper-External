@@ -14,7 +14,7 @@ stuff/
 
 
 # FILES
-.gitignore1
+.gitignore
 .DS_Store
 PHP_ERRORS.log
 configure.ini
