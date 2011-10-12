@@ -137,7 +137,7 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 				$this->fields[ 'target_join_type' ] = array(
 					ONAPP_FIELD_MAP => '_target_join_type',
 					ONAPP_FIELD_TYPE => 'string',
-					ONAPP_FIELD_REQUIRED => true
+					//ONAPP_FIELD_REQUIRED => true
 				);
 				break;
 
@@ -216,67 +216,6 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 				__FILE__,
 				__LINE__
 			);
-		}
-	}
-
-    /**
-     * Creates new interface in particular Hypervisor Zone and joins network to
-     * this interface
-     *
-     * @param integer $target_join_id hypervisor zone id to create interface in
-     * @param string $interface_label label of interface
-     * @param integer $network_id network id to join to interface
-     *
-     * @return void
-     * @todo change to save function as soon as Ticket #2972 is fixed. note: works only json..
-     */
-    function joinNetworkToInterface( $target_join_id = null, $interface_label = '', $network_id = null ) {
-        if( ! $target_join_id ) {
-			$this->logger->error(
-				"_GETAction: Target join Hypervisor Zone id should be specified
-				(apiVersion => '" . $this->_apiVersion . "').", __FILE__, __LINE__
-			);
-		}
-        if( ! $interface_label ) {
-			$this->logger->error(
-				"_GETAction: Interface label should be specified
-				(apiVersion => '" . $this->_apiVersion . "').", __FILE__, __LINE__
-			);
-		}
-        if( ! $network_id ) {
-			$this->logger->error(
-				"_GETAction: Network id join to should be specified
-				(apiVersion => '" . $this->_apiVersion . "').", __FILE__, __LINE__
-			);
-		}
-
-        $this->_target_join_id = $target_join_id;
-
-        $data = array(
-                        'root' => 'tmp_holder',
-                        'data' => array (
-                            'interface'  => $interface_label,
-                            'network_id' => $network_id
-                        )
-                     
-				);                                             
-
-        $this->sendPost( ONAPP_GETRESOURCE_DEFAULT, $data );
-    }
-
-	/**
-	 * Activates action performed with object
-	 *
-	 * @param string $action_name the name of action
-	 *
-	 * @access public
-	 */
-	function activate( $action_name ) {
-		switch( $action_name ) {
-            case ONAPP_ACTIVATE_SAVE:
-			case ONAPP_ACTIVATE_LOAD:
-				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
-				break;
 		}
 	}
 }
