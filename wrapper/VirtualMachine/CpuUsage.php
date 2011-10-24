@@ -137,10 +137,6 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
 
 			case 2.3:
 				$this->fields = $this->initFields( 2.2 );
-				$fields = array(
-					'id',
-				);
-				$this->unsetFields( $fields );
 				break;
 		}
 
