@@ -983,6 +983,18 @@ class OnApp_VirtualMachine extends OnApp {
 			ONAPP_FIELD_REQUIRED => true,
 			ONAPP_FIELD_DEFAULT_VALUE => ''
 		);
+                $this->fields[ 'hypervisor_group_id' ] = array(
+			ONAPP_FIELD_MAP => '_hypervisor_group_id',
+			ONAPP_FIELD_TYPE => 'integer',
+		);
+                $this->fields[ 'data_store_group_primary_id' ] = array(
+			ONAPP_FIELD_MAP => '_data_store_group_primary_id',
+			ONAPP_FIELD_TYPE => 'integer',
+		);
+                $this->fields[ 'data_store_group_swap_id' ] = array(
+			ONAPP_FIELD_MAP => '_data_store_group_swap_id',
+			ONAPP_FIELD_TYPE => 'integer',
+		);
 
 		parent::save();
 
