@@ -995,6 +995,10 @@ class OnApp_VirtualMachine extends OnApp {
 			ONAPP_FIELD_MAP => '_data_store_group_swap_id',
 			ONAPP_FIELD_TYPE => 'integer',
 		);
+		$this->fields[ 'required_automatic_backup' ] = array(
+			ONAPP_FIELD_MAP => '_required_automatic_backup',
+			ONAPP_FIELD_TYPE => 'boolean',
+		);
 
 		parent::save();
 
