@@ -798,7 +798,7 @@ class OnApp {
 				break;
 
 			case ONAPP_REQUEST_METHOD_POST:
-				curl_setopt( $this->_ch, CURLOPT_POST, true );
+			//	curl_setopt( $this->_ch, CURLOPT_POST, true );
 
 				if( !is_null( $data ) ) {
 					curl_setopt( $this->_ch, CURLOPT_POSTFIELDS, $data );
