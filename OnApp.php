@@ -602,12 +602,12 @@ class OnApp {
 				$this->initFields( $this->version );
 			}
 			$this->setErrors();
+            $this->_is_auth = true;
 		}
 		else {
-			$this->setErrors( 'Can\'t get OnApp version.' );
+			$this->setErrors( $response[ 'response_body' ] );
+            $this->_is_auth = false;
 		}
-
-		$this->_is_auth = true;
 	}
 
 	protected function setAPIVersion( $data ) {
