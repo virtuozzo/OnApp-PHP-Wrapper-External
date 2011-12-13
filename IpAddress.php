@@ -133,6 +133,7 @@ class OnApp_IpAddress extends OnApp {
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
+		
 		switch( $version ) {
 			case '2.0':
 			case '2.1':
@@ -191,9 +192,17 @@ class OnApp_IpAddress extends OnApp {
 				break;
 
 			case 2.2:
-			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
+			case 2.3:
+			$this->fields = $this->initFields( 2.2 );
+			$this->fields[ 'user_id' ] = array(
+				ONAPP_FIELD_MAP	   => 'user_id',
+				ONAPP_FIELD_TYPE	  => 'integer',
+				ONAPP_FIELD_READ_ONLY => true,
+			);
+			break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
