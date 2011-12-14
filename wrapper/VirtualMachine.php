@@ -874,19 +874,26 @@ class OnApp_VirtualMachine extends OnApp {
 				$data = array(
 					'root' => 'virtual_machine',
 					'data' => array(
-						'template_id' => $this->_template_id
+						'template_id'      => $this->_template_id,
+                                                'required_startup' => $this->_required_startup
 					)
 				);
 			}
 			else {
-				$data = '';
+				$data = array(
+					'root' => 'virtual_machine',
+					'data' => array(
+                                        'required_startup' => $this->_required_startup
+					)
+				);
 			}
 		}
 		else {
 			$data = array(
 				'root' => 'virtual_machine',
 				'data' => array(
-					'template_id' => $this->_template_id ? $this->_template_id : $this->_obj->_template_id
+					'template_id' => $this->_template_id ? $this->_template_id : $this->_obj->_template_id,
+                                        'required_startup' => $this->_required_startup
 				)
 			);
 		}
