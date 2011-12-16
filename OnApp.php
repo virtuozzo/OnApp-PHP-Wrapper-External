@@ -1010,12 +1010,12 @@ class OnApp {
 	 * @param mixed $params
 	 * @return the array of Object instances
 	 */
-	public function getList( $params = null ) {
+	public function getList( $params = null, $url_args = null ) {
 		$this->activate( ONAPP_ACTIVATE_GETLIST );
 
 		$this->logger->add( 'Run ' . __METHOD__ );
 
-		$result = $this->sendGet( ONAPP_GETRESOURCE_LIST, $params );
+		$result = $this->sendGet( ONAPP_GETRESOURCE_LIST, $params, $url_args );
 
 		if( !is_null( $this->getErrorsAsArray() ) ) {
 			return false;
@@ -1291,8 +1291,8 @@ class OnApp {
 		return $this->_action( ONAPP_REQUEST_METHOD_POST, $resource, $data );
 	}
 
-	protected function sendGet( $resource, $data = NULL ) {
-		return $this->_action( ONAPP_REQUEST_METHOD_GET, $resource, $data );
+	protected function sendGet( $resource, $data = NULL, $url_args = NULL ) {
+		return $this->_action( ONAPP_REQUEST_METHOD_GET, $resource, $data, $url_args );
 	}
 
 	function sendPut( $resource, $data = NULL ) {
@@ -1308,7 +1308,7 @@ class OnApp {
 	 *
 	 * @return bool|mixed (Array of Object or Object)
 	 */
-	protected function _action( $method, $resource, $data = NULL ) {
+	protected function _action( $method, $resource, $data = NULL, $url_args = NULL ) {
 		switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
 			case 'xml':
 			case 'json':
@@ -1318,7 +1318,10 @@ class OnApp {
 					$this->logger->debug( 'Additional parameters: ' . $data );
 				}
 
-				$this->setAPIResource( $this->getResource( $resource ) );
+                $url_args = ( $url_args ) ? http_build_query( $url_args ) : '';
+
+				$this->setAPIResource( $this->getResource( $resource ), true, $url_args );
+
 				$response = $this->sendRequest( $method, $data );
 
 				$result = $this->_castResponseToClass( $response );
