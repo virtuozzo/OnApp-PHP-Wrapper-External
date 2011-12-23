@@ -642,12 +642,13 @@ class OnApp {
 		}
 
 		if( is_null( $this->fields ) && ( $this->getClassName() != 'OnApp' ) ) {
-			if( IS_CLI ) {
-				throw new Exception( 'No fields defined for current API version [ ' . $version . ' ]' );
-			}
-			else {
-				$this->logger->error( 'No fields defined for current API version [ ' . $version . ' ]' );
-			}
+            $this->logger->debug( 'No fields defined for current API version [ ' . $version . ' ]' );
+//			if( IS_CLI ) {
+//				throw new Exception( 'No fields defined for current API version [ ' . $version . ' ]' );
+//			}
+//			else {
+//				$this->logger->error( 'No fields defined for current API version [ ' . $version . ' ]' );
+//			}
 		}
 		elseif( !is_null( $version ) ) {
 			if( $version == $this->version ) {
