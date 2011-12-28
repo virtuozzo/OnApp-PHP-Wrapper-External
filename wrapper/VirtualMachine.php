@@ -943,6 +943,10 @@ class OnApp_VirtualMachine extends OnApp {
 	 */
 	function save() {
 		if( !is_null( $this->_id ) ) {
+			$this->fields['label'] = array(
+		            ONAPP_FIELD_MAP => '_label',
+                            ONAPP_FIELD_TYPE => 'string',
+		        );
 			parent::save();
 			return;
 		}
