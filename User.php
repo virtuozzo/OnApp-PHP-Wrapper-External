@@ -460,12 +460,10 @@ class OnApp_User extends OnApp {
 			$obj = $this->_create();
 		}
 		else {
-			if( isset( $this->_password ) ) {
-				$this->fields[ 'password' ][ ONAPP_FIELD_REQUIRED ] = true;
-			}
-			if( isset( $this->_time_zone ) ) {
-				$this->fields[ 'time_zone' ][ ONAPP_FIELD_REQUIRED ] = true;
-			}
+                        $this->fields[ 'email' ][ ONAPP_FIELD_REQUIRED ]      = false;
+                        $this->fields[ 'first_name' ][ ONAPP_FIELD_REQUIRED ] = false;
+                        $this->fields[ 'last_name' ][ ONAPP_FIELD_REQUIRED ]  = false;
+                        $this->fields[ 'login' ][ ONAPP_FIELD_REQUIRED ]      = false;
 
 			$obj = $this->_edit();
 		}
