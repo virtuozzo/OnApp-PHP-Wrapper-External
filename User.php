@@ -359,6 +359,11 @@ class OnApp_User extends OnApp {
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
+                $this->fields['additional_fields'] = array(
+				    ONAPP_FIELD_MAP => '_additional_fields',
+					ONAPP_FIELD_TYPE => 'array',
+					ONAPP_FIELD_CLASS => 'UserAdditionalField',
+		        );
 				break;
 		}
 
