@@ -421,6 +421,12 @@ class OnApp {
 	 */
 	protected $className;
 
+    /**
+     *
+     *
+     */
+    protected $response;
+
 	/**
 	 * Returns API version
 	 *
@@ -430,6 +436,16 @@ class OnApp {
 	function _apiVersion() {
 		return $this->version;
 	}
+
+    /**
+     * Returns Curl Response
+     *
+     * @access public
+     * @return array response
+     */
+    function getResponse() {
+        return $this->response;
+    }
 
 	/**
 	 * Resets all options to default options
@@ -827,6 +843,8 @@ class OnApp {
 		if( !$result[ 'response_body' ] ) {
 			return false;
 		}
+
+        $this->response = $result;
 
 		$content_type = $result[ 'info' ][ 'content_type' ];
 
