@@ -14,6 +14,12 @@
  */
 
 /**
+ *
+ *
+ */
+define( 'ONAPP_GETRESOURCE_ENABLE_CDN', 'enable_cdn' );
+
+/**
  * Managing CDN Resource
  *
  * The CDN Resource class represents the CDN Resources.
@@ -24,6 +30,7 @@
  *
  */
 class OnApp_CDNResource extends OnApp {
+
 	/**
 	 * root tag used in the API request
 	 *
@@ -84,6 +91,14 @@ class OnApp_CDNResource extends OnApp {
 					),
                     'aflexi_resource_id' => array(
 						ONAPP_FIELD_MAP => '_aflexi_resource_id',
+						ONAPP_FIELD_TYPE => 'integer',
+					),
+                    'origins_for_api' => array(
+						ONAPP_FIELD_MAP => '_origins_for_api',
+						ONAPP_FIELD_TYPE => 'string',
+					),
+                    'last_24h_cost' => array(
+						ONAPP_FIELD_MAP => '_last_24h_cost',
 						ONAPP_FIELD_TYPE => 'integer',
 					),
 
@@ -181,4 +196,29 @@ class OnApp_CDNResource extends OnApp {
 		parent::initFields( $version, __CLASS__ );
 		return $this->fields;
 	}
+
+	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+		switch( $action ) {
+			case ONAPP_GETRESOURCE_ENABLE_CDN:
+				/**
+
+				 */
+				$resource = $this->_resource . '/enable';
+				break;
+
+			default:
+				$resource = parent::getResource( $action );
+				break;
+		}
+
+		if( in_array( $action, $actions ) ) {
+			$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+		}
+
+		return $resource;
+	}
+
+    public function enable() {
+        $this->sendPost( ONAPP_GETRESOURCE_ENABLE_CDN );
+    }
 }
