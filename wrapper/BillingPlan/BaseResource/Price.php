@@ -28,6 +28,11 @@ class OnApp_BillingPlan_BaseResource_Price extends OnApp {
 						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
+					'price' => array(
+						ONAPP_FIELD_MAP => '_price',
+						ONAPP_FIELD_TYPE => 'integer',
+						ONAPP_FIELD_READ_ONLY => true,
+					),
 				);
 				break;
 
