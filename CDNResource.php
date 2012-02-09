@@ -20,6 +20,12 @@
 define( 'ONAPP_GETRESOURCE_ENABLE_CDN', 'enable_cdn' );
 
 /**
+ *
+ *
+ */
+define( 'ONAPP_GETRESOURCE_CDN_PREFETCH', 'cdn_prefetch' );
+
+/**
  * Managing CDN Resource
  *
  * The CDN Resource class represents the CDN Resources.
@@ -95,7 +101,9 @@ class OnApp_CDNResource extends OnApp {
 					),
                     'origins_for_api' => array(
 						ONAPP_FIELD_MAP => '_origins_for_api',
-						ONAPP_FIELD_TYPE => 'string',
+						ONAPP_FIELD_TYPE => 'array',
+                        ONAPP_FIELD_READ_ONLY => true,
+                        ONAPP_FIELD_CLASS => 'CDNResource_Origin',
 					),
                     'last_24h_cost' => array(
 						ONAPP_FIELD_MAP => '_last_24h_cost',
@@ -117,7 +125,7 @@ class OnApp_CDNResource extends OnApp {
 					),
                     'edge_group_ids' => array(
 						ONAPP_FIELD_MAP => '_edge_group_ids',
-						ONAPP_FIELD_TYPE => 'array',
+						ONAPP_FIELD_TYPE =>'string',
                         //ONAPP_FIELD_REQUIRED => true,
 
 					),
@@ -201,9 +209,24 @@ class OnApp_CDNResource extends OnApp {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_ENABLE_CDN:
 				/**
-
+				 * ROUTE :
+				 * @name
+				 * @method POST
+				 * @alias  /cdn_resources/enable(.:format)
+				 * @format {:controller=>"cdn_resources", :action=>"enable"}
 				 */
 				$resource = $this->_resource . '/enable';
+				break;
+            
+			case ONAPP_GETRESOURCE_CDN_PREFETCH:
+				/**
+				 * ROUTE :
+				 * @name
+				 * @method POST
+				 * @alias  /cdn_resources/:id/prefetch(.:format)
+				 * @format {:controller=>"cdn_resources", :action=>"prefetch"}
+				 */
+				$resource = $this->_resource . '/' . $this->_id . '/prefetch';
 				break;
 
 			default:
@@ -218,6 +241,40 @@ class OnApp_CDNResource extends OnApp {
 		return $resource;
 	}
 
+    /**
+     * Prefetchs big files
+     *
+     * @param integer $cdn_resource_id CDN resource id
+     * @param string $prefetch_paths Paths to prefetch
+     */
+    public function prefetch( $cdn_resource_id, $prefetch_paths ) {
+        if ( $cdn_resource_id ) {
+            $this->_id = $cdn_resource_id;
+        }
+        else {
+			$this->logger->error(
+				'prefetch: argument $cdn_resource_id not set.',
+				__FILE__,
+				__LINE__
+			);
+		}
+
+        $data = array(
+            'root' => 'tmp_holder',
+            'data' => array(
+                'prefetch_paths' => $prefetch_paths
+            )
+        );
+
+        $this->sendPost( ONAPP_GETRESOURCE_CDN_PREFETCH, $data );
+
+    }
+
+
+    /**
+     * Enables cdn
+     *
+     */
     public function enable() {
         $this->sendPost( ONAPP_GETRESOURCE_ENABLE_CDN );
     }
