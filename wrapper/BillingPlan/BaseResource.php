@@ -101,6 +101,11 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_REQUIRED => true,
 					),
+					'limit_type' => array(
+						ONAPP_FIELD_MAP => '_limit_type',
+						ONAPP_FIELD_TYPE => 'string',
+						ONAPP_FIELD_REQUIRED => true,
+					),
 					'limit_free' => array(
 						ONAPP_FIELD_MAP => '_limit_free',
 						ONAPP_FIELD_TYPE => 'string',
@@ -225,7 +230,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $billing_plan_id = null ) {
+	function getList( $billing_plan_id = null, $x = null ) {
 		if( is_null( $billing_plan_id ) && !is_null( $this->_billing_plan_id ) ) {
 			$billing_plan_id = $this->_billing_plan_id;
 		}
