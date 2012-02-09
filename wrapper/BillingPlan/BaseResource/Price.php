@@ -1,6 +1,8 @@
 <?php
 
 class OnApp_BillingPlan_BaseResource_Price extends OnApp {
+	var $_tagRoot = 'price';
+
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
@@ -25,6 +27,11 @@ class OnApp_BillingPlan_BaseResource_Price extends OnApp {
 					),
 					'price_off' => array(
 						ONAPP_FIELD_MAP => '_price_off',
+						ONAPP_FIELD_TYPE => 'integer',
+						ONAPP_FIELD_READ_ONLY => true,
+					),
+					'price' => array(
+						ONAPP_FIELD_MAP => '_price',
 						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
