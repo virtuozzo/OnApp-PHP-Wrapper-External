@@ -111,12 +111,20 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 	 * @return object
 	 */
 	private function process( $item ) {
+		if( ! ( is_array( $item ) || is_object( $item ) ) ) {
+			$tmp = new $this->className;
+			$item = array(
+				$tmp->_tagRoot => $item
+			);
+			unset( $tmp );
+		}
+
+
 		$obj = new $this->className;
 		$obj->options = parent::$obj->options;
 		$obj->_ch = parent::$obj->_ch;
 		$obj->_is_auth = parent::$obj->_is_auth;
 		$obj->initFields( parent::$APIVersion );
-
 		foreach( $item as $name => $value ) {
 			$field = $this->map[ $name ][ ONAPP_FIELD_MAP ];
 
