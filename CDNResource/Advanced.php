@@ -84,9 +84,9 @@ class OnApp_CDNResource_Advanced extends OnApp {
 					),
 					'passwords' => array(
 						ONAPP_FIELD_MAP => '_passwords',
-						ONAPP_FIELD_TYPE => 'array',
+						ONAPP_FIELD_TYPE => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_CLASS => 'CDNResource_Advanced_Password',
+//						ONAPP_FIELD_CLASS => 'CDNResource_Advanced_Password',
 					),
 					'domains' => array(
 						ONAPP_FIELD_MAP => '_domains',
