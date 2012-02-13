@@ -141,7 +141,6 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 				break;
 
 			case 2.2:
-                break;
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
                 $this->fields[ 'target_id' ] = array(
