@@ -195,8 +195,12 @@ class OnApp_CDNResource extends OnApp {
                     'countries' => array(
 						ONAPP_FIELD_MAP => '_countries',
 						ONAPP_FIELD_TYPE => 'array',
+                        ONAPP_FIELD_CLASS => 'CDNResource_Advanced_Country',
 					),
-                    
+                    'status' => array(
+						ONAPP_FIELD_MAP => '_status',
+						ONAPP_FIELD_TYPE => 'string',
+					),
 				);
                 break;
 		}
