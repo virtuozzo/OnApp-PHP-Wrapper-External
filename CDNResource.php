@@ -123,11 +123,10 @@ class OnApp_CDNResource extends OnApp {
 						ONAPP_FIELD_MAP => '_ip_addresses',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-                    'edge_group_ids' => array(
-						ONAPP_FIELD_MAP => '_edge_group_ids',
-						ONAPP_FIELD_TYPE =>'string',
-                        //ONAPP_FIELD_REQUIRED => true,
-
+                    'edge_groups' => array(
+						ONAPP_FIELD_MAP => '_edge_groups',
+						ONAPP_FIELD_TYPE =>'array',
+                        ONAPP_FIELD_CLASS => 'EdgeGroup',
 					),
                     'resource_type' => array(
 						ONAPP_FIELD_MAP => '_resource_type',
@@ -199,6 +198,10 @@ class OnApp_CDNResource extends OnApp {
 					),
                     'status' => array(
 						ONAPP_FIELD_MAP => '_status',
+						ONAPP_FIELD_TYPE => 'string',
+					),
+                    'edge_group_ids' => array(
+						ONAPP_FIELD_MAP => '_edge_group_ids',
 						ONAPP_FIELD_TYPE => 'string',
 					),
 				);
