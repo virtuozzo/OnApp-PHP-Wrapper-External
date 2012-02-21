@@ -16,7 +16,7 @@
 /**
  * CDN Resource Billing Statistics
  *
- * The OnApp_CDNResource_Advanced uses the following basic methods:
+ * The OnApp_CDNResource_BillingStatistic uses the following basic methods:
  * {@link getList}.
  */
 
