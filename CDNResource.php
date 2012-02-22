@@ -26,6 +26,12 @@ define( 'ONAPP_GETRESOURCE_ENABLE_CDN', 'enable_cdn' );
 define( 'ONAPP_GETRESOURCE_CDN_PREFETCH', 'cdn_prefetch' );
 
 /**
+ *
+ *
+ */
+define( 'ONAPP_GETRESOURCE_CDN_PURGE', 'cdn_purge' );
+
+/**
  * Managing CDN Resource
  *
  * The CDN Resource class represents the CDN Resources.
@@ -236,6 +242,17 @@ class OnApp_CDNResource extends OnApp {
 				$resource = $this->_resource . '/' . $this->_id . '/prefetch';
 				break;
 
+            case ONAPP_GETRESOURCE_CDN_PURGE:
+				/**
+				 * ROUTE :
+				 * @name
+				 * @method POST
+				 * @alias  /cdn_resources/:id/purge(.:format)
+				 * @format {:controller=>"cdn_resources", :action=>"purge"}
+				 */
+				$resource = $this->_resource . '/' . $this->_id . '/purge';
+				break;
+
 			default:
 				$resource = parent::getResource( $action );
 				break;
@@ -249,7 +266,8 @@ class OnApp_CDNResource extends OnApp {
 	}
 
     /**
-     * Prefetchs big files
+     * This tool allows HTTP Pull content to be pre-populated to the CDN.
+     * Recommended only if files especially large.
      *
      * @param integer $cdn_resource_id CDN resource id
      * @param string $prefetch_paths Paths to prefetch
@@ -277,6 +295,34 @@ class OnApp_CDNResource extends OnApp {
 
     }
 
+    /**
+     * This tool allows instant removal of HTTP Pull cache content in the CDN
+     *
+     * @param integer $cdn_resource_id CDN resource id
+     * @param string $purge_paths Paths to prefetch
+     */
+    public function purge( $cdn_resource_id, $purge_paths ) {
+        if ( $cdn_resource_id ) {
+            $this->_id = $cdn_resource_id;
+        }
+        else {
+			$this->logger->error(
+				'prefetch: argument $cdn_resource_id not set.',
+				__FILE__,
+				__LINE__
+			);
+		}
+
+        $data = array(
+            'root' => 'tmp_holder',
+            'data' => array(
+                'purge_paths' => $purge_paths
+            )
+        );
+
+        $this->sendPost( ONAPP_GETRESOURCE_CDN_PURGE, $data );
+
+    }
 
     /**
      * Enables cdn
