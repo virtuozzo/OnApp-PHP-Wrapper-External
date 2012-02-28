@@ -96,7 +96,11 @@ class OnApp_User_Statistics extends OnApp {
 						ONAPP_FIELD_TYPE => 'float',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-
+					'edge_group_cost' => array(
+						ONAPP_FIELD_MAP => '_edge_group_cost',
+						ONAPP_FIELD_TYPE => 'float',
+						ONAPP_FIELD_READ_ONLY => true,
+					),
 				);
 				break;
 
