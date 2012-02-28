@@ -180,7 +180,22 @@ class OnApp_BillingPlan extends OnApp {
 						ONAPP_FIELD_REQUIRED => true,
 						ONAPP_FIELD_DEFAULT_VALUE => true,
 						ONAPP_FIELD_READ_ONLY => true
-					)
+					),
+					'allows_mak' => array(
+						ONAPP_FIELD_MAP => '_allows_mak',
+						ONAPP_FIELD_TYPE => 'boolean',
+						ONAPP_FIELD_READ_ONLY => true
+					),
+					'allows_kms' => array(
+						ONAPP_FIELD_MAP => '_allows_kms',
+						ONAPP_FIELD_TYPE => 'boolean',
+						ONAPP_FIELD_READ_ONLY => true
+					),
+					'allows_own' => array(
+						ONAPP_FIELD_MAP => '_allows_own',
+						ONAPP_FIELD_TYPE => 'boolean',
+						ONAPP_FIELD_READ_ONLY => true
+					),
 				);
 				break;
 
