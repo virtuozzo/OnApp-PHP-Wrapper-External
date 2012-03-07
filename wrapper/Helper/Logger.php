@@ -251,7 +251,7 @@ class OnApp_Helper_Logger {
 		}
 		else {
 			if( strlen( ini_get( 'date.timezone' ) ) == 0 ) {
-				date_default_timezone_set( $timezone );
+//                 	          date_default_timezone_set( $timezone );
 				$this->add( "setTimezone: Change default date.timezone." );
 			}
 			else {
