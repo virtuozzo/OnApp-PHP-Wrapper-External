@@ -150,7 +150,6 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 					'address' => array(
 						ONAPP_FIELD_MAP => '_address',
 						ONAPP_FIELD_TYPE => 'string',
-						ONAPP_FIELD_REQUIRED => true,
 					),
 					'position' => array(
 						ONAPP_FIELD_MAP => '_position',
@@ -175,7 +174,6 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 					'port' => array(
 						ONAPP_FIELD_MAP => '_port',
 						ONAPP_FIELD_TYPE => 'integer',
-						ONAPP_FIELD_REQUIRED => true,
 					),
 					'protocol' => array(
 						ONAPP_FIELD_MAP => '_protocol',
