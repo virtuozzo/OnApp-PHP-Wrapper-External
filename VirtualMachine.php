@@ -25,7 +25,6 @@
  *
  * @category	API WRAPPER
  * @package		OnApp
- * @subpackage	VirtualMachine
  * @author		Andrew Yatskovets
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/
@@ -106,111 +105,7 @@ define( 'ONAPP_GETRESOURCE_MIGRATE', 'migrate' );
  * The ONAPP_VirtualMachine class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
- * <b>Use the following XML API requests:</b>
- *
- * Get the list of virtual machines
- *
- *	 - <i>GET onapp.com/virtual_machines.xml</i>
- *
- * Get a particular virtual machine details
- *
- *	 - <i>GET onapp.com/virtual_machines/{ID}.xml</i>
- *
- * Add new virtual machine
- *
- *	 - <i>POST onapp.com/virtual_machines.xml</i>
- *
- * <code>
- * <?xml version="1.0" encoding="UTF-8"?>
- * <virtual-machine>
- *	 <cpu-shares>{NUMBER}</cpu-shares>
- *	 <cpus>{NUMBER}</cpus>
- *	 <hostname>{HOSTNAME}</hostname>
- *	 <hypervisor-id>{ID}</hypervisor-id>
- *	 <initial-root-password>{PASSWORD}</initial-root-password>
- *	 <memory>{SIZE}</memory>
- *	 <template-id>{ID}</template-id>
- *	 <primary-disk-size>{SIZE}</primary-disk-size>
- *	 <swap-disk-size>{SIZE}</swap-disk-size>
- * </virtual-machine>
- * </code>
- *
- * Edit existing virtual machine
- *
- *	 - <i>PUT onapp.com/virtual_machines/{ID}.xml</i>
- *
- * <code>
- * <?xml version="1.0" encoding="UTF-8"?>
- * <virtual-machine>
- *	 <cpu-shares>{NUMBER}</cpu-shares>
- *	 <cpus>{NUMBER}</cpus>
- *	 <hostname>{HOSTNAME}</hostname>
- *	 <hypervisor-id>{ID}</hypervisor-id>
- *	 <initial-root-password>{PASSWORD}</initial-root-password>
- *	 <memory>{SIZE}</memory>
- *	 <template-id>{ID}</template-id>
- *	 <primary-disk-size>{SIZE}</primary-disk-size>
- *	 <swap-disk-size>{SIZE}</swap-disk-size>
- * </virtual-machine>
- * </code>
- *
- * Delete virtual machine
- *
- *	 - <i>DELETE onapp.com/virtual_machines/{ID}.xml</i>
- *
- * <b>Use the following JSON API requests:</b>
- *
- * Get the list of virtual machines
- *
- *	 - <i>GET onapp.com/virtual_machines.json</i>
- *
- * Get a particular virtual machine details
- *
- *	 - <i>GET onapp.com/virtual_machines/{ID}.json</i>
- *
- * Add new virtual machine
- *
- *	 - <i>POST onapp.com/virtual_machines.json</i>
- *
- * <code>
- * {
- *	 virtual-machine: {
- *		 cpu-shares:{NUMBER},
- *		 cpus:{NUMBER},
- *		 hostname:'{HOSTNAME}',
- *		 hypervisor-id:{ID},
- *		 initial-root-password:'{PASSWORD}',
- *		 memory:{SIZE},
- *		 template-id:{ID},
- *		 primary-disk-size:{SIZE},
- *		 swap-disk-size:{SIZE}
- *	  }
- * }
- * </code>
- *
- * Edit existing virtual machine
- *
- *	 - <i>PUT onapp.com/virtual_machines/{ID}.json</i>
- *
- * <code>
- * {
- *	  virtual-machine: {
- *		 cpu-shares:{NUMBER},
- *		 cpus:{NUMBER},
- *		 hostname:'{HOSTNAME}',
- *		 hypervisor-id:{ID},
- *		 initial-root-password:'{PASSWORD}',
- *		 memory:{SIZE},
- *		 template-id:{ID},
- *		 primary-disk-size:{SIZE},
- *		 swap-disk-size:{SIZE}
- *	  }
- * }
- * </code>
- *
- * Delete virtual machine
- *
- *	 - <i>DELETE onapp.com/virtual_machines/{ID}.json</i>
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_VirtualMachine extends OnApp {
 	/**

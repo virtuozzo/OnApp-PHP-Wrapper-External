@@ -26,84 +26,12 @@ define( 'ONAPP_GETRESOURCE_CREATE_COPY', 'copy' );
 /**
  * Managing Billing Plans
  *
- * The ONAPP_BillingPlan class represents the billing plans.  The ONAPP class is the parent of the BillingPlan class.
+ * The ONAPP_BillingPlan class represents the billing plans. The ONAPP class is the parent of the BillingPlan class.
  *
  * The ONAPP_BillingPlan class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
- *
- * <b>Use the following XML API requests:</b>
- *
- * Get the list of groups
- *
- *	 - <i>GET onapp.com/settings/billing_plans.xml</i>
- *
- * Get a particular group details
- *
- *	 - <i>GET onapp.com/settings/billing_plans/{ID}.xml</i>
- *
- * Add new group
- *
- *	 - <i>POST onapp.com/settings/billing_plans.xml</i>
- *
- * <code>
- * <?xml version="1.0" encoding="UTF-8"?>
- * <billing-plan>
- *	<label>{LABEL}</label>
- * </billing-plan>
- * </code>
- *
- * Edit existing group
- *
- *	 - <i>PUT onapp.com/settings/billing_plans/{ID}.xml</i>
- *
- * <code>
- * <?xml version="1.0" encoding="UTF-8"?>
- * <billing-plan>
- *	<label>{LABEL}</label>
- * </billing-plan>
- * </code>
- *
- * Delete group
- *
- *	 - <i>DELETE onapp.com/settings/billing_plans/{ID}.xml</i>
- *
- * <b>Use the following JSON API requests:</b>
- *
- * Get the list of groups
- *
- *	 - <i>GET onapp.com/settings/billing_plans.json</i>
- *
- * Get a particular group details
- *
- *	 - <i>GET onapp.com/settings/billing_plans/{ID}.json</i>
- *
- * Add new group
- *
- *	 - <i>POST onapp.com/settings/billing_plans.json</i>
- *
- * <code>
- * {
- *	  billing-plan: {
- *		  label:'{LABEL}',
- *	  }
- * }
- * </code>
- *
- * Edit existing group
- *
- *	 - <i>PUT onapp.com/settings/billing_plans/{ID}.json</i>
- *
- * <code>
- * {
- *	  billing-plan: {
- *		  label:'{LABEL}',
- *	  }
- * }
- * </code>
- *
- * Delete group
- *
- *	 - <i>DELETE onapp.com/settings/billing_plans/{ID}.json</i>
+ * 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_BillingPlan extends OnApp {
 	/**

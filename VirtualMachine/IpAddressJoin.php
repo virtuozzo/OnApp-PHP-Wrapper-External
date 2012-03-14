@@ -19,58 +19,7 @@
  * The ONAPP_VirtualMachine_IpAddressJoin uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
- * <b>Use the following XML API requests:</b>
- *
- * Get the list of IP Address Joins
- *
- *	 - <i>GET onapp.com/virtual_machines/{VM_ID}/ip_addresses.xml</i>
- *
- * Get a particular IP Address Join details
- *
- *	 - <i>GET onapp.com/virtual_machines/{VM_ID}/ip_addresses/{ID}.xml</i>
- *
- * Add new IP Address Join
- *
- *	 - <i>POST onapp.com/svirtual_machines/{VM_ID}/ip_addresses.xml</i>
- *
- * <code>
- * <?xml version="1.0" encoding="UTF-8"?>
- * <backup>
- *	<network_interface_id>{NETWORK_INTERFACE_ID}</network_interface_id>
- *	<ip_address_id>{IP_ADDRESS_ID}</ip_address_id>
- * </backup>
- * </code>
- *
- * Delete IP Address Join
- *
- *	 - <i>DELETE onapp.com/virtual_machines/{VM_ID}/ip_addresses/{ID}.xml</i>
- *
- * <b>Use the following JSON API requests:</b>
- *
- * Get the list of IP Address Joins
- *
- *	 - <i>GET onapp.com/virtual_machines/{VM_ID}/ip_addresses.json</i>
- *
- * Get a particular IP Address Join details
- *
- *	 - <i>GET onapp.com/virtual_machines/{VM_ID}/ip_addresses/{ID}.json</i>
- *
- * Add new IP Address Join
- *
- *	 - <i>POST onapp.com/virtual_machines/{VM_ID}/ip_addresses.json</i>
- *
- * <code>
- * {
- *	  backup: {
- *		  network_interface_id:{NETWORK_INTERFACE_ID},
- *		  ip_address_id:{IP_ADDRESS_ID}
- *	  }
- * }
- * </code>
- *
- * Delete IP Address Join
- *
- *	 - <i>DELETE onapp.com/virtual_machines/{VM_ID}/ip_addresses/{ID}.json</i>
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 	/**

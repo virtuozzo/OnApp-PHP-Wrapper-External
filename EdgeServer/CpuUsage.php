@@ -8,7 +8,7 @@
  *
  * @category	API WRAPPER
  * @package		OnApp
- * @subpackage	Cpu Usage
+ * @subpackage	EdgeServer
  * @author		Yakubskiy Yuriy
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/
@@ -22,7 +22,8 @@
  *
  * The ONAPP_CpuUsage class uses the following basic methods:
  * {@link getList} and {@link load} and .
- *
+ * 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
     public function __construct() {

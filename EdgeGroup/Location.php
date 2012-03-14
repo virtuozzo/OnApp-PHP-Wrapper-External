@@ -2,13 +2,13 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
- * Edge Group Location
+ * Manages Edge Group Location
  *
  * @todo Add description
  *
  * @category	API WRAPPER
  * @package		OnApp
- * @subpackage	Hypervisor
+ * @subpackage	EdgeGroup
  * @author		Yakubskiy Yuriy
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/

@@ -1,5 +1,23 @@
 <?php
 
+/**
+ * Manages LoadBalancingCluster Nodes
+ *
+ * @category	API WRAPPER
+ * @package		OnApp
+ * @subpackage	LoadBalancingCluster
+ * @author		Yakubskiy Yuriy
+ * @copyright	(c) 2011 OnApp
+ * @link		http://www.onapp.com/
+ * @see			OnApp
+ */
+
+/**
+ * Manages OnApp Load Balancing Cluster Node
+ *
+ * The OnApp_LoadBalancingCluster_Node class uses no basic methods and is nested of OnApp_LoadBalancingCluster class
+ * 
+ */
 class OnApp_LoadBalancingCluster_Node extends OnApp {
 	public function __construct() {
 		parent::__construct();

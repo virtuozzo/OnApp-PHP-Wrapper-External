@@ -13,7 +13,6 @@
  *
  * @category	API WRAPPER
  * @package		OnApp
- * @subpackage	User
  * @author		Andrew Yatskovets
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/
@@ -45,93 +44,7 @@ define( 'ONAPP_GETRESOURCE_NETWORKS_LIST_BY_GROUP_ID', 'get_list_by_group_id' );
  * The ONAPP_User class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
- * <b>Use the following XML API requests:</b>
- *
- * Get the list of users
- *
- *	 - <i>GET onapp.com/users.xml</i>
- *
- * Get a particular user details
- *
- *	 - <i>GET onapp.com/users/{ID}.xml</i>
- *
- * Add new user
- *
- *	 - <i>POST onapp.com/users.xml</i>
- *
- * <code>
- * <?xml version="1.0" encoding="UTF-8"?>
- * <users>
- *	<email>{EMAIL}</email>
- *	<first-name>{FIRST NAME}</first-name>
- *	<last-name>{LAST NAME}</last-name>
- *	<login>{LOGIN}</login>
- *	<password>{PASSWORD}</password>
- * </users>
- * </code>
- *
- * Edit existing user
- *
- *	 - <i>PUT onapp.com/users/{ID}.xml</i>
- *
- * <code>
- * <?xml version="1.0" encoding="UTF-8"?>
- * <users>
- *	<email>{EMAIL}</email>
- *	<first-name>{FIRST NAME}</first-name>
- *	<last-name>{LAST NAME}</last-name>
- *	<login>{LOGIN}</login>
- * </users>
- * </code>
- *
- * Delete user
- *
- *	 - <i>DELETE onapp.com/users/{ID}.xml</i>
- *
- * <b>Use the following JSON API requests:</b>
- *
- * Get the list of users
- *
- *	 - <i>GET onapp.com/users.json</i>
- *
- * Get a particular user details
- *
- *	 - <i>GET onapp.com/users/{ID}.json</i>
- *
- * Add new user
- *
- *	 - <i>POST onapp.com/users.json</i>
- *
- * <code>
- * {
- *	  users: {
- *		  email:'{EMAIL}',
- *		  first-name:'{FIRST NAME}',
- *		  last-name:'{LAST NAME}',
- *		  login:'{LOGIN}',
- *		  password:'{PASSWORD}'
- *	  }
- * }
- * </code>
- *
- * Edit existing user
- *
- *	 - <i>PUT onapp.com/users/{ID}.json</i>
- *
- * <code>
- * {
- *	  users: {
- *		  email:'{EMAIL}',
- *		  first-name:'{FIRST NAME}',
- *		  last-name:'{LAST NAME}',
- *		  login:'{LOGIN}'
- *	  }
- * }
- * </code>
- *
- * Delete user
- *
- *	 - <i>DELETE onapp.com/users/{ID}.json</i>
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_User extends OnApp {
 	/**

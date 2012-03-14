@@ -23,58 +23,7 @@
  * The ONAPP_Hypervisor_NetworkJoin class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
- * <b>Use the following XML API requests:</b>
- *
- * Get the list of Network Joins
- *
- *	 - <i>GET onapp.com/settings/hypervisors/{HYPERVISOR_ID}/network_joins.xml</i>
- *
- * Get a particular Network Join details
- *
- *	 - <i>GET onapp.com/settings/hypervisors/{HYPERVISOR_ID}/network_joins/{ID}.xml</i>
- *
- * Add new Network Join
- *
- *	 - <i>POST onapp.com/settings/hypervisors/{HYPERVISOR_ID}/network_joins.xml</i>
- *
- * <code>
- * <?xml version="1.0" encoding="UTF-8"?>
- * <network-join>
- *	<network_id>{NETWORK_ID}</network_id>
- *	<interface>{INTERFACE}</interface>
- * </network-join>
- * </code>
- *
- * Delete Network Join
- *
- *	 - <i>DELETE onapp.com/settings/hypervisors/{HYPERVISOR_ID}/network_joins/{ID}.xml</i>
- *
- * <b>Use the following JSON API requests:</b>
- *
- * Get the list of Network Joins
- *
- *	 - <i>GET onapp.com/settings/hypervisors/{HYPERVISOR_ID}/network_joins.json</i>
- *
- * Get a particular Network Join details
- *
- *	 - <i>GET onapp.com/settings/hypervisors/{HYPERVISOR_ID}/network_joins/{ID}.json</i>
- *
- * Add new Network Join
- *
- *	 - <i>POST onapp.com/settings/hypervisors/{HYPERVISOR_ID}/network_joins.json</i>
- *
- * <code>
- * {
- *	  network-join: {
- *		  network_id:{NETWORK_ID},
- *		  interface:'{INTERFACE}'
- *	  }
- * }
- * </code>
- *
- * Delete Network Join
- *
- *	 - <i>DELETE onapp.com/settings/hypervisors/{HYPERVISOR_ID}/network_joins/{ID}.json</i>
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	/**

@@ -8,7 +8,7 @@
  *
  * @category	API WRAPPER
  * @package		OnApp
- * @subpackage	User
+ * @subpackage	User_Statistics
  * @author		Yakubskiy Yuriy
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/

@@ -8,15 +8,10 @@
  *
  * @category	API WRAPPER
  * @package		OnApp
- * @subpackage	LoadBalancingCluster
  * @author		Yakubskiy Yuriy
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/
  * @see			OnApp
- */
-/**
- *
- *
  */
 define('ONAPP_GETRESOURCE_GETLIST_BY_USER_ID', 'get_list_by_user_id');
 
@@ -31,6 +26,7 @@ define('ONAPP_GETRESOURCE_GETLIST_BY_USER_ID', 'get_list_by_user_id');
  * Couldn't edit LoadBalancingCluster Ticket #2496
  * In json _tagRoot = 'cluster'       Ticket #2495
  *
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 ) 
  */
 class OnApp_LoadBalancingCluster extends OnApp {
 

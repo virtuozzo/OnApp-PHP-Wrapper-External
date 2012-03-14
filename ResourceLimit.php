@@ -12,102 +12,17 @@
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/
  * @see			OnApp
- *
- * @todo Add description
  */
 
 /**
- * Resource Limit
+ * Manages Resource Limit
  *
  * This class represents the resource limits set to users.
  *
  * The ONAPP_ResourceLimit class uses the following basic methods:
  * {@link load}, {@link save} and {@link getList}.
  *
- * <b>Use the following XML API requests:</b>
- *
- * Get the list of resource limits
- *
- *	 - <i>GET onapp.com/users/{USER_ID}/resource_limit.xml</i>
- *
- * Get a particular resource limit details
- *
- *	 - <i>GET onapp.com/users/{USER_ID}/resource_limit/{ID}.xml</i>
- *
- * Add new resource limit
- *
- *	 - <i>POST onapp.com/users/{USER_ID}/resource_limit.xml</i>
- *
- * <code>
- * <?xml version="1.0" encoding="UTF-8"?>
- * <resource-limit>
- *	 <cpu-shares>{NUMBER}<cpu-shares>
- *	 <cpus>{NUMBER}<cpus>
- *	 <disk-size>{SIZE}<disk-size>
- *	 <memory>{SIZE}<memory>
- * </resource-limit>
- * </code>
- *
- * Edit existing resource limit
- *
- *	 - <i>PUT onapp.com/users/{USER_ID}/resource_limit/{ID}.xml</i>
- *
- * <code>
- * <?xml version="1.0" encoding="UTF-8"?>
- * <resource-limit>
- *	 <cpu-shares>{NUMBER}<cpu-shares>
- *	 <cpus>{NUMBER}<cpus>
- *	 <disk-size>{SIZE}<disk-size>
- *	 <memory>{SIZE}<memory>
- * </resource-limit>
- * </code>
- *
- * Delete resource limit
- *
- *	 - <i>DELETE onapp.com/users/{USER_ID}/resource_limit/{ID}.xml</i>
- *
- *
- * Get the list of resource limits
- *
- *	 - <i>GET onapp.com/users/{USER_ID}/resource_limit.json</i>
- *
- * Get a particular resource limit details
- *
- *	 - <i>GET onapp.com/users/{USER_ID}/resource_limit/{ID}.json</i>
- *
- * Add new resource limit
- *
- *	 - <i>POST onapp.com/users/{USER_ID}/resource_limit.json</i>
- *
- * <code>
- * {
- *	  resource-limit: {
- *		  cpu-shares:{NUMBER},
- *		  cpus:{NUMBER},
- *		  disk-size:{SIZE},
- *		  memory:{SIZE}
- *	  }
- * }
- * </code>
- *
- * Edit existing resource limit
- *
- *	 - <i>PUT onapp.com/users/{USER_ID}/resource_limit/{ID}.json</i>
- *
- * <code>
- * {
- *	  resource-limit: {
- *		  cpu-shares:{NUMBER},
- *		  cpus:{NUMBER},
- *		  disk-size:{SIZE},
- *		  memory:{SIZE}
- *	  }
- * }
- * </code>
- *
- * Delete resource limit
- *
- *	 - <i>DELETE onapp.com/users/{USER_ID}/resource_limit/{ID}.json</i>
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_ResourceLimit extends OnApp {
 	/**

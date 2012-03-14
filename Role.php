@@ -14,7 +14,6 @@
  *
  * @category	API WRAPPER
  * @package		OnApp
- * @subpackage	Role
  * @author		Andrew Yatskovets
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/
@@ -22,90 +21,14 @@
  */
 
 /**
- * User Roles
+ * Manages User Roles
  *
  * This class represents the roles assigned  to the users in this OnApp installation
  *
  * The ONAPP_Role class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
- * <b>Use the following XML API requests:</b>
- *
- * Get the list of roles
- *
- *	 - <i>GET onapp.com/settings/roles.xml</i>
- *
- * Get a particular role details
- *
- *	 - <i>GET onapp.com/settings/roles/{ID}.xml</i>
- *
- * Add new role
- *
- *	 - <i>POST onapp.com/settings/roles.xml</i>
- *
- * <code>
- * <?xml version="1.0" encoding="UTF-8"?>
- * <role>
- *	<identifier>{IDENTIFIER}</identifier>
- *	<label>{LABEL}</label>
- * </role>
- * </code>
- *
- * Edit existing role
- *
- *	 - <i>PUT onapp.com/settings/roles/{ID}.xml</i>
- *
- * <code>
- * <?xml version="1.0" encoding="UTF-8"?>
- * <role>
- *	<identifier>{IDENTIFIER}</identifier>
- *	<label>{LABEL}</label>
- * </role>
- * </code>
- *
- * Delete role
- *
- *	 - <i>DELETE onapp.com/settings/roles/{ID}.xml</i>
- *
- * <b>Use the following JSON API requests:</b>
- *
- * Get the list of roles
- *
- *	 - <i>GET onapp.com/settings/roles.json</i>
- *
- * Get a particular role details
- *
- *	 - <i>GET onapp.com/settings/roles/{ID}.json</i>
- *
- * Add new role
- *
- *	 - <i>POST onapp.com/settings/roles.json</i>
- *
- * <code>
- * {
- *	  role: {
- *		  identifier:'{IDENTIFIER}',
- *		  label:'{LABEL}'
- *	  }
- * }
- * </code>
- *
- * Edit existing role
- *
- *	 - <i>PUT onapp.com/settings/roles/{ID}.json</i>
- *
- * <code>
- * {
- *	  role: {
- *		  identifier:'{IDENTIFIER}',
- *		  label:'{LABEL}'
- *	  }
- * }
- * </code>
- *
- * Delete role
- *
- *	 - <i>DELETE onapp.com/settings/roles/{ID}.json</i>
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_Role extends OnApp {
 	/**

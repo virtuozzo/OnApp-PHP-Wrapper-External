@@ -6,6 +6,7 @@
  *
  * @category	API WRAPPER
  * @package		OnApp
+ * @subpackage  VirtualMachine_NetworkInterface
  * @author		Yuriy Yakubskiy
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/
@@ -20,6 +21,7 @@
  * The ONAPP_VirtualMachine_NetworkInterface_Usage class uses the following basic methods:
  * {@link load}, {@link getList}.
  *
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 
 class ONAPP_VirtualMachine_NetworkInterface_Usage extends OnApp {

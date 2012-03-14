@@ -2,10 +2,11 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
- * Data Store Join
+ * Manages Data Store Join
  *
  * @category	API WRAPPER
  * @package		OnApp
+ * @subpackage  HypervisorZone
  * @author		Yakubskiy Yuriy
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/
@@ -20,12 +21,7 @@
  * The ONAPP_Hypervisor_DataStoreJoin class uses the following basic methods:
  * {@link getList}.
  *
- * <b>Use the following XML API requests:</b>
- *
- * Get the list of Data Store Joins
- *
- *	 - <i>GET onapp.com/settings/hypervisor_zones/{HYPERVISOR_ZONE_ID}/data_store_joins.xml</i>
- *
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
 	/**

@@ -8,7 +8,7 @@
  *
  * @category	API WRAPPER
  * @package		OnApp
- * @subpackage	Hypervisor
+ * @subpackage	EdgeGroup_Location
  * @author		Yakubskiy Yuriy
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/

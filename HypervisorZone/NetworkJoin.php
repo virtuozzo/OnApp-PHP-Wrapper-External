@@ -2,10 +2,11 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
- * Network Zone Joins
+ * Manages Network Zone Joins
  *
  * @category	API WRAPPER
  * @package		OnApp
+ * @subpackage  HypervisorZone
  * @author		Yakubskiy Yuriy
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/
@@ -20,58 +21,7 @@
  * The ONAPP_Hypervisor_NetworkJoin class uses the following basic methods:
  * {@link save}, {@link delete}, and {@link getList}.
  *
- * <b>Use the following XML API requests:</b>
- *
- * Get the list of Network Zone Joins
- *
- *	 - <i>GET onapp.com/settings/hyrvisor_zones/{HYPERVISOR_ZONE_ID}/network_joins.xml</i>
- *
- * Get a particular Network Zone Join details
- *
- *	 - <i>GET onapp.com/settings/hyrvisor_zones/{HYPERVISOR_ZONE_ID}/network_joins/{ID}.xml</i>
- *
- * Add new Network Zone Join
- *
- *	 - <i>POST onapp.com/settings/hyrvisor_zones/{HYPERVISOR_ZONE_ID}/network_joins.xml</i>
- *
- * <code>
- * <?xml version="1.0" encoding="UTF-8"?>
- * <network-join>
- *	<network_id>{NETWORK_ID}</network_id>
- *	<interface>{INTERFACE}</interface>
- * </network-join>
- * </code>
- *
- * Delete Network Zone Join
- *
- *	 - <i>DELETE onapp.com/settings/hyrvisor_zones/{HYPERVISOR_ZONE_ID}/network_joins/{ID}.xml</i>
- *
- * <b>Use the following JSON API requests:</b>
- *
- * Get the list of Network Zone Joins
- *
- *	 - <i>GET onapp.com/settings/hyrvisor_zones/{HYPERVISOR_ZONE_ID}/network_joins.json</i>
- *
- * Get a particular Network Zone Join details
- *
- *	 - <i>GET onapp.com/settings/hyrvisor_zones/{HYPERVISOR_ZONE_ID}/network_joins/{ID}.json</i>
- *
- * Add new Network Zone Join
- *
- *	 - <i>POST onapp.com/settings/hyrvisor_zones/{HYPERVISOR_ZONE_ID}/network_joins.json</i>
- *
- * <code>
- * {
- *	  network-join: {
- *		  network_id:{NETWORK_ID},
- *		  interface:'{INTERFACE}'
- *	  }
- * }
- * </code>
- *
- * Delete Network Zone Join
- *
- *	 - <i>DELETE onapp.com/settings/hyrvisor_zones/{HYPERVISOR_ZONE_ID}/network_joins/{ID}.json</i>
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 	/**

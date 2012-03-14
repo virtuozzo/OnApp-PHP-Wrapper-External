@@ -6,6 +6,7 @@
  *
  * @category	API WRAPPER
  * @package		OnApp
+ * @subpackage	BillingPlan
  * @author		Yakubskiy Yuriy
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/
@@ -15,6 +16,8 @@
 /**
  * The ONAPP_BillingPlan_BaseResource uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
+ * 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_BillingPlan_BaseResource extends OnApp {
 	/**

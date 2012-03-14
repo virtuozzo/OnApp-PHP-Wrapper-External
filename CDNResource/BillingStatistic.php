@@ -18,6 +18,8 @@
  *
  * The OnApp_CDNResource_BillingStatistic uses the following basic methods:
  * {@link getList}.
+ * 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 
 

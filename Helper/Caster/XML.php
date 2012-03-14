@@ -4,7 +4,7 @@
  *
  * @category	OBJECT CAST
  * @package		OnApp
- * @subpackage	Casting
+ * @subpackage	Caster
  * @author		Lev Bartashevsky
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/

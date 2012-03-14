@@ -20,7 +20,8 @@
  *
  * The ONAPP_VirtualMachine_BillingStatistics class uses the following basic methods:
  * {@link getList}.
- *
+ * 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_VirtualMachine_BillingStatistics extends OnApp {
 	/**
