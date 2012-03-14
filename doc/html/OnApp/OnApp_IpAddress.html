@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class OnApp_IpAddress</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class OnApp_IpAddress</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+    <span class="bar-arrow-left"></span>
+    <span class="bar-arrow-right"></span>
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+							<a href="#sec-descendents">Descendents</a>
+			|											<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">IP Addresses</p>
+<p class="description"><p>The ONAPP_IpAddress class uses the following basic methods:  <a href="../OnApp/OnApp_IpAddress.html#methodload">load</a>, <a href="../OnApp/OnApp_IpAddress.html#methodsave">save</a>, <a href="../OnApp/OnApp.html#methoddelete">delete</a>, and <a href="../OnApp/OnApp_IpAddress.html#methodgetList">getList</a>.</p><p>For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )</p></p>
+		<p class="notes">
+			Located in <a class="field" href="_IpAddress.php.html">/IpAddress.php</a> (line <span class="field">23</span>)
+		</p>
+		
+				
+		<pre><a href="../OnApp/OnApp.html">OnApp</a>
+   |
+   --OnApp_IpAddress</pre>
+	
+			</div>
+</div>
+
+	<a name="sec-descendents"></a>
+	<div class="info-box">
+    <span class="bar-arrow-left"></span>
+    <span class="bar-arrow-right"></span>
+		<div class="info-box-title">Direct descendents</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+			<span class="disabled">Descendents</span>
+			|												<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+								|															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<table cellpadding="2" cellspacing="0" class="class-table">
+				<tr>
+					<th class="class-table-header">Class</th>
+					<th class="class-table-header">Description</th>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_IpAddress.html">OnApp_VirtualMachine_IpAddress</a></td>
+					<td>
+											IP Addresses
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/User/OnApp_User_UsedIpAddress.html">OnApp_User_UsedIpAddress</a></td>
+					<td>
+											User IP Adresses
+										</td>
+				</tr>
+							</table>
+		</div>
+	</div>
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+    <span class="bar-arrow-left"></span>
+    <span class="bar-arrow-right"></span>
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$_resource" title="details" class="var-name">$_resource</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$_tagRoot" title="details" class="var-name">$_tagRoot</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+    <span class="bar-arrow-left"></span>
+    <span class="bar-arrow-right"></span>
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																														
+				<div class="method-definition">
+											<span class="method-result">OnApp_IpAddress</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#getList" title="details" class="method-name">getList</a>
+											([<span class="var-type">integer</span>&nbsp;<span class="var-name">$network_id</span> = <span class="var-default">null</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getResource" title="details" class="method-name">getResource</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$action</span> = <span class="var-default">ONAPP_GETRESOURCE_DEFAULT</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#initFields" title="details" class="method-name">initFields</a>
+											([<span class="var-type">string|float</span>&nbsp;<span class="var-name">$version</span> = <span class="var-default">null</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$className</span> = <span class="var-default">''</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#load" title="details" class="method-name">load</a>
+											([<span class="var-type">integer</span>&nbsp;<span class="var-name">$id</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$network_id</span> = <span class="var-default">null</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$virtual_machine_id</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#save" title="details" class="method-name">save</a>
+										()
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+    <span class="bar-arrow-left"></span>
+    <span class="bar-arrow-right"></span>
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			
+<a name="var$_resource" id="$_resource"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$_resource</span>
+			 = <span class="var-default"> 'ip_addresses'</span>			(line <span class="line-number">36</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">alias processing the object data</p>
+	
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_IpAddress.html#var$_resource">OnApp_VirtualMachine_IpAddress::$_resource</a>
+								: alias processing the object data
+							</li>
+					<li>
+				<a href="../OnApp/User/OnApp_User_UsedIpAddress.html#var$_resource">OnApp_User_UsedIpAddress::$_resource</a>
+								: alias processing the object data
+							</li>
+				</ul>
+		
+
+</div>
+<a name="var$_tagRoot" id="$_tagRoot"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$_tagRoot</span>
+			 = <span class="var-default"> 'ip_address'</span>			(line <span class="line-number">29</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">root tag used in the API request</p>
+	
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_IpAddress.html#var$_tagRoot">OnApp_VirtualMachine_IpAddress::$_tagRoot</a>
+								: root tag used in the API request
+							</li>
+					<li>
+				<a href="../OnApp/User/OnApp_User_UsedIpAddress.html#var$_tagRoot">OnApp_User_UsedIpAddress::$_tagRoot</a>
+								: root tag used in the API request
+							</li>
+				</ul>
+		
+
+</div>
+							<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../OnApp/OnApp.html">OnApp</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../OnApp/OnApp.html#var$className">OnApp::$className</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../OnApp/OnApp.html#var$dynamicFields">OnApp::$dynamicFields</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../OnApp/OnApp.html#var$errors">OnApp::$errors</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../OnApp/OnApp.html#var$fields">OnApp::$fields</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../OnApp/OnApp.html#var$logger">OnApp::$logger</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../OnApp/OnApp.html#var$options">OnApp::$options</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../OnApp/OnApp.html#var$response">OnApp::$response</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../OnApp/OnApp.html#var$version">OnApp::$version</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+    <span class="bar-arrow-left"></span>
+    <span class="bar-arrow-right"></span>
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">38</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">OnApp_IpAddress</span>
+		<span class="method-name">
+			__construct
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../OnApp/OnApp.html#method__construct">OnApp::__construct()</a></dt>
+					</dl>
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_IpAddress.html#method__construct">OnApp_VirtualMachine_IpAddress::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/User/OnApp_User_UsedIpAddress.html#method__construct">OnApp_User_UsedIpAddress::__construct()</a>
+							</li>
+				</ul>
+	</div>
+<a name="methodgetList" id="getList"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getList</span> (line <span class="line-number">207</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> an array of Object instances on success. Otherwise false</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			getList
+		</span>
+					([<span class="var-type">integer</span>&nbsp;<span class="var-name">$network_id</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$network_id</span><span class="var-description">: Network ID</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../OnApp/OnApp.html#methodgetList">OnApp::getList()</a></dt>
+						<dd>Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects</dd>
+					</dl>
+			
+	</div>
+<a name="methodgetResource" id="getResource"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getResource</span> (line <span class="line-number">135</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the URL Alias of the API Class that inherits the Class ONAPP</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> API resource</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getResource
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$action</span> = <span class="var-default">ONAPP_GETRESOURCE_DEFAULT</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$action</span><span class="var-description">: action name</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../OnApp/OnApp.html#methodgetResource">OnApp::getResource()</a></dt>
+						<dd>Returns the URL Alias of the API Class that inherits the Class ONAPP</dd>
+					</dl>
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_IpAddress.html#methodgetResource">OnApp_VirtualMachine_IpAddress::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+				</ul>
+	</div>
+<a name="methodinitFields" id="initFields"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">initFields</span> (line <span class="line-number">50</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">API Fields description</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			initFields
+		</span>
+					([<span class="var-type">string|float</span>&nbsp;<span class="var-name">$version</span> = <span class="var-default">null</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$className</span> = <span class="var-default">''</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string|float</span>
+				<span class="var-name">$version</span><span class="var-description">: OnApp API version</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$className</span><span class="var-description">: current class' name</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../OnApp/OnApp.html#methodinitFields">OnApp::initFields()</a></dt>
+					</dl>
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_IpAddress.html#methodinitFields">OnApp_VirtualMachine_IpAddress::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/User/OnApp_User_UsedIpAddress.html#methodinitFields">OnApp_User_UsedIpAddress::initFields()</a>
+								: API Fields description
+							</li>
+				</ul>
+	</div>
+<a name="methodload" id="load"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">load</span> (line <span class="line-number">239</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sends an API request to get the Object after sending,  unserializes the response into an object</p>
+<p class="description"><p>The key field Parameter ID is used to load the Object. You can re-set  this parameter in the class inheriting Class ONAPP.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> serialized Object instance from API</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			load
+		</span>
+					([<span class="var-type">integer</span>&nbsp;<span class="var-name">$id</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$network_id</span> = <span class="var-default">null</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$virtual_machine_id</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$id</span><span class="var-description">: IP Address Join id</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$virtual_machine_id</span><span class="var-description">: Virtual Machine id</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$network_id</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../OnApp/OnApp.html#methodload">OnApp::load()</a></dt>
+						<dd>Sends an API request to get the Object after sending,  unserializes the response into an object</dd>
+					</dl>
+			
+	</div>
+<a name="methodsave" id="save"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">save</span> (line <span class="line-number">299</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The method saves an Object to your account</p>
+<p class="description"><p>After sending an API request to create an object or change the data in  the existing object, the method checks the response and loads the  exisitng object with the new data.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			save
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../OnApp/OnApp.html#methodsave">OnApp::save()</a></dt>
+						<dd>The method saves an Object to your account</dd>
+					</dl>
+			
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../OnApp/OnApp.html">OnApp</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../OnApp/OnApp.html#method__construct">OnApp::__construct()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodactivate">OnApp::activate()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodauth">OnApp::auth()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodcastStringToClass">OnApp::castStringToClass()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodclose_curl">OnApp::close_curl()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methoddelete">OnApp::delete()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodgetAPIVersion">OnApp::getAPIVersion()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodgetClassFields">OnApp::getClassFields()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodgetClassName">OnApp::getClassName()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodgetErrorsAsArray">OnApp::getErrorsAsArray()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodgetErrorsAsString">OnApp::getErrorsAsString()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodgetFieldsToSend">OnApp::getFieldsToSend()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodgetList">OnApp::getList()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodgetResource">OnApp::getResource()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodgetResponse">OnApp::getResponse()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodinitFields">OnApp::initFields()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodisAuthenticate">OnApp::isAuthenticate()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodisChanged">OnApp::isChanged()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodisDelete">OnApp::isDelete()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodload">OnApp::load()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodlogs">OnApp::logs()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodresetOptions">OnApp::resetOptions()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodsave">OnApp::save()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodsendGet">OnApp::sendGet()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodsendPost">OnApp::sendPost()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodsendPut">OnApp::sendPut()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodsendRequest">OnApp::sendRequest()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodsetAPIResource">OnApp::setAPIResource()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodsetAPIVersion">OnApp::setAPIVersion()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodsetErrors">OnApp::setErrors()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodsetOption">OnApp::setOption()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodsetOptions">OnApp::setOptions()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#methodunsetFields">OnApp::unsetFields()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#method_action">OnApp::_action()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#method_castResponseToClass">OnApp::_castResponseToClass()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#method__get">OnApp::__get()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#method__isset">OnApp::__isset()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#method__set">OnApp::__set()</a></span><br>
+													<span class="method-name"><a href="../OnApp/OnApp.html#method__unset">OnApp::__unset()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Wed, 14 Mar 2012 17:37:33 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

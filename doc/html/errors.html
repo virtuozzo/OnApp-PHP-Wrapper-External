@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>phpDocumentor Parser Errors and Warnings</title>
+			<link rel="stylesheet" href="media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+						<a href="#Post-parsing">Post-parsing</a><br>
+<a href="#AssignLocation.php">AssignLocation.php</a><br>
+<a href="#AutoScaling.php">AutoScaling.php</a><br>
+<a href="#AutoScalingInCpu.php">AutoScalingInCpu.php</a><br>
+<a href="#AutoScalingInMemory.php">AutoScalingInMemory.php</a><br>
+<a href="#AutoScalingOutCpu.php">AutoScalingOutCpu.php</a><br>
+<a href="#AutoScalingOutMemory.php">AutoScalingOutMemory.php</a><br>
+<a href="#AvailableEdgeGroup.php">AvailableEdgeGroup.php</a><br>
+<a href="#AvailableLocation.php">AvailableLocation.php</a><br>
+<a href="#Backup.php">Backup.php</a><br>
+<a href="#Bandwidth.php">Bandwidth.php</a><br>
+<a href="#BaseResource.php">BaseResource.php</a><br>
+<a href="#BillingPlan.php">BillingPlan.php</a><br>
+<a href="#BillingStatistic.php">BillingStatistic.php</a><br>
+<a href="#BillingStatistics.php">BillingStatistics.php</a><br>
+<a href="#Caster.php">Caster.php</a><br>
+<a href="#CDNResource.php">CDNResource.php</a><br>
+<a href="#CDNUsageStatistic.php">CDNUsageStatistic.php</a><br>
+<a href="#Config.php">Config.php</a><br>
+<a href="#Console.php">Console.php</a><br>
+<a href="#Country.php">Country.php</a><br>
+<a href="#CpuUsage.php">CpuUsage.php</a><br>
+<a href="#DataStore.php">DataStore.php</a><br>
+<a href="#DataStoreJoin.php">DataStoreJoin.php</a><br>
+<a href="#DataStoreZone.php">DataStoreZone.php</a><br>
+<a href="#Disk.php">Disk.php</a><br>
+<a href="#EdgeGroup.php">EdgeGroup.php</a><br>
+<a href="#EdgeServer.php">EdgeServer.php</a><br>
+<a href="#Factory.php">Factory.php</a><br>
+<a href="#FirewallRule.php">FirewallRule.php</a><br>
+<a href="#Group.php">Group.php</a><br>
+<a href="#Hypervisor.php">Hypervisor.php</a><br>
+<a href="#HypervisorZone.php">HypervisorZone.php</a><br>
+<a href="#IpAddress.php">IpAddress.php</a><br>
+<a href="#IpAddressJoin.php">IpAddressJoin.php</a><br>
+<a href="#JSON.php">JSON.php</a><br>
+<a href="#Limit.php">Limit.php</a><br>
+<a href="#LoadBalancer.php">LoadBalancer.php</a><br>
+<a href="#LoadBalancingCluster.php">LoadBalancingCluster.php</a><br>
+<a href="#Location.php">Location.php</a><br>
+<a href="#Logger.php">Logger.php</a><br>
+<a href="#MonthlyBill.php">MonthlyBill.php</a><br>
+<a href="#Nameserver.php">Nameserver.php</a><br>
+<a href="#Network.php">Network.php</a><br>
+<a href="#NetworkInterface.php">NetworkInterface.php</a><br>
+<a href="#NetworkJoin.php">NetworkJoin.php</a><br>
+<a href="#NetworkZone.php">NetworkZone.php</a><br>
+<a href="#Node.php">Node.php</a><br>
+<a href="#NodeAtribute.php">NodeAtribute.php</a><br>
+<a href="#OnApp.php">OnApp.php</a><br>
+<a href="#OnAppInit.php">OnAppInit.php</a><br>
+<a href="#Operator.php">Operator.php</a><br>
+<a href="#Origin.php">Origin.php</a><br>
+<a href="#Payment.php">Payment.php</a><br>
+<a href="#Permission.php">Permission.php</a><br>
+<a href="#Price.php">Price.php</a><br>
+<a href="#Profile.php">Profile.php</a><br>
+<a href="#ResourceBackup.php">ResourceBackup.php</a><br>
+<a href="#ResourceCpu.php">ResourceCpu.php</a><br>
+<a href="#ResourceCpuShare.php">ResourceCpuShare.php</a><br>
+<a href="#ResourceDiskSize.php">ResourceDiskSize.php</a><br>
+<a href="#ResourceIpAddress.php">ResourceIpAddress.php</a><br>
+<a href="#ResourceLimit.php">ResourceLimit.php</a><br>
+<a href="#ResourceMemory.php">ResourceMemory.php</a><br>
+<a href="#ResourceStorageDiskSize.php">ResourceStorageDiskSize.php</a><br>
+<a href="#ResourceTemplate.php">ResourceTemplate.php</a><br>
+<a href="#ResourceVmLimit.php">ResourceVmLimit.php</a><br>
+<a href="#Role.php">Role.php</a><br>
+<a href="#Schedule.php">Schedule.php</a><br>
+<a href="#Setting.php">Setting.php</a><br>
+<a href="#SoftwareLincense.php">SoftwareLincense.php</a><br>
+<a href="#Statistics.php">Statistics.php</a><br>
+<a href="#Template.php">Template.php</a><br>
+<a href="#Transaction.php">Transaction.php</a><br>
+<a href="#Usage.php">Usage.php</a><br>
+<a href="#UsageStatistic.php">UsageStatistic.php</a><br>
+<a href="#UsedIpAddress.php">UsedIpAddress.php</a><br>
+<a href="#User.php">User.php</a><br>
+<a href="#UserAdditionalField.php">UserAdditionalField.php</a><br>
+<a href="#UserGroup.php">UserGroup.php</a><br>
+<a href="#VirtualMachine.php">VirtualMachine.php</a><br>
+<a href="#VmStat.php">VmStat.php</a><br>
+<a href="#WhiteList.php">WhiteList.php</a><br>
+<a href="#XML.php">XML.php</a><br>
+<a name="Post-parsing"></a>
+<h1>Post-parsing</h1>
+<h2>Warnings:</h2><br>
+<b>Warning</b> - Class OnApp_EdgeGroup_AssignedLocation parent Location not found<br>
+<b>Warning</b> - Class OnApp_EdgeGroup_AvailableLocation parent Location not found<br>
+<b>Warning</b> - Class OnApp_LoadBalancingCluster_AutoScalingOutCpu parent AutoScaling not found<br>
+<b>Warning</b> - Class OnApp_LoadBalancingCluster_AutoScalingInMemory parent AutoScaling not found<br>
+<b>Warning</b> - Class OnApp_LoadBalancingCluster_AutoScalingInCpu parent AutoScaling not found<br>
+<b>Warning</b> - Class OnApp_LoadBalancingCluster_AutoScalingOutMemory parent AutoScaling not found<br>
+<a name="Advanced.php"></a>
+<h1>Advanced.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 25</b> - no @package tag was used in a DocBlock for class OnApp_CDNResource_Advanced<br>
+<a name="AssignLocation.php"></a>
+<h1>AssignLocation.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 26</b> - no @package tag was used in a DocBlock for class OnApp_EdgeGroup_AssignedLocation<br>
+<a name="AutoScaling.php"></a>
+<h1>AutoScaling.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 20</b> - no @package tag was used in a DocBlock for class OnApp_LoadBalancingCluster_AutoScaling<br>
+<a name="AutoScalingInCpu.php"></a>
+<h1>AutoScalingInCpu.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 20</b> - no @package tag was used in a DocBlock for class OnApp_LoadBalancingCluster_AutoScalingInCpu<br>
+<a name="AutoScalingInMemory.php"></a>
+<h1>AutoScalingInMemory.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 20</b> - no @package tag was used in a DocBlock for class OnApp_LoadBalancingCluster_AutoScalingInMemory<br>
+<a name="AutoScalingOutCpu.php"></a>
+<h1>AutoScalingOutCpu.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 20</b> - no @package tag was used in a DocBlock for class OnApp_LoadBalancingCluster_AutoScalingOutCpu<br>
+<a name="AutoScalingOutMemory.php"></a>
+<h1>AutoScalingOutMemory.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 20</b> - no @package tag was used in a DocBlock for class OnApp_LoadBalancingCluster_AutoScalingOutMemory<br>
+<a name="AvailableEdgeGroup.php"></a>
+<h1>AvailableEdgeGroup.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 29</b> - no @package tag was used in a DocBlock for class OnApp_CDNResource_AvailableEdgeGroup<br>
+<a name="AvailableLocation.php"></a>
+<h1>AvailableLocation.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 26</b> - no @package tag was used in a DocBlock for class OnApp_EdgeGroup_AvailableLocation<br>
+<a name="Backup.php"></a>
+<h1>Backup.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 18</b> - Unknown tag "@todo:" used<br>
+<b>Warning on line 23</b> - Unknown tag "@todo:" used<br>
+<b>Warning on line 28</b> - Unknown tag "@todo:" used<br>
+<b>Warning on line 40</b> - no @package tag was used in a DocBlock for class OnApp_VirtualMachine_Backup<br>
+<a name="Bandwidth.php"></a>
+<h1>Bandwidth.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 25</b> - no @package tag was used in a DocBlock for class OnApp_CDNResource_Bandwidth<br>
+<a name="BaseResource.php"></a>
+<h1>BaseResource.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class OnApp_BillingPlan_BaseResource<br>
+<a name="BillingPlan.php"></a>
+<h1>BillingPlan.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 35</b> - no @package tag was used in a DocBlock for class OnApp_BillingPlan<br>
+<a name="BillingStatistic.php"></a>
+<h1>BillingStatistic.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 25</b> - no @package tag was used in a DocBlock for class OnApp_CDNResource_BillingStatistic<br>
+<a name="BillingStatistics.php"></a>
+<h1>BillingStatistics.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 25</b> - no @package tag was used in a DocBlock for class OnApp_VirtualMachine_BillingStatistics<br>
+<b>Warning on line 25</b> - no @package tag was used in a DocBlock for class OnApp_User_BillingStatistics<br>
+<a name="Caster.php"></a>
+<h1>Caster.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 11</b> - DocBlock would be page-level, but precedes class "OnApp_Helper_Caster", use another DocBlock to document the file<br>
+<b>Warning on line 98</b> - no @package tag was used in a DocBlock for class DataHolder<br>
+<a name="CDNResource.php"></a>
+<h1>CDNResource.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 18</b> - package default is already in category default, will now replace with category API-WRAPPER<br>
+<b>Warning on line 44</b> - no @package tag was used in a DocBlock for class OnApp_CDNResource<br>
+<a name="CDNUsageStatistic.php"></a>
+<h1>CDNUsageStatistic.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 26</b> - no @package tag was used in a DocBlock for class ONAPP_CDNUsageStatistic<br>
+<a name="Config.php"></a>
+<h1>Config.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 20</b> - no @package tag was used in a DocBlock for class OnApp_LoadBalancingCluster_Config<br>
+<a name="Console.php"></a>
+<h1>Console.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class OnApp_Console<br>
+<a name="Country.php"></a>
+<h1>Country.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class OnApp_CDNResource_Advanced_Country<br>
+<a name="CpuUsage.php"></a>
+<h1>CpuUsage.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class OnApp_VirtualMachine_CpuUsage<br>
+<b>Warning on line 27</b> - no @package tag was used in a DocBlock for class OnApp_EdgeServer_CpuUsage<br>
+<a name="DataStore.php"></a>
+<h1>DataStore.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 38</b> - no @package tag was used in a DocBlock for class OnApp_DataStore<br>
+<a name="DataStoreJoin.php"></a>
+<h1>DataStoreJoin.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 25</b> - no @package tag was used in a DocBlock for class OnApp_HypervisorZone_DataStoreJoin<br>
+<a name="DataStoreZone.php"></a>
+<h1>DataStoreZone.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 22</b> - package default is already in category default, will now replace with category API-WRAPPER<br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class OnApp_DataStoreZone<br>
+<a name="Disk.php"></a>
+<h1>Disk.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class OnApp_Disk<br>
+<a name="EdgeGroup.php"></a>
+<h1>EdgeGroup.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 37</b> - no @package tag was used in a DocBlock for class OnApp_EdgeGroup<br>
+<a name="EdgeServer.php"></a>
+<h1>EdgeServer.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 26</b> - no @package tag was used in a DocBlock for class OnApp_EdgeServer<br>
+<a name="Factory.php"></a>
+<h1>Factory.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 13</b> - package default is already in category API-WRAPPER, will now replace with category Factory<br>
+<b>Warning on line 13</b> - DocBlock would be page-level, but precedes class "OnApp_Factory", use another DocBlock to document the file<br>
+<b>Warning on line 13</b> - package OnApp is already in category API-WRAPPER, will now replace with category Factory<br>
+<a name="FirewallRule.php"></a>
+<h1>FirewallRule.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 15</b> - Page-level DocBlock precedes "define ONAPP_GETRESOURCE_MOVE", use another DocBlock to document the source element<br>
+<b>Warning on line 27</b> - no @package tag was used in a DocBlock for class OnApp_VirtualMachine_FirewallRule<br>
+<a name="Group.php"></a>
+<h1>Group.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 30</b> - no @package tag was used in a DocBlock for class OnApp_Group<br>
+<a name="Hypervisor.php"></a>
+<h1>Hypervisor.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 50</b> - no @package tag was used in a DocBlock for class OnApp_Hypervisor<br>
+<a name="HypervisorZone.php"></a>
+<h1>HypervisorZone.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 26</b> - no @package tag was used in a DocBlock for class OnApp_HypervisorZone<br>
+<a name="IpAddress.php"></a>
+<h1>IpAddress.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 22</b> - no @package tag was used in a DocBlock for class OnApp_IpAddress<br>
+<b>Warning on line 27</b> - no @package tag was used in a DocBlock for class OnApp_VirtualMachine_IpAddress<br>
+<a name="IpAddressJoin.php"></a>
+<h1>IpAddressJoin.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class OnApp_VirtualMachine_IpAddressJoin<br>
+<a name="JSON.php"></a>
+<h1>JSON.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 11</b> - DocBlock would be page-level, but precedes class "OnApp_Helper_Caster_JSON", use another DocBlock to document the file<br>
+<a name="Limit.php"></a>
+<h1>Limit.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 13</b> - package OnApp is already in category OBJECT-CAST, will now replace with category API-WRAPPER<br>
+<b>Warning on line 13</b> - DocBlock would be page-level, but precedes class "OnApp_BillingPlan_BaseResource_Limit", use another DocBlock to document the file<br>
+<a name="LoadBalancer.php"></a>
+<h1>LoadBalancer.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 25</b> - package default is already in category OBJECT-CAST, will now replace with category API-WRAPPER<br>
+<b>Warning on line 26</b> - no @package tag was used in a DocBlock for class OnApp_LoadBalancer<br>
+<a name="LoadBalancingCluster.php"></a>
+<h1>LoadBalancingCluster.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 15</b> - Page-level DocBlock precedes "define ONAPP_GETRESOURCE_GETLIST_BY_USER_ID", use another DocBlock to document the source element<br>
+<b>Warning on line 30</b> - no @package tag was used in a DocBlock for class OnApp_LoadBalancingCluster<br>
+<a name="Location.php"></a>
+<h1>Location.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class OnApp_CDNResource_AvailableEdgeGroup_Location<br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class OnApp_EdgeGroup_Location<br>
+<a name="Logger.php"></a>
+<h1>Logger.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 40</b> - package default is already in category API-WRAPPER, will now replace with category LOGGER<br>
+<b>Warning on line 71</b> - no @package tag was used in a DocBlock for class OnApp_Helper_Logger<br>
+<a name="MonthlyBill.php"></a>
+<h1>MonthlyBill.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 26</b> - no @package tag was used in a DocBlock for class ONAPP_User_MonthlyBill<br>
+<a name="Nameserver.php"></a>
+<h1>Nameserver.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 26</b> - no @package tag was used in a DocBlock for class OnApp_Nameserver<br>
+<a name="Network.php"></a>
+<h1>Network.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 31</b> - package default is already in category Factory, will now replace with category API-WRAPPER<br>
+<b>Warning on line 50</b> - no @package tag was used in a DocBlock for class OnApp_Network<br>
+<a name="NetworkInterface.php"></a>
+<h1>NetworkInterface.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class OnApp_VirtualMachine_NetworkInterface<br>
+<a name="NetworkJoin.php"></a>
+<h1>NetworkJoin.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 25</b> - no @package tag was used in a DocBlock for class OnApp_HypervisorZone_NetworkJoin<br>
+<b>Warning on line 27</b> - no @package tag was used in a DocBlock for class OnApp_Hypervisor_NetworkJoin<br>
+<a name="NetworkZone.php"></a>
+<h1>NetworkZone.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class OnApp_NetworkZone<br>
+<a name="Node.php"></a>
+<h1>Node.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 20</b> - no @package tag was used in a DocBlock for class OnApp_LoadBalancingCluster_Node<br>
+<a name="NodeAtribute.php"></a>
+<h1>NodeAtribute.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 20</b> - no @package tag was used in a DocBlock for class OnApp_LoadBalancingCluster_NodeAtribute<br>
+<a name="OnApp.php"></a>
+<h1>OnApp.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 293</b> - package default is already in category API-WRAPPER, will now replace with category default<br>
+<b>Warning on line 1578</b> - File "/home/yuriy/Desktop/OnApp-WHMCS-Modules-And-Addons/OnApp-PHP-Wrapper/wrapper/OnApp.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="OnAppInit.php"></a>
+<h1>OnAppInit.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 72</b> - 
+duplicate define element "IS_CLI" in file /home/yuriy/Desktop/OnApp-WHMCS-Modules-And-Addons/OnApp-PHP-Wrapper/wrapper/OnAppInit.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<a name="Operator.php"></a>
+<h1>Operator.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class OnApp_EdgeGroup_Location_Operator<br>
+<a name="Origin.php"></a>
+<h1>Origin.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class OnApp_CDNResource_Origin<br>
+<a name="Payment.php"></a>
+<h1>Payment.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 28</b> - no @package tag was used in a DocBlock for class OnApp_Payment<br>
+<a name="Permission.php"></a>
+<h1>Permission.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class OnApp_Role_Permission<br>
+<a name="Price.php"></a>
+<h1>Price.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 12</b> - DocBlock would be page-level, but precedes class "OnApp_BillingPlan_BaseResource_Price", use another DocBlock to document the file<br>
+<a name="Profile.php"></a>
+<h1>Profile.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 22</b> - no @package tag was used in a DocBlock for class OnApp_Profile<br>
+<a name="ResourceBackup.php"></a>
+<h1>ResourceBackup.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class OnApp_BillingPlan_ResourceBackup<br>
+<a name="ResourceCpu.php"></a>
+<h1>ResourceCpu.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class OnApp_BillingPlan_ResourceCpu<br>
+<a name="ResourceCpuShare.php"></a>
+<h1>ResourceCpuShare.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class OnApp_BillingPlan_ResourceCpuShare<br>
+<a name="ResourceDiskSize.php"></a>
+<h1>ResourceDiskSize.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class OnApp_BillingPlan_ResourceDiskSize<br>
+<a name="ResourceIpAddress.php"></a>
+<h1>ResourceIpAddress.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class OnApp_BillingPlan_ResourceIpAddress<br>
+<a name="ResourceLimit.php"></a>
+<h1>ResourceLimit.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 26</b> - no @package tag was used in a DocBlock for class OnApp_ResourceLimit<br>
+<a name="ResourceMemory.php"></a>
+<h1>ResourceMemory.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class OnApp_BillingPlan_ResourceMemory<br>
+<a name="ResourceStorageDiskSize.php"></a>
+<h1>ResourceStorageDiskSize.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class OnApp_BillingPlan_ResourceStorageDiskSize<br>
+<a name="ResourceTemplate.php"></a>
+<h1>ResourceTemplate.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class OnApp_BillingPlan_ResourceTemplate<br>
+<a name="ResourceVmLimit.php"></a>
+<h1>ResourceVmLimit.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - no @package tag was used in a DocBlock for class OnApp_BillingPlan_ResourceVmLimit<br>
+<a name="Role.php"></a>
+<h1>Role.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 32</b> - no @package tag was used in a DocBlock for class OnApp_Role<br>
+<a name="Schedule.php"></a>
+<h1>Schedule.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 28</b> - no @package tag was used in a DocBlock for class OnApp_Disk_Schedule<br>
+<a name="Setting.php"></a>
+<h1>Setting.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class OnApp_EdgeGroup_Location_Operator_Setting<br>
+<a name="SoftwareLincense.php"></a>
+<h1>SoftwareLincense.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 25</b> - no @package tag was used in a DocBlock for class OnApp_SoftwareLincense<br>
+<a name="Statistics.php"></a>
+<h1>Statistics.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 25</b> - no @package tag was used in a DocBlock for class OnApp_User_Statistics<br>
+<a name="Template.php"></a>
+<h1>Template.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 20</b> - Page-level DocBlock precedes "define ONAPP_GET_USERTEMPLATES_LIST", use another DocBlock to document the source element<br>
+<b>Warning on line 32</b> - no @package tag was used in a DocBlock for class OnApp_Template<br>
+<a name="Transaction.php"></a>
+<h1>Transaction.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 28</b> - no @package tag was used in a DocBlock for class OnApp_Transaction<br>
+<a name="Usage.php"></a>
+<h1>Usage.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 26</b> - no @package tag was used in a DocBlock for class ONAPP_VirtualMachine_NetworkInterface_Usage<br>
+<a name="UsageStatistic.php"></a>
+<h1>UsageStatistic.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 22</b> - no @package tag was used in a DocBlock for class OnApp_UsageStatistic<br>
+<a name="UsedIpAddress.php"></a>
+<h1>UsedIpAddress.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class OnApp_User_UsedIpAddress<br>
+<a name="User.php"></a>
+<h1>User.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 48</b> - no @package tag was used in a DocBlock for class OnApp_User<br>
+<a name="UserAdditionalField.php"></a>
+<h1>UserAdditionalField.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class OnApp_UserAdditionalField<br>
+<a name="UserGroup.php"></a>
+<h1>UserGroup.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class OnApp_UserGroup<br>
+<a name="VirtualMachine.php"></a>
+<h1>VirtualMachine.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 109</b> - no @package tag was used in a DocBlock for class OnApp_VirtualMachine<br>
+<a name="VmStat.php"></a>
+<h1>VmStat.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 24</b> - no @package tag was used in a DocBlock for class OnApp_User_Statistics_VmStat<br>
+<a name="WhiteList.php"></a>
+<h1>WhiteList.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 27</b> - no @package tag was used in a DocBlock for class OnApp_User_WhiteList<br>
+<a name="XML.php"></a>
+<h1>XML.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 11</b> - DocBlock would be page-level, but precedes class "OnApp_Helper_Caster_XML", use another DocBlock to document the file<br>
+<b>Warning on line 11</b> - package default is already in category LOGGER, will now replace with category OBJECT-CAST<br>
+	<p class="notes" id="credit">
+		Documentation generated on Wed, 14 Mar 2012 17:37:43 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</body>
+</html>

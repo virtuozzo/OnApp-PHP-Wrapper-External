@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Todo List</title>
+			<link rel="stylesheet" href="media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+						<div align="center"><h1>Todo List</h1></div>
+<h2>OnApp</h2>
+<h3><a href="OnApp/User/_User---BillingStatistics.php.html">BillingStatistics.php</a></h3>
+<ul>
+    <li>write description</li>
+</ul>
+<h3><a href="OnApp/VirtualMachine/_VirtualMachine---BillingStatistics.php.html">BillingStatistics.php</a></h3>
+<ul>
+    <li>write description</li>
+</ul>
+<h3><a href="OnApp/_DataStoreZone.php.html">DataStoreZone.php</a></h3>
+<ul>
+    <li>Add description</li>
+</ul>
+<h3><a href="OnApp/_HypervisorZone.php.html">HypervisorZone.php</a></h3>
+<ul>
+    <li>Add description</li>
+</ul>
+<h3><a href="OnApp/OnApp.html#methodisAuthenticate">OnApp::isAuthenticate()</a></h3>
+<ul>
+    <li>move to the defaut getter</li>
+</ul>
+<h3><a href="OnApp/OnApp.html#methodisChanged">OnApp::isChanged()</a></h3>
+<ul>
+    <li>move to the defaut getter</li>
+</ul>
+<h3><a href="OnApp/OnApp.html#methodisDelete">OnApp::isDelete()</a></h3>
+<ul>
+    <li>move to the defaut getter</li>
+</ul>
+<h3><a href="OnApp/EdgeGroup/_EdgeGroup---Location.php.html">Location.php</a></h3>
+<ul>
+    <li>Add description</li>
+</ul>
+<h3><a href="OnApp/User/_User---MonthlyBill.php.html">MonthlyBill.php</a></h3>
+<ul>
+    <li>write description</li>
+</ul>
+<h3><a href="OnApp/Hypervisor/_Hypervisor---NetworkJoin.php.html">NetworkJoin.php</a></h3>
+<ul>
+    <li>Add description</li>
+</ul>
+<h3><a href="OnApp/_NetworkZone.php.html">NetworkZone.php</a></h3>
+<ul>
+    <li>Add description</li>
+</ul>
+<h3><a href="OnApp/OnApp.html">OnApp</a></h3>
+<ul>
+    <li><p>Pack using the lib (http://pecl.php.net/)</p><p>The wrapper is used to describe the following basic methods: <a href="OnApp/OnApp.html#methodload">load</a>,  <a href="OnApp/OnApp.html#methodsave">save</a>, <a href="OnApp/OnApp.html#methoddelete">delete</a> and <a href="OnApp/OnApp.html#methodgetList">getList</a>.</p><p>To create a new class inheriting this one, re-define the  following variables:  <div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;root&nbsp;tag&nbsp;used&nbsp;in&nbsp;the&nbsp;API&nbsp;request</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">var&nbsp;</span><span class="src-var">$_tagRoot&nbsp;&nbsp;</span>=&nbsp;<span class="src-str">'&lt;root&gt;'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;alias&nbsp;processing&nbsp;the&nbsp;object&nbsp;data</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">var&nbsp;</span><span class="src-var">$_resource&nbsp;</span>=&nbsp;<span class="src-str">'&lt;alias&gt;'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;the&nbsp;fields&nbsp;array&nbsp;used&nbsp;in&nbsp;the&nbsp;response&nbsp;and&nbsp;request&nbsp;to&nbsp;the&nbsp;API&nbsp;server</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">var&nbsp;</span><span class="src-var">$fields&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">)</span></div></li>
+</ol></div></p><p>To create a read-only class, close the save and delete methods.  To re-define the traditional API aliases to the non-traditional,  re-define the  <a href="OnApp/OnApp.html#methodgetResource">getResource</a>,  getResourceADD, getResourceEDIT,  getResourceLOAD,  getResourceDELETE and  getResourceLIST  methods in the class that will be inheriting the ONAPP class.</p><p>This API provides an interface to onapp.net allowing common virtual machine  and account management tasks</p><p><strong>Usage OnApp_VirtualMachine class example ( Could be applied almost to any of the Wrapper classes ):</strong></p><p>Get OnApp Instance:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$onapp&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="OnApp/OnApp_Factory.html">OnApp_Factory</a></span><span class="src-sym">(</span><span class="src-str">'{IP&nbsp;Address&nbsp;/&nbsp;Hostname}'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'{Username}'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'{Password}'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p><p>Get OnApp_VirtualMachine Instance:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj&nbsp;</span>=&nbsp;<span class="src-var">$onapp</span><span class="src-sym">-&gt;</span><span class="src-id">factory</span><span class="src-sym">(</span><span class="src-str">'VirtualMachine'</span><span class="src-sym">,&nbsp;</span><span class="src-sym">{</span><span class="src-id">debug&nbsp;mode&nbsp;boolean</span><span class="src-sym">,&nbsp;</span><span class="src-id">not&nbsp;required</span><span class="src-sym">}&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p><p>Get the list of VMs:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vms&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><a href="OnApp/OnApp.html#methodgetList">getList</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p><p>Get particular VM:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><a href="OnApp/OnApp.html#methodload">load</a><span class="src-sym">(</span><span class="src-sym">{</span><span class="src-id">VM&nbsp;ID</span><span class="src-sym">}</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p><p>Create a VM:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_label&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-str">'{VM&nbsp;Label}'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_memory&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-sym">{</span><span class="src-id">VM&nbsp;RAM&nbsp;</span><span class="src-sym">}</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_cpu_shares&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-sym">{</span><span class="src-id">VM&nbsp;CPU&nbsp;priority</span><span class="src-sym">}</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_hostname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-str">'{Hostname}'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_cpus&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-sym">{</span><span class="src-id">number&nbsp;of&nbsp;VM&nbsp;CPUs</span><span class="src-sym">}</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_primary_disk_size&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-sym">{</span><span class="src-id">VM&nbsp;Disk&nbsp;Space</span><span class="src-sym">}</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_swap_disk_size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-sym">{</span><span class="src-id">VM&nbsp;Swap&nbsp;Size</span><span class="src-sym">}</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_template_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-sym">{</span><span class="src-id">VM&nbsp;Template&nbsp;ID</span><span class="src-sym">}</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_allowed_hot_migrate&nbsp;</span>=&nbsp;<span class="src-sym">{</span><span class="src-id">VM&nbsp;Hot&nbsp;Migrate&nbsp;Boolean&nbsp;Value</span><span class="src-sym">}</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$billing_plan_obj</span><span class="src-sym">-&gt;</span><a href="OnApp/OnApp.html#methodsave">save</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p><p>Edit VM:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_id&nbsp;</span>=&nbsp;<span class="src-sym">{</span><span class="src-id">VM&nbsp;ID</span><span class="src-sym">}</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><a href="http://www.php.net/_">_</a><span class="src-sym">{</span><span class="src-id">Field&nbsp;You&nbsp;Want&nbsp;To&nbsp;Edit</span><span class="src-sym">}&nbsp;</span>=&nbsp;<span class="src-sym">{</span><span class="src-key">New&nbsp;</span><span class="src-id">Value</span><span class="src-sym">}</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><a href="OnApp/OnApp.html#methodsave">save</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p><p>Getting debug log ( depends on debug mode ):</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.php.net/print_r">print_r</a><span class="src-sym">(&nbsp;</span><span class="src-var">$vm_obj&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p><p>For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )</p></li>
+</ul>
+<h3><a href="OnApp/EdgeGroup_Location/_EdgeGroup---Location---Operator.php.html">Operator.php</a></h3>
+<ul>
+    <li>Add description</li>
+</ul>
+<h3><a href="OnApp/EdgeGroup_Location_Operator/_EdgeGroup---Location---Operator---Setting.php.html">Setting.php</a></h3>
+<ul>
+    <li>Add description</li>
+</ul>
+<h3><a href="OnApp/User/_User---Statistics.php.html">Statistics.php</a></h3>
+<ul>
+    <li>write description</li>
+</ul>
+<h3><a href="OnApp/User/_User---UsedIpAddress.php.html">UsedIpAddress.php</a></h3>
+<ul>
+    <li>write description</li>
+</ul>
+<h3><a href="OnApp/_UserAdditionalField.php.html">UserAdditionalField.php</a></h3>
+<ul>
+    <li>Add description</li>
+</ul>
+<h3><a href="OnApp/User_Statistics/_User---Statistics---VmStat.php.html">VmStat.php</a></h3>
+<ul>
+    <li>write description</li>
+</ul>
+<h3><a href="OnApp/User/_User---WhiteList.php.html">WhiteList.php</a></h3>
+<ul>
+    <li>write description</li>
+</ul>
+	<p class="notes" id="credit">
+		Documentation generated on Wed, 14 Mar 2012 17:37:43 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</body>
+</html>

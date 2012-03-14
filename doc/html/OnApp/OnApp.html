@@ -1,0 +1,3108 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class OnApp</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class OnApp</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+    <span class="bar-arrow-left"></span>
+    <span class="bar-arrow-right"></span>
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+							<a href="#sec-descendents">Descendents</a>
+			|											<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">API Wrapper for OnApp</p>
+	<ul class="tags">
+				<li><span class="field">todo:</span> <p>Pack using the lib (http://pecl.php.net/)</p><p>The wrapper is used to describe the following basic methods: <a href="../OnApp/OnApp.html#methodload">load</a>,  <a href="../OnApp/OnApp.html#methodsave">save</a>, <a href="../OnApp/OnApp.html#methoddelete">delete</a> and <a href="../OnApp/OnApp.html#methodgetList">getList</a>.</p><p>To create a new class inheriting this one, re-define the  following variables:  <div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;root&nbsp;tag&nbsp;used&nbsp;in&nbsp;the&nbsp;API&nbsp;request</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">var&nbsp;</span><span class="src-var">$_tagRoot&nbsp;&nbsp;</span>=&nbsp;<span class="src-str">'&lt;root&gt;'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;alias&nbsp;processing&nbsp;the&nbsp;object&nbsp;data</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">var&nbsp;</span><span class="src-var">$_resource&nbsp;</span>=&nbsp;<span class="src-str">'&lt;alias&gt;'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;the&nbsp;fields&nbsp;array&nbsp;used&nbsp;in&nbsp;the&nbsp;response&nbsp;and&nbsp;request&nbsp;to&nbsp;the&nbsp;API&nbsp;server</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">var&nbsp;</span><span class="src-var">$fields&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">)</span></div></li>
+</ol></div></p><p>To create a read-only class, close the save and delete methods.  To re-define the traditional API aliases to the non-traditional,  re-define the  <a href="../OnApp/OnApp.html#methodgetResource">getResource</a>,  getResourceADD, getResourceEDIT,  getResourceLOAD,  getResourceDELETE and  getResourceLIST  methods in the class that will be inheriting the ONAPP class.</p><p>This API provides an interface to onapp.net allowing common virtual machine  and account management tasks</p><p><strong>Usage OnApp_VirtualMachine class example ( Could be applied almost to any of the Wrapper classes ):</strong></p><p>Get OnApp Instance:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$onapp&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../OnApp/OnApp_Factory.html">OnApp_Factory</a></span><span class="src-sym">(</span><span class="src-str">'{IP&nbsp;Address&nbsp;/&nbsp;Hostname}'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'{Username}'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'{Password}'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p><p>Get OnApp_VirtualMachine Instance:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj&nbsp;</span>=&nbsp;<span class="src-var">$onapp</span><span class="src-sym">-&gt;</span><span class="src-id">factory</span><span class="src-sym">(</span><span class="src-str">'VirtualMachine'</span><span class="src-sym">,&nbsp;</span><span class="src-sym">{</span><span class="src-id">debug&nbsp;mode&nbsp;boolean</span><span class="src-sym">,&nbsp;</span><span class="src-id">not&nbsp;required</span><span class="src-sym">}&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p><p>Get the list of VMs:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vms&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><a href="../OnApp/OnApp.html#methodgetList">getList</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p><p>Get particular VM:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><a href="../OnApp/OnApp.html#methodload">load</a><span class="src-sym">(</span><span class="src-sym">{</span><span class="src-id">VM&nbsp;ID</span><span class="src-sym">}</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p><p>Create a VM:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_label&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-str">'{VM&nbsp;Label}'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_memory&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-sym">{</span><span class="src-id">VM&nbsp;RAM&nbsp;</span><span class="src-sym">}</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_cpu_shares&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-sym">{</span><span class="src-id">VM&nbsp;CPU&nbsp;priority</span><span class="src-sym">}</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_hostname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-str">'{Hostname}'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_cpus&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-sym">{</span><span class="src-id">number&nbsp;of&nbsp;VM&nbsp;CPUs</span><span class="src-sym">}</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_primary_disk_size&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-sym">{</span><span class="src-id">VM&nbsp;Disk&nbsp;Space</span><span class="src-sym">}</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_swap_disk_size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-sym">{</span><span class="src-id">VM&nbsp;Swap&nbsp;Size</span><span class="src-sym">}</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_template_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-sym">{</span><span class="src-id">VM&nbsp;Template&nbsp;ID</span><span class="src-sym">}</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_allowed_hot_migrate&nbsp;</span>=&nbsp;<span class="src-sym">{</span><span class="src-id">VM&nbsp;Hot&nbsp;Migrate&nbsp;Boolean&nbsp;Value</span><span class="src-sym">}</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$billing_plan_obj</span><span class="src-sym">-&gt;</span><a href="../OnApp/OnApp.html#methodsave">save</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p><p>Edit VM:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_id&nbsp;</span>=&nbsp;<span class="src-sym">{</span><span class="src-id">VM&nbsp;ID</span><span class="src-sym">}</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><a href="http://www.php.net/_">_</a><span class="src-sym">{</span><span class="src-id">Field&nbsp;You&nbsp;Want&nbsp;To&nbsp;Edit</span><span class="src-sym">}&nbsp;</span>=&nbsp;<span class="src-sym">{</span><span class="src-key">New&nbsp;</span><span class="src-id">Value</span><span class="src-sym">}</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><a href="../OnApp/OnApp.html#methodsave">save</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p><p>Getting debug log ( depends on debug mode ):</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.php.net/print_r">print_r</a><span class="src-sym">(&nbsp;</span><span class="src-var">$vm_obj&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p><p>For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )</p></li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_OnApp.php.html">/OnApp.php</a> (line <span class="field">294</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+	<a name="sec-descendents"></a>
+	<div class="info-box">
+    <span class="bar-arrow-left"></span>
+    <span class="bar-arrow-right"></span>
+		<div class="info-box-title">Direct descendents</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+			<span class="disabled">Descendents</span>
+			|												<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+								|															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<table cellpadding="2" cellspacing="0" class="class-table">
+				<tr>
+					<th class="class-table-header">Class</th>
+					<th class="class-table-header">Description</th>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_DataStoreZone.html">OnApp_DataStoreZone</a></td>
+					<td>
+											Managing Data Store Zones
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_Transaction.html">OnApp_Transaction</a></td>
+					<td>
+											Transactions
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/Hypervisor/OnApp_Hypervisor_NetworkJoin.html">OnApp_Hypervisor_NetworkJoin</a></td>
+					<td>
+											ONAPP_Hypervisor_NetworkJoin
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_NetworkInterface.html">OnApp_VirtualMachine_NetworkInterface</a></td>
+					<td>
+											VM Network Interface
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_CpuUsage.html">OnApp_VirtualMachine_CpuUsage</a></td>
+					<td>
+											The CPU utilization for Virtual Machine
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_IpAddressJoin.html">OnApp_VirtualMachine_IpAddressJoin</a></td>
+					<td>
+											VM IP Address Joins
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_BillingStatistics.html">OnApp_VirtualMachine_BillingStatistics</a></td>
+					<td>
+											User IP Billing Statistics
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_FirewallRule.html">OnApp_VirtualMachine_FirewallRule</a></td>
+					<td>
+											VM Firewall Rule
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/VirtualMachine_NetworkInterface/ONAPP_VirtualMachine_NetworkInterface_Usage.html">ONAPP_VirtualMachine_NetworkInterface_Usage</a></td>
+					<td>
+											VM Network Interface Usage
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_Backup.html">OnApp_VirtualMachine_Backup</a></td>
+					<td>
+											VM Backups
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/EdgeGroup_Location_Operator/OnApp_EdgeGroup_Location_Operator_Setting.html">OnApp_EdgeGroup_Location_Operator_Setting</a></td>
+					<td>
+											OnApp_EdgeGroup_Location
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/EdgeGroup_Location/OnApp_EdgeGroup_Location_Operator.html">OnApp_EdgeGroup_Location_Operator</a></td>
+					<td>
+											OnApp_EdgeGroup_Location
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/EdgeGroup/OnApp_EdgeGroup_Location.html">OnApp_EdgeGroup_Location</a></td>
+					<td>
+											OnApp_EdgeGroup_Location
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_UsageStatistic.html">OnApp_UsageStatistic</a></td>
+					<td>
+											Usage Statistics
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/Role/OnApp_Role_Permission.html">OnApp_Role_Permission</a></td>
+					<td>
+											Managing Role Permissions
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_NetworkZone.html">OnApp_NetworkZone</a></td>
+					<td>
+											Managing Network Zones
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_EdgeGroup.html">OnApp_EdgeGroup</a></td>
+					<td>
+											Managing Edge Groups
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_ResourceLimit.html">OnApp_ResourceLimit</a></td>
+					<td>
+											Manages Resource Limit
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_Nameserver.html">OnApp_Nameserver</a></td>
+					<td>
+											Resolvers
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_IpAddress.html">OnApp_IpAddress</a></td>
+					<td>
+											IP Addresses
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_DataStore.html">OnApp_DataStore</a></td>
+					<td>
+											Data Stores
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/LoadBalancingCluster/OnApp_LoadBalancingCluster_Config.html">OnApp_LoadBalancingCluster_Config</a></td>
+					<td>
+											Manages OnApp Load Balancing Cluster Config
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/LoadBalancingCluster/OnApp_LoadBalancingCluster_Node.html">OnApp_LoadBalancingCluster_Node</a></td>
+					<td>
+											Manages OnApp Load Balancing Cluster Node
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/LoadBalancingCluster/OnApp_LoadBalancingCluster_AutoScaling.html">OnApp_LoadBalancingCluster_AutoScaling</a></td>
+					<td>
+											Manages LoadBalancingCluster AutoScaling
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/LoadBalancingCluster/OnApp_LoadBalancingCluster_NodeAtribute.html">OnApp_LoadBalancingCluster_NodeAtribute</a></td>
+					<td>
+											Manages OnApp Load Balancing Cluster Node Atribute
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_LoadBalancingCluster.html">OnApp_LoadBalancingCluster</a></td>
+					<td>
+											Load Balancing Clusters
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/CDNResource/OnApp_CDNResource_Advanced.html">OnApp_CDNResource_Advanced</a></td>
+					<td>
+											CDN Resource Advanced Details
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/CDNResource_AvailableEdgeGroup/OnApp_CDNResource_AvailableEdgeGroup_Location.html">OnApp_CDNResource_AvailableEdgeGroup_Location</a></td>
+					<td>
+											CDN Origins For API
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/CDNResource/OnApp_CDNResource_Origin.html">OnApp_CDNResource_Origin</a></td>
+					<td>
+											CDN Origins For API
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/CDNResource/OnApp_CDNResource_BillingStatistic.html">OnApp_CDNResource_BillingStatistic</a></td>
+					<td>
+											CDN Resource Billing Statistics
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/CDNResource_Advanced/OnApp_CDNResource_Advanced_Country.html">OnApp_CDNResource_Advanced_Country</a></td>
+					<td>
+											CDN Origins For API
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/CDNResource/OnApp_CDNResource_AvailableEdgeGroup.html">OnApp_CDNResource_AvailableEdgeGroup</a></td>
+					<td>
+											Managing Edge Groups
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/CDNResource/OnApp_CDNResource_Bandwidth.html">OnApp_CDNResource_Bandwidth</a></td>
+					<td>
+											CDN Resource Bandwidth Statistics
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_HypervisorZone.html">OnApp_HypervisorZone</a></td>
+					<td>
+											Managing Hypervisor Zones
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/BillingPlan/OnApp_BillingPlan_BaseResource.html">OnApp_BillingPlan_BaseResource</a></td>
+					<td>
+											The ONAPP_BillingPlan_BaseResource uses the following basic methods:  load, save, delete, and getList.
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/BillingPlan_BaseResource/OnApp_BillingPlan_BaseResource_Limit.html">OnApp_BillingPlan_BaseResource_Limit</a></td>
+					<td>
+											Manages Billing Plan Base Resource Limits
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/BillingPlan_BaseResource/OnApp_BillingPlan_BaseResource_Price.html">OnApp_BillingPlan_BaseResource_Price</a></td>
+					<td>
+											Manages Billing Plan Base Resource Prices
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_BillingPlan.html">OnApp_BillingPlan</a></td>
+					<td>
+											Managing Billing Plans
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_Profile.html">OnApp_Profile</a></td>
+					<td>
+											Manages User Profile
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_UserAdditionalField.html">OnApp_UserAdditionalField</a></td>
+					<td>
+											Managing User Additional Fields
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_Template.html">OnApp_Template</a></td>
+					<td>
+											Templates
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_UserGroup.html">OnApp_UserGroup</a></td>
+					<td>
+											Managing User Groups
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_User.html">OnApp_User</a></td>
+					<td>
+											Users
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_Group.html">OnApp_Group</a></td>
+					<td>
+											Managing Groups
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_Role.html">OnApp_Role</a></td>
+					<td>
+											Manages User Roles
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_Payment.html">OnApp_Payment</a></td>
+					<td>
+											User Payments
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_VirtualMachine.html">OnApp_VirtualMachine</a></td>
+					<td>
+											Virtual Machines
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/Disk/OnApp_Disk_Schedule.html">OnApp_Disk_Schedule</a></td>
+					<td>
+											API Wrapper for OnApp
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_Disk.html">OnApp_Disk</a></td>
+					<td>
+											Managing Disks
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_SoftwareLincense.html">OnApp_SoftwareLincense</a></td>
+					<td>
+											Managing Software Lincenses
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/ONAPP_CDNUsageStatistic.html">ONAPP_CDNUsageStatistic</a></td>
+					<td>
+											View CDN Usage Statistics
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/HypervisorZone/OnApp_HypervisorZone_DataStoreJoin.html">OnApp_HypervisorZone_DataStoreJoin</a></td>
+					<td>
+											ONAPP_Hypervisor_DataStoreJoin
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/HypervisorZone/OnApp_HypervisorZone_NetworkJoin.html">OnApp_HypervisorZone_NetworkJoin</a></td>
+					<td>
+											ONAPP_Hypervisor_NetworkJoin
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_CDNResource.html">OnApp_CDNResource</a></td>
+					<td>
+											Managing CDN Resource
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_Hypervisor.html">OnApp_Hypervisor</a></td>
+					<td>
+											Hypervisors
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_Factory.html">OnApp_Factory</a></td>
+					<td>
+											API Factory Wrapper for OnApp
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_Network.html">OnApp_Network</a></td>
+					<td>
+											Configuring Network
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/User/ONAPP_User_MonthlyBill.html">ONAPP_User_MonthlyBill</a></td>
+					<td>
+											User Monthly Bills
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/User_Statistics/OnApp_User_Statistics_VmStat.html">OnApp_User_Statistics_VmStat</a></td>
+					<td>
+											User User Statistics VmStat
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/User/OnApp_User_Statistics.html">OnApp_User_Statistics</a></td>
+					<td>
+											User IP User Statistics
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/User/OnApp_User_BillingStatistics.html">OnApp_User_BillingStatistics</a></td>
+					<td>
+											User IP Billing Statistics
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/User/OnApp_User_WhiteList.html">OnApp_User_WhiteList</a></td>
+					<td>
+											User White List
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../OnApp/OnApp_Console.html">OnApp_Console</a></td>
+					<td>
+											Virtual Machine Console
+										</td>
+				</tr>
+							</table>
+		</div>
+	</div>
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+    <span class="bar-arrow-left"></span>
+    <span class="bar-arrow-right"></span>
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																																																																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$className" title="details" class="var-name">$className</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">array</span>
+					<a href="#$dynamicFields" title="details" class="var-name">$dynamicFields</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$errors" title="details" class="var-name">$errors</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">array</span>
+					<a href="#$fields" title="details" class="var-name">$fields</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$logger" title="details" class="var-name">$logger</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">array</span>
+					<a href="#$options" title="details" class="var-name">$options</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$response" title="details" class="var-name">$response</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">sting</span>
+					<a href="#$version" title="details" class="var-name">$version</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+    <span class="bar-arrow-left"></span>
+    <span class="bar-arrow-right"></span>
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																																																																																																																																																																																																																																						
+				<div class="method-definition">
+											<span class="method-result">OnApp</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#activate" title="details" class="method-name">activate</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$action_name</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#auth" title="details" class="method-name">auth</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$url</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$user</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$pass</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$proxy</span> = <span class="var-default">''</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#castStringToClass" title="details" class="method-name">castStringToClass</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$content</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#close_curl" title="details" class="method-name">close_curl</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#delete" title="details" class="method-name">delete</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getAPIVersion" title="details" class="method-name">getAPIVersion</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getClassFields" title="details" class="method-name">getClassFields</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getClassName" title="details" class="method-name">getClassName</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getErrorsAsArray" title="details" class="method-name">getErrorsAsArray</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getErrorsAsString" title="details" class="method-name">getErrorsAsString</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$glue</span> = <span class="var-default">PHP_EOL</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">hash</span>
+										<a href="#getFieldsToSend" title="details" class="method-name">getFieldsToSend</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">the</span>
+										<a href="#getList" title="details" class="method-name">getList</a>
+											([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$params</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$url_args</span> = <span class="var-default">null</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getResource" title="details" class="method-name">getResource</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$action</span> = <span class="var-default">ONAPP_GETRESOURCE_DEFAULT</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getResponse" title="details" class="method-name">getResponse</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#initFields" title="details" class="method-name">initFields</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$version</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$className</span> = <span class="var-default">''</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#isAuthenticate" title="details" class="method-name">isAuthenticate</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#isChanged" title="details" class="method-name">isChanged</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#isDelete" title="details" class="method-name">isDelete</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#load" title="details" class="method-name">load</a>
+											([<span class="var-type">integer</span>&nbsp;<span class="var-name">$id</span> = <span class="var-default">null</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#logs" title="details" class="method-name">logs</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#resetOptions" title="details" class="method-name">resetOptions</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#save" title="details" class="method-name">save</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#sendGet" title="details" class="method-name">sendGet</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$resource</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$data</span> = <span class="var-default">NULL</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$url_args</span> = <span class="var-default">NULL</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#sendPost" title="details" class="method-name">sendPost</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$resource</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$data</span> = <span class="var-default">NULL</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#sendPut" title="details" class="method-name">sendPut</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$resource</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$data</span> = <span class="var-default">NULL</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">array|bool</span>
+										<a href="#sendRequest" title="details" class="method-name">sendRequest</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$method</span>, [<span class="var-type">array|null</span>&nbsp;<span class="var-name">$data</span> = <span class="var-default">null</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setAPIResource" title="details" class="method-name">setAPIResource</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$resource</span>, [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$append_api_version</span> = <span class="var-default">true</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$queryString</span> = <span class="var-default">''</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setAPIVersion" title="details" class="method-name">setAPIVersion</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$data</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setErrors" title="details" class="method-name">setErrors</a>
+											([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$errors</span> = <span class="var-default">null</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setOption" title="details" class="method-name">setOption</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setOptions" title="details" class="method-name">setOptions</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$options</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#unsetFields" title="details" class="method-name">unsetFields</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$fields</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">bool|mixed</span>
+										<a href="#_action" title="details" class="method-name">_action</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$method</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$resource</span>, [<span class="var-type">array|null</span>&nbsp;<span class="var-name">$data</span> = <span class="var-default">NULL</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$url_args</span> = <span class="var-default">NULL</span>])
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#_castResponseToClass" title="details" class="method-name">_castResponseToClass</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$response</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#__get" title="details" class="method-name">__get</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#__isset" title="details" class="method-name">__isset</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#__set" title="details" class="method-name">__set</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$value</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#__unset" title="details" class="method-name">__unset</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+    <span class="bar-arrow-left"></span>
+    <span class="bar-arrow-right"></span>
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			
+<a name="var$className" id="$className"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$className</span>
+						(line <span class="line-number">482</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">var:</span> current class' name</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$dynamicFields" id="$dynamicFields"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">array</span>
+			<span class="var-name">$dynamicFields</span>
+						(line <span class="line-number">464</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Holder for storing properties that were setted via magic setter</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$errors" id="$errors"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$errors</span>
+						(line <span class="line-number">477</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Variable for error handling</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$fields" id="$fields"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">array</span>
+			<span class="var-name">$fields</span>
+						(line <span class="line-number">456</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return OnApp fields array mapping</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$logger" id="$logger"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$logger</span>
+			 = <span class="var-default"> null</span>			(line <span class="line-number">470</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The Object Logger used to log the processes in the basic and inherited classes</p>
+<p class="description"><p>It is possible to use the debug add error log methods</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$options" id="$options"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">array</span>
+			<span class="var-name">$options</span>
+			 = <span class="var-default">array()</span>			(line <span class="line-number">370</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The array of the options used to create API requests and receive responses,  as well as serialize and unserialize objects in the class</p>
+<p class="description"><p>By default equals to $_defaultOptions</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">var&nbsp;</span><span class="src-var">$options&nbsp;</span>=&nbsp;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;cURL&nbsp;proxy</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id"><a href="../OnApp/_OnApp.php.html#defineONAPP_OPTION_CURL_PROXY">ONAPP_OPTION_CURL_PROXY</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&gt;&nbsp;<span class="src-str">''</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;cURL&nbsp;url</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id"><a href="../OnApp/_OnApp.php.html#defineONAPP_OPTION_CURL_URL">ONAPP_OPTION_CURL_URL</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&gt;&nbsp;<span class="src-str">''</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;API&nbsp;request&nbsp;and&nbsp;response&nbsp;type</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id"><a href="../OnApp/_OnApp.php.html#defineONAPP_OPTION_API_TYPE">ONAPP_OPTION_API_TYPE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&gt;&nbsp;<span class="src-str">'xml'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;API&nbsp;request&nbsp;and&nbsp;response&nbsp;charset</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id"><a href="../OnApp/_OnApp.php.html#defineONAPP_OPTION_API_CHARSET">ONAPP_OPTION_API_CHARSET</a>&nbsp;&nbsp;&nbsp;</span>=&gt;&nbsp;<span class="src-str">'charset=utf-8'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;API&nbsp;request&nbsp;and&nbsp;response&nbsp;content</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id"><a href="../OnApp/_OnApp.php.html#defineONAPP_OPTION_API_CONTENT">ONAPP_OPTION_API_CONTENT</a>&nbsp;&nbsp;&nbsp;</span>=&gt;&nbsp;<span class="src-str">'application/xml'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Debug&nbsp;mode</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id"><a href="../OnApp/_OnApp.php.html#defineONAPP_OPTION_DEBUG_MODE">ONAPP_OPTION_DEBUG_MODE</a>&nbsp;</span>=&gt;&nbsp;<span class="src-id">false</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$response" id="$response"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$response</span>
+						(line <span class="line-number">488</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$version" id="$version"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">sting</span>
+			<span class="var-name">$version</span>
+						(line <span class="line-number">440</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return OnApp version</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+    <span class="bar-arrow-left"></span>
+    <span class="bar-arrow-right"></span>
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">1495</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">OnApp</span>
+		<span class="method-name">
+			__construct
+		</span>
+				()
+			</div>
+	
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../OnApp/OnApp_DataStoreZone.html#method__construct">OnApp_DataStoreZone::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Transaction.html#method__construct">OnApp_Transaction::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/Hypervisor/OnApp_Hypervisor_NetworkJoin.html#method__construct">OnApp_Hypervisor_NetworkJoin::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_NetworkInterface.html#method__construct">OnApp_VirtualMachine_NetworkInterface::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_CpuUsage.html#method__construct">OnApp_VirtualMachine_CpuUsage::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/EdgeServer/OnApp_EdgeServer_CpuUsage.html#method__construct">OnApp_EdgeServer_CpuUsage::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_IpAddressJoin.html#method__construct">OnApp_VirtualMachine_IpAddressJoin::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_BillingStatistics.html#method__construct">OnApp_VirtualMachine_BillingStatistics::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_FirewallRule.html#method__construct">OnApp_VirtualMachine_FirewallRule::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine_NetworkInterface/ONAPP_VirtualMachine_NetworkInterface_Usage.html#method__construct">ONAPP_VirtualMachine_NetworkInterface_Usage::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_Backup.html#method__construct">OnApp_VirtualMachine_Backup::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/EdgeGroup_Location_Operator/OnApp_EdgeGroup_Location_Operator_Setting.html#method__construct">OnApp_EdgeGroup_Location_Operator_Setting::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/EdgeGroup_Location/OnApp_EdgeGroup_Location_Operator.html#method__construct">OnApp_EdgeGroup_Location_Operator::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/EdgeGroup/OnApp_EdgeGroup_Location.html#method__construct">OnApp_EdgeGroup_Location::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_UsageStatistic.html#method__construct">OnApp_UsageStatistic::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/Role/OnApp_Role_Permission.html#method__construct">OnApp_Role_Permission::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_NetworkZone.html#method__construct">OnApp_NetworkZone::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_EdgeGroup.html#method__construct">OnApp_EdgeGroup::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_ResourceLimit.html#method__construct">OnApp_ResourceLimit::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Nameserver.html#method__construct">OnApp_Nameserver::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_IpAddress.html#method__construct">OnApp_IpAddress::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_IpAddress.html#method__construct">OnApp_VirtualMachine_IpAddress::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/User/OnApp_User_UsedIpAddress.html#method__construct">OnApp_User_UsedIpAddress::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_DataStore.html#method__construct">OnApp_DataStore::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/LoadBalancingCluster/OnApp_LoadBalancingCluster_Config.html#method__construct">OnApp_LoadBalancingCluster_Config::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/LoadBalancingCluster/OnApp_LoadBalancingCluster_Node.html#method__construct">OnApp_LoadBalancingCluster_Node::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/LoadBalancingCluster/OnApp_LoadBalancingCluster_AutoScaling.html#method__construct">OnApp_LoadBalancingCluster_AutoScaling::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/LoadBalancingCluster/OnApp_LoadBalancingCluster_NodeAtribute.html#method__construct">OnApp_LoadBalancingCluster_NodeAtribute::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_LoadBalancingCluster.html#method__construct">OnApp_LoadBalancingCluster::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource/OnApp_CDNResource_Advanced.html#method__construct">OnApp_CDNResource_Advanced::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource_AvailableEdgeGroup/OnApp_CDNResource_AvailableEdgeGroup_Location.html#method__construct">OnApp_CDNResource_AvailableEdgeGroup_Location::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource/OnApp_CDNResource_Origin.html#method__construct">OnApp_CDNResource_Origin::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource/OnApp_CDNResource_BillingStatistic.html#method__construct">OnApp_CDNResource_BillingStatistic::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource_Advanced/OnApp_CDNResource_Advanced_Country.html#method__construct">OnApp_CDNResource_Advanced_Country::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource/OnApp_CDNResource_AvailableEdgeGroup.html#method__construct">OnApp_CDNResource_AvailableEdgeGroup::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource/OnApp_CDNResource_Bandwidth.html#method__construct">OnApp_CDNResource_Bandwidth::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_HypervisorZone.html#method__construct">OnApp_HypervisorZone::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/BillingPlan/OnApp_BillingPlan_BaseResource.html#method__construct">OnApp_BillingPlan_BaseResource::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/BillingPlan_BaseResource/OnApp_BillingPlan_BaseResource_Limit.html#method__construct">OnApp_BillingPlan_BaseResource_Limit::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/BillingPlan_BaseResource/OnApp_BillingPlan_BaseResource_Price.html#method__construct">OnApp_BillingPlan_BaseResource_Price::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_BillingPlan.html#method__construct">OnApp_BillingPlan::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Profile.html#method__construct">OnApp_Profile::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_UserAdditionalField.html#method__construct">OnApp_UserAdditionalField::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Template.html#method__construct">OnApp_Template::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_UserGroup.html#method__construct">OnApp_UserGroup::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_User.html#method__construct">OnApp_User::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Group.html#method__construct">OnApp_Group::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Role.html#method__construct">OnApp_Role::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Payment.html#method__construct">OnApp_Payment::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_VirtualMachine.html#method__construct">OnApp_VirtualMachine::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_LoadBalancer.html#method__construct">OnApp_LoadBalancer::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_EdgeServer.html#method__construct">OnApp_EdgeServer::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/Disk/OnApp_Disk_Schedule.html#method__construct">OnApp_Disk_Schedule::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Disk.html#method__construct">OnApp_Disk::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_SoftwareLincense.html#method__construct">OnApp_SoftwareLincense::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/ONAPP_CDNUsageStatistic.html#method__construct">ONAPP_CDNUsageStatistic::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/HypervisorZone/OnApp_HypervisorZone_DataStoreJoin.html#method__construct">OnApp_HypervisorZone_DataStoreJoin::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_CDNResource.html#method__construct">OnApp_CDNResource::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Hypervisor.html#method__construct">OnApp_Hypervisor::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Factory.html#method__construct">OnApp_Factory::__construct()</a>
+								: Object constructor
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Network.html#method__construct">OnApp_Network::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/User/ONAPP_User_MonthlyBill.html#method__construct">ONAPP_User_MonthlyBill::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/User_Statistics/OnApp_User_Statistics_VmStat.html#method__construct">OnApp_User_Statistics_VmStat::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/User/OnApp_User_Statistics.html#method__construct">OnApp_User_Statistics::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/User/OnApp_User_BillingStatistics.html#method__construct">OnApp_User_BillingStatistics::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/User/OnApp_User_WhiteList.html#method__construct">OnApp_User_WhiteList::__construct()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Console.html#method__construct">OnApp_Console::__construct()</a>
+							</li>
+				</ul>
+	</div>
+<a name="methodactivate" id="activate"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">activate</span> (line <span class="line-number">1082</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Activates action performed with object</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			activate
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$action_name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$action_name</span><span class="var-description">: the name of action</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../OnApp/OnApp_Transaction.html#methodactivate">OnApp_Transaction::activate()</a>
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_CpuUsage.html#methodactivate">OnApp_VirtualMachine_CpuUsage::activate()</a>
+								: Activates action performed with object
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_BillingStatistics.html#methodactivate">OnApp_VirtualMachine_BillingStatistics::activate()</a>
+								: Activates action performed with object
+							</li>
+					<li>
+				<a href="../OnApp/EdgeGroup_Location_Operator/OnApp_EdgeGroup_Location_Operator_Setting.html#methodactivate">OnApp_EdgeGroup_Location_Operator_Setting::activate()</a>
+								: Activates action performed with object
+							</li>
+					<li>
+				<a href="../OnApp/EdgeGroup_Location/OnApp_EdgeGroup_Location_Operator.html#methodactivate">OnApp_EdgeGroup_Location_Operator::activate()</a>
+								: Activates action performed with object
+							</li>
+					<li>
+				<a href="../OnApp/EdgeGroup/OnApp_EdgeGroup_Location.html#methodactivate">OnApp_EdgeGroup_Location::activate()</a>
+								: Activates action performed with object
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_UsageStatistic.html#methodactivate">OnApp_UsageStatistic::activate()</a>
+								: Activates action performed with object
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_ResourceLimit.html#methodactivate">OnApp_ResourceLimit::activate()</a>
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_IpAddress.html#methodactivate">OnApp_VirtualMachine_IpAddress::activate()</a>
+								: Activates action performed with object
+							</li>
+					<li>
+				<a href="../OnApp/User/OnApp_User_UsedIpAddress.html#methodactivate">OnApp_User_UsedIpAddress::activate()</a>
+								: Activates action performed with object
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource/OnApp_CDNResource_Advanced.html#methodactivate">OnApp_CDNResource_Advanced::activate()</a>
+								: Activates action performed with object
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource_AvailableEdgeGroup/OnApp_CDNResource_AvailableEdgeGroup_Location.html#methodactivate">OnApp_CDNResource_AvailableEdgeGroup_Location::activate()</a>
+								: Activates action performed with object
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource/OnApp_CDNResource_Origin.html#methodactivate">OnApp_CDNResource_Origin::activate()</a>
+								: Activates action performed with object
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource/OnApp_CDNResource_BillingStatistic.html#methodactivate">OnApp_CDNResource_BillingStatistic::activate()</a>
+								: Activates action performed with object
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource_Advanced/OnApp_CDNResource_Advanced_Country.html#methodactivate">OnApp_CDNResource_Advanced_Country::activate()</a>
+								: Activates action performed with object
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource/OnApp_CDNResource_AvailableEdgeGroup.html#methodactivate">OnApp_CDNResource_AvailableEdgeGroup::activate()</a>
+								: Activates action performed with object
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource/OnApp_CDNResource_Bandwidth.html#methodactivate">OnApp_CDNResource_Bandwidth::activate()</a>
+								: Activates action performed with object
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Profile.html#methodactivate">OnApp_Profile::activate()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Template.html#methodactivate">OnApp_Template::activate()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_LoadBalancer.html#methodactivate">OnApp_LoadBalancer::activate()</a>
+								: Activates action performed with object
+							</li>
+					<li>
+				<a href="../OnApp/ONAPP_CDNUsageStatistic.html#methodactivate">ONAPP_CDNUsageStatistic::activate()</a>
+								: Activates action performed with object
+							</li>
+					<li>
+				<a href="../OnApp/HypervisorZone/OnApp_HypervisorZone_DataStoreJoin.html#methodactivate">OnApp_HypervisorZone_DataStoreJoin::activate()</a>
+								: Activates action performed with object
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Network.html#methodactivate">OnApp_Network::activate()</a>
+							</li>
+					<li>
+				<a href="../OnApp/User/ONAPP_User_MonthlyBill.html#methodactivate">ONAPP_User_MonthlyBill::activate()</a>
+								: Checks if method is supported
+							</li>
+					<li>
+				<a href="../OnApp/User_Statistics/OnApp_User_Statistics_VmStat.html#methodactivate">OnApp_User_Statistics_VmStat::activate()</a>
+								: Activates action performed with object
+							</li>
+					<li>
+				<a href="../OnApp/User/OnApp_User_Statistics.html#methodactivate">OnApp_User_Statistics::activate()</a>
+								: Activates action performed with object
+							</li>
+					<li>
+				<a href="../OnApp/User/OnApp_User_BillingStatistics.html#methodactivate">OnApp_User_BillingStatistics::activate()</a>
+								: Activates action performed with object
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Console.html#methodactivate">OnApp_Console::activate()</a>
+								: Activates action performed with object
+							</li>
+				</ul>
+	</div>
+<a name="methodauth" id="auth"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">auth</span> (line <span class="line-number">658</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Authorizes users in the system by the specified URL by means of cURL</p>
+<p class="description"><p>To authorize, set the user name and password. Specify the Proxy, if  needed. When authorized, <a href="../OnApp/OnApp.html#methodload">load</a>, <a href="../OnApp/OnApp.html#methodsave">save</a>, <a href="../OnApp/OnApp.html#methoddelete">delete</a> and  <a href="../OnApp/OnApp.html#methodgetList">getList</a> methods can be used.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			auth
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$url</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$user</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$pass</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$proxy</span> = <span class="var-default">''</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$url</span><span class="var-description">: API URL</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$user</span><span class="var-description">: user name</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$pass</span><span class="var-description">: password</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$proxy</span><span class="var-description">: (optional) proxy server</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcastStringToClass" id="castStringToClass"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">castStringToClass</span> (line <span class="line-number">1031</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Casts string (API response body content) to the Object</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> array of Objects or Object</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			castStringToClass
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$content</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$content</span><span class="var-description">: class string content</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodclose_curl" id="close_curl"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">close_curl</span> (line <span class="line-number">783</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Closes a cURL session</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			close_curl
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methoddelete" id="delete"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">delete</span> (line <span class="line-number">1357</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sends an API request to delete an Object from your account</p>
+<p class="description"><p>This method can be closed for read only objects of the inherited class  <div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">function&nbsp;</span><a href="../OnApp/OnApp.html#methoddelete">delete</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="../OnApp/OnApp.html#var$logger">logger</a></span><span class="src-sym">-&gt;</span><span class="src-id">error</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">&quot;Call&nbsp;to&nbsp;undefined&nbsp;method&nbsp;&quot;</span>.__CLASS__.<span class="src-str">&quot;::delete()&quot;</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__FILE__<span class="src-sym">,</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__LINE__</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the Object deleted</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			delete
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetAPIVersion" id="getAPIVersion"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getAPIVersion</span> (line <span class="line-number">1443</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getAPIVersion
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetClassFields" id="getClassFields"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getClassFields</span> (line <span class="line-number">1439</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getClassFields
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetClassName" id="getClassName"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getClassName</span> (line <span class="line-number">1430</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getClassName
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetErrorsAsArray" id="getErrorsAsArray"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getErrorsAsArray</span> (line <span class="line-number">1477</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return errors as array</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getErrorsAsArray
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetErrorsAsString" id="getErrorsAsString"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getErrorsAsString</span> (line <span class="line-number">1468</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return errors as string</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getErrorsAsString
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$glue</span> = <span class="var-default">PHP_EOL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$glue</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetFieldsToSend" id="getFieldsToSend"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getFieldsToSend</span> (line <span class="line-number">1287</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Creates data fro API response to save or change the object data</p>
+<p class="description"><p>Returns the Hash of Object fields with values</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> of string</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">hash</span>
+		<span class="method-name">
+			getFieldsToSend
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetList" id="getList"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getList</span> (line <span class="line-number">1092</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> array of Object instances</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">the</span>
+		<span class="method-name">
+			getList
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$params</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$url_args</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$params</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$url_args</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../OnApp/OnApp_Transaction.html#methodgetList">OnApp_Transaction::getList()</a>
+								: Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects
+							</li>
+					<li>
+				<a href="../OnApp/Hypervisor/OnApp_Hypervisor_NetworkJoin.html#methodgetList">OnApp_Hypervisor_NetworkJoin::getList()</a>
+								: Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_NetworkInterface.html#methodgetList">OnApp_VirtualMachine_NetworkInterface::getList()</a>
+								: Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_CpuUsage.html#methodgetList">OnApp_VirtualMachine_CpuUsage::getList()</a>
+								: Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects
+							</li>
+					<li>
+				<a href="../OnApp/EdgeServer/OnApp_EdgeServer_CpuUsage.html#methodgetList">OnApp_EdgeServer_CpuUsage::getList()</a>
+								: Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_IpAddressJoin.html#methodgetList">OnApp_VirtualMachine_IpAddressJoin::getList()</a>
+								: Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_BillingStatistics.html#methodgetList">OnApp_VirtualMachine_BillingStatistics::getList()</a>
+								: Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_FirewallRule.html#methodgetList">OnApp_VirtualMachine_FirewallRule::getList()</a>
+								: Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine_NetworkInterface/ONAPP_VirtualMachine_NetworkInterface_Usage.html#methodgetList">ONAPP_VirtualMachine_NetworkInterface_Usage::getList()</a>
+								: Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_Backup.html#methodgetList">OnApp_VirtualMachine_Backup::getList()</a>
+								: Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_IpAddress.html#methodgetList">OnApp_IpAddress::getList()</a>
+								: Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource/OnApp_CDNResource_Advanced.html#methodgetList">OnApp_CDNResource_Advanced::getList()</a>
+								: Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource/OnApp_CDNResource_BillingStatistic.html#methodgetList">OnApp_CDNResource_BillingStatistic::getList()</a>
+								: Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource/OnApp_CDNResource_Bandwidth.html#methodgetList">OnApp_CDNResource_Bandwidth::getList()</a>
+								: Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects
+							</li>
+					<li>
+				<a href="../OnApp/BillingPlan/OnApp_BillingPlan_BaseResource.html#methodgetList">OnApp_BillingPlan_BaseResource::getList()</a>
+								: Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Payment.html#methodgetList">OnApp_Payment::getList()</a>
+								: Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_VirtualMachine.html#methodgetList">OnApp_VirtualMachine::getList()</a>
+								: Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Disk.html#methodgetList">OnApp_Disk::getList()</a>
+								: Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects
+							</li>
+					<li>
+				<a href="../OnApp/HypervisorZone/OnApp_HypervisorZone_DataStoreJoin.html#methodgetList">OnApp_HypervisorZone_DataStoreJoin::getList()</a>
+								: Gets list of datastore joins to particular hypervisor zone
+							</li>
+					<li>
+				<a href="../OnApp/HypervisorZone/OnApp_HypervisorZone_NetworkJoin.html#methodgetList">OnApp_HypervisorZone_NetworkJoin::getList()</a>
+								: Gets list of network joins to particular hypervisor zone
+							</li>
+					<li>
+				<a href="../OnApp/User/ONAPP_User_MonthlyBill.html#methodgetList">ONAPP_User_MonthlyBill::getList()</a>
+								: Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects
+							</li>
+					<li>
+				<a href="../OnApp/User/OnApp_User_Statistics.html#methodgetList">OnApp_User_Statistics::getList()</a>
+								: Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects
+							</li>
+					<li>
+				<a href="../OnApp/User/OnApp_User_BillingStatistics.html#methodgetList">OnApp_User_BillingStatistics::getList()</a>
+								: Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects
+							</li>
+					<li>
+				<a href="../OnApp/User/OnApp_User_WhiteList.html#methodgetList">OnApp_User_WhiteList::getList()</a>
+								: Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects
+							</li>
+				</ul>
+	</div>
+<a name="methodgetResource" id="getResource"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getResource</span> (line <span class="line-number">569</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the URL Alias of the API Class that inherits the Class ONAPP</p>
+<p class="description"><p>Can be redefined if the API does not use the default alias (the alias  consisting of few fields).  The following example illustrates:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">function&nbsp;</span><a href="../OnApp/OnApp.html#methodgetResource">getResource</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-str">&quot;alias/&quot;&nbsp;</span>.&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-id">_field_name&nbsp;</span>.&nbsp;<span class="src-str">&quot;/&quot;&nbsp;</span>.&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-id">_resource</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> API resource</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getResource
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$action</span> = <span class="var-default">ONAPP_GETRESOURCE_DEFAULT</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$action</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../OnApp/OnApp_DataStoreZone.html#methodgetResource">OnApp_DataStoreZone::getResource()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Transaction.html#methodgetResource">OnApp_Transaction::getResource()</a>
+							</li>
+					<li>
+				<a href="../OnApp/Hypervisor/OnApp_Hypervisor_NetworkJoin.html#methodgetResource">OnApp_Hypervisor_NetworkJoin::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_NetworkInterface.html#methodgetResource">OnApp_VirtualMachine_NetworkInterface::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_CpuUsage.html#methodgetResource">OnApp_VirtualMachine_CpuUsage::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/EdgeServer/OnApp_EdgeServer_CpuUsage.html#methodgetResource">OnApp_EdgeServer_CpuUsage::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_IpAddressJoin.html#methodgetResource">OnApp_VirtualMachine_IpAddressJoin::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_BillingStatistics.html#methodgetResource">OnApp_VirtualMachine_BillingStatistics::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_FirewallRule.html#methodgetResource">OnApp_VirtualMachine_FirewallRule::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine_NetworkInterface/ONAPP_VirtualMachine_NetworkInterface_Usage.html#methodgetResource">ONAPP_VirtualMachine_NetworkInterface_Usage::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_Backup.html#methodgetResource">OnApp_VirtualMachine_Backup::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_UsageStatistic.html#methodgetResource">OnApp_UsageStatistic::getResource()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_EdgeGroup.html#methodgetResource">OnApp_EdgeGroup::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_ResourceLimit.html#methodgetResource">OnApp_ResourceLimit::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Nameserver.html#methodgetResource">OnApp_Nameserver::getResource()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_IpAddress.html#methodgetResource">OnApp_IpAddress::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_IpAddress.html#methodgetResource">OnApp_VirtualMachine_IpAddress::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_DataStore.html#methodgetResource">OnApp_DataStore::getResource()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_LoadBalancingCluster.html#methodgetResource">OnApp_LoadBalancingCluster::getResource()</a>
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource/OnApp_CDNResource_Advanced.html#methodgetResource">OnApp_CDNResource_Advanced::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource/OnApp_CDNResource_BillingStatistic.html#methodgetResource">OnApp_CDNResource_BillingStatistic::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_HypervisorZone.html#methodgetResource">OnApp_HypervisorZone::getResource()</a>
+							</li>
+					<li>
+				<a href="../OnApp/BillingPlan/OnApp_BillingPlan_BaseResource.html#methodgetResource">OnApp_BillingPlan_BaseResource::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_BillingPlan.html#methodgetResource">OnApp_BillingPlan::getResource()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Profile.html#methodgetResource">OnApp_Profile::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Template.html#methodgetResource">OnApp_Template::getResource()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_User.html#methodgetResource">OnApp_User::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Role.html#methodgetResource">OnApp_Role::getResource()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Payment.html#methodgetResource">OnApp_Payment::getResource()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_VirtualMachine.html#methodgetResource">OnApp_VirtualMachine::getResource()</a>
+							</li>
+					<li>
+				<a href="../OnApp/Disk/OnApp_Disk_Schedule.html#methodgetResource">OnApp_Disk_Schedule::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Disk.html#methodgetResource">OnApp_Disk::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/HypervisorZone/OnApp_HypervisorZone_DataStoreJoin.html#methodgetResource">OnApp_HypervisorZone_DataStoreJoin::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/HypervisorZone/OnApp_HypervisorZone_NetworkJoin.html#methodgetResource">OnApp_HypervisorZone_NetworkJoin::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_CDNResource.html#methodgetResource">OnApp_CDNResource::getResource()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Hypervisor.html#methodgetResource">OnApp_Hypervisor::getResource()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Network.html#methodgetResource">OnApp_Network::getResource()</a>
+							</li>
+					<li>
+				<a href="../OnApp/User/ONAPP_User_MonthlyBill.html#methodgetResource">ONAPP_User_MonthlyBill::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/User/OnApp_User_Statistics.html#methodgetResource">OnApp_User_Statistics::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/User/OnApp_User_BillingStatistics.html#methodgetResource">OnApp_User_BillingStatistics::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/User/OnApp_User_WhiteList.html#methodgetResource">OnApp_User_WhiteList::getResource()</a>
+								: Returns the URL Alias of the API Class that inherits the Class ONAPP
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Console.html#methodgetResource">OnApp_Console::getResource()</a>
+								: Returns the URL Alias for Load of objects of the API Class that inherits the Class ONAPP
+							</li>
+				</ul>
+	</div>
+<a name="methodgetResponse" id="getResponse"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getResponse</span> (line <span class="line-number">506</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns Curl Response</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> response</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getResponse
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodinitFields" id="initFields"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">initFields</span> (line <span class="line-number">715</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			initFields
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$version</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$className</span> = <span class="var-default">''</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$version</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$className</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../OnApp/OnApp_DataStoreZone.html#methodinitFields">OnApp_DataStoreZone::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Transaction.html#methodinitFields">OnApp_Transaction::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/Hypervisor/OnApp_Hypervisor_NetworkJoin.html#methodinitFields">OnApp_Hypervisor_NetworkJoin::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_NetworkInterface.html#methodinitFields">OnApp_VirtualMachine_NetworkInterface::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_CpuUsage.html#methodinitFields">OnApp_VirtualMachine_CpuUsage::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_IpAddressJoin.html#methodinitFields">OnApp_VirtualMachine_IpAddressJoin::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_BillingStatistics.html#methodinitFields">OnApp_VirtualMachine_BillingStatistics::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_FirewallRule.html#methodinitFields">OnApp_VirtualMachine_FirewallRule::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine_NetworkInterface/ONAPP_VirtualMachine_NetworkInterface_Usage.html#methodinitFields">ONAPP_VirtualMachine_NetworkInterface_Usage::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_Backup.html#methodinitFields">OnApp_VirtualMachine_Backup::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/EdgeGroup_Location_Operator/OnApp_EdgeGroup_Location_Operator_Setting.html#methodinitFields">OnApp_EdgeGroup_Location_Operator_Setting::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/EdgeGroup_Location/OnApp_EdgeGroup_Location_Operator.html#methodinitFields">OnApp_EdgeGroup_Location_Operator::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/EdgeGroup/OnApp_EdgeGroup_Location.html#methodinitFields">OnApp_EdgeGroup_Location::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_UsageStatistic.html#methodinitFields">OnApp_UsageStatistic::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/Role/OnApp_Role_Permission.html#methodinitFields">OnApp_Role_Permission::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_NetworkZone.html#methodinitFields">OnApp_NetworkZone::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_EdgeGroup.html#methodinitFields">OnApp_EdgeGroup::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_ResourceLimit.html#methodinitFields">OnApp_ResourceLimit::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Nameserver.html#methodinitFields">OnApp_Nameserver::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_IpAddress.html#methodinitFields">OnApp_IpAddress::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_IpAddress.html#methodinitFields">OnApp_VirtualMachine_IpAddress::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/User/OnApp_User_UsedIpAddress.html#methodinitFields">OnApp_User_UsedIpAddress::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_DataStore.html#methodinitFields">OnApp_DataStore::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/LoadBalancingCluster/OnApp_LoadBalancingCluster_Config.html#methodinitFields">OnApp_LoadBalancingCluster_Config::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/LoadBalancingCluster/OnApp_LoadBalancingCluster_Node.html#methodinitFields">OnApp_LoadBalancingCluster_Node::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/LoadBalancingCluster/OnApp_LoadBalancingCluster_AutoScaling.html#methodinitFields">OnApp_LoadBalancingCluster_AutoScaling::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/LoadBalancingCluster/OnApp_LoadBalancingCluster_NodeAtribute.html#methodinitFields">OnApp_LoadBalancingCluster_NodeAtribute::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_LoadBalancingCluster.html#methodinitFields">OnApp_LoadBalancingCluster::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource/OnApp_CDNResource_Advanced.html#methodinitFields">OnApp_CDNResource_Advanced::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource_AvailableEdgeGroup/OnApp_CDNResource_AvailableEdgeGroup_Location.html#methodinitFields">OnApp_CDNResource_AvailableEdgeGroup_Location::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource/OnApp_CDNResource_Origin.html#methodinitFields">OnApp_CDNResource_Origin::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource/OnApp_CDNResource_BillingStatistic.html#methodinitFields">OnApp_CDNResource_BillingStatistic::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource_Advanced/OnApp_CDNResource_Advanced_Country.html#methodinitFields">OnApp_CDNResource_Advanced_Country::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource/OnApp_CDNResource_AvailableEdgeGroup.html#methodinitFields">OnApp_CDNResource_AvailableEdgeGroup::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/CDNResource/OnApp_CDNResource_Bandwidth.html#methodinitFields">OnApp_CDNResource_Bandwidth::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_HypervisorZone.html#methodinitFields">OnApp_HypervisorZone::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/BillingPlan/OnApp_BillingPlan_BaseResource.html#methodinitFields">OnApp_BillingPlan_BaseResource::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/BillingPlan/OnApp_BillingPlan_ResourceCpu.html#methodinitFields">OnApp_BillingPlan_ResourceCpu::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/BillingPlan/OnApp_BillingPlan_ResourceIpAddress.html#methodinitFields">OnApp_BillingPlan_ResourceIpAddress::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/BillingPlan/OnApp_BillingPlan_ResourceStorageDiskSize.html#methodinitFields">OnApp_BillingPlan_ResourceStorageDiskSize::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/BillingPlan/OnApp_BillingPlan_ResourceDiskSize.html#methodinitFields">OnApp_BillingPlan_ResourceDiskSize::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/BillingPlan/OnApp_BillingPlan_ResourceMemory.html#methodinitFields">OnApp_BillingPlan_ResourceMemory::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/BillingPlan/OnApp_BillingPlan_ResourceBackup.html#methodinitFields">OnApp_BillingPlan_ResourceBackup::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/BillingPlan/OnApp_BillingPlan_ResourceVmLimit.html#methodinitFields">OnApp_BillingPlan_ResourceVmLimit::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/BillingPlan/OnApp_BillingPlan_ResourceTemplate.html#methodinitFields">OnApp_BillingPlan_ResourceTemplate::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/BillingPlan/OnApp_BillingPlan_ResourceCpuShare.html#methodinitFields">OnApp_BillingPlan_ResourceCpuShare::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/BillingPlan_BaseResource/OnApp_BillingPlan_BaseResource_Limit.html#methodinitFields">OnApp_BillingPlan_BaseResource_Limit::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/BillingPlan_BaseResource/OnApp_BillingPlan_BaseResource_Price.html#methodinitFields">OnApp_BillingPlan_BaseResource_Price::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_BillingPlan.html#methodinitFields">OnApp_BillingPlan::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Profile.html#methodinitFields">OnApp_Profile::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_UserAdditionalField.html#methodinitFields">OnApp_UserAdditionalField::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Template.html#methodinitFields">OnApp_Template::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_UserGroup.html#methodinitFields">OnApp_UserGroup::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_User.html#methodinitFields">OnApp_User::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Group.html#methodinitFields">OnApp_Group::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Role.html#methodinitFields">OnApp_Role::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Payment.html#methodinitFields">OnApp_Payment::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_VirtualMachine.html#methodinitFields">OnApp_VirtualMachine::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/Disk/OnApp_Disk_Schedule.html#methodinitFields">OnApp_Disk_Schedule::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Disk.html#methodinitFields">OnApp_Disk::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_SoftwareLincense.html#methodinitFields">OnApp_SoftwareLincense::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/ONAPP_CDNUsageStatistic.html#methodinitFields">ONAPP_CDNUsageStatistic::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/HypervisorZone/OnApp_HypervisorZone_DataStoreJoin.html#methodinitFields">OnApp_HypervisorZone_DataStoreJoin::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/HypervisorZone/OnApp_HypervisorZone_NetworkJoin.html#methodinitFields">OnApp_HypervisorZone_NetworkJoin::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_CDNResource.html#methodinitFields">OnApp_CDNResource::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Hypervisor.html#methodinitFields">OnApp_Hypervisor::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Network.html#methodinitFields">OnApp_Network::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/User/ONAPP_User_MonthlyBill.html#methodinitFields">ONAPP_User_MonthlyBill::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/User_Statistics/OnApp_User_Statistics_VmStat.html#methodinitFields">OnApp_User_Statistics_VmStat::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/User/OnApp_User_Statistics.html#methodinitFields">OnApp_User_Statistics::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/User/OnApp_User_BillingStatistics.html#methodinitFields">OnApp_User_BillingStatistics::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/User/OnApp_User_WhiteList.html#methodinitFields">OnApp_User_WhiteList::initFields()</a>
+								: API Fields description
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Console.html#methodinitFields">OnApp_Console::initFields()</a>
+								: API Fields description
+							</li>
+				</ul>
+	</div>
+<a name="methodisAuthenticate" id="isAuthenticate"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">isAuthenticate</span> (line <span class="line-number">599</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns true if the API instance has authentication information set and authentication was succesful</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true if authenticated</li>
+				<li><span class="field">todo:</span> move to the defaut getter</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			isAuthenticate
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodisChanged" id="isChanged"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">isChanged</span> (line <span class="line-number">611</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns true if the Object was changed and API response was succesfull</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true if the Object was changed</li>
+				<li><span class="field">todo:</span> move to the defaut getter</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			isChanged
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodisDelete" id="isDelete"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">isDelete</span> (line <span class="line-number">624</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns true if the Object was deleted in the API instance  and API response was succesfull</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true if the Object was deleted</li>
+				<li><span class="field">todo:</span> move to the defaut getter</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			isDelete
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodload" id="load"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">load</span> (line <span class="line-number">1122</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sends an API request to get the Object after sending,  unserializes the response into an object</p>
+<p class="description"><p>The key field Parameter ID is used to load the Object. You can re-set  this parameter in the class inheriting Class ONAPP.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> serialized Object instance from API</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			load
+		</span>
+					([<span class="var-type">integer</span>&nbsp;<span class="var-name">$id</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$id</span><span class="var-description">: Object id</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../OnApp/Hypervisor/OnApp_Hypervisor_NetworkJoin.html#methodload">OnApp_Hypervisor_NetworkJoin::load()</a>
+								: Sends an API request to get the Object after sending,  unserializes the response into an object
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_NetworkInterface.html#methodload">OnApp_VirtualMachine_NetworkInterface::load()</a>
+								: Sends an API request to get the Object after sending,  unserializes the response into an object
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_IpAddressJoin.html#methodload">OnApp_VirtualMachine_IpAddressJoin::load()</a>
+								: Sends an API request to get the Object after sending,  unserializes the response into an object
+							</li>
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_FirewallRule.html#methodload">OnApp_VirtualMachine_FirewallRule::load()</a>
+								: Sends an API request to get the Object after sending,  unserializes the response into an object
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_ResourceLimit.html#methodload">OnApp_ResourceLimit::load()</a>
+								: Sends an API request to get the Object after sending,  unserializes the response into an object
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_IpAddress.html#methodload">OnApp_IpAddress::load()</a>
+								: Sends an API request to get the Object after sending,  unserializes the response into an object
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Profile.html#methodload">OnApp_Profile::load()</a>
+								: Sends an API request to get the Object after sending,  unserializes the response into an object
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_User.html#methodload">OnApp_User::load()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Payment.html#methodload">OnApp_Payment::load()</a>
+								: Sends an API request to get the Object after sending,  unserializes the response into an object
+							</li>
+					<li>
+				<a href="../OnApp/User/OnApp_User_WhiteList.html#methodload">OnApp_User_WhiteList::load()</a>
+								: Sends an API request to get the Object after sending,  unserializes the response into an object
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Console.html#methodload">OnApp_Console::load()</a>
+								: Sends an API request to get the Object after sending,  unserializes the response into an object
+							</li>
+				</ul>
+	</div>
+<a name="methodlogs" id="logs"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">logs</span> (line <span class="line-number">637</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns Text written to the full class logs</p>
+<p class="description"><p>When the log level is set to debug, the debug messages will be also  included</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> All formatted logs</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			logs
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodresetOptions" id="resetOptions"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">resetOptions</span> (line <span class="line-number">516</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Resets all options to default options</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			resetOptions
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodsave" id="save"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">save</span> (line <span class="line-number">1188</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The method saves an Object to your account</p>
+<p class="description"><p>After sending an API request to create an object or change the data in  the existing object, the method checks the response and loads the  exisitng object with the new data.</p><p>This method can be closed for read only objects of the inherited class  <div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">function&nbsp;</span><a href="../OnApp/OnApp.html#methodsave">save</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="../OnApp/OnApp.html#var$logger">logger</a></span><span class="src-sym">-&gt;</span><span class="src-id">error</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">&quot;Call&nbsp;to&nbsp;undefined&nbsp;method&nbsp;&quot;</span>.__CLASS__.<span class="src-str">&quot;::save()&quot;</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__FILE__<span class="src-sym">,</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__LINE__</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			save
+		</span>
+				()
+			</div>
+	
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../OnApp/VirtualMachine/OnApp_VirtualMachine_NetworkInterface.html#methodsave">OnApp_VirtualMachine_NetworkInterface::save()</a>
+								: The method saves an Object to your account
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_ResourceLimit.html#methodsave">OnApp_ResourceLimit::save()</a>
+								: The method saves an Object to your account
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_IpAddress.html#methodsave">OnApp_IpAddress::save()</a>
+								: The method saves an Object to your account
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_LoadBalancingCluster.html#methodsave">OnApp_LoadBalancingCluster::save()</a>
+								: Creates or edits Load Balancing Cluster
+							</li>
+					<li>
+				<a href="../OnApp/BillingPlan/OnApp_BillingPlan_BaseResource.html#methodsave">OnApp_BillingPlan_BaseResource::save()</a>
+								: The method saves an Object to your account
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_User.html#methodsave">OnApp_User::save()</a>
+								: Save Object in to your account.
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_VirtualMachine.html#methodsave">OnApp_VirtualMachine::save()</a>
+								: Save Object in to your account.
+							</li>
+					<li>
+				<a href="../OnApp/Disk/OnApp_Disk_Schedule.html#methodsave">OnApp_Disk_Schedule::save()</a>
+							</li>
+					<li>
+				<a href="../OnApp/OnApp_Hypervisor.html#methodsave">OnApp_Hypervisor::save()</a>
+							</li>
+				</ul>
+	</div>
+<a name="methodsendGet" id="sendGet"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">sendGet</span> (line <span class="line-number">1373</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			sendGet
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$resource</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$data</span> = <span class="var-default">NULL</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$url_args</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$resource</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$data</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$url_args</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsendPost" id="sendPost"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">sendPost</span> (line <span class="line-number">1369</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			sendPost
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$resource</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$data</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$resource</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$data</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsendPut" id="sendPut"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">sendPut</span> (line <span class="line-number">1377</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			sendPut
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$resource</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$data</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$resource</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$data</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsendRequest" id="sendRequest"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">sendRequest</span> (line <span class="line-number">842</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sends API request to the API server and gets response from it</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> cURL response</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array|bool</span>
+		<span class="method-name">
+			sendRequest
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$method</span>, [<span class="var-type">array|null</span>&nbsp;<span class="var-name">$data</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$method</span>			</li>
+					<li>
+				<span class="var-type">array|null</span>
+				<span class="var-name">$data</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetAPIResource" id="setAPIResource"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setAPIResource</span> (line <span class="line-number">797</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets full API path to the variable cURL</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setAPIResource
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$resource</span>, [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$append_api_version</span> = <span class="var-default">true</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$queryString</span> = <span class="var-default">''</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$resource</span><span class="var-description">: API alias</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$append_api_version</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$queryString</span><span class="var-description">: API request</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetAPIVersion" id="setAPIVersion"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setAPIVersion</span> (line <span class="line-number">689</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setAPIVersion
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$data</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$data</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetErrors" id="setErrors"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setErrors</span> (line <span class="line-number">1453</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Store errors</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setErrors
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$errors</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$errors</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetOption" id="setOption"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setOption</span> (line <span class="line-number">532</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets an option</p>
+<p class="description"><p>Use this method if you do not want  to set all options in the constructor</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setOption
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: option name</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$value</span><span class="var-description">: option value</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetOptions" id="setOptions"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setOptions</span> (line <span class="line-number">548</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets several options at once</p>
+<p class="description"><p>Use this method if you do not want  to set all options in the constructor</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setOptions
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$options</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$options</span><span class="var-description">: options array</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodunsetFields" id="unsetFields"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">unsetFields</span> (line <span class="line-number">1488</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Unset unnecessary fields</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			unsetFields
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$fields</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$fields</span><span class="var-description">: fields name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method_action" id="_action"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">_action</span> (line <span class="line-number">1390</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sends API Requests to realize not base actions</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> (Array of Object or Object)</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool|mixed</span>
+		<span class="method-name">
+			_action
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$method</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$resource</span>, [<span class="var-type">array|null</span>&nbsp;<span class="var-name">$data</span> = <span class="var-default">NULL</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$url_args</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$method</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$resource</span>			</li>
+					<li>
+				<span class="var-type">array|null</span>
+				<span class="var-name">$data</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$url_args</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method_castResponseToClass" id="_castResponseToClass"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">_castResponseToClass</span> (line <span class="line-number">993</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Casts an API response to the Array of Objects or an Object</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> (Array of Object or Object)</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			_castResponseToClass
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$response</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$response</span><span class="var-description">: API response</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method__get" id="__get"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">__get</span> (line <span class="line-number">1507</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Standard method to handle getting non-existent class' property</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			__get
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: property name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method__isset" id="__isset"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">__isset</span> (line <span class="line-number">1552</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Standard method to check if property was set via setter</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> result of checking property</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			__isset
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: property name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method__set" id="__set"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">__set</span> (line <span class="line-number">1541</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Standard method to handle writing into non-existent class' property</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			__set
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$value</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: property name</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$value</span><span class="var-description">: property value</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method__unset" id="__unset"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">__unset</span> (line <span class="line-number">1576</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Standard method to unset property which was set via setter</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			__unset
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: property name</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Wed, 14 Mar 2012 17:37:36 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>
