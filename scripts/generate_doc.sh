@@ -44,7 +44,7 @@ message() {
 error() {
     local error="$1"
 
-    echo "`date +%b\ %e\ %R\:%S` INFO ${message}"
+    echo "`date +%b\ %e\ %R\:%S` ERROR ${error}"
 
     exit 1
 }
@@ -74,18 +74,21 @@ unpack_php_documentator() {
         cd -
 
         cp -r $SCRIPT_DIR/../doc/templates/*  $BASE_DIR/$php_doc_name/phpDocumentor/Converters/HTML/frames/templates
+
     fi
 }
 
 generate() {
     message "Generate documentation"
 
-    if ! [ -d "$SCRIPT_DIR/../ONAPP" ]; then
-        error "Directory $SCRIPT_DIR/../ONAPP not found"
+    local wrapperdir="$SCRIPT_DIR/../wrapper"
+
+    if ! [ -d "$wrapperdir" ]; then
+        error "Directory $wrapperdir not found";
     fi
 
     if [ ! -z $TARGET ] &&  [ -d $TARGET ]; then
-        php $BASE_DIR/$php_doc_name/phpdoc -d $SCRIPT_DIR/../ONAPP -o  HTML:frames:onappcustom -t $TARGET
+        php $BASE_DIR/$php_doc_name/phpdoc -d $wrapperdir -o  HTML:frames:onappcustom -t $TARGET
     else
         error "target directory $TARGET not found"
     fi
