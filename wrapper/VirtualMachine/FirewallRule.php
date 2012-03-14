@@ -6,6 +6,7 @@
  *
  * @category	API WRAPPER
  * @package		OnApp
+ * @subpackage  VirtualMachine
  * @author		Yakubskiy Yuriy
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/
@@ -22,93 +23,7 @@ define( 'ONAPP_GETRESOURCE_UPDATE_DEFAULTS', 'update_defaults' );
  * The ONAPP_VirtualMachine_FirewallRule class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
- * <b>Use the following XML API requests:</b>
- *
- * Get the list of Firewall Rules
- *
- *	   - <i>GET onapp.com/virtual_machines/{VM_ID}/firewall_rules.xml</i>
- *
- * Get a particular Firewall Rule details
- *
- *	   - <i>GET onapp.com/virtual_machines/{VM_ID}/firewall_rules/{ID}.xml</i>
- *
- * Add new Firewall Rule
- *
- *	   - <i>POST onapp.com/virtual_machines/{VM_ID}/firewall_rules.xml</i>
- *
- * <code>
- * <?xml version="1.0" encoding="UTF-8"?>
- * <firewall_rule>
- *	   <label>{LABEL}</label>
- *	   <network_join_id>{NETWORK_JOIN_ID}</network_join_id>
- *	   <rate_limit>{RATE_LIMIT}</rate_limit>
- * </firewall_rule>
- * </code>
- *
- * Edit existing Firewall Rule
- *
- *	   - <i>PUT onapp.com/virtual_machines/{VM_ID}/firewall_rules/{ID}.xml</i>
- *
- * <code>
- * <?xml version="1.0" encoding="UTF-8"?>
- * <firewall_rule>
- *	   <address>{ADDRESS}</address>
- *	   <command>{COMMAND}</command>
- *	   <protocol>{PROTOCOL}</protocol>
- *	   <network_interface_id>{NETWORK_INTERFACE_ID}</network_interface_id>
- *	   <port>{PORT}</port>
- * </firewall_rule>
- * </code>
- *
- * Delete Firewall Rule
- *
- *	   - <i>DELETE onapp.com/virtual_machines/{VM_ID}/firewall_rules/{ID}.xml</i>
- *
- * <b>Use the following JSON API requests:</b>
- *
- * Get the list of Firewall Rules
- *
- *	   - <i>GET onapp.com/virtual_machines/{VM_ID}/firewall_rules.json</i>
- *
- * Get a particular Firewall Rule details
- *
- *	   - <i>GET onapp.com/virtual_machines/{VM_ID}/firewall_rules/{ID}.json</i>
- *
- * Add new Firewall Rule
- *
- *	   - <i>POST onapp.com/virtual_machines/{VM_ID}/firewall_rules.json</i>
- *
- * <code>
- * {
- *		firewall_rule: {
- *			address:'{ADDRESS}',
- *			command:'{COMMAND}',
- *			protocol:'{PROTOCOL}',
- *			network_interface_id:'{NETWORK_INTERFACE_ID}',
- *			port:'{PORT}'
- *		}
- * }
- * </code>
- *
- * Edit existing Firewall Rule
- *
- *	   - <i>PUT onapp.com/virtual_machines/{VM_ID}/firewall_rules/{ID}.json</i>
- *
- * <code>
- * {
- *		firewall_rule: {
- *			address:'{ADDRESS}',
- *			command:'{COMMAND}',
- *			protocol:'{PROTOCOL}',
- *			network_interface_id:'{NETWORK_INTERFACE_ID}',
- *			port:'{PORT}'
- *		}
- * }
- * </code>
- *
- * Delete Firewall Rule
- *
- *	   - <i>DELETE onapp.com/virtual_machines/{VM_ID}/firewall_rules/{ID}.json</i>
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	/**

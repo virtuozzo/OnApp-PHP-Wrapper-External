@@ -3,12 +3,12 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
- * Managing Assigned Location
+ * Manages Assigned Location
  *
  *
  * @category	API WRAPPER
  * @package		OnApp
- * @subpackage	Assigned Location
+ * @subpackage	EdgeGroup
  * @author		Yakubskiy Yuriy
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/

@@ -19,7 +19,8 @@
  *
  * The ONAPP_Console class uses the following basic methods:
  * {@link load}.
- *
+ * 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_Console extends OnApp {
 	/**

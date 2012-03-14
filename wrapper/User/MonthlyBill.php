@@ -19,8 +19,10 @@
 /**
  * User Monthly Bills
  *
- * The ONAPP_User_MonthlyBill class supports the following basic methods
- *
+ * The ONAPP_User_MonthlyBill class supports the following basic methods:
+ * {@link getList}.
+ * 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class ONAPP_User_MonthlyBill extends OnApp {
 	/**

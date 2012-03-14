@@ -29,6 +29,7 @@
  *
  * @category  LOGGER
  * @package		OnApp
+ * @subpackage	Helper
  * @author		Andrew Yatskovets
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/

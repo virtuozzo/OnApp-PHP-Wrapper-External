@@ -8,7 +8,6 @@
  *
  * @category	API WRAPPER
  * @package		OnApp
- * @subpackage	LoadBalancer
  * @author		Yakubskiy Yuriy
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/
@@ -20,9 +19,10 @@
  *
  * The Load Balancer class represents the Load Balancers of the OnAPP installation.
  *
- * The ONAPP_VirtualMachine class uses the following basic methods:
+ * The ONAPP_LoadBalancer class uses the following basic methods:
  * {@link getList} and {@link load}.
- *
+ * 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 ) 
  */
 class OnApp_LoadBalancer extends OnApp_VirtualMachine {
 

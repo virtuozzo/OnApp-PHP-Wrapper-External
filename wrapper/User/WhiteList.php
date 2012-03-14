@@ -19,7 +19,11 @@
  * User White List
  *
  * The ONAPP_User_WhiteList class supports the following basic methods
- *
+ * 
+ * The ONAPP_User_WhiteList class uses the following basic methods:
+ * {@link load}, {@link save}, {@link delete}, and {@link getList}.
+ * 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_User_WhiteList extends OnApp {
 	/**

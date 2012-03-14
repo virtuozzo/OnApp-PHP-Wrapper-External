@@ -18,17 +18,7 @@
  * The Usage Statistics class uses the following basic methods:
  * {@link getList}.
  *
- * <b>Use the following XML API requests:</b>
- *
- * Get the list of Usage Statistics
- *
- *	 - <i>GET onapp.com/usage_statistics.xml</i>
- *
- * <b>Use the following JSON API requests:</b>
- *
- * Get the list of CPU Usage Statistics
- *
- *	 - <i>GET onapp.com/usage_statistics.json</i>
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_UsageStatistic extends OnApp {
 	/**

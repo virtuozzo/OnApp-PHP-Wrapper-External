@@ -21,7 +21,6 @@
  *
  * @category	API WRAPPER
  * @package		OnApp
- * @subpackage	Hypervisor
  * @author		Andrew Yatskovets
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/
@@ -47,83 +46,7 @@ define( 'ONAPP_GETRESOURCE_HYPERVISOR_REBOOT', 'hypervisor_reboot' );
  * The ONAPP_Hypervisor class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
- * <b>Use the following XML API requests:</b>
- *
- * Get the list of hypervisors
- *
- *	 - <i>GET onapp.com/settings/settings/hypervisors.xml</i>
- *
- * Get a particular hypervisor details
- *
- *	 - <i>GET onapp.com/settings/hypervisors/{ID}.xml</i>
- *
- * Add new hypervisor
- *
- *	 - <i>POST onapp.com/settings/hypervisors.xml</i>
- *
- * <code>
- * <?xml version="1.0" encoding="UTF-8"?>
- * <hypervisor>
- *	<ip_address>{IP}</ip_address>
- *	<label>{LABEL}</label>
- * </hypervisor>
- * </code>
- *
- * Edit existing hypervisor
- *
- *	 - <i>PUT onapp.com/settings/hypervisors/{ID}.xml</i>
- *
- * <code>
- * <?xml version="1.0" encoding="UTF-8"?>
- * <hypervisor>
- *	 <ip_address>{IP}</ip_address>
- *	 <label>{LABEL}</label>
- * </hypervisor>
- * </code>
- *
- * Delete hypervisor
- *
- *	 - <i>DELETE onapp.com/settings/hypervisors/{ID}.xml</i>
- *
- * <b>Use the following JSON API requests:</b>
- *
- * Get the list of hypervisors
- *
- *	 - <i>GET onapp.com/settings/hypervisors.json</i>
- *
- * Get a particular hypervisor details
- *
- *	 - <i>GET onapp.com/settings/hypervisors/{ID}.json</i>
- *
- * Add new hypervisor
- *
- *	 - <i>POST onapp.com/settings/hypervisors.json</i>
- *
- * <code>
- * {
- *	  hypervisor: {
- *		  ip_address:{IP},
- *		  label:'{LABEL}'
- *	  }
- * }
- * </code>
- *
- * Edit existing hypervisor
- *
- *	 - <i>PUT onapp.com/settings/hypervisors/{ID}.json</i>
- *
- * <code>
- * {
- *	  hypervisor: {
- *		  ip_address:{IP},
- *		  label:'{LABEL}'
- *	  }
- * }
- * </code>
- *
- * Delete hypervisor
- *
- *	 - <i>DELETE onapp.com/settings/hypervisors/{ID}.json</i>
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 ) 
  */
 class OnApp_Hypervisor extends OnApp {
 	/**

@@ -6,6 +6,7 @@
  *
  * @category	API WRAPPER
  * @package		OnApp
+ * @subpackage  VirtualMachine
  * @author		Vitaliy Kondratyuk
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/
@@ -35,79 +36,7 @@ define( 'ONAPP_GETRESOURCE_DISK_BACKUPS', 'disk_backups' );
  * The ONAPP_VirtualMachine_Backup class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, {@link getList}.
  *
- * <b>Use the following XML API requests:</b>
- *
- * Get the list of Backups
- *
- *	 - <i>GET onapp.com/virtual_machines/{VM_ID}/backups.xml</i>
- *
- * Get a particular Backup details
- *
- *	 - <i>GET onapp.com/backups/{ID}.xml</i>
- *
- * Add new Backup
- *
- *	 - <i>POST onapp.com/settings/disks/{DISK_ID}/backups.xml</i>
- *
- * Convert Backup
- *
- *	 - <i>POST onapp.com/backups/{ID}/convert.xml</i>
- *
- * <code>
- * <?xml version="1.0" encoding="UTF-8"?>
- * <backup>
- *	<label>{LABEL}</label>
- * </backup>
- * </code>
- *
- * Restore Backup
- *
- *	 - <i>POST onapp.com/backups/{ID}/restore.xml</i>
- *
- * Delete Backup
- *
- *	 - <i>DELETE onapp.com/backups/{ID}.xml</i>
- *
- * <b>Use the following JSON API requests:</b>
- *
- * Get the list of Backups
- *
- *	 - <i>GET onapp.com/virtual_machines/{VM_ID}/backups.json</i>
- *
- * Get a particular Backup details
- *
- *	 - <i>GET onapp.com/backups/{ID}.json</i>
- *
- * Add new Backup
- *
- *	 - <i>POST onapp.com/settings/disks/{DISK_ID}/backups.json</i>
- *
- * Convert Backup
- *
- *	 - <i>POST onapp.com/backups/{ID}/convert.json</i>
- *
- * <code>
- * {
- *	  backup: {
- *		  label:'{LABEL}'
- *	  }
- * }
- * </code>
- *
- * Restore Backup
- *
- *	 - <i>POST onapp.com/backups/{ID}/restore.json</i>
- *
- * Delete Backup
- *
- *	 - <i>DELETE onapp.com/backups/{ID}..json</i>
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	VirtualMachine
- * @author		Vitaliy Kondratyuk
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_VirtualMachine_Backup extends OnApp {
 	/**

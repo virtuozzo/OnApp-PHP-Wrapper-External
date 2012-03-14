@@ -20,7 +20,8 @@
  *
  *  The ONAPP_User_Statistics class uses the following basic methods:
  *  {@link getList}.
- *  TODO ADD API DESCRIPTION
+ *  
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_User_Statistics extends OnApp {
 	/**

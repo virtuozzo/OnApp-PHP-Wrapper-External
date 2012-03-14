@@ -1,20 +1,5 @@
 <?php
 /**
- * API Wrapper for OnApp
- *
- * This API provides an interface to onapp.net allowing common virtual machine
- * and account management tasks
- *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- *
- * @todo Pack using the lib (http://pecl.php.net/)
- */
-
-/**
  * Current OnApp PHP API wrapper version
  */
 define( 'ONAPP_VERSION', '2.0' );
@@ -204,7 +189,13 @@ define( 'ONAPP_REQUEST_METHOD_PUT', 'PUT' );
 define( 'ONAPP_REQUEST_METHOD_DELETE', 'DELETE' );
 
 /**
- * Basic ONAPP API Wrapper
+ * API Wrapper for OnApp
+ *
+ *
+ * @package OnApp
+ *
+ *
+ * @todo Pack using the lib (http://pecl.php.net/)
  *
  * The wrapper is used to describe the following basic methods: {@link load},
  * {@link save}, {@link delete} and {@link getList}.
@@ -230,6 +221,75 @@ define( 'ONAPP_REQUEST_METHOD_DELETE', 'DELETE' );
  * re-define the  {@link getResource},  {@link getResourceADD}, {@link getResourceEDIT},
  * {@link getResourceLOAD},  {@link getResourceDELETE} and  {@link getResourceLIST}
  * methods in the class that will be inheriting the ONAPP class.
+ * 
+ * 
+ * This API provides an interface to onapp.net allowing common virtual machine
+ * and account management tasks
+ * 
+ * <b> Usage OnApp_VirtualMachine class example ( Could be applied almost to any of the Wrapper classes ): </b>
+ *
+ * Get OnApp Instance:
+ *
+ * <code>
+ *     $onapp = new OnApp_Factory('{IP Address / Hostname}', '{Username}', '{Password}');
+ * </code>
+ *
+ *
+ * Get OnApp_VirtualMachine Instance:
+ *
+ * <code>
+ *     $vm_obj = $onapp->factory('VirtualMachine', {debug mode boolean, not required} );
+ * </code>
+ *
+ *
+ * Get the list of VMs:
+ *
+ * <code>
+ *     $vms    = $vm_obj->getList();
+ * </code>
+ *
+ *
+ * Get particular VM:
+ *
+ * <code>
+ *     $vm     = $vm_obj->load({VM ID});
+ * </code>
+ *
+ *
+ * Create a VM:
+ *
+ * <code>
+ *     $vm_obj->_label               = '{VM Label}';
+ *     $vm_obj->_memory              = {VM RAM };
+ *     $vm_obj->_cpu_shares          = {VM CPU priority};
+ *     $vm_obj->_hostname            = '{Hostname}';
+ *     $vm_obj->_cpus                = {number of VM CPUs};
+ *     $vm_obj->_primary_disk_size   = {VM Disk Space};
+ *     $vm_obj->_swap_disk_size      = {VM Swap Size};
+ *     $vm_obj->_template_id         = {VM Template ID};
+ *     $vm_obj->_allowed_hot_migrate = {VM Hot Migrate Boolean Value};
+ *
+ *     $billing_plan_obj->save();
+ * </code>
+ *
+ *
+ * Edit VM:
+ *
+ * <code>
+ *     $vm_obj->_id = {VM ID};
+ *     $vm_obj->_{Field You Want To Edit} = {New Value};
+ *
+ *     $vm_obj->save();
+ * </code>
+ *
+ *
+ * Getting debug log ( depends on debug mode ):
+ *
+ * <code>
+ *     print_r( $vm_obj );
+ * </code>
+ *
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp {
 	/**

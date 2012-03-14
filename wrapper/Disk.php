@@ -28,110 +28,12 @@ define( 'ONAPP_GETRESOURCE_AUTOBACKUP_DISABLE', 'autobackup_disable' );
 define( 'ONAPP_GETRESOURCE_TAKE_BACKUP', 'backups' );
 
 /**
- * Disks
+ * Managing Disks
  *
  * The ONAPP_Disk class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, {@link getList}.
- *
- * <b>Use the following XML API requests:</b>
- *
- * Get the list of Disks
- *
- *	 - <i>GET onapp.com/settings/disks.xml</i>
- *
- * Get the list of Disks for particular VM
- *
- *	 - <i>GET onapp.com/virtual_machines/{VM_ID}/disks.xml</i>
- *
- * Get a particular Disk details
- *
- *	 - <i>GET onapp.com/settings/disks/{ID}.xml</i>
- *
- * Add new Disk
- *
- *	 - <i>POST onapp.com/virtual_machines/{VM_ID}/disks.xml</i>
- *
- * <code>
- * <?xml version="1.0" encoding="UTF-8"?>
- * <disk>
- *	 <data_store_id>{DATA_STORE_ID}</data_store_id>
- *	 <disk_size>{DISK_SIZE}</disk_size>
- * </disk>
- * </code>
- *
- * Edit existing Disk
- *
- *	 - <i>PUT onapp.com/settings/disks/{ID}.xml</i>
- *
- * <code>
- * <?xml version="1.0" encoding="UTF-8"?>
- * <disk>
- *	 <disk_size>{DISK_SIZE}</disk_size>
- * </disk>
- * </code>
- *
- * Enable disk autobackup
- *
- *	 - <i>POST onapp.com/settings/disks/{ID}/autobackup_enable.xml</i>
- *
- * Disable disk autobackup
- *
- *	 - <i>POST onapp.com/settings/disks/{ID}/autobackup_disable.xml</i>
- *
- * Delete Disk
- *
- *	 - <i>DELETE onapp.com/settings/disks/{ID}.xml</i>
- *
- * <b>Use the following JSON API requests:</b>
- *
- * Get the list of Disks
- *
- *	 - <i>GET onapp.com/settings/disks.json</i>
- *
- * Get the list of Disks for particular VM
- *
- *	 - <i>GET onapp.com/virtual_machines/{VM_ID}/disks.json</i>
- *
- * Get a particular Disk details
- *
- *	 - <i>GET onapp.com/settings/disks/{ID}.json</i>
- *
- * Add new Disk
- *
- *	 - <i>POST onapp.com/virtual_machines/{VM_ID}/disks.json</i>
- *
- * <code>
- * {
- *	  disk: {
- *		  data_store_id:'{DATA_STORE_ID}',
- *		  disk_size:{DISK_SIZE}
- *	  }
- * }
- * </code>
- *
- * Edit existing Disk
- *
- *	 - <i>PUT onapp.com/settings/disks/{ID}.json</i>
- *
- * <code>
- * {
- *	  disk: {
- *		  disk_size:{DISK_SIZE}
- *	  }
- * }
- * </code>
- *
- * Enable disk autobackup
- *
- *	 - <i>POST onapp.com/settings/disks/{ID}/autobackup_enable.json</i>
- *
- * Disable disk autobackup
- *
- *	 - <i>POST onapp.com/settings/disks/{ID}/autobackup_disable.json</i>
- *
- * Delete Disk
- *
- *	 - <i>DELETE onapp.com/settings/disks/{ID}.json</i>
+ * 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_Disk extends OnApp {
 	/**

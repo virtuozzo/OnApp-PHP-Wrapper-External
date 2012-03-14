@@ -10,6 +10,17 @@
  * @link		http://www.onapp.com/
  * @see			OnApp
  */
+
+/**
+ * Managing Role Permissions
+ *
+ * The ONAPP_Role_Permission class represents the billing plans. The ONAPP class is the parent of the OnApp class.
+ *
+ * The ONAPP_BillingPlan class uses the following basic methods:
+ * {@link load}, {@link save}, {@link delete}, and {@link getList}.
+ * 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
+ */
 class OnApp_Role_Permission extends OnApp {
 	/**
 	 * root tag used in the API request

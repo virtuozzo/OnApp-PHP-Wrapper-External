@@ -14,95 +14,12 @@
 
 /**
  *
- * Managing Network Zones
- *
- * The ONAPP_DataStoreZone class uses the following basic methods:
- * {@link load}, {@link save}, {@link delete}, and {@link getList}.
- *
- * The ONAPP_DataStoreZone class represents virtual machine data store groups.
- * The ONAPP class is a parent of ONAPP_DataStoreZone class.
- *
- * <b>Use the following XML API requests:</b>
- *
- * Get the list of groups
- *
- *	 - <i>GET onapp.com/data_store_zones.xml</i>
- *
- * Get a particular group details
- *
- *	 - <i>GET onapp.com/data_store_zones/{ID}.xml</i>
- *
- * Add new group
- *
- *	 - <i>POST onapp.com/data_store_zones.xml</i>
- *
- * <data_store_groups type="array">
- *
- * <code>
- * <?xml version="1.0" encoding="UTF-8"?>
- * <data_store_groups type="array">
- *  <data_store_group>
- *	<label>{LABEL}</label>
- *  </data_store_group>
- * </data_store_groups>
- * </code>
- *
- * Edit existing group
- *
- *	 - <i>PUT onapp.com/data_store_zones/{ID}.xml</i>
- *
- * <?xml version="1.0" encoding="UTF-8"?>
- * <data_store_groups type="array">
- *  <data_store_group>
- *	<label>{LABEL}</label>
- *  </data_store_group>
- * </data_store_groups>
- * </code>
- *
- * Delete group
- *
- *	 - <i>DELETE onapp.com/data_store_zones/{ID}.xml</i>
- *
- * <b>Use the following JSON API requests:</b>
- *
- * Get the list of groups
- *
- *	 - <i>GET onapp.com/data_store_zones.json</i>
- *
- * Get a particular group details
- *
- *	 - <i>GET onapp.com/data_store_zones/{ID}.json</i>
- *
- * Add new group
- *
- *	 - <i>POST onapp.com/data_store_zones.json</i>
- *
- * <code>
- * {
- *	  data_store_group: {
- *		  label:'{LABEL}',
- *	  }
- * }
- * </code>
- *
- * Edit existing group
- *
- *	 - <i>PUT onapp.com/data_store_zones/{ID}.json</i>
- *
- * <code>
- * {
- *	  data_store_group: {
- *		  label:'{LABEL}',
- *	  }
- * }
- * </code>
- *
- * Delete group
- *
- *	 - <i>DELETE onapp.com/data_store_zones/{ID}.json</i>
- *
- *
- *
+ * Managing Data Store Zones
+ * 
+ * The ONAPP_Disk class uses the following basic methods:
+ * {@link load}, {@link save}, {@link delete}, {@link getList}.
+ * 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 ) 
  */
 class OnApp_DataStoreZone extends OnApp {
 	/**

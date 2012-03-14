@@ -8,6 +8,7 @@
  * @category	API WRAPPER
  * @package		OnApp
  * @author		Yakubskiy Yuriy
+ * @subpackage	CDNResource
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/
  * @see			OnApp
@@ -21,7 +22,8 @@
  *
  * The OnApp_CDNResource_AvailableEdgeGroup uses the following basic methods:
  * {@link getList}.
- *
+ * 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 
 

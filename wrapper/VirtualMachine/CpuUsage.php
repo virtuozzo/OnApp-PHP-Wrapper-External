@@ -19,18 +19,8 @@
  *
  * The ONAPP_VirtualMachine_CpuUsage class uses the following basic methods:
  * {@link getList}.
- *
- * <b>Use the following XML API requests:</b>
- *
- * Get the list of CPU Usages
- *
- *	 - <i>GET onapp.com/virtual_machines/{VM_ID}/cpu_usage.xml</i>
- *
- * <b>Use the following JSON API requests:</b>
- *
- * Get the list of CPU Usages
- *
- *	 - <i>GET onapp.com/virtual_machines/{VM_ID}/cpu_usage.json</i>
+ * 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_VirtualMachine_CpuUsage extends OnApp {
 	/**

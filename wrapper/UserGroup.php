@@ -11,6 +11,16 @@
  * @link		http://www.onapp.com/
  * @see			OnApp
  */
+
+/**
+ *
+ * Managing User Groups
+ *
+ * The OnApp_UserAdditionalField class uses the following basic methods:
+ * {@link load}, {@link save}, {@link delete}, and {@link getList}.
+ *
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
+ */
 class OnApp_UserGroup extends OnApp {
 	/**
 	 * root tag used in the API request

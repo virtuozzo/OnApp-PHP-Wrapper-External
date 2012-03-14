@@ -1,5 +1,23 @@
 <?php
 
+/**
+ * Manages LoadBalancingCluster AutoScaling
+ *
+ * @category	API WRAPPER
+ * @package		OnApp
+ * @subpackage	LoadBalancingCluster
+ * @author		Yakubskiy Yuriy
+ * @copyright	(c) 2011 OnApp
+ * @link		http://www.onapp.com/
+ * @see			OnApp
+ */
+
+/**
+ * Manages LoadBalancingCluster AutoScaling
+ *
+ * The OnApp_LoadBalancingCluster_AutoScaling class uses no basic methods and is nested of OnApp_LoadBalancingCluster class
+ * 
+ */
 class OnApp_LoadBalancingCluster_AutoScaling extends OnApp {
 	public function __construct() {
 		parent::__construct();

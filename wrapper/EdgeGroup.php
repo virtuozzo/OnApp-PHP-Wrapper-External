@@ -4,24 +4,12 @@
 /**
  * Managing Edge Groups
  *
- *
  * @category	API WRAPPER
  * @package		OnApp
  * @author		Yakubskiy Yuriy
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/
  * @see			OnApp
- */
-
-/**
- * Managing Edge Groups
- *
- * The Edge Group class represents the Edge groups.
- * The ONAPP_EdgeGroup class is the parent of the OnApp class.
- *
- * The ONAPP_EdgeGroup uses the following basic methods:
- * {@link load}, {@link save}, {@link delete}, and {@link getList}.
- *
  */
 
 /**
@@ -36,6 +24,17 @@ define( 'ONAPP_GETRESOURCE_EDGE_GROUP_ASSIGN_LOCATION', 'edge_group_assign_locat
  */
 define( 'ONAPP_GETRESOURCE_EDGE_GROUP_UNASSIGN_LOCATION', 'edge_group_unassign_location' );
 
+/**
+ * Managing Edge Groups
+ *
+ * The Edge Group class represents the Edge groups.
+ * The ONAPP_EdgeGroup class is the parent of the OnApp class.
+ *
+ * The ONAPP_EdgeGroup uses the following basic methods:
+ * {@link load}, {@link save}, {@link delete}, and {@link getList}.
+ * 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
+ */
 class OnApp_EdgeGroup extends OnApp {
 	/**
 	 * root tag used in the API request

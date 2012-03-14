@@ -22,9 +22,8 @@
  * The ONAPP_EdgeGroup uses the following basic methods:
  * {@link getList}.
  *
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
-
-
 class ONAPP_CDNUsageStatistic extends OnApp {
 	/**
 	 * root tag used in the API request
