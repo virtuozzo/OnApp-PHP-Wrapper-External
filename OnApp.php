@@ -226,7 +226,7 @@ define( 'ONAPP_REQUEST_METHOD_DELETE', 'DELETE' );
  * This API provides an interface to onapp.net allowing common virtual machine
  * and account management tasks
  * 
- * <b> Usage OnApp_VirtualMachine classee example ( Could be applied almost to any of the Wrapper classes ): </b> <br /><br />
+ * <b> Usage OnApp_VirtualMachine class example ( Could be applied almost to any of the Wrapper classes ): </b> <br /><br />
  * <b> Important ( OnApp CP Permissions Set Up): </b>
  * <code> 
  *     Go to OnApp CP.
