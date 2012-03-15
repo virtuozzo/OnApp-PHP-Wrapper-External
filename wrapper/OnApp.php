@@ -226,10 +226,27 @@ define( 'ONAPP_REQUEST_METHOD_DELETE', 'DELETE' );
  * This API provides an interface to onapp.net allowing common virtual machine
  * and account management tasks
  * 
- * <b> Usage OnApp_VirtualMachine class example ( Could be applied almost to any of the Wrapper classes ): </b>
- *
+ * <b> Usage OnApp_VirtualMachine classee example ( Could be applied almost to any of the Wrapper classes ): </b> <br /><br />
+ * <b> Important ( OnApp CP Permissions Set Up): </b>
+ * <code> 
+ *     Go to OnApp CP.
+ *     Users and Groups -> Roles
+ *     Push pencil edit icon to edit role of the user which you are going to use. 
+ *     Check checkbox { View OnApp version (settings.version) }
+ *     Check other permissions in order to perform particular actions. 
+ *</code>
+ * 
+ * <b>Code example:</b> <br />
+ * 
+ * Require Wrapper AutoLoad Class:
+ * 
+ * <code>
+ *    require_once '{Path to the Wrapper}/OnAppInit.php';
+ * </code>
+ * 
+ * 
  * Get OnApp Instance:
- *
+ * 
  * <code>
  *     $onapp = new OnApp_Factory('{IP Address / Hostname}', '{Username}', '{Password}');
  * </code>
@@ -269,7 +286,7 @@ define( 'ONAPP_REQUEST_METHOD_DELETE', 'DELETE' );
  *     $vm_obj->_template_id         = {VM Template ID};
  *     $vm_obj->_allowed_hot_migrate = {VM Hot Migrate Boolean Value};
  *
- *     $billing_plan_obj->save();
+ *     $vm_obj->save();
  * </code>
  *
  *

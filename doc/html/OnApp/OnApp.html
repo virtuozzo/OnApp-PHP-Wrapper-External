@@ -37,7 +37,13 @@
 <li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">var&nbsp;</span><span class="src-var">$fields&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
 <li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...</div></li>
 <li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">)</span></div></li>
-</ol></div></p><p>To create a read-only class, close the save and delete methods.  To re-define the traditional API aliases to the non-traditional,  re-define the  <a href="../OnApp/OnApp.html#methodgetResource">getResource</a>,  getResourceADD, getResourceEDIT,  getResourceLOAD,  getResourceDELETE and  getResourceLIST  methods in the class that will be inheriting the ONAPP class.</p><p>This API provides an interface to onapp.net allowing common virtual machine  and account management tasks</p><p><strong>Usage OnApp_VirtualMachine class example ( Could be applied almost to any of the Wrapper classes ):</strong></p><p>Get OnApp Instance:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$onapp&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../OnApp/OnApp_Factory.html">OnApp_Factory</a></span><span class="src-sym">(</span><span class="src-str">'{IP&nbsp;Address&nbsp;/&nbsp;Hostname}'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'{Username}'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'{Password}'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p><p>To create a read-only class, close the save and delete methods.  To re-define the traditional API aliases to the non-traditional,  re-define the  <a href="../OnApp/OnApp.html#methodgetResource">getResource</a>,  getResourceADD, getResourceEDIT,  getResourceLOAD,  getResourceDELETE and  getResourceLIST  methods in the class that will be inheriting the ONAPP class.</p><p>This API provides an interface to onapp.net allowing common virtual machine  and account management tasks</p><p><strong>Usage OnApp_VirtualMachine classee example ( Could be applied almost to any of the Wrapper classes ):</strong> <br /><br />  <strong>Important ( OnApp CP Permissions Set Up):</strong>  <div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">Go&nbsp;to&nbsp;<a href="../OnApp/OnApp.html">OnApp</a>&nbsp;CP</span>.</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">Users&nbsp;</span><span class="src-key">and&nbsp;</span><span class="src-id">Groups&nbsp;</span><span class="src-sym">-&gt;&nbsp;</span><span class="src-id">Roles</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">Push&nbsp;pencil&nbsp;edit&nbsp;icon&nbsp;to&nbsp;edit&nbsp;role&nbsp;of&nbsp;the&nbsp;user&nbsp;which&nbsp;you&nbsp;are&nbsp;going&nbsp;to&nbsp;</span>use.</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">Check&nbsp;checkbox&nbsp;</span><span class="src-sym">{&nbsp;</span><span class="src-id">View&nbsp;<a href="../OnApp/OnApp.html">OnApp</a>&nbsp;<a href="../OnApp/OnApp.html#var$version">version</a>&nbsp;</span><span class="src-sym">(</span><span class="src-id">settings</span>.<span class="src-id"><a href="../OnApp/OnApp.html#var$version">version</a></span><span class="src-sym">)&nbsp;</span><span class="src-sym">}</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">Check&nbsp;other&nbsp;permissions&nbsp;in&nbsp;order&nbsp;to&nbsp;perform&nbsp;particular&nbsp;actions</span>.</div></li>
+</ol></div></p><p><strong>Code example:</strong> <br /></p><p>Require Wrapper AutoLoad Class:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-inc">require_once&nbsp;</span><span class="src-str">'{Path&nbsp;to&nbsp;the&nbsp;Wrapper}/OnAppInit.php'</span><span class="src-sym">;</span></div></li>
+</ol></div></p><p>Get OnApp Instance:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$onapp&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../OnApp/OnApp_Factory.html">OnApp_Factory</a></span><span class="src-sym">(</span><span class="src-str">'{IP&nbsp;Address&nbsp;/&nbsp;Hostname}'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'{Username}'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'{Password}'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
 </ol></div></p><p>Get OnApp_VirtualMachine Instance:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj&nbsp;</span>=&nbsp;<span class="src-var">$onapp</span><span class="src-sym">-&gt;</span><span class="src-id">factory</span><span class="src-sym">(</span><span class="src-str">'VirtualMachine'</span><span class="src-sym">,&nbsp;</span><span class="src-sym">{</span><span class="src-id">debug&nbsp;mode&nbsp;boolean</span><span class="src-sym">,&nbsp;</span><span class="src-id">not&nbsp;required</span><span class="src-sym">}&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
 </ol></div></p><p>Get the list of VMs:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vms&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><a href="../OnApp/OnApp.html#methodgetList">getList</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
 </ol></div></p><p>Get particular VM:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><a href="../OnApp/OnApp.html#methodload">load</a><span class="src-sym">(</span><span class="src-sym">{</span><span class="src-id">VM&nbsp;ID</span><span class="src-sym">}</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
@@ -51,7 +57,7 @@
 <li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_template_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-sym">{</span><span class="src-id">VM&nbsp;Template&nbsp;ID</span><span class="src-sym">}</span><span class="src-sym">;</span></div></li>
 <li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_allowed_hot_migrate&nbsp;</span>=&nbsp;<span class="src-sym">{</span><span class="src-id">VM&nbsp;Hot&nbsp;Migrate&nbsp;Boolean&nbsp;Value</span><span class="src-sym">}</span><span class="src-sym">;</span></div></li>
 <li><div class="src-line">&nbsp;</div></li>
-<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$billing_plan_obj</span><span class="src-sym">-&gt;</span><a href="../OnApp/OnApp.html#methodsave">save</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><a href="../OnApp/OnApp.html#methodsave">save</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
 </ol></div></p><p>Edit VM:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><span class="src-id">_id&nbsp;</span>=&nbsp;<span class="src-sym">{</span><span class="src-id">VM&nbsp;ID</span><span class="src-sym">}</span><span class="src-sym">;</span></div></li>
 <li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$vm_obj</span><span class="src-sym">-&gt;</span><a href="http://www.php.net/_">_</a><span class="src-sym">{</span><span class="src-id">Field&nbsp;You&nbsp;Want&nbsp;To&nbsp;Edit</span><span class="src-sym">}&nbsp;</span>=&nbsp;<span class="src-sym">{</span><span class="src-key">New&nbsp;</span><span class="src-id">Value</span><span class="src-sym">}</span><span class="src-sym">;</span></div></li>
 <li><div class="src-line">&nbsp;</div></li>
@@ -60,7 +66,7 @@
 </ol></div></p><p>For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )</p></li>
 			</ul>
 		<p class="notes">
-			Located in <a class="field" href="_OnApp.php.html">/OnApp.php</a> (line <span class="field">294</span>)
+			Located in <a class="field" href="_OnApp.php.html">/OnApp.php</a> (line <span class="field">311</span>)
 		</p>
 		
 				
@@ -798,7 +804,7 @@
 		<span class="var-title">
 			<span class="var-type">string</span>
 			<span class="var-name">$className</span>
-						(line <span class="line-number">482</span>)
+						(line <span class="line-number">499</span>)
 		</span>
 	</div>
 
@@ -820,7 +826,7 @@
 		<span class="var-title">
 			<span class="var-type">array</span>
 			<span class="var-name">$dynamicFields</span>
-						(line <span class="line-number">464</span>)
+						(line <span class="line-number">481</span>)
 		</span>
 	</div>
 
@@ -842,7 +848,7 @@
 		<span class="var-title">
 			<span class="var-type">string</span>
 			<span class="var-name">$errors</span>
-						(line <span class="line-number">477</span>)
+						(line <span class="line-number">494</span>)
 		</span>
 	</div>
 
@@ -864,7 +870,7 @@
 		<span class="var-title">
 			<span class="var-type">array</span>
 			<span class="var-name">$fields</span>
-						(line <span class="line-number">456</span>)
+						(line <span class="line-number">473</span>)
 		</span>
 	</div>
 
@@ -886,7 +892,7 @@
 		<span class="var-title">
 			<span class="var-type">mixed</span>
 			<span class="var-name">$logger</span>
-			 = <span class="var-default"> null</span>			(line <span class="line-number">470</span>)
+			 = <span class="var-default"> null</span>			(line <span class="line-number">487</span>)
 		</span>
 	</div>
 
@@ -909,7 +915,7 @@
 		<span class="var-title">
 			<span class="var-type">array</span>
 			<span class="var-name">$options</span>
-			 = <span class="var-default">array()</span>			(line <span class="line-number">370</span>)
+			 = <span class="var-default">array()</span>			(line <span class="line-number">387</span>)
 		</span>
 	</div>
 
@@ -952,7 +958,7 @@
 		<span class="var-title">
 			<span class="var-type">mixed</span>
 			<span class="var-name">$response</span>
-						(line <span class="line-number">488</span>)
+						(line <span class="line-number">505</span>)
 		</span>
 	</div>
 
@@ -973,7 +979,7 @@
 		<span class="var-title">
 			<span class="var-type">sting</span>
 			<span class="var-name">$version</span>
-						(line <span class="line-number">440</span>)
+						(line <span class="line-number">457</span>)
 		</span>
 	</div>
 
@@ -1010,7 +1016,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number">1495</span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">1512</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1239,7 +1245,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">activate</span> (line <span class="line-number">1082</span>)
+		<span class="method-title">activate</span> (line <span class="line-number">1099</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1379,7 +1385,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">auth</span> (line <span class="line-number">658</span>)
+		<span class="method-title">auth</span> (line <span class="line-number">675</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1418,7 +1424,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">castStringToClass</span> (line <span class="line-number">1031</span>)
+		<span class="method-title">castStringToClass</span> (line <span class="line-number">1048</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1448,7 +1454,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">close_curl</span> (line <span class="line-number">783</span>)
+		<span class="method-title">close_curl</span> (line <span class="line-number">800</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1472,7 +1478,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">delete</span> (line <span class="line-number">1357</span>)
+		<span class="method-title">delete</span> (line <span class="line-number">1374</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1505,7 +1511,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getAPIVersion</span> (line <span class="line-number">1443</span>)
+		<span class="method-title">getAPIVersion</span> (line <span class="line-number">1460</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1528,7 +1534,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">getClassFields</span> (line <span class="line-number">1439</span>)
+		<span class="method-title">getClassFields</span> (line <span class="line-number">1456</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1551,7 +1557,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getClassName</span> (line <span class="line-number">1430</span>)
+		<span class="method-title">getClassName</span> (line <span class="line-number">1447</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1574,7 +1580,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">getErrorsAsArray</span> (line <span class="line-number">1477</span>)
+		<span class="method-title">getErrorsAsArray</span> (line <span class="line-number">1494</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1598,7 +1604,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getErrorsAsString</span> (line <span class="line-number">1468</span>)
+		<span class="method-title">getErrorsAsString</span> (line <span class="line-number">1485</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1627,7 +1633,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">getFieldsToSend</span> (line <span class="line-number">1287</span>)
+		<span class="method-title">getFieldsToSend</span> (line <span class="line-number">1304</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1653,7 +1659,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getList</span> (line <span class="line-number">1092</span>)
+		<span class="method-title">getList</span> (line <span class="line-number">1109</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1786,7 +1792,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">getResource</span> (line <span class="line-number">569</span>)
+		<span class="method-title">getResource</span> (line <span class="line-number">586</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1976,7 +1982,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getResponse</span> (line <span class="line-number">506</span>)
+		<span class="method-title">getResponse</span> (line <span class="line-number">523</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2001,7 +2007,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">initFields</span> (line <span class="line-number">715</span>)
+		<span class="method-title">initFields</span> (line <span class="line-number">732</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2328,7 +2334,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">isAuthenticate</span> (line <span class="line-number">599</span>)
+		<span class="method-title">isAuthenticate</span> (line <span class="line-number">616</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2354,7 +2360,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">isChanged</span> (line <span class="line-number">611</span>)
+		<span class="method-title">isChanged</span> (line <span class="line-number">628</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2380,7 +2386,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">isDelete</span> (line <span class="line-number">624</span>)
+		<span class="method-title">isDelete</span> (line <span class="line-number">641</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2406,7 +2412,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">load</span> (line <span class="line-number">1122</span>)
+		<span class="method-title">load</span> (line <span class="line-number">1139</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2484,7 +2490,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">logs</span> (line <span class="line-number">637</span>)
+		<span class="method-title">logs</span> (line <span class="line-number">654</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2510,7 +2516,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">resetOptions</span> (line <span class="line-number">516</span>)
+		<span class="method-title">resetOptions</span> (line <span class="line-number">533</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2534,7 +2540,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">save</span> (line <span class="line-number">1188</span>)
+		<span class="method-title">save</span> (line <span class="line-number">1205</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2604,7 +2610,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">sendGet</span> (line <span class="line-number">1373</span>)
+		<span class="method-title">sendGet</span> (line <span class="line-number">1390</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2638,7 +2644,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">sendPost</span> (line <span class="line-number">1369</span>)
+		<span class="method-title">sendPost</span> (line <span class="line-number">1386</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2666,7 +2672,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">sendPut</span> (line <span class="line-number">1377</span>)
+		<span class="method-title">sendPut</span> (line <span class="line-number">1394</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2694,7 +2700,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">sendRequest</span> (line <span class="line-number">842</span>)
+		<span class="method-title">sendRequest</span> (line <span class="line-number">859</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2727,7 +2733,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">setAPIResource</span> (line <span class="line-number">797</span>)
+		<span class="method-title">setAPIResource</span> (line <span class="line-number">814</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2762,7 +2768,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">setAPIVersion</span> (line <span class="line-number">689</span>)
+		<span class="method-title">setAPIVersion</span> (line <span class="line-number">706</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2790,7 +2796,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">setErrors</span> (line <span class="line-number">1453</span>)
+		<span class="method-title">setErrors</span> (line <span class="line-number">1470</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2819,7 +2825,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">setOption</span> (line <span class="line-number">532</span>)
+		<span class="method-title">setOption</span> (line <span class="line-number">549</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2852,7 +2858,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">setOptions</span> (line <span class="line-number">548</span>)
+		<span class="method-title">setOptions</span> (line <span class="line-number">565</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2882,7 +2888,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">unsetFields</span> (line <span class="line-number">1488</span>)
+		<span class="method-title">unsetFields</span> (line <span class="line-number">1505</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2911,7 +2917,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">_action</span> (line <span class="line-number">1390</span>)
+		<span class="method-title">_action</span> (line <span class="line-number">1407</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2950,7 +2956,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">_castResponseToClass</span> (line <span class="line-number">993</span>)
+		<span class="method-title">_castResponseToClass</span> (line <span class="line-number">1010</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2980,7 +2986,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">__get</span> (line <span class="line-number">1507</span>)
+		<span class="method-title">__get</span> (line <span class="line-number">1524</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -3009,7 +3015,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">__isset</span> (line <span class="line-number">1552</span>)
+		<span class="method-title">__isset</span> (line <span class="line-number">1569</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -3039,7 +3045,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">__set</span> (line <span class="line-number">1541</span>)
+		<span class="method-title">__set</span> (line <span class="line-number">1558</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -3071,7 +3077,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">__unset</span> (line <span class="line-number">1576</span>)
+		<span class="method-title">__unset</span> (line <span class="line-number">1593</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -3102,7 +3108,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Wed, 14 Mar 2012 17:37:36 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Thu, 15 Mar 2012 11:52:04 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>
