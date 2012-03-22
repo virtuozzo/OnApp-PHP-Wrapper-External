@@ -3,13 +3,13 @@
   <html xmlns="http://www.w3.org/1999/xhtml">
 		<head>
 			<!-- template designed by Marco Von Ballmoos -->
-			<title>Docs For Class OnApp_DataStoreZone</title>
+			<title>Docs For Class OnApp_Log</title>
 			<link rel="stylesheet" href="../media/stylesheet.css" />
 			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
 		</head>
 		<body>
 			<div class="page-body">			
-<h2 class="class-name">Class OnApp_DataStoreZone</h2>
+<h2 class="class-name">Class OnApp_Log</h2>
 
 <a name="sec-description"></a>
 <div class="info-box">
@@ -24,16 +24,16 @@
 					</div>
 	<div class="info-box-body">
         		<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Managing Data Store Zones</p>
-<p class="description"><p>The ONAPP_Disk class uses the following basic methods:  <a href="../OnApp/OnApp.html#methodload">load</a>, <a href="../OnApp/OnApp.html#methodsave">save</a>, <a href="../OnApp/OnApp.html#methoddelete">delete</a>, <a href="../OnApp/OnApp.html#methodgetList">getList</a>.</p><p>For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )</p></p>
+<p class="short-description">Vm Logs</p>
+<p class="description"><p>This class represents Vm logs</p><p>The OnApp_Log class uses the following basic methods:  <a href="../OnApp/OnApp.html#methodload">load</a> and <a href="../OnApp/OnApp_Log.html#methodgetList">getList</a>.</p><p>For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )</p></p>
 		<p class="notes">
-			Located in <a class="field" href="_DataStoreZone.php.html">/DataStoreZone.php</a> (line <span class="field">24</span>)
+			Located in <a class="field" href="_Log.php.html">/Log.php</a> (line <span class="field">26</span>)
 		</p>
 		
 				
 		<pre><a href="../OnApp/OnApp.html">OnApp</a>
    |
-   --OnApp_DataStoreZone</pre>
+   --OnApp_Log</pre>
 	
 			</div>
 </div>
@@ -80,11 +80,23 @@
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																						
+																																																						
 				<div class="method-definition">
-											<span class="method-result">OnApp_DataStoreZone</span>
+											<span class="method-result">OnApp_Log</span>
 										<a href="#__construct" title="details" class="method-name">__construct</a>
 										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#activate" title="details" class="method-name">activate</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$action_name</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#getList" title="details" class="method-name">getList</a>
+											([<span class="var-type">array</span>&nbsp;<span class="var-name">$url_args</span> = <span class="var-default">null</span>])
 									</div>
 														
 				<div class="method-definition">
@@ -119,13 +131,13 @@
 		<div class="info-box-body">
 			
 <a name="var$_resource" id="$_resource"><!-- --></A>
-<div class="evenrow">
+<div class="oddrow">
 
 	<div class="var-header">
 		<span class="var-title">
 			<span class="var-type">string</span>
 			<span class="var-name">$_resource</span>
-			 = <span class="var-default"> 'data_store_zones'</span>			(line <span class="line-number">37</span>)
+			 = <span class="var-default"> 'logs'</span>			(line <span class="line-number">39</span>)
 		</span>
 	</div>
 
@@ -138,13 +150,13 @@
 
 </div>
 <a name="var$_tagRoot" id="$_tagRoot"><!-- --></A>
-<div class="oddrow">
+<div class="evenrow">
 
 	<div class="var-header">
 		<span class="var-title">
 			<span class="var-type">string</span>
 			<span class="var-name">$_tagRoot</span>
-			 = <span class="var-default"> 'data_store_group'</span>			(line <span class="line-number">30</span>)
+			 = <span class="var-default"> 'log_item'</span>			(line <span class="line-number">32</span>)
 		</span>
 	</div>
 
@@ -203,10 +215,10 @@
 		<div class="info-box-body">
 			<A NAME='method_detail'></A>
 <a name="method__construct" id="__construct"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number">39</span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">41</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -215,7 +227,7 @@
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">OnApp_DataStoreZone</span>
+		<span class="method-result">OnApp_Log</span>
 		<span class="method-name">
 			__construct
 		</span>
@@ -230,11 +242,78 @@
 					</dl>
 			
 	</div>
-<a name="methodgetResource" id="getResource"><!-- --></a>
+<a name="methodactivate" id="activate"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">activate</span> (line <span class="line-number">148</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			activate
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$action_name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$action_name</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../OnApp/OnApp.html#methodactivate">OnApp::activate()</a></dt>
+						<dd>Activates action performed with object</dd>
+					</dl>
+			
+	</div>
+<a name="methodgetList" id="getList"><!-- --></a>
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getResource</span> (line <span class="line-number">92</span>)
+		<span class="method-title">getList</span> (line <span class="line-number">144</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> an array of Object instances on success. Otherwise false</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			getList
+		</span>
+					([<span class="var-type">array</span>&nbsp;<span class="var-name">$url_args</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$url_args</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../OnApp/OnApp.html#methodgetList">OnApp::getList()</a></dt>
+						<dd>Sends an API request to get the Objects. After requesting,  unserializes the received response into the array of Objects</dd>
+					</dl>
+			
+	</div>
+<a name="methodgetResource" id="getResource"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getResource</span> (line <span class="line-number">106</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -262,10 +341,10 @@
 			
 	</div>
 <a name="methodinitFields" id="initFields"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">initFields</span> (line <span class="line-number">51</span>)
+		<span class="method-title">initFields</span> (line <span class="line-number">53</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -349,7 +428,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Thu, 22 Mar 2012 11:15:59 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Thu, 22 Mar 2012 11:16:03 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>
