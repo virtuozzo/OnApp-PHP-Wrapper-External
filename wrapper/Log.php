@@ -144,5 +144,14 @@ class OnApp_Log extends OnApp {
 	function getList( $url_args = null ) {
         return parent::getList( null, $url_args );
 	}
+    
+	function activate( $action_name ) {
+		switch( $action_name ) {
+			case ONAPP_ACTIVATE_SAVE:
+			case ONAPP_ACTIVATE_DELETE:
+				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
+				break;
+		}
+	}    
 
 }
