@@ -243,7 +243,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $billing_plan_id = null, $x = null ) {
+	function getList( $billing_plan_id = null ) {
 		if( is_null( $billing_plan_id ) && !is_null( $this->_billing_plan_id ) ) {
 			$billing_plan_id = $this->_billing_plan_id;
 		}
