@@ -23,8 +23,6 @@ class OnApp_Factory extends OnApp {
 	public function __construct( $hostname, $username, $password, $proxy = null ) {
 		parent::__construct();
 		$this->auth( $hostname, $username, $password );
-		//todo ??? constructor should return instance instead of boolean value
-		//return $this->_is_auth;
 	}
 
 	/**
@@ -46,7 +44,6 @@ class OnApp_Factory extends OnApp {
 		$result->version = $this->getAPIVersion();
 		$result->options = $this->options;
 		$result->_ch = $this->_ch;
-		$result->initFields( $this->getAPIVersion() );
 		return $result;
 	}
 }
