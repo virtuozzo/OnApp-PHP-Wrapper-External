@@ -100,8 +100,9 @@ class OnApp_User extends OnApp {
 	protected $_resource = 'users';
 
 	public static $nestedData = array(
-		'roles' => 'Role',
+		'roles'             => 'Role',
 		'used_ip_addresses' => 'User_UsedIpAddress',
+		'additional_fields' => 'User_AdditionalField'
 	);
 
 	public function __construct() {
@@ -117,7 +118,7 @@ class OnApp_User extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
             case ONAPP_GETRESOURCE_NETWORKS_LIST_BY_GROUP_ID:
                 /**
@@ -159,7 +160,7 @@ class OnApp_User extends OnApp {
 	 *
 	 * @access public
 	 */
-	function suspend() {
+	public function suspend() {
 		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_SUSPEND_USER ) );
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
@@ -174,7 +175,7 @@ class OnApp_User extends OnApp {
 	 *
 	 * @access public
 	 */
-	function activate_user() {
+	public function activate_user() {
 		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_ACTIVATE ) );
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
@@ -185,10 +186,17 @@ class OnApp_User extends OnApp {
 	}
 
 	/**
+	 * Alias for activate_user method
+	 */
+	public function unsuspend() {
+		$this->activate_user();
+	}
+
+	/**
 	 * Save Object in to your account.
 	 */
-	function save() {
-		$this->role_ids                         = $this->fillRolesIDs();
+	public function save() {
+		$this->role_ids = $this->fillRolesIDs();
 
 		if( is_null( $this->id ) ) {
 			$obj = $this->_create();
@@ -203,7 +211,7 @@ class OnApp_User extends OnApp {
 		}
 	}
 
-	function load( $id = null ) {
+	public function load( $id = null ) {
 		$result = parent::load( $id );
 		return $result;
 	}
@@ -215,7 +223,7 @@ class OnApp_User extends OnApp {
 	 *
 	 * @return bool|mixed
 	 */
-	function getListByGroupId( $group_id = NULL ) {
+	public function getListByGroupId( $group_id = null ) {
 		if( $group_id ) {
 			$this->_user_group_id = $group_id;
 		}

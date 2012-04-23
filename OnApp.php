@@ -586,7 +586,7 @@ class OnApp {
 	 *
 	 * @return string API resource
 	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_LOAD:
 			case ONAPP_GETRESOURCE_EDIT:
