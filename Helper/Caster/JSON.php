@@ -7,7 +7,7 @@
  * @subpackage	Caster
  * @author		Lev Bartashevsky
  * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
+ * @link        http://www.onapp.com/
  */
 class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 	private $className;
@@ -36,11 +36,12 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 	/**
 	 * Unserialize JSON data to wrapper object(s)
 	 *
-	 * @param string		$className  className to cast into
+	 * @param string        $className	className to cast into
 	 * @param string|array  $data		JSON or array containing nested data
-	 * @param string		$root		root tag
+	 * @param string        $root		root tag
+	 * @throws Exception	$e			if data is empty
 	 *
-	 * @return array|object
+	 * @return array|null|object
 	 */
 	public function unserialize( $className, $data, $root ) {
 		parent::$obj->logger->add( 'castStringToClass ' . $className . ': call ' . __METHOD__ );
@@ -108,24 +109,24 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 	 * @return object
 	 */
 	private function process( $item ) {
-		$obj = new $this->className;
-		$obj->options = parent::$obj->options;
-		$obj->_ch = parent::$obj->_ch;
+		$obj           = new $this->className;
+		$obj->options  = parent::$obj->options;
+		$obj->_ch      = parent::$obj->_ch;
 		$obj->_is_auth = parent::$obj->_is_auth;
 
 		foreach( $item as $name => $value ) {
 			if( is_array( $value ) ) {
-					if( empty( $value ) ) {
-						$value = array();
-					}
-					else {
-					$tmp = new OnAppNestedDataHolder;
-						$tmp->APIVersion = parent::$APIVersion;
-					$tmp->className = $obj::$nestedData[ $name ];
-						$tmp->data = $value;
-						$value = $tmp;
-					}
+				if( empty( $value ) ) {
+					$value = array();
 				}
+				else {
+					$tmp             = new OnAppNestedDataHolder;
+					$tmp->APIVersion = parent::$APIVersion;
+					$tmp->className  = $obj::$nestedData[ $name ];
+					$tmp->data       = $value;
+					$value           = $tmp;
+				}
+			}
 
 			$obj->$name = $value;
 		}
