@@ -59,17 +59,17 @@ if( !defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
 	}
 
 	/**
-	 * Register autoload handler
-	 */
-	spl_autoload_register( 'OnAppAutoLoad' );
-
-	/**
 	 * Detect if the code run in CLI for testing purposes
 	 */
-	if( defined( 'STDIN' ) ) {
+	if( defined( 'STDIN' ) || ( php_sapi_name() == 'cli' ) ) {
 		define( 'IS_CLI', true );
 	}
 	else {
 		define( 'IS_CLI', false );
 	}
+
+	/**
+	 * Register autoload handler
+	 */
+	spl_autoload_register( 'OnAppAutoLoad' );
 }

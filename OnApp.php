@@ -1302,21 +1302,6 @@ class OnApp {
 		else {
 			$result = array_merge( $this->_obj->dynamicFields, $this->dynamicFields );
 		}
-		//$result = array_merge( $this->_obj->dynamicFields, $this->dynamicFields );
-
-		/*
-		 * todo del if unnecessary
-		foreach( $result as $name => &$value ) {
-			if( is_object( $value ) && ( $value instanceof OnAppNestedDataHolder ) ) {
-				if( isset( $this->dynamicFields[ $name ] ) ) {
-					$value = $this->$name;
-				}
-				else {
-					$value = $this->_obj->$name;
-				}
-				}
-			}
-		*/
 
 		if( isset( $this->skipFromResultSet ) ) {
 			if( ( isset( $this->skipFromResultSet[ 0 ] ) ) ) {
