@@ -1,5 +1,20 @@
 <?php
 /**
+ * API Wrapper for OnApp
+ *
+ * This API provides an interface to onapp.net allowing common virtual machine
+ * and account management tasks
+ *
+ * @category	API WRAPPER
+ * @package		OnApp
+ * @author		Andrew Yatskovets
+ * @copyright	(c) 2011 OnApp
+ * @link		http://www.onapp.com/
+ *
+ * @todo Pack using the lib (http://pecl.php.net/)
+ */
+
+/**
  * Current OnApp PHP API wrapper version
  */
 define( 'ONAPP_VERSION', '2.0' );
@@ -221,32 +236,32 @@ define( 'ONAPP_REQUEST_METHOD_DELETE', 'DELETE' );
  * re-define the  {@link getResource},  {@link getResourceADD}, {@link getResourceEDIT},
  * {@link getResourceLOAD},  {@link getResourceDELETE} and  {@link getResourceLIST}
  * methods in the class that will be inheriting the ONAPP class.
- * 
- * 
+ *
+ *
  * This API provides an interface to onapp.net allowing common virtual machine
  * and account management tasks
- * 
+ *
  * <b> Usage OnApp_VirtualMachine class example ( Could be applied almost to any of the Wrapper classes ): </b> <br /><br />
  * <b> Important ( OnApp CP Permissions Set Up): </b>
- * <code> 
+ * <code>
  *     Go to OnApp CP.
  *     Users and Groups -> Roles
- *     Push pencil edit icon to edit role of the user which you are going to use. 
+ *     Push pencil edit icon to edit role of the user which you are going to use.
  *     Check checkbox { View OnApp version (settings.version) }
- *     Check other permissions in order to perform particular actions. 
+ *     Check other permissions in order to perform particular actions.
  *</code>
- * 
+ *
  * <b>Code example:</b> <br />
- * 
+ *
  * Require Wrapper AutoLoad Class:
- * 
+ *
  * <code>
  *    require_once '{Path to the Wrapper}/OnAppInit.php';
  * </code>
- * 
- * 
+ *
+ *
  * Get OnApp Instance:
- * 
+ *
  * <code>
  *     $onapp = new OnApp_Factory('{IP Address / Hostname}', '{Username}', '{Password}');
  * </code>
@@ -413,13 +428,13 @@ class OnApp {
 	 * @access private
 	 * @var	string
 	 */
-	var $_resource = null;
+	protected $_resource = null;
 
 	/**
 	 * @access private
 	 * @var	string
 	 */
-	var $_tagRoot = null;
+	protected $_tagRoot = null;
 
 	/**
 	 * @access private
@@ -465,14 +480,6 @@ class OnApp {
 	var $_release;
 
 	/**
-	 * Return OnApp fields array mapping
-	 *
-	 * @access private
-	 * @var	array
-	 */
-	protected $fields;
-
-	/**
 	 * Holder for storing properties that were setted via magic setter
 	 *
 	 * @var  array
@@ -486,6 +493,8 @@ class OnApp {
 	 */
 	public $logger = null;
 
+	protected $response;
+
 	/**
 	 * Variable for error handling
 	 *
@@ -497,12 +506,6 @@ class OnApp {
 	 * @var string current class' name
 	 */
 	protected $className;
-
-    /**
-     *
-     *
-     */
-    protected $response;
 
 	/**
 	 * Returns API version
@@ -711,7 +714,7 @@ class OnApp {
 				$this->version = null;
 
 				$objCast = new OnApp_Helper_Caster( $this );
-				$this->version = $objCast->unserialize( $this->getClassName(), $data, null, $tag );
+				$this->version = $objCast->unserialize( $this->getClassName(), $data, $tag );
 				break;
 
 			default:
@@ -785,10 +788,7 @@ class OnApp {
 
 		curl_setopt( $this->_ch, CURLOPT_SSL_VERIFYPEER, false );
 		curl_setopt( $this->_ch, CURLOPT_RETURNTRANSFER, true );
-		curl_setopt(
-			$this->_ch, CURLOPT_USERPWD,
-				$user . ':' . $pass
-		);
+		curl_setopt( $this->_ch, CURLOPT_USERPWD, $user . ':' . $pass );
 	}
 
 	/**
@@ -1047,7 +1047,6 @@ class OnApp {
 	 */
 	protected function castStringToClass( array $content ) {
 		$className = $this->getClassName();
-		$tagMap = $this->fields;
 
 		$this->logger->add( 'castStringToClass: cast data into the ' . $className . ' object.' );
 
@@ -1061,18 +1060,13 @@ class OnApp {
 
 				if( $content[ 'info' ][ 'http_code' ] > 201 ) {
 					$root = 'errors';
-					$errors = $objCast->unserialize( $className, $data, $tagMap, $root );
+					$errors = $objCast->unserialize( $className, $data, $root );
 					$this->setErrors( $errors );
-
-					//todo ????
-					//if( empty( $this->errors ) && isset( $content[ 'error_response' ] ) ) {
-					//	$this->setErrors( $content[ 'error_response' ] );
-					//}
 
 					return $this;
 				}
 				else {
-					return $objCast->unserialize( $className, $data, $tagMap, $root );
+					return $objCast->unserialize( $className, $data, $root );
 				}
 
 			default:
@@ -1224,7 +1218,7 @@ class OnApp {
 	 * @return object Serialized API Response
 	 * @access private
 	 */
-	function _create() {
+	protected function _create() {
 		$this->logger->add( 'Create new Object.' );
 
 		switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
@@ -1259,9 +1253,8 @@ class OnApp {
 	 * The method edits an existing Object
 	 *
 	 * @return object Serialized API Response
-	 * @access private
 	 */
-	function _edit() {
+	protected function _edit() {
 		switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
 			case 'xml':
 			case 'json':
@@ -1303,52 +1296,36 @@ class OnApp {
 	 */
 	protected function getFieldsToSend() {
 		$this->logger->debug( 'getFieldsToSend: Prepare data array:' );
-		$result = array();
+		if( empty( $this->_obj->dynamicFields ) ) {
+			$result = $this->dynamicFields;
+		}
+		else {
+			$result = array_merge( $this->_obj->dynamicFields, $this->dynamicFields );
+		}
+		//$result = array_merge( $this->_obj->dynamicFields, $this->dynamicFields );
 
-		foreach( $this->fields as $key => $value ) {
-			//skip property from request
-			if( isset( $value[ ONAPP_FIELD_SKIP_FROM_REQUEST ] ) && $value[ ONAPP_FIELD_SKIP_FROM_REQUEST ] ) {
-				//todo add log record
-				continue;
-			}
-
-			$property = $value[ ONAPP_FIELD_MAP ];
-			if( isset( $value[ ONAPP_FIELD_REQUIRED ] ) && $value[ ONAPP_FIELD_REQUIRED ] ) {
-				if( isset( $this->$property ) && !empty( $this->$property ) ) {
-					$result[ $key ] = $this->$property;
-				}
-				elseif( isset( $this->$property ) && is_bool( $this->$property ) ) {
-					$result[ $key ] = $this->$property;
-				}
-				elseif( isset( $this->_obj->$property ) ) {
-					$result[ $key ] = $this->_obj->$property;
-				}
-				elseif( isset( $value[ ONAPP_FIELD_DEFAULT_VALUE ] ) ) {
-					$result[ $key ] = $value[ ONAPP_FIELD_DEFAULT_VALUE ];
+		/*
+		 * todo del if unnecessary
+		foreach( $result as $name => &$value ) {
+			if( is_object( $value ) && ( $value instanceof OnAppNestedDataHolder ) ) {
+				if( isset( $this->dynamicFields[ $name ] ) ) {
+					$value = $this->$name;
 				}
 				else {
-					$this->logger->error(
-						'getFieldsToSent: Property ' . $property . ' not defined',
-						__FILE__,
-						__LINE__
-					);
+					$value = $this->_obj->$name;
+				}
 				}
 			}
-			elseif( isset( $this->$property ) ) {
-				$result[ $key ] = $this->$property;
-			}
-			else {
-				if( isset( $this->_obj->$property ) ) {
-					$result[ $key ] = $this->_obj->$property;
-				}
-				elseif( isset( $value[ ONAPP_FIELD_DEFAULT_VALUE ] ) ) {
-					$result[ $key ] = $value[ ONAPP_FIELD_DEFAULT_VALUE ];
-				}
-			}
+		*/
 
-			if( isset( $result[ $key ] ) ) {
-				$this->logger->debug( 'getFieldsToSent: set attribute ( ' . $key . ' => ' . $result[ $key ] . ' ).' );
+		if( isset( $this->skipFromResultSet ) ) {
+			if( ( isset( $this->skipFromResultSet[ 0 ] ) ) ) {
+				for( $i = 0, $size = count( $this->skipFromResultSet ); $i < $size; ++$i ) {
+					$this->skipFromResultSet[ $this->skipFromResultSet[ $i ] ] = '';
+					unset( $this->skipFromResultSet[ $i ] );
 			}
+		}
+			$result = array_diff_key( $result, $this->skipFromResultSet );
 		}
 
 		return $result;
@@ -1536,11 +1513,19 @@ class OnApp {
 		}
 
 		if( !isset( $this->dynamicFields[ $name ] ) ) {
+			if( strpos( $name, '_' ) === 0 ) {
+				$name = substr( $name, 1 );
+				if( !isset( $this->dynamicFields[ $name ] ) ) {
 			return null;
+		}
+			}
+			else {
+				return null;
+			}
 		}
 
 		if( is_object( $this->dynamicFields[ $name ] ) ) {
-			if( get_class( $this->dynamicFields[ $name ] ) == 'DataHolder' ) {
+			if( $this->dynamicFields[ $name ] instanceof OnAppNestedDataHolder ) {
 				$this->dynamicFields[ $name ] = OnApp_Helper_Caster::unserializeNested( $this->dynamicFields[ $name ] );
 			}
 		}
@@ -1556,6 +1541,10 @@ class OnApp {
 	 * @return void
 	 */
 	public function __set( $name, $value ) {
+		if( strpos( $name, '_' ) === 0 ) {
+			$name = substr( $name, 1 );
+		}
+
 		$this->dynamicFields[ $name ] = $value;
 	}
 

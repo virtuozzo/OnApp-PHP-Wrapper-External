@@ -14,7 +14,6 @@ class OnApp_Helper_Caster {
 	protected static $APIVersion;
 
 	/**
-	 * @param string $version   OnApp API version
 	 * @param object $obj	   wrapper object
 	 */
 	public function __construct( $obj ) {
@@ -41,37 +40,35 @@ class OnApp_Helper_Caster {
 	 *
 	 * @param string		$className  classname to cast into
 	 * @param string|array  $data	   XML|JSON or array containing nested data
-	 * @param array		 $map		fields map
 	 * @param string		$root	   root tag
 	 *
 	 * @return array|object unserialized data
 	 */
-	public function unserialize( $className, $data, $map, $root ) {
+	public function unserialize( $className, $data, $root ) {
 		self::$obj->logger->debug( 'Data to unserialize into ' . $className . ':' . PHP_EOL . $data );
-		return self::getCaster()->unserialize( $className, $data, $map, $root );
+		return self::getCaster()->unserialize( $className, $data, $root );
 	}
 
 	/**
 	 * Unserialize nested data
 	 *
 	 * @static
-	 * @param DataHolder $object object storing nested data
+	 * @param OnAppNestedDataHolder $object object storing nested data
 	 *
 	 * @return array
 	 */
-	public static function unserializeNested( DataHolder $object ) {
+	public static function unserializeNested( OnAppNestedDataHolder $object ) {
 		self::$obj->logger->add( 'castStringToClass: call ' . __METHOD__ );
 
 		$className = 'OnApp_' . $object->className;
 		$tmp_obj = new $className;
-		$tmp_obj->initFields( $object->APIVersion );
 		$tmp_obj->options = self::$obj->options;
 		$tmp_obj->_ch = self::$obj->_ch;
 		$tmp_obj->_is_auth = self::$obj->_is_auth;
 
 		$tmp = array();
 		foreach( $object->data as $data ) {
-			$tmp[ ] = self::getCaster()->unserialize( $className, $data, $tmp_obj->getClassFields(), $tmp_obj->_tagRoot );
+			$tmp[ ] = self::getCaster()->unserialize( $className, $data, $tmp_obj->_tagRoot );
 		}
 
 		return $tmp;
@@ -96,12 +93,13 @@ class OnApp_Helper_Caster {
 /**
  * Holder class for storing nested data
  */
-class DataHolder extends stdClass {
+class OnAppNestedDataHolder extends stdClass {
 }
 
 /**
  * Hide errors if running in CLI to pass unit tests
  */
 if( IS_CLI ) {
-	error_reporting( 0 );
+	//todo uncomment
+	//error_reporting( 0 );
 }

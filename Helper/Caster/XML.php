@@ -10,7 +10,6 @@
  * @link		http://www.onapp.com/
  */
 class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
-	private $map;
 	private $className;
 	private $types = array(
 		'datetime' => 's',
@@ -44,15 +43,13 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 	 *
 	 * @param string		$className  class name to cast into
 	 * @param string|array  $data		XML or array containing nested data
-	 * @param array			$map		fields map
 	 * @param string		$root		root tag
 	 *
 	 * @return array|object
 	 */
-	public function unserialize( $className, $data, $map, $root ) {
+	public function unserialize( $className, $data, $root ) {
 		parent::$obj->logger->add( 'castStringToClass: call ' . __METHOD__ );
 
-		$this->map = $map;
 		$this->className = $className;
 
 		if( is_string( $data ) ) {
@@ -118,30 +115,21 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 		$obj->options = parent::$obj->options;
 		$obj->_ch = parent::$obj->_ch;
 		$obj->_is_auth = parent::$obj->_is_auth;
-		$obj->initFields( parent::$APIVersion );
 
 		foreach( $item as $name => $value ) {
-			$field = $this->map[ $name ][ ONAPP_FIELD_MAP ];
-			$boolean = false;
+			$boolean = $type = false;
 
-			if( isset( $this->map[ $name ][ ONAPP_FIELD_TYPE ] ) && ( $this->map[ $name ][ ONAPP_FIELD_TYPE ] == 'array' ) ) {
-				if( $value->count() ) {
-					$tmp = new DataHolder;
-					$tmp->APIVersion = parent::$APIVersion;
-					$tmp->className = $this->map[ $name ][ ONAPP_FIELD_CLASS ];
-					$tmp->data = $value;
-					$value = $tmp;
-				}
-				else {
-					$value = array();
-				}
-			}
-			else {
 				if( isset( $value->attributes()->type ) ) {
 					if( $value->attributes()->type == 'array' ) {
 						if( !$value->count() ) {
-							$value = '';
-							$type = $this->types[ '' ];
+						$value = array();
+					}
+					else {
+						$tmp = new OnAppNestedDataHolder;
+						$tmp->APIVersion = parent::$APIVersion;
+						$tmp->className = $obj::$nestedData[ $name ];
+						$tmp->data = $value;
+						$value = $tmp;
 						}
 					}
 					else {
@@ -152,7 +140,10 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 				else {
 					$type = $this->types[ '' ];
 				}
+
+			if( $type ) {
 				$value = sprintf( '%' . $type, $value );
+			}
 
 				if( $boolean ) {
 					switch( strtolower( $value ) ) {
@@ -165,9 +156,8 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 							$value = true;
 					}
 				}
-			}
 
-			$obj->$field = $value;
+			$obj->$name = $value;
 		}
 
 		return $obj;
@@ -190,7 +180,10 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 			}
 
 			foreach( $data as $name => $value ) {
-				if( is_array( $value ) ) {
+				if( is_object( $value ) ) {
+					continue;
+				}
+				elseif( is_array( $value ) ) {
 					$node = $xml->addChild( $name );
 					$node->addAttribute( 'type', 'array' );
 					$this->getXML( $value, $root, $node );

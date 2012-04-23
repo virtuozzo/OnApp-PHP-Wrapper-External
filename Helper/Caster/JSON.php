@@ -10,7 +10,6 @@
  * @link		http://www.onapp.com/
  */
 class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
-	private $map;
 	private $className;
 
 	public function __construct() {
@@ -39,17 +38,15 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 	 *
 	 * @param string		$className  className to cast into
 	 * @param string|array  $data		JSON or array containing nested data
-	 * @param array			$map		fields map
 	 * @param string		$root		root tag
 	 *
 	 * @return array|object
 	 */
-	public function unserialize( $className, $data, $map, $root ) {
+	public function unserialize( $className, $data, $root ) {
 		parent::$obj->logger->add( 'castStringToClass ' . $className . ': call ' . __METHOD__ );
 
 		$this->runBefore( $data );
 
-		$this->map = $map;
 		$this->className = $className;
 
 		if( is_string( $data ) ) {
@@ -87,6 +84,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 			return $errors;
 		}
 
+		$result = null;
 		if( count( $data ) > 1 ) {
 			foreach( $data as $item ) {
 				$result[ ] = $this->process( $this->fixRootTag( $item, $root ) );
@@ -96,7 +94,6 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 			if( is_array( $data ) ) {
 				$data = $data[ 0 ];
 			}
-
 			$result = $this->process( $this->fixRootTag( $data, $root ) );
 		}
 
@@ -111,39 +108,26 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 	 * @return object
 	 */
 	private function process( $item ) {
-		if( ! ( is_array( $item ) || is_object( $item ) ) ) {
-			$tmp = new $this->className;
-			$item = array(
-				$tmp->_tagRoot => $item
-			);
-			unset( $tmp );
-		}
-
-
 		$obj = new $this->className;
 		$obj->options = parent::$obj->options;
 		$obj->_ch = parent::$obj->_ch;
 		$obj->_is_auth = parent::$obj->_is_auth;
-		$obj->initFields( parent::$APIVersion );
-		foreach( $item as $name => $value ) {
-			$field = $this->map[ $name ][ ONAPP_FIELD_MAP ];
 
-			if( isset( $this->map[ $name ][ ONAPP_FIELD_TYPE ] ) ) {
-				if( $this->map[ $name ][ ONAPP_FIELD_TYPE ] == 'array' ) {
+		foreach( $item as $name => $value ) {
+			if( is_array( $value ) ) {
 					if( empty( $value ) ) {
 						$value = array();
 					}
 					else {
-						$tmp = new DataHolder;
+					$tmp = new OnAppNestedDataHolder;
 						$tmp->APIVersion = parent::$APIVersion;
-						$tmp->className = $this->map[ $name ][ ONAPP_FIELD_CLASS ];
+					$tmp->className = $obj::$nestedData[ $name ];
 						$tmp->data = $value;
 						$value = $tmp;
 					}
 				}
-			}
 
-			$obj->$field = $value;
+			$obj->$name = $value;
 		}
 
 		return $obj;
