@@ -6,6 +6,7 @@
  *
  * @category	API WRAPPER
  * @package		OnApp
+ * @subpackage	User
  * @author		Yuriy Yakubskiy
  * @copyright	(c) 2012 OnApp
  * @link		http://www.onapp.com/
@@ -21,7 +22,7 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
-class OnApp_UserAdditionalField extends OnApp {
+class OnApp_User_AdditionalField extends OnApp {
 	/**
 	 * root tag used in the API request
 	 *
