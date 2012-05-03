@@ -34,11 +34,6 @@ define( 'ONAPP_GETRESOURCE_ACTIVATE', 'activate' );
  */
 define( 'ONAPP_GETRESOURCE_NETWORKS_LIST_BY_GROUP_ID', 'get_list_by_group_id' );
 
-/**
- * 
- */
-define( 'ONAPP_GETRESOURCE_DELETE_USER', 'delete_user'); 
-
 
 
 /**
@@ -310,10 +305,6 @@ class OnApp_User extends OnApp {
 			case ONAPP_GETRESOURCE_SUSPEND_USER:
 				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/suspend';
 				break;
-            
-			case ONAPP_GETRESOURCE_DELETE_USER:
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD );
-				break;            
 
 			case ONAPP_GETRESOURCE_ACTIVATE:
 				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/activate_user';
@@ -467,34 +458,4 @@ class OnApp_User extends OnApp {
 			return $this->_role_ids;
 		}
 	}
-    
-    /**
-     * Deletes User from OnApp CP
-     * 
-     * @param boolean $force whether to delete completely  
-     */
-    public function delete( $force = false ) {
-        if ( ! $this->_id  ) {
-			$this->logger->error(
-				'DeleteUser: argument _id not set.',
-				__FILE__,
-				__LINE__
-			);
-        }
-        
-        if ( $force ) {
-            $data = array(
-                'root' => 'tmp_holder',
-                'data' => array(
-                    'force' => '1'
-                )
-            );
-
-            $this->sendDelete( ONAPP_GETRESOURCE_DELETE_USER, $data );
-
-        } else {
-            parent::delete();
-        }
-    }       
-    
 }

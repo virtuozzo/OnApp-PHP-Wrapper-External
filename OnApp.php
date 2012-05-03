@@ -908,10 +908,6 @@ class OnApp {
 				break;
 
 			case ONAPP_REQUEST_METHOD_DELETE:
-				if( !is_null( $data ) ) {
-                    $http_header[ ] = 'Content-Length: ' . strlen( $data );
-					curl_setopt( $this->_ch, CURLOPT_POSTFIELDS, $data );
-				}
 				break;
 		}
 
@@ -1398,10 +1394,6 @@ class OnApp {
 	function sendPut( $resource, $data = NULL ) {
 		$this->_action( ONAPP_REQUEST_METHOD_PUT, $resource, $data );
 	}
-    
-	function sendDelete( $resource, $data = NULL ) {
-		$this->_action( ONAPP_REQUEST_METHOD_DELETE, $resource, $data );
-	}    
 
 	/**
 	 * Sends API Requests to realize not base actions
