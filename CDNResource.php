@@ -259,7 +259,9 @@ class OnApp_CDNResource extends OnApp {
 				break;
 		}
 
-		$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+		if( in_array( $action, $actions ) ) {
+			$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+		}
 
 		return $resource;
 	}
