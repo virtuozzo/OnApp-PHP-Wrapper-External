@@ -105,6 +105,43 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 
 		return $result;
 	}
+    
+private function convertXmlObjToArr( $obj, &$arr ) 
+    { 
+        $children = $obj->children(); 
+        $executed = false; 
+        foreach ($children as $elementName => $node) 
+        { 
+            if( array_key_exists( $elementName , $arr ) ) 
+            { 
+                if(array_key_exists( 0 ,$arr[$elementName] ) ) 
+                { 
+                    $i = count($arr[$elementName]); 
+                    $this->convertXmlObjToArr ($node, $arr[$elementName][$i]);     
+                } 
+                else 
+                { 
+                    $tmp = $arr[$elementName]; 
+                    $arr[$elementName] = array(); 
+                    $arr[$elementName][0] = $tmp; 
+                    $i = count($arr[$elementName]); 
+                    $this->convertXmlObjToArr($node, $arr[$elementName][$i]); 
+                } 
+            } 
+            else 
+            { 
+                $arr[$elementName] = array(); 
+                $this->convertXmlObjToArr($node, $arr[$elementName]);    
+            } 
+            $executed = true; 
+        } 
+        if(!$executed&&$children->getName()=="") 
+        { 
+            $arr = (String)$obj; 
+        } 
+         
+        return ; 
+    }      
 
 	/**
 	 * Cast data to wrapper object
@@ -136,6 +173,16 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 					$value = array();
 				}
 			}
+            elseif ( isset( $this->map[ $name ][ ONAPP_FIELD_TYPE ] ) && ( $this->map[ $name ][ ONAPP_FIELD_TYPE ] == '_array' ) ) {
+                
+                if( empty( $value ) ) {
+                    $value = array();
+                } else {
+                    $arr = array();
+                    $this->convertXmlObjToArr( $value, &$arr );
+                    $value = $arr;
+                }
+            }
 			else {
 				if( isset( $value->attributes()->type ) ) {
 					if( $value->attributes()->type == 'array' ) {

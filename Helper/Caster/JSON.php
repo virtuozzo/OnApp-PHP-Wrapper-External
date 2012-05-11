@@ -141,6 +141,20 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 						$value = $tmp;
 					}
 				}
+                
+                if( $this->map[ $name ][ ONAPP_FIELD_TYPE ] == '_array' ) {
+					if( empty( $value ) ) {
+						$value = array();
+					} else {
+                       $tmp = array(); 
+                       foreach($value as $key => $obj_v ) {
+                           $tmp[$key] = $obj_v;  
+                       }
+                       
+                       $value = $tmp;
+                    }
+                }
+                
 			}
 
 			$obj->$field = $value;
