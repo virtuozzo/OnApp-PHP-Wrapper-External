@@ -69,10 +69,16 @@ class OnApp_Helper_Caster {
 		$tmp_obj->_ch = self::$obj->_ch;
 		$tmp_obj->_is_auth = self::$obj->_is_auth;
 
-		$tmp = array();
-		foreach( $object->data as $data ) {
-			$tmp[ ] = self::getCaster()->unserialize( $className, $data, $tmp_obj->getClassFields(), $tmp_obj->_tagRoot );
-		}
+        if ( is_object($object->data) && get_class($object->data) == 'SimpleXMLElement'
+             && (string)$object->data->attributes()->type != 'array' || is_object($object->data) 
+             && get_class($object->data) == 'stdClass' && !is_array($object->data) ) {
+            $tmp = self::getCaster()->unserialize( $className, $object->data, $tmp_obj->getClassFields(), $tmp_obj->_tagRoot );
+        } else {
+            $tmp = array();
+            foreach( $object->data as $data ) {
+                $tmp[ ] = self::getCaster()->unserialize( $className, $data, $tmp_obj->getClassFields(), $tmp_obj->_tagRoot );
+            }
+        }
 
 		return $tmp;
 	}

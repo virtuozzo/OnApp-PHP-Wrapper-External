@@ -60,7 +60,7 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 		}
 
 		try {
-			if( !$data->count() ) {
+			if( is_object($data) && !$data->count() ) {
 				if( IS_CLI ) {
 					throw new Exception( __METHOD__ . ' Data for casting could not be empty' );
 				}
