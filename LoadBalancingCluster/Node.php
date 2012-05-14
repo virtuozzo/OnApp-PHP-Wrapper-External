@@ -23,7 +23,13 @@ class OnApp_LoadBalancingCluster_Node extends OnApp {
 		parent::__construct();
 		$this->className = __CLASS__;
 	}
-
+	/**
+	 * root tag used in the API request
+	 *
+	 * @var string
+	 */
+	var $_tagRoot = 'load_balancing_cluster_node';
+    
 	/**
 	 * API Fields description
 	 *
