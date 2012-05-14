@@ -51,6 +51,11 @@ class OnApp_LoadBalancingCluster_Node extends OnApp {
 						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
+                    'updated_at' => array(
+						ONAPP_FIELD_MAP => '_updated_at',
+						ONAPP_FIELD_TYPE => 'string',
+						ONAPP_FIELD_READ_ONLY => true,
+					),
                     'created_at' => array(
 						ONAPP_FIELD_MAP => '_created_at',
 						ONAPP_FIELD_TYPE => 'string',
