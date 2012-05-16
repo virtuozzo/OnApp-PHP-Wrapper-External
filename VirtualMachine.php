@@ -906,6 +906,11 @@ class OnApp_VirtualMachine extends OnApp {
 			ONAPP_FIELD_MAP => '_required_automatic_backup',
 			ONAPP_FIELD_TYPE => 'boolean',
 		);
+        $this->fields[ 'required_public_ip_address' ] = array(
+			ONAPP_FIELD_MAP => '_required_public_ip_address',
+			ONAPP_FIELD_TYPE => 'boolean',
+		);
+
 
 		parent::save();
 
