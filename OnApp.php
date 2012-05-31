@@ -1376,15 +1376,15 @@ class OnApp {
 	 * @access public
 	 */
 	function delete() {
-		$this->activate( ONAPP_ACTIVATE_DELETE );
+        $this->activate( ONAPP_ACTIVATE_DELETE );
 
-		$this->logger->add( 'Delete existing Object ( id => ' . $this->_id . ' ).' );
+        $this->logger->add( 'Delete existing Object ( id => ' . $this->_id . ' ).' );
 
-		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_DELETE ) );
-
-		$this->sendRequest( ONAPP_REQUEST_METHOD_DELETE );
-
-		$this->_is_deleted = true;
+        $this->sendDelete( ONAPP_GETRESOURCE_DELETE );
+        
+        if( count( $this->getErrorsAsArray()) < 1 ) {
+            $this->_is_deleted = true;
+        }
 	}
 
 	function sendPost( $resource, $data = NULL ) {
@@ -1396,11 +1396,11 @@ class OnApp {
 	}
 
 	function sendPut( $resource, $data = NULL ) {
-		$this->_action( ONAPP_REQUEST_METHOD_PUT, $resource, $data );
+		return $this->_action( ONAPP_REQUEST_METHOD_PUT, $resource, $data );
 	}
     
 	function sendDelete( $resource, $data = NULL ) {
-		$this->_action( ONAPP_REQUEST_METHOD_DELETE, $resource, $data );
+		return $this->_action( ONAPP_REQUEST_METHOD_DELETE, $resource, $data );
 	}    
 
 	/**
