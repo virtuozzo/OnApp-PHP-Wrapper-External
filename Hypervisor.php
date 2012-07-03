@@ -206,6 +206,28 @@ class OnApp_Hypervisor extends OnApp {
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
+				$this->fields[ 'memory_allocated_by_running_vms' ] = array(
+					ONAPP_FIELD_MAP => '_memory_allocated_by_running_vms',
+					ONAPP_FIELD_TYPE => 'integer',
+				);
+				$this->fields[ 'total_memory_allocated_by_vms' ] = array(
+					ONAPP_FIELD_MAP => '_total_memory_allocated_by_vms',
+					ONAPP_FIELD_TYPE => 'integer',
+				);                
+				$this->fields[ 'disable_failover' ] = array(
+					ONAPP_FIELD_MAP => '_disable_failover',
+					ONAPP_FIELD_TYPE => 'boolean',
+				); 
+				$this->fields[ 'redis_password' ] = array(
+					ONAPP_FIELD_MAP => '_redis_password',
+					ONAPP_FIELD_TYPE => 'string',
+				);
+				$this->fields[ 'free_disk_space' ] = array(
+					ONAPP_FIELD_MAP => '_free_disk_space',
+                    ONAPP_FIELD_TYPE => '_array',
+                    
+				);                
+                
 				break;
 		}
 

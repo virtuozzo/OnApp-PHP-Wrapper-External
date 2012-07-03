@@ -166,6 +166,10 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 			case 2.2:
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
+                $this->fields[ 'backup_server_id' ] = array(
+					ONAPP_FIELD_MAP => '_backup_server_id',
+					ONAPP_FIELD_TYPE => 'integer',
+				);
 				break;
 		}
 

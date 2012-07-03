@@ -211,6 +211,10 @@ class OnApp_Template extends OnApp {
 					ONAPP_FIELD_MAP => 'template_set_ids',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
+                $this->fields[ 'backup_server_id' ] = array(
+					ONAPP_FIELD_MAP => '_backup_server_id',
+					ONAPP_FIELD_TYPE => 'integer',
+				);
 				break;
 		}
 

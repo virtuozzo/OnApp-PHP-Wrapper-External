@@ -74,6 +74,10 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 						ONAPP_FIELD_READ_ONLY => true,
 						ONAPP_FIELD_REQUIRED => true,
 					),
+					'hypervisor_id' => array(
+						ONAPP_FIELD_MAP => '_hypervisor_id',
+						ONAPP_FIELD_TYPE => 'integer',
+					),                    
 				);
 				break;
 
