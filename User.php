@@ -281,6 +281,19 @@ class OnApp_User extends OnApp {
 				    ONAPP_FIELD_MAP => '_additional_fields',
 		        );
 				break;
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
+				$this->fields[ 'firewall_id' ] = array(
+					ONAPP_FIELD_MAP => '_firewall_id',
+					ONAPP_FIELD_TYPE => 'integer',
+					ONAPP_FIELD_READ_ONLY => true,
+				);
+				$this->fields[ 'wowza_key' ] = array(
+					ONAPP_FIELD_MAP => '_wowza_key',
+					ONAPP_FIELD_TYPE => 'string',
+					ONAPP_FIELD_READ_ONLY => true,
+				);                
+				break;            
 		}
 
 		parent::initFields( $version, __CLASS__ );

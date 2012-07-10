@@ -145,6 +145,9 @@ class OnApp_ResourceLimit extends OnApp {
 				);
 				$this->unsetFields( $fields );
 				break;
+           case 3.0:
+				$this->fields = $this->initFields( 2.3 );
+				break;            
 		}
 
 		parent::initFields( $version, __CLASS__ );

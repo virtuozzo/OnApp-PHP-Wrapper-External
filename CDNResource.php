@@ -213,6 +213,23 @@ class OnApp_CDNResource extends OnApp {
 					),
 				);
                 break;
+           case 3.0:
+                $this->fields = $this->initFields( 2.3 );
+                $fields = array(
+                    'origins_for_api',
+                );
+                $this->unsetFields( $fields );
+
+				$this->fields[ 'origins' ] = array(
+					ONAPP_FIELD_MAP => '_origins',
+					ONAPP_FIELD_TYPE => 'array',
+                    ONAPP_FIELD_CLASS => 'CDNResource_Origin',
+				); 
+				$this->fields[ 'secondary_hostnames' ] = array(
+					ONAPP_FIELD_MAP => '_secondary_hostnames',
+					ONAPP_FIELD_TYPE => '_array',
+				);                
+				break;            
 		}
 
 		parent::initFields( $version, __CLASS__ );

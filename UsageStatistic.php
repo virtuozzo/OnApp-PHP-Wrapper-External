@@ -209,6 +209,9 @@ class OnApp_UsageStatistic extends OnApp {
 					ONAPP_FIELD_READ_ONLY => true,
 				);
 				break;
+           case 3.0:
+				$this->fields = $this->initFields( 2.3 );
+				break;            
 		}
 
 		parent::initFields( $version, __CLASS__ );

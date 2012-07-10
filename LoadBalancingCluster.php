@@ -163,10 +163,10 @@ class OnApp_LoadBalancingCluster extends OnApp {
                     ONAPP_FIELD_TYPE => 'array',
                     ONAPP_FIELD_REQUIRED => 'LoadBalancingCluster_AutoScalingInMemory',
                 );
-
-
-
                 break;
+           case 3.0:
+				$this->fields = $this->initFields( 2.3 );
+				break;            
         }
 
         parent::initFields($version, __CLASS__);

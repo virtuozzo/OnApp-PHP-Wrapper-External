@@ -133,6 +133,29 @@ class OnApp_CDNResource_Advanced extends OnApp {
 				);
 				$this->fields = $this->initFields( 2.1 );
 				break;
+           case 3.0:
+				$this->fields = $this->initFields( 2.3 );
+				$this->fields[ 'secondary_hostnames' ] = array(
+					ONAPP_FIELD_MAP => '_secondary_hostnames',
+					ONAPP_FIELD_TYPE => '_array',
+				);
+				$this->fields[ 'flv_pseudo_on' ] = array(
+					ONAPP_FIELD_MAP => '_flv_pseudo_on',
+					ONAPP_FIELD_TYPE => 'boolean',
+				); 
+				$this->fields[ 'mp4_pseudo_on' ] = array(
+					ONAPP_FIELD_MAP => '_mp4_pseudo_on',
+					ONAPP_FIELD_TYPE => 'boolean',
+				); 
+				$this->fields[ 'ssl_on' ] = array(
+					ONAPP_FIELD_MAP => '_ssl_on',
+					ONAPP_FIELD_TYPE => 'boolean',
+				);
+				$this->fields[ 'ignore_set_cookie_on' ] = array(
+					ONAPP_FIELD_MAP => '_ignore_set_cookie_on',
+					ONAPP_FIELD_TYPE => 'boolean',
+				);                
+				break;            
 		}
 
 		parent::initFields( $version, __CLASS__ );

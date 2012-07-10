@@ -103,6 +103,9 @@ class ONAPP_VirtualMachine_NetworkInterface_Usage extends OnApp {
 			case '2.3':
 				$this->fields = $this->initFields( 2.0 );
 				break;
+           case 3.0:
+				$this->fields = $this->initFields( 2.3 );
+				break;            
 		}
 
 		parent::initFields( $version, __CLASS__ );

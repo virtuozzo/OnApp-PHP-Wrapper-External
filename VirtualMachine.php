@@ -394,6 +394,9 @@ class OnApp_VirtualMachine extends OnApp {
 					ONAPP_FIELD_READ_ONLY => true,
 				);
 				break;
+           case 3.0:
+				$this->fields = $this->initFields( 2.3 );
+				break;            
 		}
 
 		if( is_null( $this->_id ) ) {
