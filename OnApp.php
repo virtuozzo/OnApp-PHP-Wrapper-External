@@ -1422,7 +1422,7 @@ class OnApp {
 					$this->logger->debug( 'Additional parameters: ' . $data );
 				}
 
-                $url_args = ( $url_args ) ? preg_replace('/%5B(.){1,4}%5D/', '%5B%5D', http_build_query( $url_args ) ) : '';
+                $url_args = ( $url_args ) ? preg_replace('/%5B(0-9){1,4}%5D/', '%5B%5D', http_build_query( $url_args ) ) : '';
 
 				$this->setAPIResource( $this->getResource( $resource ), true, $url_args );
 
