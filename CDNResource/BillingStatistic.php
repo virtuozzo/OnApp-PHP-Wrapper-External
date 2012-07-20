@@ -29,7 +29,7 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'edge_statistic';
+	var $_tagRoot = 'user_hourly_stat';
 
 	/**
 	 * alias processing the object data
@@ -117,7 +117,35 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
 				$this->fields = $this->initFields( 2.1 );
 				break;
            case 3.0:
-				$this->fields = $this->initFields( 2.3 );
+                $this->fields = $this->initFields( 2.3 );
+                $fields = array(
+                    'created_at',
+                    'updated_at',
+                    'cdn_resource_id',
+                    'user_id',
+                    'edge_group_location_id',
+                    'edge_id',
+                    'location_id',
+                );
+                $this->unsetFields( $fields );
+
+				$this->fields[ 'cost' ] = array(
+					ONAPP_FIELD_MAP => '_cost',
+					ONAPP_FIELD_TYPE => 'string',
+				); 
+				$this->fields[ 'edge_group_label' ] = array(
+					ONAPP_FIELD_MAP => '_edge_group_label',
+					ONAPP_FIELD_TYPE => 'string',
+				);  
+				$this->fields[ 'stat_time' ] = array(
+					ONAPP_FIELD_MAP => '_stat_time',
+					ONAPP_FIELD_TYPE => 'string',
+				);
+				$this->fields[ 'value' ] = array(
+					ONAPP_FIELD_MAP => '_value',
+					ONAPP_FIELD_TYPE => 'string',
+				);                
+                
 				break;            
 		}
 
