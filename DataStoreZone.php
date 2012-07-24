@@ -34,7 +34,7 @@ class OnApp_DataStoreZone extends OnApp {
 	 *
 	 * @var string
 	 */
-	var $_resource = 'data_store_zones';
+	var $_resource = 'settings/data_store_zones';
 
 	public function __construct() {
 		parent::__construct();
