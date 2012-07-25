@@ -1490,10 +1490,22 @@ class OnApp {
 	 * @param string $glue
 	 * @return string
 	 */
-	public function getErrorsAsString( $glue = PHP_EOL ) {
-		return implode( $glue, $this->errors );
-	}
+	public function getErrorsAsString( $glue = '<br />' ) {
+        $errors = '';
+        
+        foreach( $this->errors as $key => $value ){
+            if ( is_array( $value )  ){
+                foreach ( $value as $k => $v ){
+                    $errors .= $key . ': ' . $v . $glue;
+                }
+            } else {
+                $errors .= $value . $glue;
+            }
+        }
 
+        return $errors;        
+	}
+    
 	/**
 	 * Return errors as array
 	 *
