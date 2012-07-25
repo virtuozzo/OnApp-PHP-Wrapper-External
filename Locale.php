@@ -23,7 +23,7 @@ class OnApp_Locale extends OnApp {
 	 *
 	 * @var string
 	 */
-	var $_resource = 'internationalization';
+	var $_resource = '/settings/internationalization';
 
 	public function __construct() {
 		parent::__construct();
@@ -53,7 +53,7 @@ class OnApp_Locale extends OnApp {
 				break;
            case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
