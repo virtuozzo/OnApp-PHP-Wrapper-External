@@ -921,6 +921,20 @@ class OnApp {
 		$result[ 'response_body' ] = curl_exec( $this->_ch );
 		$result[ 'info' ] = curl_getinfo( $this->_ch );
 
+        if ( ! $result[ 'response_body' ] && $method == ONAPP_REQUEST_METHOD_DELETE ){
+            switch( $this->options[ONAPP_OPTION_API_TYPE] ){
+                case 'json':
+                    $result[ 'response_body' ] = '{}';
+                    break;
+                case 'xml':
+                    $result[ 'response_body' ] = ' ';
+                    break;
+                default:
+                    $this->logger->error('Unsupported API method ' . $this->options[ONAPP_OPTION_API_TYPE] );
+                    break;
+            }
+        }
+        
 		if( !$result[ 'response_body' ] ) {
 			return false;
 		}
@@ -933,6 +947,7 @@ class OnApp {
 			switch( $result[ 'info' ][ 'http_code' ] ) {
 				case 200:
 				case 201:
+                case 204:    
 					break;
 
 				case 422:
@@ -1022,6 +1037,7 @@ class OnApp {
 				case 201:
 				case 404:
 				case 422:
+                case 204:    
 					return $this->castStringToClass( $response );
 					break;
 
@@ -1412,7 +1428,7 @@ class OnApp {
 	 *
 	 * @return bool|mixed (Array of Object or Object)
 	 */
-	protected function _action( $method, $resource, $data = NULL, $url_args = NULL ) {
+	protected function _action( $method, $resource, $data = NULL, $url_args = NULL ) { 
 		switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
 			case 'xml':
 			case 'json':
@@ -1427,9 +1443,9 @@ class OnApp {
 				$this->setAPIResource( $this->getResource( $resource ), true, $url_args );
 
 				$response = $this->sendRequest( $method, $data );
-
+                
 				$result = $this->_castResponseToClass( $response );
-
+                
 				if( $response[ 'info' ][ 'http_code' ] > 400 ) {
 					if( is_null( $result ) ) {
 						$this->_obj = clone $this;
