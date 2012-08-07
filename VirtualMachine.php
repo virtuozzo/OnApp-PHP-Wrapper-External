@@ -396,7 +396,7 @@ class OnApp_VirtualMachine extends OnApp {
 				break;
            case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		if( is_null( $this->_id ) ) {
@@ -806,7 +806,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 * @param int|null $user_id
 	 * @return array|bool
 	 */
-	function getList( $user_id = NULL ) {
+	function getList( $user_id = null, $url_args = null ) {
 		//todo rewrite to use parent method
 		if( is_null( $user_id ) ) {
 			return parent::getList();
