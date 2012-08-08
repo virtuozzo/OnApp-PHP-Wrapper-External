@@ -221,32 +221,32 @@ define( 'ONAPP_REQUEST_METHOD_DELETE', 'DELETE' );
  * re-define the  {@link getResource},  {@link getResourceADD}, {@link getResourceEDIT},
  * {@link getResourceLOAD},  {@link getResourceDELETE} and  {@link getResourceLIST}
  * methods in the class that will be inheriting the ONAPP class.
- * 
- * 
+ *
+ *
  * This API provides an interface to onapp.net allowing common virtual machine
  * and account management tasks
- * 
+ *
  * <b> Usage OnApp_VirtualMachine class example ( Could be applied almost to any of the Wrapper classes ): </b> <br /><br />
  * <b> Important ( OnApp CP Permissions Set Up): </b>
- * <code> 
+ * <code>
  *     Go to OnApp CP.
  *     Users and Groups -> Roles
- *     Push pencil edit icon to edit role of the user which you are going to use. 
+ *     Push pencil edit icon to edit role of the user which you are going to use.
  *     Check checkbox { View OnApp version (settings.version) }
- *     Check other permissions in order to perform particular actions. 
+ *     Check other permissions in order to perform particular actions.
  *</code>
- * 
+ *
  * <b>Code example:</b> <br />
- * 
+ *
  * Require Wrapper AutoLoad Class:
- * 
+ *
  * <code>
  *    require_once '{Path to the Wrapper}/OnAppInit.php';
  * </code>
- * 
- * 
+ *
+ *
  * Get OnApp Instance:
- * 
+ *
  * <code>
  *     $onapp = new OnApp_Factory('{IP Address / Hostname}', '{Username}', '{Password}');
  * </code>
@@ -892,8 +892,6 @@ class OnApp {
 				break;
 
 			case ONAPP_REQUEST_METHOD_POST:
-			//	curl_setopt( $this->_ch, CURLOPT_POST, true );
-
 				if( !is_null( $data ) ) {
 					curl_setopt( $this->_ch, CURLOPT_POSTFIELDS, $data );
 				}
@@ -926,15 +924,17 @@ class OnApp {
                 case 'json':
                     $result[ 'response_body' ] = '{}';
                     break;
+
                 case 'xml':
                     $result[ 'response_body' ] = ' ';
                     break;
+
                 default:
                     $this->logger->error('Unsupported API method ' . $this->options[ONAPP_OPTION_API_TYPE] );
                     break;
             }
         }
-        
+
 		if( !$result[ 'response_body' ] ) {
 			return false;
 		}
@@ -947,7 +947,7 @@ class OnApp {
 			switch( $result[ 'info' ][ 'http_code' ] ) {
 				case 200:
 				case 201:
-                case 204:    
+                case 204:
 					break;
 
 				case 422:
@@ -1037,7 +1037,7 @@ class OnApp {
 				case 201:
 				case 404:
 				case 422:
-                case 204:    
+                case 204:
 					return $this->castStringToClass( $response );
 					break;
 
@@ -1397,7 +1397,7 @@ class OnApp {
         $this->logger->add( 'Delete existing Object ( id => ' . $this->_id . ' ).' );
 
         $this->sendDelete( ONAPP_GETRESOURCE_DELETE );
-        
+
         if( count( $this->getErrorsAsArray()) < 1 ) {
             $this->_is_deleted = true;
         }
@@ -1414,10 +1414,10 @@ class OnApp {
 	function sendPut( $resource, $data = NULL ) {
 		return $this->_action( ONAPP_REQUEST_METHOD_PUT, $resource, $data );
 	}
-    
+
 	function sendDelete( $resource, $data = NULL ) {
 		return $this->_action( ONAPP_REQUEST_METHOD_DELETE, $resource, $data );
-	}    
+	}
 
 	/**
 	 * Sends API Requests to realize not base actions
@@ -1428,7 +1428,7 @@ class OnApp {
 	 *
 	 * @return bool|mixed (Array of Object or Object)
 	 */
-	protected function _action( $method, $resource, $data = NULL, $url_args = NULL ) { 
+	protected function _action( $method, $resource, $data = NULL, $url_args = NULL ) {
 		switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
 			case 'xml':
 			case 'json':
@@ -1443,9 +1443,9 @@ class OnApp {
 				$this->setAPIResource( $this->getResource( $resource ), true, $url_args );
 
 				$response = $this->sendRequest( $method, $data );
-                
+
 				$result = $this->_castResponseToClass( $response );
-                
+
 				if( $response[ 'info' ][ 'http_code' ] > 400 ) {
 					if( is_null( $result ) ) {
 						$this->_obj = clone $this;
@@ -1508,7 +1508,7 @@ class OnApp {
 	 */
 	public function getErrorsAsString( $glue = '<br />' ) {
         $errors = '';
-        
+
         foreach( $this->errors as $key => $value ){
             if ( is_array( $value )  ){
                 foreach ( $value as $k => $v ){
@@ -1519,9 +1519,11 @@ class OnApp {
             }
         }
 
-        return $errors;        
+		$errors = substr( $errors, 0, - strlen( $glue ) );
+
+		return $errors;
 	}
-    
+
 	/**
 	 * Return errors as array
 	 *
