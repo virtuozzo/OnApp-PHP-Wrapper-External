@@ -35,11 +35,9 @@ define( 'ONAPP_GETRESOURCE_ACTIVATE', 'activate' );
 define( 'ONAPP_GETRESOURCE_NETWORKS_LIST_BY_GROUP_ID', 'get_list_by_group_id' );
 
 /**
- * 
+ *
  */
-define( 'ONAPP_GETRESOURCE_DELETE_USER', 'delete_user'); 
-
-
+define( 'ONAPP_GETRESOURCE_DELETE_USER', 'delete_user');
 
 /**
  * Users
@@ -281,6 +279,7 @@ class OnApp_User extends OnApp {
 				    ONAPP_FIELD_MAP => '_additional_fields',
 		        );
 				break;
+
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				$this->fields[ 'firewall_id' ] = array(
@@ -292,8 +291,8 @@ class OnApp_User extends OnApp {
 					ONAPP_FIELD_MAP => '_wowza_key',
 					ONAPP_FIELD_TYPE => 'string',
 					ONAPP_FIELD_READ_ONLY => true,
-				);                
-				break;            
+				);
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -323,13 +322,13 @@ class OnApp_User extends OnApp {
 			case ONAPP_GETRESOURCE_SUSPEND_USER:
 				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/suspend';
 				break;
-            
+
 			case ONAPP_GETRESOURCE_DELETE_USER:
 				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD );
-				break;            
+				break;
 
 			case ONAPP_GETRESOURCE_ACTIVATE:
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/activate_user';
+				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/activate';
 				break;
 
 			default:
@@ -357,7 +356,7 @@ class OnApp_User extends OnApp {
 	function suspend() {
 		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_SUSPEND_USER ) );
 
-		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
+		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
 
 		$result = $this->_castResponseToClass( $response );
 
@@ -372,7 +371,7 @@ class OnApp_User extends OnApp {
 	function activate_user() {
 		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_ACTIVATE ) );
 
-		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
+		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
 
 		$result = $this->_castResponseToClass( $response );
 
@@ -480,11 +479,11 @@ class OnApp_User extends OnApp {
 			return $this->_role_ids;
 		}
 	}
-    
+
     /**
      * Deletes User from OnApp CP
-     * 
-     * @param boolean $force whether to delete completely  
+     *
+     * @param boolean $force whether to delete completely
      */
     public function delete( $force = false ) {
         if ( ! $this->_id  ) {
@@ -494,7 +493,7 @@ class OnApp_User extends OnApp {
 				__LINE__
 			);
         }
-        
+
         if ( $force ) {
             $data = array(
                 'root' => 'tmp_holder',
@@ -508,6 +507,5 @@ class OnApp_User extends OnApp {
         } else {
             parent::delete();
         }
-    }       
-    
+    }
 }
