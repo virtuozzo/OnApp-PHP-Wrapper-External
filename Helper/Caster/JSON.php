@@ -79,10 +79,10 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 
 		// get errors
 		if( $root === 'errors' ) {
-			$errors = (array)$data->$root;
+            $errors = $this->objectToArray( $data->$root );
 
 			if( count( $errors ) == 1 ) {
-				$errors = $errors[ 0 ];
+				$errors = array_shift($errors);
 			}
 			return $errors;
 		}
@@ -181,5 +181,24 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 	}
 
 	private function runAfter() {
+	}
+    
+    /**
+     * Convert object to array
+     * 
+     * @param mixed $d
+     * @return array 
+     */
+    private function objectToArray($d) {
+		if (is_object($d)) {
+			$d = get_object_vars($d);
+		}
+ 
+		if (is_array($d)) {
+			return array_map(__METHOD__, $d);
+		}
+		else {
+			return $d;
+		}
 	}
 }
