@@ -228,6 +228,22 @@ class OnApp_CDNResource extends OnApp {
 				$this->fields[ 'secondary_hostnames' ] = array(
 					ONAPP_FIELD_MAP => '_secondary_hostnames',
 					ONAPP_FIELD_TYPE => '_array',
+				); 
+				$this->fields[ 'ftp_password' ] = array(
+					ONAPP_FIELD_MAP => '_ftp_password',
+					ONAPP_FIELD_TYPE => 'string',
+				); 
+				$this->fields[ 'mp4_pseudo_on' ] = array(
+					ONAPP_FIELD_MAP => '_mp4_pseudo_on',
+					ONAPP_FIELD_TYPE => 'boolean',
+				);
+				$this->fields[ 'flv_pseudo_on' ] = array(
+					ONAPP_FIELD_MAP => '_flv_pseudo_on',
+					ONAPP_FIELD_TYPE => 'boolean',
+				);
+				$this->fields[ 'ignore_set_cookie_on' ] = array(
+					ONAPP_FIELD_MAP => '_ignore_set_cookie_on',
+					ONAPP_FIELD_TYPE => 'boolean',
 				);                
 				break;            
 		}
