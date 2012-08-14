@@ -79,10 +79,6 @@ class OnApp_CDNResource extends OnApp {
 						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-                    'resource_type' => array(
-						ONAPP_FIELD_MAP => '_resource_type',
-						ONAPP_FIELD_TYPE => 'string',
-					),
                     'updated_at' => array(
 						ONAPP_FIELD_MAP => '_updated_at',
 						ONAPP_FIELD_TYPE => 'string',
@@ -244,7 +240,28 @@ class OnApp_CDNResource extends OnApp {
 				$this->fields[ 'ignore_set_cookie_on' ] = array(
 					ONAPP_FIELD_MAP => '_ignore_set_cookie_on',
 					ONAPP_FIELD_TYPE => 'boolean',
+				);   
+				$this->fields[ 'cdn_resource_publishing_point' ] = array(
+					ONAPP_FIELD_MAP => '_cdn_resource_publishing_point',
+					ONAPP_FIELD_TYPE => 'string',
+				);  
+                $this->fields[ 'anti_leech_on' ] = array(
+					ONAPP_FIELD_MAP => '_anti_leech_on',
+					ONAPP_FIELD_TYPE => 'string',
+				); 
+                $this->fields[ 'anti_leech_domains' ] = array(
+					ONAPP_FIELD_MAP => '_anti_leech_domains',
+					ONAPP_FIELD_TYPE => 'string',
+				);
+                $this->fields[ 'secure_wowza_on' ] = array(
+					ONAPP_FIELD_MAP => '_secure_wowza_on',
+					ONAPP_FIELD_TYPE => 'string',
+				);
+                $this->fields[ 'secure_wowza_token' ] = array(
+					ONAPP_FIELD_MAP => '_secure_wowza_token',
+					ONAPP_FIELD_TYPE => 'string',
 				);                
+                
 				break;            
 		}
 
