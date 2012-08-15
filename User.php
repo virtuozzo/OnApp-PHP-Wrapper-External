@@ -397,10 +397,10 @@ class OnApp_User extends OnApp {
 			$obj = $this->_create();
 		}
 		else {
-                        $this->fields[ 'email' ][ ONAPP_FIELD_REQUIRED ]      = false;
-                        $this->fields[ 'first_name' ][ ONAPP_FIELD_REQUIRED ] = false;
-                        $this->fields[ 'last_name' ][ ONAPP_FIELD_REQUIRED ]  = false;
-                        $this->fields[ 'login' ][ ONAPP_FIELD_REQUIRED ]      = false;
+			$this->fields[ 'email' ][ ONAPP_FIELD_REQUIRED ]      = false;
+			$this->fields[ 'first_name' ][ ONAPP_FIELD_REQUIRED ] = false;
+			$this->fields[ 'last_name' ][ ONAPP_FIELD_REQUIRED ]  = false;
+			$this->fields[ 'login' ][ ONAPP_FIELD_REQUIRED ]      = false;
 
 			$obj = $this->_edit();
 		}
