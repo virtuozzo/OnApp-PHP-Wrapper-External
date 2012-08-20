@@ -912,13 +912,18 @@ class OnApp {
 				}
 				break;
 		}
-
+        
+        curl_setopt( $this->_ch, CURLOPT_RETURNTRANSFER, true );
+        curl_setopt( $this->_ch, CURLOPT_HEADER, true );
 		curl_setopt( $this->_ch, CURLOPT_HTTPHEADER, $http_header );
 
 		$result = array();
 		$result[ 'response_body' ] = curl_exec( $this->_ch );
-		$result[ 'info' ] = curl_getinfo( $this->_ch );
-
+        $result[ 'info' ]          = curl_getinfo( $this->_ch );
+        $curlHeaderSize            = $result['info']['header_size'];
+        $result['headers']         = mb_substr( $result['response_body'], 0, $curlHeaderSize );
+        $result[ 'response_body' ] = mb_substr( $result['response_body'], $curlHeaderSize );
+        
         if ( ! $result[ 'response_body' ] && $method == ONAPP_REQUEST_METHOD_DELETE ){
             switch( $this->options[ONAPP_OPTION_API_TYPE] ){
                 case 'json':
@@ -940,7 +945,7 @@ class OnApp {
 		}
 
         $this->response = $result;
-
+        
 		$content_type = $result[ 'info' ][ 'content_type' ];
 
 		if( $content_type == $this->options[ ONAPP_OPTION_API_CONTENT ] . "; " . $this->options[ ONAPP_OPTION_API_CHARSET ] ) {
@@ -975,6 +980,23 @@ class OnApp {
 
 		return $result;
 	}
+    
+    /**
+     *
+     * @param type $label
+     * @return string 
+     */
+    public function getHeader( $label = NULL ){
+        if( ! $label ){
+            return $this->response['headers'];
+        }
+        
+        $content = '';
+        
+        preg_match_all('|' . $label . ': (.*)|', $this->response['headers'], $content );
+        
+        return implode( '', $content[1]);
+    }
 
 	/**
 	 * The method validates the API request errors
@@ -1540,7 +1562,7 @@ class OnApp {
 	 *
 	 * @return void
 	 */
-	protected function unsetFields( $fields ) {
+	public function unsetFields( $fields ) {
 		foreach( $fields as $field ) {
 			unset( $this->fields[ $field ] );
 		}
