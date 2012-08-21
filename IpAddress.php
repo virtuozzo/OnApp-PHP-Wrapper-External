@@ -207,7 +207,7 @@ class OnApp_IpAddress extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $network_id = null ) {
+	function getList( $network_id = null, $url_args = null ) {
 		if( is_null( $network_id ) && !is_null( $this->_network_id ) ) {
 			$network_id = $this->_network_id;
 		}

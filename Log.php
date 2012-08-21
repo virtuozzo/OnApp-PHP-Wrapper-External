@@ -144,7 +144,7 @@ class OnApp_Log extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $url_args = null ) {
+	function getList( $params = null, $url_args = null ) {
         return parent::getList( null, $url_args );
 	}
     
