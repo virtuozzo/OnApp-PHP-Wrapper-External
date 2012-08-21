@@ -202,7 +202,7 @@ class OnApp_Transaction extends OnApp {
 	}
 
 	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-		return parent::getResource( $action );
+        return parent::getResource( $action );
 		/**
 		 * ROUTE :
 		 * @name transactions
@@ -218,4 +218,14 @@ class OnApp_Transaction extends OnApp {
 		 * @format   {:controller=>"transactions", :action=>"show"}
 		 */
 	}
+    
+    /**
+     * Load transaction with log_output
+     * @param type $id
+     * @return type 
+     */
+    function load_with_output( $id ) {
+			$this->_id = $id;
+			return $this->sendGet( ONAPP_GETRESOURCE_LOAD, null, array('log' => '') );
+    }
 }
