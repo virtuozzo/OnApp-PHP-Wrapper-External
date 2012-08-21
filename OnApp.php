@@ -941,7 +941,7 @@ class OnApp {
             }
         }
         
-        $this->logger->debug('Receive Response ' . $result );
+        $this->logger->debug('Receive Response ' . print_r($result, true ) );
 
 		if( !$result[ 'response_body' ] ) {
             $this->logger->error('Response body couldn\'t be empty for method: ' . $method);

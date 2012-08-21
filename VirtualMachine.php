@@ -653,7 +653,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 * @access public
 	 */
 	function reset_password() {
-		$this->sendPost( ONAPP_RESET_ROOT_PASSWORD );
+		return $this->sendPost( ONAPP_RESET_ROOT_PASSWORD );
 	}
 
 	/**
