@@ -322,7 +322,7 @@ class OnApp_Disk extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $vm_id = null ) {
+	function getList( $vm_id = null, $url_args = null ) {
 		if( $vm_id ) {
 			$this->_virtual_machine_id = $vm_id;
 		}
