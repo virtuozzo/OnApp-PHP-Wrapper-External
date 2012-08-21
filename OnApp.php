@@ -924,7 +924,8 @@ class OnApp {
         $result['headers']         = mb_substr( $result['response_body'], 0, $curlHeaderSize );
         $result[ 'response_body' ] = mb_substr( $result['response_body'], $curlHeaderSize );
         
-        if ( ! $result[ 'response_body' ] && $method == ONAPP_REQUEST_METHOD_DELETE ){
+        if ( ! $result[ 'response_body' ] && $method == ONAPP_REQUEST_METHOD_DELETE ||
+             ! $result[ 'response_body' ] && $method == ONAPP_REQUEST_METHOD_PUT ){
             switch( $this->options[ONAPP_OPTION_API_TYPE] ){
                 case 'json':
                     $result[ 'response_body' ] = '{}';
@@ -939,8 +940,11 @@ class OnApp {
                     break;
             }
         }
+        
+        $this->logger->debug('Receive Response ' . $result );
 
 		if( !$result[ 'response_body' ] ) {
+            $this->logger->error('Response body couldn\'t be empty for method: ' . $method);
 			return false;
 		}
 
@@ -1019,7 +1023,7 @@ class OnApp {
 		switch( $error_no ) {
 			case CURLE_OK:
 				// Note: the 0 code does not mean an error, but it means success
-				$this->logger->debug( 'sendRequest: OK.' . PHP_EOL . $response_body );
+				$this->logger->debug( 'Response Body: OK.' . PHP_EOL . $response_body );
 				break;
 
 			case CURLE_UNSUPPORTED_PROTOCOL : // 1
@@ -1030,7 +1034,7 @@ class OnApp {
 			case CURLE_COULDNT_RESOLVE_PROXY: // 6
 			case CURLE_COULDNT_RESOLVE_HOST: // 7
 				$this->logger->warning(
-					'sendRequest: Error #' . $error_no,
+					'Response Body: Error #' . $error_no,
 					__FILE__,
 					__LINE__
 				);
@@ -1463,7 +1467,7 @@ class OnApp {
                 $url_args = ( $url_args ) ? preg_replace('/%5B(0-9){1,4}%5D/', '%5B%5D', http_build_query( $url_args ) ) : '';
 
 				$this->setAPIResource( $this->getResource( $resource ), true, $url_args );
-
+                
 				$response = $this->sendRequest( $method, $data );
 
 				$result = $this->_castResponseToClass( $response );
