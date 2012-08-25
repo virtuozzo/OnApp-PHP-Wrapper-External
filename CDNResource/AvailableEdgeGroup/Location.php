@@ -107,6 +107,14 @@ class OnApp_CDNResource_AvailableEdgeGroup_Location extends OnApp {
 				break;
            case 3.0:
 				$this->fields = $this->initFields( 2.3 );
+				$this->fields[ 'streamSupported' ] = array(
+					ONAPP_FIELD_MAP => '_streamSupported',
+					ONAPP_FIELD_TYPE => 'boolean',
+				);  
+				$this->fields[ 'httpSupported' ] = array(
+					ONAPP_FIELD_MAP => '_httpSupported',
+					ONAPP_FIELD_TYPE => 'boolean',
+				);                  
 				break;            
 		}
 

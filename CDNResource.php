@@ -260,7 +260,24 @@ class OnApp_CDNResource extends OnApp {
                 $this->fields[ 'secure_wowza_token' ] = array(
 					ONAPP_FIELD_MAP => '_secure_wowza_token',
 					ONAPP_FIELD_TYPE => 'string',
-				);                
+				); 
+                $this->fields[ 'internal_publishing_point' ] = array(
+					ONAPP_FIELD_MAP => '_internal_publishing_point',
+					ONAPP_FIELD_TYPE => 'integer',
+				); 
+                $this->fields[ 'failover_internal_publishing_point' ] = array(
+					ONAPP_FIELD_MAP => '_failover_internal_publishing_point',
+					ONAPP_FIELD_TYPE => 'integer',
+				); 
+                $this->fields[ 'external_publishing_url' ] = array(
+					ONAPP_FIELD_MAP => '_external_publishing_url',
+					ONAPP_FIELD_TYPE => 'integer',
+				); 
+                $this->fields[ 'failover_external_publishing_point' ] = array(
+					ONAPP_FIELD_MAP => '_failover_external_publishing_point',
+					ONAPP_FIELD_TYPE => 'integer',
+				);                 
+                
                 
 				break;            
 		}
