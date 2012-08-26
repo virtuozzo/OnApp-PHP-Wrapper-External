@@ -241,13 +241,13 @@ class OnApp_CDNResource extends OnApp {
 					ONAPP_FIELD_MAP => '_ignore_set_cookie_on',
 					ONAPP_FIELD_TYPE => 'boolean',
 				);   
-				$this->fields[ 'cdn_resource_publishing_point' ] = array(
-					ONAPP_FIELD_MAP => '_cdn_resource_publishing_point',
+				$this->fields[ 'publishing_point' ] = array(
+					ONAPP_FIELD_MAP => '_publishing_point',
 					ONAPP_FIELD_TYPE => 'string',
 				);  
                 $this->fields[ 'anti_leech_on' ] = array(
 					ONAPP_FIELD_MAP => '_anti_leech_on',
-					ONAPP_FIELD_TYPE => 'string',
+					ONAPP_FIELD_TYPE => 'boolean',
 				); 
                 $this->fields[ 'anti_leech_domains' ] = array(
 					ONAPP_FIELD_MAP => '_anti_leech_domains',
@@ -255,7 +255,7 @@ class OnApp_CDNResource extends OnApp {
 				);
                 $this->fields[ 'secure_wowza_on' ] = array(
 					ONAPP_FIELD_MAP => '_secure_wowza_on',
-					ONAPP_FIELD_TYPE => 'string',
+					ONAPP_FIELD_TYPE => 'boolean',
 				);
                 $this->fields[ 'secure_wowza_token' ] = array(
 					ONAPP_FIELD_MAP => '_secure_wowza_token',
@@ -273,8 +273,8 @@ class OnApp_CDNResource extends OnApp {
 					ONAPP_FIELD_MAP => '_external_publishing_url',
 					ONAPP_FIELD_TYPE => 'integer',
 				); 
-                $this->fields[ 'failover_external_publishing_point' ] = array(
-					ONAPP_FIELD_MAP => '_failover_external_publishing_point',
+                $this->fields[ 'failover_external_publishing_url' ] = array(
+					ONAPP_FIELD_MAP => '_failover_external_publishing_url',
 					ONAPP_FIELD_TYPE => 'integer',
 				);                 
                 
