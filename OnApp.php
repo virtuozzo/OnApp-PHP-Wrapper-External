@@ -912,7 +912,7 @@ class OnApp {
 				}
 				break;
 		}
-        
+
         curl_setopt( $this->_ch, CURLOPT_RETURNTRANSFER, true );
         curl_setopt( $this->_ch, CURLOPT_HEADER, true );
 		curl_setopt( $this->_ch, CURLOPT_HTTPHEADER, $http_header );
@@ -923,7 +923,7 @@ class OnApp {
         $curlHeaderSize            = $result['info']['header_size'];
         $result['headers']         = mb_substr( $result['response_body'], 0, $curlHeaderSize );
         $result[ 'response_body' ] = mb_substr( $result['response_body'], $curlHeaderSize );
-        
+
         if ( ! $result[ 'response_body' ] && $method == ONAPP_REQUEST_METHOD_DELETE ||
              ! $result[ 'response_body' ] && $method == ONAPP_REQUEST_METHOD_PUT ){
             switch( $this->options[ONAPP_OPTION_API_TYPE] ){
@@ -940,7 +940,7 @@ class OnApp {
                     break;
             }
         }
-        
+
         $this->logger->debug('Receive Response ' . print_r($result, true ) );
 
 		if( !$result[ 'response_body' ] ) {
@@ -949,7 +949,7 @@ class OnApp {
 		}
 
         $this->response = $result;
-        
+
 		$content_type = $result[ 'info' ][ 'content_type' ];
 
 		if( $content_type == $this->options[ ONAPP_OPTION_API_CONTENT ] . "; " . $this->options[ ONAPP_OPTION_API_CHARSET ] ) {
@@ -984,21 +984,21 @@ class OnApp {
 
 		return $result;
 	}
-    
+
     /**
      *
      * @param type $label
-     * @return string 
+     * @return string
      */
     public function getHeader( $label = NULL ){
         if( ! $label ){
             return $this->response['headers'];
         }
-        
+
         $content = '';
-        
+
         preg_match_all('|' . $label . ': (.*)|', $this->response['headers'], $content );
-        
+
         return implode( '', $content[1]);
     }
 
@@ -1393,7 +1393,7 @@ class OnApp {
 			}
 
 			if( isset( $result[ $key ] ) ) {
-				$this->logger->debug( 'getFieldsToSent: set attribute ( ' . $key . ' => ' . $result[ $key ] . ' ).' );
+				$this->logger->debug( 'getFieldsToSent: set attribute ( ' . $key . ' => ' . print_r( $result[ $key ], true ) . ' ).' );
 			}
 		}
 
@@ -1467,7 +1467,7 @@ class OnApp {
                 $url_args = ( $url_args ) ? preg_replace('/%5B(0-9){1,4}%5D/', '%5B%5D', http_build_query( $url_args ) ) : '';
 
 				$this->setAPIResource( $this->getResource( $resource ), true, $url_args );
-                
+
 				$response = $this->sendRequest( $method, $data );
 
 				$result = $this->_castResponseToClass( $response );
