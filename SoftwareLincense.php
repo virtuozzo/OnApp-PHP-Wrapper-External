@@ -15,11 +15,11 @@
  *
  * Managing Software Lincenses
  *
- * The ONAPP_SoftwareLincense class uses the following basic methods:
+ * The OnApp_SoftwareLincense class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
- * The ONAPP_SoftwareLincense class represents Software Lincenses.
- * The ONAPP class is a parent of ONAPP_SoftwareLincense class.
+ * The OnApp_SoftwareLincense class represents Software Lincenses.
+ * The OnApp class is a parent of ONAPP_SoftwareLincense class.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */

@@ -43,10 +43,10 @@ define( 'ONAPP_GETRESOURCE_NETWORKS_LIST_BY_HYPERVISOR_GROUP_ID', 'networks_list
  *
  * This class represents the Networks added to your system.
  *
- * The ONAPP_Network class uses the following basic methods:
+ * The OnApp_Network class uses the following basic methods:
  * {@link load} and {@link getList}.
  *
- * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 ) 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_Network extends OnApp {
 	/**

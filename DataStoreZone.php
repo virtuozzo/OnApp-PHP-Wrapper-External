@@ -15,11 +15,11 @@
 /**
  *
  * Managing Data Store Zones
- * 
- * The ONAPP_Disk class uses the following basic methods:
+ *
+ * The OnApp_Disk class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, {@link getList}.
- * 
- * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 ) 
+ *
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_DataStoreZone extends OnApp {
 	/**

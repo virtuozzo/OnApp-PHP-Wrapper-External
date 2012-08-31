@@ -16,7 +16,7 @@
  * Manages LoadBalancingCluster AutoScaling
  *
  * The OnApp_LoadBalancingCluster_AutoScaling class uses no basic methods and is nested of OnApp_LoadBalancingCluster class
- * 
+ *
  */
 class OnApp_LoadBalancingCluster_AutoScaling extends OnApp {
 	public function __construct() {

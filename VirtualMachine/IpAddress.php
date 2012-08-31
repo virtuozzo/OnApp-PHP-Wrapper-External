@@ -16,16 +16,14 @@
 /**
  * VM IP Adresses
  *
- * The ONAPP_VirtualMachine_IpAddress class doesn't support any basic method.
+ * The OnApp_VirtualMachine_IpAddress class doesn't support any basic method.
  *
  */
 
 /**
 *
 */
-define( 'ONAPP_GETRESOURCE_JOIN', 'ip_address_join');
-
-class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
+define( 'ONAPP_GETRESOURCE_JOIN', 'ip_address_join');class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 	/**
 	 * root tag used in the API request
 	 *
@@ -116,7 +114,7 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the Class OnApp
 	 *
 	 * @param string $action action name
 	 *

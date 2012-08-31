@@ -39,7 +39,7 @@ define( 'ONAPP_GETRESOURCE_NETWORKS_LIST_BY_GROUP_ID', 'get_list_by_group_id' );
  *
  * The User class represents the Users of the OnApp installation.
  *
- * The ONAPP_User class uses the following basic methods:
+ * The OnApp_User class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=17 )
@@ -111,7 +111,7 @@ class OnApp_User extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the Class OnApp
 	 *
 	 * @param string $action action name
 	 *

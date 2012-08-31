@@ -33,7 +33,7 @@ define( 'ONAPP_GETRESOURCE_DISK_BACKUPS', 'disk_backups' );
  *
  * This class represents the Backups which have been taken or are waiting to be taken for Virtual Machine.
  *
- * The ONAPP_VirtualMachine_Backup class uses the following basic methods:
+ * The OnApp_VirtualMachine_Backup class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -174,7 +174,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the Class OnApp
 	 *
 	 * @param string $action action name
 	 *

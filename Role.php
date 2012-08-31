@@ -25,7 +25,7 @@
  *
  * This class represents the roles assigned  to the users in this OnApp installation
  *
- * The ONAPP_Role class uses the following basic methods:
+ * The OnApp_Role class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -44,6 +44,10 @@ class OnApp_Role extends OnApp {
 	 * @var string
 	 */
 	var $_resource = 'roles';
+
+	public static $nestedData = array(
+		'permissions' => 'Role_Permission',
+	);
 
 	public function __construct() {
 		parent::__construct();

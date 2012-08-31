@@ -18,7 +18,7 @@
 /**
  * User IP Adresses
  *
- * The ONAPP_User_UsedIpAddress class doesn't support any basic method.
+ * The OnApp_User_UsedIpAddress class doesn't support any basic method.
  *
  */
 class OnApp_User_UsedIpAddress extends OnApp_IpAddress {

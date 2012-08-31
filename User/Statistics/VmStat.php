@@ -18,7 +18,7 @@
 /**
  * User User Statistics VmStat
  *
- *  The ONAPP_User_UserStatistics_VmStats class uses NO basic methods:
+ *  The OnApp_User_UserStatistics_VmStats class uses NO basic methods:
  *
  *
  */

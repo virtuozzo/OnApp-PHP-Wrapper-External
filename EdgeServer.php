@@ -19,10 +19,10 @@
  *
  * The Edge Server class represents the Edge Server of the OnAPP installation.
  *
- * The ONAPP_EdgeServer class uses the following basic methods:
+ * The OnApp_EdgeServer class uses the following basic methods:
  * {@link getList} and {@link load} and .
  *
- * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 ) 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_EdgeServer extends OnApp_VirtualMachine {
 
@@ -43,5 +43,5 @@ class OnApp_EdgeServer extends OnApp_VirtualMachine {
         parent::__construct();
         $this->className = __CLASS__;
     }
-    
+
 }

@@ -2,7 +2,7 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
- * Logger for ONAPP Wrapper
+ * Logger for OnApp Wrapper
  *
  * Log management (LM) comprises an approach to dealing with large volumes of
  * computer-generated log messages (also known as audit records, audit trails,

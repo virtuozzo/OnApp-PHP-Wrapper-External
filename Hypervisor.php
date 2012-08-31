@@ -41,12 +41,12 @@ define( 'ONAPP_GETRESOURCE_HYPERVISOR_REBOOT', 'hypervisor_reboot' );
 /**
  * Hypervisors
  *
- * This class represents the Hypervisors of your OnApp installation. The ONAPP class is the parent of the Hypervisors class.
+ * This class represents the Hypervisors of your OnApp installation. The OnApp class is the parent of the Hypervisors class.
  *
- * The ONAPP_Hypervisor class uses the following basic methods:
+ * The OnApp_Hypervisor class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
- * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 ) 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_Hypervisor extends OnApp {
 	/**
@@ -319,7 +319,7 @@ class OnApp_Hypervisor extends OnApp {
 
     /**
      * Reboots hypervisor
-     * 
+     *
      * @param integer $hypervisor_id hypervisor id
      * @return void
      *

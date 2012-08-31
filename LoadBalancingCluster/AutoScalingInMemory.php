@@ -16,7 +16,7 @@
  * Manages OnApp Load Balancing Cluster Auto Scaling In Memory
  *
  * The OnApp_LoadBalancingCluster_AutoScalingInMemory class uses no basic methods and is nested of OnApp_LoadBalancingCluster class
- * 
+ *
  */
 class OnApp_LoadBalancingCluster_AutoScalingInMemory extends AutoScaling {
 	public function __construct() {

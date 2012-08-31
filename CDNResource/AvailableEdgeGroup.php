@@ -22,11 +22,9 @@
  *
  * The OnApp_CDNResource_AvailableEdgeGroup uses the following basic methods:
  * {@link getList}.
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
-
-
 class OnApp_CDNResource_AvailableEdgeGroup extends OnApp {
 	/**
 	 * root tag used in the API request
@@ -90,7 +88,7 @@ class OnApp_CDNResource_AvailableEdgeGroup extends OnApp {
 		parent::initFields( $version, __CLASS__ );
 		return $this->fields;
 	}
-   
+
 	/**
 	 * Activates action performed with object
 	 *

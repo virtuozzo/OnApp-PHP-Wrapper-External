@@ -30,9 +30,9 @@ define( 'ONAPP_GETRESOURCE_TAKE_BACKUP', 'backups' );
 /**
  * Managing Disks
  *
- * The ONAPP_Disk class uses the following basic methods:
+ * The OnApp_Disk class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, {@link getList}.
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_Disk extends OnApp {
@@ -152,7 +152,7 @@ class OnApp_Disk extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the Class OnApp
 	 *
 	 * @param string $action action name
 	 *

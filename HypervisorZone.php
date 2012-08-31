@@ -16,13 +16,13 @@
  *
  * Managing Hypervisor Zones
  *
- * The ONAPP_HypervisorZone class uses the following basic methods:
+ * The OnApp_HypervisorZone class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
- * The ONAPP_HypervisorZone class represents virtual machine hypervisor groups.
- * The ONAPP class is a parent of ONAPP_HypervisorZone class.
+ * The OnApp_HypervisorZone class represents virtual machine hypervisor groups.
+ * The OnApp class is a parent of ONAPP_HypervisorZone class.
  *
- * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 ) 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_HypervisorZone extends OnApp {
 	/**

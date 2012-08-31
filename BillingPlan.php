@@ -26,11 +26,11 @@ define( 'ONAPP_GETRESOURCE_CREATE_COPY', 'copy' );
 /**
  * Managing Billing Plans
  *
- * The ONAPP_BillingPlan class represents the billing plans. The ONAPP class is the parent of the BillingPlan class.
+ * The OnApp_BillingPlan class represents the billing plans. The OnApp class is the parent of the BillingPlan class.
  *
- * The ONAPP_BillingPlan class uses the following basic methods:
+ * The OnApp_BillingPlan class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_BillingPlan extends OnApp {

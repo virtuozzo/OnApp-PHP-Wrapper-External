@@ -21,7 +21,7 @@
  * The OnApp_EdgeGroup_AssignedLocation class represents the OnApp_EdgeGroup_AssignedLocation of the OnAPP installation.
  *
  * The OnApp_EdgeGroup_AssignedLocation class uses no basic methods and is nested of OnApp_EdgeGroup class
- * 
+ *
  *
  */
 class OnApp_EdgeGroup_AssignedLocation extends Location {
@@ -44,6 +44,6 @@ class OnApp_EdgeGroup_AssignedLocation extends Location {
         $this->className = __CLASS__;
     }
 
-    
-    
+
+
 }

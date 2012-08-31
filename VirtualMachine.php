@@ -102,7 +102,7 @@ define( 'ONAPP_GETRESOURCE_MIGRATE', 'migrate' );
  *
  * The Virtual Machine class represents the Virtual Machines of the OnAPP installation.
  *
- * The ONAPP_VirtualMachine class uses the following basic methods:
+ * The OnApp_VirtualMachine class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )

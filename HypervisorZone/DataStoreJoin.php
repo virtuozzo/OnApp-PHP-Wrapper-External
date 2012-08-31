@@ -18,7 +18,7 @@
  *
  * This class reprsents the Data Store Joins for Hypervisor Zones.
  *
- * The ONAPP_Hypervisor_DataStoreJoin class uses the following basic methods:
+ * The OnApp_Hypervisor_DataStoreJoin class uses the following basic methods:
  * {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -102,7 +102,7 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the Class OnApp
 	 *
 	 * @param string $action action name
 	 *

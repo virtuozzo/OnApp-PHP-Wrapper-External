@@ -78,10 +78,6 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 		// get errors
 		if( $root === 'errors' ) {
 			$errors = (array)$data->$root;
-
-			if( count( $errors ) == 1 ) {
-				$errors = $errors[ 0 ];
-			}
 			return $errors;
 		}
 

@@ -21,12 +21,12 @@
  * Managing Groups
  *
  * The Group class represents the billing groups.
- * The ONAPP class is the parent of the Group class.
+ * The OnApp class is the parent of the Group class.
  *
- * The ONAPP_Group uses the following basic methods:
+ * The OnApp_Group uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
- * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 ) 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_Group extends OnApp {
 	/**

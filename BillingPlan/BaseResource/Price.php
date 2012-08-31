@@ -30,19 +30,19 @@ class OnApp_BillingPlan_BaseResource_Price extends OnApp {
 			case '2.0':
 			case '2.1':
 				$this->fields = array(
-					'price_on' => array(
-						ONAPP_FIELD_MAP => '_price_on',
-						ONAPP_FIELD_TYPE => 'integer',
+					'price_on'  => array(
+						ONAPP_FIELD_MAP       => '_price_on',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
 					'price_off' => array(
-						ONAPP_FIELD_MAP => '_price_off',
-						ONAPP_FIELD_TYPE => 'integer',
+						ONAPP_FIELD_MAP       => '_price_off',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'price' => array(
-						ONAPP_FIELD_MAP => '_price',
-						ONAPP_FIELD_TYPE => 'integer',
+					'price'     => array(
+						ONAPP_FIELD_MAP       => '_price',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);

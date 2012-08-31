@@ -16,7 +16,7 @@
  * Manages OnApp Load Balancing Cluster Config
  *
  * The OnApp_LoadBalancingCluster_Config class uses no basic methods and is nested of OnApp_LoadBalancingCluster class
- * 
+ *
  */
 class OnApp_LoadBalancingCluster_Config extends OnApp {
 	public function __construct() {

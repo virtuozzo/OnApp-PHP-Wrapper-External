@@ -18,11 +18,11 @@
 /**
  * User White List
  *
- * The ONAPP_User_WhiteList class supports the following basic methods
- * 
- * The ONAPP_User_WhiteList class uses the following basic methods:
+ * The OnApp_User_WhiteList class supports the following basic methods
+ *
+ * The OnApp_User_WhiteList class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_User_WhiteList extends OnApp {
@@ -102,7 +102,7 @@ class OnApp_User_WhiteList extends OnApp {
 	}
 
     /**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the Class OnApp
 	 *
 	 * @param string $action action name
 	 *
@@ -204,7 +204,7 @@ class OnApp_User_WhiteList extends OnApp {
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class ONAPP.
+	 * this parameter in the class inheriting Class OnApp.
 	 *
 	 * @param integer $id white list id
 	 * @param integer $user_id User id

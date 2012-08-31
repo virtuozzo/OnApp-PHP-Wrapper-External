@@ -17,9 +17,9 @@
 /**
  * The CPU utilization for Virtual Machine
  *
- * The ONAPP_VirtualMachine_CpuUsage class uses the following basic methods:
+ * The OnApp_VirtualMachine_CpuUsage class uses the following basic methods:
  * {@link getList}.
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_VirtualMachine_CpuUsage extends OnApp {
@@ -135,7 +135,7 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the Class OnApp
 	 *
 	 * @param string $action action name
 	 *

@@ -35,7 +35,7 @@ define( 'ONAPP_GETRESOURCE_CDN_PURGE', 'cdn_purge' );
  * Managing CDN Resource
  *
  * The CDN Resource class represents the CDN Resources.
- * The ONAPP_CDNResource class is the parent of the OnApp class.
+ * The OnApp_CDNResource class is the parent of the OnApp class.
  *
  * The CDNResource uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
@@ -231,7 +231,7 @@ class OnApp_CDNResource extends OnApp {
 				 */
 				$resource = $this->_resource . '/enable';
 				break;
-            
+
 			case ONAPP_GETRESOURCE_CDN_PREFETCH:
 				/**
 				 * ROUTE :

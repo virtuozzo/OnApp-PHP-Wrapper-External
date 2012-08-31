@@ -20,13 +20,13 @@ define('ONAPP_GETRESOURCE_GETLIST_BY_USER_ID', 'get_list_by_user_id');
  *
  * The Virtual Machine class represents the Virtual Machines of the OnAPP installation.
  *
- * The ONAPP_VirtualMachine class uses the following basic methods:
+ * The OnApp_VirtualMachine class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
  * Couldn't edit LoadBalancingCluster Ticket #2496
  * In json _tagRoot = 'cluster'       Ticket #2495
  *
- * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 ) 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_LoadBalancingCluster extends OnApp {
 
@@ -186,7 +186,7 @@ class OnApp_LoadBalancingCluster extends OnApp {
 				 */
 				$resource = 'users/'. $this->_user_id . '/load_balancing_clusters';
 				break;
-            
+
 			default:
 				/**
 				 * ROUTE :
@@ -300,7 +300,7 @@ class OnApp_LoadBalancingCluster extends OnApp {
 
 		return ( is_array( $result ) || ! $result ) ? $result : array($result);
 	}
-    
-    
+
+
 
 }

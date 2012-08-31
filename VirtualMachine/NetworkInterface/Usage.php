@@ -18,13 +18,11 @@
  *
  * This class represents the VM Network Interface Usage.
  *
- * The ONAPP_VirtualMachine_NetworkInterface_Usage class uses the following basic methods:
+ * The OnApp_VirtualMachine_NetworkInterface_Usage class uses the following basic methods:
  * {@link load}, {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
- */
-
-class ONAPP_VirtualMachine_NetworkInterface_Usage extends OnApp {
+ */class ONAPP_VirtualMachine_NetworkInterface_Usage extends OnApp {
 	/**
 	 * root tag used in the API request
 	 *
@@ -110,7 +108,7 @@ class ONAPP_VirtualMachine_NetworkInterface_Usage extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the Class OnApp
 	 *
 	 * @param string $action action name
 	 *
@@ -156,7 +154,7 @@ class ONAPP_VirtualMachine_NetworkInterface_Usage extends OnApp {
 
 				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/network_interfaces/' . $this->_network_interface_id . '/'. $this->_resource;
 				break;
-                
+
 			default:
 				$resource = parent::getResource( $action );
 				break;

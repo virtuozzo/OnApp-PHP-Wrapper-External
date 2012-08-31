@@ -16,17 +16,15 @@
  *
  * Managing Disk Backups Schedules
  *
- * The ONAPP_Disk_Schedule class uses the following basic methods:
+ * The OnApp_Disk_Schedule class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
- * The ONAPP_Disk_Schedule class represents Disk Backups Schedules.
- * The ONAPP class is a parent of ONAPP_Disk_Schedule class.
+ * The OnApp_Disk_Schedule class represents Disk Backups Schedules.
+ * The OnApp class is a parent of ONAPP_Disk_Schedule class.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
-define( 'ONAPP_GETRESOURCE_LIST_BY_DISK_ID', 'get list by disk id' );
-
-class OnApp_Disk_Schedule extends OnApp {
+define( 'ONAPP_GETRESOURCE_LIST_BY_DISK_ID', 'get list by disk id' );class OnApp_Disk_Schedule extends OnApp {
 	/**
 	 * root tag used in the API request
 	 *
@@ -144,7 +142,7 @@ class OnApp_Disk_Schedule extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the Class OnApp
 	 *
 	 * @param string $action action name
 	 *

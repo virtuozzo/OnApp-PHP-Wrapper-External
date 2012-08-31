@@ -16,7 +16,7 @@
  * Manages OnApp Load Balancing Cluster Node Atribute
  *
  * The OnApp_LoadBalancingCluster_NodeAtribute class uses no basic methods and is nested of OnApp_LoadBalancingCluster class
- * 
+ *
  */
 class OnApp_LoadBalancingCluster_NodeAtribute extends OnApp {
 	public function __construct() {

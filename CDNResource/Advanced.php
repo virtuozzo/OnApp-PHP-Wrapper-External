@@ -18,11 +18,9 @@
  *
  * The OnApp_CDNResource_Advanced uses the following basic methods:
  * {@link getList}.
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
-
-
 class OnApp_CDNResource_Advanced extends OnApp {
 	/**
 	 * root tag used in the API request
@@ -140,7 +138,7 @@ class OnApp_CDNResource_Advanced extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the Class OnApp
 	 *
 	 * @param string $action action name
 	 *

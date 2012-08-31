@@ -16,10 +16,10 @@
 /**
  * View CDN Usage Statistics
  *
- * The ONAPP_CDNUsageStatistic class represents CDN Usage Statistics info
- * The ONAPP_CDNUsageStatistic class is the parent of the OnApp class.
+ * The OnApp_CDNUsageStatistic class represents CDN Usage Statistics info
+ * The OnApp_CDNUsageStatistic class is the parent of the OnApp class.
  *
- * The ONAPP_EdgeGroup uses the following basic methods:
+ * The OnApp_EdgeGroup uses the following basic methods:
  * {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -101,5 +101,5 @@ class ONAPP_CDNUsageStatistic extends OnApp {
 				break;
 		}
 	}
-    
+
 }

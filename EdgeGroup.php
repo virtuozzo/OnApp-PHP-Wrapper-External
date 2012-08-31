@@ -28,11 +28,11 @@ define( 'ONAPP_GETRESOURCE_EDGE_GROUP_UNASSIGN_LOCATION', 'edge_group_unassign_l
  * Managing Edge Groups
  *
  * The Edge Group class represents the Edge groups.
- * The ONAPP_EdgeGroup class is the parent of the OnApp class.
+ * The OnApp_EdgeGroup class is the parent of the OnApp class.
  *
- * The ONAPP_EdgeGroup uses the following basic methods:
+ * The OnApp_EdgeGroup uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_EdgeGroup extends OnApp {
@@ -104,9 +104,9 @@ class OnApp_EdgeGroup extends OnApp {
 		parent::initFields( $version, __CLASS__ );
 		return $this->fields;
 	}
-    
+
     /**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the Class OnApp
 	 *
 	 * @param string $action action name
 	 *
@@ -118,10 +118,10 @@ class OnApp_EdgeGroup extends OnApp {
 			case ONAPP_GETRESOURCE_EDGE_GROUP_ASSIGN_LOCATION:
 				/**
 				 * TODO: ADD ROUTE
-				 * 
-				 * 
 				 *
-				 * 
+				 *
+				 *
+				 *
 				 */
 				$resource = $this->getResource() . '/' . $this->_id . '/assign' ;
 				break;
@@ -129,10 +129,10 @@ class OnApp_EdgeGroup extends OnApp {
             case ONAPP_GETRESOURCE_EDGE_GROUP_UNASSIGN_LOCATION:
 				/**
 				 * TODO: ADD ROUTE
-				 * 
-				 * 
-				 * 
-				 * 
+				 *
+				 *
+				 *
+				 *
 				 */
 				$resource = $this->getResource() . '/' . $this->_id . '/unassign' ;
 				break;
@@ -143,7 +143,7 @@ class OnApp_EdgeGroup extends OnApp {
 		}
 
         $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
-		
+
 
 		return $resource;
 	}
@@ -176,13 +176,13 @@ class OnApp_EdgeGroup extends OnApp {
 		);
 
         $this->sendPost( ONAPP_GETRESOURCE_EDGE_GROUP_ASSIGN_LOCATION, $data );
-        
+
     }
 
     /**
      *
      * @param <type> $edge_group_id
-     * @param <type> $location_id 
+     * @param <type> $location_id
      */
     function unassign_location ( $edge_group_id, $location_id ) {
         if ( $edge_group_id ) {
@@ -212,6 +212,6 @@ class OnApp_EdgeGroup extends OnApp {
 		);
 
         $this->sendPost( ONAPP_GETRESOURCE_EDGE_GROUP_UNASSIGN_LOCATION, $data );
-        
+
     }
 }

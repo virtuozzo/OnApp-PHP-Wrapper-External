@@ -16,7 +16,7 @@
 /**
  * VM Network Interface
  *
- * The ONAPP_VirtualMachine_NetworkInterface class uses the following basic methods:
+ * The OnApp_VirtualMachine_NetworkInterface class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -135,7 +135,7 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the Class OnApp
 	 *
 	 * @param string $action action name
 	 *
@@ -243,7 +243,7 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class ONAPP.
+	 * this parameter in the class inheriting Class OnApp.
 	 *
 	 * @param integer $id Network Interface id
 	 * @param integer $virtual_machine_id Virtual Machine id

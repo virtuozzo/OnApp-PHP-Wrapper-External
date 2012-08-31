@@ -20,9 +20,9 @@
  *
  * The Cpu Usage class represents the Cpu Usage of the OnAPP installation.
  *
- * The ONAPP_CpuUsage class uses the following basic methods:
+ * The OnApp_CpuUsage class uses the following basic methods:
  * {@link getList} and {@link load} and .
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
@@ -32,7 +32,7 @@ class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
     }
 
     /**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the Class OnApp
 	 *
 	 * @param string $action action name
 	 *
@@ -101,5 +101,5 @@ class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
 			);
 		}
 	}
-    
+
 }

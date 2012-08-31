@@ -3,13 +3,13 @@
 /**
  * Manages Billing Plan Base Resource Limits
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	BillingPlan_BaseResource
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API WRAPPER
+ * @package        OnApp
+ * @subpackage    BillingPlan_BaseResource
+ * @author        Andrew Yatskovets
+ * @copyright    (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see            OnApp
  */
 class OnApp_BillingPlan_BaseResource_Limit extends OnApp {
 	public function __construct() {
@@ -29,13 +29,13 @@ class OnApp_BillingPlan_BaseResource_Limit extends OnApp {
 			case '2.1':
 				$this->fields = array(
 					'limit_free' => array(
-						ONAPP_FIELD_MAP => '_limit_free',
-						ONAPP_FIELD_TYPE => 'integer',
+						ONAPP_FIELD_MAP       => '_limit_free',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'limit' => array(
-						ONAPP_FIELD_MAP => '_limit',
-						ONAPP_FIELD_TYPE => 'integer',
+					'limit'      => array(
+						ONAPP_FIELD_MAP       => '_limit',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);

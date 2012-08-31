@@ -25,7 +25,7 @@ define( 'ONAPP_GET_USERTEMPLATES_LIST', 'user' );
  *
  * This class represents the Templates of the OnApp installation that you can build VMs on.
  *
- * The ONAPP_Template class uses the following basic methods:
+ * The OnApp_Template class uses the following basic methods:
  * {@link load}, {@link delete}, and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )

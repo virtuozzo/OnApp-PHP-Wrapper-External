@@ -23,7 +23,7 @@ if( !defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
 	 */
 	function OnAppAutoLoad( $className ) {
 		// compatibility with legacy code
-		$className = str_replace( 'ONAPP', 'OnApp', $className );
+		//$className = str_replace( 'ONAPP', 'OnApp', $className );
 
 		$path = str_replace( 'OnApp_', '', $className );
 		$path = explode( '_', $path );

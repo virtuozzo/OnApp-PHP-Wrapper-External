@@ -17,9 +17,9 @@
 /**
  * Virtual Machine Console
  *
- * The ONAPP_Console class uses the following basic methods:
+ * The OnApp_Console class uses the following basic methods:
  * {@link load}.
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_Console extends OnApp {
@@ -103,7 +103,7 @@ class OnApp_Console extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias for Load of objects of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias for Load of objects of the API Class that inherits the Class OnApp
 	 *
 	 * Can be redefined if the API for load objects does not use the default
 	 * alias (the alias consisting of few fields) the same way as {@link
@@ -143,7 +143,7 @@ class OnApp_Console extends OnApp {
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class ONAPP.
+	 * this parameter in the class inheriting Class OnApp.
 	 *
 	 * @param integer $virtual_machine_id Object id
 	 *

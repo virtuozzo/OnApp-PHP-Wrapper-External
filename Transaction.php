@@ -21,7 +21,7 @@
  *
  * This class represents the Transactions of the OnApp installation.
  *
- * The ONAPP_Transaction class uses the following basic methods:
+ * The OnApp_Transaction class uses the following basic methods:
  * {@link load} and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )

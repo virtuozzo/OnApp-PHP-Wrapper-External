@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Get locale from OnApp CP
  *

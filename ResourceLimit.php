@@ -19,7 +19,7 @@
  *
  * This class represents the resource limits set to users.
  *
- * The ONAPP_ResourceLimit class uses the following basic methods:
+ * The OnApp_ResourceLimit class uses the following basic methods:
  * {@link load}, {@link save} and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -152,7 +152,7 @@ class OnApp_ResourceLimit extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the Class OnApp
 	 *
 	 * @return string API resource
 	 * @access public
@@ -216,7 +216,7 @@ class OnApp_ResourceLimit extends OnApp {
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class ONAPP.
+	 * this parameter in the class inheriting Class OnApp.
 	 *
 	 * @param integer $id Object id
 	 *

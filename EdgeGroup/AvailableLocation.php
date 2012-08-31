@@ -21,7 +21,7 @@
  * The OnApp_EdgeGroup_AvailableLocation class represents the OnApp_EdgeGroup_AvailableLocation of the OnAPP installation.
  *
  * The OnApp_EdgeGroup_AvailableLocation class uses no basic methods and is nested of OnApp_EdgeGroup class
- * 
+ *
  *
  */
 class OnApp_EdgeGroup_AvailableLocation extends Location {
@@ -44,6 +44,6 @@ class OnApp_EdgeGroup_AvailableLocation extends Location {
         $this->className = __CLASS__;
     }
 
-    
+
 
 }

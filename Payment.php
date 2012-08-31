@@ -21,10 +21,10 @@
  *
  * This class represents the user payments entered to the system.
  *
- * The ONAPP_Payment class uses the following basic methods:
+ * The OnApp_Payment class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
- * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 ) 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_Payment extends OnApp {
 	/**
@@ -185,7 +185,7 @@ class OnApp_Payment extends OnApp {
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class ONAPP.
+	 * this parameter in the class inheriting Class OnApp.
 	 *
 	 * @param integer $id Payment ID
 	 * @param integer $user_id User ID

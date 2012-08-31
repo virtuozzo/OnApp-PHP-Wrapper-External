@@ -16,11 +16,9 @@
 /**
  * CDN Origins For API
  *
- * The ONAPP_CDNResource_Origin class doesn't support any basic method.
+ * The OnApp_CDNResource_Origin class doesn't support any basic method.
  *
  */
-
-
 class OnApp_CDNResource_Origin extends OnApp {
 	/**
 	 * root tag used in the API request

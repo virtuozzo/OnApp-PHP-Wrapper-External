@@ -16,7 +16,7 @@
  * Manages OnApp Load Balancing Cluster Auto Scaling Out CPU
  *
  * The OnApp_LoadBalancingCluster_AutoScalingOutCpu class uses no basic methods and is nested of OnApp_LoadBalancingCluster class
- * 
+ *
  */
 class OnApp_LoadBalancingCluster_AutoScalingOutCpu extends AutoScaling {
 	public function __construct() {

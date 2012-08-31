@@ -21,7 +21,7 @@
  * The OnApp_Log class uses the following basic methods:
  * {@link load} and {@link getList}.
  *
- * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 ) 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_Log extends OnApp {
 	/**
@@ -89,7 +89,7 @@ class OnApp_Log extends OnApp {
 						ONAPP_FIELD_MAP => '_status',
 						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true
-					),                    
+					),
 				);
 				break;
 
@@ -120,7 +120,7 @@ class OnApp_Log extends OnApp {
 				 * @alias  /logs/:id(.:format)
 				 * @format   {:controller=>"log_items", :action=>"show"}
 				 */
-                
+
 				$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $this->_resource );
 				break;
 
@@ -144,7 +144,7 @@ class OnApp_Log extends OnApp {
 	function getList( $url_args = null ) {
         return parent::getList( null, $url_args );
 	}
-    
+
 	function activate( $action_name ) {
 		switch( $action_name ) {
 			case ONAPP_ACTIVATE_SAVE:
@@ -152,6 +152,6 @@ class OnApp_Log extends OnApp {
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
 				break;
 		}
-	}    
+	}
 
 }

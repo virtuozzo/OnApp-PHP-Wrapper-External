@@ -19,8 +19,6 @@
  * The OnApp_CDNResource_Advanced_Country class doesn't support any basic method.
  *
  */
-
-
 class OnApp_CDNResource_Advanced_Country extends OnApp {
 	/**
 	 * root tag used in the API request
