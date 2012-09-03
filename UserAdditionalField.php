@@ -2,7 +2,7 @@
 /**
  * User Additional Field
  *
- * @todo Add description
+ * @todo        Add description
  *
  * @category    API wrapper
  * @package     OnApp
@@ -44,36 +44,38 @@ class OnApp_UserAdditionalField extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
 		switch( $version ) {
 			case '2.3':
 				$this->fields = array(
-					'id'            => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
+					'id' => array(
+						ONAPP_FIELD_MAP => '_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'name'          => array(
-						ONAPP_FIELD_MAP       => '_name',
-						ONAPP_FIELD_TYPE      => 'string',
+					'name' => array(
+						ONAPP_FIELD_MAP => '_name',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'default_value' => array(
-						ONAPP_FIELD_MAP       => '_default_value',
-						ONAPP_FIELD_TYPE      => 'integer',
+						ONAPP_FIELD_MAP => '_default_value',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'data_type'     => array(
-						ONAPP_FIELD_MAP       => '_data_type',
-						ONAPP_FIELD_TYPE      => 'string',
+					'data_type' => array(
+						ONAPP_FIELD_MAP => '_data_type',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
 				break;
+
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				break;

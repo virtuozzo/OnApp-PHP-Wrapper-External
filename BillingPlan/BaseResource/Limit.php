@@ -20,8 +20,9 @@ class OnApp_BillingPlan_BaseResource_Limit extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -29,13 +30,13 @@ class OnApp_BillingPlan_BaseResource_Limit extends OnApp {
 			case '2.1':
 				$this->fields = array(
 					'limit_free' => array(
-						ONAPP_FIELD_MAP       => '_limit_free',
-						ONAPP_FIELD_TYPE      => 'integer',
+						ONAPP_FIELD_MAP => '_limit_free',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'limit'      => array(
-						ONAPP_FIELD_MAP       => '_limit',
-						ONAPP_FIELD_TYPE      => 'integer',
+					'limit' => array(
+						ONAPP_FIELD_MAP => '_limit',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
@@ -45,6 +46,7 @@ class OnApp_BillingPlan_BaseResource_Limit extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				break;

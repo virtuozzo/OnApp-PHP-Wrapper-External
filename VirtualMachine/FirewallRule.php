@@ -48,8 +48,9 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -57,47 +58,47 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 			case '2.0':
 			case '2.1':
 				$this->fields = array(
-					'id'                   => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
+					'id' => array(
+						ONAPP_FIELD_MAP => '_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'address'              => array(
-						ONAPP_FIELD_MAP  => '_address',
+					'address' => array(
+						ONAPP_FIELD_MAP => '_address',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'position'             => array(
-						ONAPP_FIELD_MAP       => '_position',
-						ONAPP_FIELD_TYPE      => 'string',
+					'position' => array(
+						ONAPP_FIELD_MAP => '_position',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'created_at'           => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'string',
+					'created_at' => array(
+						ONAPP_FIELD_MAP => '_created_at',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'updated_at'           => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'string',
+					'updated_at' => array(
+						ONAPP_FIELD_MAP => '_updated_at',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'command'              => array(
-						ONAPP_FIELD_MAP      => '_command',
-						ONAPP_FIELD_TYPE     => 'string',
+					'command' => array(
+						ONAPP_FIELD_MAP => '_command',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_REQUIRED => true,
 					),
-					'port'                 => array(
-						ONAPP_FIELD_MAP  => '_port',
+					'port' => array(
+						ONAPP_FIELD_MAP => '_port',
 						ONAPP_FIELD_TYPE => 'integer',
 					),
-					'protocol'             => array(
-						ONAPP_FIELD_MAP      => '_protocol',
-						ONAPP_FIELD_TYPE     => 'string',
+					'protocol' => array(
+						ONAPP_FIELD_MAP => '_protocol',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_REQUIRED => true,
 					),
 					'network_interface_id' => array(
-						ONAPP_FIELD_MAP      => '_network_interface_id',
-						ONAPP_FIELD_TYPE     => 'integer',
+						ONAPP_FIELD_MAP => '_network_interface_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_REQUIRED => true,
 					),
 				);
@@ -107,6 +108,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				break;
@@ -120,6 +122,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
+	 *
 	 * @return string API resource
 	 * @access public
 	 */
@@ -130,21 +133,21 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 				 * ROUTE :
 				 * @name virtual_machine_firewall_rules
 				 * @method GET
-				 * @alias  /virtual_machines/:virtual_machine_id/firewall_rules(.:format)
+				 * @alias     /virtual_machines/:virtual_machine_id/firewall_rules(.:format)
 				 * @format    {:controller=>"firewall_rules", :action=>"index"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name virtual_machine_firewall_rule
 				 * @method GET
-				 * @alias  /virtual_machines/:virtual_machine_id/firewall_rules/:id(.:format)
+				 * @alias     /virtual_machines/:virtual_machine_id/firewall_rules/:id(.:format)
 				 * @format    {:controller=>"firewall_rules", :action=>"show"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name
 				 * @method POST
-				 * @alias  /virtual_machines/:virtual_machine_id/firewall_rules(.:format)
+				 * @alias     /virtual_machines/:virtual_machine_id/firewall_rules(.:format)
 				 * @format    {:controller=>"firewall_rules", :action=>"create"}
 				 */
 				/**
@@ -158,7 +161,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 				 * ROUTE :
 				 * @name
 				 * @method DELETE
-				 * @alias  /virtual_machines/:virtual_machine_id/firewall_rules/:id(.:format)
+				 * @alias     /virtual_machines/:virtual_machine_id/firewall_rules/:id(.:format)
 				 * @format    {:controller=>"firewall_rules", :action=>"destroy"}
 				 */
 				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->_resource;
@@ -169,7 +172,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 				 * ROUTE :
 				 * @name move_virtual_machine_firewall_rule
 				 * @method GET
-				 * @alias  /virtual_machines/:virtual_machine_id/firewall_rules/:id/move(.:format)
+				 * @alias     /virtual_machines/:virtual_machine_id/firewall_rules/:id/move(.:format)
 				 * @format    {:controller=>"firewall_rules", :action=>"move"}
 				 */
 				$resource = $this->getResource( ONAPP_GETRESOURCE_DEFAULT ) . '/' . $this->_id . '/move';
@@ -180,7 +183,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 				 * ROUTE :
 				 * @name update_firewall_rules_virtual_machine
 				 * @method POST
-				 * @alias  /virtual_machines/:id/update_firewall_rules(.:format)
+				 * @alias     /virtual_machines/:id/update_firewall_rules(.:format)
 				 * @format    {:controller=>"virtual_machines", :action=>"update_firewall_rules"}
 				 */
 				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/update_firewall_rules';
@@ -191,7 +194,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 				 * ROUTE :
 				 * @name update_firewall_rules_virtual_machine
 				 * @method POST
-				 * @alias  /virtual_machines/:id/update_firewall_rules(.:format)
+				 * @alias   /virtual_machines/:id/update_firewall_rules(.:format)
 				 * @format  {:controller=>"virtual_machines", :action=>"update_firewall_rules"}
 				 */
 				$resource = '/virtual_machines/' . $this->_virtual_machine_id . '/firewall_rules/update_defaults';
@@ -238,9 +241,9 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class ONAPP.
+	 * this parameter in the class inheriting OnApp class.
 	 *
-	 * @param integer $id Firewall Rule id
+	 * @param integer $id                 Firewall Rule id
 	 * @param integer $virtual_machine_id Virtual Machine id
 	 *
 	 * @return mixed serialized Object instance from API
@@ -347,7 +350,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 * Updates default firewall rules for all network interfaces for particular virtual machine
 	 *
 	 * @param integer $virtual_machine_id VM id
-	 * @param array $networkInterfaces  =  array( {$NETWORK_INTERFACE_ID} => {COMMAND} );
+	 * @param array   $networkInterfaces  =  array( {$NETWORK_INTERFACE_ID} => {COMMAND} );
 	 *
 	 * @return void
 	 */

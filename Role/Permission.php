@@ -14,7 +14,7 @@
 /**
  * Managing Role Permissions
  *
- * The OnApp_Role_Permission class represents the billing plans. The ONAPP class is the parent of the OnApp class.
+ * The OnApp_Role_Permission class represents the billing plans. The OnApp class is the parent of the OnApp class.
  *
  * The OnApp_BillingPlan class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
@@ -44,8 +44,9 @@ class OnApp_Role_Permission extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -53,27 +54,27 @@ class OnApp_Role_Permission extends OnApp {
 			case '2.0':
 			case '2.1':
 				$this->fields = array(
-					'id'         => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
+					'id' => array(
+						ONAPP_FIELD_MAP => '_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'label'      => array(
-						ONAPP_FIELD_MAP      => '_label',
+					'label' => array(
+						ONAPP_FIELD_MAP => '_label',
 						ONAPP_FIELD_REQUIRED => true,
 					),
 					'created_at' => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
+						ONAPP_FIELD_MAP => '_created_at',
+						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'updated_at' => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
+						ONAPP_FIELD_MAP => '_updated_at',
+						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'identifier' => array(
-						ONAPP_FIELD_MAP       => '_identifier',
+						ONAPP_FIELD_MAP => '_identifier',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
@@ -83,6 +84,7 @@ class OnApp_Role_Permission extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				break;

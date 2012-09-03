@@ -27,8 +27,9 @@ class OnApp_LoadBalancingCluster_Config extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -36,13 +37,13 @@ class OnApp_LoadBalancingCluster_Config extends OnApp {
 			case '2.1':
 				$this->fields = array(
 					'max_node_amount' => array(
-						ONAPP_FIELD_MAP       => '_max_node_amount',
-						ONAPP_FIELD_TYPE      => 'integer',
+						ONAPP_FIELD_MAP => '_max_node_amount',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
 					'min_node_amount' => array(
-						ONAPP_FIELD_MAP       => '_min_node_amount',
-						ONAPP_FIELD_TYPE      => 'integer',
+						ONAPP_FIELD_MAP => '_min_node_amount',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
@@ -52,6 +53,7 @@ class OnApp_LoadBalancingCluster_Config extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				break;

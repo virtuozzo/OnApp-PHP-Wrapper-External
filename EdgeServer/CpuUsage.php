@@ -46,7 +46,7 @@ class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
 				 * ROUTE :
 				 * @name cpu_usage_edge_servers
 				 * @method GET
-				 * @alias  /edge_servers/:id/cpu_usage(.:format)
+				 * @alias   /edge_servers/:id/cpu_usage(.:format)
 				 * @format  {:controller=>"edge_servers", :action=>"cpu_usage"}
 				 */
 				if( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {

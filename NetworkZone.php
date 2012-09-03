@@ -2,7 +2,7 @@
 /**
  * Network Zone
  *
- * @todo Add description
+ * @todo        Add description
  *
  * @category    API wrapper
  * @package     OnApp
@@ -44,32 +44,33 @@ class OnApp_NetworkZone extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
 		switch( $version ) {
 			case '2.0':
 				$this->fields = array(
-					'id'         => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
+					'id' => array(
+						ONAPP_FIELD_MAP => '_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
 					'created_at' => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
+						ONAPP_FIELD_MAP => '_created_at',
+						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'updated_at' => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
+						ONAPP_FIELD_MAP => '_updated_at',
+						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'label'      => array(
-						ONAPP_FIELD_MAP       => '_label',
-						ONAPP_FIELD_TYPE      => 'string',
+					'label' => array(
+						ONAPP_FIELD_MAP => '_label',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
@@ -83,6 +84,7 @@ class OnApp_NetworkZone extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				break;

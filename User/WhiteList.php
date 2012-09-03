@@ -4,7 +4,7 @@
 /**
  * User White List
  *
- * @todo write description
+ * @todo        write description
  *
  * @category    API wrapper
  * @package     OnApp
@@ -48,8 +48,9 @@ class OnApp_User_WhiteList extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -57,34 +58,34 @@ class OnApp_User_WhiteList extends OnApp {
 			case '2.0':
 			case '2.1':
 				$this->fields = array(
-					'id'          => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
+					'id' => array(
+						ONAPP_FIELD_MAP => '_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'created_at'  => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
+					'created_at' => array(
+						ONAPP_FIELD_MAP => '_created_at',
+						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'updated_at'  => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
+					'updated_at' => array(
+						ONAPP_FIELD_MAP => '_updated_at',
+						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'user_id'     => array(
-						ONAPP_FIELD_MAP       => '_user_id',
-						ONAPP_FIELD_TYPE      => 'integer',
+					'user_id' => array(
+						ONAPP_FIELD_MAP => '_user_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'ip'          => array(
-						ONAPP_FIELD_MAP       => '_ip',
-						ONAPP_FIELD_TYPE      => 'string',
+					'ip' => array(
+						ONAPP_FIELD_MAP => '_ip',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'description' => array(
-						ONAPP_FIELD_MAP       => '_description',
-						ONAPP_FIELD_TYPE      => 'string',
+						ONAPP_FIELD_MAP => '_description',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 
@@ -95,6 +96,7 @@ class OnApp_User_WhiteList extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				break;
@@ -119,7 +121,7 @@ class OnApp_User_WhiteList extends OnApp {
 				 * ROUTE :
 				 * @name user_user_white_lists
 				 * @method GET
-				 * @alias  /users/:user_id/user_white_lists(.:format)
+				 * @alias   /users/:user_id/user_white_lists(.:format)
 				 * @format  {:controller=>"user_white_lists", :action=>"index"}
 				 */
 				/**
@@ -147,7 +149,7 @@ class OnApp_User_WhiteList extends OnApp {
 				 * ROUTE :
 				 * @name user_vm_stats
 				 * @method DELETE
-				 * @alias  /users/:user_id/user_white_lists/:id(.:format)
+				 * @alias   /users/:user_id/user_white_lists/:id(.:format)
 				 * @format  {:controller=>"user_white_lists", :action=>"destroy"}
 				 */
 				if( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {
@@ -207,9 +209,9 @@ class OnApp_User_WhiteList extends OnApp {
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class ONAPP.
+	 * this parameter in the class inheriting OnApp class.
 	 *
-	 * @param integer $id white list id
+	 * @param integer $id      white list id
 	 * @param integer $user_id User id
 	 *
 	 * @return mixed serialized Object instance from API

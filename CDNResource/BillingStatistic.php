@@ -44,8 +44,9 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -56,64 +57,65 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
 				break;
 			case '2.3':
 				$this->fields = array(
-					'id'                     => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
+					'id' => array(
+						ONAPP_FIELD_MAP => '_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'created_at'             => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'string',
+					'created_at' => array(
+						ONAPP_FIELD_MAP => '_created_at',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'updated_at'             => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'string',
+					'updated_at' => array(
+						ONAPP_FIELD_MAP => '_updated_at',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'data_cached'            => array(
-						ONAPP_FIELD_MAP       => '_data_cached',
-						ONAPP_FIELD_TYPE      => 'string',
+					'data_cached' => array(
+						ONAPP_FIELD_MAP => '_data_cached',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'data_non_cached'        => array(
-						ONAPP_FIELD_MAP       => '_data_non_cached',
-						ONAPP_FIELD_TYPE      => 'string',
+					'data_non_cached' => array(
+						ONAPP_FIELD_MAP => '_data_non_cached',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'cdn_resource_id'        => array(
-						ONAPP_FIELD_MAP       => '_cdn_resource_id',
-						ONAPP_FIELD_TYPE      => 'integer',
+					'cdn_resource_id' => array(
+						ONAPP_FIELD_MAP => '_cdn_resource_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'user_id'                => array(
-						ONAPP_FIELD_MAP       => '_user_id',
-						ONAPP_FIELD_TYPE      => 'integer',
+					'user_id' => array(
+						ONAPP_FIELD_MAP => '_user_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'edge_group_location_id' => array(
-						ONAPP_FIELD_MAP       => '_edge_group_location_id',
-						ONAPP_FIELD_TYPE      => 'integer',
+						ONAPP_FIELD_MAP => '_edge_group_location_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'edge_id'                => array(
-						ONAPP_FIELD_MAP       => '_edge_id',
-						ONAPP_FIELD_TYPE      => 'integer',
+					'edge_id' => array(
+						ONAPP_FIELD_MAP => '_edge_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'location_id'            => array(
-						ONAPP_FIELD_MAP       => '_location_id',
-						ONAPP_FIELD_TYPE      => 'integer',
+					'location_id' => array(
+						ONAPP_FIELD_MAP => '_location_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'edge_group_id'          => array(
-						ONAPP_FIELD_MAP       => '_edge_group_id',
-						ONAPP_FIELD_TYPE      => 'integer',
+					'edge_group_id' => array(
+						ONAPP_FIELD_MAP => '_edge_group_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				$fields       = array(
@@ -128,19 +130,19 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
 				$this->unsetFields( $fields );
 
 				$this->fields[ 'cost' ]             = array(
-					ONAPP_FIELD_MAP  => '_cost',
+					ONAPP_FIELD_MAP => '_cost',
 					ONAPP_FIELD_TYPE => 'string',
 				);
 				$this->fields[ 'edge_group_label' ] = array(
-					ONAPP_FIELD_MAP  => '_edge_group_label',
+					ONAPP_FIELD_MAP => '_edge_group_label',
 					ONAPP_FIELD_TYPE => 'string',
 				);
 				$this->fields[ 'stat_time' ]        = array(
-					ONAPP_FIELD_MAP  => '_stat_time',
+					ONAPP_FIELD_MAP => '_stat_time',
 					ONAPP_FIELD_TYPE => 'string',
 				);
 				$this->fields[ 'value' ]            = array(
-					ONAPP_FIELD_MAP  => '_value',
+					ONAPP_FIELD_MAP => '_value',
 					ONAPP_FIELD_TYPE => 'string',
 				);
 

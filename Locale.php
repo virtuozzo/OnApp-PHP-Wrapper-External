@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Get locale from OnApp CP
  *
@@ -33,8 +32,9 @@ class OnApp_Locale extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -42,15 +42,16 @@ class OnApp_Locale extends OnApp {
 			case 2.3:
 				$this->fields = array(
 					'code' => array(
-						ONAPP_FIELD_MAP  => 'code',
+						ONAPP_FIELD_MAP => 'code',
 						ONAPP_FIELD_TYPE => 'string',
 					),
 					'name' => array(
-						ONAPP_FIELD_MAP  => 'name',
+						ONAPP_FIELD_MAP => 'name',
 						ONAPP_FIELD_TYPE => 'string',
 					),
 				);
 				break;
+
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				break;
@@ -66,21 +67,21 @@ class OnApp_Locale extends OnApp {
 		 * ROUTE :
 		 * @name roles
 		 * @method GET
-		 * @alias  /roles(.:format)
+		 * @alias   /roles(.:format)
 		 * @format  {:controller=>"roles", :action=>"index"}
 		 */
 		/**
 		 * ROUTE :
 		 * @name role
 		 * @method GET
-		 * @alias  /roles/:id(.:format)
+		 * @alias   /roles/:id(.:format)
 		 * @format  {:controller=>"roles", :action=>"show"}
 		 */
 		/**
 		 * ROUTE :
 		 * @name
 		 * @method POST
-		 * @alias  /roles(.:format)
+		 * @alias   /roles(.:format)
 		 * @format  {:controller=>"roles", :action=>"create"}
 		 */
 		/**

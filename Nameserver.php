@@ -47,8 +47,9 @@ class OnApp_Nameserver extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -56,37 +57,37 @@ class OnApp_Nameserver extends OnApp {
 			case '2.0':
 			case '2.1':
 				$this->fields = array(
-					'id'         => array(
-						ONAPP_FIELD_MAP           => '_id',
-						ONAPP_FIELD_TYPE          => 'integer',
-						ONAPP_FIELD_READ_ONLY     => '',
+					'id' => array(
+						ONAPP_FIELD_MAP => '_id',
+						ONAPP_FIELD_TYPE => 'integer',
+						ONAPP_FIELD_READ_ONLY => '',
 						ONAPP_FIELD_DEFAULT_VALUE => ''
 					),
-					'address'    => array(
-						ONAPP_FIELD_MAP           => '_address',
-						ONAPP_FIELD_TYPE          => '',
-						ONAPP_FIELD_READ_ONLY     => '',
-						ONAPP_FIELD_REQUIRED      => '',
+					'address' => array(
+						ONAPP_FIELD_MAP => '_address',
+						ONAPP_FIELD_TYPE => '',
+						ONAPP_FIELD_READ_ONLY => '',
+						ONAPP_FIELD_REQUIRED => '',
 						ONAPP_FIELD_DEFAULT_VALUE => ''
 					),
 					'created_at' => array(
-						ONAPP_FIELD_MAP           => '_created_at',
-						ONAPP_FIELD_TYPE          => 'datetime',
-						ONAPP_FIELD_READ_ONLY     => '',
+						ONAPP_FIELD_MAP => '_created_at',
+						ONAPP_FIELD_TYPE => 'datetime',
+						ONAPP_FIELD_READ_ONLY => '',
 						#ONAPP_FIELD_REQUIRED      =>'',
 						ONAPP_FIELD_DEFAULT_VALUE => ''
 					),
 					'network_id' => array(
-						ONAPP_FIELD_MAP           => '_network_id',
-						ONAPP_FIELD_TYPE          => 'integer',
-						ONAPP_FIELD_READ_ONLY     => '',
+						ONAPP_FIELD_MAP => '_network_id',
+						ONAPP_FIELD_TYPE => 'integer',
+						ONAPP_FIELD_READ_ONLY => '',
 						#ONAPP_FIELD_REQUIRED      =>'',
 						ONAPP_FIELD_DEFAULT_VALUE => ''
 					),
 					'updated_at' => array(
-						ONAPP_FIELD_MAP           => '_updated_at',
-						ONAPP_FIELD_TYPE          => 'datetime',
-						ONAPP_FIELD_READ_ONLY     => '',
+						ONAPP_FIELD_MAP => '_updated_at',
+						ONAPP_FIELD_TYPE => 'datetime',
+						ONAPP_FIELD_READ_ONLY => '',
 						#ONAPP_FIELD_REQUIRED      =>'',
 						ONAPP_FIELD_DEFAULT_VALUE => ''
 					),
@@ -97,6 +98,7 @@ class OnApp_Nameserver extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				break;
@@ -112,21 +114,21 @@ class OnApp_Nameserver extends OnApp {
 		 * ROUTE :
 		 * @name nameservers
 		 * @method GET
-		 * @alias  /settings/nameservers(.:format)
+		 * @alias   /settings/nameservers(.:format)
 		 * @format  {:controller=>"nameservers", :action=>"index"}
 		 */
 		/**
 		 * ROUTE :
 		 * @name nameserver
 		 * @method GET
-		 * @alias  /settings/nameservers/:id(.:format)
+		 * @alias   /settings/nameservers/:id(.:format)
 		 * @format  {:controller=>"nameservers", :action=>"show"}
 		 */
 		/**
 		 * ROUTE :
 		 * @name
 		 * @method POST
-		 * @alias  /settings/nameservers(.:format)
+		 * @alias    /settings/nameservers(.:format)
 		 * @format   {:controller=>"nameservers", :action=>"create"}
 		 */
 		/**
@@ -140,7 +142,7 @@ class OnApp_Nameserver extends OnApp {
 		 * ROUTE :
 		 * @name
 		 * @method DELETE
-		 * @alias  /settings/nameservers/:id(.:format)
+		 * @alias    /settings/nameservers/:id(.:format)
 		 * @format   {:controller=>"nameservers", :action=>"destroy"}
 		 */
 	}

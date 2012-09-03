@@ -55,6 +55,7 @@ class OnApp_Helper_Caster {
 	 * Unserialize nested data
 	 *
 	 * @static
+	 *
 	 * @param DataHolder $object object storing nested data
 	 *
 	 * @return array

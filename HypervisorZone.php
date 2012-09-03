@@ -2,7 +2,7 @@
 /**
  * Hypervisor Zone
  *
- * @todo Add description
+ * @todo        Add description
  *
  * @category    API wrapper
  * @package     OnApp
@@ -20,7 +20,7 @@
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
  * The OnApp_HypervisorZone class represents virtual machine hypervisor groups.
- * The ONAPP class is a parent of ONAPP_HypervisorZone class.
+ * The OnApp class is a parent of ONAPP_HypervisorZone class.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
@@ -47,32 +47,33 @@ class OnApp_HypervisorZone extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
 		switch( $version ) {
 			case '2.0':
 				$this->fields = array(
-					'id'         => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
+					'id' => array(
+						ONAPP_FIELD_MAP => '_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
 					'created_at' => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
+						ONAPP_FIELD_MAP => '_created_at',
+						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'updated_at' => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
+						ONAPP_FIELD_MAP => '_updated_at',
+						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'label'      => array(
-						ONAPP_FIELD_MAP       => '_label',
-						ONAPP_FIELD_TYPE      => 'string',
+					'label' => array(
+						ONAPP_FIELD_MAP => '_label',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
@@ -86,6 +87,7 @@ class OnApp_HypervisorZone extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				break;
@@ -108,14 +110,14 @@ class OnApp_HypervisorZone extends OnApp {
 		 * ROUTE :
 		 * @name hypervisor_group
 		 * @method GET
-		 * @alias  /settings/hypervisor_zones/:id(.:format)
+		 * @alias   /settings/hypervisor_zones/:id(.:format)
 		 * @format  {:controller=>"hypervisor_groups", :action=>"show"}
 		 */
 		/**
 		 * ROUTE :
 		 * @name
 		 * @method POST
-		 * @alias  /settings/hypervisor_zones(.:format)
+		 * @alias   /settings/hypervisor_zones(.:format)
 		 * @format  {:controller=>"hypervisor_groups", :action=>"create"}
 		 */
 		/**
@@ -129,7 +131,7 @@ class OnApp_HypervisorZone extends OnApp {
 		 * ROUTE :
 		 * @name
 		 * @method DELETE
-		 * @alias  /settings/hypervisor_zones/:id(.:format)
+		 * @alias    /settings/hypervisor_zones/:id(.:format)
 		 * @format   {:controller=>"hypervisor_groups", :action=>"destroy"}
 		 */
 	}

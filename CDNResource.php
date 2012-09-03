@@ -66,149 +66,151 @@ class OnApp_CDNResource extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
 		switch( $version ) {
 			case '2.3':
 				$this->fields = array(
-					'created_at'                 => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'string',
+					'created_at' => array(
+						ONAPP_FIELD_MAP => '_created_at',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'updated_at'                 => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'string',
+					'updated_at' => array(
+						ONAPP_FIELD_MAP => '_updated_at',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'id'                         => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
+					'id' => array(
+						ONAPP_FIELD_MAP => '_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'user_id'                    => array(
-						ONAPP_FIELD_MAP  => '_user_id',
+					'user_id' => array(
+						ONAPP_FIELD_MAP => '_user_id',
 						ONAPP_FIELD_TYPE => 'integer',
 					),
-					'cdn_hostname'               => array(
-						ONAPP_FIELD_MAP  => '_cdn_hostname',
+					'cdn_hostname' => array(
+						ONAPP_FIELD_MAP => '_cdn_hostname',
 						ONAPP_FIELD_TYPE => 'string',
 						//ONAPP_FIELD_REQUIRED => true,
 					),
-					'aflexi_resource_id'         => array(
-						ONAPP_FIELD_MAP  => '_aflexi_resource_id',
+					'aflexi_resource_id' => array(
+						ONAPP_FIELD_MAP => '_aflexi_resource_id',
 						ONAPP_FIELD_TYPE => 'integer',
 					),
-					'origins_for_api'            => array(
-						ONAPP_FIELD_MAP       => '_origins_for_api',
-						ONAPP_FIELD_TYPE      => 'array',
+					'origins_for_api' => array(
+						ONAPP_FIELD_MAP => '_origins_for_api',
+						ONAPP_FIELD_TYPE => 'array',
 						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_CLASS     => 'CDNResource_Origin',
+						ONAPP_FIELD_CLASS => 'CDNResource_Origin',
 					),
-					'last_24h_cost'              => array(
-						ONAPP_FIELD_MAP  => '_last_24h_cost',
+					'last_24h_cost' => array(
+						ONAPP_FIELD_MAP => '_last_24h_cost',
 						ONAPP_FIELD_TYPE => 'integer',
 					),
 
 					// fields to create CDN Resource
-					'hotlink_policy'             => array(
-						ONAPP_FIELD_MAP  => '_hotlink_policy',
+					'hotlink_policy' => array(
+						ONAPP_FIELD_MAP => '_hotlink_policy',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'ip_access_policy'           => array(
-						ONAPP_FIELD_MAP  => '_ip_access_policy',
+					'ip_access_policy' => array(
+						ONAPP_FIELD_MAP => '_ip_access_policy',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'ip_addresses'               => array(
-						ONAPP_FIELD_MAP  => '_ip_addresses',
+					'ip_addresses' => array(
+						ONAPP_FIELD_MAP => '_ip_addresses',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'edge_groups'                => array(
-						ONAPP_FIELD_MAP   => '_edge_groups',
-						ONAPP_FIELD_TYPE  => 'array',
+					'edge_groups' => array(
+						ONAPP_FIELD_MAP => '_edge_groups',
+						ONAPP_FIELD_TYPE => 'array',
 						ONAPP_FIELD_CLASS => 'EdgeGroup',
 					),
-					'resource_type'              => array(
-						ONAPP_FIELD_MAP           => '_resource_type',
-						ONAPP_FIELD_TYPE          => 'integer',
+					'resource_type' => array(
+						ONAPP_FIELD_MAP => '_resource_type',
+						ONAPP_FIELD_TYPE => 'integer',
 						//ONAPP_FIELD_REQUIRED => true,
 						ONAPP_FIELD_DEFAULT_VALUE => 'HTTP_PULL'
 					),
-					'country_access_policy'      => array(
-						ONAPP_FIELD_MAP  => '_country_access_policy',
+					'country_access_policy' => array(
+						ONAPP_FIELD_MAP => '_country_access_policy',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'contries'                   => array(
-						ONAPP_FIELD_MAP  => '_contries',
+					'contries' => array(
+						ONAPP_FIELD_MAP => '_contries',
 						ONAPP_FIELD_TYPE => 'array',
 					),
-					'origin'                     => array(
-						ONAPP_FIELD_MAP  => '_origin',
+					'origin' => array(
+						ONAPP_FIELD_MAP => '_origin',
 						ONAPP_FIELD_TYPE => 'string',
 						//ONAPP_FIELD_REQUIRED => true,
 					),
-					'advanced_settings'          => array(
-						ONAPP_FIELD_MAP  => '_advanced_settings',
+					'advanced_settings' => array(
+						ONAPP_FIELD_MAP => '_advanced_settings',
 						ONAPP_FIELD_TYPE => 'boolean',
 					),
-					'hotlink_policy'             => array(
-						ONAPP_FIELD_MAP  => '_hotlink_policy',
+					'hotlink_policy' => array(
+						ONAPP_FIELD_MAP => '_hotlink_policy',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'domains'                    => array(
-						ONAPP_FIELD_MAP  => '_domains',
+					'domains' => array(
+						ONAPP_FIELD_MAP => '_domains',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'url_signing_on'             => array(
-						ONAPP_FIELD_MAP  => '_url_signing_on',
+					'url_signing_on' => array(
+						ONAPP_FIELD_MAP => '_url_signing_on',
 						ONAPP_FIELD_TYPE => 'boolean',
 					),
-					'url_signing_key'            => array(
-						ONAPP_FIELD_MAP  => '_url_signing_key',
+					'url_signing_key' => array(
+						ONAPP_FIELD_MAP => '_url_signing_key',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'cache_expiry'               => array(
-						ONAPP_FIELD_MAP  => '_cache_expiry',
+					'cache_expiry' => array(
+						ONAPP_FIELD_MAP => '_cache_expiry',
 						ONAPP_FIELD_TYPE => 'integer',
 					),
-					'password_on'                => array(
-						ONAPP_FIELD_MAP  => '_password_on',
+					'password_on' => array(
+						ONAPP_FIELD_MAP => '_password_on',
 						ONAPP_FIELD_TYPE => 'boolean',
 					),
 					'password_unauthorized_html' => array(
-						ONAPP_FIELD_MAP  => '_password_unauthorized_html',
+						ONAPP_FIELD_MAP => '_password_unauthorized_html',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'pass'                       => array(
-						ONAPP_FIELD_MAP  => '_pass',
+					'pass' => array(
+						ONAPP_FIELD_MAP => '_pass',
 						ONAPP_FIELD_TYPE => 'array',
 					),
-					'user'                       => array(
-						ONAPP_FIELD_MAP  => '_user',
+					'user' => array(
+						ONAPP_FIELD_MAP => '_user',
 						ONAPP_FIELD_TYPE => 'array',
 					),
-					'form_pass'                  => array(
-						ONAPP_FIELD_MAP  => '_form_pass',
+					'form_pass' => array(
+						ONAPP_FIELD_MAP => '_form_pass',
 						ONAPP_FIELD_TYPE => 'array',
 					),
-					'countries'                  => array(
-						ONAPP_FIELD_MAP   => '_countries',
-						ONAPP_FIELD_TYPE  => 'array',
+					'countries' => array(
+						ONAPP_FIELD_MAP => '_countries',
+						ONAPP_FIELD_TYPE => 'array',
 						ONAPP_FIELD_CLASS => 'CDNResource_Advanced_Country',
 					),
-					'status'                     => array(
-						ONAPP_FIELD_MAP  => '_status',
+					'status' => array(
+						ONAPP_FIELD_MAP => '_status',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'edge_group_ids'             => array(
-						ONAPP_FIELD_MAP  => '_edge_group_ids',
+					'edge_group_ids' => array(
+						ONAPP_FIELD_MAP => '_edge_group_ids',
 						ONAPP_FIELD_TYPE => 'string',
 					),
 				);
 				break;
+
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				$fields       = array(
@@ -217,64 +219,64 @@ class OnApp_CDNResource extends OnApp {
 				$this->unsetFields( $fields );
 
 				$this->fields[ 'origins' ]                            = array(
-					ONAPP_FIELD_MAP   => '_origins',
-					ONAPP_FIELD_TYPE  => 'array',
+					ONAPP_FIELD_MAP => '_origins',
+					ONAPP_FIELD_TYPE => 'array',
 					ONAPP_FIELD_CLASS => 'CDNResource_Origin',
 				);
 				$this->fields[ 'secondary_hostnames' ]                = array(
-					ONAPP_FIELD_MAP  => '_secondary_hostnames',
+					ONAPP_FIELD_MAP => '_secondary_hostnames',
 					ONAPP_FIELD_TYPE => '_array',
 				);
 				$this->fields[ 'ftp_password' ]                       = array(
-					ONAPP_FIELD_MAP  => '_ftp_password',
+					ONAPP_FIELD_MAP => '_ftp_password',
 					ONAPP_FIELD_TYPE => 'string',
 				);
 				$this->fields[ 'mp4_pseudo_on' ]                      = array(
-					ONAPP_FIELD_MAP  => '_mp4_pseudo_on',
+					ONAPP_FIELD_MAP => '_mp4_pseudo_on',
 					ONAPP_FIELD_TYPE => 'boolean',
 				);
 				$this->fields[ 'flv_pseudo_on' ]                      = array(
-					ONAPP_FIELD_MAP  => '_flv_pseudo_on',
+					ONAPP_FIELD_MAP => '_flv_pseudo_on',
 					ONAPP_FIELD_TYPE => 'boolean',
 				);
 				$this->fields[ 'ignore_set_cookie_on' ]               = array(
-					ONAPP_FIELD_MAP  => '_ignore_set_cookie_on',
+					ONAPP_FIELD_MAP => '_ignore_set_cookie_on',
 					ONAPP_FIELD_TYPE => 'boolean',
 				);
 				$this->fields[ 'publishing_point' ]                   = array(
-					ONAPP_FIELD_MAP  => '_publishing_point',
+					ONAPP_FIELD_MAP => '_publishing_point',
 					ONAPP_FIELD_TYPE => 'string',
 				);
 				$this->fields[ 'anti_leech_on' ]                      = array(
-					ONAPP_FIELD_MAP  => '_anti_leech_on',
+					ONAPP_FIELD_MAP => '_anti_leech_on',
 					ONAPP_FIELD_TYPE => 'boolean',
 				);
 				$this->fields[ 'anti_leech_domains' ]                 = array(
-					ONAPP_FIELD_MAP  => '_anti_leech_domains',
+					ONAPP_FIELD_MAP => '_anti_leech_domains',
 					ONAPP_FIELD_TYPE => 'string',
 				);
 				$this->fields[ 'secure_wowza_on' ]                    = array(
-					ONAPP_FIELD_MAP  => '_secure_wowza_on',
+					ONAPP_FIELD_MAP => '_secure_wowza_on',
 					ONAPP_FIELD_TYPE => 'boolean',
 				);
 				$this->fields[ 'secure_wowza_token' ]                 = array(
-					ONAPP_FIELD_MAP  => '_secure_wowza_token',
+					ONAPP_FIELD_MAP => '_secure_wowza_token',
 					ONAPP_FIELD_TYPE => 'string',
 				);
 				$this->fields[ 'internal_publishing_point' ]          = array(
-					ONAPP_FIELD_MAP  => '_internal_publishing_point',
+					ONAPP_FIELD_MAP => '_internal_publishing_point',
 					ONAPP_FIELD_TYPE => 'integer',
 				);
 				$this->fields[ 'failover_internal_publishing_point' ] = array(
-					ONAPP_FIELD_MAP  => '_failover_internal_publishing_point',
+					ONAPP_FIELD_MAP => '_failover_internal_publishing_point',
 					ONAPP_FIELD_TYPE => 'integer',
 				);
 				$this->fields[ 'external_publishing_url' ]            = array(
-					ONAPP_FIELD_MAP  => '_external_publishing_url',
+					ONAPP_FIELD_MAP => '_external_publishing_url',
 					ONAPP_FIELD_TYPE => 'integer',
 				);
 				$this->fields[ 'failover_external_publishing_url' ]   = array(
-					ONAPP_FIELD_MAP  => '_failover_external_publishing_url',
+					ONAPP_FIELD_MAP => '_failover_external_publishing_url',
 					ONAPP_FIELD_TYPE => 'integer',
 				);
 
@@ -335,7 +337,7 @@ class OnApp_CDNResource extends OnApp {
 	 * Recommended only if files especially large.
 	 *
 	 * @param integer $cdn_resource_id CDN resource id
-	 * @param string $prefetch_paths Paths to prefetch
+	 * @param string  $prefetch_paths  Paths to prefetch
 	 */
 	public function prefetch( $cdn_resource_id, $prefetch_paths ) {
 		if( $cdn_resource_id ) {
@@ -363,7 +365,7 @@ class OnApp_CDNResource extends OnApp {
 	 * This tool allows instant removal of HTTP Pull cache content in the CDN
 	 *
 	 * @param integer $cdn_resource_id CDN resource id
-	 * @param string $purge_paths Paths to prefetch
+	 * @param string  $purge_paths     Paths to prefetch
 	 */
 	public function purge( $cdn_resource_id, $purge_paths ) {
 		if( $cdn_resource_id ) {

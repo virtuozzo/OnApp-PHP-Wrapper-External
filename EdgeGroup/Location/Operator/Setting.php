@@ -4,7 +4,7 @@
 /**
  * Edge Group Location
  *
- * @todo Add description
+ * @todo        Add description
  *
  * @category    API wrapper
  * @package     OnApp
@@ -44,73 +44,75 @@ class OnApp_EdgeGroup_Location_Operator_Setting extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
 		switch( $version ) {
 			case '2.3':
 				$this->fields = array(
-					'logFtpUsername'    => array(
-						ONAPP_FIELD_MAP  => '_logFtpUsername',
+					'logFtpUsername' => array(
+						ONAPP_FIELD_MAP => '_logFtpUsername',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'baseHostname'      => array(
-						ONAPP_FIELD_MAP  => '_baseHostname',
+					'baseHostname' => array(
+						ONAPP_FIELD_MAP => '_baseHostname',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'sslCertificate'    => array(
-						ONAPP_FIELD_MAP  => '_sslCertificate',
+					'sslCertificate' => array(
+						ONAPP_FIELD_MAP => '_sslCertificate',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'trafficPolicy'     => array(
-						ONAPP_FIELD_MAP  => '_trafficPolicy',
+					'trafficPolicy' => array(
+						ONAPP_FIELD_MAP => '_trafficPolicy',
 						ONAPP_FIELD_TYPE => 'string',
 					),
 					'logDeliveryMethod' => array(
-						ONAPP_FIELD_MAP  => '_logDeliveryMethod',
+						ONAPP_FIELD_MAP => '_logDeliveryMethod',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'logFtpPassword'    => array(
-						ONAPP_FIELD_MAP  => '_logFtpPassword',
+					'logFtpPassword' => array(
+						ONAPP_FIELD_MAP => '_logFtpPassword',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'httpCacheExpiry'   => array(
-						ONAPP_FIELD_MAP  => '_httpCacheExpiry',
+					'httpCacheExpiry' => array(
+						ONAPP_FIELD_MAP => '_httpCacheExpiry',
 						ONAPP_FIELD_TYPE => 'integer',
 					),
-					'httpErrorPage'     => array(
-						ONAPP_FIELD_MAP  => '_httpErrorPage',
+					'httpErrorPage' => array(
+						ONAPP_FIELD_MAP => '_httpErrorPage',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'logFtpDirectory'   => array(
-						ONAPP_FIELD_MAP  => '_logFtpDirectory',
+					'logFtpDirectory' => array(
+						ONAPP_FIELD_MAP => '_logFtpDirectory',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'logFormat'         => array(
-						ONAPP_FIELD_MAP  => '_logFormat',
+					'logFormat' => array(
+						ONAPP_FIELD_MAP => '_logFormat',
 						ONAPP_FIELD_TYPE => 'string',
 					),
 					'logSyslogHostname' => array(
-						ONAPP_FIELD_MAP  => '_logSyslogHostname',
+						ONAPP_FIELD_MAP => '_logSyslogHostname',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'logFtpHostname'    => array(
-						ONAPP_FIELD_MAP  => '_logFtpHostname',
+					'logFtpHostname' => array(
+						ONAPP_FIELD_MAP => '_logFtpHostname',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'logFtpPort'        => array(
-						ONAPP_FIELD_MAP  => '_logFtpPort',
+					'logFtpPort' => array(
+						ONAPP_FIELD_MAP => '_logFtpPort',
 						ONAPP_FIELD_TYPE => 'integer',
 					),
-					'sslKey'            => array(
-						ONAPP_FIELD_MAP  => '_sslKey',
+					'sslKey' => array(
+						ONAPP_FIELD_MAP => '_sslKey',
 						ONAPP_FIELD_TYPE => 'string',
 					),
 
 				);
 				break;
+
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				break;

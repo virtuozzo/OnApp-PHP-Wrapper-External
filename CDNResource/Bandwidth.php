@@ -44,8 +44,9 @@ class OnApp_CDNResource_Bandwidth extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -57,23 +58,24 @@ class OnApp_CDNResource_Bandwidth extends OnApp {
 			case '2.3':
 				$this->fields = array(
 					'non_cached' => array(
-						ONAPP_FIELD_MAP       => '_non_cached',
-						ONAPP_FIELD_TYPE      => 'string',
+						ONAPP_FIELD_MAP => '_non_cached',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'date'       => array(
-						ONAPP_FIELD_MAP       => '_date',
-						ONAPP_FIELD_TYPE      => 'string',
+					'date' => array(
+						ONAPP_FIELD_MAP => '_date',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'cached'     => array(
-						ONAPP_FIELD_MAP       => '_cached',
-						ONAPP_FIELD_TYPE      => 'string',
+					'cached' => array(
+						ONAPP_FIELD_MAP => '_cached',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				break;

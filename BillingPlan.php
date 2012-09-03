@@ -26,7 +26,7 @@ define( 'ONAPP_GETRESOURCE_CREATE_COPY', 'copy' );
 /**
  * Managing Billing Plans
  *
- * The OnApp_BillingPlan class represents the billing plans. The ONAPP class is the parent of the BillingPlan class.
+ * The OnApp_BillingPlan class represents the billing plans. The OnApp class is the parent of the BillingPlan class.
  *
  * The OnApp_BillingPlan class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
@@ -56,8 +56,9 @@ class OnApp_BillingPlan extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -65,63 +66,63 @@ class OnApp_BillingPlan extends OnApp {
 			case '2.0':
 			case '2.1':
 				$this->fields = array(
-					'label'          => array(
-						ONAPP_FIELD_MAP           => '_label',
-						ONAPP_FIELD_REQUIRED      => true,
+					'label' => array(
+						ONAPP_FIELD_MAP => '_label',
+						ONAPP_FIELD_REQUIRED => true,
 						ONAPP_FIELD_DEFAULT_VALUE => ''
 					),
-					'created_at'     => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
+					'created_at' => array(
+						ONAPP_FIELD_MAP => '_created_at',
+						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'updated_at'     => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
+					'updated_at' => array(
+						ONAPP_FIELD_MAP => '_updated_at',
+						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true
 					),
 					'base_resources' => array(
-						ONAPP_FIELD_MAP       => '_base_resources',
-						ONAPP_FIELD_TYPE      => 'array',
+						ONAPP_FIELD_MAP => '_base_resources',
+						ONAPP_FIELD_TYPE => 'array',
 						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_CLASS     => 'BillingPlan_BaseResource',
+						ONAPP_FIELD_CLASS => 'BillingPlan_BaseResource',
 					),
-					'id'             => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
+					'id' => array(
+						ONAPP_FIELD_MAP => '_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'monthly_price'  => array(
-						ONAPP_FIELD_MAP      => '_monthly_price',
-						ONAPP_FIELD_TYPE     => 'integer',
+					'monthly_price' => array(
+						ONAPP_FIELD_MAP => '_monthly_price',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_REQUIRED => true,
 					),
-					'currency_code'  => array(
-						ONAPP_FIELD_MAP       => '_currency_code',
-						ONAPP_FIELD_TYPE      => 'string',
-						ONAPP_FIELD_REQUIRED  => true,
+					'currency_code' => array(
+						ONAPP_FIELD_MAP => '_currency_code',
+						ONAPP_FIELD_TYPE => 'string',
+						ONAPP_FIELD_REQUIRED => true,
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'show_price'     => array(
-						ONAPP_FIELD_MAP           => '_show_price',
-						ONAPP_FIELD_TYPE          => 'boolean',
-						ONAPP_FIELD_REQUIRED      => true,
+					'show_price' => array(
+						ONAPP_FIELD_MAP => '_show_price',
+						ONAPP_FIELD_TYPE => 'boolean',
+						ONAPP_FIELD_REQUIRED => true,
 						ONAPP_FIELD_DEFAULT_VALUE => true,
-						ONAPP_FIELD_READ_ONLY     => true
-					),
-					'allows_mak'     => array(
-						ONAPP_FIELD_MAP       => '_allows_mak',
-						ONAPP_FIELD_TYPE      => 'boolean',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'allows_kms'     => array(
-						ONAPP_FIELD_MAP       => '_allows_kms',
-						ONAPP_FIELD_TYPE      => 'boolean',
+					'allows_mak' => array(
+						ONAPP_FIELD_MAP => '_allows_mak',
+						ONAPP_FIELD_TYPE => 'boolean',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'allows_own'     => array(
-						ONAPP_FIELD_MAP       => '_allows_own',
-						ONAPP_FIELD_TYPE      => 'boolean',
+					'allows_kms' => array(
+						ONAPP_FIELD_MAP => '_allows_kms',
+						ONAPP_FIELD_TYPE => 'boolean',
+						ONAPP_FIELD_READ_ONLY => true
+					),
+					'allows_own' => array(
+						ONAPP_FIELD_MAP => '_allows_own',
+						ONAPP_FIELD_TYPE => 'boolean',
 						ONAPP_FIELD_READ_ONLY => true
 					),
 				);
@@ -131,6 +132,7 @@ class OnApp_BillingPlan extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				break;

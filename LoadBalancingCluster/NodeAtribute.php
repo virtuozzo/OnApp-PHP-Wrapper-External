@@ -27,32 +27,33 @@ class OnApp_LoadBalancingCluster_NodeAtribute extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
 		switch( $version ) {
 			case '2.1':
 				$this->fields = array(
-					'cpus'       => array(
-						ONAPP_FIELD_MAP       => '_cpus',
-						ONAPP_FIELD_TYPE      => 'integer',
+					'cpus' => array(
+						ONAPP_FIELD_MAP => '_cpus',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
 					'cpu_shares' => array(
-						ONAPP_FIELD_MAP       => '_cpu_shares',
-						ONAPP_FIELD_TYPE      => 'integer',
+						ONAPP_FIELD_MAP => '_cpu_shares',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'memory'     => array(
-						ONAPP_FIELD_MAP       => '_memory',
-						ONAPP_FIELD_TYPE      => 'integer',
+					'memory' => array(
+						ONAPP_FIELD_MAP => '_memory',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'rate_limit' => array(
-						ONAPP_FIELD_MAP       => '_rate_limit',
-						ONAPP_FIELD_TYPE      => 'integer',
+						ONAPP_FIELD_MAP => '_rate_limit',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
@@ -62,6 +63,7 @@ class OnApp_LoadBalancingCluster_NodeAtribute extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				break;

@@ -5,17 +5,17 @@
 define( 'ONAPP_VERSION', '2.0' );
 
 /**
- * The ONAPP class uses this variable to define the Proxy server used by cURL
+ * The OnApp class uses this variable to define the Proxy server used by cURL
  */
 define( 'ONAPP_OPTION_CURL_PROXY', 'proxy' );
 
 /**
- * The ONAPP class uses this variable to define the URL to the API used by cURL
+ * The OnApp class uses this variable to define the URL to the API used by cURL
  */
 define( 'ONAPP_OPTION_CURL_URL', 'url' );
 
 /**
- * The ONAPP class uses this variable to define the data type which would help transfer data between the client and the API server
+ * The OnApp class uses this variable to define the data type which would help transfer data between the client and the API server
  *
  * Possible values:
  *   - xml  (default)
@@ -24,7 +24,7 @@ define( 'ONAPP_OPTION_CURL_URL', 'url' );
 define( 'ONAPP_OPTION_API_TYPE', 'data_type' );
 
 /**
- * The ONAPP class uses this variable to define the charsets used to transfer data between the client and the API server
+ * The OnApp class uses this variable to define the charsets used to transfer data between the client and the API server
  *
  * Possible values:
  *   - charset=utf-8 (default)
@@ -32,7 +32,7 @@ define( 'ONAPP_OPTION_API_TYPE', 'data_type' );
 define( 'ONAPP_OPTION_API_CHARSET', 'charset' );
 
 /**
- * The ONAPP class uses this value to define the content type used to transfer data between the client and the API server
+ * The OnApp class uses this value to define the content type used to transfer data between the client and the API server
  *
  * Possible values:
  *   - application/xml (default)
@@ -46,7 +46,7 @@ define( 'ONAPP_OPTION_API_CONTENT', 'content' );
 define( 'ONAPP_OPTION_DEBUG_MODE', 'debug_mode' );
 
 /**
- * The ONAPP class uses this field name to map this field in the API response and variable in the class
+ * The OnApp class uses this field name to map this field in the API response and variable in the class
  * The field name is used to unserialize the API server response to the necessary class.
  */
 define( 'ONAPP_FIELD_MAP', 'map' );
@@ -195,7 +195,7 @@ define( 'ONAPP_REQUEST_METHOD_DELETE', 'DELETE' );
  * @package OnApp
  *
  *
- * @todo Pack using the lib (http://pecl.php.net/)
+ * @todo    Pack using the lib (http://pecl.php.net/)
  *
  * The wrapper is used to describe the following basic methods: {@link load},
  * {@link save}, {@link delete} and {@link getList}.
@@ -334,22 +334,22 @@ class OnApp {
 	 */
 	private $defaultOptions = array(
 		// cURL proxy
-		ONAPP_OPTION_CURL_PROXY  => '',
+		ONAPP_OPTION_CURL_PROXY => '',
 
 		// cURL url
-		ONAPP_OPTION_CURL_URL    => '',
+		ONAPP_OPTION_CURL_URL => '',
 
 		// API request and response charset
 		ONAPP_OPTION_API_CHARSET => 'charset=utf-8',
 
 		// API request and response type
-		ONAPP_OPTION_API_TYPE    => 'json',
+		ONAPP_OPTION_API_TYPE => 'json',
 
 		// API request and response content
 		ONAPP_OPTION_API_CONTENT => 'application/json',
 
 		// Debug mode
-		ONAPP_OPTION_DEBUG_MODE  => false,
+		ONAPP_OPTION_DEBUG_MODE => false,
 	);
 
 	/**
@@ -430,21 +430,21 @@ class OnApp {
 	/**
 	 * @access private
 	 * @var    boolean
-	 * @todo move in to getter an setter
+	 * @todo   move in to getter an setter
 	 */
 	var $_is_auth = false;
 
 	/**
 	 * @access private
 	 * @var    boolean
-	 * @todo move in to getter an setter
+	 * @todo   move in to getter an setter
 	 */
 	var $_is_changed = false;
 
 	/**
 	 * @access private
 	 * @var    boolean
-	 * @todo move in to getter an setter
+	 * @todo   move in to getter an setter
 	 */
 	var $_is_deleted = false;
 
@@ -611,7 +611,7 @@ class OnApp {
 	 * @return boolean true if authenticated
 	 * @access public
 	 *
-	 * @todo move to the defaut getter
+	 * @todo   move to the defaut getter
 	 */
 	function isAuthenticate() {
 		return $this->_is_auth;
@@ -623,7 +623,7 @@ class OnApp {
 	 * @return boolean true if the Object was changed
 	 * @access public
 	 *
-	 * @todo move to the defaut getter
+	 * @todo   move to the defaut getter
 	 */
 	function isChanged() {
 		return $this->_is_changed;
@@ -636,7 +636,7 @@ class OnApp {
 	 * @return boolean true if the Object was deleted
 	 * @access public
 	 *
-	 * @todo move to the defaut getter
+	 * @todo   move to the defaut getter
 	 */
 	function isDelete() {
 		return $this->_is_deleted;
@@ -664,9 +664,9 @@ class OnApp {
 	 * needed. When authorized, {@link load}, {@link save}, {@link delete} and
 	 * {@link getList} methods can be used.
 	 *
-	 * @param string $url API URL
-	 * @param string $user user name
-	 * @param string $pass password
+	 * @param string $url   API URL
+	 * @param string $user  user name
+	 * @param string $pass  password
 	 * @param string $proxy (optional) proxy server
 	 *
 	 * @return void
@@ -758,14 +758,14 @@ class OnApp {
 	/**
 	 * Sets an option for a cURL transfer
 	 *
-	 * @param string $user user name
-	 * @param string $pass password
+	 * @param string $user      user name
+	 * @param string $pass      password
 	 * @param string $cookiedir Cookies directory
 	 *
 	 * @return void
 	 * @access private
 	 *
-	 * @todo check response from basic URL
+	 * @todo   check response from basic URL
 	 */
 	function _init_curl( $user, $pass, $cookiedir = '' ) {
 		$this->logger->debug( "_init_curl: Init Curl (cookiedir => '$cookiedir')." );
@@ -804,9 +804,9 @@ class OnApp {
 	/**
 	 * Sets full API path to the variable cURL
 	 *
-	 * @param string $resource API alias
+	 * @param string  $resource    API alias
 	 * @param boolean $append_api_version
-	 * @param string $queryString API request
+	 * @param string  $queryString API request
 	 *
 	 * @return void
 	 * @access public
@@ -851,7 +851,7 @@ class OnApp {
 	/**
 	 * Sends API request to the API server and gets response from it
 	 *
-	 * @param string $method
+	 * @param string     $method
 	 * @param array|null $data
 	 *
 	 * @return array|bool cURL response
@@ -989,6 +989,7 @@ class OnApp {
 	/**
 	 *
 	 * @param type $label
+	 *
 	 * @return string
 	 */
 	public function getHeader( $label = NULL ) {
@@ -1151,6 +1152,7 @@ class OnApp {
 	 * unserializes the received response into the array of Objects
 	 *
 	 * @param mixed $params
+	 *
 	 * @return the array of Object instances
 	 */
 	public function getList( $params = null, $url_args = null ) {
@@ -1176,7 +1178,7 @@ class OnApp {
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class ONAPP.
+	 * this parameter in the class inheriting OnApp class.
 	 *
 	 * @param integer $id Object id
 	 *
@@ -1449,8 +1451,8 @@ class OnApp {
 	/**
 	 * Sends API Requests to realize not base actions
 	 *
-	 * @param string $method
-	 * @param string $resource
+	 * @param string     $method
+	 * @param string     $resource
 	 * @param array|null $data
 	 *
 	 * @return bool|mixed (Array of Object or Object)
@@ -1516,6 +1518,7 @@ class OnApp {
 	 * Store errors
 	 *
 	 * @param mixed $errors
+	 *
 	 * @return void
 	 */
 	public function setErrors( $errors = null ) {
@@ -1531,6 +1534,7 @@ class OnApp {
 	 * Return errors as string
 	 *
 	 * @param string $glue
+	 *
 	 * @return string
 	 */
 	public function getErrorsAsString( $glue = '<br />' ) {

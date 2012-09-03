@@ -37,10 +37,10 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 	/**
 	 * Unserialize JSON data to wrapper object(s)
 	 *
-	 * @param string        $className  className to cast into
-	 * @param string|array  $data        JSON or array containing nested data
-	 * @param array            $map        fields map
-	 * @param string        $root        root tag
+	 * @param string           $className   className to cast into
+	 * @param string|array     $data        JSON or array containing nested data
+	 * @param array            $map         fields map
+	 * @param string           $root        root tag
 	 *
 	 * @return array|object
 	 */
@@ -186,6 +186,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 	 * Convert object to array
 	 *
 	 * @param mixed $d
+	 *
 	 * @return array
 	 */
 	private function objectToArray( $d ) {

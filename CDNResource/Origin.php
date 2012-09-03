@@ -42,8 +42,9 @@ class OnApp_CDNResource_Origin extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -52,13 +53,13 @@ class OnApp_CDNResource_Origin extends OnApp {
 			case '2.1':
 				$this->fields = array(
 					'value' => array(
-						ONAPP_FIELD_MAP       => '_value',
-						ONAPP_FIELD_TYPE      => 'string',
+						ONAPP_FIELD_MAP => '_value',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'key'   => array(
-						ONAPP_FIELD_MAP       => '_key',
-						ONAPP_FIELD_TYPE      => 'string',
+					'key' => array(
+						ONAPP_FIELD_MAP => '_key',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
@@ -68,6 +69,7 @@ class OnApp_CDNResource_Origin extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				break;

@@ -2,7 +2,7 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
- * Logger for ONAPP Wrapper
+ * Logger for OnApp Wrapper
  *
  * Log management (LM) comprises an approach to dealing with large volumes of
  * computer-generated log messages (also known as audit records, audit trails,
@@ -27,7 +27,7 @@
  * is a complicated process and organizations often make mistakes while
  * approaching it.
  *
- * @category  LOGGER
+ * @category    LOGGER
  * @package     OnApp
  * @subpackage  Helper
  * @author      Andrew Yatskovets
@@ -135,7 +135,7 @@ class OnApp_Helper_Logger {
 	 * Adds the error message to the logger buffer and stops
 	 * executing
 	 *
-	 * @param string  $msg log message
+	 * @param string  $msg  log message
 	 * @param string  $file file which initialized error
 	 * @param integer $line string in which was initialized error
 	 *
@@ -178,7 +178,7 @@ class OnApp_Helper_Logger {
 	 * Adds the message and additional data to the buffer depending
 	 * on the message type
 	 *
-	 * @param string $msg log message
+	 * @param string $msg  log message
 	 * @param string $type log type
 	 *
 	 * @return boolean

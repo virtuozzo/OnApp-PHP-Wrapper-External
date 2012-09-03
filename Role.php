@@ -53,8 +53,9 @@ class OnApp_Role extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -62,37 +63,37 @@ class OnApp_Role extends OnApp {
 			case '2.0':
 			case '2.1':
 				$this->fields = array(
-					'id'             => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
+					'id' => array(
+						ONAPP_FIELD_MAP => '_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'created_at'     => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
+					'created_at' => array(
+						ONAPP_FIELD_MAP => '_created_at',
+						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'identifier'     => array(
-						ONAPP_FIELD_MAP  => '_identifier',
+					'identifier' => array(
+						ONAPP_FIELD_MAP => '_identifier',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'permissions'    => array(
-						ONAPP_FIELD_MAP   => '_permissions',
-						ONAPP_FIELD_TYPE  => 'array',
+					'permissions' => array(
+						ONAPP_FIELD_MAP => '_permissions',
+						ONAPP_FIELD_TYPE => 'array',
 						ONAPP_FIELD_CLASS => 'Role_Permission',
 					),
-					'label'          => array(
-						ONAPP_FIELD_MAP      => '_label',
+					'label' => array(
+						ONAPP_FIELD_MAP => '_label',
 						ONAPP_FIELD_REQUIRED => true,
 					),
-					'updated_at'     => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
+					'updated_at' => array(
+						ONAPP_FIELD_MAP => '_updated_at',
+						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'permission_ids' => array(
-						ONAPP_FIELD_MAP       => '_permission_ids',
-						ONAPP_FIELD_TYPE      => 'string',
+						ONAPP_FIELD_MAP => '_permission_ids',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
@@ -109,6 +110,7 @@ class OnApp_Role extends OnApp {
 				);
 				$this->unsetFields( $fields );
 				break;
+
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				break;
@@ -124,21 +126,21 @@ class OnApp_Role extends OnApp {
 		 * ROUTE :
 		 * @name roles
 		 * @method GET
-		 * @alias  /roles(.:format)
+		 * @alias   /roles(.:format)
 		 * @format  {:controller=>"roles", :action=>"index"}
 		 */
 		/**
 		 * ROUTE :
 		 * @name role
 		 * @method GET
-		 * @alias  /roles/:id(.:format)
+		 * @alias   /roles/:id(.:format)
 		 * @format  {:controller=>"roles", :action=>"show"}
 		 */
 		/**
 		 * ROUTE :
 		 * @name
 		 * @method POST
-		 * @alias  /roles(.:format)
+		 * @alias   /roles(.:format)
 		 * @format  {:controller=>"roles", :action=>"create"}
 		 */
 		/**

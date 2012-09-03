@@ -5,7 +5,7 @@
  * User Monthly Bill
  *
  * Root tag is missed in Json Ticket #2505
- * @todo write description
+ * @todo        write description
  *
  * @category    API wrapper
  * @package     OnApp
@@ -47,8 +47,9 @@ class ONAPP_User_MonthlyBill extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -56,14 +57,14 @@ class ONAPP_User_MonthlyBill extends OnApp {
 			case '2.0':
 			case '2.1':
 				$this->fields = array(
-					'cost'  => array(
-						ONAPP_FIELD_MAP       => '_cost',
-						ONAPP_FIELD_TYPE      => 'float',
+					'cost' => array(
+						ONAPP_FIELD_MAP => '_cost',
+						ONAPP_FIELD_TYPE => 'float',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'month' => array(
-						ONAPP_FIELD_MAP       => '_month',
-						ONAPP_FIELD_TYPE      => 'integer',
+						ONAPP_FIELD_MAP => '_month',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					)
 				);
@@ -73,6 +74,7 @@ class ONAPP_User_MonthlyBill extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				break;
@@ -97,7 +99,7 @@ class ONAPP_User_MonthlyBill extends OnApp {
 				 * ROUTE :
 				 * @name user_monthly_bills
 				 * @method GET
-				 * @alias  /users/:user_id/monthly_bills(.:format)
+				 * @alias   /users/:user_id/monthly_bills(.:format)
 				 * @format  {:controller=>"monthly_bills", :action=>"index"}
 				 */
 				if( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {

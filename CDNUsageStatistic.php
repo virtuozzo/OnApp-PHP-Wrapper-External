@@ -47,38 +47,40 @@ class ONAPP_CDNUsageStatistic extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
 		switch( $version ) {
 			case '2.3':
 				$this->fields = array(
-					'target_id'  => array(
-						ONAPP_FIELD_MAP  => '_target_id',
+					'target_id' => array(
+						ONAPP_FIELD_MAP => '_target_id',
 						ONAPP_FIELD_TYPE => 'integer',
 					),
 					'not_cached' => array(
-						ONAPP_FIELD_MAP  => '_non_cached',
+						ONAPP_FIELD_MAP => '_non_cached',
 						ONAPP_FIELD_TYPE => 'float',
 					),
 					'updated_at' => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
+						ONAPP_FIELD_MAP => '_updated_at',
+						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'user_id'    => array(
-						ONAPP_FIELD_MAP  => '_user_id',
+					'user_id' => array(
+						ONAPP_FIELD_MAP => '_user_id',
 						ONAPP_FIELD_TYPE => 'integer',
 					),
-					'cached'     => array(
-						ONAPP_FIELD_MAP  => '_cached',
+					'cached' => array(
+						ONAPP_FIELD_MAP => '_cached',
 						ONAPP_FIELD_TYPE => 'float',
 
 					),
 				);
 				break;
+
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				break;

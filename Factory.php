@@ -15,9 +15,9 @@ class OnApp_Factory extends OnApp {
 	/**
 	 * Object constructor
 	 *
-	 * @param string $hostname
-	 * @param string $username
-	 * @param string $password
+	 * @param string      $hostname
+	 * @param string      $username
+	 * @param string      $password
 	 * @param string|null $proxy
 	 */
 	public function __construct( $hostname, $username, $password, $proxy = null ) {
@@ -30,8 +30,8 @@ class OnApp_Factory extends OnApp {
 	/**
 	 * Craft new object
 	 *
-	 * @param string $name class name
-	 * @param bool $debug flag for debug mode
+	 * @param string $name  class name
+	 * @param bool   $debug flag for debug mode
 	 *
 	 * @return object instance of class
 	 */

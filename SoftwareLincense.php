@@ -19,7 +19,7 @@
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
  * The OnApp_SoftwareLincense class represents Software Lincenses.
- * The ONAPP class is a parent of ONAPP_SoftwareLincense class.
+ * The OnApp class is a parent of ONAPP_SoftwareLincense class.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
@@ -46,62 +46,63 @@ class OnApp_SoftwareLincense extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
 		switch( $version ) {
 			case '2.1':
 				$this->fields = array(
-					'id'         => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
+					'id' => array(
+						ONAPP_FIELD_MAP => '_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
 					'created_at' => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
+						ONAPP_FIELD_MAP => '_created_at',
+						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'updated_at' => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
+						ONAPP_FIELD_MAP => '_updated_at',
+						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'arch'       => array(
-						ONAPP_FIELD_MAP      => '_arch',
-						ONAPP_FIELD_TYPE     => 'string',
+					'arch' => array(
+						ONAPP_FIELD_MAP => '_arch',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_REQUIRED => true,
 					),
-					'total'      => array(
-						ONAPP_FIELD_MAP      => '_total',
-						ONAPP_FIELD_TYPE     => 'integer',
+					'total' => array(
+						ONAPP_FIELD_MAP => '_total',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_REQUIRED => true,
 					),
-					'distro'     => array(
-						ONAPP_FIELD_MAP      => '_distro',
-						ONAPP_FIELD_TYPE     => 'string',
+					'distro' => array(
+						ONAPP_FIELD_MAP => '_distro',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_REQUIRED => true,
 					),
-					'count'      => array(
-						ONAPP_FIELD_MAP      => '_count',
-						ONAPP_FIELD_TYPE     => 'integer',
+					'count' => array(
+						ONAPP_FIELD_MAP => '_count',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_REQUIRED => true,
 					),
-					'tail'       => array(
-						ONAPP_FIELD_MAP      => '_tail',
-						ONAPP_FIELD_TYPE     => 'string',
+					'tail' => array(
+						ONAPP_FIELD_MAP => '_tail',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_REQUIRED => true,
 					),
-					'edition'    => array(
-						ONAPP_FIELD_MAP      => '_edition',
-						ONAPP_FIELD_TYPE     => 'string',
+					'edition' => array(
+						ONAPP_FIELD_MAP => '_edition',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_REQUIRED => true,
 					),
-					'license'    => array(
-						ONAPP_FIELD_MAP      => '_license',
-						ONAPP_FIELD_TYPE     => 'string',
+					'license' => array(
+						ONAPP_FIELD_MAP => '_license',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_REQUIRED => true,
 					),
 				);
@@ -111,6 +112,7 @@ class OnApp_SoftwareLincense extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				break;
