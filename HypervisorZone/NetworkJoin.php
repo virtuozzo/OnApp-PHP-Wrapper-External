@@ -4,13 +4,13 @@
 /**
  * Manages Network Zone Joins
  *
- * @category	API WRAPPER
- * @package		OnApp
+ * @category    API wrapper
+ * @package     OnApp
  * @subpackage  HypervisorZone
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -18,7 +18,7 @@
  *
  * This class reprsents the Networks for Hypervisor Zone.
  *
- * The ONAPP_Hypervisor_NetworkJoin class uses the following basic methods:
+ * The OnApp_Hypervisor_NetworkJoin class uses the following basic methods:
  * {@link save}, {@link delete}, and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -49,47 +49,47 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 		switch( $version ) {
 			case '2.0':
 				$this->fields = array(
-					'id' => array(
-						ONAPP_FIELD_MAP => '_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'id'            => array(
+						ONAPP_FIELD_MAP       => '_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'created_at' => array(
-						ONAPP_FIELD_MAP => '_created_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+					'created_at'    => array(
+						ONAPP_FIELD_MAP       => '_created_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'updated_at' => array(
-						ONAPP_FIELD_MAP => '_updated_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+					'updated_at'    => array(
+						ONAPP_FIELD_MAP       => '_updated_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'network_id' => array(
-						ONAPP_FIELD_MAP => '_network_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'network_id'    => array(
+						ONAPP_FIELD_MAP      => '_network_id',
+						ONAPP_FIELD_TYPE     => 'integer',
 						ONAPP_FIELD_REQUIRED => true,
 					),
-					'interface' => array(
-						ONAPP_FIELD_MAP => '_interface',
+					'interface'     => array(
+						ONAPP_FIELD_MAP       => '_interface',
 						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED => true,
+						ONAPP_FIELD_REQUIRED  => true,
 					),
 					'hypervisor_id' => array(
-						ONAPP_FIELD_MAP => '_hypervisor_id',
+						ONAPP_FIELD_MAP  => '_hypervisor_id',
 						ONAPP_FIELD_TYPE => 'integer',
-					),                    
+					),
 				);
 				break;
 
 			case '2.1':
-				$this->fields = $this->initFields( '2.0' );
-				$this->fields[ 'target_join_id' ] = array(
-					ONAPP_FIELD_MAP => '_target_join_id',
-					ONAPP_FIELD_TYPE => 'integer',
+				$this->fields                       = $this->initFields( '2.0' );
+				$this->fields[ 'target_join_id' ]   = array(
+					ONAPP_FIELD_MAP      => '_target_join_id',
+					ONAPP_FIELD_TYPE     => 'integer',
 					ONAPP_FIELD_REQUIRED => true
 				);
 				$this->fields[ 'target_join_type' ] = array(
-					ONAPP_FIELD_MAP => '_target_join_type',
+					ONAPP_FIELD_MAP  => '_target_join_type',
 					ONAPP_FIELD_TYPE => 'string',
 					//ONAPP_FIELD_REQUIRED => true
 				);
@@ -99,9 +99,9 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
-           case 3.0:
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -109,7 +109,7 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -159,11 +159,11 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 	 * @return array of newtwork join objects
 	 */
 	function getList( $target_join_id = null ) {
-		if( is_null( $target_join_id ) && !is_null( $this->_target_join_id ) ) {
+		if( is_null( $target_join_id ) && ! is_null( $this->_target_join_id ) ) {
 			$target_join_id = $this->_target_join_id;
 		}
 
-		if( !is_null( $target_join_id ) ) {
+		if( ! is_null( $target_join_id ) ) {
 			$this->_target_join_id = $target_join_id;
 			return parent::getList();
 		}

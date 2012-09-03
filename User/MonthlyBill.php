@@ -7,21 +7,21 @@
  * Root tag is missed in Json Ticket #2505
  * @todo write description
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	User
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @subpackage  User
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
  * User Monthly Bills
  *
- * The ONAPP_User_MonthlyBill class supports the following basic methods:
+ * The OnApp_User_MonthlyBill class supports the following basic methods:
  * {@link getList}.
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class ONAPP_User_MonthlyBill extends OnApp {
@@ -56,14 +56,14 @@ class ONAPP_User_MonthlyBill extends OnApp {
 			case '2.0':
 			case '2.1':
 				$this->fields = array(
-					'cost' => array(
-						ONAPP_FIELD_MAP => '_cost',
-						ONAPP_FIELD_TYPE => 'float',
+					'cost'  => array(
+						ONAPP_FIELD_MAP       => '_cost',
+						ONAPP_FIELD_TYPE      => 'float',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'month' => array(
-						ONAPP_FIELD_MAP => '_month',
-						ONAPP_FIELD_TYPE => 'integer',
+						ONAPP_FIELD_MAP       => '_month',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					)
 				);
@@ -73,17 +73,17 @@ class ONAPP_User_MonthlyBill extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
-           case 3.0:
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
 		return $this->fields;
 	}
 
-    /**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	/**
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -134,11 +134,11 @@ class ONAPP_User_MonthlyBill extends OnApp {
 	 * @access public
 	 */
 	function getList( $user_id = null, $url_args = null ) {
-		if( is_null( $user_id ) && !is_null( $this->_user_id ) ) {
+		if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
 			$user_id = $this->_user_id;
 		}
 
-		if( !is_null( $user_id ) ) {
+		if( ! is_null( $user_id ) ) {
 			$this->_user_id = $user_id;
 
 			return parent::getList( null, $url_args );
@@ -152,20 +152,18 @@ class ONAPP_User_MonthlyBill extends OnApp {
 		}
 	}
 
-    /**
-     * Checks if method is supported
-     *
-     * @param string $action_name Action name
-     */
-    function activate( $action_name ) {
+	/**
+	 * Checks if method is supported
+	 *
+	 * @param string $action_name Action name
+	 */
+	function activate( $action_name ) {
 		switch( $action_name ) {
-            case ONAPP_ACTIVATE_LOAD:
+			case ONAPP_ACTIVATE_LOAD:
 			case ONAPP_ACTIVATE_SAVE:
 			case ONAPP_ACTIVATE_DELETE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
 				break;
 		}
 	}
-
-
 }

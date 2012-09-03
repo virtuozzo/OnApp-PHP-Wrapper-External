@@ -6,13 +6,13 @@
  *
  * @todo Add description
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	EdgeGroup
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @subpackage  EdgeGroup
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -52,78 +52,78 @@ class OnApp_EdgeGroup_Location extends OnApp {
 		switch( $version ) {
 			case '2.3':
 				$this->fields = array(
-					'city' => array(
-						ONAPP_FIELD_MAP => '_city',
-                        ONAPP_FIELD_TYPE => 'string',
-					),
-                    'region' => array(
-						ONAPP_FIELD_MAP => '_region',
+					'city'        => array(
+						ONAPP_FIELD_MAP  => '_city',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-                    'price' => array(
-						ONAPP_FIELD_MAP => '_price',
-						ONAPP_FIELD_TYPE => 'float',
-					),
-					'latitude' => array(
-						ONAPP_FIELD_MAP => '_latitude',
-						ONAPP_FIELD_TYPE => 'float',
-					),
-					'country' => array(
-						ONAPP_FIELD_MAP => '_country',
+					'region'      => array(
+						ONAPP_FIELD_MAP  => '_region',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-                    'deleted' => array(
-						ONAPP_FIELD_MAP => '_deleted',
+					'price'       => array(
+						ONAPP_FIELD_MAP  => '_price',
+						ONAPP_FIELD_TYPE => 'float',
+					),
+					'latitude'    => array(
+						ONAPP_FIELD_MAP  => '_latitude',
+						ONAPP_FIELD_TYPE => 'float',
+					),
+					'country'     => array(
+						ONAPP_FIELD_MAP  => '_country',
+						ONAPP_FIELD_TYPE => 'string',
+					),
+					'deleted'     => array(
+						ONAPP_FIELD_MAP  => '_deleted',
 						ONAPP_FIELD_TYPE => 'boolean',
 					),
-					'id' => array(
-						ONAPP_FIELD_MAP => '_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'id'          => array(
+						ONAPP_FIELD_MAP       => '_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'geoblocking' => array(
-						ONAPP_FIELD_MAP => '_geoblocking',
+						ONAPP_FIELD_MAP  => '_geoblocking',
 						ONAPP_FIELD_TYPE => 'boolean',
 					),
-					'createdAt' => array(
-						ONAPP_FIELD_MAP => '_createdAt',
+					'createdAt'   => array(
+						ONAPP_FIELD_MAP  => '_createdAt',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'updatedAt' => array(
-						ONAPP_FIELD_MAP => '_updatedAt',
+					'updatedAt'   => array(
+						ONAPP_FIELD_MAP  => '_updatedAt',
 						ONAPP_FIELD_TYPE => 'integer',
 					),
 					'description' => array(
-						ONAPP_FIELD_MAP => '_description',
-                        ONAPP_FIELD_TYPE => 'string',
+						ONAPP_FIELD_MAP  => '_description',
+						ONAPP_FIELD_TYPE => 'string',
 					),
-                    'longitude' => array(
-						ONAPP_FIELD_MAP => '_longitude',
-                        ONAPP_FIELD_TYPE => 'float',
+					'longitude'   => array(
+						ONAPP_FIELD_MAP  => '_longitude',
+						ONAPP_FIELD_TYPE => 'float',
 					),
-                    'status' => array(
-						ONAPP_FIELD_MAP => '_status',
-                        ONAPP_FIELD_TYPE => 'string',
+					'status'      => array(
+						ONAPP_FIELD_MAP  => '_status',
+						ONAPP_FIELD_TYPE => 'string',
 					),
-                    'operator' => array(
-						ONAPP_FIELD_MAP => '_operator',
-                        ONAPP_FIELD_TYPE => 'array',
-                        ONAPP_FIELD_CLASS => 'EdgeGroup_Location_Operator',
+					'operator'    => array(
+						ONAPP_FIELD_MAP   => '_operator',
+						ONAPP_FIELD_TYPE  => 'array',
+						ONAPP_FIELD_CLASS => 'EdgeGroup_Location_Operator',
 
 					),
 
 				);
 				break;
-           case 3.0:
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
 		return $this->fields;
 	}
 
-    /**
+	/**
 	 * Activates action performed with object
 	 *
 	 * @param string $action_name the name of action
@@ -139,5 +139,4 @@ class OnApp_EdgeGroup_Location extends OnApp {
 				break;
 		}
 	}
-
 }

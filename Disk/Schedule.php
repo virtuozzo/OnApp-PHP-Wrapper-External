@@ -3,23 +3,23 @@
  * Scheduleds
  *
  *
- * @category	API WRAPPER
- * @package		OnApp
+ * @category    API wrapper
+ * @package     OnApp
  * @subpackage  Disk
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
  *
  * Managing Disk Backups Schedules
  *
- * The ONAPP_Disk_Schedule class uses the following basic methods:
+ * The OnApp_Disk_Schedule class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
- * The ONAPP_Disk_Schedule class represents Disk Backups Schedules.
+ * The OnApp_Disk_Schedule class represents Disk Backups Schedules.
  * The ONAPP class is a parent of ONAPP_Disk_Schedule class.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -58,76 +58,76 @@ class OnApp_Disk_Schedule extends OnApp {
 			case '2.0':
 			case '2.1':
 				$this->fields = array(
-					'id' => array(
-						ONAPP_FIELD_MAP => '_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'id'            => array(
+						ONAPP_FIELD_MAP       => '_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'duration' => array(
-						ONAPP_FIELD_MAP => '_duration',
-						ONAPP_FIELD_TYPE => 'integer',
+					'duration'      => array(
+						ONAPP_FIELD_MAP      => '_duration',
+						ONAPP_FIELD_TYPE     => 'integer',
 						ONAPP_FIELD_REQUIRED => true,
 					),
-					'target_id' => array(
-						ONAPP_FIELD_MAP => '_target_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'target_id'     => array(
+						ONAPP_FIELD_MAP       => '_target_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'schedule_logs' => array(
-						ONAPP_FIELD_MAP => '_schedule_logs',
-						ONAPP_FIELD_TYPE => 'string',
+						ONAPP_FIELD_MAP       => '_schedule_logs',
+						ONAPP_FIELD_TYPE      => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'period' => array(
-						ONAPP_FIELD_MAP => '_period',
-						ONAPP_FIELD_TYPE => 'string',
+					'period'        => array(
+						ONAPP_FIELD_MAP      => '_period',
+						ONAPP_FIELD_TYPE     => 'string',
 						ONAPP_FIELD_REQUIRED => true,
 					),
-					'updated_at' => array(
-						ONAPP_FIELD_MAP => '_updated_at',
-						ONAPP_FIELD_TYPE => 'string',
+					'updated_at'    => array(
+						ONAPP_FIELD_MAP       => '_updated_at',
+						ONAPP_FIELD_TYPE      => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'action' => array(
-						ONAPP_FIELD_MAP => '_action',
-						ONAPP_FIELD_TYPE => 'string',
+					'action'        => array(
+						ONAPP_FIELD_MAP       => '_action',
+						ONAPP_FIELD_TYPE      => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'start_at' => array(
-						ONAPP_FIELD_MAP => '_start_at',
-						ONAPP_FIELD_TYPE => 'string',
+					'start_at'      => array(
+						ONAPP_FIELD_MAP       => '_start_at',
+						ONAPP_FIELD_TYPE      => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'user_id' => array(
-						ONAPP_FIELD_MAP => '_user_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'user_id'       => array(
+						ONAPP_FIELD_MAP       => '_user_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'failure_count' => array(
-						ONAPP_FIELD_MAP => '_failure_count',
-						ONAPP_FIELD_TYPE => 'integer',
+						ONAPP_FIELD_MAP       => '_failure_count',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'params' => array(
-						ONAPP_FIELD_MAP => '_params',
-						ONAPP_FIELD_TYPE => 'string',
+					'params'        => array(
+						ONAPP_FIELD_MAP       => '_params',
+						ONAPP_FIELD_TYPE      => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'status' => array(
-						ONAPP_FIELD_MAP => '_status',
-						ONAPP_FIELD_TYPE => 'string',
-						ONAPP_FIELD_REQUIRED => true,
+					'status'        => array(
+						ONAPP_FIELD_MAP           => '_status',
+						ONAPP_FIELD_TYPE          => 'string',
+						ONAPP_FIELD_REQUIRED      => true,
 						ONAPP_FIELD_DEFAULT_VALUE => 'enabled',
 
 					),
-					'target_type' => array(
-						ONAPP_FIELD_MAP => '_target_type',
-						ONAPP_FIELD_TYPE => 'string',
+					'target_type'   => array(
+						ONAPP_FIELD_MAP       => '_target_type',
+						ONAPP_FIELD_TYPE      => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'created_at' => array(
-						ONAPP_FIELD_MAP => '_created_at',
-						ONAPP_FIELD_TYPE => 'string',
+					'created_at'    => array(
+						ONAPP_FIELD_MAP       => '_created_at',
+						ONAPP_FIELD_TYPE      => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
@@ -137,9 +137,9 @@ class OnApp_Disk_Schedule extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
-           case 3.0:
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -147,7 +147,7 @@ class OnApp_Disk_Schedule extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -161,7 +161,7 @@ class OnApp_Disk_Schedule extends OnApp {
 				$resource = 'settings/disks/' . $this->_target_id . '/' . $this->_resource;
 				break;
 			default:
-				$resource = parent::getResource( $action );
+				$resource     = parent::getResource( $action );
 				$show_log_msg = false;
 				break;
 		}
@@ -196,20 +196,20 @@ class OnApp_Disk_Schedule extends OnApp {
 
 		$result = $this->castStringToClass( $response );
 
-		if( !empty( $response[ 'errors' ] ) ) {
+		if( ! empty( $response[ 'errors' ] ) ) {
 			return false;
 		}
 
-		return ( is_array( $result ) || ! $result ) ? $result : array($result);
+		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
 	}
 
 	function save() {
 		if( $this->_target_id ) {
-			$this->fields[ 'target_id' ][ ONAPP_FIELD_REQUIRED ] = true;
-			$this->fields[ 'target_type' ][ ONAPP_FIELD_REQUIRED ] = true;
+			$this->fields[ 'target_id' ][ ONAPP_FIELD_REQUIRED ]        = true;
+			$this->fields[ 'target_type' ][ ONAPP_FIELD_REQUIRED ]      = true;
 			$this->fields[ 'target_type' ][ ONAPP_FIELD_DEFAULT_VALUE ] = 'Disk';
-			$this->fields[ 'action' ][ ONAPP_FIELD_REQUIRED ] = true;
-			$this->fields[ 'action' ][ ONAPP_FIELD_DEFAULT_VALUE ] = 'autobackup';
+			$this->fields[ 'action' ][ ONAPP_FIELD_REQUIRED ]           = true;
+			$this->fields[ 'action' ][ ONAPP_FIELD_DEFAULT_VALUE ]      = 'autobackup';
 		}
 
 		return parent::save();

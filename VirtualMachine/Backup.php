@@ -4,13 +4,13 @@
 /**
  * VM Backups
  *
- * @category	API WRAPPER
- * @package		OnApp
+ * @category    API wrapper
+ * @package     OnApp
  * @subpackage  VirtualMachine
- * @author		Vitaliy Kondratyuk
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @author      Vitaliy Kondratyuk
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -33,7 +33,7 @@ define( 'ONAPP_GETRESOURCE_DISK_BACKUPS', 'disk_backups' );
  *
  * This class represents the Backups which have been taken or are waiting to be taken for Virtual Machine.
  *
- * The ONAPP_VirtualMachine_Backup class uses the following basic methods:
+ * The OnApp_VirtualMachine_Backup class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -69,80 +69,80 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 		switch( $version ) {
 			case '2.0':
 				$this->fields = array(
-					'id' => array(
-						ONAPP_FIELD_MAP => '_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'id'                          => array(
+						ONAPP_FIELD_MAP       => '_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'created_at' => array(
-						ONAPP_FIELD_MAP => '_created_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+					'created_at'                  => array(
+						ONAPP_FIELD_MAP       => '_created_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'updated_at' => array(
-						ONAPP_FIELD_MAP => '_updated_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+					'updated_at'                  => array(
+						ONAPP_FIELD_MAP       => '_updated_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'built_at' => array(
-						ONAPP_FIELD_MAP => '_built_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+					'built_at'                    => array(
+						ONAPP_FIELD_MAP       => '_built_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'disk_id' => array(
-						ONAPP_FIELD_MAP => '_disk_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'disk_id'                     => array(
+						ONAPP_FIELD_MAP       => '_disk_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'operating_system' => array(
-						ONAPP_FIELD_MAP => '_operating_system',
+					'operating_system'            => array(
+						ONAPP_FIELD_MAP       => '_operating_system',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'operating_system_distro' => array(
-						ONAPP_FIELD_MAP => '_operating_system_distro',
+					'operating_system_distro'     => array(
+						ONAPP_FIELD_MAP       => '_operating_system_distro',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'template_id' => array(
-						ONAPP_FIELD_MAP => '_template_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'template_id'                 => array(
+						ONAPP_FIELD_MAP       => '_template_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'allowed_swap' => array(
-						ONAPP_FIELD_MAP => '_allowed_swap',
-						ONAPP_FIELD_TYPE => 'boolean',
+					'allowed_swap'                => array(
+						ONAPP_FIELD_MAP       => '_allowed_swap',
+						ONAPP_FIELD_TYPE      => 'boolean',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'backup_type' => array(
-						ONAPP_FIELD_MAP => '_backup_type',
+					'backup_type'                 => array(
+						ONAPP_FIELD_MAP       => '_backup_type',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'allow_resize_without_reboot' => array(
-						ONAPP_FIELD_MAP => '_allow_resize_without_reboot',
-						ONAPP_FIELD_TYPE => 'boolean',
+						ONAPP_FIELD_MAP       => '_allow_resize_without_reboot',
+						ONAPP_FIELD_TYPE      => 'boolean',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'backup_size' => array(
-						ONAPP_FIELD_MAP => '_backup_size',
-						ONAPP_FIELD_TYPE => 'integer',
+					'backup_size'                 => array(
+						ONAPP_FIELD_MAP       => '_backup_size',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'identifier' => array(
-						ONAPP_FIELD_MAP => '_identifier',
+					'identifier'                  => array(
+						ONAPP_FIELD_MAP       => '_identifier',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'min_disk_size' => array(
-						ONAPP_FIELD_MAP => '_min_disk_size',
-						ONAPP_FIELD_TYPE => 'integer',
+					'min_disk_size'               => array(
+						ONAPP_FIELD_MAP       => '_min_disk_size',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'built' => array(
-						ONAPP_FIELD_MAP => '_built',
-						ONAPP_FIELD_TYPE => 'boolean',
+					'built'                       => array(
+						ONAPP_FIELD_MAP       => '_built',
+						ONAPP_FIELD_TYPE      => 'boolean',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'locked' => array(
-						ONAPP_FIELD_MAP => '_locked',
-						ONAPP_FIELD_TYPE => 'boolean',
+					'locked'                      => array(
+						ONAPP_FIELD_MAP       => '_locked',
+						ONAPP_FIELD_TYPE      => 'boolean',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
@@ -152,28 +152,28 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				$this->fields = $this->initFields( '2.0' );
 				unset( $this->fields[ 'allowed_swap' ] );
 				$this->fields[ 'allowed_hot_migrate' ] = array(
-					ONAPP_FIELD_MAP => '_allowed_hot_migrate',
-					ONAPP_FIELD_TYPE => 'boolean',
+					ONAPP_FIELD_MAP       => '_allowed_hot_migrate',
+					ONAPP_FIELD_TYPE      => 'boolean',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'allowed_swap' ] = array(
-					ONAPP_FIELD_MAP => '_allowed_swap',
-					ONAPP_FIELD_TYPE => 'boolean',
+				$this->fields[ 'allowed_swap' ]        = array(
+					ONAPP_FIELD_MAP       => '_allowed_swap',
+					ONAPP_FIELD_TYPE      => 'boolean',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
 				break;
 
 			case 2.2:
 			case 2.3:
-				$this->fields = $this->initFields( 2.1 );
-                $this->fields[ 'backup_server_id' ] = array(
-					ONAPP_FIELD_MAP => '_backup_server_id',
+				$this->fields                       = $this->initFields( 2.1 );
+				$this->fields[ 'backup_server_id' ] = array(
+					ONAPP_FIELD_MAP  => '_backup_server_id',
 					ONAPP_FIELD_TYPE => 'integer',
 				);
 				break;
-           case 3.0:
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -181,7 +181,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -297,7 +297,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				 * @name restore_backup
 				 * @method POST
 				 * @alias  /backups/:id/restore(.:format)
-				 * @format	{:controller=>"backups", :action=>"restore"}
+				 * @format    {:controller=>"backups", :action=>"restore"}
 				 */
 				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/restore';
 				break;
@@ -326,11 +326,11 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	 * @access public
 	 */
 	function getList( $virtual_machine_id = null, $url_args = null ) {
-		if( is_null( $virtual_machine_id ) && !is_null( $this->_virtual_machine_id ) ) {
+		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
 			$virtual_machine_id = $this->_virtual_machine_id;
 		}
 
-		if( !is_null( $virtual_machine_id ) ) {
+		if( ! is_null( $virtual_machine_id ) ) {
 			$this->_virtual_machine_id = $virtual_machine_id;
 			return parent::getList();
 		}
@@ -359,14 +359,14 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-		if( !empty( $response[ 'errors' ] ) ) {
+		if( ! empty( $response[ 'errors' ] ) ) {
 			$this->errors = $response[ 'errors' ];
 			return false;
 		}
 
 		$result = $this->castStringToClass( $response );
 
-		return ( is_array( $result ) || ! $result )  ? $result : array( $result );
+		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
 	}
 
 	/**
@@ -383,7 +383,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 		$this->_label = $label;
 
 		$this->fields[ 'label' ] = array(
-			ONAPP_FIELD_MAP => '_label',
+			ONAPP_FIELD_MAP      => '_label',
 			ONAPP_FIELD_REQUIRED => true,
 		);
 
@@ -391,13 +391,13 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 			'root' => $this->_tagRoot,
 			'data' => array(
 				'label' => $label,
-				'id' => $this->_id
+				'id'    => $this->_id
 			)
 		);
 		// workaround because we get template data in response
-		$this->_tagRoot = 'image_template';
+		$this->_tagRoot  = 'image_template';
 		$this->className = 'OnApp_Template';
-		$template = new OnApp_Template();
+		$template        = new OnApp_Template();
 		$template->initFields( $this->getAPIVersion() );
 		$this->fields = $template->getClassFields();
 		$this->sendPost( ONAPP_GETRESOURCE_BACKUP_CONVERT, $data );
@@ -410,8 +410,8 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	 */
 	function restore() {
 		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_BACKUP_RESTORE ) );
-		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
-		$result = $this->_castResponseToClass( $response );
+		$response   = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
+		$result     = $this->_castResponseToClass( $response );
 		$this->_obj = $result;
 	}
 }

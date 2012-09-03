@@ -6,19 +6,19 @@
  *
  * @todo write description
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	User_Statistics
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @subpackage  User_Statistics
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
  * User User Statistics VmStat
  *
- *  The ONAPP_User_UserStatistics_VmStats class uses NO basic methods:
+ *  The OnApp_User_UserStatistics_VmStats class uses NO basic methods:
  *
  *
  */
@@ -54,24 +54,24 @@ class OnApp_User_Statistics_VmStat extends OnApp {
 			case '2.0':
 			case '2.1':
 				$this->fields = array(
-					'usage_cost' => array(
-						ONAPP_FIELD_MAP => '_usage_cost',
-						ONAPP_FIELD_TYPE => 'float',
+					'usage_cost'         => array(
+						ONAPP_FIELD_MAP       => '_usage_cost',
+						ONAPP_FIELD_TYPE      => 'float',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'vm_resources_cost' => array(
-						ONAPP_FIELD_MAP => '_vm_resources_cost',
-						ONAPP_FIELD_TYPE => 'float',
+					'vm_resources_cost'  => array(
+						ONAPP_FIELD_MAP       => '_vm_resources_cost',
+						ONAPP_FIELD_TYPE      => 'float',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'virtual_machine_id' => array(
-						ONAPP_FIELD_MAP => '_virtual_machine_id',
-						ONAPP_FIELD_TYPE => 'float',
+						ONAPP_FIELD_MAP       => '_virtual_machine_id',
+						ONAPP_FIELD_TYPE      => 'float',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'total_cost' => array(
-						ONAPP_FIELD_MAP => '_total_cost',
-						ONAPP_FIELD_TYPE => 'string',
+					'total_cost'         => array(
+						ONAPP_FIELD_MAP       => '_total_cost',
+						ONAPP_FIELD_TYPE      => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					)
 				);
@@ -81,9 +81,9 @@ class OnApp_User_Statistics_VmStat extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
-           case 3.0:
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );

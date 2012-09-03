@@ -4,26 +4,26 @@
 /**
  * VM IP Adresses
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	VirtualMachine
- * @author		Vitaliy Kondratyuk
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @subpackage  VirtualMachine
+ * @author      Vitaliy Kondratyuk
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
  * VM IP Adresses
  *
- * The ONAPP_VirtualMachine_IpAddress class doesn't support any basic method.
+ * The OnApp_VirtualMachine_IpAddress class doesn't support any basic method.
  *
  */
 
 /**
-*
-*/
-define( 'ONAPP_GETRESOURCE_JOIN', 'ip_address_join');
+ *
+ */
+define( 'ONAPP_GETRESOURCE_JOIN', 'ip_address_join' );
 
 class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 	/**
@@ -57,49 +57,49 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 			case '2.0':
 			case '2.1':
 				$this->fields = array(
-					'id' => array(
-						ONAPP_FIELD_MAP => '_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'id'              => array(
+						ONAPP_FIELD_MAP       => '_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'created_at' => array(
-						ONAPP_FIELD_MAP => '_created_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+					'created_at'      => array(
+						ONAPP_FIELD_MAP       => '_created_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'updated_at' => array(
-						ONAPP_FIELD_MAP => '_updated_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+					'updated_at'      => array(
+						ONAPP_FIELD_MAP       => '_updated_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'address' => array(
-						ONAPP_FIELD_MAP => '_address',
+					'address'         => array(
+						ONAPP_FIELD_MAP       => '_address',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'netmask' => array(
-						ONAPP_FIELD_MAP => '_netmask',
+					'netmask'         => array(
+						ONAPP_FIELD_MAP       => '_netmask',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'broadcast' => array(
-						ONAPP_FIELD_MAP => '_broadcast',
+					'broadcast'       => array(
+						ONAPP_FIELD_MAP       => '_broadcast',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'network_address' => array(
-						ONAPP_FIELD_MAP => '_network_address',
+						ONAPP_FIELD_MAP       => '_network_address',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'gateway' => array(
-						ONAPP_FIELD_MAP => '_gateway',
+					'gateway'         => array(
+						ONAPP_FIELD_MAP       => '_gateway',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'network_id' => array(
-						ONAPP_FIELD_MAP => '_network_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'network_id'      => array(
+						ONAPP_FIELD_MAP       => '_network_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'free' => array(
-						ONAPP_FIELD_MAP => '_free',
-						ONAPP_FIELD_TYPE => 'boolean',
+					'free'            => array(
+						ONAPP_FIELD_MAP       => '_free',
+						ONAPP_FIELD_TYPE      => 'boolean',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
@@ -109,9 +109,9 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
-           case 3.0:
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -119,7 +119,7 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -157,11 +157,11 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 			$this->_id = $ip_address_id;
 		}
 
-        $data = array(
+		$data = array(
 			'root' => 'ip_address_join',
 			'data' => array(
 				'network_interface_id' => $this->_network_interface_id,
-				'ip_address_id' => $this->_id
+				'ip_address_id'        => $this->_id
 			)
 		);
 

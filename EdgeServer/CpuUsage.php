@@ -6,13 +6,13 @@
  * Managing Cpu Usage
  *
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	EdgeServer
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @subpackage  EdgeServer
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -20,19 +20,19 @@
  *
  * The Cpu Usage class represents the Cpu Usage of the OnAPP installation.
  *
- * The ONAPP_CpuUsage class uses the following basic methods:
+ * The OnApp_CpuUsage class uses the following basic methods:
  * {@link getList} and {@link load} and .
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
+	public function __construct() {
+		parent::__construct();
+		$this->className = __CLASS__;
+	}
 
-    /**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	/**
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -74,7 +74,7 @@ class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
 		return $resource;
 	}
 
-    /**
+	/**
 	 * Sends an API request to get the Objects. After requesting,
 	 * unserializes the received response into the array of Objects
 	 *
@@ -84,11 +84,11 @@ class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
 	 * @access public
 	 */
 	function getList( $virtual_machine_id = null ) {
-		if( is_null( $virtual_machine_id ) && !is_null( $this->_virtual_machine_id ) ) {
+		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
 			$virtual_machine_id = $this->_virtual_machine_id;
 		}
 
-		if( !is_null( $virtual_machine_id ) ) {
+		if( ! is_null( $virtual_machine_id ) ) {
 			$this->_virtual_machine_id = $virtual_machine_id;
 
 			return parent::getList();
@@ -101,5 +101,4 @@ class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
 			);
 		}
 	}
-    
 }

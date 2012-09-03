@@ -5,13 +5,13 @@
  * Represents Edge Groups Assigned to the current logined user's Billling Plan
  *
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Yakubskiy Yuriy
- * @subpackage	CDNResource
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Yakubskiy Yuriy
+ * @subpackage  CDNResource
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -22,11 +22,9 @@
  *
  * The OnApp_CDNResource_AvailableEdgeGroup uses the following basic methods:
  * {@link getList}.
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
-
-
 class OnApp_CDNResource_AvailableEdgeGroup extends OnApp {
 	/**
 	 * root tag used in the API request
@@ -58,42 +56,42 @@ class OnApp_CDNResource_AvailableEdgeGroup extends OnApp {
 		switch( $version ) {
 			case '2.3':
 				$this->fields = array(
-                    'label' => array(
-						ONAPP_FIELD_MAP => '_label',
-						ONAPP_FIELD_REQUIRED => true,
+					'label'                => array(
+						ONAPP_FIELD_MAP           => '_label',
+						ONAPP_FIELD_REQUIRED      => true,
 						ONAPP_FIELD_DEFAULT_VALUE => ''
 					),
-                    'created_at' => array(
-						ONAPP_FIELD_MAP => '_created_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+					'created_at'           => array(
+						ONAPP_FIELD_MAP       => '_created_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-                    'updated_at' => array(
-						ONAPP_FIELD_MAP => '_updated_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+					'updated_at'           => array(
+						ONAPP_FIELD_MAP       => '_updated_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'id' => array(
-						ONAPP_FIELD_MAP => '_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'id'                   => array(
+						ONAPP_FIELD_MAP       => '_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'edge_group_locations' => array(
-						ONAPP_FIELD_MAP => '_edge_group_locations',
-						ONAPP_FIELD_TYPE => 'array',
-                        ONAPP_FIELD_CLASS => 'CDNResource_AvailableEdgeGroup_Location'
+						ONAPP_FIELD_MAP   => '_edge_group_locations',
+						ONAPP_FIELD_TYPE  => 'array',
+						ONAPP_FIELD_CLASS => 'CDNResource_AvailableEdgeGroup_Location'
 					),
 				);
-                break;
-           case 3.0:
+				break;
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
 		return $this->fields;
 	}
-   
+
 	/**
 	 * Activates action performed with object
 	 *
