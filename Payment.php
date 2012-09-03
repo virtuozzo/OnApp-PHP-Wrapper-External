@@ -8,12 +8,12 @@
  * Once the invoice is paid, you have to put it to the system to keep track of
  * them.
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package        OnApp
+ * @author        Andrew Yatskovets
+ * @copyright    (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see            OnApp
  */
 
 /**
@@ -58,36 +58,36 @@ class OnApp_Payment extends OnApp {
 			case '2.0':
 			case '2.1':
 				$this->fields = array(
-					'id' => array(
-						ONAPP_FIELD_MAP => '_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'id'             => array(
+						ONAPP_FIELD_MAP       => '_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'amount' => array(
-						ONAPP_FIELD_MAP => '_amount',
-						ONAPP_FIELD_TYPE => 'decimal',
-						ONAPP_FIELD_REQUIRED => true,
+					'amount'         => array(
+						ONAPP_FIELD_MAP           => '_amount',
+						ONAPP_FIELD_TYPE          => 'decimal',
+						ONAPP_FIELD_REQUIRED      => true,
 						ONAPP_FIELD_DEFAULT_VALUE => '0.0',
 					),
-					'created_at' => array(
-						ONAPP_FIELD_MAP => '_created_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+					'created_at'     => array(
+						ONAPP_FIELD_MAP       => '_created_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true
 					),
 					'invoice_number' => array(
-						ONAPP_FIELD_MAP => '_invoice_number',
-                        ONAPP_FIELD_TYPE => 'string',
+						ONAPP_FIELD_MAP      => '_invoice_number',
+						ONAPP_FIELD_TYPE     => 'string',
 						ONAPP_FIELD_REQUIRED => true,
 					),
-					'updated_at' => array(
-						ONAPP_FIELD_MAP => '_updated_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+					'updated_at'     => array(
+						ONAPP_FIELD_MAP       => '_updated_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'user_id' => array(
-						ONAPP_FIELD_MAP => '_user_id',
-						ONAPP_FIELD_TYPE => 'integer',
-						ONAPP_FIELD_REQUIRED => true,
+					'user_id'        => array(
+						ONAPP_FIELD_MAP       => '_user_id',
+						ONAPP_FIELD_TYPE      => 'integer',
+						ONAPP_FIELD_REQUIRED  => true,
 						ONAPP_FIELD_READ_ONLY => true
 					),
 				);
@@ -96,6 +96,10 @@ class OnApp_Payment extends OnApp {
 			case 2.2:
 			case 2.3:
 				$this->initFields( 2.1 );
+				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
 				break;
 		}
 
@@ -153,7 +157,7 @@ class OnApp_Payment extends OnApp {
 		return $resource;
 	}
 
-    /**
+	/**
 	 * Sends an API request to get the Objects. After requesting,
 	 * unserializes the received response into the array of Objects
 	 *
@@ -163,11 +167,11 @@ class OnApp_Payment extends OnApp {
 	 * @access public
 	 */
 	function getList( $user_id = null ) {
-		if( is_null( $user_id ) && !is_null( $this->_user_id ) ) {
+		if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
 			$user_id = $this->_user_id;
 		}
 
-		if( !is_null( $user_id ) ) {
+		if( ! is_null( $user_id ) ) {
 			$this->_user_id = $user_id;
 			return parent::getList();
 		}
@@ -185,7 +189,7 @@ class OnApp_Payment extends OnApp {
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class OnApp.
+	 * this parameter in the class inheriting OnApp class.
 	 *
 	 * @param integer $id Payment ID
 	 * @param integer $user_id User ID
@@ -194,25 +198,25 @@ class OnApp_Payment extends OnApp {
 	 * @access public
 	 */
 	function load( $id = null, $user_id = null ) {
-		if( is_null( $user_id ) && !is_null( $this->_user_id ) ) {
+		if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
 			$user_id = $this->_user_id;
 		}
 
-		if( is_null( $id ) && !is_null( $this->_id ) ) {
+		if( is_null( $id ) && ! is_null( $this->_id ) ) {
 			$id = $this->_id;
 		}
 
 		if( is_null( $id ) &&
 			isset( $this->_obj ) &&
-			!is_null( $this->_obj->_id )
+			! is_null( $this->_obj->_id )
 		) {
 			$id = $this->_obj->_id;
 		}
 
 		$this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
 
-		if( !is_null( $id ) && !is_null( $user_id ) ) {
-			$this->_id = $id;
+		if( ! is_null( $id ) && ! is_null( $user_id ) ) {
+			$this->_id      = $id;
 			$this->_user_id = $user_id;
 
 			$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );

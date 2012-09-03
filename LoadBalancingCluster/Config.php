@@ -3,13 +3,13 @@
 /**
  * Manages LoadBalancingCluster Config
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	LoadBalancingCluster
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package        OnApp
+ * @subpackage    LoadBalancingCluster
+ * @author        Yakubskiy Yuriy
+ * @copyright    (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see            OnApp
  */
 
 /**
@@ -36,13 +36,13 @@ class OnApp_LoadBalancingCluster_Config extends OnApp {
 			case '2.1':
 				$this->fields = array(
 					'max_node_amount' => array(
-						ONAPP_FIELD_MAP => '_max_node_amount',
-						ONAPP_FIELD_TYPE => 'integer',
+						ONAPP_FIELD_MAP       => '_max_node_amount',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
 					'min_node_amount' => array(
-						ONAPP_FIELD_MAP => '_min_node_amount',
-						ONAPP_FIELD_TYPE => 'integer',
+						ONAPP_FIELD_MAP       => '_min_node_amount',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
@@ -51,6 +51,10 @@ class OnApp_LoadBalancingCluster_Config extends OnApp {
 			case 2.2:
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
+				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
 				break;
 		}
 

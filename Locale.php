@@ -2,12 +2,12 @@
 /**
  * Get locale from OnApp CP
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Lev Bartashevsky
- * @copyright	(c) 2012 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package        OnApp
+ * @author        Lev Bartashevsky
+ * @copyright    (c) 2012 OnApp
+ * @link        http://www.onapp.com/
+ * @see            OnApp
  */
 class OnApp_Locale extends OnApp {
 	/**
@@ -22,7 +22,7 @@ class OnApp_Locale extends OnApp {
 	 *
 	 * @var string
 	 */
-	var $_resource = 'internationalization';
+	var $_resource = '/settings/internationalization';
 
 	public function __construct() {
 		parent::__construct();
@@ -41,14 +41,18 @@ class OnApp_Locale extends OnApp {
 			case 2.3:
 				$this->fields = array(
 					'code' => array(
-						ONAPP_FIELD_MAP => 'code',
-                        ONAPP_FIELD_TYPE => 'string',
+						ONAPP_FIELD_MAP  => 'code',
+						ONAPP_FIELD_TYPE => 'string',
 					),
 					'name' => array(
-						ONAPP_FIELD_MAP => 'name',
-                        ONAPP_FIELD_TYPE => 'string',
+						ONAPP_FIELD_MAP  => 'name',
+						ONAPP_FIELD_TYPE => 'string',
 					),
 				);
+				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
 				break;
 		}
 

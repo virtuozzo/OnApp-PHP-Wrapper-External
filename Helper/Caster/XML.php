@@ -2,22 +2,22 @@
 /**
  * Serialize and Unserialize Object to/from XML for OnApp wrapper
  *
- * @category	OBJECT CAST
- * @package		OnApp
- * @subpackage	Caster
- * @author		Lev Bartashevsky
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
+ * @category    OBJECT CAST
+ * @package        OnApp
+ * @subpackage    Caster
+ * @author        Lev Bartashevsky
+ * @copyright    (c) 2011 OnApp
+ * @link        http://www.onapp.com/
  */
 class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 	private $className;
 	private $types = array(
 		'datetime' => 's',
-		'float' => 'f',
-		'decimal' => 'f',
-		'integer' => 'd',
-		'boolean' => 's',
-		'' => 's'
+		'float'    => 'f',
+		'decimal'  => 'f',
+		'integer'  => 'd',
+		'boolean'  => 's',
+		''         => 's'
 	);
 
 	private static $unknown_tag = 'item';
@@ -41,9 +41,9 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 	/**
 	 * Unserialize XML data to wrapper object(s)
 	 *
-	 * @param string		$className  class name to cast into
-	 * @param string|array  $data		XML or array containing nested data
-	 * @param string		$root		root tag
+	 * @param string        $className  class name to cast into
+	 * @param string|array  $data        XML or array containing nested data
+	 * @param string        $root        root tag
 	 *
 	 * @return array|object
 	 */
@@ -57,7 +57,7 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 		}
 
 		try {
-			if( !$data->count() ) {
+			if( ! $data->count() ) {
 				if( IS_CLI ) {
 					throw new Exception( __METHOD__ . ' Data for casting could not be empty' );
 				}
@@ -111,51 +111,51 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 	 * @return object
 	 */
 	private function process( $item ) {
-		$obj = new $this->className;
-		$obj->options = parent::$obj->options;
-		$obj->_ch = parent::$obj->_ch;
+		$obj           = new $this->className;
+		$obj->options  = parent::$obj->options;
+		$obj->_ch      = parent::$obj->_ch;
 		$obj->_is_auth = parent::$obj->_is_auth;
 
 		foreach( $item as $name => $value ) {
 			$boolean = $type = false;
 
-				if( isset( $value->attributes()->type ) ) {
-					if( $value->attributes()->type == 'array' ) {
-						if( !$value->count() ) {
+			if( isset( $value->attributes()->type ) ) {
+				if( $value->attributes()->type == 'array' ) {
+					if( ! $value->count() ) {
 						$value = array();
 					}
 					else {
-						$tmp = new OnAppNestedDataHolder;
+						$tmp             = new OnAppNestedDataHolder;
 						$tmp->APIVersion = parent::$APIVersion;
-						$tmp->className = $obj::$nestedData[ $name ];
-						$tmp->data = $value;
-						$value = $tmp;
-						}
-					}
-					else {
-						$type = $this->types[ (string)$value->attributes()->type ];
-						$boolean = ( (string)$value->attributes()->type == 'boolean' );
+						$tmp->className  = $obj::$nestedData[ $name ];
+						$tmp->data       = $value;
+						$value           = $tmp;
 					}
 				}
 				else {
-					$type = $this->types[ '' ];
+					$type    = $this->types[ (string)$value->attributes()->type ];
+					$boolean = ( (string)$value->attributes()->type == 'boolean' );
 				}
+			}
+			else {
+				$type = $this->types[ '' ];
+			}
 
 			if( $type ) {
 				$value = sprintf( '%' . $type, $value );
 			}
 
-				if( $boolean ) {
-					switch( strtolower( $value ) ) {
-						case 'false':
-							$value = false;
-							break;
+			if( $boolean ) {
+				switch( strtolower( $value ) ) {
+					case 'false':
+						$value = false;
+						break;
 
-						case 'true':
-						default:
-							$value = true;
-					}
+					case 'true':
+					default:
+						$value = true;
 				}
+			}
 
 			$obj->$name = $value;
 		}
@@ -167,9 +167,9 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 	 * The main function for converting to an XML document.
 	 * Pass in a multidimensional array and this recrusively loops through and builds up an XML document.
 	 *
-	 * @param mixed				$data	data for converting
-	 * @param string			$root	what you want the root node to be
-	 * @param SimpleXMLElement	$xml	should only be used recursively
+	 * @param mixed                $data    data for converting
+	 * @param string            $root    what you want the root node to be
+	 * @param SimpleXMLElement    $xml    should only be used recursively
 	 *
 	 * @return string XML
 	 */

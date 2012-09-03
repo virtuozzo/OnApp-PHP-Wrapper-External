@@ -4,17 +4,17 @@
 /**
  * Billing Plan Base Resources
  *
- * @category    API WRAPPER
- * @package        OnApp
- * @subpackage    BillingPlan
- * @author        Yakubskiy Yuriy
- * @copyright    (c) 2011 OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @subpackage  BillingPlan
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
- * The ONAPP_BillingPlan_BaseResource uses the following basic methods:
+ * The OnApp_BillingPlan_BaseResource uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -152,6 +152,10 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 					ONAPP_FIELD_READ_ONLY => true
 				);
 				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -159,7 +163,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class OnApp
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -243,7 +247,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $billing_plan_id = null ) {
+	function getList( $billing_plan_id = null, $url_args = null ) {
 		if( is_null( $billing_plan_id ) && ! is_null( $this->_billing_plan_id ) ) {
 			$billing_plan_id = $this->_billing_plan_id;
 		}

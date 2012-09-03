@@ -6,13 +6,13 @@
  *
  * @todo write description
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	User
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package        OnApp
+ * @subpackage    User
+ * @author        Yakubskiy Yuriy
+ * @copyright    (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see            OnApp
  */
 
 /**
@@ -55,51 +55,51 @@ class OnApp_User_Statistics extends OnApp {
 			case '2.0':
 			case '2.1':
 				$this->fields = array(
-					'backup_cost' => array(
-						ONAPP_FIELD_MAP => '_backup_cost',
-						ONAPP_FIELD_TYPE => 'float',
+					'backup_cost'            => array(
+						ONAPP_FIELD_MAP       => '_backup_cost',
+						ONAPP_FIELD_TYPE      => 'float',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'vm_cost' => array(
-						ONAPP_FIELD_MAP => '_vm_cost',
-						ONAPP_FIELD_TYPE => 'float',
+					'vm_cost'                => array(
+						ONAPP_FIELD_MAP       => '_vm_cost',
+						ONAPP_FIELD_TYPE      => 'float',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'monit_cost' => array(
-						ONAPP_FIELD_MAP => '_monit_cost',
-						ONAPP_FIELD_TYPE => 'float',
+					'monit_cost'             => array(
+						ONAPP_FIELD_MAP       => '_monit_cost',
+						ONAPP_FIELD_TYPE      => 'float',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					// Gets this class only by XML request see ticket#2451
-					'vm_stats' => array(
-						ONAPP_FIELD_MAP => '_vm_stats',
-						ONAPP_FIELD_TYPE => 'array',
+					'vm_stats'               => array(
+						ONAPP_FIELD_MAP       => '_vm_stats',
+						ONAPP_FIELD_TYPE      => 'array',
 						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_CLASS => 'User_Statistics_VmStat',
+						ONAPP_FIELD_CLASS     => 'User_Statistics_VmStat',
 					),
 					'storage_disk_size_cost' => array(
-						ONAPP_FIELD_MAP => '_storage_disk_size_cost',
-						ONAPP_FIELD_TYPE => 'float',
+						ONAPP_FIELD_MAP       => '_storage_disk_size_cost',
+						ONAPP_FIELD_TYPE      => 'float',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'user_resources_cost' => array(
-						ONAPP_FIELD_MAP => '_user_resources_cost',
-						ONAPP_FIELD_TYPE => 'float',
+					'user_resources_cost'    => array(
+						ONAPP_FIELD_MAP       => '_user_resources_cost',
+						ONAPP_FIELD_TYPE      => 'float',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'template_cost' => array(
-						ONAPP_FIELD_MAP => '_template_cost',
-						ONAPP_FIELD_TYPE => 'float',
+					'template_cost'          => array(
+						ONAPP_FIELD_MAP       => '_template_cost',
+						ONAPP_FIELD_TYPE      => 'float',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'total_cost' => array(
-						ONAPP_FIELD_MAP => '_total_cost',
-						ONAPP_FIELD_TYPE => 'float',
+					'total_cost'             => array(
+						ONAPP_FIELD_MAP       => '_total_cost',
+						ONAPP_FIELD_TYPE      => 'float',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'edge_group_cost' => array(
-						ONAPP_FIELD_MAP => '_edge_group_cost',
-						ONAPP_FIELD_TYPE => 'float',
+					'edge_group_cost'        => array(
+						ONAPP_FIELD_MAP       => '_edge_group_cost',
+						ONAPP_FIELD_TYPE      => 'float',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
@@ -109,6 +109,10 @@ class OnApp_User_Statistics extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -116,7 +120,7 @@ class OnApp_User_Statistics extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class OnApp
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -167,11 +171,11 @@ class OnApp_User_Statistics extends OnApp {
 	 * @access public
 	 */
 	function getList( $user_id = null, $url_args = array() ) {
-		if( is_null( $user_id ) && !is_null( $this->_user_id ) ) {
+		if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
 			$user_id = $this->_user_id;
 		}
 
-		if( !is_null( $user_id ) ) {
+		if( ! is_null( $user_id ) ) {
 			$this->_user_id = $user_id;
 
 			return parent::getList( null, $url_args );

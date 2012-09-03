@@ -6,12 +6,12 @@
  *
  * Using this class You can get access to virtual machine console
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package        OnApp
+ * @author        Andrew Yatskovets
+ * @copyright    (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see            OnApp
  */
 
 /**
@@ -54,39 +54,39 @@ class OnApp_Console extends OnApp {
 			case '2.0':
 			case '2.1':
 				$this->fields = array(
-					'id' => array(
-						ONAPP_FIELD_MAP => '_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'id'                 => array(
+						ONAPP_FIELD_MAP       => '_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'called_in_at' => array(
-						ONAPP_FIELD_MAP => '_called_in_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+					'called_in_at'       => array(
+						ONAPP_FIELD_MAP       => '_called_in_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'created_at' => array(
-						ONAPP_FIELD_MAP => '_created_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+					'created_at'         => array(
+						ONAPP_FIELD_MAP       => '_created_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'port' => array(
-						ONAPP_FIELD_MAP => '_port',
-						ONAPP_FIELD_TYPE => 'integer',
+					'port'               => array(
+						ONAPP_FIELD_MAP       => '_port',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'updated_at' => array(
-						ONAPP_FIELD_MAP => '_updated_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+					'updated_at'         => array(
+						ONAPP_FIELD_MAP       => '_updated_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true
 					),
 					'virtual_machine_id' => array(
-						ONAPP_FIELD_MAP => '_virtual_machine_id',
-						ONAPP_FIELD_TYPE => 'integer',
+						ONAPP_FIELD_MAP       => '_virtual_machine_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'remote_key' => array(
-						ONAPP_FIELD_MAP => '_remote_key',
-						ONAPP_FIELD_TYPE => 'string',
+					'remote_key'         => array(
+						ONAPP_FIELD_MAP       => '_remote_key',
+						ONAPP_FIELD_TYPE      => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
@@ -96,6 +96,10 @@ class OnApp_Console extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -103,7 +107,7 @@ class OnApp_Console extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias for Load of objects of the API Class that inherits the Class OnApp
+	 * Returns the URL Alias for Load of objects of the API Class that inherits the OnApp class
 	 *
 	 * Can be redefined if the API for load objects does not use the default
 	 * alias (the alias consisting of few fields) the same way as {@link
@@ -143,7 +147,7 @@ class OnApp_Console extends OnApp {
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class OnApp.
+	 * this parameter in the class inheriting OnApp class.
 	 *
 	 * @param integer $virtual_machine_id Object id
 	 *
@@ -151,20 +155,20 @@ class OnApp_Console extends OnApp {
 	 * @access public
 	 */
 	function load( $virtual_machine_id = null ) {
-		if( is_null( $virtual_machine_id ) && !is_null( $this->_virtual_machine_id ) ) {
+		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
 			$virtual_machine_id = $this->_virtual_machine_id;
 		}
 
 		if( is_null( $virtual_machine_id ) &&
 			isset( $this->_obj ) &&
-			!is_null( $this->_obj->_virtual_machine_id )
+			! is_null( $this->_obj->_virtual_machine_id )
 		) {
 			$virtual_machine_id = $this->_obj->_virtual_machine_id;
 		}
 
 		$this->logger->add( "load: Load class ( id => '$virtual_machine_id')." );
 
-		if( !is_null( $virtual_machine_id ) ) {
+		if( ! is_null( $virtual_machine_id ) ) {
 			$this->_virtual_machine_id = $virtual_machine_id;
 
 			$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );

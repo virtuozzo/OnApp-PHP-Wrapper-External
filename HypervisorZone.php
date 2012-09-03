@@ -4,12 +4,12 @@
  *
  * @todo Add description
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package        OnApp
+ * @author        Andrew Yatskovets
+ * @copyright    (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see            OnApp
  */
 
 /**
@@ -55,24 +55,24 @@ class OnApp_HypervisorZone extends OnApp {
 		switch( $version ) {
 			case '2.0':
 				$this->fields = array(
-					'id' => array(
-						ONAPP_FIELD_MAP => '_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'id'         => array(
+						ONAPP_FIELD_MAP       => '_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
 					'created_at' => array(
-						ONAPP_FIELD_MAP => '_created_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+						ONAPP_FIELD_MAP       => '_created_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'updated_at' => array(
-						ONAPP_FIELD_MAP => '_updated_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+						ONAPP_FIELD_MAP       => '_updated_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'label' => array(
-						ONAPP_FIELD_MAP => '_label',
-						ONAPP_FIELD_TYPE => 'string',
+					'label'      => array(
+						ONAPP_FIELD_MAP       => '_label',
+						ONAPP_FIELD_TYPE      => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
@@ -85,6 +85,10 @@ class OnApp_HypervisorZone extends OnApp {
 			case 2.2:
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
+				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
 				break;
 		}
 

@@ -5,13 +5,13 @@
  * This API provides an interface to onapp.net allowing common virtual machine
  * and account management tasks
  *
- * @category	API wrapper
- * @package		OnApp
- * @author		Andrew Yatskovets
- * @author		Yakubskiy Yuriy
- * @author		Lev Bartashevsky
- * @copyright	(c) 2011-2012 OnApp
- * @link		http://www.onapp.com/
+ * @category    API wrapper
+ * @package        OnApp
+ * @author        Andrew Yatskovets
+ * @author        Yakubskiy Yuriy
+ * @author        Lev Bartashevsky
+ * @copyright    (c) 2011-2012 OnApp
+ * @link        http://www.onapp.com/
  *
  * @todo Pack using the lib (http://pecl.php.net/)
  */
@@ -298,6 +298,9 @@ define( 'ONAPP_REQUEST_METHOD_DELETE', 'DELETE' );
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp {
+	//todo del
+	public $fields;
+
 	/**
 	 * The list of all available options used in the class to create API requests and receive responses,
 	 * as well as to serialize and unserialize.
@@ -544,7 +547,7 @@ class OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class OnApp
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * Can be redefined if the API does not use the default alias (the alias
 	 * consisting of few fields).
@@ -918,10 +921,10 @@ class OnApp {
 				case 422:
 				case 404:
 					switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
-					case 'xml':
-					case 'json':
-						$this->logger->add( 'Response (code => ' . $result[ 'info' ][ 'http_code' ] . ', cast:' . PHP_EOL . $result[ 'response_body' ] );
-						break;
+						case 'xml':
+						case 'json':
+							$this->logger->add( 'Response (code => ' . $result[ 'info' ][ 'http_code' ] . ', cast:' . PHP_EOL . $result[ 'response_body' ] );
+							break;
 					}
 					break;
 
@@ -1119,7 +1122,7 @@ class OnApp {
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class OnApp.
+	 * this parameter in the class inheriting OnApp class.
 	 *
 	 * @param integer $id Object id
 	 *
@@ -1513,18 +1516,18 @@ class OnApp {
 			case '_version':
 				return $this->getAPIVersion();
 				break;
-			}
+		}
 
-			if( ! isset( $this->dynamicFields[ $name ] ) ) {
-				if( strpos( $name, '_' ) === 0 ) {
-					$name = substr( $name, 1 );
-					if( ! isset( $this->dynamicFields[ $name ] ) ) {
-						return null;
-					}
-				}
-				else {
+		if( ! isset( $this->dynamicFields[ $name ] ) ) {
+			if( strpos( $name, '_' ) === 0 ) {
+				$name = substr( $name, 1 );
+				if( ! isset( $this->dynamicFields[ $name ] ) ) {
 					return null;
 				}
+			}
+			else {
+				return null;
+			}
 		}
 
 		if( is_object( $this->dynamicFields[ $name ] ) ) {

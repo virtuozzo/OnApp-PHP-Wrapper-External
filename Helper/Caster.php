@@ -2,22 +2,22 @@
 /**
  * Serialize and Unserialize Object to/from JSON|XML for OnApp wrapper
  *
- * @category	OBJECT CAST
- * @package		OnApp
- * @subpackage	Helper
- * @author		Lev Bartashevsky
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
+ * @category    OBJECT CAST
+ * @package        OnApp
+ * @subpackage    Helper
+ * @author        Lev Bartashevsky
+ * @copyright    (c) 2011 OnApp
+ * @link        http://www.onapp.com/
  */
 class OnApp_Helper_Caster {
 	protected static $obj;
 	protected static $APIVersion;
 
 	/**
-	 * @param object $obj	   wrapper object
+	 * @param object $obj       wrapper object
 	 */
 	public function __construct( $obj ) {
-		self::$obj = $obj;
+		self::$obj        = $obj;
 		self::$APIVersion = $obj->getAPIVersion();
 	}
 
@@ -38,9 +38,9 @@ class OnApp_Helper_Caster {
 	/**
 	 * Unserialize data to wrapper object(s)
 	 *
-	 * @param string		$className  classname to cast into
-	 * @param string|array  $data	   XML|JSON or array containing nested data
-	 * @param string		$root	   root tag
+	 * @param string        $className  classname to cast into
+	 * @param string|array  $data       XML|JSON or array containing nested data
+	 * @param string        $root       root tag
 	 *
 	 * @return array|object unserialized data
 	 */
@@ -60,10 +60,10 @@ class OnApp_Helper_Caster {
 	public static function unserializeNested( OnAppNestedDataHolder $object ) {
 		self::$obj->logger->add( 'castStringToClass: call ' . __METHOD__ );
 
-		$className = 'OnApp_' . $object->className;
-		$tmp_obj = new $className;
-		$tmp_obj->options = self::$obj->options;
-		$tmp_obj->_ch = self::$obj->_ch;
+		$className         = 'OnApp_' . $object->className;
+		$tmp_obj           = new $className;
+		$tmp_obj->options  = self::$obj->options;
+		$tmp_obj->_ch      = self::$obj->_ch;
 		$tmp_obj->_is_auth = self::$obj->_is_auth;
 
 		$tmp = array();

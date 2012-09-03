@@ -6,12 +6,12 @@
  *
  * With OnApp you can assign resource limits to users. This will prevent users from exceeding the resources you specify.
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package        OnApp
+ * @author        Andrew Yatskovets
+ * @copyright    (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see            OnApp
  */
 
 /**
@@ -56,60 +56,60 @@ class OnApp_ResourceLimit extends OnApp {
 			case '2.0':
 			case '2.1':
 				$this->fields = array(
-					'id' => array(
-						ONAPP_FIELD_MAP => '_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'id'                     => array(
+						ONAPP_FIELD_MAP       => '_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'cpu_shares' => array(
-						ONAPP_FIELD_MAP => '_cpu_shares',
-						ONAPP_FIELD_TYPE => 'integer',
-						ONAPP_FIELD_REQUIRED => true,
+					'cpu_shares'             => array(
+						ONAPP_FIELD_MAP           => '_cpu_shares',
+						ONAPP_FIELD_TYPE          => 'integer',
+						ONAPP_FIELD_REQUIRED      => true,
 						ONAPP_FIELD_DEFAULT_VALUE => ''
 					),
-					'cpus' => array(
-						ONAPP_FIELD_MAP => '_cpus',
-						ONAPP_FIELD_TYPE => 'integer',
-						ONAPP_FIELD_REQUIRED => true,
+					'cpus'                   => array(
+						ONAPP_FIELD_MAP           => '_cpus',
+						ONAPP_FIELD_TYPE          => 'integer',
+						ONAPP_FIELD_REQUIRED      => true,
 						ONAPP_FIELD_DEFAULT_VALUE => ''
 					),
-					'created_at' => array(
-						ONAPP_FIELD_MAP => '_created_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+					'created_at'             => array(
+						ONAPP_FIELD_MAP       => '_created_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'disk_size' => array(
-						ONAPP_FIELD_MAP => '_disk_size',
-						ONAPP_FIELD_TYPE => 'integer',
-						ONAPP_FIELD_REQUIRED => true,
+					'disk_size'              => array(
+						ONAPP_FIELD_MAP           => '_disk_size',
+						ONAPP_FIELD_TYPE          => 'integer',
+						ONAPP_FIELD_REQUIRED      => true,
 						ONAPP_FIELD_DEFAULT_VALUE => ''
 					),
-					'memory' => array(
-						ONAPP_FIELD_MAP => '_memory',
-						ONAPP_FIELD_TYPE => 'integer',
-						ONAPP_FIELD_REQUIRED => true,
+					'memory'                 => array(
+						ONAPP_FIELD_MAP           => '_memory',
+						ONAPP_FIELD_TYPE          => 'integer',
+						ONAPP_FIELD_REQUIRED      => true,
 						ONAPP_FIELD_DEFAULT_VALUE => ''
 					),
-					'updated_at' => array(
-						ONAPP_FIELD_MAP => '_updated_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+					'updated_at'             => array(
+						ONAPP_FIELD_MAP       => '_updated_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'user_id' => array(
-						ONAPP_FIELD_MAP => '_user_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'user_id'                => array(
+						ONAPP_FIELD_MAP       => '_user_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'storage_disk_size' => array(
-						ONAPP_FIELD_MAP => '_storage_disk_size',
-						ONAPP_FIELD_TYPE => 'integer',
-						ONAPP_FIELD_REQUIRED => true,
+					'storage_disk_size'      => array(
+						ONAPP_FIELD_MAP           => '_storage_disk_size',
+						ONAPP_FIELD_TYPE          => 'integer',
+						ONAPP_FIELD_REQUIRED      => true,
 						ONAPP_FIELD_DEFAULT_VALUE => ''
 					),
 					'virtual_machines_count' => array(
-						ONAPP_FIELD_MAP => '_virtual_machines_count',
-						ONAPP_FIELD_TYPE => 'integer',
-						ONAPP_FIELD_REQUIRED => true,
+						ONAPP_FIELD_MAP           => '_virtual_machines_count',
+						ONAPP_FIELD_TYPE          => 'integer',
+						ONAPP_FIELD_REQUIRED      => true,
 						ONAPP_FIELD_DEFAULT_VALUE => ''
 					),
 				);
@@ -119,24 +119,24 @@ class OnApp_ResourceLimit extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 
-				$this->fields[ 'ip_address_count' ] = array(
-					ONAPP_FIELD_MAP => 'ip_address_count',
-					ONAPP_FIELD_TYPE => 'integer',
+				$this->fields[ 'ip_address_count' ]        = array(
+					ONAPP_FIELD_MAP       => 'ip_address_count',
+					ONAPP_FIELD_TYPE      => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'ip_address_mask' ] = array(
-					ONAPP_FIELD_MAP => 'ip_address_mask',
-					ONAPP_FIELD_TYPE => 'integer',
+				$this->fields[ 'ip_address_mask' ]         = array(
+					ONAPP_FIELD_MAP       => 'ip_address_mask',
+					ONAPP_FIELD_TYPE      => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
 				$this->fields[ 'backups_templates_count' ] = array(
-					ONAPP_FIELD_MAP => 'backups_templates_count',
-					ONAPP_FIELD_TYPE => 'integer',
+					ONAPP_FIELD_MAP       => 'backups_templates_count',
+					ONAPP_FIELD_TYPE      => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'rate' ] = array(
-					ONAPP_FIELD_MAP => 'rate',
-					ONAPP_FIELD_TYPE => 'integer',
+				$this->fields[ 'rate' ]                    = array(
+					ONAPP_FIELD_MAP       => 'rate',
+					ONAPP_FIELD_TYPE      => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
 
@@ -145,6 +145,10 @@ class OnApp_ResourceLimit extends OnApp {
 				);
 				$this->unsetFields( $fields );
 				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -152,7 +156,7 @@ class OnApp_ResourceLimit extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class OnApp
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @return string API resource
 	 * @access public
@@ -216,7 +220,7 @@ class OnApp_ResourceLimit extends OnApp {
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class OnApp.
+	 * this parameter in the class inheriting OnApp class.
 	 *
 	 * @param integer $id Object id
 	 *
@@ -224,20 +228,20 @@ class OnApp_ResourceLimit extends OnApp {
 	 * @access public
 	 */
 	function load( $user_id = null ) {
-		if( is_null( $user_id ) && !is_null( $this->_user_id ) ) {
+		if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
 			$user_id = $this->_user_id;
 		}
 
 		if( is_null( $user_id ) &&
 			isset( $this->_obj ) &&
-			!is_null( $this->_obj->_user_id )
+			! is_null( $this->_obj->_user_id )
 		) {
 			$user_id = $this->_obj->_user_id;
 		}
 
 		$this->logger->add( 'load: Load class ( id => ' . $user_id . ').' );
 
-		if( !is_null( $user_id ) ) {
+		if( ! is_null( $user_id ) ) {
 			$this->_user_id = $user_id;
 
 			$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
@@ -246,7 +250,7 @@ class OnApp_ResourceLimit extends OnApp {
 
 			$result = $this->_castResponseToClass( $response );
 
-			$this->_obj = $result;
+			$this->_obj     = $result;
 			$this->_user_id = $this->_obj->_user_id;
 
 			return $result;
@@ -274,7 +278,7 @@ class OnApp_ResourceLimit extends OnApp {
 		if( isset( $this->_user_id ) ) {
 			$obj = $this->_edit();
 
-			if( isset( $obj ) && !isset( $obj->errors ) ) {
+			if( isset( $obj ) && ! isset( $obj->errors ) ) {
 				$this->load();
 			}
 		}

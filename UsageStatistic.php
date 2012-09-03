@@ -4,12 +4,12 @@
 /**
  * Usage Statistics
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Vitaliy Kondratyuk
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package        OnApp
+ * @author        Vitaliy Kondratyuk
+ * @copyright    (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see            OnApp
  */
 
 /**
@@ -51,79 +51,79 @@ class OnApp_UsageStatistic extends OnApp {
 		switch( $version ) {
 			case '2.0':
 				$this->fields = array(
-					'id' => array(
-						ONAPP_FIELD_MAP => '_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'id'                 => array(
+						ONAPP_FIELD_MAP       => '_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'created_at' => array(
-						ONAPP_FIELD_MAP => '_created_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+					'created_at'         => array(
+						ONAPP_FIELD_MAP       => '_created_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'updated_at' => array(
-						ONAPP_FIELD_MAP => '_updated_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+					'updated_at'         => array(
+						ONAPP_FIELD_MAP       => '_updated_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'cpu_used' => array(
-						ONAPP_FIELD_MAP => '_cpu_used',
-						ONAPP_FIELD_TYPE => 'integer',
+					'cpu_used'           => array(
+						ONAPP_FIELD_MAP       => '_cpu_used',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'cpu_shares' => array(
-						ONAPP_FIELD_MAP => '_cpu_shares',
-						ONAPP_FIELD_TYPE => 'integer',
+					'cpu_shares'         => array(
+						ONAPP_FIELD_MAP       => '_cpu_shares',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'disk_size' => array(
-						ONAPP_FIELD_MAP => '_disk_size',
-						ONAPP_FIELD_TYPE => 'integer',
+					'disk_size'          => array(
+						ONAPP_FIELD_MAP       => '_disk_size',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'amount' => array(
-						ONAPP_FIELD_MAP => '_amount',
-						ONAPP_FIELD_TYPE => 'decimal',
+					'amount'             => array(
+						ONAPP_FIELD_MAP       => '_amount',
+						ONAPP_FIELD_TYPE      => 'decimal',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'cpu_count' => array(
-						ONAPP_FIELD_MAP => '_cpu_count',
-						ONAPP_FIELD_TYPE => 'integer',
+					'cpu_count'          => array(
+						ONAPP_FIELD_MAP       => '_cpu_count',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'bandwidth_used' => array(
-						ONAPP_FIELD_MAP => '_bandwidth_used',
-						ONAPP_FIELD_TYPE => 'integer',
+					'bandwidth_used'     => array(
+						ONAPP_FIELD_MAP       => '_bandwidth_used',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'user_id' => array(
-						ONAPP_FIELD_MAP => '_user_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'user_id'            => array(
+						ONAPP_FIELD_MAP       => '_user_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'number_of_hours' => array(
-						ONAPP_FIELD_MAP => '_number_of_hours',
-						ONAPP_FIELD_TYPE => 'integer',
+					'number_of_hours'    => array(
+						ONAPP_FIELD_MAP       => '_number_of_hours',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'booted' => array(
-						ONAPP_FIELD_MAP => '_booted',
-						ONAPP_FIELD_TYPE => 'boolean',
+					'booted'             => array(
+						ONAPP_FIELD_MAP       => '_booted',
+						ONAPP_FIELD_TYPE      => 'boolean',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'ram' => array(
-						ONAPP_FIELD_MAP => '_ram',
-						ONAPP_FIELD_TYPE => 'integer',
+					'ram'                => array(
+						ONAPP_FIELD_MAP       => '_ram',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'virtual_machine_id' => array(
-						ONAPP_FIELD_MAP => '_virtual_machine_id',
-						ONAPP_FIELD_TYPE => 'integer',
+						ONAPP_FIELD_MAP       => '_virtual_machine_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'ip_addresses_count' => array(
-						ONAPP_FIELD_MAP => '_ip_addresses_count',
-						ONAPP_FIELD_TYPE => 'integer',
+						ONAPP_FIELD_MAP       => '_ip_addresses_count',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
@@ -131,7 +131,7 @@ class OnApp_UsageStatistic extends OnApp {
 
 			case '2.1':
 				$this->fields = $this->initFields( '2.0' );
-				$fields = array(
+				$fields       = array(
 					'amount',
 					'bandwidth_used',
 					'booted',
@@ -144,19 +144,19 @@ class OnApp_UsageStatistic extends OnApp {
 					'ram',
 				);
 				$this->unsetFields( $fields );
-				$this->fields[ 'cost' ] = array(
-					ONAPP_FIELD_MAP => '_cost',
-					ONAPP_FIELD_TYPE => 'string',
+				$this->fields[ 'cost' ]               = array(
+					ONAPP_FIELD_MAP       => '_cost',
+					ONAPP_FIELD_TYPE      => 'string',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'stat_time' ] = array(
-					ONAPP_FIELD_MAP => '_stat_time',
-					ONAPP_FIELD_TYPE => 'string',
+				$this->fields[ 'stat_time' ]          = array(
+					ONAPP_FIELD_MAP       => '_stat_time',
+					ONAPP_FIELD_TYPE      => 'string',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
 				$this->fields[ 'vm_billing_stat_id' ] = array(
-					ONAPP_FIELD_MAP => '_vm_billing_stat_id',
-					ONAPP_FIELD_TYPE => 'integer',
+					ONAPP_FIELD_MAP       => '_vm_billing_stat_id',
+					ONAPP_FIELD_TYPE      => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
 				break;
@@ -164,7 +164,7 @@ class OnApp_UsageStatistic extends OnApp {
 			case 2.2:
 			case 2.3:
 				$this->fields = $this->initFields( '2.1' );
-				$fields = array(
+				$fields       = array(
 					'id',
 					'cost',
 					'stat_time',
@@ -173,41 +173,45 @@ class OnApp_UsageStatistic extends OnApp {
 					'vm_billing_stat_id',
 				);
 				$this->unsetFields( $fields );
-				$this->fields[ 'data_received' ] = array(
-					ONAPP_FIELD_MAP => '_data_received',
-					ONAPP_FIELD_TYPE => 'string',
+				$this->fields[ 'data_received' ]    = array(
+					ONAPP_FIELD_MAP       => '_data_received',
+					ONAPP_FIELD_TYPE      => 'string',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'data_sent' ] = array(
-					ONAPP_FIELD_MAP => '_data_sent',
-					ONAPP_FIELD_TYPE => 'string',
+				$this->fields[ 'data_sent' ]        = array(
+					ONAPP_FIELD_MAP       => '_data_sent',
+					ONAPP_FIELD_TYPE      => 'string',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'data_read' ] = array(
-					ONAPP_FIELD_MAP => '_data_read',
-					ONAPP_FIELD_TYPE => 'string',
+				$this->fields[ 'data_read' ]        = array(
+					ONAPP_FIELD_MAP       => '_data_read',
+					ONAPP_FIELD_TYPE      => 'string',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'data_written' ] = array(
-					ONAPP_FIELD_MAP => '_data_written',
-					ONAPP_FIELD_TYPE => 'string',
+				$this->fields[ 'data_written' ]     = array(
+					ONAPP_FIELD_MAP       => '_data_written',
+					ONAPP_FIELD_TYPE      => 'string',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
 				$this->fields[ 'writes_completed' ] = array(
-					ONAPP_FIELD_MAP => '_writes_completed',
-					ONAPP_FIELD_TYPE => 'string',
+					ONAPP_FIELD_MAP       => '_writes_completed',
+					ONAPP_FIELD_TYPE      => 'string',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'reads_completed' ] = array(
-					ONAPP_FIELD_MAP => '_reads_completed',
-					ONAPP_FIELD_TYPE => 'string',
+				$this->fields[ 'reads_completed' ]  = array(
+					ONAPP_FIELD_MAP       => '_reads_completed',
+					ONAPP_FIELD_TYPE      => 'string',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'cpu_usage' ] = array(
-					ONAPP_FIELD_MAP => '_cpu_usage',
-					ONAPP_FIELD_TYPE => 'string',
+				$this->fields[ 'cpu_usage' ]        = array(
+					ONAPP_FIELD_MAP       => '_cpu_usage',
+					ONAPP_FIELD_TYPE      => 'string',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
+				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
 				break;
 		}
 

@@ -4,13 +4,13 @@
 /**
  * VM Firewall Rule
  *
- * @category	API WRAPPER
- * @package		OnApp
+ * @category    API wrapper
+ * @package        OnApp
  * @subpackage  VirtualMachine
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @author        Yakubskiy Yuriy
+ * @copyright    (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see            OnApp
  */
 
 define( 'ONAPP_GETRESOURCE_MOVE', 'move' );
@@ -57,47 +57,47 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 			case '2.0':
 			case '2.1':
 				$this->fields = array(
-					'id' => array(
-						ONAPP_FIELD_MAP => '_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'id'                   => array(
+						ONAPP_FIELD_MAP       => '_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'address' => array(
-						ONAPP_FIELD_MAP => '_address',
+					'address'              => array(
+						ONAPP_FIELD_MAP  => '_address',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'position' => array(
-						ONAPP_FIELD_MAP => '_position',
-						ONAPP_FIELD_TYPE => 'string',
+					'position'             => array(
+						ONAPP_FIELD_MAP       => '_position',
+						ONAPP_FIELD_TYPE      => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'created_at' => array(
-						ONAPP_FIELD_MAP => '_created_at',
-						ONAPP_FIELD_TYPE => 'string',
+					'created_at'           => array(
+						ONAPP_FIELD_MAP       => '_created_at',
+						ONAPP_FIELD_TYPE      => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'updated_at' => array(
-						ONAPP_FIELD_MAP => '_updated_at',
-						ONAPP_FIELD_TYPE => 'string',
+					'updated_at'           => array(
+						ONAPP_FIELD_MAP       => '_updated_at',
+						ONAPP_FIELD_TYPE      => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'command' => array(
-						ONAPP_FIELD_MAP => '_command',
-						ONAPP_FIELD_TYPE => 'string',
+					'command'              => array(
+						ONAPP_FIELD_MAP      => '_command',
+						ONAPP_FIELD_TYPE     => 'string',
 						ONAPP_FIELD_REQUIRED => true,
 					),
-					'port' => array(
-						ONAPP_FIELD_MAP => '_port',
+					'port'                 => array(
+						ONAPP_FIELD_MAP  => '_port',
 						ONAPP_FIELD_TYPE => 'integer',
 					),
-					'protocol' => array(
-						ONAPP_FIELD_MAP => '_protocol',
-						ONAPP_FIELD_TYPE => 'string',
+					'protocol'             => array(
+						ONAPP_FIELD_MAP      => '_protocol',
+						ONAPP_FIELD_TYPE     => 'string',
 						ONAPP_FIELD_REQUIRED => true,
 					),
 					'network_interface_id' => array(
-						ONAPP_FIELD_MAP => '_network_interface_id',
-						ONAPP_FIELD_TYPE => 'integer',
+						ONAPP_FIELD_MAP      => '_network_interface_id',
+						ONAPP_FIELD_TYPE     => 'integer',
 						ONAPP_FIELD_REQUIRED => true,
 					),
 				);
@@ -107,6 +107,10 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -114,7 +118,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class OnApp
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 * @return string API resource
@@ -128,21 +132,21 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 				 * @name virtual_machine_firewall_rules
 				 * @method GET
 				 * @alias  /virtual_machines/:virtual_machine_id/firewall_rules(.:format)
-				 * @format	{:controller=>"firewall_rules", :action=>"index"}
+				 * @format    {:controller=>"firewall_rules", :action=>"index"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name virtual_machine_firewall_rule
 				 * @method GET
 				 * @alias  /virtual_machines/:virtual_machine_id/firewall_rules/:id(.:format)
-				 * @format	{:controller=>"firewall_rules", :action=>"show"}
+				 * @format    {:controller=>"firewall_rules", :action=>"show"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name
 				 * @method POST
 				 * @alias  /virtual_machines/:virtual_machine_id/firewall_rules(.:format)
-				 * @format	{:controller=>"firewall_rules", :action=>"create"}
+				 * @format    {:controller=>"firewall_rules", :action=>"create"}
 				 */
 				/**
 				 * ROUTE :
@@ -156,7 +160,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 				 * @name
 				 * @method DELETE
 				 * @alias  /virtual_machines/:virtual_machine_id/firewall_rules/:id(.:format)
-				 * @format	{:controller=>"firewall_rules", :action=>"destroy"}
+				 * @format    {:controller=>"firewall_rules", :action=>"destroy"}
 				 */
 				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->_resource;
 				break;
@@ -167,7 +171,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 				 * @name move_virtual_machine_firewall_rule
 				 * @method GET
 				 * @alias  /virtual_machines/:virtual_machine_id/firewall_rules/:id/move(.:format)
-				 * @format	{:controller=>"firewall_rules", :action=>"move"}
+				 * @format    {:controller=>"firewall_rules", :action=>"move"}
 				 */
 				$resource = $this->getResource( ONAPP_GETRESOURCE_DEFAULT ) . '/' . $this->_id . '/move';
 				break;
@@ -178,7 +182,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 				 * @name update_firewall_rules_virtual_machine
 				 * @method POST
 				 * @alias  /virtual_machines/:id/update_firewall_rules(.:format)
-				 * @format	{:controller=>"virtual_machines", :action=>"update_firewall_rules"}
+				 * @format    {:controller=>"virtual_machines", :action=>"update_firewall_rules"}
 				 */
 				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/update_firewall_rules';
 				break;
@@ -202,7 +206,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 		return $resource;
 	}
 
-    /**
+	/**
 	 * Sends an API request to get the Objects. After requesting,
 	 * unserializes the received response into the array of Objects
 	 *
@@ -211,7 +215,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $virtual_machine_id = null ) {
+	function getList( $virtual_machine_id = null, $url_args = null ) {
 		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
 			$virtual_machine_id = $this->_virtual_machine_id;
 		}
@@ -230,12 +234,12 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 		}
 	}
 
-    /**
+	/**
 	 * Sends an API request to get the Object after sending,
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class OnApp.
+	 * this parameter in the class inheriting OnApp class.
 	 *
 	 * @param integer $id Firewall Rule id
 	 * @param integer $virtual_machine_id Virtual Machine id
@@ -244,32 +248,32 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 * @access public
 	 */
 	function load( $id = null, $virtual_machine_id = null ) {
-		if( is_null( $virtual_machine_id ) && !is_null( $this->_virtual_machine_id ) ) {
+		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
 			$virtual_machine_id = $this->_virtual_machine_id;
 		}
 
 		if( is_null( $virtual_machine_id ) &&
 			isset( $this->_obj ) &&
-			!is_null( $this->_obj->_virtual_machine_id )
+			! is_null( $this->_obj->_virtual_machine_id )
 		) {
 			$virtual_machine_id = $this->_obj->_virtual_machine_id;
 		}
 
-		if( is_null( $id ) && !is_null( $this->_id ) ) {
+		if( is_null( $id ) && ! is_null( $this->_id ) ) {
 			$id = $this->_id;
 		}
 
 		if( is_null( $id ) &&
 			isset( $this->_obj ) &&
-			!is_null( $this->_obj->_id )
+			! is_null( $this->_obj->_id )
 		) {
 			$id = $this->_obj->_id;
 		}
 
 		$this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
 
-		if( !is_null( $id ) && !is_null( $virtual_machine_id ) ) {
-			$this->_id = $id;
+		if( ! is_null( $id ) && ! is_null( $virtual_machine_id ) ) {
+			$this->_id                 = $id;
 			$this->_virtual_machine_id = $virtual_machine_id;
 
 			$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
@@ -308,7 +312,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 * @return void
 	 */
 	function move( $position ) {
-		if( !$position ) {
+		if( ! $position ) {
 			$this->logger->error(
 				"_GETAction: Firewall rule move position have to be specified
 				(apiVersion => '" . $this->_apiVersion . "').", __FILE__, __LINE__

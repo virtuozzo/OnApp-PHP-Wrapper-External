@@ -3,13 +3,13 @@
 /**
  * Manages LoadBalancingCluster AutoScalingInCpu
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	LoadBalancingCluster
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package        OnApp
+ * @subpackage    LoadBalancingCluster
+ * @author        Yakubskiy Yuriy
+ * @copyright    (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see            OnApp
  */
 
 /**
@@ -23,5 +23,4 @@ class OnApp_LoadBalancingCluster_AutoScalingInCpu extends AutoScaling {
 		parent::__construct();
 		$this->className = __CLASS__;
 	}
-
 }

@@ -6,13 +6,13 @@
  *
  * @todo Add description
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	Hypervisor
- * @author		Vitaliy Kondratyuk
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package        OnApp
+ * @subpackage    Hypervisor
+ * @author        Vitaliy Kondratyuk
+ * @copyright    (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see            OnApp
  */
 
 /**
@@ -56,49 +56,49 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 		switch( $version ) {
 			case '2.0':
 				$this->fields = array(
-					'id' => array(
-						ONAPP_FIELD_MAP => '_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'id'            => array(
+						ONAPP_FIELD_MAP       => '_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'created_at' => array(
-						ONAPP_FIELD_MAP => '_created_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+					'created_at'    => array(
+						ONAPP_FIELD_MAP       => '_created_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'updated_at' => array(
-						ONAPP_FIELD_MAP => '_updated_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+					'updated_at'    => array(
+						ONAPP_FIELD_MAP       => '_updated_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'network_id' => array(
-						ONAPP_FIELD_MAP => '_network_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'network_id'    => array(
+						ONAPP_FIELD_MAP      => '_network_id',
+						ONAPP_FIELD_TYPE     => 'integer',
 						ONAPP_FIELD_REQUIRED => true,
 					),
 					'hypervisor_id' => array(
-						ONAPP_FIELD_MAP => '_hypervisor_id',
-						ONAPP_FIELD_TYPE => 'integer',
+						ONAPP_FIELD_MAP       => '_hypervisor_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'interface' => array(
-						ONAPP_FIELD_MAP => '_interface',
+					'interface'     => array(
+						ONAPP_FIELD_MAP       => '_interface',
 						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED => true,
+						ONAPP_FIELD_REQUIRED  => true,
 					),
 				);
 				break;
 
 			case '2.1':
-				$this->fields = $this->initFields( '2.0' );
-				$this->fields[ 'target_join_id' ] = array(
-					ONAPP_FIELD_MAP => '_target_join_id',
-					ONAPP_FIELD_TYPE => 'integer',
+				$this->fields                       = $this->initFields( '2.0' );
+				$this->fields[ 'target_join_id' ]   = array(
+					ONAPP_FIELD_MAP      => '_target_join_id',
+					ONAPP_FIELD_TYPE     => 'integer',
 					ONAPP_FIELD_REQUIRED => true
 				);
 				$this->fields[ 'target_join_type' ] = array(
-					ONAPP_FIELD_MAP => '_target_join_type',
-					ONAPP_FIELD_TYPE => 'string',
+					ONAPP_FIELD_MAP      => '_target_join_type',
+					ONAPP_FIELD_TYPE     => 'string',
 					ONAPP_FIELD_REQUIRED => true
 				);
 				break;
@@ -107,6 +107,10 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -114,7 +118,7 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class OnApp
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -179,11 +183,11 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	 * @access public
 	 */
 	function getList( $hypervisor_id = null ) {
-		if( is_null( $hypervisor_id ) && !is_null( $this->_hypervisor_id ) ) {
+		if( is_null( $hypervisor_id ) && ! is_null( $this->_hypervisor_id ) ) {
 			$hypervisor_id = $this->_hypervisor_id;
 		}
 
-		if( !is_null( $hypervisor_id ) ) {
+		if( ! is_null( $hypervisor_id ) ) {
 			$this->_hypervisor_id = $hypervisor_id;
 			return parent::getList();
 		}
@@ -201,7 +205,7 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class OnApp.
+	 * this parameter in the class inheriting OnApp class.
 	 *
 	 * @param integer $id Network Join ID
 	 * @param integer $hypervisor_id Hypervisor ID
@@ -210,25 +214,25 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	 * @access public
 	 */
 	function load( $id = null, $hypervisor_id = null ) {
-		if( is_null( $hypervisor_id ) && !is_null( $this->_hypervisor_id ) ) {
+		if( is_null( $hypervisor_id ) && ! is_null( $this->_hypervisor_id ) ) {
 			$hypervisor_id = $this->_hypervisor_id;
 		}
 
-		if( is_null( $id ) && !is_null( $this->_id ) ) {
+		if( is_null( $id ) && ! is_null( $this->_id ) ) {
 			$id = $this->_id;
 		}
 
 		if( is_null( $id ) &&
 			isset( $this->_obj ) &&
-			!is_null( $this->_obj->_id )
+			! is_null( $this->_obj->_id )
 		) {
 			$id = $this->_obj->_id;
 		}
 
 		$this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
 
-		if( !is_null( $id ) && !is_null( $hypervisor_id ) ) {
-			$this->_id = $id;
+		if( ! is_null( $id ) && ! is_null( $hypervisor_id ) ) {
+			$this->_id            = $id;
 			$this->_hypervisor_id = $hypervisor_id;
 
 			$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );

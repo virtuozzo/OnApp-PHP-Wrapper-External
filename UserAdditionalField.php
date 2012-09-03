@@ -1,40 +1,40 @@
 <?php
 /**
- * Network Zone
+ * User Additional Field
  *
  * @todo Add description
  *
  * @category    API wrapper
  * @package        OnApp
- * @author        Andrew Yatskovets
- * @copyright    (c) 2011 OnApp
+ * @author        Yuriy Yakubskiy
+ * @copyright    (c) 2012 OnApp
  * @link        http://www.onapp.com/
  * @see            OnApp
  */
 
 /**
  *
- * Managing Network Zones
+ * Managing User Additional Fields
  *
- * The OnApp_NetworkZone class uses the following basic methods:
+ * The OnApp_UserAdditionalField class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
-class OnApp_NetworkZone extends OnApp {
+class OnApp_UserAdditionalField extends OnApp {
 	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'network_group';
+	var $_tagRoot = 'user_additional_field';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = 'network_zones';
+	var $_resource = 'user_additional_fields';
 
 	public function __construct() {
 		parent::__construct();
@@ -50,42 +50,40 @@ class OnApp_NetworkZone extends OnApp {
 	 */
 	public function initFields( $version = null, $className = '' ) {
 		switch( $version ) {
-			case '2.0':
+			case '2.3':
 				$this->fields = array(
-					'id'         => array(
+					'id'            => array(
 						ONAPP_FIELD_MAP       => '_id',
 						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'created_at' => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
+					'name'          => array(
+						ONAPP_FIELD_MAP       => '_name',
+						ONAPP_FIELD_TYPE      => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'updated_at' => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
+					'default_value' => array(
+						ONAPP_FIELD_MAP       => '_default_value',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'label'      => array(
-						ONAPP_FIELD_MAP       => '_label',
+					'data_type'     => array(
+						ONAPP_FIELD_MAP       => '_data_type',
 						ONAPP_FIELD_TYPE      => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
 				break;
 
-			case '2.1':
-				$this->fields = $this->initFields( '2.0' );
-				break;
-
-			case 2.2:
-			case 2.3:
-				$this->fields = $this->initFields( 2.1 );
-				break;
-
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
+				break;
+			default:
+				$this->logger->error(
+					'supported only from 2.3 version',
+					__FILE__,
+					__LINE__
+				);
 				break;
 		}
 

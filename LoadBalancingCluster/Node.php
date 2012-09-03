@@ -3,13 +3,13 @@
 /**
  * Manages LoadBalancingCluster Nodes
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	LoadBalancingCluster
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package        OnApp
+ * @subpackage    LoadBalancingCluster
+ * @author        Yakubskiy Yuriy
+ * @copyright    (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see            OnApp
  */
 
 /**
@@ -25,6 +25,13 @@ class OnApp_LoadBalancingCluster_Node extends OnApp {
 	}
 
 	/**
+	 * root tag used in the API request
+	 *
+	 * @var string
+	 */
+	var $_tagRoot = 'load_balancing_cluster_node';
+
+	/**
 	 * API Fields description
 	 *
 	 * @param string|float $version OnApp API version
@@ -35,34 +42,39 @@ class OnApp_LoadBalancingCluster_Node extends OnApp {
 		switch( $version ) {
 			case '2.1':
 				$this->fields = array(
-					'cluster_id' => array(
-						ONAPP_FIELD_MAP => '_cluster_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'cluster_id'         => array(
+						ONAPP_FIELD_MAP       => '_cluster_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-					'ip_address_id' => array(
-						ONAPP_FIELD_MAP => '_ip_address_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'ip_address_id'      => array(
+						ONAPP_FIELD_MAP       => '_ip_address_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-                    'created_at' => array(
-						ONAPP_FIELD_MAP => '_created_at',
-						ONAPP_FIELD_TYPE => 'string',
+					'updated_at'         => array(
+						ONAPP_FIELD_MAP       => '_updated_at',
+						ONAPP_FIELD_TYPE      => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-                    'created_at' => array(
-						ONAPP_FIELD_MAP => '_created_at',
-						ONAPP_FIELD_TYPE => 'string',
+					'created_at'         => array(
+						ONAPP_FIELD_MAP       => '_created_at',
+						ONAPP_FIELD_TYPE      => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-                    'id' => array(
-						ONAPP_FIELD_MAP => '_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'created_at'         => array(
+						ONAPP_FIELD_MAP       => '_created_at',
+						ONAPP_FIELD_TYPE      => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-                    'virtual_machine_id' => array(
-						ONAPP_FIELD_MAP => '_virtual_machine_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'id'                 => array(
+						ONAPP_FIELD_MAP       => '_id',
+						ONAPP_FIELD_TYPE      => 'integer',
+						ONAPP_FIELD_READ_ONLY => true,
+					),
+					'virtual_machine_id' => array(
+						ONAPP_FIELD_MAP       => '_virtual_machine_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
@@ -71,6 +83,10 @@ class OnApp_LoadBalancingCluster_Node extends OnApp {
 			case 2.2:
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
+				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
 				break;
 		}
 

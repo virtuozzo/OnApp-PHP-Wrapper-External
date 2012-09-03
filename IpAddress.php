@@ -4,12 +4,12 @@
 /**
  * Managing IP Addresses
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Vitaliy Kondratyuk
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package        OnApp
+ * @author        Vitaliy Kondratyuk
+ * @copyright    (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see            OnApp
  */
 
 /**
@@ -53,54 +53,54 @@ class OnApp_IpAddress extends OnApp {
 			case '2.0':
 			case '2.1':
 				$this->fields = array(
-					'id' => array(
-						ONAPP_FIELD_MAP => '_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'id'                 => array(
+						ONAPP_FIELD_MAP       => '_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'created_at' => array(
-						ONAPP_FIELD_MAP => '_created_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+					'created_at'         => array(
+						ONAPP_FIELD_MAP       => '_created_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'updated_at' => array(
-						ONAPP_FIELD_MAP => '_updated_at',
-						ONAPP_FIELD_TYPE => 'datetime',
+					'updated_at'         => array(
+						ONAPP_FIELD_MAP       => '_updated_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'address' => array(
-						ONAPP_FIELD_MAP => '_address',
+					'address'            => array(
+						ONAPP_FIELD_MAP      => '_address',
 						ONAPP_FIELD_REQUIRED => true,
 					),
-					'netmask' => array(
-						ONAPP_FIELD_MAP => '_netmask',
+					'netmask'            => array(
+						ONAPP_FIELD_MAP      => '_netmask',
 						ONAPP_FIELD_REQUIRED => true,
 					),
-					'broadcast' => array(
-						ONAPP_FIELD_MAP => '_broadcast',
+					'broadcast'          => array(
+						ONAPP_FIELD_MAP      => '_broadcast',
 						ONAPP_FIELD_REQUIRED => true,
 					),
-					'network_address' => array(
-						ONAPP_FIELD_MAP => '_network_address',
+					'network_address'    => array(
+						ONAPP_FIELD_MAP      => '_network_address',
 						ONAPP_FIELD_REQUIRED => true,
 					),
-					'gateway' => array(
-						ONAPP_FIELD_MAP => '_gateway',
+					'gateway'            => array(
+						ONAPP_FIELD_MAP      => '_gateway',
 						ONAPP_FIELD_REQUIRED => true,
 					),
-					'network_id' => array(
-						ONAPP_FIELD_MAP => '_network_id',
-						ONAPP_FIELD_TYPE => 'integer',
+					'network_id'         => array(
+						ONAPP_FIELD_MAP       => '_network_id',
+						ONAPP_FIELD_TYPE      => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'free' => array(
-						ONAPP_FIELD_MAP => '_free',
-						ONAPP_FIELD_TYPE => 'boolean',
+					'free'               => array(
+						ONAPP_FIELD_MAP       => '_free',
+						ONAPP_FIELD_TYPE      => 'boolean',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'disallowed_primary' => array(
-						ONAPP_FIELD_MAP => '_disallowed_primary',
-						ONAPP_FIELD_TYPE => 'boolean',
+						ONAPP_FIELD_MAP       => '_disallowed_primary',
+						ONAPP_FIELD_TYPE      => 'boolean',
 						ONAPP_FIELD_READ_ONLY => true,
 					)
 				);
@@ -111,13 +111,17 @@ class OnApp_IpAddress extends OnApp {
 				break;
 
 			case 2.3:
-			$this->fields = $this->initFields( 2.2 );
-			$this->fields[ 'user_id' ] = array(
-				ONAPP_FIELD_MAP	   => 'user_id',
-				ONAPP_FIELD_TYPE	  => 'integer',
-				ONAPP_FIELD_READ_ONLY => true,
-			);
-			break;
+				$this->fields              = $this->initFields( 2.2 );
+				$this->fields[ 'user_id' ] = array(
+					ONAPP_FIELD_MAP       => 'user_id',
+					ONAPP_FIELD_TYPE      => 'integer',
+					ONAPP_FIELD_READ_ONLY => true,
+				);
+				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -125,7 +129,7 @@ class OnApp_IpAddress extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class OnApp
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -204,12 +208,12 @@ class OnApp_IpAddress extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $network_id = null ) {
-		if( is_null( $network_id ) && !is_null( $this->_network_id ) ) {
+	function getList( $network_id = null, $url_args = null ) {
+		if( is_null( $network_id ) && ! is_null( $this->_network_id ) ) {
 			$network_id = $this->_network_id;
 		}
 
-		if( !is_null( $network_id ) ) {
+		if( ! is_null( $network_id ) ) {
 			$this->_network_id = $network_id;
 
 			return parent::getList();
@@ -228,7 +232,7 @@ class OnApp_IpAddress extends OnApp {
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class OnApp.
+	 * this parameter in the class inheriting OnApp class.
 	 *
 	 * @param integer $id IP Address Join id
 	 * @param integer $virtual_machine_id Virtual Machine id
@@ -237,25 +241,25 @@ class OnApp_IpAddress extends OnApp {
 	 * @access public
 	 */
 	function load( $id = null, $network_id = null ) {
-		if( is_null( $network_id ) && !is_null( $this->_network_id ) ) {
+		if( is_null( $network_id ) && ! is_null( $this->_network_id ) ) {
 			$network_id = $this->_network_id;
 		}
 
-		if( is_null( $id ) && !is_null( $this->_id ) ) {
+		if( is_null( $id ) && ! is_null( $this->_id ) ) {
 			$id = $this->_id;
 		}
 
 		if( is_null( $id ) &&
 			isset( $this->_obj ) &&
-			!is_null( $this->_obj->_id )
+			! is_null( $this->_obj->_id )
 		) {
 			$id = $this->_obj->_id;
 		}
 
 		$this->logger->add( "load: Load class ( id => '$id')." );
 
-		if( !is_null( $id ) && !is_null( $network_id ) ) {
-			$this->_id = $id;
+		if( ! is_null( $id ) && ! is_null( $network_id ) ) {
+			$this->_id         = $id;
 			$this->_network_id = $network_id;
 
 			$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
@@ -300,7 +304,7 @@ class OnApp_IpAddress extends OnApp {
 		if( isset( $this->_id ) ) {
 			$obj = $this->_edit();
 
-			if( isset( $obj ) && !isset( $obj->errors ) ) {
+			if( isset( $obj ) && ! isset( $obj->errors ) ) {
 				$this->load();
 			}
 		}

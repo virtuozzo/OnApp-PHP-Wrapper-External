@@ -6,12 +6,12 @@
  *
  * Resolvers in OnApp implement a name-service protocol. You can set the IP addresses corresponding to the hostnames added to the system.
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package        OnApp
+ * @author        Andrew Yatskovets
+ * @copyright    (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see            OnApp
  */
 
 /**
@@ -56,37 +56,37 @@ class OnApp_Nameserver extends OnApp {
 			case '2.0':
 			case '2.1':
 				$this->fields = array(
-					'id' => array(
-						ONAPP_FIELD_MAP => '_id',
-						ONAPP_FIELD_TYPE => 'integer',
-						ONAPP_FIELD_READ_ONLY => '',
+					'id'         => array(
+						ONAPP_FIELD_MAP           => '_id',
+						ONAPP_FIELD_TYPE          => 'integer',
+						ONAPP_FIELD_READ_ONLY     => '',
 						ONAPP_FIELD_DEFAULT_VALUE => ''
 					),
-					'address' => array(
-						ONAPP_FIELD_MAP => '_address',
-						ONAPP_FIELD_TYPE => '',
-						ONAPP_FIELD_READ_ONLY => '',
-						ONAPP_FIELD_REQUIRED => '',
+					'address'    => array(
+						ONAPP_FIELD_MAP           => '_address',
+						ONAPP_FIELD_TYPE          => '',
+						ONAPP_FIELD_READ_ONLY     => '',
+						ONAPP_FIELD_REQUIRED      => '',
 						ONAPP_FIELD_DEFAULT_VALUE => ''
 					),
 					'created_at' => array(
-						ONAPP_FIELD_MAP => '_created_at',
-						ONAPP_FIELD_TYPE => 'datetime',
-						ONAPP_FIELD_READ_ONLY => '',
+						ONAPP_FIELD_MAP           => '_created_at',
+						ONAPP_FIELD_TYPE          => 'datetime',
+						ONAPP_FIELD_READ_ONLY     => '',
 						#ONAPP_FIELD_REQUIRED      =>'',
 						ONAPP_FIELD_DEFAULT_VALUE => ''
 					),
 					'network_id' => array(
-						ONAPP_FIELD_MAP => '_network_id',
-						ONAPP_FIELD_TYPE => 'integer',
-						ONAPP_FIELD_READ_ONLY => '',
+						ONAPP_FIELD_MAP           => '_network_id',
+						ONAPP_FIELD_TYPE          => 'integer',
+						ONAPP_FIELD_READ_ONLY     => '',
 						#ONAPP_FIELD_REQUIRED      =>'',
 						ONAPP_FIELD_DEFAULT_VALUE => ''
 					),
 					'updated_at' => array(
-						ONAPP_FIELD_MAP => '_updated_at',
-						ONAPP_FIELD_TYPE => 'datetime',
-						ONAPP_FIELD_READ_ONLY => '',
+						ONAPP_FIELD_MAP           => '_updated_at',
+						ONAPP_FIELD_TYPE          => 'datetime',
+						ONAPP_FIELD_READ_ONLY     => '',
 						#ONAPP_FIELD_REQUIRED      =>'',
 						ONAPP_FIELD_DEFAULT_VALUE => ''
 					),
@@ -96,6 +96,10 @@ class OnApp_Nameserver extends OnApp {
 			case 2.2:
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
+				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
 				break;
 		}
 

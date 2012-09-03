@@ -4,13 +4,13 @@
 /**
  * CDN Resource Bandwidth Statistics
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	CDNResource
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2012 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package        OnApp
+ * @subpackage    CDNResource
+ * @author        Yakubskiy Yuriy
+ * @copyright    (c) 2012 OnApp
+ * @link        http://www.onapp.com/
+ * @see            OnApp
  */
 
 /**
@@ -52,27 +52,31 @@ class OnApp_CDNResource_Bandwidth extends OnApp {
 		switch( $version ) {
 			case '2.0':
 			case '2.1':
-            case '2.2':
-			    break;
+			case '2.2':
+				break;
 			case '2.3':
 				$this->fields = array(
-                    'non_cached' => array(
-						ONAPP_FIELD_MAP => '_non_cached',
-						ONAPP_FIELD_TYPE => 'string',
+					'non_cached' => array(
+						ONAPP_FIELD_MAP       => '_non_cached',
+						ONAPP_FIELD_TYPE      => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'date' => array(
-						ONAPP_FIELD_MAP => '_date',
-						ONAPP_FIELD_TYPE => 'string',
+					'date'       => array(
+						ONAPP_FIELD_MAP       => '_date',
+						ONAPP_FIELD_TYPE      => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'cached' => array(
-						ONAPP_FIELD_MAP => '_cached',
-						ONAPP_FIELD_TYPE => 'string',
+					'cached'     => array(
+						ONAPP_FIELD_MAP       => '_cached',
+						ONAPP_FIELD_TYPE      => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
 				$this->fields = $this->initFields( 2.1 );
+				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
 				break;
 		}
 
@@ -80,7 +84,7 @@ class OnApp_CDNResource_Bandwidth extends OnApp {
 		return $this->fields;
 	}
 
-    /**
+	/**
 	 * Sends an API request to get the Objects. After requesting,
 	 * unserializes the received response into the array of Objects
 	 *
@@ -90,7 +94,7 @@ class OnApp_CDNResource_Bandwidth extends OnApp {
 	 * @access public
 	 */
 	public function getList( $url_args = null ) {
-	    return parent::getList( null, $url_args );
+		return parent::getList( null, $url_args );
 	}
 
 	/**
@@ -109,5 +113,4 @@ class OnApp_CDNResource_Bandwidth extends OnApp {
 				break;
 		}
 	}
-
 }

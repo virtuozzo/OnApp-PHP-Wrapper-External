@@ -11,12 +11,12 @@
  * With OnApp you can assign resource limits to users. This will prevent users
  * from exceeding the resources you specify.
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package        OnApp
+ * @author        Andrew Yatskovets
+ * @copyright    (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see            OnApp
  */
 
 /**
@@ -35,6 +35,11 @@ define( 'ONAPP_GETRESOURCE_ACTIVATE', 'activate' );
 define( 'ONAPP_GETRESOURCE_NETWORKS_LIST_BY_GROUP_ID', 'get_list_by_group_id' );
 
 /**
+ *
+ */
+define( 'ONAPP_GETRESOURCE_DELETE_USER', 'delete_user' );
+
+/**
  * Users
  *
  * The User class represents the Users of the OnApp installation.
@@ -46,43 +51,43 @@ define( 'ONAPP_GETRESOURCE_NETWORKS_LIST_BY_GROUP_ID', 'get_list_by_group_id' );
  */
 class OnApp_User extends OnApp {
 	/**
-	 * @property int		$id							ID
-	 * @property int		$used_cpu_shares
-	 * @property int		$used_cpus
-	 * @property int		$used_disk_size
-	 * @property int		$used_memory
-	 * @property int		$memory_available
-	 * @property int		$disk_space_available
-	 * @property int		$billing_plan_id
-	 * @property int		$image_template_group_id
-	 * @property int		$user_group_id
-	 * @property int		$aflexi_user_id
-	 * @property string		$email						email
-	 * @property string		$first_name					first name
-	 * @property string		$last_name					last name
-	 * @property string		$login						login
-	 * @property string		$activated_at				activation date
-	 * @property string		$created_at					creation date
-	 * @property string		$deleted_at					deletion date
-	 * @property string		$updated_at					updating date
-	 * @property string		$suspend_at					suspension date
-	 * @property string		$time_zone					time zone
-	 * @property string		$status						status
-	 * @property string		$locale						locale
-	 * @property string		$aflexi_username
-	 * @property string		$aflexi_key
-	 * @property string		$cdn_status
-	 * @property string		$cdn_account_status
-	 * @property string		$aflexi_password
-	 * @property string		$remember_token
-	 * @property string		$remember_token_expires_at
-	 * @property float		$outstanding_amount			outstanding amount
-	 * @property float		$payment_amount				payment amount
-	 * @property float		$total_amount				total amount
-	 * @property array		$roles
-	 * @property array		$used_ip_addresses
-	 * @property array		$additional_fields
-	 * @property boolean 	$update_billing_stat
+	 * @property int        $id                            ID
+	 * @property int        $used_cpu_shares
+	 * @property int        $used_cpus
+	 * @property int        $used_disk_size
+	 * @property int        $used_memory
+	 * @property int        $memory_available
+	 * @property int        $disk_space_available
+	 * @property int        $billing_plan_id
+	 * @property int        $image_template_group_id
+	 * @property int        $user_group_id
+	 * @property int        $aflexi_user_id
+	 * @property string        $email                        email
+	 * @property string        $first_name                    first name
+	 * @property string        $last_name                    last name
+	 * @property string        $login                        login
+	 * @property string        $activated_at                activation date
+	 * @property string        $created_at                    creation date
+	 * @property string        $deleted_at                    deletion date
+	 * @property string        $updated_at                    updating date
+	 * @property string        $suspend_at                    suspension date
+	 * @property string        $time_zone                    time zone
+	 * @property string        $status                        status
+	 * @property string        $locale                        locale
+	 * @property string        $aflexi_username
+	 * @property string        $aflexi_key
+	 * @property string        $cdn_status
+	 * @property string        $cdn_account_status
+	 * @property string        $aflexi_password
+	 * @property string        $remember_token
+	 * @property string        $remember_token_expires_at
+	 * @property float        $outstanding_amount            outstanding amount
+	 * @property float        $payment_amount                payment amount
+	 * @property float        $total_amount                total amount
+	 * @property array        $roles
+	 * @property array        $used_ip_addresses
+	 * @property array        $additional_fields
+	 * @property boolean     $update_billing_stat
 	 */
 
 	/**
@@ -111,7 +116,7 @@ class OnApp_User extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class OnApp
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -120,8 +125,8 @@ class OnApp_User extends OnApp {
 	 */
 	protected function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
-            case ONAPP_GETRESOURCE_NETWORKS_LIST_BY_GROUP_ID:
-                /**
+			case ONAPP_GETRESOURCE_NETWORKS_LIST_BY_GROUP_ID:
+				/**
 				 * ROUTE :
 				 * @name user_group_users
 				 * @method GET
@@ -134,8 +139,12 @@ class OnApp_User extends OnApp {
 				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/suspend';
 				break;
 
+			case ONAPP_GETRESOURCE_DELETE_USER:
+				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD );
+				break;
+
 			case ONAPP_GETRESOURCE_ACTIVATE:
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/activate_user';
+				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/activate';
 				break;
 
 			default:
@@ -163,7 +172,7 @@ class OnApp_User extends OnApp {
 	public function suspend() {
 		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_SUSPEND_USER ) );
 
-		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
+		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
 
 		$result = $this->_castResponseToClass( $response );
 
@@ -178,7 +187,7 @@ class OnApp_User extends OnApp {
 	public function activate_user() {
 		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_ACTIVATE ) );
 
-		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
+		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
 
 		$result = $this->_castResponseToClass( $response );
 
@@ -216,7 +225,7 @@ class OnApp_User extends OnApp {
 		return $result;
 	}
 
-    /**
+	/**
 	 * Gets list of users by group id
 	 *
 	 * @param integer|null $group_id user group id
@@ -239,24 +248,53 @@ class OnApp_User extends OnApp {
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-		if( !empty( $response[ 'errors' ] ) ) {
+		if( ! empty( $response[ 'errors' ] ) ) {
 			$this->errors = $response[ 'errors' ];
 			return false;
 		}
 
-		$result = $this->castStringToClass( $response );
+		$result     = $this->castStringToClass( $response );
 		$this->_obj = $result;
 
-		return ( is_array( $result ) || ! $result ) ? $result : array($result);
+		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
+	}
+
+	/**
+	 * Deletes User from OnApp CP
+	 *
+	 * @param boolean $force whether to delete completely
+	 */
+	public function delete( $force = false ) {
+		if( ! $this->_id ) {
+			$this->logger->error(
+				'DeleteUser: argument _id not set.',
+				__FILE__,
+				__LINE__
+			);
+		}
+
+		if( $force ) {
+			$data = array(
+				'root' => 'tmp_holder',
+				'data' => array(
+					'force' => '1'
+				)
+			);
+
+			$this->sendDelete( ONAPP_GETRESOURCE_DELETE_USER, $data );
+		}
+		else {
+			parent::delete();
+		}
 	}
 
 	private function fillRolesIDs() {
 		if( is_null( $this->role_ids ) ) {
 			$ids = array();
-			if( !is_null( $this->roles ) ) {
+			if( ! is_null( $this->roles ) ) {
 				$data = $this->roles;
 			}
-			elseif( isset( $this->_obj->roles ) && !is_null( $this->_obj->roles ) ) {
+			elseif( isset( $this->_obj->roles ) && ! is_null( $this->_obj->roles ) ) {
 				$data = $this->_obj->roles;
 			}
 			else {
