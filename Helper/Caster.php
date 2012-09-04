@@ -101,13 +101,11 @@ class OnApp_Helper_Caster {
 		return new $caster;
 	}
 }
-
 /**
  * Holder class for storing nested data
  */
 class DataHolder extends stdClass {
 }
-
 /**
  * Hide errors if running in CLI to pass unit tests
  */
