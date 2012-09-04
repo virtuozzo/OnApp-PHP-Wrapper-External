@@ -24,8 +24,7 @@
  *
  *
  */
-class OnApp_EdgeGroup_AssignedLocation extends Location {
-
+class OnApp_EdgeGroup_AssignedLocation extends OnApp_EdgeGroup_Location {
 	/**
 	 * root tag used in the API request
 	 *
