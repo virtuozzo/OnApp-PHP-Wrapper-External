@@ -142,10 +142,6 @@ class OnApp_CDNResource extends OnApp {
 						ONAPP_FIELD_MAP => '_country_access_policy',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-					'contries' => array(
-						ONAPP_FIELD_MAP => '_contries',
-						ONAPP_FIELD_TYPE => 'array',
-					),
 					'origin' => array(
 						ONAPP_FIELD_MAP => '_origin',
 						ONAPP_FIELD_TYPE => 'string',
