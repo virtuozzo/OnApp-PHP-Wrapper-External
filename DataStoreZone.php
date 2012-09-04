@@ -36,22 +36,22 @@ class OnApp_DataStoreZone extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'data_store_group';
+	protected $rootElement = 'data_store_group';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'settings/data_store_zones';
+	protected $URLPath = 'settings/data_store_zones';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
 	}
 
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-		return parent::getResource( $action );
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+		return parent::getURL( $action );
 		/**
 		 * ROUTE :
 		 *

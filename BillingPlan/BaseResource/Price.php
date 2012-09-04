@@ -19,7 +19,7 @@ class OnApp_BillingPlan_BaseResource_Price extends OnApp {
 	 * @property integer price
 	 */
 
-	protected $_tagRoot = 'price';
+	protected $rootElement = 'price';
 
 	public function __construct() {
 		parent::__construct();

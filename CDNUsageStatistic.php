@@ -40,14 +40,14 @@ class OnApp_CDNUsageStatistic extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'user_stat';
+	protected $rootElement = 'user_stat';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'cdn_usage_statistics';
+	protected $URLPath = 'cdn_usage_statistics';
 
 	public function __construct() {
 		parent::__construct();
@@ -67,7 +67,6 @@ class OnApp_CDNUsageStatistic extends OnApp {
 			case ONAPP_ACTIVATE_LOAD:
 			case ONAPP_ACTIVATE_DELETE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
-				break;
 		}
 	}
 }

@@ -175,21 +175,21 @@ class OnApp_VirtualMachine extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'virtual_machine';
+	protected $rootElement = 'virtual_machine';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'virtual_machines';
+	protected $URLPath = 'virtual_machines';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
 	}
 
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_REBOOT:
 				/**
@@ -200,7 +200,7 @@ class OnApp_VirtualMachine extends OnApp {
 				 * @alias    /virtual_machines/:id/reboot(.:format)
 				 * @format   {:controller=>"virtual_machines", :action=>"reboot"}
 				 */
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/reboot';
+				$resource = $this->getURL( ONAPP_GETRESOURCE_LOAD ) . '/reboot';
 				break;
 
 			case ONAPP_GETRESOURCE_SHUTDOWN:
@@ -212,7 +212,7 @@ class OnApp_VirtualMachine extends OnApp {
 				 * @alias    /virtual_machines/:id/shutdown(.:format)
 				 * @format   {:controller=>"virtual_machines", :action=>"shutdown"}
 				 */
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/shutdown';
+				$resource = $this->getURL( ONAPP_GETRESOURCE_LOAD ) . '/shutdown';
 				break;
 
 			case ONAPP_GETRESOURCE_CHANGE_OWNER:
@@ -224,7 +224,7 @@ class OnApp_VirtualMachine extends OnApp {
 				 * @alias   /virtual_machines/:id/change_owner(.:format)
 				 * @format  {:controller=>"virtual_machines", :action=>"change_owner"}
 				 */
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/change_owner';
+				$resource = $this->getURL( ONAPP_GETRESOURCE_LOAD ) . '/change_owner';
 				break;
 
 			case ONAPP_GETRESOURCE_REBUILD_NETWORK:
@@ -236,7 +236,7 @@ class OnApp_VirtualMachine extends OnApp {
 				 * @alias   /virtual_machines/:id/rebuild_network(.:format)
 				 * @format  {:controller=>"virtual_machines", :action=>"rebuild_network"}
 				 */
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/rebuild_network';
+				$resource = $this->getURL( ONAPP_GETRESOURCE_LOAD ) . '/rebuild_network';
 				break;
 
 			case ONAPP_GETRESOURCE_STARTUP:
@@ -248,7 +248,7 @@ class OnApp_VirtualMachine extends OnApp {
 				 * @alias    /virtual_machines/:id/startup(.:format)
 				 * @format   {:controller=>"virtual_machines", :action=>"startup"}
 				 */
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/startup';
+				$resource = $this->getURL( ONAPP_GETRESOURCE_LOAD ) . '/startup';
 				break;
 
 			case ONAPP_GETRESOURCE_UNLOCK:
@@ -260,7 +260,7 @@ class OnApp_VirtualMachine extends OnApp {
 				 * @alias   /virtual_machines/:id/unlock(.:format)
 				 * @format  {:controller=>"virtual_machines", :action=>"unlock"}
 				 */
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/unlock';
+				$resource = $this->getURL( ONAPP_GETRESOURCE_LOAD ) . '/unlock';
 				break;
 
 			case ONAPP_GETRESOURCE_MIGRATE:
@@ -274,7 +274,7 @@ class OnApp_VirtualMachine extends OnApp {
 				 * @format  {:controller=>"virtual_machines", :action=>"migrate"}
 				 */
 
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/migrate';
+				$resource = $this->getURL( ONAPP_GETRESOURCE_LOAD ) . '/migrate';
 				break;
 
 			case ONAPP_GETRESOURCE_SUSPEND_VM:
@@ -286,7 +286,7 @@ class OnApp_VirtualMachine extends OnApp {
 				 * @alias   /virtual_machines/:id/suspend(.:format)
 				 * @format  {:controller=>"virtual_machines", :action=>"suspend"}
 				 */
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/suspend';
+				$resource = $this->getURL( ONAPP_GETRESOURCE_LOAD ) . '/suspend';
 				break;
 
 			case ONAPP_GETRESOURCE_BUILD:
@@ -298,7 +298,7 @@ class OnApp_VirtualMachine extends OnApp {
 				 * @alias    /virtual_machines/:id/build(.:format)
 				 * @format   {:controller=>"virtual_machines", :action=>"build"}
 				 */
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/build';
+				$resource = $this->getURL( ONAPP_GETRESOURCE_LOAD ) . '/build';
 				break;
 
 			case ONAPP_RESET_ROOT_PASSWORD:
@@ -310,7 +310,7 @@ class OnApp_VirtualMachine extends OnApp {
 				 * @alias  /virtual_machines/:id/reset_password(.:format)
 				 * @format {:controller=>"virtual_machines", :action=>"reset_password"}
 				 */
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/reset_password';
+				$resource = $this->getURL( ONAPP_GETRESOURCE_LOAD ) . '/reset_password';
 				break;
 
 			case ONAPP_ACTIVATE_GETLIST_USER:
@@ -366,7 +366,7 @@ class OnApp_VirtualMachine extends OnApp {
 				 * @alias   /virtual_machines/:id(.:format)
 				 * @format  {:controller=>"virtual_machines", :action=>"destroy"}
 				 */
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 
@@ -382,7 +382,7 @@ class OnApp_VirtualMachine extends OnApp {
 		);
 
 		if( in_array( $action, $actions ) ) {
-			$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+			$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 		}
 
 		return $resource;
@@ -581,7 +581,7 @@ class OnApp_VirtualMachine extends OnApp {
 
 			$this->_user_id = $user_id;
 
-			$this->setAPIResource( $this->getResource( ONAPP_ACTIVATE_GETLIST_USER ) );
+			$this->setAPIResource( $this->getURL( ONAPP_ACTIVATE_GETLIST_USER ) );
 
 			$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 

@@ -36,14 +36,14 @@ class OnApp_UserAdditionalField extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'user_additional_field';
+	protected $rootElement = 'user_additional_field';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'user_additional_fields';
+	protected $URLPath = 'user_additional_fields';
 
 	public function __construct() {
 		parent::__construct();

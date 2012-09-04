@@ -40,14 +40,14 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'data_store_join';
+	protected $rootElement = 'data_store_join';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'data_store_joins';
+	protected $URLPath = 'data_store_joins';
 
 	public function __construct() {
 		parent::__construct();
@@ -62,7 +62,7 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -74,11 +74,11 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
 				 * @format  {:controller=>"data_store_joins", :action=>"index"}
 				 */
 				$resource = 'settings/hypervisor_zones/' . $this->_target_join_id . '/' . $this->_resource;
-				$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 
@@ -123,7 +123,6 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
 			case ONAPP_ACTIVATE_SAVE:
 			case ONAPP_ACTIVATE_DELETE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
-				break;
 		}
 	}
 }

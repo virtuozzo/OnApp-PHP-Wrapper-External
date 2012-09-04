@@ -98,21 +98,21 @@ class OnApp_CDNResource extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'cdn_resource';
+	protected $rootElement = 'cdn_resource';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'cdn_resources';
+	protected $URLPath = 'cdn_resources';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
 	}
 
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_ENABLE_CDN:
 				/**
@@ -151,11 +151,11 @@ class OnApp_CDNResource extends OnApp {
 				break;
 
 			default:
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 
-		$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+		$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 
 		return $resource;
 	}

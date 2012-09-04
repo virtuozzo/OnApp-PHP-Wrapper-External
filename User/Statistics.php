@@ -46,14 +46,14 @@ class OnApp_User_Statistics extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'user_stat';
+	protected $rootElement = 'user_stat';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'user_statistics';
+	protected $URLPath = 'user_statistics';
 
 	public function __construct() {
 		parent::__construct();
@@ -68,7 +68,7 @@ class OnApp_User_Statistics extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -81,7 +81,7 @@ class OnApp_User_Statistics extends OnApp {
 				 */
 				if( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {
 					$this->logger->error(
-						"getResource($action): argument _user_id not set.",
+						"getURL($action): argument _user_id not set.",
 						__FILE__,
 						__LINE__
 					);
@@ -92,11 +92,11 @@ class OnApp_User_Statistics extends OnApp {
 					}
 				}
 				$resource = 'users/' . $this->_user_id . '/' . $this->_resource;
-				$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 

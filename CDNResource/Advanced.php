@@ -51,14 +51,14 @@ class OnApp_CDNResource_Advanced extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'cdn_resource';
+	protected $rootElement = 'cdn_resource';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'advanced';
+	protected $URLPath = 'advanced';
 
 	public function __construct() {
 		parent::__construct();
@@ -73,15 +73,15 @@ class OnApp_CDNResource_Advanced extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				$resource = 'cdn_resources/' . $this->_id . '/' . $this->_resource;
-				$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 		return $resource;

@@ -29,14 +29,14 @@ class OnApp_LoadBalancer extends OnApp_VirtualMachine {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'load_balancer';
+	protected $rootElement = 'load_balancer';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'load_balancers';
+	protected $URLPath = 'load_balancers';
 
 	public function __construct() {
 		parent::__construct();
@@ -54,7 +54,6 @@ class OnApp_LoadBalancer extends OnApp_VirtualMachine {
 		switch( $action_name ) {
 			case ONAPP_ACTIVATE_SAVE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
-				break;
 		}
 	}
 }

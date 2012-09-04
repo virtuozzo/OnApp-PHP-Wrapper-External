@@ -39,22 +39,22 @@ class OnApp_HypervisorZone extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'hypervisor_group';
+	protected $rootElement = 'hypervisor_group';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'settings/hypervisor_zones';
+	protected $URLPath = 'settings/hypervisor_zones';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
 	}
 
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-		return parent::getResource( $action );
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+		return parent::getURL( $action );
 		/**
 		 * ROUTE :
 		 *

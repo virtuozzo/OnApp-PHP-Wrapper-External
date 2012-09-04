@@ -40,14 +40,14 @@ class OnApp_UsageStatistic extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'vm_stat';
+	protected $rootElement = 'vm_stat';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'usage_statistics';
+	protected $URLPath = 'usage_statistics';
 
 	public function __construct() {
 		parent::__construct();
@@ -67,12 +67,11 @@ class OnApp_UsageStatistic extends OnApp {
 			case ONAPP_ACTIVATE_SAVE:
 			case ONAPP_ACTIVATE_DELETE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
-				break;
 		}
 	}
 
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-		return parent::getResource( $action );
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+		return parent::getURL( $action );
 		/**
 		 * ROUTE :
 		 *

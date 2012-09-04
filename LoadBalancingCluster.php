@@ -22,9 +22,6 @@ define( 'ONAPP_GETRESOURCE_GETLIST_BY_USER_ID', 'get_list_by_user_id' );
  * The OnApp_VirtualMachine class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
- * Couldn't edit LoadBalancingCluster Ticket #2496
- * In json _tagRoot = 'cluster'       Ticket #2495
- *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_LoadBalancingCluster extends OnApp {
@@ -60,21 +57,21 @@ class OnApp_LoadBalancingCluster extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'load_balancing_cluster';
+	protected $rootElement = 'load_balancing_cluster';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'load_balancing_clusters';
+	protected $URLPath = 'load_balancing_clusters';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
 	}
 
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_GETLIST_BY_USER_ID:
 
@@ -130,7 +127,7 @@ class OnApp_LoadBalancingCluster extends OnApp {
 				 * @alias  /load_balancing_clusters/:id(.:format)
 				 * @format {:controller=>"load_balancing_clusters", :action=>"destroy"}
 				 */
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 
@@ -193,7 +190,7 @@ class OnApp_LoadBalancingCluster extends OnApp {
 			);
 		}
 
-		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_GETLIST_BY_USER_ID ) );
+		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_GETLIST_BY_USER_ID ) );
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 

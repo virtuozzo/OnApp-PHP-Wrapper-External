@@ -91,14 +91,14 @@ class OnApp_User extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'user';
+	protected $rootElement = 'user';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'users';
+	protected $URLPath = 'users';
 
 	public function __construct() {
 		parent::__construct();
@@ -113,7 +113,7 @@ class OnApp_User extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	protected function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_NETWORKS_LIST_BY_GROUP_ID:
 				/**
@@ -127,19 +127,19 @@ class OnApp_User extends OnApp {
 				$resource = 'user_groups/' . $this->_user_group_id . '/' . $this->resource;
 				break;
 			case ONAPP_GETRESOURCE_SUSPEND_USER:
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/suspend';
+				$resource = $this->getURL( ONAPP_GETRESOURCE_LOAD ) . '/suspend';
 				break;
 
 			case ONAPP_GETRESOURCE_DELETE_USER:
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD );
+				$resource = $this->getURL( ONAPP_GETRESOURCE_LOAD );
 				break;
 
 			case ONAPP_GETRESOURCE_ACTIVATE:
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/activate';
+				$resource = $this->getURL( ONAPP_GETRESOURCE_LOAD ) . '/activate';
 				break;
 
 			default:
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 
@@ -149,7 +149,7 @@ class OnApp_User extends OnApp {
 		);
 
 		if( in_array( $action, $actions ) ) {
-			$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+			$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 		}
 
 		return $resource;
@@ -161,7 +161,7 @@ class OnApp_User extends OnApp {
 	 * @access public
 	 */
 	public function suspend() {
-		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_SUSPEND_USER ) );
+		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_SUSPEND_USER ) );
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
 
@@ -176,7 +176,7 @@ class OnApp_User extends OnApp {
 	 * @access public
 	 */
 	public function activate_user() {
-		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_ACTIVATE ) );
+		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_ACTIVATE ) );
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
 
@@ -235,7 +235,7 @@ class OnApp_User extends OnApp {
 			);
 		}
 
-		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_NETWORKS_LIST_BY_GROUP_ID ) );
+		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_NETWORKS_LIST_BY_GROUP_ID ) );
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 

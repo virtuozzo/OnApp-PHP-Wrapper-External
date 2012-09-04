@@ -44,14 +44,14 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'network_join';
+	protected $rootElement = 'network_join';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'network_joins';
+	protected $URLPath = 'network_joins';
 
 	public function __construct() {
 		parent::__construct();
@@ -66,7 +66,7 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -95,7 +95,7 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 				 */
 				if( is_null( $this->_hypervisor_id ) && is_null( $this->_obj->_hypervisor_id ) ) {
 					$this->logger->error(
-						'getResource( ' . $action . ' ): argument _hypervisor_id not set.',
+						'getURL( ' . $action . ' ): argument _hypervisor_id not set.',
 						__FILE__,
 						__LINE__
 					);
@@ -106,11 +106,11 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 					}
 				}
 				$resource = 'settings/hypervisors/' . $this->_hypervisor_id . '/' . $this->_resource;
-				$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 
@@ -179,7 +179,7 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 			$this->_id            = $id;
 			$this->_hypervisor_id = $hypervisor_id;
 
-			$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
+			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 
 			$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 

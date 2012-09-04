@@ -40,14 +40,14 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'user_hourly_stat';
+	protected $rootElement = 'user_hourly_stat';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'billing';
+	protected $URLPath = 'billing';
 
 	public function __construct() {
 		parent::__construct();
@@ -62,14 +62,14 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				$resource = 'cdn_resources/' . $this->_id . '/' . $this->_resource;
-				$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 			default:
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 		return $resource;
@@ -116,7 +116,6 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
 			case ONAPP_ACTIVATE_SAVE:
 			case ONAPP_ACTIVATE_DELETE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
-				break;
 		}
 	}
 }

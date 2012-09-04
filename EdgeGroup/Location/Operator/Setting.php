@@ -46,14 +46,14 @@ class OnApp_EdgeGroup_Location_Operator_Setting extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = '';
+	protected $rootElement = '';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = '';
+	protected $URLPath = '';
 
 	public function __construct() {
 		parent::__construct();
@@ -73,7 +73,6 @@ class OnApp_EdgeGroup_Location_Operator_Setting extends OnApp {
 			case ONAPP_ACTIVATE_SAVE:
 			case ONAPP_ACTIVATE_DELETE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
-				break;
 		}
 	}
 }

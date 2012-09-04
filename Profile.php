@@ -65,14 +65,14 @@ class OnApp_Profile extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'user';
+	protected $rootElement = 'user';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'profile';
+	protected $URLPath = 'profile';
 
 	public function __construct() {
 		parent::__construct();
@@ -84,7 +84,6 @@ class OnApp_Profile extends OnApp {
 			case ONAPP_ACTIVATE_GETLIST:
 			case ONAPP_ACTIVATE_DELETE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
-				break;
 		}
 	}
 
@@ -96,7 +95,7 @@ class OnApp_Profile extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		/**
 		 * ROUTE :
 		 *
@@ -106,7 +105,7 @@ class OnApp_Profile extends OnApp {
 		 * @format   {:controller=>"users", :action=>"profile"}
 		 */
 		$resource = $this->_resource;
-		$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+		$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 
 		return $resource;
 	}
@@ -128,7 +127,7 @@ class OnApp_Profile extends OnApp {
 
 		$this->logger->add( "load: Load class" );
 
-		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
+		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 

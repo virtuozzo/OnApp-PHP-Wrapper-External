@@ -58,21 +58,21 @@ class OnApp_BillingPlan extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'billing_plan';
+	protected $rootElement = 'billing_plan';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'billing_plans';
+	protected $URLPath = 'billing_plans';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
 	}
 
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_GETLIST_USERS:
 				/**
@@ -83,7 +83,7 @@ class OnApp_BillingPlan extends OnApp {
 				 * @alias  /billing_plans/:billing_plan_id/users(.:format)
 				 * @format {:controller=>"users", :action=>"index"}
 				 */
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/users';
+				$resource = $this->getURL( ONAPP_GETRESOURCE_LOAD ) . '/users';
 				break;
 
 			case ONAPP_GETRESOURCE_CREATE_COPY:
@@ -95,7 +95,7 @@ class OnApp_BillingPlan extends OnApp {
 				 * @alias  /billing_plans/:id/create_copy(.:format)
 				 * @format {:controller=>"internationalization", :action=>"show"}
 				 */
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/create_copy';
+				$resource = $this->getURL( ONAPP_GETRESOURCE_LOAD ) . '/create_copy';
 				break;
 
 			default:
@@ -139,7 +139,7 @@ class OnApp_BillingPlan extends OnApp {
 				 * @alias  billing_plans/:id(.:format)
 				 * @format {:controller=>"billing_plans", :action=>"destroy"}
 				 */
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 		}
 
 		return $resource;
@@ -148,7 +148,7 @@ class OnApp_BillingPlan extends OnApp {
 	function users() {
 		$this->logger->add( 'getList: Get Users list.' );
 
-		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_GETLIST_USERS ) );
+		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_GETLIST_USERS ) );
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
@@ -167,8 +167,6 @@ class OnApp_BillingPlan extends OnApp {
 
 		$class->_ch = $this->_ch;
 
-		$class->initFields( $this->getAPIVersion() );
-
 		$result = $class->castStringToClass( $response );
 
 		return $result;
@@ -177,7 +175,7 @@ class OnApp_BillingPlan extends OnApp {
 	function create_copy() {
 		$this->logger->add( 'getList: Create Billing plan copy' );
 
-		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_CREATE_COPY ) );
+		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_CREATE_COPY ) );
 
 		$data = '<billing_plan><label>TEST</label></billing_plan>';
 

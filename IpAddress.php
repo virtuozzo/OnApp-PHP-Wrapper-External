@@ -43,14 +43,14 @@ class OnApp_IpAddress extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'ip_address';
+	protected $rootElement = 'ip_address';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'ip_addresses';
+	protected $URLPath = 'ip_addresses';
 
 	public function __construct() {
 		parent::__construct();
@@ -65,7 +65,7 @@ class OnApp_IpAddress extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -110,7 +110,7 @@ class OnApp_IpAddress extends OnApp {
 				 */
 				if( is_null( $this->_network_id ) && is_null( $this->_obj->_network_id ) ) {
 					$this->logger->error(
-						"getResource($action): argument _network_id not set.",
+						"getURL($action): argument _network_id not set.",
 						__FILE__,
 						__LINE__
 					);
@@ -122,11 +122,11 @@ class OnApp_IpAddress extends OnApp {
 				}
 
 				$resource = 'settings/networks/' . $this->_network_id . '/' . $this->_resource;
-				$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 
@@ -196,7 +196,7 @@ class OnApp_IpAddress extends OnApp {
 			$this->_id         = $id;
 			$this->_network_id = $network_id;
 
-			$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
+			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 
 			$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 

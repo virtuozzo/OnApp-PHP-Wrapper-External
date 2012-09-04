@@ -36,14 +36,14 @@ class OnApp_NetworkZone extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'network_group';
+	protected $rootElement = 'network_group';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'network_zones';
+	protected $URLPath = 'network_zones';
 
 	public function __construct() {
 		parent::__construct();

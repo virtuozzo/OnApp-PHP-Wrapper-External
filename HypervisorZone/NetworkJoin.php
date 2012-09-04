@@ -42,14 +42,14 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'network_join';
+	protected $rootElement = 'network_join';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'network_joins';
+	protected $URLPath = 'network_joins';
 
 	/**
 	 * Returns the URL Alias of the API Class that inherits the OnApp class
@@ -59,7 +59,7 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -87,11 +87,11 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 				 * @format  {:controller=>"network_joins", :action=>"destroy"}
 				 */
 				$resource = 'settings/hypervisor_zones/' . $this->_target_join_id . '/' . $this->_resource;
-				$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 

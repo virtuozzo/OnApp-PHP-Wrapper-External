@@ -35,14 +35,14 @@ class OnApp_CDNResource_Bandwidth extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'stat';
+	protected $rootElement = 'stat';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'cdn_resources/bandwidth';
+	protected $URLPath = 'cdn_resources/bandwidth';
 
 	public function __construct() {
 		parent::__construct();
@@ -75,7 +75,6 @@ class OnApp_CDNResource_Bandwidth extends OnApp {
 			case ONAPP_ACTIVATE_SAVE:
 			case ONAPP_ACTIVATE_DELETE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
-				break;
 		}
 	}
 }

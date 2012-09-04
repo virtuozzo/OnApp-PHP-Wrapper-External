@@ -44,14 +44,14 @@ class OnApp_SoftwareLincense extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'software_license';
+	protected $rootElement = 'software_license';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'software_licenses';
+	protected $URLPath = 'software_licenses';
 
 	public function __construct() {
 		parent::__construct();

@@ -41,21 +41,21 @@ class OnApp_Log extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'log_item';
+	protected $rootElement = 'log_item';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'logs';
+	protected $URLPath = 'logs';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
 	}
 
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -75,11 +75,11 @@ class OnApp_Log extends OnApp {
 				 * @format   {:controller=>"log_items", :action=>"show"}
 				 */
 
-				$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $this->_resource );
+				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $this->_resource );
 				break;
 
 			default:
-				$this->_resource = parent::getResource( $action );
+				$this->_resource = parent::getURL( $action );
 				break;
 		}
 
@@ -104,7 +104,6 @@ class OnApp_Log extends OnApp {
 			case ONAPP_ACTIVATE_SAVE:
 			case ONAPP_ACTIVATE_DELETE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
-				break;
 		}
 	}
 }

@@ -43,21 +43,21 @@ class OnApp_Payment extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'payment';
+	protected $rootElement = 'payment';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'payments';
+	protected $URLPath = 'payments';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
 	}
 
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -101,11 +101,11 @@ class OnApp_Payment extends OnApp {
 				 * @format  {:controller=>"payments", :action=>"destroy"}
 				 */
 				$resource = 'users/' . $this->_user_id . '/' . $this->_resource;
-				$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 
@@ -174,7 +174,7 @@ class OnApp_Payment extends OnApp {
 			$this->_id      = $id;
 			$this->_user_id = $user_id;
 
-			$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
+			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 
 			$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 

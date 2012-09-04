@@ -29,14 +29,14 @@ class OnApp_EdgeServer extends OnApp_VirtualMachine {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'edge_server';
+	protected $rootElement = 'edge_server';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'edge_servers';
+	protected $URLPath = 'edge_servers';
 
 	public function __construct() {
 		parent::__construct();

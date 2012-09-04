@@ -36,14 +36,14 @@ class OnApp_CDNResource_Advanced_Country extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'aflexi_country';
+	protected $rootElement = 'aflexi_country';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = '';
+	protected $URLPath = '';
 
 	public function __construct() {
 		parent::__construct();

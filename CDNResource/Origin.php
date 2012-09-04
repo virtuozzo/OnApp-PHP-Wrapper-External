@@ -32,14 +32,14 @@ class OnApp_CDNResource_Origin extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'origin';
+	protected $rootElement = 'origin';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'origins_for_api';
+	protected $URLPath = 'origins_for_api';
 
 	public function __construct() {
 		parent::__construct();
@@ -60,7 +60,6 @@ class OnApp_CDNResource_Origin extends OnApp {
 			case ONAPP_ACTIVATE_SAVE:
 			case ONAPP_ACTIVATE_DELETE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
-				break;
 		}
 	}
 }

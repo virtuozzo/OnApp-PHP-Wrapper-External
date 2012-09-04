@@ -40,22 +40,22 @@ class OnApp_Nameserver extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'nameserver';
+	protected $rootElement = 'nameserver';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'settings/nameservers';
+	protected $URLPath = 'settings/nameservers';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
 	}
 
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-		return parent::getResource( $action );
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+		return parent::getURL( $action );
 		/**
 		 * ROUTE :
 		 *

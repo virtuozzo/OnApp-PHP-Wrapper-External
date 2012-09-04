@@ -34,14 +34,14 @@ class OnApp_Group extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'group';
+	protected $rootElement = 'group';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'groups';
+	protected $URLPath = 'groups';
 
 	public function __construct() {
 		parent::__construct();

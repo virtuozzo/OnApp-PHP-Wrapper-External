@@ -38,7 +38,7 @@ class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_LIST:
 				/**
@@ -51,7 +51,7 @@ class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
 				 */
 				if( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
 					$this->logger->error(
-						"getResource($action): argument _edge_server_id is not set.",
+						"getURL($action): argument _edge_server_id is not set.",
 						__FILE__,
 						__LINE__
 					);
@@ -63,11 +63,11 @@ class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
 				}
 
 				$resource = 'edge_servers/' . $this->_virtual_machine_id . '/' . $this->_resource;
-				$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 

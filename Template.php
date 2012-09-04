@@ -67,14 +67,14 @@ class OnApp_Template extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'image_template';
+	protected $rootElement = 'image_template';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'templates';
+	protected $URLPath = 'templates';
 
 	public function __construct() {
 		parent::__construct();
@@ -85,11 +85,11 @@ class OnApp_Template extends OnApp {
 		return $this->sendGet( ONAPP_GET_USERTEMPLATES_LIST );
 	}
 
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GET_USERTEMPLATES_LIST:
 			case 'user':
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LIST ) . '/' . ONAPP_GET_USERTEMPLATES_LIST;
+				$resource = $this->getURL( ONAPP_GETRESOURCE_LIST ) . '/' . ONAPP_GET_USERTEMPLATES_LIST;
 				break;
 
 			default:
@@ -117,7 +117,7 @@ class OnApp_Template extends OnApp {
 				 * @alias    /templates/:id(.:format)
 				 * @format   {:controller=>"image_templates", :action=>"destroy"}
 				 */
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 		}
 		return $resource;
 	}
@@ -126,7 +126,6 @@ class OnApp_Template extends OnApp {
 		switch( $action_name ) {
 			case ONAPP_ACTIVATE_SAVE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
-				break;
 		}
 	}
 }

@@ -37,14 +37,14 @@ class OnApp_Role_Permission extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'permission';
+	protected $rootElement = 'permission';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'permissions';
+	protected $URLPath = 'permissions';
 
 	public function __construct() {
 		parent::__construct();

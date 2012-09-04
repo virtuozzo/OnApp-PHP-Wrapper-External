@@ -45,14 +45,14 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'firewall_rule';
+	protected $rootElement = 'firewall_rule';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'firewall_rules';
+	protected $URLPath = 'firewall_rules';
 
 	public function __construct() {
 		parent::__construct();
@@ -67,7 +67,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -122,7 +122,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 				 * @alias     /virtual_machines/:virtual_machine_id/firewall_rules/:id/move(.:format)
 				 * @format    {:controller=>"firewall_rules", :action=>"move"}
 				 */
-				$resource = $this->getResource( ONAPP_GETRESOURCE_DEFAULT ) . '/' . $this->_id . '/move';
+				$resource = $this->getURL( ONAPP_GETRESOURCE_DEFAULT ) . '/' . $this->_id . '/move';
 				break;
 
 			case ONAPP_GETRESOURCE_UPDATE:
@@ -150,7 +150,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 				break;
 
 			default:
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 
@@ -227,7 +227,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 			$this->_id                 = $id;
 			$this->_virtual_machine_id = $virtual_machine_id;
 
-			$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
+			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 
 			$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 

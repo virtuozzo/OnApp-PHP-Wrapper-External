@@ -21,27 +21,7 @@
  */
 class OnApp_BillingPlan_ResourceBackup extends OnApp_BillingPlan_BaseResource {
 	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property string   label
-	 * @property datetime created_at
-	 * @property datetime updated_at
-	 * @property integer  billing_plan_id
-	 * @property unit
-	 * @property string   resource_name
-	 * @property string   limit
-	 * @property string   limit_type
-	 * @property string   limit_free
-	 * @property string   price
-	 * @property string   price_on
-	 * @property string   price_off
-	 * @property string   resource_class
-	 * @property integer  target_id
+	 * @property string resource_class
 	 */
-
-	public static $nestedData = array(
-		'limits' => 'BillingPlan_BaseResource_Limit',
-		'prices' => 'BillingPlan_BaseResource_Price',
-	);
+	protected $resource_class = 'Resource::Backup';
 }

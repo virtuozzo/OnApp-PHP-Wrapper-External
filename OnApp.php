@@ -118,25 +118,12 @@ define( 'ONAPP_FIELD_DEFAULT_VALUE', 'default' );
  */
 define( 'ONAPP_FIELD_CLASS', 'class' );
 
-/**
- *
- */
 define( 'ONAPP_GETRESOURCE_DEFAULT', 'default' );
 
-/**
- *
- */
 define( 'ONAPP_GETRESOURCE_LOAD', 'load' );
 
-/**
- *
- */
 define( 'ONAPP_GETRESOURCE_LIST', 'list' );
 
-/**
- *
- *
- */
 define( 'ONAPP_GETRESOURCE_ADD', 'add' );
 
 define( 'ONAPP_GETRESOURCE_EDIT', 'edit' );
@@ -194,10 +181,10 @@ define( 'ONAPP_REQUEST_METHOD_DELETE', 'DELETE' );
  * <code>
  *
  *    // root tag used in the API request
- *    protected $_tagRoot  = '<root>';
+ *    protected $rootElement  = '<root>';
  *
  *    // alias processing the object data
- *    protected $_resource = '<alias>';
+ *    protected $URLPath = '<alias>';
  *
  *    // the fields array used in the response and request to the API server
  *    var $fields   = array(
@@ -207,8 +194,8 @@ define( 'ONAPP_REQUEST_METHOD_DELETE', 'DELETE' );
  *
  * To create a read-only class, close the save and delete methods.
  * To re-define the traditional API aliases to the non-traditional,
- * re-define the  {@link getResource},  {@link getResourceADD}, {@link getResourceEDIT},
- * {@link getResourceLOAD},  {@link getResourceDELETE} and  {@link getResourceLIST}
+ * re-define the  {@link getURL},  {@link getURLADD}, {@link getURLEDIT},
+ * {@link getURLLOAD},  {@link getURLDELETE} and  {@link getURLLIST}
  * methods in the class that will be inheriting the OnApp class.
  *
  *
@@ -298,9 +285,6 @@ define( 'ONAPP_REQUEST_METHOD_DELETE', 'DELETE' );
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp {
-	//todo del
-	public $fields;
-
 	/**
 	 * The list of all available options used in the class to create API requests and receive responses,
 	 * as well as to serialize and unserialize.
@@ -405,13 +389,13 @@ class OnApp {
 	 * @access private
 	 * @var    string
 	 */
-	protected $_resource = null;
+	protected $URLPath = null;
 
 	/**
 	 * @access private
 	 * @var    string
 	 */
-	protected $_tagRoot = null;
+	protected $rootElement = null;
 
 	/**
 	 * @access private
@@ -554,7 +538,7 @@ class OnApp {
 	 * The following example illustrates:
 	 *
 	 * <code>
-	 *    function getResource() {
+	 *    function getURL() {
 	 *        return "alias/" . $this->_field_name . "/" . $this->_resource;
 	 *    }
 	 * </code>
@@ -563,26 +547,26 @@ class OnApp {
 	 *
 	 * @return string API resource
 	 */
-	protected function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_LOAD:
 			case ONAPP_GETRESOURCE_EDIT:
 			case ONAPP_GETRESOURCE_DELETE:
-				$resource = $this->getResource() . '/' . $this->_id;
+				$URL = $this->getURL() . '/' . $this->_id;
 				break;
 
 			case ONAPP_GETRESOURCE_LIST:
 			case ONAPP_GETRESOURCE_ADD:
-				$resource = $this->getResource();
+				$URL = $this->getURL();
 				break;
 
 			case ONAPP_GETRESOURCE_DEFAULT:
 			default:
-				$resource = $this->_resource;
+				$URL = $this->URLPath;
 		}
-		$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+		$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $URL );
 
-		return $resource;
+		return $URL;
 	}
 
 	/**
@@ -671,9 +655,6 @@ class OnApp {
 		if( $response[ 'info' ][ 'http_code' ] == '200' ) {
 			$this->setAPIVersion( $response[ 'response_body' ] );
 
-			if( $this->getClassName() != 'OnApp' ) {
-				$this->initFields( $this->version );
-			}
 			$this->setErrors();
 			$this->_is_auth = true;
 		}
@@ -710,6 +691,7 @@ class OnApp {
 	}
 
 	// todo delete
+	public $fields;
 	public function initFields( $version = null, $className = '' ) {
 		return array();
 
@@ -1056,7 +1038,7 @@ class OnApp {
 		switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
 			case 'xml':
 			case 'json':
-				$root = $this->_tagRoot;
+				$root = $this->rootElement;
 				$data = $content[ 'response_body' ];
 
 				$objCast = new OnApp_Helper_Caster( $this );
@@ -1161,7 +1143,7 @@ class OnApp {
 		if( strlen( $id ) > 0 ) {
 			$this->_id = $id;
 
-			$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
+			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 			$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 			$result   = $this->castStringToClass( $response );
 
@@ -1229,9 +1211,9 @@ class OnApp {
 			case 'xml':
 			case 'json':
 				$objCast = new OnApp_Helper_Caster( $this );
-				$data    = $objCast->serialize( $this->_tagRoot, $this->getFieldsToSend() );
+				$data    = $objCast->serialize( $this->rootElement, $this->getFieldsToSend() );
 				$this->logger->debug( 'serialize: serialized data:' . PHP_EOL . $data );
-				$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_ADD ) );
+				$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_ADD ) );
 				$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST, $data );
 
 				$result     = $this->_castResponseToClass( $response );
@@ -1263,9 +1245,9 @@ class OnApp {
 			case 'xml':
 			case 'json':
 				$objCast = new OnApp_Helper_Caster( $this );
-				$data    = $objCast->serialize( $this->_tagRoot, $this->getFieldsToSend() );
+				$data    = $objCast->serialize( $this->rootElement, $this->getFieldsToSend() );
 				$this->logger->debug( 'serialize: serialized data:' . PHP_EOL . $data );
-				$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_EDIT ) );
+				$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_EDIT ) );
 				$response = $this->sendRequest( ONAPP_REQUEST_METHOD_PUT, $data );
 
 				if( $response[ 'info' ][ 'http_code' ] > 201 ) {
@@ -1386,7 +1368,7 @@ class OnApp {
 
 				$url_args = ( $url_args ) ? preg_replace( '/%5B(0-9){1,4}%5D/', '%5B%5D', http_build_query( $url_args ) ) : '';
 
-				$this->setAPIResource( $this->getResource( $resource ), true, $url_args );
+				$this->setAPIResource( $this->getURL( $resource ), true, $url_args );
 
 				$response = $this->sendRequest( $method, $data );
 
@@ -1592,6 +1574,18 @@ class OnApp {
 	 * @return void
 	 */
 	public function __unset( $name ) {
+		if( ! isset( $this->dynamicFields[ $name ] ) ) {
+			if( strpos( $name, '_' ) === 0 ) {
+				$name = substr( $name, 1 );
+				if( ! isset( $this->dynamicFields[ $name ] ) ) {
+					return null;
+				}
+			}
+			else {
+				return null;
+			}
+		}
+
 		unset( $this->dynamicFields[ $name ] );
 	}
 }

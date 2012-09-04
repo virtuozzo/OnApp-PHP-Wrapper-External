@@ -55,14 +55,14 @@ class OnApp_Transaction extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'transaction';
+	protected $rootElement = 'transaction';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'transactions';
+	protected $URLPath = 'transactions';
 
 	public function __construct() {
 		parent::__construct();
@@ -74,7 +74,6 @@ class OnApp_Transaction extends OnApp {
 			case ONAPP_ACTIVATE_SAVE:
 			case ONAPP_ACTIVATE_DELETE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
-				break;
 		}
 	}
 
@@ -95,8 +94,8 @@ class OnApp_Transaction extends OnApp {
 		return parent::getList( $data, $url_args );
 	}
 
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-		return parent::getResource( $action );
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+		return parent::getURL( $action );
 		/**
 		 * ROUTE :
 		 *

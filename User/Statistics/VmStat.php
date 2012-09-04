@@ -37,14 +37,14 @@ class OnApp_User_Statistics_VmStat extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'vm_stats';
+	protected $rootElement = 'vm_stats';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = '';
+	protected $URLPath = '';
 
 	public function __construct() {
 		parent::__construct();
@@ -65,7 +65,6 @@ class OnApp_User_Statistics_VmStat extends OnApp {
 			case ONAPP_ACTIVATE_GETLIST:
 			case ONAPP_ACTIVATE_DELETE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
-				break;
 		}
 	}
 }

@@ -44,14 +44,14 @@ class OnApp_CDNResource_AvailableEdgeGroup extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'edge_group';
+	protected $rootElement = 'edge_group';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'cdn_resources/available_edge_groups';
+	protected $URLPath = 'cdn_resources/available_edge_groups';
 
 	public function __construct() {
 		parent::__construct();
@@ -71,7 +71,6 @@ class OnApp_CDNResource_AvailableEdgeGroup extends OnApp {
 			case ONAPP_ACTIVATE_SAVE:
 			case ONAPP_ACTIVATE_DELETE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
-				break;
 		}
 	}
 }

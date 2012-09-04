@@ -42,14 +42,14 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'net_hourly_stat';
+	protected $rootElement = 'net_hourly_stat';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'usage';
+	protected $URLPath = 'usage';
 
 	public function __construct() {
 		parent::__construct();
@@ -64,7 +64,7 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		$show_log_msg = true;
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
@@ -78,7 +78,7 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 				 */
 				if( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
 					$this->logger->error(
-						'getResource( ' . $action . ' ): argument _virtual_machine_id not set.',
+						'getURL( ' . $action . ' ): argument _virtual_machine_id not set.',
 						__FILE__,
 						__LINE__
 					);
@@ -91,7 +91,7 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 
 				if( is_null( $this->_network_interface_id ) && is_null( $this->_obj->_network_interface_id ) ) {
 					$this->logger->error(
-						'getResource( ' . $action . ' ): argument _network_interface_id not set.',
+						'getURL( ' . $action . ' ): argument _network_interface_id not set.',
 						__FILE__,
 						__LINE__
 					);
@@ -106,12 +106,12 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 				break;
 
 			default:
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 
 		if( $show_log_msg ) {
-			$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+			$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 		}
 
 		return $resource;

@@ -42,14 +42,14 @@ class OnApp_User_WhiteList extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'user_white_list';
+	protected $rootElement = 'user_white_list';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'user_white_lists';
+	protected $URLPath = 'user_white_lists';
 
 	public function __construct() {
 		parent::__construct();
@@ -64,7 +64,7 @@ class OnApp_User_WhiteList extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -109,7 +109,7 @@ class OnApp_User_WhiteList extends OnApp {
 				 */
 				if( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {
 					$this->logger->error(
-						"getResource($action): argument _user_id not set.",
+						"getURL($action): argument _user_id not set.",
 						__FILE__,
 						__LINE__
 					);
@@ -120,11 +120,11 @@ class OnApp_User_WhiteList extends OnApp {
 					}
 				}
 				$resource = 'users/' . $this->_user_id . '/' . $this->_resource;
-				$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 
@@ -201,7 +201,7 @@ class OnApp_User_WhiteList extends OnApp {
 			$this->_id      = $id;
 			$this->_user_id = $user_id;
 
-			$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
+			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 
 			$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 

@@ -50,14 +50,14 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'base_resource';
+	protected $rootElement = 'base_resource';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'base_resources';
+	protected $URLPath = 'base_resources';
 
 	public function __construct() {
 		parent::__construct();
@@ -72,7 +72,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		$show_log_msg = true;
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
@@ -118,7 +118,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 				 */
 				if( is_null( $this->_billing_plan_id ) && is_null( $this->_obj->_billing_plan_id ) ) {
 					$this->logger->error(
-						'getResource( ' . $action . ' ): argument _billing_plan_id not set.',
+						'getURL( ' . $action . ' ): argument _billing_plan_id not set.',
 						__FILE__,
 						__LINE__
 					);
@@ -133,13 +133,13 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 				break;
 
 			default:
-				$resource     = parent::getResource( $action );
+				$resource     = parent::getURL( $action );
 				$show_log_msg = false;
 				break;
 		}
 
 		if( $show_log_msg ) {
-			$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+			$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 		}
 
 		return $resource;

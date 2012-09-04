@@ -48,14 +48,14 @@ class OnApp_ResourceLimit extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'resource_limit';
+	protected $rootElement = 'resource_limit';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'resource_limit';
+	protected $URLPath = 'resource_limit';
 
 	public function __construct() {
 		parent::__construct();
@@ -68,7 +68,7 @@ class OnApp_ResourceLimit extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 			case ONAPP_GETRESOURCE_EDIT:
@@ -90,7 +90,7 @@ class OnApp_ResourceLimit extends OnApp {
 				 */
 				if( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {
 					$this->logger->error(
-						"getResource($action): argument _user_id not set.",
+						"getURL($action): argument _user_id not set.",
 						__FILE__,
 						__LINE__
 					);
@@ -104,11 +104,11 @@ class OnApp_ResourceLimit extends OnApp {
 				break;
 
 			case ONAPP_GETRESOURCE_LOAD:
-				$resource = $this->getResource();
+				$resource = $this->getURL();
 				break;
 
 			default:
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 
@@ -118,7 +118,7 @@ class OnApp_ResourceLimit extends OnApp {
 			ONAPP_GETRESOURCE_EDIT,
 		);
 		if( in_array( $action, $actions ) ) {
-			$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+			$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 		}
 
 		return $resource;
@@ -153,7 +153,7 @@ class OnApp_ResourceLimit extends OnApp {
 		if( ! is_null( $user_id ) ) {
 			$this->_user_id = $user_id;
 
-			$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
+			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 
 			$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
@@ -197,7 +197,6 @@ class OnApp_ResourceLimit extends OnApp {
 		switch( $action_name ) {
 			case ONAPP_ACTIVATE_DELETE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
-				break;
 		}
 	}
 }

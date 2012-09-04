@@ -34,7 +34,7 @@ class OnApp_LoadBalancingCluster_Node extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'load_balancing_cluster_node';
+	protected $rootElement = 'load_balancing_cluster_node';
 
 	public function __construct() {
 		parent::__construct();

@@ -40,14 +40,14 @@ class OnApp_Console extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'remote_access_session';
+	protected $rootElement = 'remote_access_session';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'console';
+	protected $URLPath = 'console';
 
 	public function __construct() {
 		parent::__construct();
@@ -59,16 +59,16 @@ class OnApp_Console extends OnApp {
 	 *
 	 * Can be redefined if the API for load objects does not use the default
 	 * alias (the alias consisting of few fields) the same way as {@link
-	 * getResource}.
+	 * getURL}.
 	 *
 	 * @param string $action action name
 	 *
 	 * @return string API resource
 	 * @access public
 	 *
-	 * @see    getResource
+	 * @see    getURL
 	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_LOAD:
 				/**
@@ -80,11 +80,11 @@ class OnApp_Console extends OnApp {
 				 * @format {:controller=>"virtual_machines", :action=>"console_remote"}
 				 */
 				$resource = "virtual_machines/" . $this->_virtual_machine_id . "/" . $this->_resource;
-				$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 
@@ -120,7 +120,7 @@ class OnApp_Console extends OnApp {
 		if( ! is_null( $virtual_machine_id ) ) {
 			$this->_virtual_machine_id = $virtual_machine_id;
 
-			$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
+			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 
 			$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
@@ -152,7 +152,6 @@ class OnApp_Console extends OnApp {
 			case ONAPP_ACTIVATE_SAVE:
 			case ONAPP_ACTIVATE_DELETE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
-				break;
 		}
 	}
 }

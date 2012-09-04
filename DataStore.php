@@ -60,21 +60,21 @@ class OnApp_DataStore extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'data_store';
+	protected $rootElement = 'data_store';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'settings/data_stores';
+	protected $URLPath = 'settings/data_stores';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
 	}
 
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DATASTORES_LIST_BY_HYPERVISOR_GROUP_ID:
 				/**
@@ -129,11 +129,11 @@ class OnApp_DataStore extends OnApp {
 				 * @alias  /settings/data_stores/:id(.:format)
 				 * @format {:controller=>"data_stores", :action=>"destroy"}
 				 */
-				return parent::getResource( $action );
+				return parent::getURL( $action );
 				break;
 
 			default:
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 		return $resource;
@@ -157,7 +157,7 @@ class OnApp_DataStore extends OnApp {
 				__LINE__
 			);
 		}
-		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_DATASTORES_LIST_BY_HYPERVISOR_GROUP_ID ) );
+		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_DATASTORES_LIST_BY_HYPERVISOR_GROUP_ID ) );
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 

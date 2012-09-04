@@ -84,21 +84,21 @@ class OnApp_Hypervisor extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'hypervisor';
+	protected $rootElement = 'hypervisor';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'settings/hypervisors';
+	protected $URLPath = 'settings/hypervisors';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
 	}
 
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_HYPERVISORS_BY_HYPERVISOR_GROUP_ID:
 				/**
@@ -153,7 +153,7 @@ class OnApp_Hypervisor extends OnApp {
 				 * @alias   /settings/hypervisors/:id(.:format)
 				 * @format  {:controller=>"settings_hypervisors", :action=>"destroy"}
 				 */
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 			case ONAPP_GETRESOURCE_HYPERVISOR_REBOOT:
 				/**
@@ -168,7 +168,7 @@ class OnApp_Hypervisor extends OnApp {
 				break;
 
 			default:
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 
@@ -194,7 +194,7 @@ class OnApp_Hypervisor extends OnApp {
 			);
 		}
 
-		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_HYPERVISORS_BY_HYPERVISOR_GROUP_ID ) );
+		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_HYPERVISORS_BY_HYPERVISOR_GROUP_ID ) );
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 

@@ -55,14 +55,14 @@ class OnApp_EdgeGroup extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'edge_group';
+	protected $rootElement = 'edge_group';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'edge_groups';
+	protected $URLPath = 'edge_groups';
 
 	public function __construct() {
 		parent::__construct();
@@ -77,7 +77,7 @@ class OnApp_EdgeGroup extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_EDGE_GROUP_ASSIGN_LOCATION:
 				/**
@@ -87,7 +87,7 @@ class OnApp_EdgeGroup extends OnApp {
 				 *
 				 *
 				 */
-				$resource = $this->getResource() . '/' . $this->_id . '/assign';
+				$resource = $this->getURL() . '/' . $this->_id . '/assign';
 				break;
 
 			case ONAPP_GETRESOURCE_EDGE_GROUP_UNASSIGN_LOCATION:
@@ -98,15 +98,15 @@ class OnApp_EdgeGroup extends OnApp {
 				 *
 				 *
 				 */
-				$resource = $this->getResource() . '/' . $this->_id . '/unassign';
+				$resource = $this->getURL() . '/' . $this->_id . '/unassign';
 				break;
 
 			default:
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 
-		$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+		$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 
 		return $resource;
 	}

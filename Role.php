@@ -50,22 +50,22 @@ class OnApp_Role extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'role';
+	protected $rootElement = 'role';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'roles';
+	protected $URLPath = 'roles';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
 	}
 
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-		return parent::getResource( $action );
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+		return parent::getURL( $action );
 		/**
 		 * ROUTE :
 		 *

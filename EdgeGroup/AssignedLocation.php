@@ -29,14 +29,14 @@ class OnApp_EdgeGroup_AssignedLocation extends OnApp_EdgeGroup_Location {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = '';
+	protected $rootElement = '';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = '';
+	protected $URLPath = '';
 
 	public function __construct() {
 		parent::__construct();

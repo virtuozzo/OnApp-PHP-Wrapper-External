@@ -12,19 +12,10 @@
  * @see         OnApp
  */
 
-/**
- *
- */
 define( 'ONAPP_GETRESOURCE_AUTOBACKUP_ENABLE', 'autobackup_enable' );
 
-/**
- *
- */
 define( 'ONAPP_GETRESOURCE_AUTOBACKUP_DISABLE', 'autobackup_disable' );
 
-/**
- *
- */
 define( 'ONAPP_GETRESOURCE_TAKE_BACKUP', 'backups' );
 
 /**
@@ -61,14 +52,14 @@ class OnApp_Disk extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'disk';
+	protected $rootElement = 'disk';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'settings/disks';
+	protected $URLPath = 'settings/disks';
 
 	public function __construct() {
 		parent::__construct();
@@ -83,7 +74,7 @@ class OnApp_Disk extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_LIST:
 				/**
@@ -96,7 +87,7 @@ class OnApp_Disk extends OnApp {
 				 */
 				$resource = $this->_virtual_machine_id ?
 					'virtual_machines/' . $this->_virtual_machine_id . '/disks' :
-					$this->getResource();
+					$this->getURL();
 				break;
 
 			case ONAPP_GETRESOURCE_ADD:
@@ -110,7 +101,7 @@ class OnApp_Disk extends OnApp {
 				 */
 				if( is_null( $this->_virtual_machine_id ) ) {
 					$this->logger->error(
-						'getResource( ' . $action . ' ): argument _virtual_machine_id not set.',
+						'getURL( ' . $action . ' ): argument _virtual_machine_id not set.',
 						__FILE__,
 						__LINE__
 					);
@@ -129,7 +120,7 @@ class OnApp_Disk extends OnApp {
 				 * @alias     /settings/disks/:id/autobackup_enable(.:format)
 				 * @format    {:controller=>"disks", :action=>"autobackup_enable"}
 				 */
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/autobackup_enable';
+				$resource = $this->getURL( ONAPP_GETRESOURCE_LOAD ) . '/autobackup_enable';
 				break;
 
 			case ONAPP_GETRESOURCE_AUTOBACKUP_DISABLE:
@@ -141,7 +132,7 @@ class OnApp_Disk extends OnApp {
 				 * @alias  /settings/disks/:id/autobackup_disable(.:format)
 				 * @format {:controller=>"disks", :action=>"autobackup_disable"}
 				 */
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/autobackup_disable';
+				$resource = $this->getURL( ONAPP_GETRESOURCE_LOAD ) . '/autobackup_disable';
 				break;
 
 			case ONAPP_GETRESOURCE_TAKE_BACKUP:
@@ -153,7 +144,7 @@ class OnApp_Disk extends OnApp {
 				 * @alias  /settings/disks/:disk_id/backups(.:format)
 				 * @format {:controller=>"backups", :action=>"create"}
 				 */
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/backups';
+				$resource = $this->getURL( ONAPP_GETRESOURCE_LOAD ) . '/backups';
 				break;
 
 			default:
@@ -197,7 +188,7 @@ class OnApp_Disk extends OnApp {
 				 * @alias  /settings/disks/:id(.:format)
 				 * @format {:controller=>"disks", :action=>"destroy"}
 				 */
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 
@@ -209,7 +200,7 @@ class OnApp_Disk extends OnApp {
 		);
 
 		if( in_array( $action, $actions ) ) {
-			$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+			$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 		}
 
 		return $resource;
@@ -300,10 +291,9 @@ class OnApp_Disk extends OnApp {
 			$this->_id = $disk_id;
 		}
 		// workaround because we get backup data in response
-		$this->_tagRoot  = 'backup';
+		$this->rootElement  = 'backup';
 		$this->className = 'OnApp_VirtualMachine_Backup';
 		$backup          = new OnApp_VirtualMachine_Backup();
-		$backup->initFields( $this->getAPIVersion() );
 		$this->fields = $backup->getClassFields();
 		$this->sendPost( ONAPP_GETRESOURCE_TAKE_BACKUP );
 	}

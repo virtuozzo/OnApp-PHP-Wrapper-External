@@ -51,14 +51,14 @@ class OnApp_Disk_Schedule extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'schedule';
+	protected $rootElement = 'schedule';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'schedules';
+	protected $URLPath = 'schedules';
 
 	public function __construct() {
 		parent::__construct();
@@ -73,20 +73,20 @@ class OnApp_Disk_Schedule extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		$show_log_msg = true;
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_LIST_BY_DISK_ID:
 				$resource = 'settings/disks/' . $this->_target_id . '/' . $this->_resource;
 				break;
 			default:
-				$resource     = parent::getResource( $action );
+				$resource     = parent::getURL( $action );
 				$show_log_msg = false;
 				break;
 		}
 
 		if( $show_log_msg ) {
-			$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+			$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 		}
 
 		return $resource;
@@ -110,7 +110,7 @@ class OnApp_Disk_Schedule extends OnApp {
 
 		$this->logger->add( 'getList: Get Transaction list.' );
 
-		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LIST_BY_DISK_ID ) );
+		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LIST_BY_DISK_ID ) );
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
 		$result = $this->castStringToClass( $response );

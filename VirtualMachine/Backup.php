@@ -67,14 +67,14 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'backup';
+	protected $rootElement = 'backup';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'backups';
+	protected $URLPath = 'backups';
 
 	public function __construct() {
 		parent::__construct();
@@ -89,7 +89,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		$show_log_msg = true;
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
@@ -103,7 +103,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				 */
 				if( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
 					$this->logger->error(
-						'getResource( ' . $action . ' ): argument _virtual_machine_id not set.',
+						'getURL( ' . $action . ' ): argument _virtual_machine_id not set.',
 						__FILE__,
 						__LINE__
 					);
@@ -128,7 +128,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				 */
 				if( is_null( $this->_disk_id ) && is_null( $this->_obj->_disk_id ) ) {
 					$this->logger->error(
-						'getResource( ' . $action . ' ): argument _disk_id not set.',
+						'getURL( ' . $action . ' ): argument _disk_id not set.',
 						__FILE__,
 						__LINE__
 					);
@@ -173,7 +173,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				 */
 				if( is_null( $this->_id ) && is_null( $this->_obj->_id ) ) {
 					$this->logger->error(
-						'getResource( ' . $action . ' ): argument _id not set.',
+						'getURL( ' . $action . ' ): argument _id not set.',
 						__FILE__,
 						__LINE__
 					);
@@ -195,7 +195,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				 * @alias    /backups/:id/convert(.:format)
 				 * @format   {:controller=>"backups", :action=>"convert"}
 				 */
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/convert';
+				$resource = $this->getURL( ONAPP_GETRESOURCE_LOAD ) . '/convert';
 				break;
 
 			case ONAPP_GETRESOURCE_BACKUP_RESTORE:
@@ -207,18 +207,18 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				 * @alias     /backups/:id/restore(.:format)
 				 * @format    {:controller=>"backups", :action=>"restore"}
 				 */
-				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/restore';
+				$resource = $this->getURL( ONAPP_GETRESOURCE_LOAD ) . '/restore';
 				break;
 
 			default:
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 
 				$show_log_msg = false;
 				break;
 		}
 
 		if( $show_log_msg ) {
-			$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+			$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 		}
 
 		return $resource;
@@ -263,7 +263,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 			$this->_disk_id = $disk_id;
 		}
 
-		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_DISK_BACKUPS ) );
+		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_DISK_BACKUPS ) );
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
@@ -296,17 +296,16 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 		);
 
 		$data = array(
-			'root' => $this->_tagRoot,
+			'root' => $this->rootElement,
 			'data' => array(
 				'label' => $label,
 				'id' => $this->_id
 			)
 		);
 		// workaround because we get template data in response
-		$this->_tagRoot  = 'image_template';
+		$this->rootElement  = 'image_template';
 		$this->className = 'OnApp_Template';
 		$template        = new OnApp_Template();
-		$template->initFields( $this->getAPIVersion() );
 		$this->fields = $template->getClassFields();
 		$this->sendPost( ONAPP_GETRESOURCE_BACKUP_CONVERT, $data );
 	}
@@ -317,7 +316,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	 * @access public
 	 */
 	function restore() {
-		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_BACKUP_RESTORE ) );
+		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_BACKUP_RESTORE ) );
 		$response   = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
 		$result     = $this->_castResponseToClass( $response );
 		$this->_obj = $result;

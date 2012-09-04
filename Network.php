@@ -66,21 +66,21 @@ class OnApp_Network extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'network';
+	protected $rootElement = 'network';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'settings/networks';
+	protected $URLPath = 'settings/networks';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
 	}
 
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_NETWORKS_LIST_BY_HYPERVISOR_GROUP_ID:
 				/**
@@ -123,7 +123,7 @@ class OnApp_Network extends OnApp {
 				 * @alias   /settings/networks/:id(.:format)
 				 * @format  {:controller=>"networks", :action=>"show"}
 				 */
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 		return $resource;
@@ -148,7 +148,7 @@ class OnApp_Network extends OnApp {
 			);
 		}
 
-		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_NETWORKS_LIST_BY_HYPERVISOR_GROUP_ID ) );
+		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_NETWORKS_LIST_BY_HYPERVISOR_GROUP_ID ) );
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
@@ -168,7 +168,6 @@ class OnApp_Network extends OnApp {
 			case ONAPP_ACTIVATE_SAVE:
 			case ONAPP_ACTIVATE_DELETE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
-				break;
 		}
 	}
 }

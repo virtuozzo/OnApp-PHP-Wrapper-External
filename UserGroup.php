@@ -36,14 +36,14 @@ class OnApp_UserGroup extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'user_group';
+	protected $rootElement = 'user_group';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'user_groups';
+	protected $URLPath = 'user_groups';
 
 	public function __construct() {
 		parent::__construct();

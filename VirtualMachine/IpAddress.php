@@ -20,9 +20,6 @@
  *
  */
 
-/**
- *
- */
 define( 'ONAPP_GETRESOURCE_JOIN', 'ip_address_join' );
 
 class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
@@ -31,14 +28,14 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 	 *
 	 * @var string
 	 */
-	protected $_tagRoot = 'ip_address';
+	protected $rootElement = 'ip_address';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	protected $_resource = 'ip_addresses';
+	protected $URLPath = 'ip_addresses';
 
 	public function __construct() {
 		parent::__construct();
@@ -53,14 +50,14 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_JOIN:
 				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->_resource;
-				$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 			default:
-				$resource = parent::getResource( $action );
+				$resource = parent::getURL( $action );
 				break;
 		}
 		return $resource;
@@ -109,7 +106,6 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 			case ONAPP_ACTIVATE_SAVE:
 			case ONAPP_ACTIVATE_DELETE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
-				break;
 		}
 	}
 }

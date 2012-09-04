@@ -69,7 +69,7 @@ class OnApp_Helper_Caster {
 
 		$tmp = array();
 		foreach( $object->data as $data ) {
-			$tmp[ ] = self::getCaster()->unserialize( $className, $data, $tmp_obj->_tagRoot );
+			$tmp[ ] = self::getCaster()->unserialize( $className, $data, $tmp_obj->rootElement );
 		}
 
 		return $tmp;
