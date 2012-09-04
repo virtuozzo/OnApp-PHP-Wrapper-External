@@ -23,7 +23,7 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
-class ONAPP_VirtualMachine_NetworkInterface_Usage extends OnApp {
+class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 	/**
 	 * root tag used in the API request
 	 *

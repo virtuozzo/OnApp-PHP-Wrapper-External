@@ -30,6 +30,7 @@ class OnApp_EdgeGroup_AssignedLocation extends OnApp_EdgeGroup_Location {
 	 * @var string
 	 */
 	var $_tagRoot = '';
+
 	/**
 	 * alias processing the object data
 	 *

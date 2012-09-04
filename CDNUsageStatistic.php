@@ -24,7 +24,7 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
-class ONAPP_CDNUsageStatistic extends OnApp {
+class OnApp_CDNUsageStatistic extends OnApp {
 	/**
 	 * root tag used in the API request
 	 *
