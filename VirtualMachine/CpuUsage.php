@@ -5,21 +5,21 @@
  *
  * The CPU utilization for Virtual Machine
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	VirtualMachine
- * @author		Vitaliy Kondratyuk
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @subpackage  VirtualMachine
+ * @author      Vitaliy Kondratyuk
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
  * The CPU utilization for Virtual Machine
  *
- * The ONAPP_VirtualMachine_CpuUsage class uses the following basic methods:
+ * The OnApp_VirtualMachine_CpuUsage class uses the following basic methods:
  * {@link getList}.
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_VirtualMachine_CpuUsage extends OnApp {
@@ -45,8 +45,9 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -117,7 +118,7 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
 
 			case 2.2:
 				$this->fields = $this->initFields( 2.1 );
-				$fields = array(
+				$fields       = array(
 					'cpu_time_raw',
 					'elapsed_time',
 					'period',
@@ -128,9 +129,10 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.2 );
 				break;
-           case 3.0:
+
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -138,7 +140,7 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -152,7 +154,7 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
 				 * ROUTE :
 				 * @name cpu_usage_virtual_machine
 				 * @method GET
-				 * @alias  /virtual_machines/:id/cpu_usage(.:format)
+				 * @alias   /virtual_machines/:id/cpu_usage(.:format)
 				 * @format  {:controller=>"virtual_machines", :action=>"cpu_usage"}
 				 */
 				if( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
@@ -190,11 +192,11 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
 	 * @access public
 	 */
 	function getList( $virtual_machine_id = null, $url_args = null ) {
-		if( is_null( $virtual_machine_id ) && !is_null( $this->_virtual_machine_id ) ) {
+		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
 			$virtual_machine_id = $this->_virtual_machine_id;
 		}
 
-		if( !is_null( $virtual_machine_id ) ) {
+		if( ! is_null( $virtual_machine_id ) ) {
 			$this->_virtual_machine_id = $virtual_machine_id;
 
 			return parent::getList();

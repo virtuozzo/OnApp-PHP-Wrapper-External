@@ -4,13 +4,13 @@
 /**
  * VM Firewall Rule
  *
- * @category	API WRAPPER
- * @package		OnApp
+ * @category    API wrapper
+ * @package     OnApp
  * @subpackage  VirtualMachine
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 define( 'ONAPP_GETRESOURCE_MOVE', 'move' );
@@ -20,7 +20,7 @@ define( 'ONAPP_GETRESOURCE_UPDATE_DEFAULTS', 'update_defaults' );
 /**
  * VM Firewall Rule
  *
- * The ONAPP_VirtualMachine_FirewallRule class uses the following basic methods:
+ * The OnApp_VirtualMachine_FirewallRule class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -48,8 +48,9 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -107,9 +108,10 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
-           case 3.0:
+
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -117,9 +119,10 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
+	 *
 	 * @return string API resource
 	 * @access public
 	 */
@@ -130,22 +133,22 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 				 * ROUTE :
 				 * @name virtual_machine_firewall_rules
 				 * @method GET
-				 * @alias  /virtual_machines/:virtual_machine_id/firewall_rules(.:format)
-				 * @format	{:controller=>"firewall_rules", :action=>"index"}
+				 * @alias     /virtual_machines/:virtual_machine_id/firewall_rules(.:format)
+				 * @format    {:controller=>"firewall_rules", :action=>"index"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name virtual_machine_firewall_rule
 				 * @method GET
-				 * @alias  /virtual_machines/:virtual_machine_id/firewall_rules/:id(.:format)
-				 * @format	{:controller=>"firewall_rules", :action=>"show"}
+				 * @alias     /virtual_machines/:virtual_machine_id/firewall_rules/:id(.:format)
+				 * @format    {:controller=>"firewall_rules", :action=>"show"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name
 				 * @method POST
-				 * @alias  /virtual_machines/:virtual_machine_id/firewall_rules(.:format)
-				 * @format	{:controller=>"firewall_rules", :action=>"create"}
+				 * @alias     /virtual_machines/:virtual_machine_id/firewall_rules(.:format)
+				 * @format    {:controller=>"firewall_rules", :action=>"create"}
 				 */
 				/**
 				 * ROUTE :
@@ -158,8 +161,8 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 				 * ROUTE :
 				 * @name
 				 * @method DELETE
-				 * @alias  /virtual_machines/:virtual_machine_id/firewall_rules/:id(.:format)
-				 * @format	{:controller=>"firewall_rules", :action=>"destroy"}
+				 * @alias     /virtual_machines/:virtual_machine_id/firewall_rules/:id(.:format)
+				 * @format    {:controller=>"firewall_rules", :action=>"destroy"}
 				 */
 				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->_resource;
 				break;
@@ -169,8 +172,8 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 				 * ROUTE :
 				 * @name move_virtual_machine_firewall_rule
 				 * @method GET
-				 * @alias  /virtual_machines/:virtual_machine_id/firewall_rules/:id/move(.:format)
-				 * @format	{:controller=>"firewall_rules", :action=>"move"}
+				 * @alias     /virtual_machines/:virtual_machine_id/firewall_rules/:id/move(.:format)
+				 * @format    {:controller=>"firewall_rules", :action=>"move"}
 				 */
 				$resource = $this->getResource( ONAPP_GETRESOURCE_DEFAULT ) . '/' . $this->_id . '/move';
 				break;
@@ -180,8 +183,8 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 				 * ROUTE :
 				 * @name update_firewall_rules_virtual_machine
 				 * @method POST
-				 * @alias  /virtual_machines/:id/update_firewall_rules(.:format)
-				 * @format	{:controller=>"virtual_machines", :action=>"update_firewall_rules"}
+				 * @alias     /virtual_machines/:id/update_firewall_rules(.:format)
+				 * @format    {:controller=>"virtual_machines", :action=>"update_firewall_rules"}
 				 */
 				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/update_firewall_rules';
 				break;
@@ -191,7 +194,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 				 * ROUTE :
 				 * @name update_firewall_rules_virtual_machine
 				 * @method POST
-				 * @alias  /virtual_machines/:id/update_firewall_rules(.:format)
+				 * @alias   /virtual_machines/:id/update_firewall_rules(.:format)
 				 * @format  {:controller=>"virtual_machines", :action=>"update_firewall_rules"}
 				 */
 				$resource = '/virtual_machines/' . $this->_virtual_machine_id . '/firewall_rules/update_defaults';
@@ -205,7 +208,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 		return $resource;
 	}
 
-    /**
+	/**
 	 * Sends an API request to get the Objects. After requesting,
 	 * unserializes the received response into the array of Objects
 	 *
@@ -233,46 +236,46 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 		}
 	}
 
-    /**
+	/**
 	 * Sends an API request to get the Object after sending,
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class ONAPP.
+	 * this parameter in the class inheriting OnApp class.
 	 *
-	 * @param integer $id Firewall Rule id
+	 * @param integer $id                 Firewall Rule id
 	 * @param integer $virtual_machine_id Virtual Machine id
 	 *
 	 * @return mixed serialized Object instance from API
 	 * @access public
 	 */
 	function load( $id = null, $virtual_machine_id = null ) {
-		if( is_null( $virtual_machine_id ) && !is_null( $this->_virtual_machine_id ) ) {
+		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
 			$virtual_machine_id = $this->_virtual_machine_id;
 		}
 
 		if( is_null( $virtual_machine_id ) &&
 			isset( $this->_obj ) &&
-			!is_null( $this->_obj->_virtual_machine_id )
+			! is_null( $this->_obj->_virtual_machine_id )
 		) {
 			$virtual_machine_id = $this->_obj->_virtual_machine_id;
 		}
 
-		if( is_null( $id ) && !is_null( $this->_id ) ) {
+		if( is_null( $id ) && ! is_null( $this->_id ) ) {
 			$id = $this->_id;
 		}
 
 		if( is_null( $id ) &&
 			isset( $this->_obj ) &&
-			!is_null( $this->_obj->_id )
+			! is_null( $this->_obj->_id )
 		) {
 			$id = $this->_obj->_id;
 		}
 
 		$this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
 
-		if( !is_null( $id ) && !is_null( $virtual_machine_id ) ) {
-			$this->_id = $id;
+		if( ! is_null( $id ) && ! is_null( $virtual_machine_id ) ) {
+			$this->_id                 = $id;
 			$this->_virtual_machine_id = $virtual_machine_id;
 
 			$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
@@ -311,7 +314,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 * @return void
 	 */
 	function move( $position ) {
-		if( !$position ) {
+		if( ! $position ) {
 			$this->logger->error(
 				"_GETAction: Firewall rule move position have to be specified
 				(apiVersion => '" . $this->_apiVersion . "').", __FILE__, __LINE__
@@ -347,7 +350,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 * Updates default firewall rules for all network interfaces for particular virtual machine
 	 *
 	 * @param integer $virtual_machine_id VM id
-	 * @param array $networkInterfaces  =  array( {$NETWORK_INTERFACE_ID} => {COMMAND} );
+	 * @param array   $networkInterfaces  =  array( {$NETWORK_INTERFACE_ID} => {COMMAND} );
 	 *
 	 * @return void
 	 */

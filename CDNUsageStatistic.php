@@ -5,26 +5,26 @@
  * Managing Edge Groups
  *
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
  * View CDN Usage Statistics
  *
- * The ONAPP_CDNUsageStatistic class represents CDN Usage Statistics info
- * The ONAPP_CDNUsageStatistic class is the parent of the OnApp class.
+ * The OnApp_CDNUsageStatistic class represents CDN Usage Statistics info
+ * The OnApp_CDNUsageStatistic class is the parent of the OnApp class.
  *
- * The ONAPP_EdgeGroup uses the following basic methods:
+ * The OnApp_EdgeGroup uses the following basic methods:
  * {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
-class ONAPP_CDNUsageStatistic extends OnApp {
+class OnApp_CDNUsageStatistic extends OnApp {
 	/**
 	 * root tag used in the API request
 	 *
@@ -47,23 +47,24 @@ class ONAPP_CDNUsageStatistic extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
 		switch( $version ) {
 			case '2.3':
 				$this->fields = array(
-                    'target_id' => array(
+					'target_id' => array(
 						ONAPP_FIELD_MAP => '_target_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+						ONAPP_FIELD_TYPE => 'integer',
 					),
-                    'not_cached' => array(
+					'not_cached' => array(
 						ONAPP_FIELD_MAP => '_non_cached',
 						ONAPP_FIELD_TYPE => 'float',
 					),
-                    'updated_at' => array(
+					'updated_at' => array(
 						ONAPP_FIELD_MAP => '_updated_at',
 						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true
@@ -78,17 +79,18 @@ class ONAPP_CDNUsageStatistic extends OnApp {
 
 					),
 				);
-                break;
-           case 3.0:
+				break;
+
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
 		return $this->fields;
 	}
 
-    /**
+	/**
 	 * Activates action performed with object
 	 *
 	 * @param string $action_name the name of action
@@ -98,11 +100,10 @@ class ONAPP_CDNUsageStatistic extends OnApp {
 	function activate( $action_name ) {
 		switch( $action_name ) {
 			case ONAPP_ACTIVATE_SAVE:
-            case ONAPP_ACTIVATE_LOAD:
+			case ONAPP_ACTIVATE_LOAD:
 			case ONAPP_ACTIVATE_DELETE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
 				break;
 		}
 	}
-    
 }

@@ -8,12 +8,12 @@
  * happening to your virtual machines. You can view the transactions output from
  * the Control Panel.
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Andrew Yatskovets
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -21,7 +21,7 @@
  *
  * This class represents the Transactions of the OnApp installation.
  *
- * The ONAPP_Transaction class uses the following basic methods:
+ * The OnApp_Transaction class uses the following basic methods:
  * {@link load} and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -49,8 +49,9 @@ class OnApp_Transaction extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -127,18 +128,18 @@ class OnApp_Transaction extends OnApp {
 				break;
 
 			case '2.1':
-				$this->fields = $this->initFields( '2.0' );
+				$this->fields                     = $this->initFields( '2.0' );
 				$this->fields[ 'allowed_cancel' ] = array(
 					ONAPP_FIELD_MAP => '_allowed_cancel',
 					ONAPP_FIELD_TYPE => 'boolean',
 					ONAPP_FIELD_READ_ONLY => true
 				);
-				$this->fields[ 'identifier' ] = array(
+				$this->fields[ 'identifier' ]     = array(
 					ONAPP_FIELD_MAP => '_identifier',
 					ONAPP_FIELD_TYPE => 'string',
 					ONAPP_FIELD_READ_ONLY => true
 				);
-				$this->fields[ 'start_after' ] = array(
+				$this->fields[ 'start_after' ]    = array(
 					ONAPP_FIELD_MAP => '_start_after',
 					ONAPP_FIELD_TYPE => 'datetime',
 					ONAPP_FIELD_READ_ONLY => true
@@ -146,8 +147,8 @@ class OnApp_Transaction extends OnApp {
 				break;
 
 			case 2.2:
-				$this->fields = $this->initFields( 2.1 );
-				$this->fields[ 'started_at' ] = array(
+				$this->fields                  = $this->initFields( 2.1 );
+				$this->fields[ 'started_at' ]  = array(
 					ONAPP_FIELD_MAP => 'started_at',
 					ONAPP_FIELD_TYPE => 'datetime',
 					ONAPP_FIELD_READ_ONLY => true
@@ -161,14 +162,15 @@ class OnApp_Transaction extends OnApp {
 
 			case 2.3:
 				$this->fields = $this->initFields( 2.2 );
-				$fields = array(
+				$fields       = array(
 					'finished_at',
 				);
 				$this->unsetFields( $fields );
-                break;
-           case 3.0:
+				break;
+
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -202,30 +204,32 @@ class OnApp_Transaction extends OnApp {
 	}
 
 	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        return parent::getResource( $action );
+		return parent::getResource( $action );
 		/**
 		 * ROUTE :
 		 * @name transactions
 		 * @method GET
-		 * @alias  /settings/nameservers(.:format)
+		 * @alias   /settings/nameservers(.:format)
 		 * @format  {:controller=>"transactions", :action=>"index"}
 		 */
 		/**
 		 * ROUTE :
 		 * @name transaction
 		 * @method GET
-		 * @alias  /transactions/:id(.:format)
+		 * @alias    /transactions/:id(.:format)
 		 * @format   {:controller=>"transactions", :action=>"show"}
 		 */
 	}
-    
-    /**
-     * Load transaction with log_output
-     * @param type $id
-     * @return type 
-     */
-    function load_with_output( $id ) {
-			$this->_id = $id;
-			return $this->sendGet( ONAPP_GETRESOURCE_LOAD, null, array('log' => '') );
-    }
+
+	/**
+	 * Load transaction with log_output
+	 *
+	 * @param type $id
+	 *
+	 * @return type
+	 */
+	function load_with_output( $id ) {
+		$this->_id = $id;
+		return $this->sendGet( ONAPP_GETRESOURCE_LOAD, null, array( 'log' => '' ) );
+	}
 }

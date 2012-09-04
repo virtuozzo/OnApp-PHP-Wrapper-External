@@ -4,19 +4,19 @@
 /**
  * Billing Plan Base Resources
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	BillingPlan
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @subpackage  BillingPlan
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
- * The ONAPP_BillingPlan_BaseResource uses the following basic methods:
+ * The OnApp_BillingPlan_BaseResource uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_BillingPlan_BaseResource extends OnApp {
@@ -42,8 +42,9 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -145,16 +146,17 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 
 			case 2.2:
 			case 2.3:
-				$this->fields = $this->initFields( 2.1 );
-                $this->fields[ 'target_id' ] = array(
-                    ONAPP_FIELD_MAP => '_target_id',
-                    ONAPP_FIELD_TYPE => 'integer',
-                    ONAPP_FIELD_READ_ONLY => true
-                );
+				$this->fields                = $this->initFields( 2.1 );
+				$this->fields[ 'target_id' ] = array(
+					ONAPP_FIELD_MAP => '_target_id',
+					ONAPP_FIELD_TYPE => 'integer',
+					ONAPP_FIELD_READ_ONLY => true
+				);
 				break;
-           case 3.0:
+
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -162,7 +164,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -177,14 +179,14 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 				 * ROUTE :
 				 * @name billing_plan_base_resources
 				 * @method GET
-				 * @alias  /billing_plans/:billing_plan_id/base_resources(.:format)
+				 * @alias   /billing_plans/:billing_plan_id/base_resources(.:format)
 				 * @format  {:controller=>"base_resources", :action=>"index"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name billing_plan_base_resource
 				 * @method GET
-				 * @alias  /billing_plans/:billing_plan_id/base_resources/:id(.:format)
+				 * @alias    /billing_plans/:billing_plan_id/base_resources/:id(.:format)
 				 * @format   {:controller=>"base_resources", :action=>"show"}
 				 */
 				/**
@@ -198,14 +200,14 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 				 * ROUTE :
 				 * @name
 				 * @method PUT
-				 * @alias /billing_plans/:billing_plan_id/base_resources/:id(.:format)
+				 * @alias  /billing_plans/:billing_plan_id/base_resources/:id(.:format)
 				 * @format {:controller=>"base_resources", :action=>"update"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name
 				 * @method DELETE
-				 * @alias  /billing_plans/:billing_plan_id/base_resources/:id(.:format)
+				 * @alias   /billing_plans/:billing_plan_id/base_resources/:id(.:format)
 				 * @format  {:controller=>"base_resources", :action=>"destroy"}
 				 */
 				if( is_null( $this->_billing_plan_id ) && is_null( $this->_obj->_billing_plan_id ) ) {
@@ -225,7 +227,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 				break;
 
 			default:
-				$resource = parent::getResource( $action );
+				$resource     = parent::getResource( $action );
 				$show_log_msg = false;
 				break;
 		}
@@ -247,11 +249,11 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	 * @access public
 	 */
 	function getList( $billing_plan_id = null, $url_args = null ) {
-		if( is_null( $billing_plan_id ) && !is_null( $this->_billing_plan_id ) ) {
+		if( is_null( $billing_plan_id ) && ! is_null( $this->_billing_plan_id ) ) {
 			$billing_plan_id = $this->_billing_plan_id;
 		}
 
-		if( !is_null( $billing_plan_id ) ) {
+		if( ! is_null( $billing_plan_id ) ) {
 			$this->_billing_plan_id = $billing_plan_id;
 
 			return parent::getList();
@@ -274,13 +276,13 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	 *
 	 * This method can be closed for read only objects of the inherited class
 	 * <code>
-	 *	function save() {
-	 *		$this->logger->error(
-	 *			"Call to undefined method ".__CLASS__."::save()",
-	 *			__FILE__,
-	 *			__LINE__
-	 *		);
-	 *	}
+	 *    function save() {
+	 *        $this->logger->error(
+	 *            "Call to undefined method ".__CLASS__."::save()",
+	 *            __FILE__,
+	 *            __LINE__
+	 *        );
+	 *    }
 	 * </code>
 	 *
 	 * @return void
@@ -289,46 +291,46 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	function save() {
 		if( is_null( $this->_limit ) ) {
 			$this->_limit = isset( $this->_limits->_limit )
-					? $this->_limits->_limit : (
-					isset( $this->_obj->_limits->_limit )
-							? $this->_obj->_limits->_limit
-							: ''
-					);
+				? $this->_limits->_limit : (
+				isset( $this->_obj->_limits->_limit )
+					? $this->_obj->_limits->_limit
+					: ''
+				);
 		}
 
 		if( is_null( $this->_limit_free ) ) {
 			$this->_limit_free = isset( $this->_limits->_limit_free )
-					? $this->_limits->_limit_free : (
-					isset( $this->_obj->_limits->_limit_free )
-							? $this->_obj->_limits->_limit_free
-							: ''
-					);
+				? $this->_limits->_limit_free : (
+				isset( $this->_obj->_limits->_limit_free )
+					? $this->_obj->_limits->_limit_free
+					: ''
+				);
 		}
 
 		if( is_null( $this->_price_on ) ) {
 			$this->_price_on = isset( $this->_prices->_price_on )
-					? $this->_prices->_price_on : (
-					isset( $this->_obj->_prices->_price_on ) ?
-							$this->_obj->_prices->_price_on
-							: ''
-					);
+				? $this->_prices->_price_on : (
+				isset( $this->_obj->_prices->_price_on ) ?
+					$this->_obj->_prices->_price_on
+					: ''
+				);
 		}
 
 		if( is_null( $this->_price_off ) ) {
 			$this->_price_off = isset( $this->_limits->_price_off )
-					? $this->_prices->_price_off : (
-					isset( $this->_obj->_prices->_price_off )
-							? $this->_obj->_prices->_price_off
-							: ""
-					);
+				? $this->_prices->_price_off : (
+				isset( $this->_obj->_prices->_price_off )
+					? $this->_obj->_prices->_price_off
+					: ""
+				);
 		}
 
 		if( is_null( $this->_price ) ) {
 			$this->_price = isset( $this->_limits->_price )
-					? $this->_prices->_price
-					: ( isset( $this->_obj->_prices->_price )
-							? $this->_obj->_prices->_price
-							: '' );
+				? $this->_prices->_price
+				: ( isset( $this->_obj->_prices->_price )
+					? $this->_obj->_prices->_price
+					: '' );
 		}
 
 		return parent::save();

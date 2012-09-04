@@ -2,14 +2,14 @@
 /**
  * User Additional Field
  *
- * @todo Add description
+ * @todo        Add description
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Yuriy Yakubskiy
- * @copyright	(c) 2012 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Yuriy Yakubskiy
+ * @copyright   (c) 2012 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -44,8 +44,9 @@ class OnApp_UserAdditionalField extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -74,16 +75,17 @@ class OnApp_UserAdditionalField extends OnApp {
 					),
 				);
 				break;
-           case 3.0:
+
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				break;
-            default:
-                $this->logger->error(
-                    'supported only from 2.3 version',
-                    __FILE__,
-                    __LINE__
-			    );
-                break;
+			default:
+				$this->logger->error(
+					'supported only from 2.3 version',
+					__FILE__,
+					__LINE__
+				);
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );

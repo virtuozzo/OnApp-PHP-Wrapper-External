@@ -2,27 +2,27 @@
 /**
  * Hypervisor Zone
  *
- * @todo Add description
+ * @todo        Add description
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Andrew Yatskovets
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
  *
  * Managing Hypervisor Zones
  *
- * The ONAPP_HypervisorZone class uses the following basic methods:
+ * The OnApp_HypervisorZone class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
- * The ONAPP_HypervisorZone class represents virtual machine hypervisor groups.
- * The ONAPP class is a parent of ONAPP_HypervisorZone class.
+ * The OnApp_HypervisorZone class represents virtual machine hypervisor groups.
+ * The OnApp class is a parent of ONAPP_HypervisorZone class.
  *
- * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 ) 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_HypervisorZone extends OnApp {
 	/**
@@ -47,8 +47,9 @@ class OnApp_HypervisorZone extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -86,9 +87,10 @@ class OnApp_HypervisorZone extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
-           case 3.0:
+
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -108,14 +110,14 @@ class OnApp_HypervisorZone extends OnApp {
 		 * ROUTE :
 		 * @name hypervisor_group
 		 * @method GET
-		 * @alias  /settings/hypervisor_zones/:id(.:format)
+		 * @alias   /settings/hypervisor_zones/:id(.:format)
 		 * @format  {:controller=>"hypervisor_groups", :action=>"show"}
 		 */
 		/**
 		 * ROUTE :
 		 * @name
 		 * @method POST
-		 * @alias  /settings/hypervisor_zones(.:format)
+		 * @alias   /settings/hypervisor_zones(.:format)
 		 * @format  {:controller=>"hypervisor_groups", :action=>"create"}
 		 */
 		/**
@@ -129,7 +131,7 @@ class OnApp_HypervisorZone extends OnApp {
 		 * ROUTE :
 		 * @name
 		 * @method DELETE
-		 * @alias  /settings/hypervisor_zones/:id(.:format)
+		 * @alias    /settings/hypervisor_zones/:id(.:format)
 		 * @format   {:controller=>"hypervisor_groups", :action=>"destroy"}
 		 */
 	}

@@ -4,13 +4,13 @@
 /**
  * CDN Resource Advanced Details
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	CDNResource
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2012 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @subpackage  CDNResource
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2012 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -18,11 +18,9 @@
  *
  * The OnApp_CDNResource_Advanced uses the following basic methods:
  * {@link getList}.
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
-
-
 class OnApp_CDNResource_Advanced extends OnApp {
 	/**
 	 * root tag used in the API request
@@ -46,19 +44,21 @@ class OnApp_CDNResource_Advanced extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
 		switch( $version ) {
 			case '2.0':
 			case '2.1':
-            case '2.2':
-			    break;
+			case '2.2':
+				break;
+
 			case '2.3':
 				$this->fields = array(
-                    'id' => array(
+					'id' => array(
 						ONAPP_FIELD_MAP => '_id',
 						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
@@ -86,8 +86,7 @@ class OnApp_CDNResource_Advanced extends OnApp {
 					'passwords' => array(
 						ONAPP_FIELD_MAP => '_passwords',
 						ONAPP_FIELD_TYPE => 'string',
-                        ONAPP_FIELD_READ_ONLY => true,
-//						ONAPP_FIELD_CLASS => 'CDNResource_Advanced_Password',
+						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'domains' => array(
 						ONAPP_FIELD_MAP => '_domains',
@@ -132,20 +131,21 @@ class OnApp_CDNResource_Advanced extends OnApp {
 				);
 				$this->fields = $this->initFields( 2.1 );
 				break;
-           case 3.0:
+
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				$this->fields[ 'secondary_hostnames' ] = array(
+				$this->fields[ 'secondary_hostnames' ]  = array(
 					ONAPP_FIELD_MAP => '_secondary_hostnames',
 					ONAPP_FIELD_TYPE => '_array',
 				);
 				$this->fields[ 'flv_pseudo_on' ] = array(
 					ONAPP_FIELD_MAP => '_flv_pseudo_on',
 					ONAPP_FIELD_TYPE => 'boolean',
-				); 
+				);
 				$this->fields[ 'mp4_pseudo_on' ] = array(
 					ONAPP_FIELD_MAP => '_mp4_pseudo_on',
 					ONAPP_FIELD_TYPE => 'boolean',
-				); 
+				);
 				$this->fields[ 'ssl_on' ] = array(
 					ONAPP_FIELD_MAP => '_ssl_on',
 					ONAPP_FIELD_TYPE => 'boolean',
@@ -153,8 +153,8 @@ class OnApp_CDNResource_Advanced extends OnApp {
 				$this->fields[ 'ignore_set_cookie_on' ] = array(
 					ONAPP_FIELD_MAP => '_ignore_set_cookie_on',
 					ONAPP_FIELD_TYPE => 'boolean',
-				);                
-				break;            
+				);
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -162,7 +162,7 @@ class OnApp_CDNResource_Advanced extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -182,7 +182,7 @@ class OnApp_CDNResource_Advanced extends OnApp {
 		return $resource;
 	}
 
-    /**
+	/**
 	 * Sends an API request to get the Objects. After requesting,
 	 * unserializes the received response into the array of Objects
 	 *
@@ -226,5 +226,4 @@ class OnApp_CDNResource_Advanced extends OnApp {
 				break;
 		}
 	}
-
 }

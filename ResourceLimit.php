@@ -6,12 +6,12 @@
  *
  * With OnApp you can assign resource limits to users. This will prevent users from exceeding the resources you specify.
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Andrew Yatskovets
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -19,7 +19,7 @@
  *
  * This class represents the resource limits set to users.
  *
- * The ONAPP_ResourceLimit class uses the following basic methods:
+ * The OnApp_ResourceLimit class uses the following basic methods:
  * {@link load}, {@link save} and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -47,8 +47,9 @@ class OnApp_ResourceLimit extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -119,12 +120,12 @@ class OnApp_ResourceLimit extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 
-				$this->fields[ 'ip_address_count' ] = array(
+				$this->fields[ 'ip_address_count' ]        = array(
 					ONAPP_FIELD_MAP => 'ip_address_count',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'ip_address_mask' ] = array(
+				$this->fields[ 'ip_address_mask' ]         = array(
 					ONAPP_FIELD_MAP => 'ip_address_mask',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
@@ -134,7 +135,7 @@ class OnApp_ResourceLimit extends OnApp {
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'rate' ] = array(
+				$this->fields[ 'rate' ]                    = array(
 					ONAPP_FIELD_MAP => 'rate',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
@@ -145,9 +146,10 @@ class OnApp_ResourceLimit extends OnApp {
 				);
 				$this->unsetFields( $fields );
 				break;
-           case 3.0:
+
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -155,7 +157,7 @@ class OnApp_ResourceLimit extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @return string API resource
 	 * @access public
@@ -219,7 +221,7 @@ class OnApp_ResourceLimit extends OnApp {
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class ONAPP.
+	 * this parameter in the class inheriting OnApp class.
 	 *
 	 * @param integer $id Object id
 	 *
@@ -227,20 +229,20 @@ class OnApp_ResourceLimit extends OnApp {
 	 * @access public
 	 */
 	function load( $user_id = null ) {
-		if( is_null( $user_id ) && !is_null( $this->_user_id ) ) {
+		if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
 			$user_id = $this->_user_id;
 		}
 
 		if( is_null( $user_id ) &&
 			isset( $this->_obj ) &&
-			!is_null( $this->_obj->_user_id )
+			! is_null( $this->_obj->_user_id )
 		) {
 			$user_id = $this->_obj->_user_id;
 		}
 
 		$this->logger->add( 'load: Load class ( id => ' . $user_id . ').' );
 
-		if( !is_null( $user_id ) ) {
+		if( ! is_null( $user_id ) ) {
 			$this->_user_id = $user_id;
 
 			$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
@@ -249,7 +251,7 @@ class OnApp_ResourceLimit extends OnApp {
 
 			$result = $this->_castResponseToClass( $response );
 
-			$this->_obj = $result;
+			$this->_obj     = $result;
 			$this->_user_id = $this->_obj->_user_id;
 
 			return $result;
@@ -277,7 +279,7 @@ class OnApp_ResourceLimit extends OnApp {
 		if( isset( $this->_user_id ) ) {
 			$obj = $this->_edit();
 
-			if( isset( $obj ) && !isset( $obj->errors ) ) {
+			if( isset( $obj ) && ! isset( $obj->errors ) ) {
 				$this->load();
 			}
 		}

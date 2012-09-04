@@ -4,19 +4,19 @@
 /**
  * VM IP Address Joins
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	VirtualMachine
- * @author		Vitaliy Kondratyuk
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @subpackage  VirtualMachine
+ * @author      Vitaliy Kondratyuk
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
  * VM IP Address Joins
  *
- * The ONAPP_VirtualMachine_IpAddressJoin uses the following basic methods:
+ * The OnApp_VirtualMachine_IpAddressJoin uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -44,8 +44,9 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -87,7 +88,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 				break;
 
 			case 2.2:
-				$this->fields = $this->initFields( 2.1 );
+				$this->fields                         = $this->initFields( 2.1 );
 				$this->fields[ 'virtual_machine_id' ] = array(
 					ONAPP_FIELD_MAP => 'virtual_machine_id',
 					ONAPP_FIELD_TYPE => 'integer',
@@ -96,14 +97,15 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 
 			case 2.3:
 				$this->fields = $this->initFields( 2.2 );
-				$fields = array(
+				$fields       = array(
 					'virtual_machine_id',
 				);
 				$this->unsetFields( $fields );
 				break;
-           case 3.0:
+
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -111,7 +113,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -125,28 +127,28 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 				 * ROUTE :
 				 * @name virtual_machine_ip_address_joins
 				 * @method GET
-				 * @alias  /virtual_machines/:virtual_machine_id/ip_addresses(.:format)
+				 * @alias   /virtual_machines/:virtual_machine_id/ip_addresses(.:format)
 				 * @format  {:controller=>"ip_address_joins", :action=>"index"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name virtual_machine_ip_address_join
 				 * @method GET
-				 * @alias  /virtual_machines/:virtual_machine_id/ip_addresses/:id(.:format)
+				 * @alias    /virtual_machines/:virtual_machine_id/ip_addresses/:id(.:format)
 				 * @format   {:controller=>"ip_address_joins", :action=>"show"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name
 				 * @method POST
-				 * @alias  /virtual_machines/:virtual_machine_id/ip_addresses(.:format)
+				 * @alias    /virtual_machines/:virtual_machine_id/ip_addresses(.:format)
 				 * @format   {:controller=>"ip_address_joins", :action=>"create"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name
 				 * @method DELETE
-				 * @alias  /virtual_machines/:virtual_machine_id/ip_addresses/:id(.:format)
+				 * @alias   /virtual_machines/:virtual_machine_id/ip_addresses/:id(.:format)
 				 * @format  {:controller=>"ip_address_joins", :action=>"destroy"}
 				 */
 				if( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
@@ -184,11 +186,11 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 	 * @access public
 	 */
 	function getList( $virtual_machine_id = null ) {
-		if( is_null( $virtual_machine_id ) && !is_null( $this->_virtual_machine_id ) ) {
+		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
 			$virtual_machine_id = $this->_virtual_machine_id;
 		}
 
-		if( !is_null( $virtual_machine_id ) ) {
+		if( ! is_null( $virtual_machine_id ) ) {
 			$this->_virtual_machine_id = $virtual_machine_id;
 
 			return parent::getList();
@@ -207,34 +209,34 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class ONAPP.
+	 * this parameter in the class inheriting OnApp class.
 	 *
-	 * @param integer $id IP Address Join id
+	 * @param integer $id                 IP Address Join id
 	 * @param integer $virtual_machine_id Virtual Machine id
 	 *
 	 * @return mixed serialized Object instance from API
 	 * @access public
 	 */
 	function load( $id = null, $virtual_machine_id = null ) {
-		if( is_null( $virtual_machine_id ) && !is_null( $this->_virtual_machine_id ) ) {
+		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
 			$virtual_machine_id = $this->_virtual_machine_id;
 		}
 
-		if( is_null( $id ) && !is_null( $this->_id ) ) {
+		if( is_null( $id ) && ! is_null( $this->_id ) ) {
 			$id = $this->_id;
 		}
 
 		if( is_null( $id ) &&
 			isset( $this->_obj ) &&
-			!is_null( $this->_obj->_id )
+			! is_null( $this->_obj->_id )
 		) {
 			$id = $this->_obj->_id;
 		}
 
 		$this->logger->add( "load: Load class ( id => '$id')." );
 
-		if( !is_null( $id ) && !is_null( $virtual_machine_id ) ) {
-			$this->_id = $id;
+		if( ! is_null( $id ) && ! is_null( $virtual_machine_id ) ) {
+			$this->_id                 = $id;
 			$this->_virtual_machine_id = $virtual_machine_id;
 
 			$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );

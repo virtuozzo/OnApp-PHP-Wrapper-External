@@ -4,13 +4,13 @@
 /**
  * VM Backups
  *
- * @category	API WRAPPER
- * @package		OnApp
+ * @category    API wrapper
+ * @package     OnApp
  * @subpackage  VirtualMachine
- * @author		Vitaliy Kondratyuk
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @author      Vitaliy Kondratyuk
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -33,7 +33,7 @@ define( 'ONAPP_GETRESOURCE_DISK_BACKUPS', 'disk_backups' );
  *
  * This class represents the Backups which have been taken or are waiting to be taken for Virtual Machine.
  *
- * The ONAPP_VirtualMachine_Backup class uses the following basic methods:
+ * The OnApp_VirtualMachine_Backup class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -61,8 +61,9 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -156,7 +157,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 					ONAPP_FIELD_TYPE => 'boolean',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'allowed_swap' ] = array(
+				$this->fields[ 'allowed_swap' ]        = array(
 					ONAPP_FIELD_MAP => '_allowed_swap',
 					ONAPP_FIELD_TYPE => 'boolean',
 					ONAPP_FIELD_READ_ONLY => true,
@@ -165,15 +166,16 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 
 			case 2.2:
 			case 2.3:
-				$this->fields = $this->initFields( 2.1 );
-                $this->fields[ 'backup_server_id' ] = array(
+				$this->fields                       = $this->initFields( 2.1 );
+				$this->fields[ 'backup_server_id' ] = array(
 					ONAPP_FIELD_MAP => '_backup_server_id',
 					ONAPP_FIELD_TYPE => 'integer',
 				);
 				break;
-           case 3.0:
+
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -181,7 +183,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -196,7 +198,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				 * ROUTE :
 				 * @name virtual_machine_backups
 				 * @method GET
-				 * @alias  /virtual_machines/:virtual_machine_id/backups(.:format)
+				 * @alias   /virtual_machines/:virtual_machine_id/backups(.:format)
 				 * @format  {:controller=>"backups", :action=>"index"}
 				 */
 				if( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
@@ -220,7 +222,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				 * ROUTE :
 				 * @name
 				 * @method POST
-				 * @alias  /virtual_machines/:virtual_machine_id/backups(.:format)
+				 * @alias   /virtual_machines/:virtual_machine_id/backups(.:format)
 				 * @format  {:controller=>"backups", :action=>"create"}
 				 */
 				if( is_null( $this->_disk_id ) && is_null( $this->_obj->_disk_id ) ) {
@@ -255,14 +257,14 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				 * ROUTE :
 				 * @name backup
 				 * @method GET
-				 * @alias  /backups/:id(.:format)
+				 * @alias   /backups/:id(.:format)
 				 * @format  {:controller=>"backups", :action=>"show"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name
 				 * @method DELETE
-				 * @alias  /backups/:id(.:format)
+				 * @alias    /backups/:id(.:format)
 				 * @format   {:controller=>"backups", :action=>"destroy"}
 				 */
 				if( is_null( $this->_id ) && is_null( $this->_obj->_id ) ) {
@@ -285,7 +287,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				 * ROUTE :
 				 * @name convert_backup
 				 * @method GET
-				 * @alias  /backups/:id/convert(.:format)
+				 * @alias    /backups/:id/convert(.:format)
 				 * @format   {:controller=>"backups", :action=>"convert"}
 				 */
 				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/convert';
@@ -296,8 +298,8 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				 * ROUTE :
 				 * @name restore_backup
 				 * @method POST
-				 * @alias  /backups/:id/restore(.:format)
-				 * @format	{:controller=>"backups", :action=>"restore"}
+				 * @alias     /backups/:id/restore(.:format)
+				 * @format    {:controller=>"backups", :action=>"restore"}
 				 */
 				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/restore';
 				break;
@@ -326,11 +328,11 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	 * @access public
 	 */
 	function getList( $virtual_machine_id = null, $url_args = null ) {
-		if( is_null( $virtual_machine_id ) && !is_null( $this->_virtual_machine_id ) ) {
+		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
 			$virtual_machine_id = $this->_virtual_machine_id;
 		}
 
-		if( !is_null( $virtual_machine_id ) ) {
+		if( ! is_null( $virtual_machine_id ) ) {
 			$this->_virtual_machine_id = $virtual_machine_id;
 			return parent::getList();
 		}
@@ -359,14 +361,14 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-		if( !empty( $response[ 'errors' ] ) ) {
+		if( ! empty( $response[ 'errors' ] ) ) {
 			$this->errors = $response[ 'errors' ];
 			return false;
 		}
 
 		$result = $this->castStringToClass( $response );
 
-		return ( is_array( $result ) || ! $result )  ? $result : array( $result );
+		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
 	}
 
 	/**
@@ -395,9 +397,9 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 			)
 		);
 		// workaround because we get template data in response
-		$this->_tagRoot = 'image_template';
+		$this->_tagRoot  = 'image_template';
 		$this->className = 'OnApp_Template';
-		$template = new OnApp_Template();
+		$template        = new OnApp_Template();
 		$template->initFields( $this->getAPIVersion() );
 		$this->fields = $template->getClassFields();
 		$this->sendPost( ONAPP_GETRESOURCE_BACKUP_CONVERT, $data );
@@ -410,8 +412,8 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	 */
 	function restore() {
 		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_BACKUP_RESTORE ) );
-		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
-		$result = $this->_castResponseToClass( $response );
+		$response   = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
+		$result     = $this->_castResponseToClass( $response );
 		$this->_obj = $result;
 	}
 }

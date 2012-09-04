@@ -4,15 +4,15 @@
 /**
  * Network Joins
  *
- * @todo Add description
+ * @todo        Add description
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	Hypervisor
- * @author		Vitaliy Kondratyuk
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @subpackage  Hypervisor
+ * @author      Vitaliy Kondratyuk
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -20,7 +20,7 @@
  *
  * This class reprsents the Networks for Hypervisor.
  *
- * The ONAPP_Hypervisor_NetworkJoin class uses the following basic methods:
+ * The OnApp_Hypervisor_NetworkJoin class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -48,8 +48,9 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -90,8 +91,8 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 				break;
 
 			case '2.1':
-				$this->fields = $this->initFields( '2.0' );
-				$this->fields[ 'target_join_id' ] = array(
+				$this->fields                       = $this->initFields( '2.0' );
+				$this->fields[ 'target_join_id' ]   = array(
 					ONAPP_FIELD_MAP => '_target_join_id',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_REQUIRED => true
@@ -107,9 +108,10 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
-           case 3.0:
+
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -117,7 +119,7 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -131,21 +133,21 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 				 * ROUTE :
 				 * @name hypervisor_network_joins
 				 * @method GET
-				 * @alias  /settings/hypervisors/:hypervisor_id/network_joins(.:format)
+				 * @alias   /settings/hypervisors/:hypervisor_id/network_joins(.:format)
 				 * @format  {:controller=>"network_joins", :action=>"index"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name
 				 * @method POST
-				 * @alias  /settings/hypervisors/:hypervisor_id/network_joins(.:format)
+				 * @alias   /settings/hypervisors/:hypervisor_id/network_joins(.:format)
 				 * @format  {:controller=>"network_joins", :action=>"create"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name  hypervisor_network_join
 				 * @method DELETE
-				 * @alias /settings/hypervisors/:hypervisor_id/network_joins/:id(.:format)
+				 * @alias   /settings/hypervisors/:hypervisor_id/network_joins/:id(.:format)
 				 * @format  {:controller=>"network_joins", :action=>"destroy"}
 				 */
 				if( is_null( $this->_hypervisor_id ) && is_null( $this->_obj->_hypervisor_id ) ) {
@@ -182,11 +184,11 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	 * @access public
 	 */
 	function getList( $hypervisor_id = null ) {
-		if( is_null( $hypervisor_id ) && !is_null( $this->_hypervisor_id ) ) {
+		if( is_null( $hypervisor_id ) && ! is_null( $this->_hypervisor_id ) ) {
 			$hypervisor_id = $this->_hypervisor_id;
 		}
 
-		if( !is_null( $hypervisor_id ) ) {
+		if( ! is_null( $hypervisor_id ) ) {
 			$this->_hypervisor_id = $hypervisor_id;
 			return parent::getList();
 		}
@@ -204,34 +206,34 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class ONAPP.
+	 * this parameter in the class inheriting OnApp class.
 	 *
-	 * @param integer $id Network Join ID
+	 * @param integer $id            Network Join ID
 	 * @param integer $hypervisor_id Hypervisor ID
 	 *
 	 * @return mixed serialized Object instance from API
 	 * @access public
 	 */
 	function load( $id = null, $hypervisor_id = null ) {
-		if( is_null( $hypervisor_id ) && !is_null( $this->_hypervisor_id ) ) {
+		if( is_null( $hypervisor_id ) && ! is_null( $this->_hypervisor_id ) ) {
 			$hypervisor_id = $this->_hypervisor_id;
 		}
 
-		if( is_null( $id ) && !is_null( $this->_id ) ) {
+		if( is_null( $id ) && ! is_null( $this->_id ) ) {
 			$id = $this->_id;
 		}
 
 		if( is_null( $id ) &&
 			isset( $this->_obj ) &&
-			!is_null( $this->_obj->_id )
+			! is_null( $this->_obj->_id )
 		) {
 			$id = $this->_obj->_id;
 		}
 
 		$this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
 
-		if( !is_null( $id ) && !is_null( $hypervisor_id ) ) {
-			$this->_id = $id;
+		if( ! is_null( $id ) && ! is_null( $hypervisor_id ) ) {
+			$this->_id            = $id;
 			$this->_hypervisor_id = $hypervisor_id;
 
 			$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );

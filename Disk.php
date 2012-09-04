@@ -4,12 +4,12 @@
 /**
  * Managing Disks
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Vitaliy Kondratyuk
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Vitaliy Kondratyuk
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -30,9 +30,9 @@ define( 'ONAPP_GETRESOURCE_TAKE_BACKUP', 'backups' );
 /**
  * Managing Disks
  *
- * The ONAPP_Disk class uses the following basic methods:
+ * The OnApp_Disk class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, {@link getList}.
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_Disk extends OnApp {
@@ -58,8 +58,9 @@ class OnApp_Disk extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -145,9 +146,10 @@ class OnApp_Disk extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
-           case 3.0:
+
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -155,7 +157,7 @@ class OnApp_Disk extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -173,8 +175,8 @@ class OnApp_Disk extends OnApp {
 				 * @format {:controller=>"disks", :action=>"index"}
 				 */
 				$resource = $this->_virtual_machine_id ?
-						'virtual_machines/' . $this->_virtual_machine_id . '/disks' :
-						$this->getResource();
+					'virtual_machines/' . $this->_virtual_machine_id . '/disks' :
+					$this->getResource();
 				break;
 
 			case ONAPP_GETRESOURCE_ADD:
@@ -182,8 +184,8 @@ class OnApp_Disk extends OnApp {
 				 * ROUTE :
 				 * @name
 				 * @method POST
-				 * @alias  /virtual_machines/:virtual_machine_id/disks(.:format)
-				 * @format	{:controller=>"disks", :action=>"create"}
+				 * @alias     /virtual_machines/:virtual_machine_id/disks(.:format)
+				 * @format    {:controller=>"disks", :action=>"create"}
 				 */
 				if( is_null( $this->_virtual_machine_id ) ) {
 					$this->logger->error(
@@ -202,8 +204,8 @@ class OnApp_Disk extends OnApp {
 				 * ROUTE :
 				 * @name autobackup_enable_disk
 				 * @method POST
-				 * @alias  /settings/disks/:id/autobackup_enable(.:format)
-				 * @format	{:controller=>"disks", :action=>"autobackup_enable"}
+				 * @alias     /settings/disks/:id/autobackup_enable(.:format)
+				 * @format    {:controller=>"disks", :action=>"autobackup_enable"}
 				 */
 				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/autobackup_enable';
 				break;
@@ -235,22 +237,22 @@ class OnApp_Disk extends OnApp {
 				 * ROUTE :
 				 * @name disks
 				 * @method GET
-				 * @alias  /settings/disks(.:format)
-				 * @format	{:controller=>"disks", :action=>"index"}
+				 * @alias     /settings/disks(.:format)
+				 * @format    {:controller=>"disks", :action=>"index"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name disk
 				 * @method GET
-				 * @alias  /settings/disks/:id(.:format)
-				 * @format	{:controller=>"disks", :action=>"show"}
+				 * @alias     /settings/disks/:id(.:format)
+				 * @format    {:controller=>"disks", :action=>"show"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name
 				 * @method POST
-				 * @alias  /settings/disks(.:format)
-				 * @format	{:controller=>"disks", :action=>"create"}
+				 * @alias     /settings/disks(.:format)
+				 * @format    {:controller=>"disks", :action=>"create"}
 				 */
 				/**
 				 * ROUTE :
@@ -349,9 +351,9 @@ class OnApp_Disk extends OnApp {
 
 		if( $this->_id ) {
 			$this->fields[ 'add_to_linux_fstab' ][ ONAPP_FIELD_REQUIRED ] = false;
-			$this->fields[ 'data_store_id' ][ ONAPP_FIELD_REQUIRED ] = false;
-			$this->fields[ 'is_swap' ][ ONAPP_FIELD_REQUIRED ] = false;
-			$this->fields[ 'mount_point' ][ ONAPP_FIELD_REQUIRED ] = false;
+			$this->fields[ 'data_store_id' ][ ONAPP_FIELD_REQUIRED ]      = false;
+			$this->fields[ 'is_swap' ][ ONAPP_FIELD_REQUIRED ]            = false;
+			$this->fields[ 'mount_point' ][ ONAPP_FIELD_REQUIRED ]        = false;
 		}
 
 		return parent::save();
@@ -361,16 +363,17 @@ class OnApp_Disk extends OnApp {
 	 * Takes Disk Backup
 	 *
 	 * @param integer $disk_id Disk Id
+	 *
 	 * @return void
 	 */
 	function takeBackup( $disk_id ) {
 		if( $disk_id ) {
 			$this->_id = $disk_id;
 		}
-        // workaround because we get backup data in response
-		$this->_tagRoot = 'backup';
+		// workaround because we get backup data in response
+		$this->_tagRoot  = 'backup';
 		$this->className = 'OnApp_VirtualMachine_Backup';
-		$backup = new OnApp_VirtualMachine_Backup();
+		$backup          = new OnApp_VirtualMachine_Backup();
 		$backup->initFields( $this->getAPIVersion() );
 		$this->fields = $backup->getClassFields();
 		$this->sendPost( ONAPP_GETRESOURCE_TAKE_BACKUP );

@@ -8,12 +8,12 @@
  * Once the invoice is paid, you have to put it to the system to keep track of
  * them.
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Andrew Yatskovets
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -21,10 +21,10 @@
  *
  * This class represents the user payments entered to the system.
  *
- * The ONAPP_Payment class uses the following basic methods:
+ * The OnApp_Payment class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
- * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 ) 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_Payment extends OnApp {
 	/**
@@ -49,8 +49,9 @@ class OnApp_Payment extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -76,7 +77,7 @@ class OnApp_Payment extends OnApp {
 					),
 					'invoice_number' => array(
 						ONAPP_FIELD_MAP => '_invoice_number',
-                        ONAPP_FIELD_TYPE => 'string',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_REQUIRED => true,
 					),
 					'updated_at' => array(
@@ -97,9 +98,10 @@ class OnApp_Payment extends OnApp {
 			case 2.3:
 				$this->initFields( 2.1 );
 				break;
-           case 3.0:
+
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -111,23 +113,23 @@ class OnApp_Payment extends OnApp {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
 				 * ROUTE :
-				 * @name /users/:user_id/payments(.:format)
+				 * @name    /users/:user_id/payments(.:format)
 				 * @method GET
-				 * @alias  /virtual_machines(.:format)
+				 * @alias   /virtual_machines(.:format)
 				 * @format  {:controller=>"payments", :action=>"index"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name user_payment
 				 * @method GET
-				 * @alias  /users/:user_id/payments/:id(.:format)
+				 * @alias    /users/:user_id/payments/:id(.:format)
 				 * @format   {:controller=>"payments", :action=>"show"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name
 				 * @method POST
-				 * @alias  /users/:user_id/payments(.:format)
+				 * @alias   /users/:user_id/payments(.:format)
 				 * @format  {:controller=>"payments", :action=>"create"}
 				 */
 				/**
@@ -141,7 +143,7 @@ class OnApp_Payment extends OnApp {
 				 * ROUTE :
 				 * @name
 				 * @method DELETE
-				 * @alias  /users/:user_id/payments/:id(.:format)
+				 * @alias   /users/:user_id/payments/:id(.:format)
 				 * @format  {:controller=>"payments", :action=>"destroy"}
 				 */
 				$resource = 'users/' . $this->_user_id . '/' . $this->_resource;
@@ -156,7 +158,7 @@ class OnApp_Payment extends OnApp {
 		return $resource;
 	}
 
-    /**
+	/**
 	 * Sends an API request to get the Objects. After requesting,
 	 * unserializes the received response into the array of Objects
 	 *
@@ -166,11 +168,11 @@ class OnApp_Payment extends OnApp {
 	 * @access public
 	 */
 	function getList( $user_id = null ) {
-		if( is_null( $user_id ) && !is_null( $this->_user_id ) ) {
+		if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
 			$user_id = $this->_user_id;
 		}
 
-		if( !is_null( $user_id ) ) {
+		if( ! is_null( $user_id ) ) {
 			$this->_user_id = $user_id;
 			return parent::getList();
 		}
@@ -188,34 +190,34 @@ class OnApp_Payment extends OnApp {
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class ONAPP.
+	 * this parameter in the class inheriting OnApp class.
 	 *
-	 * @param integer $id Payment ID
+	 * @param integer $id      Payment ID
 	 * @param integer $user_id User ID
 	 *
 	 * @return mixed serialized Object instance from API
 	 * @access public
 	 */
 	function load( $id = null, $user_id = null ) {
-		if( is_null( $user_id ) && !is_null( $this->_user_id ) ) {
+		if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
 			$user_id = $this->_user_id;
 		}
 
-		if( is_null( $id ) && !is_null( $this->_id ) ) {
+		if( is_null( $id ) && ! is_null( $this->_id ) ) {
 			$id = $this->_id;
 		}
 
 		if( is_null( $id ) &&
 			isset( $this->_obj ) &&
-			!is_null( $this->_obj->_id )
+			! is_null( $this->_obj->_id )
 		) {
 			$id = $this->_obj->_id;
 		}
 
 		$this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
 
-		if( !is_null( $id ) && !is_null( $user_id ) ) {
-			$this->_id = $id;
+		if( ! is_null( $id ) && ! is_null( $user_id ) ) {
+			$this->_id      = $id;
 			$this->_user_id = $user_id;
 
 			$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );

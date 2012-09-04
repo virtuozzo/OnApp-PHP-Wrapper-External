@@ -18,12 +18,12 @@
  * and out of your server. All servers are given static IP addresses. You don't need to worry
  * about that address changing. You can tie your domain names to these IP addresses.
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Andrew Yatskovets
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -43,10 +43,10 @@ define( 'ONAPP_GETRESOURCE_NETWORKS_LIST_BY_HYPERVISOR_GROUP_ID', 'networks_list
  *
  * This class represents the Networks added to your system.
  *
- * The ONAPP_Network class uses the following basic methods:
+ * The OnApp_Network class uses the following basic methods:
  * {@link load} and {@link getList}.
  *
- * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 ) 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_Network extends OnApp {
 	/**
@@ -71,8 +71,9 @@ class OnApp_Network extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -117,7 +118,7 @@ class OnApp_Network extends OnApp {
 				break;
 
 			case '2.1':
-				$this->fields = $this->initFields( '2.0' );
+				$this->fields                       = $this->initFields( '2.0' );
 				$this->fields[ 'network_group_id' ] = array(
 					ONAPP_FIELD_MAP => '_network_group_id',
 					ONAPP_FIELD_TYPE => 'integer',
@@ -129,9 +130,10 @@ class OnApp_Network extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
-           case 3.0:
+
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -174,7 +176,7 @@ class OnApp_Network extends OnApp {
 				 * ROUTE :
 				 * @name network
 				 * @method GET
-				 * @alias  /settings/networks/:id(.:format)
+				 * @alias   /settings/networks/:id(.:format)
 				 * @format  {:controller=>"networks", :action=>"show"}
 				 */
 				$resource = parent::getResource( $action );
@@ -206,15 +208,15 @@ class OnApp_Network extends OnApp {
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-		if( !empty( $response[ 'errors' ] ) ) {
+		if( ! empty( $response[ 'errors' ] ) ) {
 			$this->errors = $response[ 'errors' ];
 			return false;
 		}
 
-		$result = $this->castStringToClass( $response );
+		$result     = $this->castStringToClass( $response );
 		$this->_obj = $result;
 
-		return ( is_array( $result ) || ! $result ) ? $result : array($result);
+		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
 	}
 
 	function activate( $action_name ) {

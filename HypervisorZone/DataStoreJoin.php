@@ -4,13 +4,13 @@
 /**
  * Manages Data Store Join
  *
- * @category	API WRAPPER
- * @package		OnApp
+ * @category    API wrapper
+ * @package     OnApp
  * @subpackage  HypervisorZone
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -18,7 +18,7 @@
  *
  * This class reprsents the Data Store Joins for Hypervisor Zones.
  *
- * The ONAPP_Hypervisor_DataStoreJoin class uses the following basic methods:
+ * The OnApp_Hypervisor_DataStoreJoin class uses the following basic methods:
  * {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -46,8 +46,9 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -78,8 +79,8 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
 				break;
 
 			case '2.1':
-				$this->fields = $this->initFields( '2.0' );
-				$this->fields[ 'target_join_id' ] = array(
+				$this->fields                       = $this->initFields( '2.0' );
+				$this->fields[ 'target_join_id' ]   = array(
 					ONAPP_FIELD_MAP => '_target_join_id',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_REQUIRED => true
@@ -95,9 +96,10 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
-           case 3.0:
+
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -105,7 +107,7 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -119,7 +121,7 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
 				 * ROUTE :
 				 * @name hypervisor_data_store_joins
 				 * @method GET
-				 * @alias  /settings/hyrvisor_zones/:hypervisor_id/data_store_joins(.:format)
+				 * @alias   /settings/hyrvisor_zones/:hypervisor_id/data_store_joins(.:format)
 				 * @format  {:controller=>"data_store_joins", :action=>"index"}
 				 */
 				$resource = 'settings/hypervisor_zones/' . $this->_target_join_id . '/' . $this->_resource;
@@ -138,14 +140,15 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
 	 * Gets list of datastore joins to particular hypervisor zone
 	 *
 	 * @param integet $target_join_id hypervisor zone id
+	 *
 	 * @return array of datastore join objects
 	 */
 	function getList( $target_join_id = null ) {
-		if( is_null( $target_join_id ) && !is_null( $this->_target_join_id ) ) {
+		if( is_null( $target_join_id ) && ! is_null( $this->_target_join_id ) ) {
 			$target_join_id = $this->_target_join_id;
 		}
 
-		if( !is_null( $target_join_id ) ) {
+		if( ! is_null( $target_join_id ) ) {
 			$this->_target_join_id = $target_join_id;
 			return parent::getList();
 		}

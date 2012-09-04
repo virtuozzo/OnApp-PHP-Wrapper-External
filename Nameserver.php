@@ -6,12 +6,12 @@
  *
  * Resolvers in OnApp implement a name-service protocol. You can set the IP addresses corresponding to the hostnames added to the system.
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Andrew Yatskovets
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -19,10 +19,10 @@
  *
  * The Resolvers class represents the name-servers of the OnApp installation.
  *
- * The ONAPP_Nameserver class uses the following basic methods:
+ * The OnApp_Nameserver class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
- * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 ) 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_Nameserver extends OnApp {
 	/**
@@ -47,8 +47,9 @@ class OnApp_Nameserver extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -97,9 +98,10 @@ class OnApp_Nameserver extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
-           case 3.0:
+
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -112,21 +114,21 @@ class OnApp_Nameserver extends OnApp {
 		 * ROUTE :
 		 * @name nameservers
 		 * @method GET
-		 * @alias  /settings/nameservers(.:format)
+		 * @alias   /settings/nameservers(.:format)
 		 * @format  {:controller=>"nameservers", :action=>"index"}
 		 */
 		/**
 		 * ROUTE :
 		 * @name nameserver
 		 * @method GET
-		 * @alias  /settings/nameservers/:id(.:format)
+		 * @alias   /settings/nameservers/:id(.:format)
 		 * @format  {:controller=>"nameservers", :action=>"show"}
 		 */
 		/**
 		 * ROUTE :
 		 * @name
 		 * @method POST
-		 * @alias  /settings/nameservers(.:format)
+		 * @alias    /settings/nameservers(.:format)
 		 * @format   {:controller=>"nameservers", :action=>"create"}
 		 */
 		/**
@@ -140,7 +142,7 @@ class OnApp_Nameserver extends OnApp {
 		 * ROUTE :
 		 * @name
 		 * @method DELETE
-		 * @alias  /settings/nameservers/:id(.:format)
+		 * @alias    /settings/nameservers/:id(.:format)
 		 * @format   {:controller=>"nameservers", :action=>"destroy"}
 		 */
 	}

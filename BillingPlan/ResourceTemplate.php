@@ -4,27 +4,28 @@
 /**
  * Billing Plan Base Resources
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	BillingPlan
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @subpackage  BillingPlan
+ * @author      Andrew Yatskovets
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
- * The ONAPP_BillingPlan_ResourceTemplate class uses the following basic methods:
+ * The OnApp_BillingPlan_ResourceTemplate class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_BillingPlan_ResourceTemplate extends OnApp_BillingPlan_BaseResource {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {

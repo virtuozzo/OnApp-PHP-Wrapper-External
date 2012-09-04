@@ -4,13 +4,13 @@
 /**
  * Manages Network Zone Joins
  *
- * @category	API WRAPPER
- * @package		OnApp
+ * @category    API wrapper
+ * @package     OnApp
  * @subpackage  HypervisorZone
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -18,7 +18,7 @@
  *
  * This class reprsents the Networks for Hypervisor Zone.
  *
- * The ONAPP_Hypervisor_NetworkJoin class uses the following basic methods:
+ * The OnApp_Hypervisor_NetworkJoin class uses the following basic methods:
  * {@link save}, {@link delete}, and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -77,13 +77,13 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 					'hypervisor_id' => array(
 						ONAPP_FIELD_MAP => '_hypervisor_id',
 						ONAPP_FIELD_TYPE => 'integer',
-					),                    
+					),
 				);
 				break;
 
 			case '2.1':
-				$this->fields = $this->initFields( '2.0' );
-				$this->fields[ 'target_join_id' ] = array(
+				$this->fields                       = $this->initFields( '2.0' );
+				$this->fields[ 'target_join_id' ]   = array(
 					ONAPP_FIELD_MAP => '_target_join_id',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_REQUIRED => true
@@ -99,9 +99,10 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
-           case 3.0:
+
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -109,7 +110,7 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -123,21 +124,21 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 				 * ROUTE :
 				 * @name hypervisor_group_network_joins
 				 * @method GET
-				 * @alias  /settings/hypervisor_zones/:hypervisor_group_id/network_joins(.:format)
+				 * @alias   /settings/hypervisor_zones/:hypervisor_group_id/network_joins(.:format)
 				 * @format  {:controller=>"network_joins", :action=>"index"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name
 				 * @method POST
-				 * @alias  /settings/hypervisor_zones/:hypervisor_group_id/network_joins(.:format)
+				 * @alias    /settings/hypervisor_zones/:hypervisor_group_id/network_joins(.:format)
 				 * @format   {:controller=>"network_joins", :action=>"create"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name  hypervisor_group_network_join
 				 * @method DELETE
-				 * @alias /settings/hypervisor_zones/:hypervisor_group_id/network_joins/:id(.:format)
+				 * @alias   /settings/hypervisor_zones/:hypervisor_group_id/network_joins/:id(.:format)
 				 * @format  {:controller=>"network_joins", :action=>"destroy"}
 				 */
 				$resource = 'settings/hypervisor_zones/' . $this->_target_join_id . '/' . $this->_resource;
@@ -156,14 +157,15 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 	 * Gets list of network joins to particular hypervisor zone
 	 *
 	 * @param integet hypervisor zone id
+	 *
 	 * @return array of newtwork join objects
 	 */
 	function getList( $target_join_id = null ) {
-		if( is_null( $target_join_id ) && !is_null( $this->_target_join_id ) ) {
+		if( is_null( $target_join_id ) && ! is_null( $this->_target_join_id ) ) {
 			$target_join_id = $this->_target_join_id;
 		}
 
-		if( !is_null( $target_join_id ) ) {
+		if( ! is_null( $target_join_id ) ) {
 			$this->_target_join_id = $target_join_id;
 			return parent::getList();
 		}

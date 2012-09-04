@@ -5,13 +5,13 @@
  * Represents Edge Groups Assigned to the current logined user's Billling Plan
  *
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Yakubskiy Yuriy
- * @subpackage	CDNResource
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Yakubskiy Yuriy
+ * @subpackage  CDNResource
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -22,11 +22,9 @@
  *
  * The OnApp_CDNResource_AvailableEdgeGroup uses the following basic methods:
  * {@link getList}.
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
-
-
 class OnApp_CDNResource_AvailableEdgeGroup extends OnApp {
 	/**
 	 * root tag used in the API request
@@ -50,25 +48,26 @@ class OnApp_CDNResource_AvailableEdgeGroup extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
 		switch( $version ) {
 			case '2.3':
 				$this->fields = array(
-                    'label' => array(
+					'label' => array(
 						ONAPP_FIELD_MAP => '_label',
 						ONAPP_FIELD_REQUIRED => true,
 						ONAPP_FIELD_DEFAULT_VALUE => ''
 					),
-                    'created_at' => array(
+					'created_at' => array(
 						ONAPP_FIELD_MAP => '_created_at',
 						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-                    'updated_at' => array(
+					'updated_at' => array(
 						ONAPP_FIELD_MAP => '_updated_at',
 						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true
@@ -81,19 +80,20 @@ class OnApp_CDNResource_AvailableEdgeGroup extends OnApp {
 					'edge_group_locations' => array(
 						ONAPP_FIELD_MAP => '_edge_group_locations',
 						ONAPP_FIELD_TYPE => 'array',
-                        ONAPP_FIELD_CLASS => 'CDNResource_AvailableEdgeGroup_Location'
+						ONAPP_FIELD_CLASS => 'CDNResource_AvailableEdgeGroup_Location'
 					),
 				);
-                break;
-           case 3.0:
+				break;
+
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
 		return $this->fields;
 	}
-   
+
 	/**
 	 * Activates action performed with object
 	 *

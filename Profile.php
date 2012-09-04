@@ -4,21 +4,21 @@
 /**
  * Provisioning Profile
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Andrew Yatskovets
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
  * Manages User Profile
  *
- * The ONAPP_Payment class uses the following basic methods:
+ * The OnApp_Payment class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
- * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 ) 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_Profile extends OnApp {
 	/**
@@ -43,8 +43,9 @@ class OnApp_Profile extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -204,7 +205,7 @@ class OnApp_Profile extends OnApp {
 						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-                    'update_billing_stat' => array(
+					'update_billing_stat' => array(
 						ONAPP_FIELD_MAP => '_update_billing_stat',
 						ONAPP_FIELD_TYPE => 'bolean',
 						ONAPP_FIELD_READ_ONLY => true,
@@ -216,9 +217,10 @@ class OnApp_Profile extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
-           case 3.0:
+
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -235,7 +237,7 @@ class OnApp_Profile extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -247,7 +249,7 @@ class OnApp_Profile extends OnApp {
 		 * ROUTE :
 		 * @name profile
 		 * @method GET
-		 * @alias /profile(.:format)
+		 * @alias    /profile(.:format)
 		 * @format   {:controller=>"users", :action=>"profile"}
 		 */
 		$resource = $this->_resource;
@@ -261,7 +263,7 @@ class OnApp_Profile extends OnApp {
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class ONAPP.
+	 * this parameter in the class inheriting OnApp class.
 	 *
 	 * @param integer $id Object id
 	 *

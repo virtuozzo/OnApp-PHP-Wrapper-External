@@ -6,20 +6,20 @@
  *
  * Using this class You can get access to virtual machine console
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Andrew Yatskovets
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
  * Virtual Machine Console
  *
- * The ONAPP_Console class uses the following basic methods:
+ * The OnApp_Console class uses the following basic methods:
  * {@link load}.
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_Console extends OnApp {
@@ -45,8 +45,9 @@ class OnApp_Console extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -96,9 +97,10 @@ class OnApp_Console extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
-           case 3.0:
+
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -106,7 +108,7 @@ class OnApp_Console extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias for Load of objects of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias for Load of objects of the API Class that inherits the OnApp class
 	 *
 	 * Can be redefined if the API for load objects does not use the default
 	 * alias (the alias consisting of few fields) the same way as {@link
@@ -117,7 +119,7 @@ class OnApp_Console extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 *
-	 * @see getResource
+	 * @see    getResource
 	 */
 	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
@@ -146,7 +148,7 @@ class OnApp_Console extends OnApp {
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class ONAPP.
+	 * this parameter in the class inheriting OnApp class.
 	 *
 	 * @param integer $virtual_machine_id Object id
 	 *
@@ -154,20 +156,20 @@ class OnApp_Console extends OnApp {
 	 * @access public
 	 */
 	function load( $virtual_machine_id = null ) {
-		if( is_null( $virtual_machine_id ) && !is_null( $this->_virtual_machine_id ) ) {
+		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
 			$virtual_machine_id = $this->_virtual_machine_id;
 		}
 
 		if( is_null( $virtual_machine_id ) &&
 			isset( $this->_obj ) &&
-			!is_null( $this->_obj->_virtual_machine_id )
+			! is_null( $this->_obj->_virtual_machine_id )
 		) {
 			$virtual_machine_id = $this->_obj->_virtual_machine_id;
 		}
 
 		$this->logger->add( "load: Load class ( id => '$virtual_machine_id')." );
 
-		if( !is_null( $virtual_machine_id ) ) {
+		if( ! is_null( $virtual_machine_id ) ) {
 			$this->_virtual_machine_id = $virtual_machine_id;
 
 			$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );

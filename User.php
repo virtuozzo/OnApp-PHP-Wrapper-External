@@ -11,12 +11,12 @@
  * With OnApp you can assign resource limits to users. This will prevent users
  * from exceeding the resources you specify.
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Andrew Yatskovets
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -37,14 +37,14 @@ define( 'ONAPP_GETRESOURCE_NETWORKS_LIST_BY_GROUP_ID', 'get_list_by_group_id' );
 /**
  *
  */
-define( 'ONAPP_GETRESOURCE_DELETE_USER', 'delete_user');
+define( 'ONAPP_GETRESOURCE_DELETE_USER', 'delete_user' );
 
 /**
  * Users
  *
  * The User class represents the Users of the OnApp installation.
  *
- * The ONAPP_User class uses the following basic methods:
+ * The OnApp_User class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -72,8 +72,9 @@ class OnApp_User extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -210,25 +211,25 @@ class OnApp_User extends OnApp {
 				unset( $this->fields[ 'activation_code' ] );
 
 				$this->fields[ 'group_id' ][ ONAPP_FIELD_REQUIRED ] = false;
-				$this->fields[ 'billing_plan_id' ] = array(
+				$this->fields[ 'billing_plan_id' ]                  = array(
 					ONAPP_FIELD_MAP => '_billing_plan_id',
 					ONAPP_FIELD_TYPE => 'integer',
 				);
-				$this->fields[ 'image_template_group_id' ] = array(
+				$this->fields[ 'image_template_group_id' ]          = array(
 					ONAPP_FIELD_MAP => '_image_template_group_id',
 					ONAPP_FIELD_TYPE => 'integer',
 				);
-				$this->fields[ 'suspend_at' ] = array(
+				$this->fields[ 'suspend_at' ]                       = array(
 					ONAPP_FIELD_MAP => '_suspend_at',
 					ONAPP_FIELD_TYPE => 'string',
 					ONAPP_FIELD_READ_ONLY => true
 				);
-				$this->fields[ 'user_group_id' ] = array(
+				$this->fields[ 'user_group_id' ]                    = array(
 					ONAPP_FIELD_MAP => '_user_group_id',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_DEFAULT_VALUE => '',
 				);
-				$this->fields[ 'locale' ] = array(
+				$this->fields[ 'locale' ]                           = array(
 					ONAPP_FIELD_MAP => '_locale',
 					ONAPP_FIELD_TYPE => 'string',
 					ONAPP_FIELD_DEFAULT_VALUE => 'en',
@@ -236,7 +237,7 @@ class OnApp_User extends OnApp {
 				break;
 
 			case 2.2:
-				$this->fields = $this->initFields( 2.1 );
+				$this->fields                          = $this->initFields( 2.1 );
 				$this->fields[ 'update_billing_stat' ] = array(
 					ONAPP_FIELD_MAP => 'update_billing_stat',
 					ONAPP_FIELD_TYPE => 'string',
@@ -245,17 +246,17 @@ class OnApp_User extends OnApp {
 				break;
 
 			case 2.3:
-				$this->fields = $this->initFields( 2.2 );
-				$this->fields[ 'aflexi_username' ] = array(
+				$this->fields                         = $this->initFields( 2.2 );
+				$this->fields[ 'aflexi_username' ]    = array(
 					ONAPP_FIELD_MAP => 'aflexi_username',
 					ONAPP_FIELD_TYPE => 'string',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'aflexi_key' ] = array(
+				$this->fields[ 'aflexi_key' ]         = array(
 					ONAPP_FIELD_MAP => 'aflexi_key',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'cdn_status' ] = array(
+				$this->fields[ 'cdn_status' ]         = array(
 					ONAPP_FIELD_MAP => 'cdn_status',
 					ONAPP_FIELD_TYPE => 'string',
 					ONAPP_FIELD_READ_ONLY => true,
@@ -265,29 +266,29 @@ class OnApp_User extends OnApp {
 					ONAPP_FIELD_TYPE => 'string',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'aflexi_password' ] = array(
+				$this->fields[ 'aflexi_password' ]    = array(
 					ONAPP_FIELD_MAP => 'aflexi_password',
 					ONAPP_FIELD_TYPE => 'string',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'aflexi_user_id' ] = array(
+				$this->fields[ 'aflexi_user_id' ]     = array(
 					ONAPP_FIELD_MAP => 'aflexi_user_id',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-                $this->fields['additional_fields'] = array(
-				    ONAPP_FIELD_MAP => '_additional_fields',
-		        );
+				$this->fields[ 'additional_fields' ]  = array(
+					ONAPP_FIELD_MAP => '_additional_fields',
+				);
 				break;
 
 			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
+				$this->fields                  = $this->initFields( 2.3 );
 				$this->fields[ 'firewall_id' ] = array(
 					ONAPP_FIELD_MAP => '_firewall_id',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'wowza_key' ] = array(
+				$this->fields[ 'wowza_key' ]   = array(
 					ONAPP_FIELD_MAP => '_wowza_key',
 					ONAPP_FIELD_TYPE => 'string',
 					ONAPP_FIELD_READ_ONLY => true,
@@ -300,7 +301,7 @@ class OnApp_User extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -309,12 +310,12 @@ class OnApp_User extends OnApp {
 	 */
 	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
-            case ONAPP_GETRESOURCE_NETWORKS_LIST_BY_GROUP_ID:
-                /**
+			case ONAPP_GETRESOURCE_NETWORKS_LIST_BY_GROUP_ID:
+				/**
 				 * ROUTE :
 				 * @name user_group_users
 				 * @method GET
-				 * @alias  /user_groups/:user_group_id/users(.:format)
+				 * @alias   /user_groups/:user_group_id/users(.:format)
 				 * @format  {:controller=>"users", :action=>"index"}
 				 */
 				$resource = 'user_groups/' . $this->_user_group_id . '/' . $this->_resource;
@@ -382,8 +383,8 @@ class OnApp_User extends OnApp {
 	 * Save Object in to your account.
 	 */
 	function save() {
-		$this->_role_ids = $this->fillRolesIDs();
-		$this->fields[ 'password' ] = array(
+		$this->_role_ids                         = $this->fillRolesIDs();
+		$this->fields[ 'password' ]              = array(
 			ONAPP_FIELD_MAP => '_password',
 		);
 		$this->fields[ 'password_confirmation' ] = array(
@@ -406,7 +407,7 @@ class OnApp_User extends OnApp {
 		}
 		unset( $this->fields[ 'password' ], $this->fields[ 'password_confirmation' ] );
 
-		if( isset( $obj ) && !isset( $obj->errors ) ) {
+		if( isset( $obj ) && ! isset( $obj->errors ) ) {
 			$this->load( $obj->_id );
 		}
 	}
@@ -418,7 +419,7 @@ class OnApp_User extends OnApp {
 		return $result;
 	}
 
-    /**
+	/**
 	 * Gets list of users by group id
 	 *
 	 * @param integer|null $group_id user group id
@@ -441,15 +442,15 @@ class OnApp_User extends OnApp {
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-		if( !empty( $response[ 'errors' ] ) ) {
+		if( ! empty( $response[ 'errors' ] ) ) {
 			$this->errors = $response[ 'errors' ];
 			return false;
 		}
 
-		$result = $this->castStringToClass( $response );
+		$result     = $this->castStringToClass( $response );
 		$this->_obj = $result;
 
-		return ( is_array( $result ) || ! $result ) ? $result : array($result);
+		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
 	}
 
 	private function fillRolesIDs() {
@@ -459,10 +460,10 @@ class OnApp_User extends OnApp {
 
 		if( is_null( $this->_role_ids ) ) {
 			$ids = array();
-			if( !is_null( $this->_roles ) ) {
+			if( ! is_null( $this->_roles ) ) {
 				$data = $this->_roles;
 			}
-			elseif( isset( $this->_obj->_roles ) && !is_null( $this->_obj->_roles ) ) {
+			elseif( isset( $this->_obj->_roles ) && ! is_null( $this->_obj->_roles ) ) {
 				$data = $this->_obj->_roles;
 			}
 			else {
@@ -480,32 +481,32 @@ class OnApp_User extends OnApp {
 		}
 	}
 
-    /**
-     * Deletes User from OnApp CP
-     *
-     * @param boolean $force whether to delete completely
-     */
-    public function delete( $force = false ) {
-        if ( ! $this->_id  ) {
+	/**
+	 * Deletes User from OnApp CP
+	 *
+	 * @param boolean $force whether to delete completely
+	 */
+	public function delete( $force = false ) {
+		if( ! $this->_id ) {
 			$this->logger->error(
 				'DeleteUser: argument _id not set.',
 				__FILE__,
 				__LINE__
 			);
-        }
+		}
 
-        if ( $force ) {
-            $data = array(
-                'root' => 'tmp_holder',
-                'data' => array(
-                    'force' => '1'
-                )
-            );
+		if( $force ) {
+			$data = array(
+				'root' => 'tmp_holder',
+				'data' => array(
+					'force' => '1'
+				)
+			);
 
-            $this->sendDelete( ONAPP_GETRESOURCE_DELETE_USER, $data );
-
-        } else {
-            parent::delete();
-        }
-    }
+			$this->sendDelete( ONAPP_GETRESOURCE_DELETE_USER, $data );
+		}
+		else {
+			parent::delete();
+		}
+	}
 }

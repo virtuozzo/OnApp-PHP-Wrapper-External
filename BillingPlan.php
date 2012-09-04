@@ -5,12 +5,12 @@
  * Billing Plans are created to set prices for the resources so that users know how
  * much they will be charged per unit.
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Lev Bartashevsky
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Lev Bartashevsky
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -26,11 +26,11 @@ define( 'ONAPP_GETRESOURCE_CREATE_COPY', 'copy' );
 /**
  * Managing Billing Plans
  *
- * The ONAPP_BillingPlan class represents the billing plans. The ONAPP class is the parent of the BillingPlan class.
+ * The OnApp_BillingPlan class represents the billing plans. The OnApp class is the parent of the BillingPlan class.
  *
- * The ONAPP_BillingPlan class uses the following basic methods:
+ * The OnApp_BillingPlan class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_BillingPlan extends OnApp {
@@ -56,8 +56,9 @@ class OnApp_BillingPlan extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -131,9 +132,10 @@ class OnApp_BillingPlan extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
-           case 3.0:
+
+			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -213,7 +215,7 @@ class OnApp_BillingPlan extends OnApp {
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-		if( !empty( $response[ 'errors' ] ) ) {
+		if( ! empty( $response[ 'errors' ] ) ) {
 			$this->errors = $response[ 'errors' ];
 			return false;
 		}
