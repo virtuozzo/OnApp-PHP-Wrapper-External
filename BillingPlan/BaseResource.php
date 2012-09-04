@@ -73,7 +73,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	 * @access public
 	 */
 	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-		$show_log_msg = true;
+		$show_log_msg = TRUE;
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -134,8 +134,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 
 			default:
 				$resource     = parent::getURL( $action );
-				$show_log_msg = false;
-				break;
+				$show_log_msg = FALSE;
 		}
 
 		if( $show_log_msg ) {
@@ -154,7 +153,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $billing_plan_id = null, $url_args = null ) {
+	function getList( $billing_plan_id = NULL, $url_args = NULL ) {
 		if( is_null( $billing_plan_id ) && ! is_null( $this->_billing_plan_id ) ) {
 			$billing_plan_id = $this->_billing_plan_id;
 		}
@@ -162,7 +161,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 		if( ! is_null( $billing_plan_id ) ) {
 			$this->_billing_plan_id = $billing_plan_id;
 
-			return parent::getList();
+			return parent::getList( $billing_plan_id, $url_args );
 		}
 		else {
 			$this->logger->error(

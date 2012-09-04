@@ -126,6 +126,7 @@ class OnApp_User extends OnApp {
 				 */
 				$resource = 'user_groups/' . $this->_user_group_id . '/' . $this->resource;
 				break;
+
 			case ONAPP_GETRESOURCE_SUSPEND_USER:
 				$resource = $this->getURL( ONAPP_GETRESOURCE_LOAD ) . '/suspend';
 				break;
@@ -140,7 +141,6 @@ class OnApp_User extends OnApp {
 
 			default:
 				$resource = parent::getURL( $action );
-				break;
 		}
 
 		$actions = array(
@@ -211,7 +211,7 @@ class OnApp_User extends OnApp {
 		}
 	}
 
-	public function load( $id = null ) {
+	public function load( $id = NULL ) {
 		$result = parent::load( $id );
 		return $result;
 	}
@@ -223,7 +223,7 @@ class OnApp_User extends OnApp {
 	 *
 	 * @return bool|mixed
 	 */
-	public function getListByGroupId( $group_id = null ) {
+	public function getListByGroupId( $group_id = NULL ) {
 		if( $group_id ) {
 			$this->_user_group_id = $group_id;
 		}
@@ -241,7 +241,7 @@ class OnApp_User extends OnApp {
 
 		if( ! empty( $response[ 'errors' ] ) ) {
 			$this->errors = $response[ 'errors' ];
-			return false;
+			return FALSE;
 		}
 
 		$result     = $this->castStringToClass( $response );
@@ -255,7 +255,7 @@ class OnApp_User extends OnApp {
 	 *
 	 * @param boolean $force whether to delete completely
 	 */
-	public function delete( $force = false ) {
+	public function delete( $force = FALSE ) {
 		if( ! $this->_id ) {
 			$this->logger->error(
 				'DeleteUser: argument "id" not set.',
@@ -289,7 +289,7 @@ class OnApp_User extends OnApp {
 				$data = $this->_obj->roles;
 			}
 			else {
-				return null;
+				return NULL;
 			}
 
 			foreach( $data as $role ) {

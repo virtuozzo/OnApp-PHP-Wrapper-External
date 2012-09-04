@@ -26,15 +26,8 @@
  * @see         OnApp
  */
 
-/**
- *
- *
- */
 define( 'ONAPP_GETRESOURCE_HYPERVISORS_BY_HYPERVISOR_GROUP_ID', 'hypervisors' );
-/**
- *
- *
- */
+
 define( 'ONAPP_GETRESOURCE_HYPERVISOR_REBOOT', 'hypervisor_reboot' );
 
 /**
@@ -155,6 +148,7 @@ class OnApp_Hypervisor extends OnApp {
 				 */
 				$resource = parent::getURL( $action );
 				break;
+
 			case ONAPP_GETRESOURCE_HYPERVISOR_REBOOT:
 				/**
 				 * ROUTE :
@@ -169,7 +163,6 @@ class OnApp_Hypervisor extends OnApp {
 
 			default:
 				$resource = parent::getURL( $action );
-				break;
 		}
 
 		return $resource;
@@ -200,7 +193,7 @@ class OnApp_Hypervisor extends OnApp {
 
 		if( ! empty( $response[ 'errors' ] ) ) {
 			$this->errors = $response[ 'errors' ];
-			return false;
+			return FALSE;
 		}
 
 		$result     = $this->castStringToClass( $response );
@@ -241,7 +234,7 @@ class OnApp_Hypervisor extends OnApp {
 
 	function save() {
 		if( $this->_id ) {
-			$this->fields[ 'hypervisor_group_id' ][ ONAPP_FIELD_REQUIRED ] = false;
+			$this->fields[ 'hypervisor_group_id' ][ ONAPP_FIELD_REQUIRED ] = FALSE;
 		}
 
 		return parent::save();

@@ -56,97 +56,97 @@ class OnApp_Group extends OnApp {
 	 *
 	 * @return array
 	 */
-	public function initFields( $version = null, $className = '' ) {
+	public function initFields( $version = NULL, $className = '' ) {
 		switch( $version ) {
 			case '2.0':
 				$this->fields = array(
-					'id' => array(
-						ONAPP_FIELD_MAP => '_id',
-						ONAPP_FIELD_TYPE => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
+					'id'                         => array(
+						ONAPP_FIELD_MAP       => '_id',
+						ONAPP_FIELD_TYPE      => 'integer',
+						ONAPP_FIELD_READ_ONLY => TRUE,
 					),
-					'created_at' => array(
-						ONAPP_FIELD_MAP => '_created_at',
-						ONAPP_FIELD_TYPE => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true
+					'created_at'                 => array(
+						ONAPP_FIELD_MAP       => '_created_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
+						ONAPP_FIELD_READ_ONLY => TRUE
 					),
-					'identifier' => array(
-						ONAPP_FIELD_MAP => '_identifier',
-						ONAPP_FIELD_TYPE => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
+					'identifier'                 => array(
+						ONAPP_FIELD_MAP       => '_identifier',
+						ONAPP_FIELD_TYPE      => 'integer',
+						ONAPP_FIELD_READ_ONLY => TRUE,
 					),
-					'label' => array(
-						ONAPP_FIELD_MAP => '_label',
-						ONAPP_FIELD_REQUIRED => true,
+					'label'                      => array(
+						ONAPP_FIELD_MAP           => '_label',
+						ONAPP_FIELD_REQUIRED      => TRUE,
 						ONAPP_FIELD_DEFAULT_VALUE => ''
 					),
-					'price_cpu' => array(
-						ONAPP_FIELD_MAP => '_price_cpu',
-						ONAPP_FIELD_TYPE => 'decimal',
-						ONAPP_FIELD_REQUIRED => true,
+					'price_cpu'                  => array(
+						ONAPP_FIELD_MAP           => '_price_cpu',
+						ONAPP_FIELD_TYPE          => 'decimal',
+						ONAPP_FIELD_REQUIRED      => TRUE,
 						ONAPP_FIELD_DEFAULT_VALUE => '0.0',
 					),
-					'price_cpu_share' => array(
-						ONAPP_FIELD_MAP => '_price_cpu_share',
-						ONAPP_FIELD_TYPE => 'decimal',
-						ONAPP_FIELD_REQUIRED => true,
+					'price_cpu_share'            => array(
+						ONAPP_FIELD_MAP           => '_price_cpu_share',
+						ONAPP_FIELD_TYPE          => 'decimal',
+						ONAPP_FIELD_REQUIRED      => TRUE,
 						ONAPP_FIELD_DEFAULT_VALUE => '0.0',
 					),
-					'price_disk_size' => array(
-						ONAPP_FIELD_MAP => '_price_disk_size',
-						ONAPP_FIELD_TYPE => 'decimal',
-						ONAPP_FIELD_REQUIRED => true,
+					'price_disk_size'            => array(
+						ONAPP_FIELD_MAP           => '_price_disk_size',
+						ONAPP_FIELD_TYPE          => 'decimal',
+						ONAPP_FIELD_REQUIRED      => TRUE,
 						ONAPP_FIELD_DEFAULT_VALUE => '0.0',
 					),
-					'price_memory' => array(
-						ONAPP_FIELD_MAP => '_price_memory',
-						ONAPP_FIELD_TYPE => 'decimal',
+					'price_memory'               => array(
+						ONAPP_FIELD_MAP           => '_price_memory',
+						ONAPP_FIELD_TYPE          => 'decimal',
+						ONAPP_FIELD_REQUIRED      => 'true',
+						ONAPP_FIELD_DEFAULT_VALUE => '0.0',
+					),
+					'updated_at'                 => array(
+						ONAPP_FIELD_MAP       => '_updated_at',
+						ONAPP_FIELD_TYPE      => 'datetime',
+						ONAPP_FIELD_READ_ONLY => TRUE
+					),
+					'price_ip_address'           => array(
+						ONAPP_FIELD_MAP      => '_price_ip_address',
 						ONAPP_FIELD_REQUIRED => 'true',
+					),
+					'price_storage_disk_size'    => array(
+						ONAPP_FIELD_MAP           => '_price_storage_disk_size',
+						ONAPP_FIELD_TYPE          => 'decimal',
+						ONAPP_FIELD_REQUIRED      => 'true',
 						ONAPP_FIELD_DEFAULT_VALUE => '0.0',
 					),
-					'updated_at' => array(
-						ONAPP_FIELD_MAP => '_updated_at',
-						ONAPP_FIELD_TYPE => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true
-					),
-					'price_ip_address' => array(
-						ONAPP_FIELD_MAP => '_price_ip_address',
-						ONAPP_FIELD_REQUIRED => 'true',
-					),
-					'price_storage_disk_size' => array(
-						ONAPP_FIELD_MAP => '_price_storage_disk_size',
-						ONAPP_FIELD_TYPE => 'decimal',
-						ONAPP_FIELD_REQUIRED => 'true',
+					'price_cpu_power_off'        => array(
+						ONAPP_FIELD_MAP           => '_price_cpu_power_off',
+						ONAPP_FIELD_TYPE          => 'decimal',
+						ONAPP_FIELD_REQUIRED      => 'true',
 						ONAPP_FIELD_DEFAULT_VALUE => '0.0',
 					),
-					'price_cpu_power_off' => array(
-						ONAPP_FIELD_MAP => '_price_cpu_power_off',
-						ONAPP_FIELD_TYPE => 'decimal',
-						ONAPP_FIELD_REQUIRED => 'true',
+					'price_memory_power_off'     => array(
+						ONAPP_FIELD_MAP           => '_price_memory_power_off',
+						ONAPP_FIELD_TYPE          => 'decimal',
+						ONAPP_FIELD_REQUIRED      => 'true',
 						ONAPP_FIELD_DEFAULT_VALUE => '0.0',
 					),
-					'price_memory_power_off' => array(
-						ONAPP_FIELD_MAP => '_price_memory_power_off',
-						ONAPP_FIELD_TYPE => 'decimal',
-						ONAPP_FIELD_REQUIRED => 'true',
+					'price_disk_size_power_off'  => array(
+						ONAPP_FIELD_MAP           => '_price_disk_size_power_off',
+						ONAPP_FIELD_TYPE          => 'decimal',
+						ONAPP_FIELD_REQUIRED      => 'true',
 						ONAPP_FIELD_DEFAULT_VALUE => '0.0',
 					),
-					'price_disk_size_power_off' => array(
-						ONAPP_FIELD_MAP => '_price_disk_size_power_off',
-						ONAPP_FIELD_TYPE => 'decimal',
-						ONAPP_FIELD_REQUIRED => 'true',
-						ONAPP_FIELD_DEFAULT_VALUE => '0.0',
-					),
-					'price_cpu_share_power_off' => array(
-						ONAPP_FIELD_MAP => '_price_cpu_share_power_off',
-						ONAPP_FIELD_TYPE => 'decimal',
-						ONAPP_FIELD_REQUIRED => 'true',
+					'price_cpu_share_power_off'  => array(
+						ONAPP_FIELD_MAP           => '_price_cpu_share_power_off',
+						ONAPP_FIELD_TYPE          => 'decimal',
+						ONAPP_FIELD_REQUIRED      => 'true',
 						ONAPP_FIELD_DEFAULT_VALUE => '0.0',
 					),
 					'price_ip_address_power_off' => array(
-						ONAPP_FIELD_MAP => '_price_ip_address_power_off',
-						ONAPP_FIELD_TYPE => 'decimal',
-						ONAPP_FIELD_REQUIRED => 'true',
+						ONAPP_FIELD_MAP           => '_price_ip_address_power_off',
+						ONAPP_FIELD_TYPE          => 'decimal',
+						ONAPP_FIELD_REQUIRED      => 'true',
 						ONAPP_FIELD_DEFAULT_VALUE => '0.0',
 					),
 				);

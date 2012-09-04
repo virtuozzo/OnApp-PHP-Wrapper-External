@@ -90,7 +90,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	 * @access public
 	 */
 	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-		$show_log_msg = true;
+		$show_log_msg = TRUE;
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -141,6 +141,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 
 				$resource = 'settings/disks/' . $this->_disk_id . '/' . $this->_resource;
 				break;
+
 			case ONAPP_GETRESOURCE_DISK_BACKUPS:
 				/**
 				 * ROUTE :
@@ -212,9 +213,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 
 			default:
 				$resource = parent::getURL( $action );
-
-				$show_log_msg = false;
-				break;
+				$show_log_msg = FALSE;
 		}
 
 		if( $show_log_msg ) {
@@ -233,14 +232,14 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $virtual_machine_id = null, $url_args = null ) {
+	function getList( $virtual_machine_id = NULL, $url_args = NULL ) {
 		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
 			$virtual_machine_id = $this->_virtual_machine_id;
 		}
 
 		if( ! is_null( $virtual_machine_id ) ) {
 			$this->_virtual_machine_id = $virtual_machine_id;
-			return parent::getList();
+			return parent::getList( $virtual_machine_id, $url_args );
 		}
 		else {
 			$this->logger->error(
@@ -269,7 +268,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 
 		if( ! empty( $response[ 'errors' ] ) ) {
 			$this->errors = $response[ 'errors' ];
-			return false;
+			return FALSE;
 		}
 
 		$result = $this->castStringToClass( $response );
@@ -291,22 +290,22 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 		$this->_label = $label;
 
 		$this->fields[ 'label' ] = array(
-			ONAPP_FIELD_MAP => '_label',
-			ONAPP_FIELD_REQUIRED => true,
+			ONAPP_FIELD_MAP      => '_label',
+			ONAPP_FIELD_REQUIRED => TRUE,
 		);
 
 		$data = array(
 			'root' => $this->rootElement,
 			'data' => array(
 				'label' => $label,
-				'id' => $this->_id
+				'id'    => $this->_id
 			)
 		);
 		// workaround because we get template data in response
-		$this->rootElement  = 'image_template';
-		$this->className = 'OnApp_Template';
-		$template        = new OnApp_Template();
-		$this->fields = $template->getClassFields();
+		$this->rootElement = 'image_template';
+		$this->className   = 'OnApp_Template';
+		$template          = new OnApp_Template();
+		$this->fields      = $template->getClassFields();
 		$this->sendPost( ONAPP_GETRESOURCE_BACKUP_CONVERT, $data );
 	}
 

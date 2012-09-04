@@ -56,9 +56,9 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->_resource;
 				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
+
 			default:
 				$resource = parent::getURL( $action );
-				break;
 		}
 		return $resource;
 	}
@@ -85,7 +85,7 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 			'root' => 'ip_address_join',
 			'data' => array(
 				'network_interface_id' => $this->_network_interface_id,
-				'ip_address_id' => $this->_id
+				'ip_address_id'        => $this->_id
 			)
 		);
 

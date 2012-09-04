@@ -26,16 +26,8 @@
  * @see         OnApp
  */
 
-/**
- *
- *
- */
 define( 'ONAPP_GETRESOURCE_IP_ADDRESSES', 'ip_addresses' );
 
-/**
- *
- *
- */
 define( 'ONAPP_GETRESOURCE_NETWORKS_LIST_BY_HYPERVISOR_GROUP_ID', 'networks_list_by_hypervisor_group_id' );
 
 /**
@@ -124,7 +116,6 @@ class OnApp_Network extends OnApp {
 				 * @format  {:controller=>"networks", :action=>"show"}
 				 */
 				$resource = parent::getURL( $action );
-				break;
 		}
 		return $resource;
 	}
@@ -154,7 +145,7 @@ class OnApp_Network extends OnApp {
 
 		if( ! empty( $response[ 'errors' ] ) ) {
 			$this->errors = $response[ 'errors' ];
-			return false;
+			return FALSE;
 		}
 
 		$result     = $this->castStringToClass( $response );

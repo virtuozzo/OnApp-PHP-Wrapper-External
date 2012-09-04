@@ -89,7 +89,6 @@ class OnApp_User_MonthlyBill extends OnApp {
 
 			default:
 				$resource = parent::getURL( $action );
-				break;
 		}
 
 		return $resource;
@@ -104,7 +103,7 @@ class OnApp_User_MonthlyBill extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $user_id = null, $url_args = null ) {
+	function getList( $user_id = NULL, $url_args = NULL ) {
 		if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
 			$user_id = $this->_user_id;
 		}
@@ -112,7 +111,7 @@ class OnApp_User_MonthlyBill extends OnApp {
 		if( ! is_null( $user_id ) ) {
 			$this->_user_id = $user_id;
 
-			return parent::getList( null, $url_args );
+			return parent::getList( $user_id, $url_args );
 		}
 		else {
 			$this->logger->error(

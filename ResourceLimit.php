@@ -109,7 +109,6 @@ class OnApp_ResourceLimit extends OnApp {
 
 			default:
 				$resource = parent::getURL( $action );
-				break;
 		}
 
 		$actions = array(
@@ -136,7 +135,7 @@ class OnApp_ResourceLimit extends OnApp {
 	 * @return object serialized Object instance from API
 	 * @access public
 	 */
-	function load( $user_id = null ) {
+	function load( $user_id = NULL ) {
 		if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
 			$user_id = $this->_user_id;
 		}

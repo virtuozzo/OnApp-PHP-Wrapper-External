@@ -154,7 +154,7 @@ class OnApp_BillingPlan extends OnApp {
 
 		if( ! empty( $response[ 'errors' ] ) ) {
 			$this->errors = $response[ 'errors' ];
-			return false;
+			return FALSE;
 		}
 
 		$class = new ONAPP_User();

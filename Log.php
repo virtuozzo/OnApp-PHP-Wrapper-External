@@ -80,7 +80,6 @@ class OnApp_Log extends OnApp {
 
 			default:
 				$this->_resource = parent::getURL( $action );
-				break;
 		}
 
 		return $this->_resource;
@@ -95,8 +94,8 @@ class OnApp_Log extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $params = null, $url_args = null ) {
-		return parent::getList( null, $url_args );
+	function getList( $params = NULL, $url_args = NULL ) {
+		return parent::getList( $params, $url_args );
 	}
 
 	function activate( $action_name ) {

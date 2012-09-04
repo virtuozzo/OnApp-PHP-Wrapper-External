@@ -56,7 +56,7 @@ class OnApp_Profile extends OnApp {
 	 */
 
 	public static $nestedData = array(
-		'roles' => 'Role',
+		'roles'             => 'Role',
 		'used_ip_addresses' => 'IpAddress',
 	);
 
@@ -122,7 +122,7 @@ class OnApp_Profile extends OnApp {
 	 * @return mixed serialized Object instance from API
 	 * @access public
 	 */
-	function load( $id = null ) {
+	function load( $id = NULL ) {
 		$this->activate( ONAPP_ACTIVATE_LOAD );
 
 		$this->logger->add( "load: Load class" );

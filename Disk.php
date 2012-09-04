@@ -189,7 +189,6 @@ class OnApp_Disk extends OnApp {
 				 * @format {:controller=>"disks", :action=>"destroy"}
 				 */
 				$resource = parent::getURL( $action );
-				break;
 		}
 
 		$actions = array(
@@ -244,11 +243,11 @@ class OnApp_Disk extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $vm_id = null, $url_args = null ) {
+	function getList( $vm_id = NULL, $url_args = NULL ) {
 		if( $vm_id ) {
 			$this->_virtual_machine_id = $vm_id;
 		}
-		return parent::getList();
+		return parent::getList( $vm_id, $url_args );
 	}
 
 	/**
@@ -262,18 +261,18 @@ class OnApp_Disk extends OnApp {
 	function save() {
 		if( $this->_virtual_machine_id ) {
 			$this->fields[ 'require_format_disk' ] = array(
-				ONAPP_FIELD_MAP => '_require_format_disk',
-				ONAPP_FIELD_TYPE => 'integer',
-				ONAPP_FIELD_REQUIRED => true,
-				ONAPP_FIELD_DEFAULT_VALUE => false,
+				ONAPP_FIELD_MAP           => '_require_format_disk',
+				ONAPP_FIELD_TYPE          => 'integer',
+				ONAPP_FIELD_REQUIRED      => TRUE,
+				ONAPP_FIELD_DEFAULT_VALUE => FALSE,
 			);
 		}
 
 		if( $this->_id ) {
-			$this->fields[ 'add_to_linux_fstab' ][ ONAPP_FIELD_REQUIRED ] = false;
-			$this->fields[ 'data_store_id' ][ ONAPP_FIELD_REQUIRED ]      = false;
-			$this->fields[ 'is_swap' ][ ONAPP_FIELD_REQUIRED ]            = false;
-			$this->fields[ 'mount_point' ][ ONAPP_FIELD_REQUIRED ]        = false;
+			$this->fields[ 'add_to_linux_fstab' ][ ONAPP_FIELD_REQUIRED ] = FALSE;
+			$this->fields[ 'data_store_id' ][ ONAPP_FIELD_REQUIRED ]      = FALSE;
+			$this->fields[ 'is_swap' ][ ONAPP_FIELD_REQUIRED ]            = FALSE;
+			$this->fields[ 'mount_point' ][ ONAPP_FIELD_REQUIRED ]        = FALSE;
 		}
 
 		return parent::save();
@@ -291,10 +290,10 @@ class OnApp_Disk extends OnApp {
 			$this->_id = $disk_id;
 		}
 		// workaround because we get backup data in response
-		$this->rootElement  = 'backup';
-		$this->className = 'OnApp_VirtualMachine_Backup';
-		$backup          = new OnApp_VirtualMachine_Backup();
-		$this->fields = $backup->getClassFields();
+		$this->rootElement = 'backup';
+		$this->className   = 'OnApp_VirtualMachine_Backup';
+		$backup            = new OnApp_VirtualMachine_Backup();
+		$this->fields      = $backup->getClassFields();
 		$this->sendPost( ONAPP_GETRESOURCE_TAKE_BACKUP );
 	}
 }

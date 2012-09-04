@@ -74,15 +74,15 @@ class OnApp_Disk_Schedule extends OnApp {
 	 * @access public
 	 */
 	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-		$show_log_msg = true;
+		$show_log_msg = TRUE;
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_LIST_BY_DISK_ID:
 				$resource = 'settings/disks/' . $this->_target_id . '/' . $this->_resource;
 				break;
+
 			default:
 				$resource     = parent::getURL( $action );
-				$show_log_msg = false;
-				break;
+				$show_log_msg = FALSE;
 		}
 
 		if( $show_log_msg ) {
@@ -101,7 +101,7 @@ class OnApp_Disk_Schedule extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getListByDiskId( $disk_id = null ) {
+	function getListByDiskId( $disk_id = NULL ) {
 		if( $disk_id ) {
 			$this->_target_id = $disk_id;
 		}
@@ -116,7 +116,7 @@ class OnApp_Disk_Schedule extends OnApp {
 		$result = $this->castStringToClass( $response );
 
 		if( ! empty( $response[ 'errors' ] ) ) {
-			return false;
+			return FALSE;
 		}
 
 		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
@@ -124,10 +124,10 @@ class OnApp_Disk_Schedule extends OnApp {
 
 	function save() {
 		if( $this->_target_id ) {
-			$this->fields[ 'target_id' ][ ONAPP_FIELD_REQUIRED ]        = true;
-			$this->fields[ 'target_type' ][ ONAPP_FIELD_REQUIRED ]      = true;
+			$this->fields[ 'target_id' ][ ONAPP_FIELD_REQUIRED ]        = TRUE;
+			$this->fields[ 'target_type' ][ ONAPP_FIELD_REQUIRED ]      = TRUE;
 			$this->fields[ 'target_type' ][ ONAPP_FIELD_DEFAULT_VALUE ] = 'Disk';
-			$this->fields[ 'action' ][ ONAPP_FIELD_REQUIRED ]           = true;
+			$this->fields[ 'action' ][ ONAPP_FIELD_REQUIRED ]           = TRUE;
 			$this->fields[ 'action' ][ ONAPP_FIELD_DEFAULT_VALUE ]      = 'autobackup';
 		}
 

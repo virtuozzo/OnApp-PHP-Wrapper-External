@@ -95,7 +95,7 @@ class OnApp_Helper_Logger {
 	 * @access private
 	 * @var    boolean
 	 */
-	var $_debug = false;
+	var $_debug = FALSE;
 
 	/**
 	 * Buffer containing all the information on the messages used in the class
@@ -142,7 +142,7 @@ class OnApp_Helper_Logger {
 	 * @return void
 	 * @access public
 	 */
-	function error( $msg, $file = '', $line = null ) {
+	function error( $msg, $file = '', $line = NULL ) {
 		$this->_log( $msg, ONAPP_LOGGER_VALUE_ERROR );
 		echo $this->logs();
 		trigger_error( "FILE => '$file', LINE => '$line'\n$msg", E_USER_ERROR );
@@ -194,18 +194,20 @@ class OnApp_Helper_Logger {
 				case ONAPP_LOGGER_VALUE_ERROR:
 					$log = "[ERROR] $msg";
 					break;
+
 				case ONAPP_LOGGER_VALUE_WARNING:
 					$log = "[WARN]  $msg";
 					break;
+
 				case ONAPP_LOGGER_VALUE_DEBUG:
 					$log = "[DEBUG] $msg";
 					break;
+
 				default:
 					$log = "[MSG]   $msg";
-					break;
 			}
 
-			$time  = microtime( true );
+			$time  = microtime( TRUE );
 			$micro = sprintf( "%06d", ( $time - floor( $time ) ) * 1000000 );
 			$date  = date( "$date_format $micro", $time );
 
@@ -214,7 +216,7 @@ class OnApp_Helper_Logger {
 			);
 		}
 
-		return true;
+		return TRUE;
 	}
 
 	/**

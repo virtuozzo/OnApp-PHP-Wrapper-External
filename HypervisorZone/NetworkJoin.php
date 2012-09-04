@@ -92,7 +92,6 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 
 			default:
 				$resource = parent::getURL( $action );
-				break;
 		}
 
 		return $resource;
@@ -105,7 +104,7 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 	 *
 	 * @return array of newtwork join objects
 	 */
-	function getList( $target_join_id = null, $url_args = null ) {
+	function getList( $target_join_id = NULL, $url_args = NULL ) {
 		if( is_null( $target_join_id ) && ! is_null( $this->_target_join_id ) ) {
 			$target_join_id = $this->_target_join_id;
 		}

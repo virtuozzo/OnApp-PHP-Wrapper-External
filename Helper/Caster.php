@@ -30,7 +30,7 @@ class OnApp_Helper_Caster {
 	 * @return string
 	 */
 	public function serialize( $root, $data ) {
-		self::$obj->logger->debug( 'Data to serialize: ' . print_r( $data, true ) );
+		self::$obj->logger->debug( 'Data to serialize: ' . print_r( $data, TRUE ) );
 
 		return self::getCaster()->serialize( $root, $data );
 	}

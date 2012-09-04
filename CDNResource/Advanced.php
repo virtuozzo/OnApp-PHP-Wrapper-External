@@ -82,7 +82,6 @@ class OnApp_CDNResource_Advanced extends OnApp {
 
 			default:
 				$resource = parent::getURL( $action );
-				break;
 		}
 		return $resource;
 	}
@@ -96,7 +95,7 @@ class OnApp_CDNResource_Advanced extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	public function getList( $cdn_resource_id = null, $url_args = null ) {
+	public function getList( $cdn_resource_id = NULL, $url_args = NULL ) {
 		if( is_null( $cdn_resource_id ) && ! is_null( $this->_id ) ) {
 			$cdn_resource_id = $this->_id;
 		}
@@ -104,7 +103,7 @@ class OnApp_CDNResource_Advanced extends OnApp {
 		if( ! is_null( $cdn_resource_id ) ) {
 			$this->_id = $cdn_resource_id;
 
-			return parent::getList();
+			return parent::getList( $cdn_resource_id, $url_args );
 		}
 		else {
 			$this->logger->error(

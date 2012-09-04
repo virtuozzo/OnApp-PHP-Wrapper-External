@@ -37,7 +37,7 @@ if( ! defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
 				//todo add loging instead of printing
 			}
 
-			return false;
+			return FALSE;
 		}
 		else {
 			require $path;
@@ -51,10 +51,10 @@ if( ! defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
 					//todo add loging instead of printing
 				}
 
-				return false;
+				return FALSE;
 			}
 			else {
-				return true;
+				return TRUE;
 			}
 		}
 	}
@@ -68,9 +68,9 @@ if( ! defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
 	 * Detect if the code run in CLI for testing purposes
 	 */
 	if( defined( 'STDIN' ) ) {
-		define( 'IS_CLI', true );
+		define( 'IS_CLI', TRUE );
 	}
 	else {
-		define( 'IS_CLI', false );
+		define( 'IS_CLI', FALSE );
 	}
 }

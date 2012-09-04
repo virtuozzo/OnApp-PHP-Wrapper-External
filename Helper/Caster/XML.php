@@ -13,11 +13,11 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 	private $className;
 	private $types = array(
 		'datetime' => 's',
-		'float' => 'f',
-		'decimal' => 'f',
-		'integer' => 'd',
-		'boolean' => 's',
-		'' => 's'
+		'float'    => 'f',
+		'decimal'  => 'f',
+		'integer'  => 'd',
+		'boolean'  => 's',
+		''         => 's'
 	);
 
 	private static $unknown_tag = 'item';
@@ -63,13 +63,13 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 				}
 				else {
 					//todo add log message
-					return null;
+					return NULL;
 				}
 			}
 		}
 		catch( Exception $e ) {
 			echo PHP_EOL, $e->getMessage(), PHP_EOL;
-			return null;
+			return NULL;
 		}
 
 		// get API version
@@ -117,7 +117,7 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 		$obj->_is_auth = parent::$obj->_is_auth;
 
 		foreach( $item as $name => $value ) {
-			$boolean = $type = false;
+			$boolean = $type = FALSE;
 
 			if( isset( $value->attributes()->type ) ) {
 				if( $value->attributes()->type == 'array' ) {
@@ -148,12 +148,12 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 			if( $boolean ) {
 				switch( strtolower( $value ) ) {
 					case 'false':
-						$value = false;
+						$value = FALSE;
 						break;
 
 					case 'true':
 					default:
-						$value = true;
+						$value = TRUE;
 				}
 			}
 
@@ -173,7 +173,7 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 	 *
 	 * @return string XML
 	 */
-	private function getXML( $data, $root, $xml = null ) {
+	private function getXML( $data, $root, $xml = NULL ) {
 		if( is_array( $data ) ) {
 			if( is_null( $xml ) ) {
 				$xml = simplexml_load_string( '<?xml version="1.0" encoding="UTF-8"?><' . $root . ' />' );

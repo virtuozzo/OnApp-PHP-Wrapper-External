@@ -92,7 +92,6 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
 
 			default:
 				$resource = parent::getURL( $action );
-				break;
 		}
 
 		return $resource;
@@ -107,7 +106,7 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $virtual_machine_id = null, $url_args = null ) {
+	function getList( $virtual_machine_id = NULL, $url_args = NULL ) {
 		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
 			$virtual_machine_id = $this->_virtual_machine_id;
 		}
@@ -115,7 +114,7 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
 		if( ! is_null( $virtual_machine_id ) ) {
 			$this->_virtual_machine_id = $virtual_machine_id;
 
-			return parent::getList();
+			return parent::getList( $virtual_machine_id, $url_args );
 		}
 		else {
 			$this->logger->error(

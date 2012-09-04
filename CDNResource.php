@@ -13,22 +13,10 @@
  * @see         OnApp
  */
 
-/**
- *
- *
- */
 define( 'ONAPP_GETRESOURCE_ENABLE_CDN', 'enable_cdn' );
 
-/**
- *
- *
- */
 define( 'ONAPP_GETRESOURCE_CDN_PREFETCH', 'cdn_prefetch' );
 
-/**
- *
- *
- */
 define( 'ONAPP_GETRESOURCE_CDN_PURGE', 'cdn_purge' );
 
 /**
@@ -89,8 +77,8 @@ class OnApp_CDNResource extends OnApp {
 
 	public static $nestedData = array(
 		'edge_groups' => 'EdgeGroup',
-		'countries' => 'CDNResource_Advanced_Country',
-		'origins' => 'CDNResource_Origin',
+		'countries'   => 'CDNResource_Advanced_Country',
+		'origins'     => 'CDNResource_Origin',
 	);
 
 	/**
@@ -152,7 +140,6 @@ class OnApp_CDNResource extends OnApp {
 
 			default:
 				$resource = parent::getURL( $action );
-				break;
 		}
 
 		$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );

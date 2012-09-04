@@ -20,10 +20,6 @@
  * @see         OnApp
  */
 
-/**
- *
- *
- */
 define( 'ONAPP_GETRESOURCE_DATASTORES_LIST_BY_HYPERVISOR_GROUP_ID', 'hypervisor_zones_data_stores' );
 
 /**
@@ -134,7 +130,6 @@ class OnApp_DataStore extends OnApp {
 
 			default:
 				$resource = parent::getURL( $action );
-				break;
 		}
 		return $resource;
 	}
@@ -164,7 +159,7 @@ class OnApp_DataStore extends OnApp {
 		$result = $this->castStringToClass( $response );
 
 		if( ! empty( $response[ 'errors' ] ) ) {
-			return false;
+			return FALSE;
 		}
 
 		$this->_obj = $result;

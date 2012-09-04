@@ -20,7 +20,7 @@ class OnApp_Factory extends OnApp {
 	 * @param string      $password
 	 * @param string|null $proxy
 	 */
-	public function __construct( $hostname, $username, $password, $proxy = null ) {
+	public function __construct( $hostname, $username, $password, $proxy = NULL ) {
 		parent::__construct();
 		$this->auth( $hostname, $username, $password );
 	}
@@ -33,7 +33,7 @@ class OnApp_Factory extends OnApp {
 	 *
 	 * @return object instance of class
 	 */
-	public function factory( $name, $debug = false ) {
+	public function factory( $name, $debug = FALSE ) {
 		$class_name = 'OnApp_' . $name;
 
 		$result = new $class_name();

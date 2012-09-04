@@ -31,70 +31,26 @@
  * @see         OnApp
  */
 
-/**
- *
- *
- */
 define( 'ONAPP_GETRESOURCE_REBOOT', 'reboot' );
 
-/**
- *
- *
- */
 define( 'ONAPP_GETRESOURCE_SHUTDOWN', 'shutdown' );
 
-/**
- *
- *
- */
 define( 'ONAPP_GETRESOURCE_CHANGE_OWNER', 'change_owner' );
 
-/**
- *
- *
- */
 define( 'ONAPP_GETRESOURCE_REBUILD_NETWORK', 'rebuild_network' );
 
-/**
- *
- *
- */
 define( 'ONAPP_GETRESOURCE_STARTUP', 'startup' );
 
-/**
- *
- *
- */
 define( 'ONAPP_GETRESOURCE_UNLOCK', 'unlock' );
 
-/**
- *
- *
- */
 define( 'ONAPP_GETRESOURCE_BUILD', 'build' );
 
-/**
- *
- *
- */
 define( 'ONAPP_GETRESOURCE_SUSPEND_VM', 'suspend' );
 
-/**
- *
- *
- */
 define( 'ONAPP_ACTIVATE_GETLIST_USER', 'getUserVMsList' );
 
-/**
- *
- *
- */
 define( 'ONAPP_RESET_ROOT_PASSWORD', 'resetRootPassword' );
 
-/**
- *
- *
- */
 define( 'ONAPP_GETRESOURCE_MIGRATE', 'migrate' );
 
 /**
@@ -367,7 +323,6 @@ class OnApp_VirtualMachine extends OnApp {
 				 * @format  {:controller=>"virtual_machines", :action=>"destroy"}
 				 */
 				$resource = parent::getURL( $action );
-				break;
 		}
 
 		$actions = array(
@@ -393,7 +348,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 *
 	 * @param mixed $recovery reboot mode
 	 */
-	function reboot( $recovery = false ) {
+	function reboot( $recovery = FALSE ) {
 		if( ! $recovery ) {
 			$this->sendPost( ONAPP_GETRESOURCE_REBOOT, '' );
 		}
@@ -464,7 +419,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 *
 	 * @return response object
 	 */
-	function change_owner( $user_id = false ) {
+	function change_owner( $user_id = FALSE ) {
 		if( ! $user_id ) {
 			$this->sendPost( ONAPP_GETRESOURCE_STARTUP );
 		}
@@ -497,7 +452,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 *
 	 * @return object response object
 	 */
-	function startup( $recovery = false ) {
+	function startup( $recovery = FALSE ) {
 		if( ! $recovery ) {
 			$this->sendPost( ONAPP_GETRESOURCE_STARTUP, '' );
 		}
@@ -534,7 +489,7 @@ class OnApp_VirtualMachine extends OnApp {
 				$data = array(
 					'root' => 'virtual_machine',
 					'data' => array(
-						'template_id' => $this->_template_id,
+						'template_id'      => $this->_template_id,
 						'required_startup' => $this->_required_startup
 					)
 				);
@@ -552,7 +507,7 @@ class OnApp_VirtualMachine extends OnApp {
 			$data = array(
 				'root' => 'virtual_machine',
 				'data' => array(
-					'template_id' => $this->_template_id ? $this->_template_id : $this->_obj->_template_id,
+					'template_id'      => $this->_template_id ? $this->_template_id : $this->_obj->_template_id,
 					'required_startup' => $this->_required_startup
 				)
 			);
@@ -569,10 +524,10 @@ class OnApp_VirtualMachine extends OnApp {
 	 *
 	 * @return array|bool
 	 */
-	function getList( $user_id = null, $url_args = null ) {
+	function getList( $user_id = NULL, $url_args = NULL ) {
 		//todo rewrite to use parent method
 		if( is_null( $user_id ) ) {
-			return parent::getList();
+			return parent::getList( $user_id, $url_args );
 		}
 		else {
 			$this->activate( ONAPP_ACTIVATE_GETLIST );
@@ -590,7 +545,7 @@ class OnApp_VirtualMachine extends OnApp {
 			if( ! empty( $response[ 'errors' ] ) ) {
 				//todo test this stuff
 				//$this->errors = $result->errors;
-				return false;
+				return FALSE;
 			}
 			if( ! is_array( $result ) && ! is_null( $result ) ) {
 				$result = array( $result );
@@ -616,64 +571,64 @@ class OnApp_VirtualMachine extends OnApp {
 		$fields = $this->fields;
 
 		$this->fields[ 'primary_disk_size' ]              = array(
-			ONAPP_FIELD_MAP => '_primary_disk_size',
-			ONAPP_FIELD_TYPE => 'integer',
-			ONAPP_FIELD_REQUIRED => true,
+			ONAPP_FIELD_MAP           => '_primary_disk_size',
+			ONAPP_FIELD_TYPE          => 'integer',
+			ONAPP_FIELD_REQUIRED      => TRUE,
 			ONAPP_FIELD_DEFAULT_VALUE => 5
 		);
 		$this->fields[ 'swap_disk_size' ]                 = array(
-			ONAPP_FIELD_MAP => '_swap_disk_size',
-			ONAPP_FIELD_TYPE => 'integer',
-			ONAPP_FIELD_REQUIRED => true,
+			ONAPP_FIELD_MAP           => '_swap_disk_size',
+			ONAPP_FIELD_TYPE          => 'integer',
+			ONAPP_FIELD_REQUIRED      => TRUE,
 			ONAPP_FIELD_DEFAULT_VALUE => 0
 		);
 		$this->fields[ 'primary_network_id' ]             = array(
-			ONAPP_FIELD_MAP => '_primary_network_id',
-			ONAPP_FIELD_TYPE => 'integer',
-			ONAPP_FIELD_REQUIRED => true,
+			ONAPP_FIELD_MAP           => '_primary_network_id',
+			ONAPP_FIELD_TYPE          => 'integer',
+			ONAPP_FIELD_REQUIRED      => TRUE,
 			ONAPP_FIELD_DEFAULT_VALUE => ''
 		);
 		$this->fields[ 'required_automatic_backup' ]      = array(
-			ONAPP_FIELD_MAP => '_required_automatic_backup',
-			ONAPP_FIELD_TYPE => 'boolean',
-			ONAPP_FIELD_REQUIRED => true,
+			ONAPP_FIELD_MAP           => '_required_automatic_backup',
+			ONAPP_FIELD_TYPE          => 'boolean',
+			ONAPP_FIELD_REQUIRED      => TRUE,
 			ONAPP_FIELD_DEFAULT_VALUE => ''
 		);
 		$this->fields[ 'rate_limit' ]                     = array(
-			ONAPP_FIELD_MAP => '_rate_limit',
-			ONAPP_FIELD_TYPE => 'integer',
+			ONAPP_FIELD_MAP           => '_rate_limit',
+			ONAPP_FIELD_TYPE          => 'integer',
 			ONAPP_FIELD_DEFAULT_VALUE => ''
 		);
 		$this->fields[ 'required_ip_address_assignment' ] = array(
-			ONAPP_FIELD_MAP => '_required_ip_address_assignment',
-			ONAPP_FIELD_TYPE => 'boolean',
-			ONAPP_FIELD_REQUIRED => true,
+			ONAPP_FIELD_MAP           => '_required_ip_address_assignment',
+			ONAPP_FIELD_TYPE          => 'boolean',
+			ONAPP_FIELD_REQUIRED      => TRUE,
 			ONAPP_FIELD_DEFAULT_VALUE => '1'
 		);
 		$this->fields[ 'required_virtual_machine_build' ] = array(
-			ONAPP_FIELD_MAP => '_required_virtual_machine_build',
-			ONAPP_FIELD_TYPE => 'boolean',
-			ONAPP_FIELD_REQUIRED => true,
+			ONAPP_FIELD_MAP           => '_required_virtual_machine_build',
+			ONAPP_FIELD_TYPE          => 'boolean',
+			ONAPP_FIELD_REQUIRED      => TRUE,
 			ONAPP_FIELD_DEFAULT_VALUE => ''
 		);
 		$this->fields[ 'hypervisor_group_id' ]            = array(
-			ONAPP_FIELD_MAP => '_hypervisor_group_id',
+			ONAPP_FIELD_MAP  => '_hypervisor_group_id',
 			ONAPP_FIELD_TYPE => 'integer',
 		);
 		$this->fields[ 'data_store_group_primary_id' ]    = array(
-			ONAPP_FIELD_MAP => '_data_store_group_primary_id',
+			ONAPP_FIELD_MAP  => '_data_store_group_primary_id',
 			ONAPP_FIELD_TYPE => 'integer',
 		);
 		$this->fields[ 'data_store_group_swap_id' ]       = array(
-			ONAPP_FIELD_MAP => '_data_store_group_swap_id',
+			ONAPP_FIELD_MAP  => '_data_store_group_swap_id',
 			ONAPP_FIELD_TYPE => 'integer',
 		);
 		$this->fields[ 'required_automatic_backup' ]      = array(
-			ONAPP_FIELD_MAP => '_required_automatic_backup',
+			ONAPP_FIELD_MAP  => '_required_automatic_backup',
 			ONAPP_FIELD_TYPE => 'boolean',
 		);
 		$this->fields[ 'required_public_ip_address' ]     = array(
-			ONAPP_FIELD_MAP => '_required_public_ip_address',
+			ONAPP_FIELD_MAP  => '_required_public_ip_address',
 			ONAPP_FIELD_TYPE => 'boolean',
 		);
 

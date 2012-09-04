@@ -310,22 +310,22 @@ class OnApp {
 	 */
 	private $defaultOptions = array(
 		// cURL proxy
-		ONAPP_OPTION_CURL_PROXY => '',
+		ONAPP_OPTION_CURL_PROXY  => '',
 
 		// cURL url
-		ONAPP_OPTION_CURL_URL => '',
+		ONAPP_OPTION_CURL_URL    => '',
 
 		// API request and response charset
 		ONAPP_OPTION_API_CHARSET => 'charset=utf-8',
 
 		// API request and response type
-		ONAPP_OPTION_API_TYPE => 'json',
+		ONAPP_OPTION_API_TYPE    => 'json',
 
 		// API request and response content
 		ONAPP_OPTION_API_CONTENT => 'application/json',
 
 		// Debug mode
-		ONAPP_OPTION_DEBUG_MODE => false,
+		ONAPP_OPTION_DEBUG_MODE  => FALSE,
 	);
 
 	/**
@@ -389,40 +389,40 @@ class OnApp {
 	 * @access private
 	 * @var    string
 	 */
-	protected $URLPath = null;
+	protected $URLPath = NULL;
 
 	/**
 	 * @access private
 	 * @var    string
 	 */
-	protected $rootElement = null;
+	protected $rootElement = NULL;
 
 	/**
 	 * @access private
 	 * @var    array
 	 */
-	var $_tagRequired = null;
+	var $_tagRequired = NULL;
 
 	/**
 	 * @access private
 	 * @var    boolean
 	 * @todo   move in to getter an setter
 	 */
-	var $_is_auth = false;
+	var $_is_auth = FALSE;
 
 	/**
 	 * @access private
 	 * @var    boolean
 	 * @todo   move in to getter an setter
 	 */
-	var $_is_changed = false;
+	var $_is_changed = FALSE;
 
 	/**
 	 * @access private
 	 * @var    boolean
 	 * @todo   move in to getter an setter
 	 */
-	var $_is_deleted = false;
+	var $_is_deleted = FALSE;
 
 	/**
 	 * Return OnApp version
@@ -452,7 +452,7 @@ class OnApp {
 	 * The Object Logger used to log the processes in the basic and inherited classes
 	 * It is possible to use the debug add error log methods
 	 */
-	public $logger = null;
+	public $logger = NULL;
 
 	protected $response;
 
@@ -656,11 +656,11 @@ class OnApp {
 			$this->setAPIVersion( $response[ 'response_body' ] );
 
 			$this->setErrors();
-			$this->_is_auth = true;
+			$this->_is_auth = TRUE;
 		}
 		else {
 			$this->setErrors( $response[ 'response_body' ] );
-			$this->_is_auth = false;
+			$this->_is_auth = FALSE;
 		}
 	}
 
@@ -669,7 +669,7 @@ class OnApp {
 			case 'xml':
 			case 'json':
 				$tag           = 'version';
-				$this->version = null;
+				$this->version = NULL;
 
 				$objCast       = new OnApp_Helper_Caster( $this );
 				$this->version = $objCast->unserialize( $this->getClassName(), $data, $tag );
@@ -692,7 +692,8 @@ class OnApp {
 
 	// todo delete
 	public $fields;
-	public function initFields( $version = null, $className = '' ) {
+
+	public function initFields( $version = NULL, $className = '' ) {
 		return array();
 
 		if( ! is_null( $version ) ) {
@@ -711,7 +712,7 @@ class OnApp {
 		elseif( ! is_null( $version ) ) {
 			if( $version == $this->version ) {
 				if( $this->defaultOptions[ ONAPP_OPTION_DEBUG_MODE ] ) {
-					$this->logger->debug( $className . '::initFields, version ' . $version . PHP_EOL . print_r( $this->fields, true ) );
+					$this->logger->debug( $className . '::initFields, version ' . $version . PHP_EOL . print_r( $this->fields, TRUE ) );
 				}
 				else {
 					$this->logger->add( $className . '::initFields, version ' . $version );
@@ -748,10 +749,10 @@ class OnApp {
 			);
 		}
 
-		curl_setopt( $this->_ch, CURLOPT_SSL_VERIFYPEER, false );
+		curl_setopt( $this->_ch, CURLOPT_SSL_VERIFYPEER, FALSE );
 		curl_setopt( $this->_ch, CURLOPT_USERPWD, $user . ':' . $pass );
-		curl_setopt( $this->_ch, CURLOPT_RETURNTRANSFER, true );
-		curl_setopt( $this->_ch, CURLOPT_HEADER, true );
+		curl_setopt( $this->_ch, CURLOPT_RETURNTRANSFER, TRUE );
+		curl_setopt( $this->_ch, CURLOPT_HEADER, TRUE );
 	}
 
 	/**
@@ -774,7 +775,7 @@ class OnApp {
 	 * @return void
 	 * @access public
 	 */
-	function setAPIResource( $resource, $append_api_version = true, $queryString = '' ) {
+	function setAPIResource( $resource, $append_api_version = TRUE, $queryString = '' ) {
 		$url = $this->options[ ONAPP_OPTION_CURL_URL ];
 		$this->logger->add(
 			'setAPIResource: Set an option for a cURL transfer (' .
@@ -819,7 +820,7 @@ class OnApp {
 	 *
 	 * @return array|bool cURL response
 	 */
-	protected function sendRequest( $method, $data = null ) {
+	protected function sendRequest( $method, $data = NULL ) {
 		$alowed_methods = array(
 			ONAPP_REQUEST_METHOD_GET,
 			ONAPP_REQUEST_METHOD_POST,
@@ -832,7 +833,7 @@ class OnApp {
 
 		$debug_msg = 'Send ' . $method . ' request.';
 		if( $data ) {
-			$debug_msg .= ' Request:' . PHP_EOL . print_r( $data, true );
+			$debug_msg .= ' Request:' . PHP_EOL . print_r( $data, TRUE );
 		}
 		$this->logger->debug( $debug_msg );
 
@@ -844,7 +845,7 @@ class OnApp {
 		curl_setopt( $this->_ch, CURLOPT_CUSTOMREQUEST, $method );
 		switch( $method ) {
 			case ONAPP_REQUEST_METHOD_GET:
-				curl_setopt( $this->_ch, CURLOPT_HTTPGET, true );
+				curl_setopt( $this->_ch, CURLOPT_HTTPGET, TRUE );
 
 				if( ! is_null( $data ) ) {
 					curl_setopt( $this->_ch, CURLOPT_POSTFIELDS, $data );
@@ -885,11 +886,11 @@ class OnApp {
 		$result[ 'headers' ]       = mb_substr( $result[ 'response_body' ], 0, $curlHeaderSize );
 		$result[ 'response_body' ] = mb_substr( $result[ 'response_body' ], $curlHeaderSize );
 
-		$this->logger->debug( 'Receive Response ' . print_r( $result, true ) );
+		$this->logger->debug( 'Receive Response ' . print_r( $result, TRUE ) );
 
 		if( ! $result[ 'response_body' ] && ( $result[ 'info' ][ 'http_code' ] != 204 ) ) {
 			$this->logger->error( 'Response body couldn\'t be empty for method: ' . $method );
-			return false;
+			return FALSE;
 		}
 
 		$this->response = $result;
@@ -1086,7 +1087,7 @@ class OnApp {
 	 *
 	 * @return the array of Object instances
 	 */
-	public function getList( $params = null, $url_args = null ) {
+	public function getList( $params = NULL, $url_args = NULL ) {
 		$this->activate( ONAPP_ACTIVATE_GETLIST );
 
 		$this->logger->add( 'Run ' . __METHOD__ );
@@ -1094,7 +1095,7 @@ class OnApp {
 		$result = $this->sendGet( ONAPP_GETRESOURCE_LIST, $params, $url_args );
 
 		if( ! is_null( $this->getErrorsAsArray() ) ) {
-			return false;
+			return FALSE;
 		}
 		else {
 			if( ! is_array( $result ) && ! is_null( $result ) ) {
@@ -1116,7 +1117,7 @@ class OnApp {
 	 * @return mixed serialized Object instance from API
 	 * @access public
 	 */
-	function load( $id = null ) {
+	function load( $id = NULL ) {
 		$this->activate( ONAPP_ACTIVATE_LOAD );
 
 		if( is_null( $id ) && ! is_null( $this->_id ) ) {
@@ -1327,7 +1328,7 @@ class OnApp {
 		$this->sendDelete( ONAPP_GETRESOURCE_DELETE );
 
 		if( count( $this->getErrorsAsArray() ) < 1 ) {
-			$this->_is_deleted = true;
+			$this->_is_deleted = TRUE;
 		}
 	}
 
@@ -1368,7 +1369,7 @@ class OnApp {
 
 				$url_args = ( $url_args ) ? preg_replace( '/%5B(0-9){1,4}%5D/', '%5B%5D', http_build_query( $url_args ) ) : '';
 
-				$this->setAPIResource( $this->getURL( $resource ), true, $url_args );
+				$this->setAPIResource( $this->getURL( $resource ), TRUE, $url_args );
 
 				$response = $this->sendRequest( $method, $data );
 
@@ -1381,7 +1382,7 @@ class OnApp {
 					else {
 						$this->_obj->errors = $result->getErrorsAsArray();
 					}
-					return false;
+					return FALSE;
 				}
 				else {
 					$this->_obj = $result;
@@ -1390,7 +1391,6 @@ class OnApp {
 
 			default:
 				$this->logger->error( '_action: Can\'t find serialize and unserialize functions for type (apiVersion => \'' . $this->getAPIVersion() . "').", __FILE__, __LINE__ );
-				break;
 		}
 
 		return $result;
@@ -1420,9 +1420,9 @@ class OnApp {
 	 *
 	 * @return void
 	 */
-	public function setErrors( $errors = null ) {
+	public function setErrors( $errors = NULL ) {
 		if( is_null( $errors ) ) {
-			$this->errors = null;
+			$this->errors = NULL;
 		}
 		else {
 			$this->errors = (array)$errors;
@@ -1510,11 +1510,11 @@ class OnApp {
 			if( strpos( $name, '_' ) === 0 ) {
 				$name = substr( $name, 1 );
 				if( ! isset( $this->dynamicFields[ $name ] ) ) {
-					return null;
+					return NULL;
 				}
 			}
 			else {
-				return null;
+				return NULL;
 			}
 		}
 
@@ -1578,11 +1578,11 @@ class OnApp {
 			if( strpos( $name, '_' ) === 0 ) {
 				$name = substr( $name, 1 );
 				if( ! isset( $this->dynamicFields[ $name ] ) ) {
-					return null;
+					return NULL;
 				}
 			}
 			else {
-				return null;
+				return NULL;
 			}
 		}
 

@@ -128,7 +128,6 @@ class OnApp_LoadBalancingCluster extends OnApp {
 				 * @format {:controller=>"load_balancing_clusters", :action=>"destroy"}
 				 */
 				$resource = parent::getURL( $action );
-				break;
 		}
 
 		return $resource;
@@ -196,7 +195,7 @@ class OnApp_LoadBalancingCluster extends OnApp {
 
 		if( ! empty( $response[ 'errors' ] ) ) {
 			$this->errors = $response[ 'errors' ];
-			return false;
+			return FALSE;
 		}
 
 		$result     = $this->castStringToClass( $response );

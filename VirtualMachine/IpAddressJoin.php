@@ -117,7 +117,6 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 
 			default:
 				$resource = parent::getURL( $action );
-				break;
 		}
 
 		return $resource;
@@ -132,7 +131,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $virtual_machine_id = null, $url_args = null ) {
+	function getList( $virtual_machine_id = NULL, $url_args = NULL ) {
 		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
 			$virtual_machine_id = $this->_virtual_machine_id;
 		}
@@ -164,7 +163,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 	 * @return mixed serialized Object instance from API
 	 * @access public
 	 */
-	function load( $id = null, $virtual_machine_id = null ) {
+	function load( $id = NULL, $virtual_machine_id = NULL ) {
 		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
 			$virtual_machine_id = $this->_virtual_machine_id;
 		}

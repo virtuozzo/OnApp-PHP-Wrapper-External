@@ -62,13 +62,13 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 				}
 				else {
 					//todo add log message
-					return null;
+					return NULL;
 				}
 			}
 		}
 		catch( Exception $e ) {
 			echo PHP_EOL, $e->getMessage(), PHP_EOL;
-			return null;
+			return NULL;
 		}
 
 		// get API version
@@ -82,7 +82,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 			return $errors;
 		}
 
-		$result = null;
+		$result = NULL;
 		if( count( $data ) > 1 ) {
 			foreach( $data as $item ) {
 				$result[ ] = $this->process( $this->fixRootTag( $item, $root ) );
@@ -133,7 +133,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 
 	private function runBefore( &$data ) {
 		if( is_string( $data ) ) {
-			if( strpos( $data, '{"error"' ) !== false ) {
+			if( strpos( $data, '{"error"' ) !== FALSE ) {
 				$data = str_replace( '"error"', '"errors"', $data );
 			}
 		}

@@ -12,16 +12,8 @@
  * @see         OnApp
  */
 
-/**
- *
- *
- */
 define( 'ONAPP_GETRESOURCE_EDGE_GROUP_ASSIGN_LOCATION', 'edge_group_assign_location' );
 
-/**
- *
- *
- */
 define( 'ONAPP_GETRESOURCE_EDGE_GROUP_UNASSIGN_LOCATION', 'edge_group_unassign_location' );
 
 /**
@@ -46,7 +38,7 @@ class OnApp_EdgeGroup extends OnApp {
 	 */
 
 	public static $nestedData = array(
-		'assigned_locations' => 'EdgeGroup_AssignedLocation',
+		'assigned_locations'  => 'EdgeGroup_AssignedLocation',
 		'available_locations' => 'EdgeGroup_AvailableLocation',
 	);
 
@@ -103,7 +95,6 @@ class OnApp_EdgeGroup extends OnApp {
 
 			default:
 				$resource = parent::getURL( $action );
-				break;
 		}
 
 		$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );

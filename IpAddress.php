@@ -127,7 +127,6 @@ class OnApp_IpAddress extends OnApp {
 
 			default:
 				$resource = parent::getURL( $action );
-				break;
 		}
 
 		return $resource;
@@ -142,7 +141,7 @@ class OnApp_IpAddress extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $network_id = null, $url_args = null ) {
+	function getList( $network_id = NULL, $url_args = NULL ) {
 		if( is_null( $network_id ) && ! is_null( $this->_network_id ) ) {
 			$network_id = $this->_network_id;
 		}
@@ -150,7 +149,7 @@ class OnApp_IpAddress extends OnApp {
 		if( ! is_null( $network_id ) ) {
 			$this->_network_id = $network_id;
 
-			return parent::getList();
+			return parent::getList( $network_id, $url_args );
 		}
 		else {
 			$this->logger->error(
@@ -174,7 +173,7 @@ class OnApp_IpAddress extends OnApp {
 	 * @return mixed serialized Object instance from API
 	 * @access public
 	 */
-	function load( $id = null, $network_id = null ) {
+	function load( $id = NULL, $network_id = NULL ) {
 		if( is_null( $network_id ) && ! is_null( $this->_network_id ) ) {
 			$network_id = $this->_network_id;
 		}
