@@ -4,15 +4,15 @@
 /**
  * Edge Group Location
  *
- * @todo Add description
+ * @todo        Add description
  *
  * @category    API wrapper
- * @package        OnApp
- * @subpackage    EdgeGroup_Location
- * @author        Yakubskiy Yuriy
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @subpackage  EdgeGroup_Location
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
@@ -23,102 +23,44 @@
  */
 class OnApp_EdgeGroup_Location_Operator extends OnApp {
 	/**
+	 * Magic properties
+	 *
+	 * @property string  name
+	 * @property string  companyName
+	 * @property string  companyDescription
+	 * @property string  statusReason
+	 * @property string  updatedAt
+	 * @property string  username
+	 * @property string  role
+	 * @property integer id
+	 * @property string  companyPhone
+	 * @property integer principal
+	 * @property string  createdAt
+	 * @property string  status
+	 * @property string  email
+	 */
+
+	public static $nestedData = array(
+		'settings' => 'EdgeGroup_Location_Operator_Setting',
+	);
+
+	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = '';
+	protected $_tagRoot = '';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = '';
+	protected $_resource = '';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
-	}
-
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		switch( $version ) {
-			case '2.3':
-				$this->fields = array(
-					'name'               => array(
-						ONAPP_FIELD_MAP  => '_name',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'companyName'        => array(
-						ONAPP_FIELD_MAP  => '_companyName',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'companyDescription' => array(
-						ONAPP_FIELD_MAP  => '_companyDescription',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'statusReason'       => array(
-						ONAPP_FIELD_MAP  => '_statusReason',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'updatedAt'          => array(
-						ONAPP_FIELD_MAP  => '_updatedAt',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'username'           => array(
-						ONAPP_FIELD_MAP  => '_username',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'role'               => array(
-						ONAPP_FIELD_MAP  => '_role',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'id'                 => array(
-						ONAPP_FIELD_MAP  => '_id',
-						ONAPP_FIELD_TYPE => 'integer',
-					),
-					'companyPhone'       => array(
-						ONAPP_FIELD_MAP  => '_companyPhone',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'principal'          => array(
-						ONAPP_FIELD_MAP  => '_principal',
-						ONAPP_FIELD_TYPE => 'integer',
-					),
-					'createdAt'          => array(
-						ONAPP_FIELD_MAP  => '_createdAt',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'settings'           => array(
-						ONAPP_FIELD_MAP   => '_settings',
-						ONAPP_FIELD_TYPE  => 'array',
-						ONAPP_FIELD_CLASS => 'EdgeGroup_Location_Operator_Setting',
-					),
-					'status'             => array(
-						ONAPP_FIELD_MAP  => '_status',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'email'              => array(
-						ONAPP_FIELD_MAP  => '_email',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-				);
-				break;
-
-			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
-
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
 	}
 
 	/**

@@ -5,12 +5,12 @@
  * CDN Resource Bandwidth Statistics
  *
  * @category    API wrapper
- * @package        OnApp
- * @subpackage    CDNResource
- * @author        Yakubskiy Yuriy
- * @copyright    (c) 2012 OnApp
+ * @package     OnApp
+ * @subpackage  CDNResource
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2012 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
@@ -23,65 +23,30 @@
  */
 class OnApp_CDNResource_Bandwidth extends OnApp {
 	/**
+	 * Magic properties
+	 *
+	 * @property string non_cached
+	 * @property string date
+	 * @property string cached
+	 */
+
+	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'stat';
+	protected $_tagRoot = 'stat';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = 'cdn_resources/bandwidth';
+	protected $_resource = 'cdn_resources/bandwidth';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
-	}
-
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		switch( $version ) {
-			case '2.0':
-			case '2.1':
-			case '2.2':
-				break;
-			case '2.3':
-				$this->fields = array(
-					'non_cached' => array(
-						ONAPP_FIELD_MAP       => '_non_cached',
-						ONAPP_FIELD_TYPE      => 'string',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'date'       => array(
-						ONAPP_FIELD_MAP       => '_date',
-						ONAPP_FIELD_TYPE      => 'string',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'cached'     => array(
-						ONAPP_FIELD_MAP       => '_cached',
-						ONAPP_FIELD_TYPE      => 'string',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-				);
-				$this->fields = $this->initFields( 2.1 );
-				break;
-
-			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
-
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
 	}
 
 	/**
@@ -93,7 +58,7 @@ class OnApp_CDNResource_Bandwidth extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	public function getList( $url_args = null ) {
+	public function getList( $params = null, $url_args = null ) {
 		return parent::getList( null, $url_args );
 	}
 

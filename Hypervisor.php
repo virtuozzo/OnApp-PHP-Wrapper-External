@@ -19,11 +19,11 @@
  *    - Can have different CPU and RAM
  *
  * @category    API wrapper
- * @package        OnApp
- * @author        Andrew Yatskovets
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @author      Andrew Yatskovets
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
@@ -49,192 +49,53 @@ define( 'ONAPP_GETRESOURCE_HYPERVISOR_REBOOT', 'hypervisor_reboot' );
  */
 class OnApp_Hypervisor extends OnApp {
 	/**
+	 * Magic properties
+	 *
+	 * @property integer  id
+	 * @property datetime called_in_at
+	 * @property datetime created_at
+	 * @property integer  failure_count
+	 * @property yaml     health
+	 * @property ip_address
+	 * @property label
+	 * @property boolean  locked
+	 * @property integer  memory_overhead
+	 * @property boolean  online
+	 * @property boolean  spare
+	 * @property datetime updated_at
+	 * @property yaml     xen_info
+	 * @property boolean  enabled
+	 * @property integer  hypervisor_group_id
+	 * @property string   hypervisor_type
+	 * @property integer  cpu_cores
+	 * @property integer  free_memory
+	 * @property integer  total_cpus
+	 * @property integer  total_memory
+	 * @property integer  used_cpu_resources
+	 * @property integer  memory_allocated_by_running_vms
+	 * @property integer  total_memory_allocated_by_vms
+	 * @property boolean  disable_failover
+	 * @property string   redis_password
+	 * @property array    free_disk_space
+	 */
+
+	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'hypervisor';
+	protected $_tagRoot = 'hypervisor';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = 'settings/hypervisors';
+	protected $_resource = 'settings/hypervisors';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
-	}
-
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		switch( $version ) {
-			case '2.0':
-				$this->fields = array(
-					'id'              => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true
-					),
-					'called_in_at'    => array(
-						ONAPP_FIELD_MAP       => '_called_in_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'created_at'      => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'failure_count'   => array(
-						ONAPP_FIELD_MAP       => '_failure_count',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'health'          => array(
-						ONAPP_FIELD_MAP       => '_health',
-						ONAPP_FIELD_TYPE      => 'yaml',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'ip_address'      => array(
-						ONAPP_FIELD_MAP       => '_ip_address',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED  => true,
-					),
-					'label'           => array(
-						ONAPP_FIELD_MAP           => '_label',
-						ONAPP_FIELD_READ_ONLY     => true,
-						ONAPP_FIELD_REQUIRED      => true,
-						ONAPP_FIELD_DEFAULT_VALUE => ''
-					),
-					'locked'          => array(
-						ONAPP_FIELD_MAP       => '_locked',
-						ONAPP_FIELD_TYPE      => 'boolean',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'memory_overhead' => array(
-						ONAPP_FIELD_MAP       => '_memory_overhead',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'online'          => array(
-						ONAPP_FIELD_MAP       => '_online',
-						ONAPP_FIELD_TYPE      => 'boolean',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'spare'           => array(
-						ONAPP_FIELD_MAP       => '_spare',
-						ONAPP_FIELD_TYPE      => 'boolean',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'updated_at'      => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'xen_info'        => array(
-						ONAPP_FIELD_MAP       => '_xen_info',
-						ONAPP_FIELD_TYPE      => 'yaml',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-				);
-				break;
-
-			case '2.1':
-				$this->fields = $this->initFields( '2.0' );
-
-				$this->fields[ 'enabled' ] = array(
-					ONAPP_FIELD_MAP       => '_enabled',
-					ONAPP_FIELD_TYPE      => 'boolean',
-					ONAPP_FIELD_READ_ONLY => true,
-				);
-
-				$this->fields[ 'hypervisor_group_id' ] = array(
-					ONAPP_FIELD_MAP      => '_hypervisor_group_id',
-					ONAPP_FIELD_TYPE     => 'integer',
-					ONAPP_FIELD_REQUIRED => true,
-				);
-
-				$this->fields[ 'hypervisor_type' ] = array(
-					ONAPP_FIELD_MAP      => '_hypervisor_type',
-					ONAPP_FIELD_TYPE     => 'string',
-					ONAPP_FIELD_REQUIRED => true,
-				);
-				break;
-
-			case 2.2:
-				$this->fields = $this->initFields( 2.1 );
-				break;
-
-			case 2.3:
-				$this->fields = $this->initFields( 2.2 );
-				$fields       = array(
-					'raw_stats',
-				);
-				$this->unsetFields( $fields );
-				$this->fields[ 'cpu_cores' ]          = array(
-					ONAPP_FIELD_MAP       => 'cpu_cores',
-					ONAPP_FIELD_TYPE      => 'integer',
-					ONAPP_FIELD_READ_ONLY => true,
-				);
-				$this->fields[ 'free_memory' ]        = array(
-					ONAPP_FIELD_MAP       => 'free_memory',
-					ONAPP_FIELD_TYPE      => 'integer',
-					ONAPP_FIELD_READ_ONLY => true,
-				);
-				$this->fields[ 'total_cpus' ]         = array(
-					ONAPP_FIELD_MAP       => 'total_cpus',
-					ONAPP_FIELD_TYPE      => 'integer',
-					ONAPP_FIELD_READ_ONLY => true,
-				);
-				$this->fields[ 'total_memory' ]       = array(
-					ONAPP_FIELD_MAP       => 'total_memory',
-					ONAPP_FIELD_TYPE      => 'integer',
-					ONAPP_FIELD_READ_ONLY => true,
-				);
-				$this->fields[ 'used_cpu_resources' ] = array(
-					ONAPP_FIELD_MAP       => 'used_cpu_resources',
-					ONAPP_FIELD_TYPE      => 'integer',
-					ONAPP_FIELD_READ_ONLY => true,
-				);
-				$this->fields[ 'memory_allocated_by_running_vms' ] = array(
-					ONAPP_FIELD_MAP  => '_memory_allocated_by_running_vms',
-					ONAPP_FIELD_TYPE => 'integer',
-				);
-				$this->fields[ 'total_memory_allocated_by_vms' ]   = array(
-					ONAPP_FIELD_MAP  => '_total_memory_allocated_by_vms',
-					ONAPP_FIELD_TYPE => 'integer',
-				);
-				$this->fields[ 'disable_failover' ]                = array(
-					ONAPP_FIELD_MAP  => '_disable_failover',
-					ONAPP_FIELD_TYPE => 'boolean',
-				);
-				$this->fields[ 'redis_password' ]                  = array(
-					ONAPP_FIELD_MAP  => '_redis_password',
-					ONAPP_FIELD_TYPE => 'string',
-				);
-				$this->fields[ 'free_disk_space' ]                 = array(
-					ONAPP_FIELD_MAP  => '_free_disk_space',
-					ONAPP_FIELD_TYPE => '_array',
-
-				);
-
-				break;
-
-			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
-
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
 	}
 
 	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
@@ -242,6 +103,7 @@ class OnApp_Hypervisor extends OnApp {
 			case ONAPP_GETRESOURCE_HYPERVISORS_BY_HYPERVISOR_GROUP_ID:
 				/**
 				 * ROUTE :
+				 *
 				 * @name hypervisor_group_hypervisors
 				 * @method GET
 				 * @alias  /settings/hypervisor_zones/:hypervisor_group_id/hypervisors(.:format)
@@ -253,6 +115,7 @@ class OnApp_Hypervisor extends OnApp {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
 				 * ROUTE :
+				 *
 				 * @name hypervisors
 				 * @method GET
 				 * @alias  /settings/hypervisors(.:format)
@@ -260,20 +123,23 @@ class OnApp_Hypervisor extends OnApp {
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name hypervisor
 				 * @method GET
-				 * @alias  /settings/hypervisors/:id(.:format)
+				 * @alias   /settings/hypervisors/:id(.:format)
 				 * @format  {:controller=>"settings_hypervisors", :action=>"show"}
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method POST
-				 * @alias  /settings/hypervisors(.:format)
+				 * @alias   /settings/hypervisors(.:format)
 				 * @format  {:controller=>"settings_hypervisors", :action=>"create"}
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method PUT
 				 * @alias  /settings/hypervisors/:id(.:format)
@@ -281,9 +147,10 @@ class OnApp_Hypervisor extends OnApp {
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method DELETE
-				 * @alias  /settings/hypervisors/:id(.:format)
+				 * @alias   /settings/hypervisors/:id(.:format)
 				 * @format  {:controller=>"settings_hypervisors", :action=>"destroy"}
 				 */
 				$resource = parent::getResource( $action );
@@ -291,9 +158,10 @@ class OnApp_Hypervisor extends OnApp {
 			case ONAPP_GETRESOURCE_HYPERVISOR_REBOOT:
 				/**
 				 * ROUTE :
+				 *
 				 * @name reboot_hypervisor
 				 * @method POST
-				 * @alias  /settings/hypervisors/:id/reboot(.:format)
+				 * @alias   /settings/hypervisors/:id/reboot(.:format)
 				 * @format  {:action=>"reboot", :controller=>"settings_hypervisors"}
 				 */
 				$resource = $this->_resource . '/' . $this->_id . '/reboot';
@@ -345,6 +213,7 @@ class OnApp_Hypervisor extends OnApp {
 	 * Reboots hypervisor
 	 *
 	 * @param integer $hypervisor_id hypervisor id
+	 *
 	 * @return void
 	 *
 	 */

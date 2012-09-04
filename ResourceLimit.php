@@ -7,11 +7,11 @@
  * With OnApp you can assign resource limits to users. This will prevent users from exceeding the resources you specify.
  *
  * @category    API wrapper
- * @package        OnApp
- * @author        Andrew Yatskovets
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @author      Andrew Yatskovets
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
@@ -26,133 +26,40 @@
  */
 class OnApp_ResourceLimit extends OnApp {
 	/**
+	 * Magic properties
+	 *
+	 * @property integer  cpu_shares
+	 * @property integer  cpus
+	 * @property datetime created_at
+	 * @property integer  disk_size
+	 * @property integer  memory
+	 * @property datetime updated_at
+	 * @property integer  user_id
+	 * @property integer  storage_disk_size
+	 * @property integer  virtual_machines_count
+	 * @property integer  ip_address_count
+	 * @property integer  ip_address_mask
+	 * @property integer  backups_templates_count
+	 * @property integer  rate
+	 */
+
+	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'resource_limit';
+	protected $_tagRoot = 'resource_limit';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = 'resource_limit';
+	protected $_resource = 'resource_limit';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
-	}
-
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		switch( $version ) {
-			case '2.0':
-			case '2.1':
-				$this->fields = array(
-					'id'                     => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true
-					),
-					'cpu_shares'             => array(
-						ONAPP_FIELD_MAP           => '_cpu_shares',
-						ONAPP_FIELD_TYPE          => 'integer',
-						ONAPP_FIELD_REQUIRED      => true,
-						ONAPP_FIELD_DEFAULT_VALUE => ''
-					),
-					'cpus'                   => array(
-						ONAPP_FIELD_MAP           => '_cpus',
-						ONAPP_FIELD_TYPE          => 'integer',
-						ONAPP_FIELD_REQUIRED      => true,
-						ONAPP_FIELD_DEFAULT_VALUE => ''
-					),
-					'created_at'             => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'disk_size'              => array(
-						ONAPP_FIELD_MAP           => '_disk_size',
-						ONAPP_FIELD_TYPE          => 'integer',
-						ONAPP_FIELD_REQUIRED      => true,
-						ONAPP_FIELD_DEFAULT_VALUE => ''
-					),
-					'memory'                 => array(
-						ONAPP_FIELD_MAP           => '_memory',
-						ONAPP_FIELD_TYPE          => 'integer',
-						ONAPP_FIELD_REQUIRED      => true,
-						ONAPP_FIELD_DEFAULT_VALUE => ''
-					),
-					'updated_at'             => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'user_id'                => array(
-						ONAPP_FIELD_MAP       => '_user_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'storage_disk_size'      => array(
-						ONAPP_FIELD_MAP           => '_storage_disk_size',
-						ONAPP_FIELD_TYPE          => 'integer',
-						ONAPP_FIELD_REQUIRED      => true,
-						ONAPP_FIELD_DEFAULT_VALUE => ''
-					),
-					'virtual_machines_count' => array(
-						ONAPP_FIELD_MAP           => '_virtual_machines_count',
-						ONAPP_FIELD_TYPE          => 'integer',
-						ONAPP_FIELD_REQUIRED      => true,
-						ONAPP_FIELD_DEFAULT_VALUE => ''
-					),
-				);
-				break;
-
-			case 2.2:
-			case 2.3:
-				$this->fields = $this->initFields( 2.1 );
-
-				$this->fields[ 'ip_address_count' ]        = array(
-					ONAPP_FIELD_MAP       => 'ip_address_count',
-					ONAPP_FIELD_TYPE      => 'integer',
-					ONAPP_FIELD_READ_ONLY => true,
-				);
-				$this->fields[ 'ip_address_mask' ]         = array(
-					ONAPP_FIELD_MAP       => 'ip_address_mask',
-					ONAPP_FIELD_TYPE      => 'integer',
-					ONAPP_FIELD_READ_ONLY => true,
-				);
-				$this->fields[ 'backups_templates_count' ] = array(
-					ONAPP_FIELD_MAP       => 'backups_templates_count',
-					ONAPP_FIELD_TYPE      => 'integer',
-					ONAPP_FIELD_READ_ONLY => true,
-				);
-				$this->fields[ 'rate' ]                    = array(
-					ONAPP_FIELD_MAP       => 'rate',
-					ONAPP_FIELD_TYPE      => 'integer',
-					ONAPP_FIELD_READ_ONLY => true,
-				);
-
-				$fields = array(
-					'id'
-				);
-				$this->unsetFields( $fields );
-				break;
-
-			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
-
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
 	}
 
 	/**
@@ -167,6 +74,7 @@ class OnApp_ResourceLimit extends OnApp {
 			case ONAPP_GETRESOURCE_EDIT:
 				/**
 				 * ROUTE :
+				 *
 				 * @name user_resource_limit
 				 * @method GET
 				 * @alias   /users/:user_id/resource_limit(.:format)
@@ -174,6 +82,7 @@ class OnApp_ResourceLimit extends OnApp {
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name user_resource_limit
 				 * @method GET
 				 * @alias   /users/:user_id/resource_limit(.:format)

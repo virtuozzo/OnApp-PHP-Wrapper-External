@@ -6,11 +6,11 @@
  *
  *
  * @category    API wrapper
- * @package        OnApp
- * @author        Yakubskiy Yuriy
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
@@ -25,86 +25,34 @@
  */
 class OnApp_Log extends OnApp {
 	/**
+	 * Magic properties
+	 *
+	 * @property integer  id
+	 * @property integer  target_id
+	 * @property datetime created_at
+	 * @property string   target_type
+	 * @property string   updated_at
+	 * @property string   action
+	 * @property string   status
+	 */
+
+	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'log_item';
+	protected $_tagRoot = 'log_item';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = 'logs';
+	protected $_resource = 'logs';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
-	}
-
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		switch( $version ) {
-			case '2.0':
-			case '2.1':
-				$this->fields = array(
-					'id'          => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'target_id'   => array(
-						ONAPP_FIELD_MAP       => '_target_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'created_at'  => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true
-					),
-					'target_type' => array(
-						ONAPP_FIELD_MAP      => '_target_type',
-						ONAPP_FIELD_TYPE     => 'string',
-						ONAPP_FIELD_REQUIRED => true,
-					),
-					'updated_at'  => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'string',
-						ONAPP_FIELD_READ_ONLY => true
-					),
-					'action'      => array(
-						ONAPP_FIELD_MAP       => '_action',
-						ONAPP_FIELD_TYPE      => 'string',
-						ONAPP_FIELD_READ_ONLY => true
-					),
-					'status'      => array(
-						ONAPP_FIELD_MAP       => '_status',
-						ONAPP_FIELD_TYPE      => 'string',
-						ONAPP_FIELD_READ_ONLY => true
-					),
-				);
-				break;
-
-			case 2.2:
-			case 2.3:
-				$this->initFields( 2.1 );
-				break;
-
-			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
-
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
 	}
 
 	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
@@ -112,16 +60,18 @@ class OnApp_Log extends OnApp {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
 				 * ROUTE :
+				 *
 				 * @name log_items
 				 * @method GET
-				 * @alias  /logs(.:format)
+				 * @alias   /logs(.:format)
 				 * @format  {:controller=>"log_items", :action=>"index"}
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name log_item
 				 * @method GET
-				 * @alias  /logs/:id(.:format)
+				 * @alias    /logs/:id(.:format)
 				 * @format   {:controller=>"log_items", :action=>"show"}
 				 */
 

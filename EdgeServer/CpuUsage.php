@@ -1,5 +1,4 @@
 <?php
-
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
@@ -7,12 +6,12 @@
  *
  *
  * @category    API wrapper
- * @package        OnApp
- * @subpackage    EdgeServer
- * @author        Yakubskiy Yuriy
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @subpackage  EdgeServer
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
@@ -44,9 +43,10 @@ class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
 			case ONAPP_GETRESOURCE_LIST:
 				/**
 				 * ROUTE :
+				 *
 				 * @name cpu_usage_edge_servers
 				 * @method GET
-				 * @alias  /edge_servers/:id/cpu_usage(.:format)
+				 * @alias   /edge_servers/:id/cpu_usage(.:format)
 				 * @format  {:controller=>"edge_servers", :action=>"cpu_usage"}
 				 */
 				if( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
@@ -83,7 +83,7 @@ class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $virtual_machine_id = null ) {
+	function getList( $virtual_machine_id = null, $url_args = null ) {
 		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
 			$virtual_machine_id = $this->_virtual_machine_id;
 		}
@@ -91,7 +91,7 @@ class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
 		if( ! is_null( $virtual_machine_id ) ) {
 			$this->_virtual_machine_id = $virtual_machine_id;
 
-			return parent::getList();
+			return parent::getList( $virtual_machine_id, $url_args );
 		}
 		else {
 			$this->logger->error(

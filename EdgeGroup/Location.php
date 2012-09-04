@@ -4,15 +4,15 @@
 /**
  * Manages Edge Group Location
  *
- * @todo Add description
+ * @todo        Add description
  *
  * @category    API wrapper
- * @package        OnApp
- * @subpackage    EdgeGroup
- * @author        Yakubskiy Yuriy
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @subpackage  EdgeGroup
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
@@ -23,105 +23,44 @@
  */
 class OnApp_EdgeGroup_Location extends OnApp {
 	/**
+	 * Magic properties
+	 *
+	 * @property string  city
+	 * @property string  region
+	 * @property float   price
+	 * @property float   latitude
+	 * @property string  country
+	 * @property boolean deleted
+	 * @property integer id
+	 * @property boolean geoblocking
+	 * @property string  createdAt
+	 * @property integer updatedAt
+	 * @property string  description
+	 * @property float   longitude
+	 * @property string  status
+	 */
+
+	public static $nestedData = array(
+		'operator' => 'EdgeGroup_Location_Operator',
+	);
+
+	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = '';
+	protected $_tagRoot = '';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = '';
+	protected $_resource = '';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
-	}
-
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		switch( $version ) {
-			case '2.3':
-				$this->fields = array(
-					'city'        => array(
-						ONAPP_FIELD_MAP  => '_city',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'region'      => array(
-						ONAPP_FIELD_MAP  => '_region',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'price'       => array(
-						ONAPP_FIELD_MAP  => '_price',
-						ONAPP_FIELD_TYPE => 'float',
-					),
-					'latitude'    => array(
-						ONAPP_FIELD_MAP  => '_latitude',
-						ONAPP_FIELD_TYPE => 'float',
-					),
-					'country'     => array(
-						ONAPP_FIELD_MAP  => '_country',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'deleted'     => array(
-						ONAPP_FIELD_MAP  => '_deleted',
-						ONAPP_FIELD_TYPE => 'boolean',
-					),
-					'id'          => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'geoblocking' => array(
-						ONAPP_FIELD_MAP  => '_geoblocking',
-						ONAPP_FIELD_TYPE => 'boolean',
-					),
-					'createdAt'   => array(
-						ONAPP_FIELD_MAP  => '_createdAt',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'updatedAt'   => array(
-						ONAPP_FIELD_MAP  => '_updatedAt',
-						ONAPP_FIELD_TYPE => 'integer',
-					),
-					'description' => array(
-						ONAPP_FIELD_MAP  => '_description',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'longitude'   => array(
-						ONAPP_FIELD_MAP  => '_longitude',
-						ONAPP_FIELD_TYPE => 'float',
-					),
-					'status'      => array(
-						ONAPP_FIELD_MAP  => '_status',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'operator'    => array(
-						ONAPP_FIELD_MAP   => '_operator',
-						ONAPP_FIELD_TYPE  => 'array',
-						ONAPP_FIELD_CLASS => 'EdgeGroup_Location_Operator',
-
-					),
-
-				);
-				break;
-
-			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
-
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
 	}
 
 	/**

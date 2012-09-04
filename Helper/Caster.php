@@ -3,10 +3,10 @@
  * Serialize and Unserialize Object to/from JSON|XML for OnApp wrapper
  *
  * @category    OBJECT CAST
- * @package        OnApp
- * @subpackage    Helper
- * @author        Lev Bartashevsky
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @subpackage  Helper
+ * @author      Lev Bartashevsky
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
  */
 class OnApp_Helper_Caster {
@@ -53,6 +53,7 @@ class OnApp_Helper_Caster {
 	 * Unserialize nested data
 	 *
 	 * @static
+	 *
 	 * @param OnAppNestedDataHolder $object object storing nested data
 	 *
 	 * @return array

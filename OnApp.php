@@ -6,14 +6,14 @@
  * and account management tasks
  *
  * @category    API wrapper
- * @package        OnApp
- * @author        Andrew Yatskovets
- * @author        Yakubskiy Yuriy
- * @author        Lev Bartashevsky
- * @copyright    (c) 2011-2012 OnApp
+ * @package     OnApp
+ * @author      Andrew Yatskovets
+ * @author      Yakubskiy Yuriy
+ * @author      Lev Bartashevsky
+ * @copyright   (c) 2011-2012 OnApp
  * @link        http://www.onapp.com/
  *
- * @todo Pack using the lib (http://pecl.php.net/)
+ * @todo        Pack using the lib (http://pecl.php.net/)
  */
 
 /**
@@ -184,7 +184,7 @@ define( 'ONAPP_REQUEST_METHOD_DELETE', 'DELETE' );
  * @package OnApp
  *
  *
- * @todo Pack using the lib (http://pecl.php.net/)
+ * @todo    Pack using the lib (http://pecl.php.net/)
  *
  * The wrapper is used to describe the following basic methods: {@link load},
  * {@link save}, {@link delete} and {@link getList}.
@@ -194,10 +194,10 @@ define( 'ONAPP_REQUEST_METHOD_DELETE', 'DELETE' );
  * <code>
  *
  *    // root tag used in the API request
- *    var $_tagRoot  = '<root>';
+ *    protected $_tagRoot  = '<root>';
  *
  *    // alias processing the object data
- *    var $_resource = '<alias>';
+ *    protected $_resource = '<alias>';
  *
  *    // the fields array used in the response and request to the API server
  *    var $fields   = array(
@@ -326,22 +326,22 @@ class OnApp {
 	 */
 	private $defaultOptions = array(
 		// cURL proxy
-		ONAPP_OPTION_CURL_PROXY  => '',
+		ONAPP_OPTION_CURL_PROXY => '',
 
 		// cURL url
-		ONAPP_OPTION_CURL_URL    => '',
+		ONAPP_OPTION_CURL_URL => '',
 
 		// API request and response charset
 		ONAPP_OPTION_API_CHARSET => 'charset=utf-8',
 
 		// API request and response type
-		ONAPP_OPTION_API_TYPE    => 'json',
+		ONAPP_OPTION_API_TYPE => 'json',
 
 		// API request and response content
 		ONAPP_OPTION_API_CONTENT => 'application/json',
 
 		// Debug mode
-		ONAPP_OPTION_DEBUG_MODE  => false,
+		ONAPP_OPTION_DEBUG_MODE => false,
 	);
 
 	/**
@@ -422,21 +422,21 @@ class OnApp {
 	/**
 	 * @access private
 	 * @var    boolean
-	 * @todo move in to getter an setter
+	 * @todo   move in to getter an setter
 	 */
 	var $_is_auth = false;
 
 	/**
 	 * @access private
 	 * @var    boolean
-	 * @todo move in to getter an setter
+	 * @todo   move in to getter an setter
 	 */
 	var $_is_changed = false;
 
 	/**
 	 * @access private
 	 * @var    boolean
-	 * @todo move in to getter an setter
+	 * @todo   move in to getter an setter
 	 */
 	var $_is_deleted = false;
 
@@ -591,7 +591,7 @@ class OnApp {
 	 * @return boolean true if authenticated
 	 * @access public
 	 *
-	 * @todo move to the defaut getter
+	 * @todo   move to the defaut getter
 	 */
 	function isAuthenticate() {
 		return $this->_is_auth;
@@ -603,7 +603,7 @@ class OnApp {
 	 * @return boolean true if the Object was changed
 	 * @access public
 	 *
-	 * @todo move to the defaut getter
+	 * @todo   move to the defaut getter
 	 */
 	function isChanged() {
 		return $this->_is_changed;
@@ -616,7 +616,7 @@ class OnApp {
 	 * @return boolean true if the Object was deleted
 	 * @access public
 	 *
-	 * @todo move to the defaut getter
+	 * @todo   move to the defaut getter
 	 */
 	function isDelete() {
 		return $this->_is_deleted;
@@ -644,9 +644,9 @@ class OnApp {
 	 * needed. When authorized, {@link load}, {@link save}, {@link delete} and
 	 * {@link getList} methods can be used.
 	 *
-	 * @param string $url API URL
-	 * @param string $user user name
-	 * @param string $pass password
+	 * @param string $url   API URL
+	 * @param string $user  user name
+	 * @param string $pass  password
 	 * @param string $proxy (optional) proxy server
 	 *
 	 * @return void
@@ -709,7 +709,10 @@ class OnApp {
 		$this->version = (float)$this->version;
 	}
 
+	// todo delete
 	public function initFields( $version = null, $className = '' ) {
+		return array();
+
 		if( ! is_null( $version ) ) {
 			$this->version = $version;
 		}
@@ -738,14 +741,14 @@ class OnApp {
 	/**
 	 * Sets an option for a cURL transfer
 	 *
-	 * @param string $user user name
-	 * @param string $pass password
+	 * @param string $user      user name
+	 * @param string $pass      password
 	 * @param string $cookiedir Cookies directory
 	 *
 	 * @return void
 	 * @access private
 	 *
-	 * @todo check response from basic URL
+	 * @todo   check response from basic URL
 	 */
 	function _init_curl( $user, $pass, $cookiedir = '' ) {
 		$this->logger->debug( "_init_curl: Init Curl (cookiedir => '$cookiedir')." );
@@ -782,9 +785,9 @@ class OnApp {
 	/**
 	 * Sets full API path to the variable cURL
 	 *
-	 * @param string $resource API alias
+	 * @param string  $resource    API alias
 	 * @param boolean $append_api_version
-	 * @param string $queryString API request
+	 * @param string  $queryString API request
 	 *
 	 * @return void
 	 * @access public
@@ -829,7 +832,7 @@ class OnApp {
 	/**
 	 * Sends API request to the API server and gets response from it
 	 *
-	 * @param string $method
+	 * @param string     $method
 	 * @param array|null $data
 	 *
 	 * @return array|bool cURL response
@@ -947,6 +950,7 @@ class OnApp {
 	/**
 	 *
 	 * @param type $label
+	 *
 	 * @return string
 	 */
 	public function getHeader( $label = NULL ) {
@@ -1097,6 +1101,7 @@ class OnApp {
 	 * unserializes the received response into the array of Objects
 	 *
 	 * @param mixed $params
+	 *
 	 * @return the array of Object instances
 	 */
 	public function getList( $params = null, $url_args = null ) {
@@ -1363,8 +1368,8 @@ class OnApp {
 	/**
 	 * Sends API Requests to realize not base actions
 	 *
-	 * @param string $method
-	 * @param string $resource
+	 * @param string     $method
+	 * @param string     $resource
 	 * @param array|null $data
 	 *
 	 * @return bool|mixed (Array of Object or Object)
@@ -1430,6 +1435,7 @@ class OnApp {
 	 * Store errors
 	 *
 	 * @param mixed $errors
+	 *
 	 * @return void
 	 */
 	public function setErrors( $errors = null ) {

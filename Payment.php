@@ -9,11 +9,11 @@
  * them.
  *
  * @category    API wrapper
- * @package        OnApp
- * @author        Andrew Yatskovets
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @author      Andrew Yatskovets
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
@@ -28,83 +28,33 @@
  */
 class OnApp_Payment extends OnApp {
 	/**
+	 * Magic properties
+	 *
+	 * @property integer  id
+	 * @property decimal  amount
+	 * @property datetime created_at
+	 * @property string   invoice_number
+	 * @property datetime updated_at
+	 * @property integer  user_id
+	 */
+
+	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'payment';
+	protected $_tagRoot = 'payment';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = 'payments';
+	protected $_resource = 'payments';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
-	}
-
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		switch( $version ) {
-			case '2.0':
-			case '2.1':
-				$this->fields = array(
-					'id'             => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'amount'         => array(
-						ONAPP_FIELD_MAP           => '_amount',
-						ONAPP_FIELD_TYPE          => 'decimal',
-						ONAPP_FIELD_REQUIRED      => true,
-						ONAPP_FIELD_DEFAULT_VALUE => '0.0',
-					),
-					'created_at'     => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true
-					),
-					'invoice_number' => array(
-						ONAPP_FIELD_MAP      => '_invoice_number',
-						ONAPP_FIELD_TYPE     => 'string',
-						ONAPP_FIELD_REQUIRED => true,
-					),
-					'updated_at'     => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true
-					),
-					'user_id'        => array(
-						ONAPP_FIELD_MAP       => '_user_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_REQUIRED  => true,
-						ONAPP_FIELD_READ_ONLY => true
-					),
-				);
-				break;
-
-			case 2.2:
-			case 2.3:
-				$this->initFields( 2.1 );
-				break;
-
-			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
-
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
 	}
 
 	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
@@ -112,27 +62,31 @@ class OnApp_Payment extends OnApp {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
 				 * ROUTE :
-				 * @name /users/:user_id/payments(.:format)
+				 *
+				 * @name    /users/:user_id/payments(.:format)
 				 * @method GET
-				 * @alias  /virtual_machines(.:format)
+				 * @alias   /virtual_machines(.:format)
 				 * @format  {:controller=>"payments", :action=>"index"}
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name user_payment
 				 * @method GET
-				 * @alias  /users/:user_id/payments/:id(.:format)
+				 * @alias    /users/:user_id/payments/:id(.:format)
 				 * @format   {:controller=>"payments", :action=>"show"}
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method POST
-				 * @alias  /users/:user_id/payments(.:format)
+				 * @alias   /users/:user_id/payments(.:format)
 				 * @format  {:controller=>"payments", :action=>"create"}
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method PUT
 				 * @alias   /users/:user_id/payments/:id(.:format)
@@ -140,9 +94,10 @@ class OnApp_Payment extends OnApp {
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method DELETE
-				 * @alias  /users/:user_id/payments/:id(.:format)
+				 * @alias   /users/:user_id/payments/:id(.:format)
 				 * @format  {:controller=>"payments", :action=>"destroy"}
 				 */
 				$resource = 'users/' . $this->_user_id . '/' . $this->_resource;
@@ -166,14 +121,14 @@ class OnApp_Payment extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $user_id = null ) {
+	function getList( $user_id = null, $url_args = null ) {
 		if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
 			$user_id = $this->_user_id;
 		}
 
 		if( ! is_null( $user_id ) ) {
 			$this->_user_id = $user_id;
-			return parent::getList();
+			return parent::getList( $user_id, $url_args );
 		}
 		else {
 			$this->logger->error(
@@ -191,7 +146,7 @@ class OnApp_Payment extends OnApp {
 	 * The key field Parameter ID is used to load the Object. You can re-set
 	 * this parameter in the class inheriting OnApp class.
 	 *
-	 * @param integer $id Payment ID
+	 * @param integer $id      Payment ID
 	 * @param integer $user_id User ID
 	 *
 	 * @return mixed serialized Object instance from API

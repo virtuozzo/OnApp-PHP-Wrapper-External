@@ -5,12 +5,12 @@
  * CDN Resource Origins for API
  *
  * @category    API wrapper
- * @package        OnApp
- * @subpackage    CDNResource
- * @author        Yakubskiy Yuriy
- * @copyright    (c) 2012 OnApp
+ * @package     OnApp
+ * @subpackage  CDNResource
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2012 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
@@ -21,61 +21,29 @@
  */
 class OnApp_CDNResource_Origin extends OnApp {
 	/**
+	 * Magic properties
+	 *
+	 * @property string value
+	 * @property string key
+	 */
+
+	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'origin';
+	protected $_tagRoot = 'origin';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = 'origins_for_api';
+	protected $_resource = 'origins_for_api';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
-	}
-
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		switch( $version ) {
-			case '2.0':
-			case '2.1':
-				$this->fields = array(
-					'value' => array(
-						ONAPP_FIELD_MAP       => '_value',
-						ONAPP_FIELD_TYPE      => 'string',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'key'   => array(
-						ONAPP_FIELD_MAP       => '_key',
-						ONAPP_FIELD_TYPE      => 'string',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-				);
-				break;
-
-			case 2.2:
-			case 2.3:
-				$this->fields = $this->initFields( 2.1 );
-				break;
-
-			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
-
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
 	}
 
 	/**

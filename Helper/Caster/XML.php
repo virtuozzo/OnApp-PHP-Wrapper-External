@@ -3,21 +3,21 @@
  * Serialize and Unserialize Object to/from XML for OnApp wrapper
  *
  * @category    OBJECT CAST
- * @package        OnApp
- * @subpackage    Caster
- * @author        Lev Bartashevsky
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @subpackage  Caster
+ * @author      Lev Bartashevsky
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
  */
 class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 	private $className;
 	private $types = array(
 		'datetime' => 's',
-		'float'    => 'f',
-		'decimal'  => 'f',
-		'integer'  => 'd',
-		'boolean'  => 's',
-		''         => 's'
+		'float' => 'f',
+		'decimal' => 'f',
+		'integer' => 'd',
+		'boolean' => 's',
+		'' => 's'
 	);
 
 	private static $unknown_tag = 'item';
@@ -41,7 +41,7 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 	/**
 	 * Unserialize XML data to wrapper object(s)
 	 *
-	 * @param string        $className  class name to cast into
+	 * @param string        $className   class name to cast into
 	 * @param string|array  $data        XML or array containing nested data
 	 * @param string        $root        root tag
 	 *
@@ -168,8 +168,8 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 	 * Pass in a multidimensional array and this recrusively loops through and builds up an XML document.
 	 *
 	 * @param mixed                $data    data for converting
-	 * @param string            $root    what you want the root node to be
-	 * @param SimpleXMLElement    $xml    should only be used recursively
+	 * @param string               $root    what you want the root node to be
+	 * @param SimpleXMLElement     $xml     should only be used recursively
 	 *
 	 * @return string XML
 	 */

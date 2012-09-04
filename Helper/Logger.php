@@ -27,11 +27,11 @@
  * is a complicated process and organizations often make mistakes while
  * approaching it.
  *
- * @category  LOGGER
- * @package        OnApp
- * @subpackage    Helper
- * @author        Andrew Yatskovets
- * @copyright    (c) 2011 OnApp
+ * @category    LOGGER
+ * @package     OnApp
+ * @subpackage  Helper
+ * @author      Andrew Yatskovets
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
  */
 
@@ -135,7 +135,7 @@ class OnApp_Helper_Logger {
 	 * Adds the error message to the logger buffer and stops
 	 * executing
 	 *
-	 * @param string  $msg log message
+	 * @param string  $msg  log message
 	 * @param string  $file file which initialized error
 	 * @param integer $line string in which was initialized error
 	 *
@@ -178,7 +178,7 @@ class OnApp_Helper_Logger {
 	 * Adds the message and additional data to the buffer depending
 	 * on the message type
 	 *
-	 * @param string $msg log message
+	 * @param string $msg  log message
 	 * @param string $type log type
 	 *
 	 * @return boolean

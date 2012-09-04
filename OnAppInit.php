@@ -3,9 +3,9 @@
  * OnApp API wrapper bootstrap
  *
  * @category    API wrapper
- * @package        OnApp
- * @author        Lev Bartashevsky
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @author      Lev Bartashevsky
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
  */
 if( ! defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
@@ -43,6 +43,7 @@ if( ! defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
 			require $path;
 
 			if( ! class_exists( $className ) ) {
+				var_dump( $className, $path );
 				if( IS_CLI ) {
 					echo '[ AUTOLOAD ]    File ' . $path . ' does not exist or can not be read';
 				}

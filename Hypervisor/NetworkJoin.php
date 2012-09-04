@@ -4,15 +4,15 @@
 /**
  * Network Joins
  *
- * @todo Add description
+ * @todo        Add description
  *
  * @category    API wrapper
- * @package        OnApp
- * @subpackage    Hypervisor
- * @author        Vitaliy Kondratyuk
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @subpackage  Hypervisor
+ * @author      Vitaliy Kondratyuk
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
@@ -27,94 +27,35 @@
  */
 class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	/**
+	 * Magic properties
+	 *
+	 * @property integer  id
+	 * @property datetime created_at
+	 * @property datetime updated_at
+	 * @property integer  network_id
+	 * @property integer  hypervisor_id
+	 * @property interface
+	 * @property integer  target_join_id
+	 * @property string   target_join_type
+	 */
+
+	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'network_join';
+	protected $_tagRoot = 'network_join';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = 'network_joins';
+	protected $_resource = 'network_joins';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
-	}
-
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		switch( $version ) {
-			case '2.0':
-				$this->fields = array(
-					'id'            => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true
-					),
-					'created_at'    => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'updated_at'    => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'network_id'    => array(
-						ONAPP_FIELD_MAP      => '_network_id',
-						ONAPP_FIELD_TYPE     => 'integer',
-						ONAPP_FIELD_REQUIRED => true,
-					),
-					'hypervisor_id' => array(
-						ONAPP_FIELD_MAP       => '_hypervisor_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'interface'     => array(
-						ONAPP_FIELD_MAP       => '_interface',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED  => true,
-					),
-				);
-				break;
-
-			case '2.1':
-				$this->fields                       = $this->initFields( '2.0' );
-				$this->fields[ 'target_join_id' ]   = array(
-					ONAPP_FIELD_MAP      => '_target_join_id',
-					ONAPP_FIELD_TYPE     => 'integer',
-					ONAPP_FIELD_REQUIRED => true
-				);
-				$this->fields[ 'target_join_type' ] = array(
-					ONAPP_FIELD_MAP      => '_target_join_type',
-					ONAPP_FIELD_TYPE     => 'string',
-					ONAPP_FIELD_REQUIRED => true
-				);
-				break;
-
-			case 2.2:
-			case 2.3:
-				$this->fields = $this->initFields( 2.1 );
-				break;
-
-			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
-
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
 	}
 
 	/**
@@ -130,23 +71,26 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
 				 * ROUTE :
+				 *
 				 * @name hypervisor_network_joins
 				 * @method GET
-				 * @alias  /settings/hypervisors/:hypervisor_id/network_joins(.:format)
+				 * @alias   /settings/hypervisors/:hypervisor_id/network_joins(.:format)
 				 * @format  {:controller=>"network_joins", :action=>"index"}
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method POST
-				 * @alias  /settings/hypervisors/:hypervisor_id/network_joins(.:format)
+				 * @alias   /settings/hypervisors/:hypervisor_id/network_joins(.:format)
 				 * @format  {:controller=>"network_joins", :action=>"create"}
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name  hypervisor_network_join
 				 * @method DELETE
-				 * @alias /settings/hypervisors/:hypervisor_id/network_joins/:id(.:format)
+				 * @alias   /settings/hypervisors/:hypervisor_id/network_joins/:id(.:format)
 				 * @format  {:controller=>"network_joins", :action=>"destroy"}
 				 */
 				if( is_null( $this->_hypervisor_id ) && is_null( $this->_obj->_hypervisor_id ) ) {
@@ -182,14 +126,14 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $hypervisor_id = null ) {
+	function getList( $hypervisor_id = null, $url_args = null ) {
 		if( is_null( $hypervisor_id ) && ! is_null( $this->_hypervisor_id ) ) {
 			$hypervisor_id = $this->_hypervisor_id;
 		}
 
 		if( ! is_null( $hypervisor_id ) ) {
 			$this->_hypervisor_id = $hypervisor_id;
-			return parent::getList();
+			return parent::getList( $hypervisor_id, $url_args );
 		}
 		else {
 			$this->logger->error(
@@ -207,7 +151,7 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	 * The key field Parameter ID is used to load the Object. You can re-set
 	 * this parameter in the class inheriting OnApp class.
 	 *
-	 * @param integer $id Network Join ID
+	 * @param integer $id            Network Join ID
 	 * @param integer $hypervisor_id Hypervisor ID
 	 *
 	 * @return mixed serialized Object instance from API

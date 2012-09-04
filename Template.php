@@ -11,11 +11,11 @@
  *  - templates you can create by means of backing up and duplicating the existing virtual machine
  *
  * @category    API wrapper
- * @package        OnApp
- * @author        Andrew Yatskovets
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @author      Andrew Yatskovets
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 define( 'ONAPP_GET_USERTEMPLATES_LIST', 'user' );
@@ -32,198 +32,53 @@ define( 'ONAPP_GET_USERTEMPLATES_LIST', 'user' );
  */
 class OnApp_Template extends OnApp {
 	/**
+	 * Magic properties
+	 *
+	 * @property integer  id
+	 * @property boolean  allow_resize_without_reboot
+	 * @property boolean  allowed_swap
+	 * @property checksum
+	 * @property datetime created_at
+	 * @property file_name
+	 * @property label
+	 * @property integer  min_disk_size
+	 * @property operating_system
+	 * @property operating_system_distro
+	 * @property state
+	 * @property datetime updated_at
+	 * @property integer  user_id
+	 * @property version
+	 * @property integer  template_size
+	 * @property boolean  allowed_hot_migrate
+	 * @property string   operating_system_arch
+	 * @property string   operating_system_edition
+	 * @property string   operating_system_tail
+	 * @property string   virtualization
+	 * @property integer  parent_template_id
+	 * @property integer  min_memory_size
+	 * @property string   disk_target_device
+	 * @property boolean  cdn
+	 * @property template_set_ids
+	 * @property integer  backup_server_id
+	 */
+
+	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'image_template';
+	protected $_tagRoot = 'image_template';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = 'templates';
+	protected $_resource = 'templates';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
-	}
-
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		switch( $version ) {
-			case '2.0':
-				$this->fields = array(
-					'id'                          => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true
-					),
-					'allow_resize_without_reboot' => array(
-						ONAPP_FIELD_MAP       => '_allow_resize_without_reboot',
-						ONAPP_FIELD_TYPE      => 'boolean',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED  => true,
-					),
-					'allowed_swap'                => array(
-						ONAPP_FIELD_MAP       => '_allowed_swap',
-						ONAPP_FIELD_TYPE      => 'boolean',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED  => true,
-					),
-					'checksum'                    => array(
-						ONAPP_FIELD_MAP       => '_checksum',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED  => true,
-					),
-					'created_at'                  => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED  => true,
-					),
-					'file_name'                   => array(
-						ONAPP_FIELD_MAP       => '_file_name',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED  => true,
-					),
-					'label'                       => array(
-						ONAPP_FIELD_MAP       => '_label',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED  => true,
-					),
-					'min_disk_size'               => array(
-						ONAPP_FIELD_MAP       => '_min_disk_size',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED  => true,
-					),
-					'operating_system'            => array(
-						ONAPP_FIELD_MAP       => '_operating_system',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED  => true,
-					),
-					'operating_system_distro'     => array(
-						ONAPP_FIELD_MAP       => '_operating_system_distro',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED  => true,
-					),
-					'state'                       => array(
-						ONAPP_FIELD_MAP       => '_state',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED  => true,
-					),
-					'updated_at'                  => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED  => true,
-					),
-					'user_id'                     => array(
-						ONAPP_FIELD_MAP       => '_user_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED  => true,
-					),
-					'version'                     => array(
-						ONAPP_FIELD_MAP       => '_template_version',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED  => true,
-					),
-					'template_size'               => array(
-						ONAPP_FIELD_MAP       => '_template_size',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-				);
-				break;
-
-			case '2.1':
-				$this->fields = $this->initFields( '2.0' );
-
-				$this->fields[ 'allowed_hot_migrate' ]      = array(
-					ONAPP_FIELD_MAP      => '_allowed_hot_migrate',
-					ONAPP_FIELD_TYPE     => 'boolean',
-					ONAPP_FIELD_REQUIRED => true
-				);
-				$this->fields[ 'operating_system_arch' ]    = array(
-					ONAPP_FIELD_MAP      => '_operating_system_arch',
-					ONAPP_FIELD_TYPE     => 'string',
-					ONAPP_FIELD_REQUIRED => true
-				);
-				$this->fields[ 'operating_system_edition' ] = array(
-					ONAPP_FIELD_MAP      => '_operating_system_edition',
-					ONAPP_FIELD_TYPE     => 'string',
-					ONAPP_FIELD_REQUIRED => true
-				);
-				$this->fields[ 'operating_system_tail' ]    = array(
-					ONAPP_FIELD_MAP      => '_operating_system_tail',
-					ONAPP_FIELD_TYPE     => 'string',
-					ONAPP_FIELD_REQUIRED => true
-				);
-				$this->fields[ 'virtualization' ]           = array(
-					ONAPP_FIELD_MAP      => '_virtualization',
-					ONAPP_FIELD_TYPE     => 'string',
-					ONAPP_FIELD_REQUIRED => true
-				);
-				$this->fields[ 'parent_template_id' ]       = array(
-					ONAPP_FIELD_MAP       => '_template_size',
-					ONAPP_FIELD_TYPE      => 'integer',
-					ONAPP_FIELD_READ_ONLY => true,
-				);
-				break;
-
-			case 2.2:
-				$this->fields                         = $this->initFields( 2.1 );
-				$this->fields[ 'min_memory_size' ]    = array(
-					ONAPP_FIELD_MAP       => 'min_memory_size',
-					ONAPP_FIELD_TYPE      => 'integer',
-					ONAPP_FIELD_READ_ONLY => true,
-				);
-				$this->fields[ 'disk_target_device' ] = array(
-					ONAPP_FIELD_MAP       => 'disk_target_device',
-					ONAPP_FIELD_TYPE      => 'string',
-					ONAPP_FIELD_READ_ONLY => true,
-				);
-				break;
-
-			case 2.3:
-				$this->fields                         = $this->initFields( 2.2 );
-				$this->fields[ 'disk_target_device' ] = array(
-					ONAPP_FIELD_MAP       => 'disk_target_device',
-					ONAPP_FIELD_TYPE      => 'string',
-					ONAPP_FIELD_READ_ONLY => true,
-				);
-				$this->fields[ 'cdn' ]                = array(
-					ONAPP_FIELD_MAP       => 'cdn',
-					ONAPP_FIELD_TYPE      => 'boolean',
-					ONAPP_FIELD_READ_ONLY => true,
-				);
-				// nested class
-				$this->fields[ 'template_set_ids' ] = array(
-					ONAPP_FIELD_MAP       => 'template_set_ids',
-					ONAPP_FIELD_READ_ONLY => true,
-				);
-				$this->fields[ 'backup_server_id' ] = array(
-					ONAPP_FIELD_MAP  => '_backup_server_id',
-					ONAPP_FIELD_TYPE => 'integer',
-				);
-				break;
-
-			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
-
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
 	}
 
 	public function getUserTemplates() {
@@ -240,23 +95,26 @@ class OnApp_Template extends OnApp {
 			default:
 				/**
 				 * ROUTE :
+				 *
 				 * @name image_templates
 				 * @method GET
-				 * @alias  /templates(.:format)
+				 * @alias   /templates(.:format)
 				 * @format  {:controller=>"image_templates", :action=>"index"}
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name image_template
 				 * @method GET
-				 * @alias  /templates/:id(.:format)
+				 * @alias   /templates/:id(.:format)
 				 * @format  {:controller=>"image_templates", :action=>"show"}
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method DELETE
-				 * @alias  /templates/:id(.:format)
+				 * @alias    /templates/:id(.:format)
 				 * @format   {:controller=>"image_templates", :action=>"destroy"}
 				 */
 				$resource = parent::getResource( $action );

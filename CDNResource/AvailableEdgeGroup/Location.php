@@ -5,12 +5,12 @@
  *  Represents OnApp CDNResource AvailableEdgeGroup Locations
  *
  * @category    API wrapper
- * @package        OnApp
- * @subpackage    CDNResource_AvailableEdgeGroup
- * @author        Yakubskiy Yuriy
- * @copyright    (c) 2012 OnApp
+ * @package     OnApp
+ * @subpackage  CDNResource_AvailableEdgeGroup
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2012 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
@@ -21,104 +21,38 @@
  */
 class OnApp_CDNResource_AvailableEdgeGroup_Location extends OnApp {
 	/**
+	 * Magic properties
+	 *
+	 * @property string  price
+	 * @property string  city
+	 * @property string  created_at
+	 * @property string  updated_at
+	 * @property string  country
+	 * @property integer aflexi_location_id
+	 * @property integer id
+	 * @property string  operator
+	 * @property integer edge_group_id
+	 * @property boolean streamSupported
+	 * @property boolean httpSupported
+	 */
+
+	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'edge_group_location';
+	protected $_tagRoot = 'edge_group_location';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = '';
+	protected $_resource = '';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
-	}
-
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		switch( $version ) {
-			case '2.0':
-			case '2.1':
-				break;
-
-			case 2.2:
-			case 2.3:
-				$this->fields = array(
-					'price'              => array(
-						ONAPP_FIELD_MAP       => '_price',
-						ONAPP_FIELD_TYPE      => 'string',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'city'               => array(
-						ONAPP_FIELD_MAP       => '_city',
-						ONAPP_FIELD_TYPE      => 'string',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'created_at'         => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'string',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'updated_at'         => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'string',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'country'            => array(
-						ONAPP_FIELD_MAP       => '_country',
-						ONAPP_FIELD_TYPE      => 'string',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'aflexi_location_id' => array(
-						ONAPP_FIELD_MAP       => '_aflexi_location_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'id'                 => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'operator'           => array(
-						ONAPP_FIELD_MAP       => '_operator',
-						ONAPP_FIELD_TYPE      => 'string',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'edge_group_id'      => array(
-						ONAPP_FIELD_MAP       => '_edge_group_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-				);
-				$this->fields = $this->initFields( 2.1 );
-				break;
-
-			case 3.0:
-				$this->fields                      = $this->initFields( 2.3 );
-				$this->fields[ 'streamSupported' ] = array(
-					ONAPP_FIELD_MAP  => '_streamSupported',
-					ONAPP_FIELD_TYPE => 'boolean',
-				);
-				$this->fields[ 'httpSupported' ]   = array(
-					ONAPP_FIELD_MAP  => '_httpSupported',
-					ONAPP_FIELD_TYPE => 'boolean',
-				);
-				break;
-		}
-
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
 	}
 
 	/**

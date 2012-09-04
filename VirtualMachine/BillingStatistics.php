@@ -4,15 +4,15 @@
 /**
  * User IP Adresses
  *
- * @todo write description
+ * @todo        write description
  *
  * @category    API wrapper
- * @package        OnApp
- * @subpackage    VirtualMachine
- * @author        Vitaliy Kondratyuk
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @subpackage  VirtualMachine
+ * @author      Vitaliy Kondratyuk
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
@@ -29,14 +29,14 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'vm_stat';
+	protected $_tagRoot = 'vm_stat';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = 'vm_stats';
+	protected $_resource = 'vm_stats';
 
 	public function __construct() {
 		parent::__construct();
@@ -46,8 +46,9 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -55,49 +56,49 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
 			case '2.0':
 			case '2.1':
 				$this->fields = array(
-					'created_at'         => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
+					'created_at' => array(
+						ONAPP_FIELD_MAP => '_created_at',
+						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'cost'               => array(
-						ONAPP_FIELD_MAP       => '_cost',
-						ONAPP_FIELD_TYPE      => 'float',
+					'cost' => array(
+						ONAPP_FIELD_MAP => '_cost',
+						ONAPP_FIELD_TYPE => 'float',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'updated_at'         => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
+					'updated_at' => array(
+						ONAPP_FIELD_MAP => '_updated_at',
+						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'stat_time'          => array(
-						ONAPP_FIELD_MAP       => '_stat_time',
-						ONAPP_FIELD_TYPE      => 'datetime',
+					'stat_time' => array(
+						ONAPP_FIELD_MAP => '_stat_time',
+						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'id'                 => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
+					'id' => array(
+						ONAPP_FIELD_MAP => '_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'user_id'            => array(
-						ONAPP_FIELD_MAP       => '_user_id',
-						ONAPP_FIELD_TYPE      => 'integer',
+					'user_id' => array(
+						ONAPP_FIELD_MAP => '_user_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'vm_billing_stat_id' => array(
-						ONAPP_FIELD_MAP       => '_vm_billing_stat_id',
-						ONAPP_FIELD_TYPE      => 'integer',
+						ONAPP_FIELD_MAP => '_vm_billing_stat_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'virtual_machine_id' => array(
-						ONAPP_FIELD_MAP       => '_virtual_machine_id',
-						ONAPP_FIELD_TYPE      => 'integer',
+						ONAPP_FIELD_MAP => '_virtual_machine_id',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-					'billing_stats'      => array(
-						ONAPP_FIELD_MAP       => '_billing_stats',
-						ONAPP_FIELD_TYPE      => 'string',
+					'billing_stats' => array(
+						ONAPP_FIELD_MAP => '_billing_stats',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					)
 				);
@@ -130,6 +131,7 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
 				 * ROUTE :
+				 *
 				 * @name virtual_machine_vm_stats
 				 * @method GET
 				 * @alias  /virtual_machines/:virtual_machine_id/vm_stats(.:format)

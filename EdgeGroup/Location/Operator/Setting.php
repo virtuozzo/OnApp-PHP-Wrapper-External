@@ -4,15 +4,15 @@
 /**
  * Edge Group Location
  *
- * @todo Add description
+ * @todo        Add description
  *
  * @category    API wrapper
- * @package        OnApp
- * @subpackage    EdgeGroup_Location_Operator
- * @author        Yakubskiy Yuriy
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @subpackage  EdgeGroup_Location_Operator
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
@@ -23,102 +23,41 @@
  */
 class OnApp_EdgeGroup_Location_Operator_Setting extends OnApp {
 	/**
+	 * Magic properties
+	 *
+	 * @property string  logFtpUsername
+	 * @property string  baseHostname
+	 * @property string  sslCertificate
+	 * @property string  trafficPolicy
+	 * @property string  logDeliveryMethod
+	 * @property string  logFtpPassword
+	 * @property integer httpCacheExpiry
+	 * @property string  httpErrorPage
+	 * @property string  logFtpDirectory
+	 * @property string  logFormat
+	 * @property string  logSyslogHostname
+	 * @property string  logFtpHostname
+	 * @property integer logFtpPort
+	 * @property string  sslKey
+	 */
+
+	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = '';
+	protected $_tagRoot = '';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = '';
+	protected $_resource = '';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
-	}
-
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		switch( $version ) {
-			case '2.3':
-				$this->fields = array(
-					'logFtpUsername'    => array(
-						ONAPP_FIELD_MAP  => '_logFtpUsername',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'baseHostname'      => array(
-						ONAPP_FIELD_MAP  => '_baseHostname',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'sslCertificate'    => array(
-						ONAPP_FIELD_MAP  => '_sslCertificate',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'trafficPolicy'     => array(
-						ONAPP_FIELD_MAP  => '_trafficPolicy',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'logDeliveryMethod' => array(
-						ONAPP_FIELD_MAP  => '_logDeliveryMethod',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'logFtpPassword'    => array(
-						ONAPP_FIELD_MAP  => '_logFtpPassword',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'httpCacheExpiry'   => array(
-						ONAPP_FIELD_MAP  => '_httpCacheExpiry',
-						ONAPP_FIELD_TYPE => 'integer',
-					),
-					'httpErrorPage'     => array(
-						ONAPP_FIELD_MAP  => '_httpErrorPage',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'logFtpDirectory'   => array(
-						ONAPP_FIELD_MAP  => '_logFtpDirectory',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'logFormat'         => array(
-						ONAPP_FIELD_MAP  => '_logFormat',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'logSyslogHostname' => array(
-						ONAPP_FIELD_MAP  => '_logSyslogHostname',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'logFtpHostname'    => array(
-						ONAPP_FIELD_MAP  => '_logFtpHostname',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-					'logFtpPort'        => array(
-						ONAPP_FIELD_MAP  => '_logFtpPort',
-						ONAPP_FIELD_TYPE => 'integer',
-					),
-					'sslKey'            => array(
-						ONAPP_FIELD_MAP  => '_sslKey',
-						ONAPP_FIELD_TYPE => 'string',
-					),
-
-				);
-				break;
-
-			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
-
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
 	}
 
 	/**

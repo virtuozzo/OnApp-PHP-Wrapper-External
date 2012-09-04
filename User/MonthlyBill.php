@@ -5,15 +5,16 @@
  * User Monthly Bill
  *
  * Root tag is missed in Json Ticket #2505
- * @todo write description
+ *
+ * @todo        write description
  *
  * @category    API wrapper
- * @package        OnApp
- * @subpackage    User
- * @author        Yakubskiy Yuriy
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @subpackage  User
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
@@ -24,63 +25,31 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
-class ONAPP_User_MonthlyBill extends OnApp {
+class OnApp_User_MonthlyBill extends OnApp {
+	/**
+	 * Magic properties
+	 *
+	 * @property float   cost
+	 * @property integer month
+	 */
+
 	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'vm_stat';
+	protected $_tagRoot = 'vm_stat';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = 'monthly_bills';
+	protected $_resource = 'monthly_bills';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
-	}
-
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		switch( $version ) {
-			case '2.0':
-			case '2.1':
-				$this->fields = array(
-					'cost'  => array(
-						ONAPP_FIELD_MAP       => '_cost',
-						ONAPP_FIELD_TYPE      => 'float',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'month' => array(
-						ONAPP_FIELD_MAP       => '_month',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					)
-				);
-				break;
-
-			case 2.2:
-			case 2.3:
-				$this->fields = $this->initFields( 2.1 );
-				break;
-
-			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
-
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
 	}
 
 	/**
@@ -96,9 +65,10 @@ class ONAPP_User_MonthlyBill extends OnApp {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
 				 * ROUTE :
+				 *
 				 * @name user_monthly_bills
 				 * @method GET
-				 * @alias  /users/:user_id/monthly_bills(.:format)
+				 * @alias   /users/:user_id/monthly_bills(.:format)
 				 * @format  {:controller=>"monthly_bills", :action=>"index"}
 				 */
 				if( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {

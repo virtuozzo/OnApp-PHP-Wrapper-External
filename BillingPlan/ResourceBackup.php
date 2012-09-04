@@ -21,23 +21,27 @@
  */
 class OnApp_BillingPlan_ResourceBackup extends OnApp_BillingPlan_BaseResource {
 	/**
-	 * API Fields description
+	 * Magic properties
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-	 * @return array
+	 * @property integer  id
+	 * @property string   label
+	 * @property datetime created_at
+	 * @property datetime updated_at
+	 * @property integer  billing_plan_id
+	 * @property unit
+	 * @property string   resource_name
+	 * @property string   limit
+	 * @property string   limit_type
+	 * @property string   limit_free
+	 * @property string   price
+	 * @property string   price_on
+	 * @property string   price_off
+	 * @property string   resource_class
+	 * @property integer  target_id
 	 */
-	public function initFields( $version = null, $className = '' ) {
-		parent::initFields( $version, __CLASS__ );
 
-		$this->fields[ 'resource_class' ] = array(
-			ONAPP_FIELD_MAP           => '_resource_class',
-			ONAPP_FIELD_TYPE          => 'string',
-			ONAPP_FIELD_REQUIRED      => true,
-			ONAPP_FIELD_READ_ONLY     => true,
-			ONAPP_FIELD_DEFAULT_VALUE => 'Resource::Backup'
-		);
-
-		return $this->fields;
-	}
+	public static $nestedData = array(
+		'limits' => 'BillingPlan_BaseResource_Limit',
+		'prices' => 'BillingPlan_BaseResource_Price',
+	);
 }

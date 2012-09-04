@@ -5,11 +5,11 @@
  * Managing Disks
  *
  * @category    API wrapper
- * @package        OnApp
- * @author        Vitaliy Kondratyuk
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @author      Vitaliy Kondratyuk
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
@@ -37,122 +37,42 @@ define( 'ONAPP_GETRESOURCE_TAKE_BACKUP', 'backups' );
  */
 class OnApp_Disk extends OnApp {
 	/**
+	 * Magic properties
+	 *
+	 * @property integer  id
+	 * @property datetime created_at
+	 * @property datetime updated_at
+	 * @property boolean  add_to_linux_fstab
+	 * @property integer  disk_size
+	 * @property boolean  primary
+	 * @property integer  data_store_id
+	 * @property integer  disk_vm_number
+	 * @property boolean  is_swap
+	 * @property mount_point
+	 * @property identifier
+	 * @property integer  virtual_machine_id
+	 * @property boolean  built
+	 * @property boolean  locked
+	 * @property boolean  has_autobackups
+	 */
+
+	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'disk';
+	protected $_tagRoot = 'disk';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = 'settings/disks';
+	protected $_resource = 'settings/disks';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
-	}
-
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		switch( $version ) {
-			case '2.0':
-			case '2.1':
-				$this->fields = array(
-					'id'                 => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'created_at'         => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'updated_at'         => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'add_to_linux_fstab' => array(
-						ONAPP_FIELD_MAP  => '_add_to_linux_fstab',
-						ONAPP_FIELD_TYPE => 'boolean',
-					),
-					'disk_size'          => array(
-						ONAPP_FIELD_MAP      => '_disk_size',
-						ONAPP_FIELD_TYPE     => 'integer',
-						ONAPP_FIELD_REQUIRED => true,
-					),
-					'primary'            => array(
-						ONAPP_FIELD_MAP       => '_primary',
-						ONAPP_FIELD_TYPE      => 'boolean',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'data_store_id'      => array(
-						ONAPP_FIELD_MAP      => '_data_store_id',
-						ONAPP_FIELD_TYPE     => 'integer',
-						ONAPP_FIELD_REQUIRED => true,
-					),
-					'disk_vm_number'     => array(
-						ONAPP_FIELD_MAP       => '_disk_vm_number',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'is_swap'            => array(
-						ONAPP_FIELD_MAP  => '_is_swap',
-						ONAPP_FIELD_TYPE => 'boolean',
-					),
-					'mount_point'        => array(
-						ONAPP_FIELD_MAP => '_mount_point',
-					),
-					'identifier'         => array(
-						ONAPP_FIELD_MAP       => '_identifier',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'virtual_machine_id' => array(
-						ONAPP_FIELD_MAP       => '_virtual_machine_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'built'              => array(
-						ONAPP_FIELD_MAP       => '_built',
-						ONAPP_FIELD_TYPE      => 'boolean',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'locked'             => array(
-						ONAPP_FIELD_MAP       => '_locked',
-						ONAPP_FIELD_TYPE      => 'boolean',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'has_autobackups'    => array(
-						ONAPP_FIELD_MAP               => '_has_autobackups',
-						ONAPP_FIELD_TYPE              => 'boolean',
-						ONAPP_FIELD_READ_ONLY         => true,
-						ONAPP_FIELD_SKIP_FROM_REQUEST => true,
-					),
-				);
-				break;
-
-			case 2.2:
-			case 2.3:
-				$this->fields = $this->initFields( 2.1 );
-				break;
-
-			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
-
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
 	}
 
 	/**
@@ -168,6 +88,7 @@ class OnApp_Disk extends OnApp {
 			case ONAPP_GETRESOURCE_LIST:
 				/**
 				 * ROUTE :
+				 *
 				 * @name virtual_machine_disks
 				 * @method GET
 				 * @alias  /virtual_machines/:virtual_machine_id/disks(.:format)
@@ -181,9 +102,10 @@ class OnApp_Disk extends OnApp {
 			case ONAPP_GETRESOURCE_ADD:
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method POST
-				 * @alias  /virtual_machines/:virtual_machine_id/disks(.:format)
+				 * @alias     /virtual_machines/:virtual_machine_id/disks(.:format)
 				 * @format    {:controller=>"disks", :action=>"create"}
 				 */
 				if( is_null( $this->_virtual_machine_id ) ) {
@@ -201,9 +123,10 @@ class OnApp_Disk extends OnApp {
 			case ONAPP_GETRESOURCE_AUTOBACKUP_ENABLE:
 				/**
 				 * ROUTE :
+				 *
 				 * @name autobackup_enable_disk
 				 * @method POST
-				 * @alias  /settings/disks/:id/autobackup_enable(.:format)
+				 * @alias     /settings/disks/:id/autobackup_enable(.:format)
 				 * @format    {:controller=>"disks", :action=>"autobackup_enable"}
 				 */
 				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/autobackup_enable';
@@ -212,6 +135,7 @@ class OnApp_Disk extends OnApp {
 			case ONAPP_GETRESOURCE_AUTOBACKUP_DISABLE:
 				/**
 				 * ROUTE :
+				 *
 				 * @name autobackup_disable_disk
 				 * @method POST
 				 * @alias  /settings/disks/:id/autobackup_disable(.:format)
@@ -223,6 +147,7 @@ class OnApp_Disk extends OnApp {
 			case ONAPP_GETRESOURCE_TAKE_BACKUP:
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method POST
 				 * @alias  /settings/disks/:disk_id/backups(.:format)
@@ -234,27 +159,31 @@ class OnApp_Disk extends OnApp {
 			default:
 				/**
 				 * ROUTE :
+				 *
 				 * @name disks
 				 * @method GET
-				 * @alias  /settings/disks(.:format)
+				 * @alias     /settings/disks(.:format)
 				 * @format    {:controller=>"disks", :action=>"index"}
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name disk
 				 * @method GET
-				 * @alias  /settings/disks/:id(.:format)
+				 * @alias     /settings/disks/:id(.:format)
 				 * @format    {:controller=>"disks", :action=>"show"}
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method POST
-				 * @alias  /settings/disks(.:format)
+				 * @alias     /settings/disks(.:format)
 				 * @format    {:controller=>"disks", :action=>"create"}
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method PUT
 				 * @alias  /settings/disks/:id(.:format)
@@ -262,6 +191,7 @@ class OnApp_Disk extends OnApp {
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method DELETE
 				 * @alias  /settings/disks/:id(.:format)
@@ -341,9 +271,9 @@ class OnApp_Disk extends OnApp {
 	function save() {
 		if( $this->_virtual_machine_id ) {
 			$this->fields[ 'require_format_disk' ] = array(
-				ONAPP_FIELD_MAP           => '_require_format_disk',
-				ONAPP_FIELD_TYPE          => 'integer',
-				ONAPP_FIELD_REQUIRED      => true,
+				ONAPP_FIELD_MAP => '_require_format_disk',
+				ONAPP_FIELD_TYPE => 'integer',
+				ONAPP_FIELD_REQUIRED => true,
 				ONAPP_FIELD_DEFAULT_VALUE => false,
 			);
 		}
@@ -362,6 +292,7 @@ class OnApp_Disk extends OnApp {
 	 * Takes Disk Backup
 	 *
 	 * @param integer $disk_id Disk Id
+	 *
 	 * @return void
 	 */
 	function takeBackup( $disk_id ) {

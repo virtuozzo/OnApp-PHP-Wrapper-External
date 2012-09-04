@@ -6,11 +6,11 @@
  * much they will be charged per unit.
  *
  * @category    API wrapper
- * @package        OnApp
- * @author        Lev Bartashevsky
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @author      Lev Bartashevsky
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
@@ -35,110 +35,41 @@ define( 'ONAPP_GETRESOURCE_CREATE_COPY', 'copy' );
  */
 class OnApp_BillingPlan extends OnApp {
 	/**
+	 * Magic properties
+	 *
+	 * @property label
+	 * @property datetime created_at
+	 * @property datetime updated_at
+	 * @property integer  id
+	 * @property integer  monthly_price
+	 * @property string   currency_code
+	 * @property boolean  show_price
+	 * @property boolean  allows_mak
+	 * @property boolean  allows_kms
+	 * @property boolean  allows_own
+	 */
+
+	public static $nestedData = array(
+		'base_resources' => 'BillingPlan_BaseResource',
+	);
+
+	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'billing_plan';
+	protected $_tagRoot = 'billing_plan';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = 'billing_plans';
+	protected $_resource = 'billing_plans';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
-	}
-
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		switch( $version ) {
-			case '2.0':
-			case '2.1':
-				$this->fields = array(
-					'label'          => array(
-						ONAPP_FIELD_MAP           => '_label',
-						ONAPP_FIELD_REQUIRED      => true,
-						ONAPP_FIELD_DEFAULT_VALUE => ''
-					),
-					'created_at'     => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true
-					),
-					'updated_at'     => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true
-					),
-					'base_resources' => array(
-						ONAPP_FIELD_MAP       => '_base_resources',
-						ONAPP_FIELD_TYPE      => 'array',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_CLASS     => 'BillingPlan_BaseResource',
-					),
-					'id'             => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'monthly_price'  => array(
-						ONAPP_FIELD_MAP      => '_monthly_price',
-						ONAPP_FIELD_TYPE     => 'integer',
-						ONAPP_FIELD_REQUIRED => true,
-					),
-					'currency_code'  => array(
-						ONAPP_FIELD_MAP       => '_currency_code',
-						ONAPP_FIELD_TYPE      => 'string',
-						ONAPP_FIELD_REQUIRED  => true,
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'show_price'     => array(
-						ONAPP_FIELD_MAP           => '_show_price',
-						ONAPP_FIELD_TYPE          => 'boolean',
-						ONAPP_FIELD_REQUIRED      => true,
-						ONAPP_FIELD_DEFAULT_VALUE => true,
-						ONAPP_FIELD_READ_ONLY     => true
-					),
-					'allows_mak'     => array(
-						ONAPP_FIELD_MAP       => '_allows_mak',
-						ONAPP_FIELD_TYPE      => 'boolean',
-						ONAPP_FIELD_READ_ONLY => true
-					),
-					'allows_kms'     => array(
-						ONAPP_FIELD_MAP       => '_allows_kms',
-						ONAPP_FIELD_TYPE      => 'boolean',
-						ONAPP_FIELD_READ_ONLY => true
-					),
-					'allows_own'     => array(
-						ONAPP_FIELD_MAP       => '_allows_own',
-						ONAPP_FIELD_TYPE      => 'boolean',
-						ONAPP_FIELD_READ_ONLY => true
-					),
-				);
-				break;
-
-			case 2.2:
-			case 2.3:
-				$this->fields = $this->initFields( 2.1 );
-				break;
-
-			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
-
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
 	}
 
 	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
@@ -146,6 +77,7 @@ class OnApp_BillingPlan extends OnApp {
 			case ONAPP_GETRESOURCE_GETLIST_USERS:
 				/**
 				 * ROUTE :
+				 *
 				 * @name billing_plan_users
 				 * @method GET
 				 * @alias  /billing_plans/:billing_plan_id/users(.:format)
@@ -157,6 +89,7 @@ class OnApp_BillingPlan extends OnApp {
 			case ONAPP_GETRESOURCE_CREATE_COPY:
 				/**
 				 * ROUTE :
+				 *
 				 * @name create_copy_billing_plan
 				 * @method POST
 				 * @alias  /billing_plans/:id/create_copy(.:format)
@@ -168,6 +101,7 @@ class OnApp_BillingPlan extends OnApp {
 			default:
 				/**
 				 * ROUTE :
+				 *
 				 * @name billing_plans
 				 * @method GET
 				 * @alias  /billing_plans(.:format)
@@ -175,6 +109,7 @@ class OnApp_BillingPlan extends OnApp {
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name billing_plan
 				 * @method GET
 				 * @alias  /billing_plans/:id(.:format)
@@ -182,6 +117,7 @@ class OnApp_BillingPlan extends OnApp {
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name billing_plans
 				 * @method POST
 				 * @alias  /billing_plans(.:format)
@@ -189,6 +125,7 @@ class OnApp_BillingPlan extends OnApp {
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method PUT
 				 * @alias  /billing_plans/:id(.:format)
@@ -196,6 +133,7 @@ class OnApp_BillingPlan extends OnApp {
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method DELETE
 				 * @alias  billing_plans/:id(.:format)
@@ -208,7 +146,7 @@ class OnApp_BillingPlan extends OnApp {
 	}
 
 	function users() {
-		$this->logger->add( "getList: Get Users list." );
+		$this->logger->add( 'getList: Get Users list.' );
 
 		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_GETLIST_USERS ) );
 
@@ -237,11 +175,11 @@ class OnApp_BillingPlan extends OnApp {
 	}
 
 	function create_copy() {
-		$this->logger->add( "getList: Create Billing plan copy" );
+		$this->logger->add( 'getList: Create Billing plan copy' );
 
 		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_CREATE_COPY ) );
 
-		$data = "<billing_plan><label>TEST</label></billing_plan>";
+		$data = '<billing_plan><label>TEST</label></billing_plan>';
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST, $data );
 

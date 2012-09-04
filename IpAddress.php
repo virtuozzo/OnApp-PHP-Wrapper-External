@@ -5,11 +5,11 @@
  * Managing IP Addresses
  *
  * @category    API wrapper
- * @package        OnApp
- * @author        Vitaliy Kondratyuk
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @author      Vitaliy Kondratyuk
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
@@ -22,110 +22,39 @@
  */
 class OnApp_IpAddress extends OnApp {
 	/**
+	 * Magic properties
+	 *
+	 * @property integer  id
+	 * @property datetime created_at
+	 * @property datetime updated_at
+	 * @property address
+	 * @property netmask
+	 * @property broadcast
+	 * @property network_address
+	 * @property gateway
+	 * @property integer  network_id
+	 * @property boolean  free
+	 * @property boolean  disallowed_primary
+	 * @property integer  user_id
+	 */
+
+	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'ip_address';
+	protected $_tagRoot = 'ip_address';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = 'ip_addresses';
+	protected $_resource = 'ip_addresses';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
-	}
-
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-
-		switch( $version ) {
-			case '2.0':
-			case '2.1':
-				$this->fields = array(
-					'id'                 => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'created_at'         => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'updated_at'         => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'address'            => array(
-						ONAPP_FIELD_MAP      => '_address',
-						ONAPP_FIELD_REQUIRED => true,
-					),
-					'netmask'            => array(
-						ONAPP_FIELD_MAP      => '_netmask',
-						ONAPP_FIELD_REQUIRED => true,
-					),
-					'broadcast'          => array(
-						ONAPP_FIELD_MAP      => '_broadcast',
-						ONAPP_FIELD_REQUIRED => true,
-					),
-					'network_address'    => array(
-						ONAPP_FIELD_MAP      => '_network_address',
-						ONAPP_FIELD_REQUIRED => true,
-					),
-					'gateway'            => array(
-						ONAPP_FIELD_MAP      => '_gateway',
-						ONAPP_FIELD_REQUIRED => true,
-					),
-					'network_id'         => array(
-						ONAPP_FIELD_MAP       => '_network_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'free'               => array(
-						ONAPP_FIELD_MAP       => '_free',
-						ONAPP_FIELD_TYPE      => 'boolean',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'disallowed_primary' => array(
-						ONAPP_FIELD_MAP       => '_disallowed_primary',
-						ONAPP_FIELD_TYPE      => 'boolean',
-						ONAPP_FIELD_READ_ONLY => true,
-					)
-				);
-				break;
-
-			case 2.2:
-				$this->fields = $this->initFields( 2.1 );
-				break;
-
-			case 2.3:
-				$this->fields              = $this->initFields( 2.2 );
-				$this->fields[ 'user_id' ] = array(
-					ONAPP_FIELD_MAP       => 'user_id',
-					ONAPP_FIELD_TYPE      => 'integer',
-					ONAPP_FIELD_READ_ONLY => true,
-				);
-				break;
-
-			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
-
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
 	}
 
 	/**
@@ -141,6 +70,7 @@ class OnApp_IpAddress extends OnApp {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
 				 * ROUTE :
+				 *
 				 * @name network_ip_addresses
 				 * @method GET
 				 * @alias  /settings/networks/:network_id/ip_addresses(.:format)
@@ -148,6 +78,7 @@ class OnApp_IpAddress extends OnApp {
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name network_ip_address
 				 * @method GET
 				 * @alias  /settings/networks/:network_id/ip_addresses/:id(.:format)
@@ -155,6 +86,7 @@ class OnApp_IpAddress extends OnApp {
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method POST
 				 * @alias  /settings/networks/:network_id/ip_addresses(.:format)
@@ -162,6 +94,7 @@ class OnApp_IpAddress extends OnApp {
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method PUT
 				 * @alias  /settings/networks/:network_id/ip_addresses/:id(.:format)
@@ -169,6 +102,7 @@ class OnApp_IpAddress extends OnApp {
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method DELETE
 				 * @alias  /settings/networks/:network_id/ip_addresses/:id(.:format)
@@ -234,7 +168,7 @@ class OnApp_IpAddress extends OnApp {
 	 * The key field Parameter ID is used to load the Object. You can re-set
 	 * this parameter in the class inheriting OnApp class.
 	 *
-	 * @param integer $id IP Address Join id
+	 * @param integer $id                 IP Address Join id
 	 * @param integer $virtual_machine_id Virtual Machine id
 	 *
 	 * @return mixed serialized Object instance from API

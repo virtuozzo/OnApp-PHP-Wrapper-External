@@ -6,11 +6,11 @@
  *
  *
  * @category    API wrapper
- * @package        OnApp
- * @author        Yakubskiy Yuriy
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
@@ -24,69 +24,34 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
-class ONAPP_CDNUsageStatistic extends OnApp {
+class OnApp_CDNUsageStatistic extends OnApp {
+	/**
+	 * Magic properties
+	 *
+	 * @property integer  target_id
+	 * @property float    not_cached
+	 * @property datetime updated_at
+	 * @property integer  user_id
+	 * @property float    cached
+	 */
+
 	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'user_stat';
+	protected $_tagRoot = 'user_stat';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = 'cdn_usage_statistics';
+	protected $_resource = 'cdn_usage_statistics';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
-	}
-
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		switch( $version ) {
-			case '2.3':
-				$this->fields = array(
-					'target_id'  => array(
-						ONAPP_FIELD_MAP  => '_target_id',
-						ONAPP_FIELD_TYPE => 'integer',
-					),
-					'not_cached' => array(
-						ONAPP_FIELD_MAP  => '_non_cached',
-						ONAPP_FIELD_TYPE => 'float',
-					),
-					'updated_at' => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true
-					),
-					'user_id'    => array(
-						ONAPP_FIELD_MAP  => '_user_id',
-						ONAPP_FIELD_TYPE => 'integer',
-					),
-					'cached'     => array(
-						ONAPP_FIELD_MAP  => '_cached',
-						ONAPP_FIELD_TYPE => 'float',
-
-					),
-				);
-				break;
-
-			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
-
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
 	}
 
 	/**

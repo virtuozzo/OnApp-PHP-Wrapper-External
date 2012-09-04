@@ -1,5 +1,4 @@
 <?php
-
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
@@ -7,11 +6,11 @@
  *
  *
  * @category    API wrapper
- * @package        OnApp
- * @author        Yakubskiy Yuriy
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 define( 'ONAPP_GETRESOURCE_GETLIST_BY_USER_ID', 'get_list_by_user_id' );
 
@@ -29,149 +28,50 @@ define( 'ONAPP_GETRESOURCE_GETLIST_BY_USER_ID', 'get_list_by_user_id' );
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_LoadBalancingCluster extends OnApp {
+	/**
+	 * Magic properties
+	 *
+	 * @property string  name
+	 * @property string  created_at
+	 * @property integer port
+	 * @property integer load_balancer_id
+	 * @property string  load_balancer_password
+	 * @property string  updated_at
+	 * @property integer id
+	 * @property integer user_id
+	 * @property string  cluster_type
+	 * @property string  identifier
+	 * @property integer image_template_id
+	 */
+
+	public static $nestedData = array(
+		'config'                  => 'LoadBalancingCluster_Config',
+		'load_balancer'           => 'LoadBalancer',
+		'nodes'                   => 'LoadBalancingCluster_Node',
+		'node_attributes'         => 'LoadBalancingCluster_NodeAtribute',
+		'auto_scaling_out_cpu'    => 'LoadBalancingCluster_AutoScalingOutCpu',
+		'auto_scaling_out_memory' => 'LoadBalancingCluster_AutoScalingOutMemory',
+		'auto_scaling_in_cpu'     => 'LoadBalancingCluster_AutoScalingInCpu',
+		'auto_scaling_in_memory'  => 'LoadBalancingCluster_AutoScalingInMemory',
+	);
 
 	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'load_balancing_cluster';
+	protected $_tagRoot = 'load_balancing_cluster';
+
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = 'load_balancing_clusters';
+	protected $_resource = 'load_balancing_clusters';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
-	}
-
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version OnApp API version
-	 *
-	 * @return array
-	 */
-	public function initFields( $version ) {
-		switch( $version ) {
-			case '2.1':
-			case '2.2':
-				$this->fields = array(
-					'name'                   => array(
-						ONAPP_FIELD_MAP      => '_name',
-						ONAPP_FIELD_TYPE     => 'string',
-						ONAPP_FIELD_REQUIRED => true,
-					),
-					'created_at'             => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'string',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'port'                   => array(
-						ONAPP_FIELD_MAP      => '_port',
-						ONAPP_FIELD_TYPE     => 'integer',
-						ONAPP_FIELD_REQUIRED => true,
-					),
-					'config'                 => array(
-						ONAPP_FIELD_MAP       => '_config',
-						ONAPP_FIELD_TYPE      => 'array',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_CLASS     => 'LoadBalancingCluster_Config',
-					),
-					'load_balancer_id'       => array(
-						ONAPP_FIELD_MAP       => '_load_balancer_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'load_balancer_password' => array(
-						ONAPP_FIELD_MAP       => '_load_balancer_password',
-						ONAPP_FIELD_TYPE      => 'string',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'updated_at'             => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'string',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'id'                     => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'load_balancer'          => array(
-						ONAPP_FIELD_MAP       => '_load_balancer',
-						ONAPP_FIELD_TYPE      => 'array',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_CLASS     => 'LoadBalancer',
-					),
-					'user_id'                => array(
-						ONAPP_FIELD_MAP       => '_user_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'nodes'                  => array(
-						ONAPP_FIELD_MAP       => '_nodes',
-						ONAPP_FIELD_TYPE      => 'array',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_CLASS     => 'LoadBalancingCluster_Node',
-					),
-					'cluster_type'           => array(
-						ONAPP_FIELD_MAP      => '_cluster_type',
-						ONAPP_FIELD_TYPE     => 'string',
-						ONAPP_FIELD_REQUIRED => true,
-					),
-					'identifier'             => array(
-						ONAPP_FIELD_MAP       => '_identifier',
-						ONAPP_FIELD_TYPE      => 'string',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'node_attributes'        => array(
-						ONAPP_FIELD_MAP       => '_node_attributes',
-						ONAPP_FIELD_TYPE      => 'array',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_CLASS     => 'LoadBalancingCluster_NodeAtribute',
-					),
-					'image_template_id'      => array(
-						ONAPP_FIELD_MAP       => '_image_template_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-				);
-				break;
-			case '2.3':
-				$this->fields                              = $this->initFields( 2.2 );
-				$this->fields[ 'auto_scaling_out_cpu' ]    = array(
-					ONAPP_FIELD_MAP      => '_auto_scaling_out_cpu',
-					ONAPP_FIELD_TYPE     => 'array',
-					ONAPP_FIELD_REQUIRED => 'LoadBalancingCluster_AutoScalingOutCpu',
-				);
-				$this->fields[ 'auto_scaling_out_memory' ] = array(
-					ONAPP_FIELD_MAP      => '_auto_scaling_out_memory',
-					ONAPP_FIELD_TYPE     => 'array',
-					ONAPP_FIELD_REQUIRED => 'LoadBalancingCluster_AutoScalingOutMemory',
-				);
-				$this->fields[ 'auto_scaling_in_cpu' ]     = array(
-					ONAPP_FIELD_MAP      => '_auto_scaling_in_cpu',
-					ONAPP_FIELD_TYPE     => 'array',
-					ONAPP_FIELD_REQUIRED => 'LoadBalancingCluster_AutoScalingInCpu',
-				);
-				$this->fields[ 'auto_scaling_in_memory' ]  = array(
-					ONAPP_FIELD_MAP      => '_auto_scaling_in_memory',
-					ONAPP_FIELD_TYPE     => 'array',
-					ONAPP_FIELD_REQUIRED => 'LoadBalancingCluster_AutoScalingInMemory',
-				);
-				break;
-
-			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
-
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
 	}
 
 	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
@@ -180,6 +80,7 @@ class OnApp_LoadBalancingCluster extends OnApp {
 
 				/**
 				 * ROUTE :
+				 *
 				 * @name user_load_balancing_clusters
 				 * @method GET
 				 * @alias  /users/:user_id/load_balancing_clusters(.:format)
@@ -191,13 +92,15 @@ class OnApp_LoadBalancingCluster extends OnApp {
 			default:
 				/**
 				 * ROUTE :
+				 *
 				 * @name load_balancing_clusters
 				 * @method GET
-				 * @alias  /load_balancing_clusters(.:format)
+				 * @alias   /load_balancing_clusters(.:format)
 				 * @format  {:controller=>"load_balancing_clusters", :action=>"index"}
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name load_balancing_cluster
 				 * @method GET
 				 * @alias  /load_balancing_clusters/:id(.:format)
@@ -205,6 +108,7 @@ class OnApp_LoadBalancingCluster extends OnApp {
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method POST
 				 * @alias  /load_balancing_clusters(.:format)
@@ -212,6 +116,7 @@ class OnApp_LoadBalancingCluster extends OnApp {
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method PUT
 				 * @alias  /load_balancing_clusters/:id(.:format)
@@ -219,6 +124,7 @@ class OnApp_LoadBalancingCluster extends OnApp {
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method DELETE
 				 * @alias  /load_balancing_clusters/:id(.:format)

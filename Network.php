@@ -19,11 +19,11 @@
  * about that address changing. You can tie your domain names to these IP addresses.
  *
  * @category    API wrapper
- * @package        OnApp
- * @author        Andrew Yatskovets
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @author      Andrew Yatskovets
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
@@ -50,93 +50,34 @@ define( 'ONAPP_GETRESOURCE_NETWORKS_LIST_BY_HYPERVISOR_GROUP_ID', 'networks_list
  */
 class OnApp_Network extends OnApp {
 	/**
+	 * Magic properties
+	 *
+	 * @property integer  id
+	 * @property datetime created_at
+	 * @property identifier
+	 * @property label
+	 * @property datetime updated_at
+	 * @property integer  vlan
+	 * @property integer  network_group_id
+	 */
+
+	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'network';
+	protected $_tagRoot = 'network';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = 'settings/networks';
+	protected $_resource = 'settings/networks';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
-	}
-
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		switch( $version ) {
-			case '2.0':
-				$this->fields = array(
-					'id'         => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED  => true,
-					),
-					'created_at' => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED  => true,
-					),
-					'identifier' => array(
-						ONAPP_FIELD_MAP       => '_identifier',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED  => true,
-					),
-					'label'      => array(
-						ONAPP_FIELD_MAP       => '_label',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED  => true,
-					),
-					'updated_at' => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED  => true,
-					),
-					'vlan'       => array(
-						ONAPP_FIELD_MAP       => '_vlan',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-						ONAPP_FIELD_REQUIRED  => true,
-					),
-				);
-				break;
-
-			case '2.1':
-				$this->fields                       = $this->initFields( '2.0' );
-				$this->fields[ 'network_group_id' ] = array(
-					ONAPP_FIELD_MAP      => '_network_group_id',
-					ONAPP_FIELD_TYPE     => 'integer',
-					ONAPP_FIELD_REQUIRED => true,
-				);
-				break;
-
-			case 2.2:
-			case 2.3:
-				$this->fields = $this->initFields( 2.1 );
-				break;
-
-			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
-
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
 	}
 
 	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
@@ -144,6 +85,7 @@ class OnApp_Network extends OnApp {
 			case ONAPP_GETRESOURCE_NETWORKS_LIST_BY_HYPERVISOR_GROUP_ID:
 				/**
 				 * ROUTE :
+				 *
 				 * @name hypervisor_group_networks
 				 * @method GET
 				 * @alias  /settings/hypervisor_zones/:hypervisor_group_id/networks(.:format)
@@ -155,6 +97,7 @@ class OnApp_Network extends OnApp {
 			case ONAPP_GETRESOURCE_IP_ADDRESSES:
 				/**
 				 * ROUTE :
+				 *
 				 * @name network_ip_addresses
 				 * @method GET
 				 * @alias  /settings/networks/:network_id/ip_addresses(.:format)
@@ -166,6 +109,7 @@ class OnApp_Network extends OnApp {
 			default:
 				/**
 				 * ROUTE :
+				 *
 				 * @name networks
 				 * @method GET
 				 * @alias  /settings/networks(.:format)
@@ -173,9 +117,10 @@ class OnApp_Network extends OnApp {
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name network
 				 * @method GET
-				 * @alias  /settings/networks/:id(.:format)
+				 * @alias   /settings/networks/:id(.:format)
 				 * @format  {:controller=>"networks", :action=>"show"}
 				 */
 				$resource = parent::getResource( $action );

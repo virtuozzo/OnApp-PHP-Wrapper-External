@@ -5,11 +5,11 @@
  * Managing Edge Groups
  *
  * @category    API wrapper
- * @package        OnApp
- * @author        Yakubskiy Yuriy
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
@@ -37,76 +37,36 @@ define( 'ONAPP_GETRESOURCE_EDGE_GROUP_UNASSIGN_LOCATION', 'edge_group_unassign_l
  */
 class OnApp_EdgeGroup extends OnApp {
 	/**
+	 * Magic properties
+	 *
+	 * @property label
+	 * @property datetime created_at
+	 * @property datetime updated_at
+	 * @property integer  id
+	 */
+
+	public static $nestedData = array(
+		'assigned_locations' => 'EdgeGroup_AssignedLocation',
+		'available_locations' => 'EdgeGroup_AvailableLocation',
+	);
+
+	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'edge_group';
+	protected $_tagRoot = 'edge_group';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = 'edge_groups';
+	protected $_resource = 'edge_groups';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
-	}
-
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		switch( $version ) {
-			case '2.3':
-				$this->fields = array(
-					'label'               => array(
-						ONAPP_FIELD_MAP           => '_label',
-						ONAPP_FIELD_REQUIRED      => true,
-						ONAPP_FIELD_DEFAULT_VALUE => ''
-					),
-					'created_at'          => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true
-					),
-					'updated_at'          => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true
-					),
-					'id'                  => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'assigned_locations'  => array(
-						ONAPP_FIELD_MAP   => '_assigned_locations',
-						ONAPP_FIELD_TYPE  => 'array',
-						ONAPP_FIELD_CLASS => 'EdgeGroup_AssignedLocation'
-
-					),
-					'available_locations' => array(
-						ONAPP_FIELD_MAP   => '_available_locations',
-						ONAPP_FIELD_TYPE  => 'array',
-						ONAPP_FIELD_CLASS => 'EdgeGroup_AvailableLocation'
-					),
-				);
-				break;
-
-			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
-
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
 	}
 
 	/**

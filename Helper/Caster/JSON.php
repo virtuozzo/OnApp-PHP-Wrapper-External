@@ -3,10 +3,10 @@
  * Serialize and Unserialize Object to/from JSON for OnApp wrapper
  *
  * @category    OBJECT CAST
- * @package        OnApp
- * @subpackage    Caster
- * @author        Lev Bartashevsky
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @subpackage  Caster
+ * @author      Lev Bartashevsky
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
  */
 class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
@@ -37,8 +37,9 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 	 * Unserialize JSON data to wrapper object(s)
 	 *
 	 * @param string        $className    className to cast into
-	 * @param string|array  $data        JSON or array containing nested data
-	 * @param string        $root        root tag
+	 * @param string|array  $data         JSON or array containing nested data
+	 * @param string        $root         root tag
+	 *
 	 * @throws Exception    $e            if data is empty
 	 *
 	 * @return array|null|object

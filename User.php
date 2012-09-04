@@ -12,31 +12,19 @@
  * from exceeding the resources you specify.
  *
  * @category    API wrapper
- * @package        OnApp
- * @author        Andrew Yatskovets
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @author      Andrew Yatskovets
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
-/**
- *
- */
 define( 'ONAPP_GETRESOURCE_SUSPEND_USER', 'suspend' );
 
-/**
- *
- */
 define( 'ONAPP_GETRESOURCE_ACTIVATE', 'activate' );
 
-/**
- *
- */
 define( 'ONAPP_GETRESOURCE_NETWORKS_LIST_BY_GROUP_ID', 'get_list_by_group_id' );
 
-/**
- *
- */
 define( 'ONAPP_GETRESOURCE_DELETE_USER', 'delete_user' );
 
 /**
@@ -51,27 +39,29 @@ define( 'ONAPP_GETRESOURCE_DELETE_USER', 'delete_user' );
  */
 class OnApp_User extends OnApp {
 	/**
-	 * @property int        $id                            ID
-	 * @property int        $used_cpu_shares
-	 * @property int        $used_cpus
-	 * @property int        $used_disk_size
-	 * @property int        $used_memory
-	 * @property int        $memory_available
-	 * @property int        $disk_space_available
-	 * @property int        $billing_plan_id
-	 * @property int        $image_template_group_id
-	 * @property int        $user_group_id
-	 * @property int        $aflexi_user_id
-	 * @property string        $email                        email
+	 * Magic properties
+	 *
+	 * @property int           $id                            ID
+	 * @property int           $used_cpu_shares
+	 * @property int           $used_cpus
+	 * @property int           $used_disk_size
+	 * @property int           $used_memory
+	 * @property int           $memory_available
+	 * @property int           $disk_space_available
+	 * @property int           $billing_plan_id
+	 * @property int           $image_template_group_id
+	 * @property int           $user_group_id
+	 * @property int           $aflexi_user_id
+	 * @property string        $email                         email
 	 * @property string        $first_name                    first name
-	 * @property string        $last_name                    last name
-	 * @property string        $login                        login
-	 * @property string        $activated_at                activation date
+	 * @property string        $last_name                     last name
+	 * @property string        $login                         login
+	 * @property string        $activated_at                  activation date
 	 * @property string        $created_at                    creation date
 	 * @property string        $deleted_at                    deletion date
 	 * @property string        $updated_at                    updating date
 	 * @property string        $suspend_at                    suspension date
-	 * @property string        $time_zone                    time zone
+	 * @property string        $time_zone                     time zone
 	 * @property string        $status                        status
 	 * @property string        $locale                        locale
 	 * @property string        $aflexi_username
@@ -81,14 +71,20 @@ class OnApp_User extends OnApp {
 	 * @property string        $aflexi_password
 	 * @property string        $remember_token
 	 * @property string        $remember_token_expires_at
-	 * @property float        $outstanding_amount            outstanding amount
-	 * @property float        $payment_amount                payment amount
-	 * @property float        $total_amount                total amount
-	 * @property array        $roles
-	 * @property array        $used_ip_addresses
-	 * @property array        $additional_fields
-	 * @property boolean     $update_billing_stat
+	 * @property float         $outstanding_amount            outstanding amount
+	 * @property float         $payment_amount                payment amount
+	 * @property float         $total_amount                  total amount
+	 * @property array         $roles
+	 * @property array         $used_ip_addresses
+	 * @property array         $additional_fields
+	 * @property boolean       $update_billing_stat
 	 */
+
+	public static $nestedData = array(
+		'roles'             => 'Role',
+		'used_ip_addresses' => 'User_UsedIpAddress',
+		'additional_fields' => 'User_AdditionalField'
+	);
 
 	/**
 	 * root tag used in the API request
@@ -103,12 +99,6 @@ class OnApp_User extends OnApp {
 	 * @var string
 	 */
 	protected $_resource = 'users';
-
-	public static $nestedData = array(
-		'roles'             => 'Role',
-		'used_ip_addresses' => 'User_UsedIpAddress',
-		'additional_fields' => 'User_AdditionalField'
-	);
 
 	public function __construct() {
 		parent::__construct();
@@ -128,12 +118,13 @@ class OnApp_User extends OnApp {
 			case ONAPP_GETRESOURCE_NETWORKS_LIST_BY_GROUP_ID:
 				/**
 				 * ROUTE :
+				 *
 				 * @name user_group_users
 				 * @method GET
-				 * @alias  /user_groups/:user_group_id/users(.:format)
+				 * @alias   /user_groups/:user_group_id/users(.:format)
 				 * @format  {:controller=>"users", :action=>"index"}
 				 */
-				$resource = 'user_groups/' . $this->_user_group_id . '/' . $this->_resource;
+				$resource = 'user_groups/' . $this->_user_group_id . '/' . $this->resource;
 				break;
 			case ONAPP_GETRESOURCE_SUSPEND_USER:
 				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/suspend';
@@ -238,7 +229,7 @@ class OnApp_User extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'getListByHypervisorGroupId: argument _hypervisor_group_id not set.',
+				'getListByHypervisorGroupId: argument "group_id" not set.',
 				__FILE__,
 				__LINE__
 			);
@@ -267,7 +258,7 @@ class OnApp_User extends OnApp {
 	public function delete( $force = false ) {
 		if( ! $this->_id ) {
 			$this->logger->error(
-				'DeleteUser: argument _id not set.',
+				'DeleteUser: argument "id" not set.',
 				__FILE__,
 				__LINE__
 			);

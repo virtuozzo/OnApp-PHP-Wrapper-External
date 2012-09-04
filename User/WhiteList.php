@@ -4,15 +4,15 @@
 /**
  * User White List
  *
- * @todo write description
+ * @todo        write description
  *
  * @category    API wrapper
- * @package        OnApp
- * @subpackage    User
- * @author        Yakubskiy Yuriy
- * @copyright    (c) 2011 OnApp
+ * @package     OnApp
+ * @subpackage  User
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
@@ -27,82 +27,33 @@
  */
 class OnApp_User_WhiteList extends OnApp {
 	/**
+	 * Magic properties
+	 *
+	 * @property integer  id
+	 * @property datetime created_at
+	 * @property datetime updated_at
+	 * @property integer  user_id
+	 * @property string   ip
+	 * @property string   description
+	 */
+
+	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'user_white_list';
+	protected $_tagRoot = 'user_white_list';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = 'user_white_lists';
+	protected $_resource = 'user_white_lists';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
-	}
-
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		switch( $version ) {
-			case '2.0':
-			case '2.1':
-				$this->fields = array(
-					'id'          => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'created_at'  => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'updated_at'  => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'user_id'     => array(
-						ONAPP_FIELD_MAP       => '_user_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'ip'          => array(
-						ONAPP_FIELD_MAP       => '_ip',
-						ONAPP_FIELD_TYPE      => 'string',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'description' => array(
-						ONAPP_FIELD_MAP       => '_description',
-						ONAPP_FIELD_TYPE      => 'string',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-
-				);
-				break;
-
-			case 2.2:
-			case 2.3:
-				$this->fields = $this->initFields( 2.1 );
-				break;
-
-			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
-
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
 	}
 
 	/**
@@ -118,13 +69,15 @@ class OnApp_User_WhiteList extends OnApp {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
 				 * ROUTE :
+				 *
 				 * @name user_user_white_lists
 				 * @method GET
-				 * @alias  /users/:user_id/user_white_lists(.:format)
+				 * @alias   /users/:user_id/user_white_lists(.:format)
 				 * @format  {:controller=>"user_white_lists", :action=>"index"}
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name user_user_white_list
 				 * @method GET
 				 * @alias  /users/:user_id/user_white_lists/:id(.:format)
@@ -132,6 +85,7 @@ class OnApp_User_WhiteList extends OnApp {
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method PUT
 				 * @alias  /users/:user_id/user_white_lists/:id(.:format)
@@ -139,6 +93,7 @@ class OnApp_User_WhiteList extends OnApp {
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name
 				 * @method POST
 				 * @alias  /users/:user_id/user_white_lists(.:format)
@@ -146,9 +101,10 @@ class OnApp_User_WhiteList extends OnApp {
 				 */
 				/**
 				 * ROUTE :
+				 *
 				 * @name user_vm_stats
 				 * @method DELETE
-				 * @alias  /users/:user_id/user_white_lists/:id(.:format)
+				 * @alias   /users/:user_id/user_white_lists/:id(.:format)
 				 * @format  {:controller=>"user_white_lists", :action=>"destroy"}
 				 */
 				if( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {
@@ -184,7 +140,7 @@ class OnApp_User_WhiteList extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $user_id = null ) {
+	function getList( $user_id = null, $url_args = null ) {
 		if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
 			$user_id = $this->_user_id;
 		}
@@ -192,7 +148,7 @@ class OnApp_User_WhiteList extends OnApp {
 		if( ! is_null( $user_id ) ) {
 			$this->_user_id = $user_id;
 
-			return parent::getList();
+			return parent::getList( $user_id, $url_args );
 		}
 		else {
 			$this->logger->error(
@@ -210,7 +166,7 @@ class OnApp_User_WhiteList extends OnApp {
 	 * The key field Parameter ID is used to load the Object. You can re-set
 	 * this parameter in the class inheriting OnApp class.
 	 *
-	 * @param integer $id white list id
+	 * @param integer $id      white list id
 	 * @param integer $user_id User id
 	 *
 	 * @return mixed serialized Object instance from API

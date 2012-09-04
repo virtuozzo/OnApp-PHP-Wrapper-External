@@ -5,12 +5,12 @@
  * VM Backups
  *
  * @category    API wrapper
- * @package        OnApp
+ * @package     OnApp
  * @subpackage  VirtualMachine_NetworkInterface
- * @author        Yuriy Yakubskiy
- * @copyright    (c) 2011 OnApp
+ * @author      Yuriy Yakubskiy
+ * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
- * @see            OnApp
+ * @see         OnApp
  */
 
 /**
@@ -23,93 +23,37 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
-class ONAPP_VirtualMachine_NetworkInterface_Usage extends OnApp {
+class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
+	/**
+	 * Magic properties
+	 *
+	 * @property integer  id
+	 * @property datetime created_at
+	 * @property datetime updated_at
+	 * @property integer  data_received
+	 * @property integer  data_sent
+	 * @property integer  user_id
+	 * @property integer  network_interface_id
+	 * @property integer  virtual_machine_id
+	 */
+
 	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'net_hourly_stat';
+	protected $_tagRoot = 'net_hourly_stat';
 
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = 'usage';
+	protected $_resource = 'usage';
 
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;
-	}
-
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		switch( $version ) {
-			case '2.0':
-				$this->fields = array(
-					'id'                   => array(
-						ONAPP_FIELD_MAP       => '_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true
-					),
-					'created_at'           => array(
-						ONAPP_FIELD_MAP       => '_created_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'updated_at'           => array(
-						ONAPP_FIELD_MAP       => '_updated_at',
-						ONAPP_FIELD_TYPE      => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'data_received'        => array(
-						ONAPP_FIELD_MAP       => '_data_received',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'data_sent'            => array(
-						ONAPP_FIELD_MAP       => '_data_sent',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'user_id'              => array(
-						ONAPP_FIELD_MAP       => '_user_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'network_interface_id' => array(
-						ONAPP_FIELD_MAP       => '_network_interface_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'virtual_machine_id'   => array(
-						ONAPP_FIELD_MAP       => '_virtual_machine_id',
-						ONAPP_FIELD_TYPE      => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					)
-				);
-				break;
-
-			case '2.1':
-			case '2.2':
-			case '2.3':
-				$this->fields = $this->initFields( 2.0 );
-				break;
-
-			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
-
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
 	}
 
 	/**
@@ -126,9 +70,10 @@ class ONAPP_VirtualMachine_NetworkInterface_Usage extends OnApp {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
 				 * ROUTE :
+				 *
 				 * @name virtual_machine_backups
 				 * @method GET
-				 * @alias  /virtual_machines/:virtual_machine_id/backups(.:format)
+				 * @alias   /virtual_machines/:virtual_machine_id/backups(.:format)
 				 * @format  {:controller=>"backups", :action=>"index"}
 				 */
 				if( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
@@ -176,7 +121,7 @@ class ONAPP_VirtualMachine_NetworkInterface_Usage extends OnApp {
 	 * Sends an API request to get the Objects. After requesting,
 	 * unserializes the received response into the array of Objects
 	 *
-	 * @param integer $virtual_machine_id Virtual Machine id
+	 * @param integer $virtual_machine_id   Virtual Machine id
 	 * @param integer $network_interface_id Network Interface id
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
