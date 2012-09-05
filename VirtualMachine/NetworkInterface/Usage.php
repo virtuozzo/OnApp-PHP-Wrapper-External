@@ -23,20 +23,19 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer  id
+ * @property string   created_at
+ * @property string   updated_at
+ * @property integer  data_received
+ * @property integer  data_sent
+ * @property integer  user_id
+ * @property integer  network_interface_id
+ * @property integer  virtual_machine_id
+ */
 class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property datetime created_at
-	 * @property datetime updated_at
-	 * @property integer  data_received
-	 * @property integer  data_sent
-	 * @property integer  user_id
-	 * @property integer  network_interface_id
-	 * @property integer  virtual_machine_id
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *
@@ -64,7 +63,7 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		$show_log_msg = TRUE;
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
@@ -76,7 +75,7 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 				 * @alias   /virtual_machines/:virtual_machine_id/backups(.:format)
 				 * @format  {:controller=>"backups", :action=>"index"}
 				 */
-				if( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
+				if( is_null( $this->_virtual_machine_id ) && is_null( $this->inheritedObject->_virtual_machine_id ) ) {
 					$this->logger->error(
 						'getURL( ' . $action . ' ): argument _virtual_machine_id not set.',
 						__FILE__,
@@ -85,11 +84,11 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 				}
 				else {
 					if( is_null( $this->_virtual_machine_id ) ) {
-						$this->_virtual_machine_id = $this->_obj->_virtual_machine_id;
+						$this->_virtual_machine_id = $this->inheritedObject->_virtual_machine_id;
 					}
 				}
 
-				if( is_null( $this->_network_interface_id ) && is_null( $this->_obj->_network_interface_id ) ) {
+				if( is_null( $this->_network_interface_id ) && is_null( $this->inheritedObject->_network_interface_id ) ) {
 					$this->logger->error(
 						'getURL( ' . $action . ' ): argument _network_interface_id not set.',
 						__FILE__,
@@ -98,11 +97,11 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 				}
 				else {
 					if( is_null( $this->_network_interface_id ) ) {
-						$this->_network_interface_id = $this->_obj->_network_interface_id;
+						$this->_network_interface_id = $this->inheritedObject->_network_interface_id;
 					}
 				}
 
-				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/network_interfaces/' . $this->_network_interface_id . '/' . $this->_resource;
+				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/network_interfaces/' . $this->_network_interface_id . '/' . $this->URLPath;
 				break;
 
 			default:

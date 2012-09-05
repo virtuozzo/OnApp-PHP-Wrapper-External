@@ -19,27 +19,26 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer  id
+ * @property string   label
+ * @property string   created_at
+ * @property string   updated_at
+ * @property integer  billing_plan_id
+ * @property string   unit
+ * @property string   resource_name
+ * @property string   limit
+ * @property string   limit_type
+ * @property string   limit_free
+ * @property string   price
+ * @property string   price_on
+ * @property string   price_off
+ * @property string   resource_class
+ * @property integer  target_id
+ */
 class OnApp_BillingPlan_BaseResource extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property string   label
-	 * @property datetime created_at
-	 * @property datetime updated_at
-	 * @property integer  billing_plan_id
-	 * @property unit
-	 * @property string   resource_name
-	 * @property string   limit
-	 * @property string   limit_type
-	 * @property string   limit_free
-	 * @property string   price
-	 * @property string   price_on
-	 * @property string   price_off
-	 * @property string   resource_class
-	 * @property integer  target_id
-	 */
-
 	public static $nestedData = array(
 		'limits' => 'BillingPlan_BaseResource_Limit',
 		'prices' => 'BillingPlan_BaseResource_Price',
@@ -72,7 +71,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		$show_log_msg = TRUE;
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
@@ -116,7 +115,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 				 * @alias   /billing_plans/:billing_plan_id/base_resources/:id(.:format)
 				 * @format  {:controller=>"base_resources", :action=>"destroy"}
 				 */
-				if( is_null( $this->_billing_plan_id ) && is_null( $this->_obj->_billing_plan_id ) ) {
+				if( is_null( $this->_billing_plan_id ) && is_null( $this->inheritedObject->_billing_plan_id ) ) {
 					$this->logger->error(
 						'getURL( ' . $action . ' ): argument _billing_plan_id not set.',
 						__FILE__,
@@ -125,11 +124,11 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 				}
 				else {
 					if( is_null( $this->_billing_plan_id ) ) {
-						$this->_billing_plan_id = $this->_obj->_billing_plan_id;
+						$this->_billing_plan_id = $this->inheritedObject->_billing_plan_id;
 					}
 				}
 
-				$resource = 'billing_plans/' . $this->_billing_plan_id . '/' . $this->_resource;
+				$resource = 'billing_plans/' . $this->_billing_plan_id . '/' . $this->URLPath;
 				break;
 
 			default:
@@ -197,8 +196,8 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 		if( is_null( $this->_limit ) ) {
 			$this->_limit = isset( $this->_limits->_limit )
 				? $this->_limits->_limit : (
-				isset( $this->_obj->_limits->_limit )
-					? $this->_obj->_limits->_limit
+				isset( $this->inheritedObject->_limits->_limit )
+					? $this->inheritedObject->_limits->_limit
 					: ''
 				);
 		}
@@ -206,8 +205,8 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 		if( is_null( $this->_limit_free ) ) {
 			$this->_limit_free = isset( $this->_limits->_limit_free )
 				? $this->_limits->_limit_free : (
-				isset( $this->_obj->_limits->_limit_free )
-					? $this->_obj->_limits->_limit_free
+				isset( $this->inheritedObject->_limits->_limit_free )
+					? $this->inheritedObject->_limits->_limit_free
 					: ''
 				);
 		}
@@ -215,8 +214,8 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 		if( is_null( $this->_price_on ) ) {
 			$this->_price_on = isset( $this->_prices->_price_on )
 				? $this->_prices->_price_on : (
-				isset( $this->_obj->_prices->_price_on ) ?
-					$this->_obj->_prices->_price_on
+				isset( $this->inheritedObject->_prices->_price_on ) ?
+					$this->inheritedObject->_prices->_price_on
 					: ''
 				);
 		}
@@ -224,8 +223,8 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 		if( is_null( $this->_price_off ) ) {
 			$this->_price_off = isset( $this->_limits->_price_off )
 				? $this->_prices->_price_off : (
-				isset( $this->_obj->_prices->_price_off )
-					? $this->_obj->_prices->_price_off
+				isset( $this->inheritedObject->_prices->_price_off )
+					? $this->inheritedObject->_prices->_price_off
 					: ""
 				);
 		}
@@ -233,8 +232,8 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 		if( is_null( $this->_price ) ) {
 			$this->_price = isset( $this->_limits->_price )
 				? $this->_prices->_price
-				: ( isset( $this->_obj->_prices->_price )
-					? $this->_obj->_prices->_price
+				: ( isset( $this->inheritedObject->_prices->_price )
+					? $this->inheritedObject->_prices->_price
 					: '' );
 		}
 

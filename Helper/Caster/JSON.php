@@ -51,10 +51,16 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 
 		$this->className = $className;
 
+		$z = $data;
 		if( is_string( $data ) ) {
 			$data = json_decode( $data );
 		}
 
+		if( empty( $data ) ) {
+			return NULL;
+		}
+		/*
+		todo check this code
 		try {
 			if( empty( $data ) ) {
 				if( IS_CLI ) {
@@ -70,6 +76,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 			echo PHP_EOL, $e->getMessage(), PHP_EOL;
 			return NULL;
 		}
+		*/
 
 		// get API version
 		if( is_null( parent::$obj->getAPIVersion() ) ) {
@@ -113,7 +120,10 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 
 		foreach( $item as $name => $value ) {
 			if( is_array( $value ) ) {
-				if( empty( $value ) ) {
+				if( ! isset( $obj::$nestedData[ $name ] ) ) {
+					// just continue
+				}
+				elseif( empty( $value ) ) {
 					$value = array();
 				}
 				else {

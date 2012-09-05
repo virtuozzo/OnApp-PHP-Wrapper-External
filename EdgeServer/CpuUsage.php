@@ -38,7 +38,7 @@ class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_LIST:
 				/**
@@ -49,20 +49,20 @@ class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
 				 * @alias   /edge_servers/:id/cpu_usage(.:format)
 				 * @format  {:controller=>"edge_servers", :action=>"cpu_usage"}
 				 */
-				if( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
+				if( is_null( $this->_virtual_machine_id ) && is_null( $this->inheritedObject->_virtual_machine_id ) ) {
 					$this->logger->error(
-						"getURL($action): argument _edge_server_id is not set.",
+						'getURL( ' . $action . ' ): argument edge_server_id is not set.',
 						__FILE__,
 						__LINE__
 					);
 				}
 				else {
 					if( is_null( $this->_virtual_machine_id ) ) {
-						$this->_virtual_machine_id = $this->_obj->_virtual_machine_id;
+						$this->_virtual_machine_id = $this->inheritedObject->_virtual_machine_id;
 					}
 				}
 
-				$resource = 'edge_servers/' . $this->_virtual_machine_id . '/' . $this->_resource;
+				$resource = 'edge_servers/' . $this->_virtual_machine_id . '/' . $this->URLPath;
 				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 

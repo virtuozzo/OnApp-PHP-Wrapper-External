@@ -24,25 +24,24 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer  cpu_shares
+ * @property integer  cpus
+ * @property string   created_at
+ * @property integer  disk_size
+ * @property integer  memory
+ * @property string   updated_at
+ * @property integer  user_id
+ * @property integer  storage_disk_size
+ * @property integer  virtual_machines_count
+ * @property integer  ip_address_count
+ * @property integer  ip_address_mask
+ * @property integer  backups_templates_count
+ * @property integer  rate
+ */
 class OnApp_ResourceLimit extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  cpu_shares
-	 * @property integer  cpus
-	 * @property datetime created_at
-	 * @property integer  disk_size
-	 * @property integer  memory
-	 * @property datetime updated_at
-	 * @property integer  user_id
-	 * @property integer  storage_disk_size
-	 * @property integer  virtual_machines_count
-	 * @property integer  ip_address_count
-	 * @property integer  ip_address_mask
-	 * @property integer  backups_templates_count
-	 * @property integer  rate
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *
@@ -68,7 +67,7 @@ class OnApp_ResourceLimit extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 			case ONAPP_GETRESOURCE_EDIT:
@@ -88,19 +87,19 @@ class OnApp_ResourceLimit extends OnApp {
 				 * @alias   /users/:user_id/resource_limit(.:format)
 				 * @format  {:controller=>"resource_limits", :action=>"update"}
 				 */
-				if( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {
+				if( is_null( $this->_user_id ) && is_null( $this->inheritedObject->_user_id ) ) {
 					$this->logger->error(
-						"getURL($action): argument _user_id not set.",
+						'getURL( ' . $action . ' ): argument _user_id not set.',
 						__FILE__,
 						__LINE__
 					);
 				}
 				else {
 					if( is_null( $this->_user_id ) ) {
-						$this->_user_id = $this->_obj->_user_id;
+						$this->_user_id = $this->inheritedObject->_user_id;
 					}
 				}
-				$resource = 'users/' . $this->_user_id . '/' . $this->_resource;
+				$resource = 'users/' . $this->_user_id . '/' . $this->URLPath;
 				break;
 
 			case ONAPP_GETRESOURCE_LOAD:
@@ -141,10 +140,10 @@ class OnApp_ResourceLimit extends OnApp {
 		}
 
 		if( is_null( $user_id ) &&
-			isset( $this->_obj ) &&
-			! is_null( $this->_obj->_user_id )
+			isset( $this->inheritedObject ) &&
+			! is_null( $this->inheritedObject->_user_id )
 		) {
-			$user_id = $this->_obj->_user_id;
+			$user_id = $this->inheritedObject->_user_id;
 		}
 
 		$this->logger->add( 'load: Load class ( id => ' . $user_id . ').' );
@@ -158,8 +157,8 @@ class OnApp_ResourceLimit extends OnApp {
 
 			$result = $this->_castResponseToClass( $response );
 
-			$this->_obj     = $result;
-			$this->_user_id = $this->_obj->_user_id;
+			$this->inheritedObject = $result;
+			$this->_user_id        = $this->inheritedObject->_user_id;
 
 			return $result;
 		}

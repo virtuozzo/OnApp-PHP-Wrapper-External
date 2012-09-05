@@ -9,14 +9,13 @@
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property string code
+ * @property string name
+ */
 class OnApp_Locale extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property string code
-	 * @property string name
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *
@@ -36,7 +35,7 @@ class OnApp_Locale extends OnApp {
 		$this->className = __CLASS__;
 	}
 
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		return parent::getURL( $action );
 		/**
 		 * ROUTE :

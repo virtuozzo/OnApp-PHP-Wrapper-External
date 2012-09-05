@@ -23,19 +23,18 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer  id
+ * @property integer  target_id
+ * @property string   created_at
+ * @property string   target_type
+ * @property string   updated_at
+ * @property string   action
+ * @property string   status
+ */
 class OnApp_Log extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property integer  target_id
-	 * @property datetime created_at
-	 * @property string   target_type
-	 * @property string   updated_at
-	 * @property string   action
-	 * @property string   status
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *
@@ -55,7 +54,7 @@ class OnApp_Log extends OnApp {
 		$this->className = __CLASS__;
 	}
 
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -75,14 +74,14 @@ class OnApp_Log extends OnApp {
 				 * @format   {:controller=>"log_items", :action=>"show"}
 				 */
 
-				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $this->_resource );
+				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $this->URLPath );
 				break;
 
 			default:
-				$this->_resource = parent::getURL( $action );
+				$this->URLPath = parent::getURL( $action );
 		}
 
-		return $this->_resource;
+		return $this->URLPath;
 	}
 
 	/**

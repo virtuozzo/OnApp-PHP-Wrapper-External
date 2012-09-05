@@ -24,17 +24,16 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer  id
+ * @property  address
+ * @property string   created_at
+ * @property integer  network_id
+ * @property string   updated_at
+ */
 class OnApp_Nameserver extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property  address
-	 * @property datetime created_at
-	 * @property integer  network_id
-	 * @property datetime updated_at
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *
@@ -54,7 +53,7 @@ class OnApp_Nameserver extends OnApp {
 		$this->className = __CLASS__;
 	}
 
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		return parent::getURL( $action );
 		/**
 		 * ROUTE :

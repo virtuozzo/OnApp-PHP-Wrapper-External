@@ -30,17 +30,16 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer  id
+ * @property string   created_at
+ * @property string   identifier
+ * @property string   label
+ * @property string   updated_at
+ */
 class OnApp_Role extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property datetime created_at
-	 * @property string   identifier
-	 * @property label
-	 * @property datetime updated_at
-	 */
-
 	public static $nestedData = array(
 		'permissions' => 'Role_Permission',
 	);
@@ -64,7 +63,7 @@ class OnApp_Role extends OnApp {
 		$this->className = __CLASS__;
 	}
 
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		return parent::getURL( $action );
 		/**
 		 * ROUTE :

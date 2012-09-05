@@ -21,17 +21,16 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer  id
+ * @property string   created_at
+ * @property string   updated_at
+ * @property integer  network_interface_id
+ * @property integer  ip_address_id
+ */
 class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property datetime created_at
-	 * @property datetime updated_at
-	 * @property integer  network_interface_id
-	 * @property integer  ip_address_id
-	 */
-
 	public static $nestedData = array(
 		'ip_address' => 'VirtualMachine_IpAddress',
 	);
@@ -63,7 +62,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -98,21 +97,26 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 				 * @alias   /virtual_machines/:virtual_machine_id/ip_addresses/:id(.:format)
 				 * @format  {:controller=>"ip_address_joins", :action=>"destroy"}
 				 */
-				if( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
+				if( ! is_null( $this->URLID ) ) {
+					$this->virtual_machine_id = $this->URLID;
+				}
+
+				if( is_null( $this->virtual_machine_id ) && is_null( $this->inheritedObject->virtual_machine_id ) ) {
 					$this->logger->error(
-						"getURL($action): argument _virtual_machine_id not set.",
+						'getURL( ' . $action . ' ): argument virtual_machine_id not set.',
 						__FILE__,
 						__LINE__
 					);
 				}
 				else {
-					if( is_null( $this->_virtual_machine_id ) ) {
-						$this->_virtual_machine_id = $this->_obj->_virtual_machine_id;
+					if( is_null( $this->virtual_machine_id ) ) {
+						$this->virtual_machine_id = $this->inheritedObject->virtual_machine_id;
 					}
 				}
 
-				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->_resource;
+				$resource = 'virtual_machines/' . $this->virtual_machine_id . '/' . $this->URLPath;
 				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
+				unset( $this->virtual_machine_id );
 				break;
 
 			default:
@@ -132,18 +136,18 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 	 * @access public
 	 */
 	function getList( $virtual_machine_id = NULL, $url_args = NULL ) {
-		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
-			$virtual_machine_id = $this->_virtual_machine_id;
+		if( is_null( $virtual_machine_id ) && ! is_null( $this->virtual_machine_id ) ) {
+			$virtual_machine_id = $this->virtual_machine_id;
 		}
 
 		if( ! is_null( $virtual_machine_id ) ) {
-			$this->_virtual_machine_id = $virtual_machine_id;
+			$this->virtual_machine_id = $virtual_machine_id;
 
 			return parent::getList( $virtual_machine_id, $url_args );
 		}
 		else {
 			$this->logger->error(
-				'getList: argument _virtual_machine_id not set.',
+				'getList: argument virtual_machine_id not set.',
 				__FILE__,
 				__LINE__
 			);
@@ -164,26 +168,27 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 	 * @access public
 	 */
 	function load( $id = NULL, $virtual_machine_id = NULL ) {
-		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
-			$virtual_machine_id = $this->_virtual_machine_id;
+		if( ! is_null( $this->URLID ) ) {
+			$this->virtual_machine_id = $this->URLID;
 		}
 
-		if( is_null( $id ) && ! is_null( $this->_id ) ) {
-			$id = $this->_id;
+		if( is_null( $virtual_machine_id ) && ! is_null( $this->virtual_machine_id ) ) {
+			$virtual_machine_id = $this->virtual_machine_id;
 		}
 
-		if( is_null( $id ) &&
-			isset( $this->_obj ) &&
-			! is_null( $this->_obj->_id )
-		) {
-			$id = $this->_obj->_id;
+		if( is_null( $id ) && ! is_null( $this->id ) ) {
+			$id = $this->id;
 		}
 
-		$this->logger->add( "load: Load class ( id => '$id')." );
+		if( is_null( $id ) && isset( $this->inheritedObject ) && ! is_null( $this->inheritedObject->id ) ) {
+			$id = $this->inheritedObject->id;
+		}
+
+		$this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
 
 		if( ! is_null( $id ) && ! is_null( $virtual_machine_id ) ) {
-			$this->_id                 = $id;
-			$this->_virtual_machine_id = $virtual_machine_id;
+			$this->id                 = $id;
+			$this->virtual_machine_id = $virtual_machine_id;
 
 			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 
@@ -191,25 +196,31 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 
 			$result = $this->_castResponseToClass( $response );
 
-			$this->_obj = $result;
+			$this->inheritedObject = $result;
 
 			return $result;
 		}
 		else {
 			if( is_null( $id ) ) {
 				$this->logger->error(
-					'load: argument _id not set.',
+					'load: argument id not set.',
 					__FILE__,
 					__LINE__
 				);
 			}
 			else {
 				$this->logger->error(
-					'load: argument _virtual_machine_id not set.',
+					'load: argument virtual_machine_id not set.',
 					__FILE__,
 					__LINE__
 				);
 			}
 		}
+	}
+
+	public function save() {
+		$this->URLID = $this->virtual_machine_id;
+		unset( $this->virtual_machine_id );
+		parent::save();
 	}
 }

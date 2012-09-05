@@ -21,26 +21,25 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer     id
+ * @property string      label
+ * @property string      created_at
+ * @property string      updated_at
+ * @property mixed       usage
+ * @property boolean     primary
+ * @property string      usage_month_rolled_at
+ * @property string      mac_address
+ * @property string      usage_last_reset_at
+ * @property integer     rate_limit
+ * @property string      identifier
+ * @property integer     network_join_id
+ * @property integer     virtual_machine_id
+ * @property string      default_firewall_rule
+ */
 class OnApp_VirtualMachine_NetworkInterface extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property label
-	 * @property datetime created_at
-	 * @property datetime updated_at
-	 * @property usage
-	 * @property boolean  primary
-	 * @property date     usage_month_rolled_at
-	 * @property mac_address
-	 * @property datetime usage_last_reset_at
-	 * @property integer  rate_limit
-	 * @property identifier
-	 * @property integer  network_join_id
-	 * @property integer  virtual_machine_id
-	 * @property default_firewall_rule
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *
@@ -68,7 +67,7 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -111,19 +110,19 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
 				 * @alias   /network_interfaces/:id(.:format)
 				 * @format  {:controller=>"network_interfaces", :action=>"destroy"}
 				 */
-				if( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
+				if( is_null( $this->_virtual_machine_id ) && is_null( $this->inheritedObject->_virtual_machine_id ) ) {
 					$this->logger->error(
-						"getURL($action): argument _virtual_machine_id not set.",
+						'getURL( ' . $action . ' ): argument virtual_machine_id not set.',
 						__FILE__,
 						__LINE__
 					);
 				}
 				else {
 					if( is_null( $this->_virtual_machine_id ) ) {
-						$this->_virtual_machine_id = $this->_obj->_virtual_machine_id;
+						$this->_virtual_machine_id = $this->inheritedObject->_virtual_machine_id;
 					}
 				}
-				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->_resource;
+				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->URLPath;
 				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
@@ -149,10 +148,10 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
 		}
 
 		if( is_null( $virtual_machine_id ) &&
-			isset( $this->_obj ) &&
-			! is_null( $this->_obj->_virtual_machine_id )
+			isset( $this->inheritedObject ) &&
+			! is_null( $this->inheritedObject->_virtual_machine_id )
 		) {
-			$virtual_machine_id = $this->_obj->_virtual_machine_id;
+			$virtual_machine_id = $this->inheritedObject->_virtual_machine_id;
 		}
 
 		if( ! is_null( $virtual_machine_id ) ) {
@@ -187,10 +186,10 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
 		}
 
 		if( is_null( $virtual_machine_id ) &&
-			isset( $this->_obj ) &&
-			! is_null( $this->_obj->_virtual_machine_id )
+			isset( $this->inheritedObject ) &&
+			! is_null( $this->inheritedObject->_virtual_machine_id )
 		) {
-			$virtual_machine_id = $this->_obj->_virtual_machine_id;
+			$virtual_machine_id = $this->inheritedObject->_virtual_machine_id;
 		}
 
 		if( is_null( $id ) && ! is_null( $this->_id ) ) {
@@ -198,10 +197,10 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
 		}
 
 		if( is_null( $id ) &&
-			isset( $this->_obj ) &&
-			! is_null( $this->_obj->_id )
+			isset( $this->inheritedObject ) &&
+			! is_null( $this->inheritedObject->_id )
 		) {
-			$id = $this->_obj->_id;
+			$id = $this->inheritedObject->_id;
 		}
 
 		$this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
@@ -216,7 +215,7 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
 
 			$result = $this->_castResponseToClass( $response );
 
-			$this->_obj = $result;
+			$this->inheritedObject = $result;
 
 			return $result;
 		}

@@ -10,14 +10,13 @@
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer limit_free
+ * @property integer limit
+ */
 class OnApp_BillingPlan_BaseResource_Limit extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer limit_free
-	 * @property integer limit
-	 */
-
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;

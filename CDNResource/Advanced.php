@@ -21,31 +21,30 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer id
+ * @property array   countries
+ * @property string  hotlink_policy
+ * @property string  ip_access_policy
+ * @property string  country_access_policy
+ * @property string  passwords
+ * @property string  domains
+ * @property integer cache_expiry
+ * @property string  publisher_name
+ * @property boolean password_on
+ * @property boolean url_signing_on
+ * @property string  password_unauthorized_html
+ * @property string  ip_addresses
+ * @property string  url_signing_key
+ * @property array   secondary_hostnames
+ * @property boolean flv_pseudo_on
+ * @property boolean mp4_pseudo_on
+ * @property boolean ssl_on
+ * @property boolean ignore_set_cookie_on
+ */
 class OnApp_CDNResource_Advanced extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer id
-	 * @property array   countries
-	 * @property string  hotlink_policy
-	 * @property string  ip_access_policy
-	 * @property string  country_access_policy
-	 * @property string  passwords
-	 * @property string  domains
-	 * @property integer cache_expiry
-	 * @property string  publisher_name
-	 * @property boolean password_on
-	 * @property boolean url_signing_on
-	 * @property string  password_unauthorized_html
-	 * @property string  ip_addresses
-	 * @property string  url_signing_key
-	 * @property array   secondary_hostnames
-	 * @property boolean flv_pseudo_on
-	 * @property boolean mp4_pseudo_on
-	 * @property boolean ssl_on
-	 * @property boolean ignore_set_cookie_on
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *
@@ -73,10 +72,10 @@ class OnApp_CDNResource_Advanced extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
-				$resource = 'cdn_resources/' . $this->_id . '/' . $this->_resource;
+				$resource = 'cdn_resources/' . $this->_id . '/' . $this->URLPath;
 				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 

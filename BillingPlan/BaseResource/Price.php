@@ -10,15 +10,14 @@
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer price_on
+ * @property integer price_off
+ * @property integer price
+ */
 class OnApp_BillingPlan_BaseResource_Price extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer price_on
-	 * @property integer price_off
-	 * @property integer price
-	 */
-
 	protected $rootElement = 'price';
 
 	public function __construct() {

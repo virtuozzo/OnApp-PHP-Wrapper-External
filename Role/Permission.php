@@ -21,17 +21,16 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer  id
+ * @property string   label
+ * @property string   created_at
+ * @property string   updated_at
+ * @property string   identifier
+ */
 class OnApp_Role_Permission extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property label
-	 * @property datetime created_at
-	 * @property datetime updated_at
-	 * @property identifier
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *

@@ -17,16 +17,15 @@
  * The OnApp_LoadBalancingCluster_NodeAtribute class uses no basic methods and is nested of OnApp_LoadBalancingCluster class
  *
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer cpus
+ * @property integer cpu_shares
+ * @property integer memory
+ * @property integer rate_limit
+ */
 class OnApp_LoadBalancingCluster_NodeAtribute extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer cpus
-	 * @property integer cpu_shares
-	 * @property integer memory
-	 * @property integer rate_limit
-	 */
-
 	public function __construct() {
 		parent::__construct();
 		$this->className = __CLASS__;

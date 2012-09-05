@@ -21,26 +21,25 @@
  * Edge Group nested class and support no basic methods
  *
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property string  logFtpUsername
+ * @property string  baseHostname
+ * @property string  sslCertificate
+ * @property string  trafficPolicy
+ * @property string  logDeliveryMethod
+ * @property string  logFtpPassword
+ * @property integer httpCacheExpiry
+ * @property string  httpErrorPage
+ * @property string  logFtpDirectory
+ * @property string  logFormat
+ * @property string  logSyslogHostname
+ * @property string  logFtpHostname
+ * @property integer logFtpPort
+ * @property string  sslKey
+ */
 class OnApp_EdgeGroup_Location_Operator_Setting extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property string  logFtpUsername
-	 * @property string  baseHostname
-	 * @property string  sslCertificate
-	 * @property string  trafficPolicy
-	 * @property string  logDeliveryMethod
-	 * @property string  logFtpPassword
-	 * @property integer httpCacheExpiry
-	 * @property string  httpErrorPage
-	 * @property string  logFtpDirectory
-	 * @property string  logFormat
-	 * @property string  logSyslogHostname
-	 * @property string  logFtpHostname
-	 * @property integer logFtpPort
-	 * @property string  sslKey
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *

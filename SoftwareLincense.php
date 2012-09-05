@@ -23,22 +23,21 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer  id
+ * @property string   created_at
+ * @property string   updated_at
+ * @property string   arch
+ * @property integer  total
+ * @property string   distro
+ * @property integer  count
+ * @property string   tail
+ * @property string   edition
+ * @property string   license
+ */
 class OnApp_SoftwareLincense extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property datetime created_at
-	 * @property datetime updated_at
-	 * @property string   arch
-	 * @property integer  total
-	 * @property string   distro
-	 * @property integer  count
-	 * @property string   tail
-	 * @property string   edition
-	 * @property string   license
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *

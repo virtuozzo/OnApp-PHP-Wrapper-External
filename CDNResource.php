@@ -30,51 +30,50 @@ define( 'ONAPP_GETRESOURCE_CDN_PURGE', 'cdn_purge' );
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property string  created_at
+ * @property string  updated_at
+ * @property integer id
+ * @property integer user_id
+ * @property string  cdn_hostname
+ * @property integer aflexi_resource_id
+ * @property integer last_24h_cost
+ * @property string  hotlink_policy
+ * @property string  ip_access_policy
+ * @property string  ip_addresses
+ * @property integer resource_type
+ * @property string  country_access_policy
+ * @property string  origin
+ * @property boolean advanced_settings
+ * @property string  domains
+ * @property boolean url_signing_on
+ * @property string  url_signing_key
+ * @property integer cache_expiry
+ * @property boolean password_on
+ * @property string  password_unauthorized_html
+ * @property array   pass
+ * @property array   user
+ * @property array   form_pass
+ * @property string  status
+ * @property string  edge_group_ids
+ * @property array   secondary_hostnames
+ * @property string  ftp_password
+ * @property boolean mp4_pseudo_on
+ * @property boolean flv_pseudo_on
+ * @property boolean ignore_set_cookie_on
+ * @property string  publishing_point
+ * @property boolean anti_leech_on
+ * @property string  anti_leech_domains
+ * @property boolean secure_wowza_on
+ * @property string  secure_wowza_token
+ * @property integer internal_publishing_point
+ * @property integer failover_internal_publishing_point
+ * @property integer external_publishing_url
+ * @property integer failover_external_publishing_url
+ */
 class OnApp_CDNResource extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property string  created_at
-	 * @property string  updated_at
-	 * @property integer id
-	 * @property integer user_id
-	 * @property string  cdn_hostname
-	 * @property integer aflexi_resource_id
-	 * @property integer last_24h_cost
-	 * @property string  hotlink_policy
-	 * @property string  ip_access_policy
-	 * @property string  ip_addresses
-	 * @property integer resource_type
-	 * @property string  country_access_policy
-	 * @property string  origin
-	 * @property boolean advanced_settings
-	 * @property string  domains
-	 * @property boolean url_signing_on
-	 * @property string  url_signing_key
-	 * @property integer cache_expiry
-	 * @property boolean password_on
-	 * @property string  password_unauthorized_html
-	 * @property array   pass
-	 * @property array   user
-	 * @property array   form_pass
-	 * @property string  status
-	 * @property string  edge_group_ids
-	 * @property array   secondary_hostnames
-	 * @property string  ftp_password
-	 * @property boolean mp4_pseudo_on
-	 * @property boolean flv_pseudo_on
-	 * @property boolean ignore_set_cookie_on
-	 * @property string  publishing_point
-	 * @property boolean anti_leech_on
-	 * @property string  anti_leech_domains
-	 * @property boolean secure_wowza_on
-	 * @property string  secure_wowza_token
-	 * @property integer internal_publishing_point
-	 * @property integer failover_internal_publishing_point
-	 * @property integer external_publishing_url
-	 * @property integer failover_external_publishing_url
-	 */
-
 	public static $nestedData = array(
 		'edge_groups' => 'EdgeGroup',
 		'countries'   => 'CDNResource_Advanced_Country',
@@ -100,7 +99,7 @@ class OnApp_CDNResource extends OnApp {
 		$this->className = __CLASS__;
 	}
 
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_ENABLE_CDN:
 				/**
@@ -111,7 +110,7 @@ class OnApp_CDNResource extends OnApp {
 				 * @alias  /cdn_resources/enable(.:format)
 				 * @format {:controller=>"cdn_resources", :action=>"enable"}
 				 */
-				$resource = $this->_resource . '/enable';
+				$resource = $this->URLPath . '/enable';
 				break;
 
 			case ONAPP_GETRESOURCE_CDN_PREFETCH:
@@ -123,7 +122,7 @@ class OnApp_CDNResource extends OnApp {
 				 * @alias  /cdn_resources/:id/prefetch(.:format)
 				 * @format {:controller=>"cdn_resources", :action=>"prefetch"}
 				 */
-				$resource = $this->_resource . '/' . $this->_id . '/prefetch';
+				$resource = $this->URLPath . '/' . $this->_id . '/prefetch';
 				break;
 
 			case ONAPP_GETRESOURCE_CDN_PURGE:
@@ -135,7 +134,7 @@ class OnApp_CDNResource extends OnApp {
 				 * @alias  /cdn_resources/:id/purge(.:format)
 				 * @format {:controller=>"cdn_resources", :action=>"purge"}
 				 */
-				$resource = $this->_resource . '/' . $this->_id . '/purge';
+				$resource = $this->URLPath . '/' . $this->_id . '/purge';
 				break;
 
 			default:

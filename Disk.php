@@ -26,27 +26,26 @@ define( 'ONAPP_GETRESOURCE_TAKE_BACKUP', 'backups' );
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer  id
+ * @property string   created_at
+ * @property string   updated_at
+ * @property boolean  add_to_linux_fstab
+ * @property integer  disk_size
+ * @property boolean  primary
+ * @property integer  data_store_id
+ * @property integer  disk_vm_number
+ * @property boolean  is_swap
+ * @property string   mount_point
+ * @property string   identifier
+ * @property integer  virtual_machine_id
+ * @property boolean  built
+ * @property boolean  locked
+ * @property boolean  has_autobackups
+ */
 class OnApp_Disk extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property datetime created_at
-	 * @property datetime updated_at
-	 * @property boolean  add_to_linux_fstab
-	 * @property integer  disk_size
-	 * @property boolean  primary
-	 * @property integer  data_store_id
-	 * @property integer  disk_vm_number
-	 * @property boolean  is_swap
-	 * @property mount_point
-	 * @property identifier
-	 * @property integer  virtual_machine_id
-	 * @property boolean  built
-	 * @property boolean  locked
-	 * @property boolean  has_autobackups
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *
@@ -74,7 +73,7 @@ class OnApp_Disk extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_LIST:
 				/**
@@ -259,6 +258,7 @@ class OnApp_Disk extends OnApp {
 	 * @access private
 	 */
 	function save() {
+		//todo check this code
 		if( $this->_virtual_machine_id ) {
 			$this->fields[ 'require_format_disk' ] = array(
 				ONAPP_FIELD_MAP           => '_require_format_disk',

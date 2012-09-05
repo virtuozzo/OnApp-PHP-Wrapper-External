@@ -40,19 +40,18 @@ define( 'ONAPP_GETRESOURCE_NETWORKS_LIST_BY_HYPERVISOR_GROUP_ID', 'networks_list
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer  id
+ * @property string   created_at
+ * @property string   identifier
+ * @property string   label
+ * @property string   updated_at
+ * @property integer  vlan
+ * @property integer  network_group_id
+ */
 class OnApp_Network extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property datetime created_at
-	 * @property identifier
-	 * @property label
-	 * @property datetime updated_at
-	 * @property integer  vlan
-	 * @property integer  network_group_id
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *
@@ -72,7 +71,7 @@ class OnApp_Network extends OnApp {
 		$this->className = __CLASS__;
 	}
 
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_NETWORKS_LIST_BY_HYPERVISOR_GROUP_ID:
 				/**
@@ -95,7 +94,7 @@ class OnApp_Network extends OnApp {
 				 * @alias  /settings/networks/:network_id/ip_addresses(.:format)
 				 * @format {:controller=>"ip_addresses", :action=>"index"}
 				 */
-				$resource = $this->_resource . '/' . $this->_id . '/ip_address';
+				$resource = $this->URLPath . '/' . $this->_id . '/ip_address';
 				break;
 
 			default:
@@ -148,8 +147,8 @@ class OnApp_Network extends OnApp {
 			return FALSE;
 		}
 
-		$result     = $this->castStringToClass( $response );
-		$this->_obj = $result;
+		$result                = $this->castStringToClass( $response );
+		$this->inheritedObject = $result;
 
 		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
 	}

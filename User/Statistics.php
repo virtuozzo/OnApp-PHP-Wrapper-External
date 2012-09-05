@@ -23,20 +23,19 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property float backup_cost
+ * @property float vm_cost
+ * @property float monit_cost
+ * @property float storage_disk_size_cost
+ * @property float user_resources_cost
+ * @property float template_cost
+ * @property float total_cost
+ * @property float edge_group_cost
+ */
 class OnApp_User_Statistics extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property float backup_cost
-	 * @property float vm_cost
-	 * @property float monit_cost
-	 * @property float storage_disk_size_cost
-	 * @property float user_resources_cost
-	 * @property float template_cost
-	 * @property float total_cost
-	 * @property float edge_group_cost
-	 */
-
 	public static $nestedData = array(
 		'vm_stats' => 'User_Statistics_VmStat',
 	);
@@ -68,7 +67,7 @@ class OnApp_User_Statistics extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -79,19 +78,19 @@ class OnApp_User_Statistics extends OnApp {
 				 * @alias   /users/:user_id/vm_stats(.:format)
 				 * @format  {:controller=>"vm_stats", :action=>"index"}
 				 */
-				if( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {
+				if( is_null( $this->_user_id ) && is_null( $this->inheritedObject->_user_id ) ) {
 					$this->logger->error(
-						"getURL($action): argument _user_id not set.",
+						'getURL( ' . $action . ' ): argument user_id not set.',
 						__FILE__,
 						__LINE__
 					);
 				}
 				else {
 					if( is_null( $this->_user_id ) ) {
-						$this->_user_id = $this->_obj->_user_id;
+						$this->_user_id = $this->inheritedObject->_user_id;
 					}
 				}
-				$resource = 'users/' . $this->_user_id . '/' . $this->_resource;
+				$resource = 'users/' . $this->_user_id . '/' . $this->URLPath;
 				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 

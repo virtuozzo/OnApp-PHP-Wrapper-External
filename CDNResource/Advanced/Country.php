@@ -19,18 +19,17 @@
  * The OnApp_CDNResource_Advanced_Country class doesn't support any basic method.
  *
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property string continent
+ * @property string name
+ * @property string created_at
+ * @property string code
+ * @property string updated_at
+ * @property string id
+ */
 class OnApp_CDNResource_Advanced_Country extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property string continent
-	 * @property string name
-	 * @property string created_at
-	 * @property string code
-	 * @property string updated_at
-	 * @property string id
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *

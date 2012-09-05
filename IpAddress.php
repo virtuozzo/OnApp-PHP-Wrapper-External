@@ -20,24 +20,23 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer  id
+ * @property string   created_at
+ * @property string   updated_at
+ * @property string   address
+ * @property string   netmask
+ * @property string   broadcast
+ * @property string   network_address
+ * @property string   gateway
+ * @property integer  network_id
+ * @property boolean  free
+ * @property boolean  disallowed_primary
+ * @property integer  user_id
+ */
 class OnApp_IpAddress extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property datetime created_at
-	 * @property datetime updated_at
-	 * @property address
-	 * @property netmask
-	 * @property broadcast
-	 * @property network_address
-	 * @property gateway
-	 * @property integer  network_id
-	 * @property boolean  free
-	 * @property boolean  disallowed_primary
-	 * @property integer  user_id
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *
@@ -65,7 +64,7 @@ class OnApp_IpAddress extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -108,20 +107,20 @@ class OnApp_IpAddress extends OnApp {
 				 * @alias  /settings/networks/:network_id/ip_addresses/:id(.:format)
 				 * @format {:controller=>"ip_addresses", :action=>"destroy"}
 				 */
-				if( is_null( $this->_network_id ) && is_null( $this->_obj->_network_id ) ) {
+				if( is_null( $this->_network_id ) && is_null( $this->inheritedObject->_network_id ) ) {
 					$this->logger->error(
-						"getURL($action): argument _network_id not set.",
+						'getURL( ' . $action . '): argument _network_id not set.',
 						__FILE__,
 						__LINE__
 					);
 				}
 				else {
 					if( is_null( $this->_network_id ) ) {
-						$this->_network_id = $this->_obj->_network_id;
+						$this->_network_id = $this->inheritedObject->_network_id;
 					}
 				}
 
-				$resource = 'settings/networks/' . $this->_network_id . '/' . $this->_resource;
+				$resource = 'settings/networks/' . $this->_network_id . '/' . $this->URLPath;
 				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
@@ -142,13 +141,12 @@ class OnApp_IpAddress extends OnApp {
 	 * @access public
 	 */
 	function getList( $network_id = NULL, $url_args = NULL ) {
-		if( is_null( $network_id ) && ! is_null( $this->_network_id ) ) {
-			$network_id = $this->_network_id;
+		if( is_null( $network_id ) && ! is_null( $this->network_id ) ) {
+			$network_id = $this->network_id;
 		}
 
 		if( ! is_null( $network_id ) ) {
-			$this->_network_id = $network_id;
-
+			$this->network_id = $network_id;
 			return parent::getList( $network_id, $url_args );
 		}
 		else {
@@ -182,14 +180,11 @@ class OnApp_IpAddress extends OnApp {
 			$id = $this->_id;
 		}
 
-		if( is_null( $id ) &&
-			isset( $this->_obj ) &&
-			! is_null( $this->_obj->_id )
-		) {
-			$id = $this->_obj->_id;
+		if( is_null( $id ) && isset( $this->inheritedObject ) && ! is_null( $this->inheritedObject->_id ) ) {
+			$id = $this->inheritedObject->_id;
 		}
 
-		$this->logger->add( "load: Load class ( id => '$id')." );
+		$this->logger->add( 'load: Load class ( id => "' . $id . '").' );
 
 		if( ! is_null( $id ) && ! is_null( $network_id ) ) {
 			$this->_id         = $id;
@@ -201,7 +196,7 @@ class OnApp_IpAddress extends OnApp {
 
 			$result = $this->_castResponseToClass( $response );
 
-			$this->_obj = $result;
+			$this->inheritedObject = $result;
 
 			return $result;
 		}

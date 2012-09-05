@@ -19,14 +19,13 @@
  * The OnApp_CDNResource_Origin class doesn't support any basic method.
  *
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property string value
+ * @property string key
+ */
 class OnApp_CDNResource_Origin extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property string value
-	 * @property string key
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *

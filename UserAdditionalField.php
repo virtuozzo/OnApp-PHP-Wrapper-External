@@ -21,16 +21,15 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer id
+ * @property string  name
+ * @property integer default_value
+ * @property string  data_type
+ */
 class OnApp_UserAdditionalField extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer id
-	 * @property string  name
-	 * @property integer default_value
-	 * @property string  data_type
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *

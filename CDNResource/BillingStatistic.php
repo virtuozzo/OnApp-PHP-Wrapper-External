@@ -21,20 +21,19 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer id
+ * @property string  data_cached
+ * @property string  data_non_cached
+ * @property integer edge_group_id
+ * @property string  cost
+ * @property string  edge_group_label
+ * @property string  stat_time
+ * @property string  value
+ */
 class OnApp_CDNResource_BillingStatistic extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer id
-	 * @property string  data_cached
-	 * @property string  data_non_cached
-	 * @property integer edge_group_id
-	 * @property string  cost
-	 * @property string  edge_group_label
-	 * @property string  stat_time
-	 * @property string  value
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *
@@ -62,10 +61,10 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
-				$resource = 'cdn_resources/' . $this->_id . '/' . $this->_resource;
+				$resource = 'cdn_resources/' . $this->_id . '/' . $this->URLPath;
 				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 

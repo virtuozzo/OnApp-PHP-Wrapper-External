@@ -37,48 +37,48 @@ define( 'ONAPP_GETRESOURCE_DELETE_USER', 'delete_user' );
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=17 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property int           $id                            ID
+ * @property int           $used_cpu_shares
+ * @property int           $used_cpus
+ * @property int           $used_disk_size
+ * @property int           $used_memory
+ * @property int           $memory_available
+ * @property int           $disk_space_available
+ * @property int           $billing_plan_id
+ * @property int           $image_template_group_id
+ * @property int           $user_group_id
+ * @property int           $aflexi_user_id
+ * @property string        $email                         email
+ * @property string        $first_name                    first name
+ * @property string        $last_name                     last name
+ * @property string        $login                         login
+ * @property string        $activated_at                  activation date
+ * @property string        $created_at                    creation date
+ * @property string        $deleted_at                    deletion date
+ * @property string        $updated_at                    updating date
+ * @property string        $suspend_at                    suspension date
+ * @property string        $time_zone                     time zone
+ * @property string        $status                        status
+ * @property string        $locale                        locale
+ * @property string        $aflexi_username
+ * @property string        $aflexi_key
+ * @property string        $cdn_status
+ * @property string        $cdn_account_status
+ * @property string        $aflexi_password
+ * @property string        $remember_token
+ * @property string        $remember_token_expires_at
+ * @property float         $outstanding_amount            outstanding amount
+ * @property float         $payment_amount                payment amount
+ * @property float         $total_amount                  total amount
+ * @property array         $roles
+ * @property array         $used_ip_addresses
+ * @property array         $additional_fields
+ * @property boolean       $update_billing_stat
+ */
 class OnApp_User extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property int           $id                            ID
-	 * @property int           $used_cpu_shares
-	 * @property int           $used_cpus
-	 * @property int           $used_disk_size
-	 * @property int           $used_memory
-	 * @property int           $memory_available
-	 * @property int           $disk_space_available
-	 * @property int           $billing_plan_id
-	 * @property int           $image_template_group_id
-	 * @property int           $user_group_id
-	 * @property int           $aflexi_user_id
-	 * @property string        $email                         email
-	 * @property string        $first_name                    first name
-	 * @property string        $last_name                     last name
-	 * @property string        $login                         login
-	 * @property string        $activated_at                  activation date
-	 * @property string        $created_at                    creation date
-	 * @property string        $deleted_at                    deletion date
-	 * @property string        $updated_at                    updating date
-	 * @property string        $suspend_at                    suspension date
-	 * @property string        $time_zone                     time zone
-	 * @property string        $status                        status
-	 * @property string        $locale                        locale
-	 * @property string        $aflexi_username
-	 * @property string        $aflexi_key
-	 * @property string        $cdn_status
-	 * @property string        $cdn_account_status
-	 * @property string        $aflexi_password
-	 * @property string        $remember_token
-	 * @property string        $remember_token_expires_at
-	 * @property float         $outstanding_amount            outstanding amount
-	 * @property float         $payment_amount                payment amount
-	 * @property float         $total_amount                  total amount
-	 * @property array         $roles
-	 * @property array         $used_ip_addresses
-	 * @property array         $additional_fields
-	 * @property boolean       $update_billing_stat
-	 */
 
 	public static $nestedData = array(
 		'roles'             => 'Role',
@@ -167,7 +167,7 @@ class OnApp_User extends OnApp {
 
 		$result = $this->_castResponseToClass( $response );
 
-		$this->_obj = $result;
+		$this->inheritedObject = $result;
 	}
 
 	/**
@@ -182,7 +182,7 @@ class OnApp_User extends OnApp {
 
 		$result = $this->_castResponseToClass( $response );
 
-		$this->_obj = $result;
+		$this->inheritedObject = $result;
 	}
 
 	/**
@@ -244,8 +244,8 @@ class OnApp_User extends OnApp {
 			return FALSE;
 		}
 
-		$result     = $this->castStringToClass( $response );
-		$this->_obj = $result;
+		$result                = $this->castStringToClass( $response );
+		$this->inheritedObject = $result;
 
 		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
 	}
@@ -285,8 +285,8 @@ class OnApp_User extends OnApp {
 			if( ! is_null( $this->roles ) ) {
 				$data = $this->roles;
 			}
-			elseif( isset( $this->_obj->roles ) && ! is_null( $this->_obj->roles ) ) {
-				$data = $this->_obj->roles;
+			elseif( isset( $this->inheritedObject->roles ) && ! is_null( $this->inheritedObject->roles ) ) {
+				$data = $this->inheritedObject->roles;
 			}
 			else {
 				return NULL;

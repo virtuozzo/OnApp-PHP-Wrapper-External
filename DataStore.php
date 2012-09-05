@@ -32,25 +32,24 @@ define( 'ONAPP_GETRESOURCE_DATASTORES_LIST_BY_HYPERVISOR_GROUP_ID', 'hypervisor_
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer  id
+ * @property string   created_at
+ * @property integer  data_store_size
+ * @property string   identifier
+ * @property string   label
+ * @property integer  local_hypervisor_id
+ * @property string   updated_at
+ * @property integer  zombie_disks_size
+ * @property boolean  enabled
+ * @property integer  data_store_group_id
+ * @property string   ip
+ * @property integer  usage
+ * @property mixed    capacity
+ */
 class OnApp_DataStore extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property datetime created_at
-	 * @property integer  data_store_size
-	 * @property identifier
-	 * @property label
-	 * @property integer  local_hypervisor_id
-	 * @property datetime updated_at
-	 * @property integer  zombie_disks_size
-	 * @property enabled
-	 * @property integer  data_store_group_id
-	 * @property string   ip
-	 * @property integer  usage
-	 * @property capacity
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *
@@ -70,7 +69,7 @@ class OnApp_DataStore extends OnApp {
 		$this->className = __CLASS__;
 	}
 
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DATASTORES_LIST_BY_HYPERVISOR_GROUP_ID:
 				/**
@@ -125,7 +124,7 @@ class OnApp_DataStore extends OnApp {
 				 * @alias  /settings/data_stores/:id(.:format)
 				 * @format {:controller=>"data_stores", :action=>"destroy"}
 				 */
-				return parent::getURL( $action );
+				$resource = parent::getURL( $action );
 				break;
 
 			default:
@@ -162,7 +161,7 @@ class OnApp_DataStore extends OnApp {
 			return FALSE;
 		}
 
-		$this->_obj = $result;
+		$this->inheritedObject = $result;
 
 		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
 	}

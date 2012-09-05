@@ -27,16 +27,15 @@ define( 'ONAPP_GETRESOURCE_EDGE_GROUP_UNASSIGN_LOCATION', 'edge_group_unassign_l
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property string   label
+ * @property string   created_at
+ * @property string   updated_at
+ * @property integer  id
+ */
 class OnApp_EdgeGroup extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property label
-	 * @property datetime created_at
-	 * @property datetime updated_at
-	 * @property integer  id
-	 */
-
 	public static $nestedData = array(
 		'assigned_locations'  => 'EdgeGroup_AssignedLocation',
 		'available_locations' => 'EdgeGroup_AvailableLocation',
@@ -69,7 +68,7 @@ class OnApp_EdgeGroup extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_EDGE_GROUP_ASSIGN_LOCATION:
 				/**

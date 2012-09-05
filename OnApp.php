@@ -284,7 +284,7 @@ define( 'ONAPP_REQUEST_METHOD_DELETE', 'DELETE' );
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
-class OnApp {
+abstract class OnApp {
 	/**
 	 * The list of all available options used in the class to create API requests and receive responses,
 	 * as well as to serialize and unserialize.
@@ -311,19 +311,14 @@ class OnApp {
 	private $defaultOptions = array(
 		// cURL proxy
 		ONAPP_OPTION_CURL_PROXY  => '',
-
 		// cURL url
 		ONAPP_OPTION_CURL_URL    => '',
-
 		// API request and response charset
 		ONAPP_OPTION_API_CHARSET => 'charset=utf-8',
-
 		// API request and response type
 		ONAPP_OPTION_API_TYPE    => 'json',
-
 		// API request and response content
 		ONAPP_OPTION_API_CONTENT => 'application/json',
-
 		// Debug mode
 		ONAPP_OPTION_DEBUG_MODE  => FALSE,
 	);
@@ -381,7 +376,7 @@ class OnApp {
 	 * @access private
 	 * @var    object
 	 */
-	var $_obj;
+	var $inheritedObject;
 
 	/**
 	 * cURL Object alias used as the basic alias to the load, save, delete and getList methods
@@ -469,6 +464,13 @@ class OnApp {
 	protected $className;
 
 	/**
+	 * @var array fields which should be excluded from API request
+	 */
+	protected $skipFromRequest = array();
+
+	protected $URLID;
+
+	/**
 	 * Returns API version
 	 *
 	 * @access private
@@ -539,7 +541,7 @@ class OnApp {
 	 *
 	 * <code>
 	 *    function getURL() {
-	 *        return "alias/" . $this->_field_name . "/" . $this->_resource;
+	 *        return "alias/" . $this->_field_name . "/" . $this->URLPath;
 	 *    }
 	 * </code>
 	 *
@@ -552,7 +554,7 @@ class OnApp {
 			case ONAPP_GETRESOURCE_LOAD:
 			case ONAPP_GETRESOURCE_EDIT:
 			case ONAPP_GETRESOURCE_DELETE:
-				$URL = $this->getURL() . '/' . $this->_id;
+				$URL = $this->getURL() . '/' . $this->id;
 				break;
 
 			case ONAPP_GETRESOURCE_LIST:
@@ -691,8 +693,8 @@ class OnApp {
 	}
 
 	// todo delete
+	/*
 	public $fields;
-
 	public function initFields( $version = NULL, $className = '' ) {
 		return array();
 
@@ -720,6 +722,7 @@ class OnApp {
 			}
 		}
 	}
+	*/
 
 	/**
 	 * Sets an option for a cURL transfer
@@ -1125,10 +1128,10 @@ class OnApp {
 		}
 
 		if( is_null( $id ) &&
-			isset( $this->_obj ) &&
-			! is_null( $this->_obj->_id )
+			isset( $this->inheritedObject ) &&
+			! is_null( $this->inheritedObject->_id )
 		) {
-			$id = $this->_obj->_id;
+			$id = $this->inheritedObject->_id;
 		}
 
 		if( is_null( $id ) ) {
@@ -1148,8 +1151,8 @@ class OnApp {
 			$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 			$result   = $this->castStringToClass( $response );
 
-			$this->_obj = $result;
-			$this->_id  = $this->_obj->_id;
+			$this->inheritedObject = $result;
+			$this->_id             = $this->inheritedObject->_id;
 
 			return $result;
 		}
@@ -1217,8 +1220,8 @@ class OnApp {
 				$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_ADD ) );
 				$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST, $data );
 
-				$result     = $this->_castResponseToClass( $response );
-				$this->_obj = $result;
+				$result                = $this->_castResponseToClass( $response );
+				$this->inheritedObject = $result;
 				break;
 
 			default:
@@ -1283,21 +1286,19 @@ class OnApp {
 	 */
 	protected function getFieldsToSend() {
 		$this->logger->debug( 'getFieldsToSend: Prepare data array:' );
-		if( empty( $this->_obj->dynamicFields ) ) {
+		if( empty( $this->inheritedObject->dynamicFields ) ) {
 			$result = $this->dynamicFields;
 		}
 		else {
-			$result = array_merge( $this->_obj->dynamicFields, $this->dynamicFields );
+			$result = array_merge( $this->inheritedObject->dynamicFields, $this->dynamicFields );
 		}
 
-		if( isset( $this->skipFromResultSet ) ) {
-			if( ( isset( $this->skipFromResultSet[ 0 ] ) ) ) {
-				for( $i = 0, $size = count( $this->skipFromResultSet ); $i < $size; ++$i ) {
-					$this->skipFromResultSet[ $this->skipFromResultSet[ $i ] ] = '';
-					unset( $this->skipFromResultSet[ $i ] );
-				}
+		if( ! empty( $this->skipFromRequest ) ) {
+			for( $i = 0, $size = count( $this->skipFromRequest ); $i < $size; ++$i ) {
+				$this->skipFromRequest[ $this->skipFromRequest[ $i ] ] = '';
+				unset( $this->skipFromRequest[ $i ] );
 			}
-			$result = array_diff_key( $result, $this->skipFromResultSet );
+			$result = array_diff_key( $result, $this->skipFromRequest );
 		}
 
 		return $result;
@@ -1377,15 +1378,15 @@ class OnApp {
 
 				if( $response[ 'info' ][ 'http_code' ] > 400 ) {
 					if( is_null( $result ) ) {
-						$this->_obj = clone $this;
+						$this->inheritedObject = clone $this;
 					}
 					else {
-						$this->_obj->errors = $result->getErrorsAsArray();
+						$this->inheritedObject->errors = $result->getErrorsAsArray();
 					}
 					return FALSE;
 				}
 				else {
-					$this->_obj = $result;
+					$this->inheritedObject = $result;
 				}
 				break;
 
@@ -1405,9 +1406,12 @@ class OnApp {
 		}
 	}
 
+	//todo check this code
+	/*
 	public function getClassFields() {
 		return $this->fields;
 	}
+	*/
 
 	public function getAPIVersion() {
 		return $this->version;
@@ -1466,6 +1470,7 @@ class OnApp {
 		return $this->errors;
 	}
 
+	//todo check this code
 	/**
 	 * Unset unnecessary fields
 	 *
@@ -1473,11 +1478,13 @@ class OnApp {
 	 *
 	 * @return void
 	 */
+	/*
 	protected function unsetFields( $fields ) {
 		foreach( $fields as $field ) {
 			unset( $this->fields[ $field ] );
 		}
 	}
+	*/
 
 	// getters, setters & other magic stuff //
 	public function __construct() {
@@ -1499,11 +1506,13 @@ class OnApp {
 		switch( $name ) {
 			case 'error':
 				return $this->getErrorsAsArray();
-				break;
 
 			case '_version':
 				return $this->getAPIVersion();
-				break;
+
+			case '_obj':
+				var_dump( '_obj [ ' . __METHOD__ . ' ]' );
+				return $this->inheritedObject;
 		}
 
 		if( ! isset( $this->dynamicFields[ $name ] ) ) {

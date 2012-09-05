@@ -21,15 +21,14 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property string non_cached
+ * @property string date
+ * @property string cached
+ */
 class OnApp_CDNResource_Bandwidth extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property string non_cached
-	 * @property string date
-	 * @property string cached
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *

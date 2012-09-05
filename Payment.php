@@ -26,17 +26,17 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer  id
+ * @property decimal  amount
+ * @property string   created_at
+ * @property string   invoice_number
+ * @property string   updated_at
+ * @property integer  user_id
+ */
 class OnApp_Payment extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property decimal  amount
-	 * @property datetime created_at
-	 * @property string   invoice_number
-	 * @property datetime updated_at
-	 * @property integer  user_id
-	 */
 
 	/**
 	 * root tag used in the API request
@@ -57,7 +57,7 @@ class OnApp_Payment extends OnApp {
 		$this->className = __CLASS__;
 	}
 
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -100,7 +100,7 @@ class OnApp_Payment extends OnApp {
 				 * @alias   /users/:user_id/payments/:id(.:format)
 				 * @format  {:controller=>"payments", :action=>"destroy"}
 				 */
-				$resource = 'users/' . $this->_user_id . '/' . $this->_resource;
+				$resource = 'users/' . $this->_user_id . '/' . $this->URLPath;
 				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
@@ -161,10 +161,10 @@ class OnApp_Payment extends OnApp {
 		}
 
 		if( is_null( $id ) &&
-			isset( $this->_obj ) &&
-			! is_null( $this->_obj->_id )
+			isset( $this->inheritedObject ) &&
+			! is_null( $this->inheritedObject->_id )
 		) {
-			$id = $this->_obj->_id;
+			$id = $this->inheritedObject->_id;
 		}
 
 		$this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
@@ -179,7 +179,7 @@ class OnApp_Payment extends OnApp {
 
 			$result = $this->_castResponseToClass( $response );
 
-			$this->_obj = $result;
+			$this->inheritedObject = $result;
 
 			return $result;
 		}

@@ -21,25 +21,24 @@
  * Edge Group nested class and support no basic methods.
  *
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property string  name
+ * @property string  companyName
+ * @property string  companyDescription
+ * @property string  statusReason
+ * @property string  updatedAt
+ * @property string  username
+ * @property string  role
+ * @property integer id
+ * @property string  companyPhone
+ * @property integer principal
+ * @property string  createdAt
+ * @property string  status
+ * @property string  email
+ */
 class OnApp_EdgeGroup_Location_Operator extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property string  name
-	 * @property string  companyName
-	 * @property string  companyDescription
-	 * @property string  statusReason
-	 * @property string  updatedAt
-	 * @property string  username
-	 * @property string  role
-	 * @property integer id
-	 * @property string  companyPhone
-	 * @property integer principal
-	 * @property string  createdAt
-	 * @property string  status
-	 * @property string  email
-	 */
-
 	public static $nestedData = array(
 		'settings' => 'EdgeGroup_Location_Operator_Setting',
 	);

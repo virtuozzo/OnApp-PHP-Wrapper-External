@@ -24,17 +24,16 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer  target_id
+ * @property float    not_cached
+ * @property string   updated_at
+ * @property integer  user_id
+ * @property float    cached
+ */
 class OnApp_CDNUsageStatistic extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  target_id
-	 * @property float    not_cached
-	 * @property datetime updated_at
-	 * @property integer  user_id
-	 * @property float    cached
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *

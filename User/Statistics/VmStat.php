@@ -22,16 +22,15 @@
  *
  *
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property float  usage_cost
+ * @property float  vm_resources_cost
+ * @property float  virtual_machine_id
+ * @property string total_cost
+ */
 class OnApp_User_Statistics_VmStat extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property float  usage_cost
-	 * @property float  vm_resources_cost
-	 * @property float  virtual_machine_id
-	 * @property string total_cost
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *

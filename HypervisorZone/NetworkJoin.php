@@ -23,20 +23,19 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer  id
+ * @property string   created_at
+ * @property string   updated_at
+ * @property integer  network_id
+ * @property string   interface
+ * @property integer  hypervisor_id
+ * @property integer  target_join_id
+ * @property string   target_join_type
+ */
 class OnApp_HypervisorZone_NetworkJoin extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property datetime created_at
-	 * @property datetime updated_at
-	 * @property integer  network_id
-	 * @property interface
-	 * @property integer  hypervisor_id
-	 * @property integer  target_join_id
-	 * @property string   target_join_type
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *
@@ -59,7 +58,7 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -86,7 +85,7 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 				 * @alias   /settings/hypervisor_zones/:hypervisor_group_id/network_joins/:id(.:format)
 				 * @format  {:controller=>"network_joins", :action=>"destroy"}
 				 */
-				$resource = 'settings/hypervisor_zones/' . $this->_target_join_id . '/' . $this->_resource;
+				$resource = 'settings/hypervisor_zones/' . $this->_target_join_id . '/' . $this->URLPath;
 				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 

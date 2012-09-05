@@ -30,38 +30,37 @@ define( 'ONAPP_GET_USERTEMPLATES_LIST', 'user' );
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer  id
+ * @property boolean  allow_resize_without_reboot
+ * @property boolean  allowed_swap
+ * @property string   checksum
+ * @property string   created_at
+ * @property string   file_name
+ * @property string   label
+ * @property integer  min_disk_size
+ * @property string   operating_system
+ * @property string   operating_system_distro
+ * @property string   state
+ * @property string   updated_at
+ * @property integer  user_id
+ * @property string   version
+ * @property integer  template_size
+ * @property boolean  allowed_hot_migrate
+ * @property string   operating_system_arch
+ * @property string   operating_system_edition
+ * @property string   operating_system_tail
+ * @property string   virtualization
+ * @property integer  parent_template_id
+ * @property integer  min_memory_size
+ * @property string   disk_target_device
+ * @property boolean  cdn
+ * @property mixed    template_set_ids
+ * @property integer  backup_server_id
+ */
 class OnApp_Template extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property boolean  allow_resize_without_reboot
-	 * @property boolean  allowed_swap
-	 * @property checksum
-	 * @property datetime created_at
-	 * @property file_name
-	 * @property label
-	 * @property integer  min_disk_size
-	 * @property operating_system
-	 * @property operating_system_distro
-	 * @property state
-	 * @property datetime updated_at
-	 * @property integer  user_id
-	 * @property version
-	 * @property integer  template_size
-	 * @property boolean  allowed_hot_migrate
-	 * @property string   operating_system_arch
-	 * @property string   operating_system_edition
-	 * @property string   operating_system_tail
-	 * @property string   virtualization
-	 * @property integer  parent_template_id
-	 * @property integer  min_memory_size
-	 * @property string   disk_target_device
-	 * @property boolean  cdn
-	 * @property template_set_ids
-	 * @property integer  backup_server_id
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *
@@ -85,7 +84,7 @@ class OnApp_Template extends OnApp {
 		return $this->sendGet( ONAPP_GET_USERTEMPLATES_LIST );
 	}
 
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GET_USERTEMPLATES_LIST:
 			case 'user':

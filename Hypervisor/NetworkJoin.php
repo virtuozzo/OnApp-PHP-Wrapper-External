@@ -25,20 +25,19 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer  id
+ * @property string   created_at
+ * @property string   updated_at
+ * @property integer  network_id
+ * @property integer  hypervisor_id
+ * @property string   interface
+ * @property integer  target_join_id
+ * @property string   target_join_type
+ */
 class OnApp_Hypervisor_NetworkJoin extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property datetime created_at
-	 * @property datetime updated_at
-	 * @property integer  network_id
-	 * @property integer  hypervisor_id
-	 * @property interface
-	 * @property integer  target_join_id
-	 * @property string   target_join_type
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *
@@ -66,7 +65,7 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -93,7 +92,7 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 				 * @alias   /settings/hypervisors/:hypervisor_id/network_joins/:id(.:format)
 				 * @format  {:controller=>"network_joins", :action=>"destroy"}
 				 */
-				if( is_null( $this->_hypervisor_id ) && is_null( $this->_obj->_hypervisor_id ) ) {
+				if( is_null( $this->_hypervisor_id ) && is_null( $this->inheritedObject->_hypervisor_id ) ) {
 					$this->logger->error(
 						'getURL( ' . $action . ' ): argument _hypervisor_id not set.',
 						__FILE__,
@@ -102,10 +101,10 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 				}
 				else {
 					if( is_null( $this->_hypervisor_id ) ) {
-						$this->_hypervisor_id = $this->_obj->_hypervisor_id;
+						$this->_hypervisor_id = $this->inheritedObject->_hypervisor_id;
 					}
 				}
-				$resource = 'settings/hypervisors/' . $this->_hypervisor_id . '/' . $this->_resource;
+				$resource = 'settings/hypervisors/' . $this->_hypervisor_id . '/' . $this->URLPath;
 				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
@@ -166,10 +165,10 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 		}
 
 		if( is_null( $id ) &&
-			isset( $this->_obj ) &&
-			! is_null( $this->_obj->_id )
+			isset( $this->inheritedObject ) &&
+			! is_null( $this->inheritedObject->_id )
 		) {
-			$id = $this->_obj->_id;
+			$id = $this->inheritedObject->_id;
 		}
 
 		$this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
@@ -184,7 +183,7 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 
 			$result = $this->_castResponseToClass( $response );
 
-			$this->_obj = $result;
+			$this->inheritedObject = $result;
 
 			return $result;
 		}

@@ -40,38 +40,37 @@ define( 'ONAPP_GETRESOURCE_HYPERVISOR_REBOOT', 'hypervisor_reboot' );
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer    id
+ * @property string     called_in_at
+ * @property string     created_at
+ * @property integer    failure_count
+ * @property string     health
+ * @property string     ip_address
+ * @property string     label
+ * @property boolean    locked
+ * @property integer    memory_overhead
+ * @property boolean    online
+ * @property boolean    spare
+ * @property string     updated_at
+ * @property string     xen_info
+ * @property boolean    enabled
+ * @property integer    hypervisor_group_id
+ * @property string     hypervisor_type
+ * @property integer    cpu_cores
+ * @property integer    free_memory
+ * @property integer    total_cpus
+ * @property integer    total_memory
+ * @property integer    used_cpu_resources
+ * @property integer    memory_allocated_by_running_vms
+ * @property integer    total_memory_allocated_by_vms
+ * @property boolean    disable_failover
+ * @property string     redis_password
+ * @property array      free_disk_space
+ */
 class OnApp_Hypervisor extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property datetime called_in_at
-	 * @property datetime created_at
-	 * @property integer  failure_count
-	 * @property yaml     health
-	 * @property ip_address
-	 * @property label
-	 * @property boolean  locked
-	 * @property integer  memory_overhead
-	 * @property boolean  online
-	 * @property boolean  spare
-	 * @property datetime updated_at
-	 * @property yaml     xen_info
-	 * @property boolean  enabled
-	 * @property integer  hypervisor_group_id
-	 * @property string   hypervisor_type
-	 * @property integer  cpu_cores
-	 * @property integer  free_memory
-	 * @property integer  total_cpus
-	 * @property integer  total_memory
-	 * @property integer  used_cpu_resources
-	 * @property integer  memory_allocated_by_running_vms
-	 * @property integer  total_memory_allocated_by_vms
-	 * @property boolean  disable_failover
-	 * @property string   redis_password
-	 * @property array    free_disk_space
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *
@@ -91,7 +90,7 @@ class OnApp_Hypervisor extends OnApp {
 		$this->className = __CLASS__;
 	}
 
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_HYPERVISORS_BY_HYPERVISOR_GROUP_ID:
 				/**
@@ -158,7 +157,7 @@ class OnApp_Hypervisor extends OnApp {
 				 * @alias   /settings/hypervisors/:id/reboot(.:format)
 				 * @format  {:action=>"reboot", :controller=>"settings_hypervisors"}
 				 */
-				$resource = $this->_resource . '/' . $this->_id . '/reboot';
+				$resource = $this->URLPath . '/' . $this->_id . '/reboot';
 				break;
 
 			default:
@@ -196,8 +195,8 @@ class OnApp_Hypervisor extends OnApp {
 			return FALSE;
 		}
 
-		$result     = $this->castStringToClass( $response );
-		$this->_obj = $result;
+		$result                = $this->castStringToClass( $response );
+		$this->inheritedObject = $result;
 
 		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
 	}
@@ -233,9 +232,12 @@ class OnApp_Hypervisor extends OnApp {
 	}
 
 	function save() {
+		//todo check this code
+		/*
 		if( $this->_id ) {
 			$this->fields[ 'hypervisor_group_id' ][ ONAPP_FIELD_REQUIRED ] = FALSE;
 		}
+		*/
 
 		return parent::save();
 	}

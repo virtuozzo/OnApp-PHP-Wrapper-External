@@ -22,19 +22,18 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer  id
+ * @property string   called_in_at
+ * @property string   created_at
+ * @property integer  port
+ * @property string   updated_at
+ * @property integer  virtual_machine_id
+ * @property string   remote_key
+ */
 class OnApp_Console extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property datetime called_in_at
-	 * @property datetime created_at
-	 * @property integer  port
-	 * @property datetime updated_at
-	 * @property integer  virtual_machine_id
-	 * @property string   remote_key
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *
@@ -68,7 +67,7 @@ class OnApp_Console extends OnApp {
 	 *
 	 * @see    getURL
 	 */
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_LOAD:
 				/**
@@ -79,7 +78,7 @@ class OnApp_Console extends OnApp {
 				 * @alias  /console_remote/:remote_key(.:format)
 				 * @format {:controller=>"virtual_machines", :action=>"console_remote"}
 				 */
-				$resource = "virtual_machines/" . $this->_virtual_machine_id . "/" . $this->_resource;
+				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->URLPath;
 				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
@@ -108,13 +107,13 @@ class OnApp_Console extends OnApp {
 		}
 
 		if( is_null( $virtual_machine_id ) &&
-			isset( $this->_obj ) &&
-			! is_null( $this->_obj->_virtual_machine_id )
+			isset( $this->inheritedObject ) &&
+			! is_null( $this->inheritedObject->_virtual_machine_id )
 		) {
-			$virtual_machine_id = $this->_obj->_virtual_machine_id;
+			$virtual_machine_id = $this->inheritedObject->_virtual_machine_id;
 		}
 
-		$this->logger->add( "load: Load class ( id => '$virtual_machine_id')." );
+		$this->logger->add( 'load: Load class ( id => "' . $virtual_machine_id . '").' );
 
 		if( ! is_null( $virtual_machine_id ) ) {
 			$this->_virtual_machine_id = $virtual_machine_id;
@@ -125,7 +124,7 @@ class OnApp_Console extends OnApp {
 
 			$result = $this->_castResponseToClass( $response );
 
-			$this->_obj = $result;
+			$this->inheritedObject = $result;
 
 			return $result;
 		}

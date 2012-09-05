@@ -50,10 +50,10 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_JOIN:
-				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->_resource;
+				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->URLPath;
 				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 

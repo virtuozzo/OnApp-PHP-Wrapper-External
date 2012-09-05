@@ -24,23 +24,22 @@ define( 'ONAPP_GETRESOURCE_GETLIST_BY_USER_ID', 'get_list_by_user_id' );
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property string  name
+ * @property string  created_at
+ * @property integer port
+ * @property integer load_balancer_id
+ * @property string  load_balancer_password
+ * @property string  updated_at
+ * @property integer id
+ * @property integer user_id
+ * @property string  cluster_type
+ * @property string  identifier
+ * @property integer image_template_id
+ */
 class OnApp_LoadBalancingCluster extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property string  name
-	 * @property string  created_at
-	 * @property integer port
-	 * @property integer load_balancer_id
-	 * @property string  load_balancer_password
-	 * @property string  updated_at
-	 * @property integer id
-	 * @property integer user_id
-	 * @property string  cluster_type
-	 * @property string  identifier
-	 * @property integer image_template_id
-	 */
-
 	public static $nestedData = array(
 		'config'                  => 'LoadBalancingCluster_Config',
 		'load_balancer'           => 'LoadBalancer',
@@ -71,7 +70,7 @@ class OnApp_LoadBalancingCluster extends OnApp {
 		$this->className = __CLASS__;
 	}
 
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_GETLIST_BY_USER_ID:
 
@@ -139,6 +138,7 @@ class OnApp_LoadBalancingCluster extends OnApp {
 	 * @return mixed API query response
 	 */
 	function save() {
+		//todo check this code
 		$this->fields[ 'load_balancer_attributes' ]                        = array(
 			ONAPP_FIELD_MAP => '_load_balancer_attributes',
 		);
@@ -198,8 +198,8 @@ class OnApp_LoadBalancingCluster extends OnApp {
 			return FALSE;
 		}
 
-		$result     = $this->castStringToClass( $response );
-		$this->_obj = $result;
+		$result                = $this->castStringToClass( $response );
+		$this->inheritedObject = $result;
 
 		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
 	}

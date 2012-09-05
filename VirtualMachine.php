@@ -63,65 +63,64 @@ define( 'ONAPP_GETRESOURCE_MIGRATE', 'migrate' );
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer  id
+ * @property boolean  booted
+ * @property boolean  built
+ * @property integer  cpu_shares
+ * @property integer  cpus
+ * @property string   created_at
+ * @property string   hostname
+ * @property integer  hypervisor_id
+ * @property string   identifier
+ * @property string   initial_root_password
+ * @property string   label
+ * @property integer  local_remote_access_port
+ * @property boolean  locked
+ * @property integer  memory
+ * @property boolean  recovery_mode
+ * @property mixed    remote_access_password
+ * @property integer  template_id
+ * @property string   updated_at
+ * @property integer  user_id
+ * @property integer  xen_id
+ * @property boolean  allowed_swap
+ * @property boolean  allow_resize_without_reboot
+ * @property integer  min_disk_size
+ * @property integer  monthly_bandwidth_used
+ * @property string   operating_system
+ * @property string   operating_system_distro
+ * @property string   template_label
+ * @property float    total_disk_size
+ * @property integer  primary_disk_size
+ * @property integer  swap_disk_size
+ * @property integer  primary_network_id
+ * @property boolean  required_automatic_backup
+ * @property integer  rate_limit
+ * @property boolean  required_ip_address_assignment
+ * @property boolean  required_virtual_machine_build
+ * @property string   admin_note
+ * @property boolean  allowed_hot_migrate
+ * @property string   note
+ * @property integer  strict_virtual_machine_id
+ * @property boolean  suspended
+ * @property boolean  enable_autoscale
+ * @property boolean  enable_monitis
+ * @property integer  update_billing_stat
+ * @property integer  aflexi_id
+ * @property integer  aflexi_city_id
+ * @property integer  aflexi_price
+ * @property integer  custom_nginx_config_on
+ * @property integer  custom_nginx_config
+ * @property integer  add_to_marketplace
+ * @property integer  vip
+ * @property integer  volume_limit
+ * @property integer  speed_limit
+ * @property string   state
+ */
 class OnApp_VirtualMachine extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property boolean  booted
-	 * @property boolean  built
-	 * @property integer  cpu_shares
-	 * @property integer  cpus
-	 * @property datetime created_at
-	 * @property string   hostname
-	 * @property integer  hypervisor_id
-	 * @property identifier
-	 * @property initial_root_password
-	 * @property label
-	 * @property integer  local_remote_access_port
-	 * @property boolean  locked
-	 * @property integer  memory
-	 * @property boolean  recovery_mode
-	 * @property remote_access_password
-	 * @property integer  template_id
-	 * @property datetime updated_at
-	 * @property integer  user_id
-	 * @property integer  xen_id
-	 * @property boolean  allowed_swap
-	 * @property boolean  allow_resize_without_reboot
-	 * @property integer  min_disk_size
-	 * @property integer  monthly_bandwidth_used
-	 * @property operating_system
-	 * @property operating_system_distro
-	 * @property template_label
-	 * @property total_disk_size
-	 * @property integer  primary_disk_size
-	 * @property integer  swap_disk_size
-	 * @property integer  primary_network_id
-	 * @property boolean  required_automatic_backup
-	 * @property integer  rate_limit
-	 * @property boolean  required_ip_address_assignment
-	 * @property boolean  required_virtual_machine_build
-	 * @property string   admin_note
-	 * @property boolean  allowed_hot_migrate
-	 * @property string   note
-	 * @property integer  strict_virtual_machine_id
-	 * @property boolean  suspended
-	 * @property boolean  enable_autoscale
-	 * @property boolean  enable_monitis
-	 * @property integer  update_billing_stat
-	 * @property integer  aflexi_id
-	 * @property integer  aflexi_city_id
-	 * @property integer  aflexi_price
-	 * @property integer  custom_nginx_config_on
-	 * @property integer  custom_nginx_config
-	 * @property integer  add_to_marketplace
-	 * @property integer  vip
-	 * @property integer  volume_limit
-	 * @property integer  speed_limit
-	 * @property string   state
-	 */
-
 	public static $nestedData = array(
 		'ip_addresses' => 'VirtualMachine_IpAddress',
 	);
@@ -145,7 +144,7 @@ class OnApp_VirtualMachine extends OnApp {
 		$this->className = __CLASS__;
 	}
 
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_REBOOT:
 				/**
@@ -405,7 +404,6 @@ class OnApp_VirtualMachine extends OnApp {
 			'root' => 'tmp_holder',
 			'data' => array(
 				'destination' => $hypervisor_id,
-				//'cold_migrate_on_rollback' => true
 			),
 		);
 
@@ -433,7 +431,7 @@ class OnApp_VirtualMachine extends OnApp {
 
 			$this->sendPost( ONAPP_GETRESOURCE_CHANGE_OWNER, $data );
 		}
-		return $this->_obj;
+		return $this->inheritedObject;
 	}
 
 	/**
@@ -466,7 +464,7 @@ class OnApp_VirtualMachine extends OnApp {
 
 			$this->sendPost( ONAPP_GETRESOURCE_STARTUP, $data );
 		}
-		return $this->_obj;
+		return $this->inheritedObject;
 	}
 
 	/**
@@ -485,7 +483,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 */
 	function build() {
 		if( $this->getAPIVersion() < 2.3 ) {
-			if( isset( $this->_template_id ) && ( $this->_template_id != $this->_obj->_template_id ) ) {
+			if( isset( $this->_template_id ) && ( $this->_template_id != $this->inheritedObject->_template_id ) ) {
 				$data = array(
 					'root' => 'virtual_machine',
 					'data' => array(
@@ -507,7 +505,7 @@ class OnApp_VirtualMachine extends OnApp {
 			$data = array(
 				'root' => 'virtual_machine',
 				'data' => array(
-					'template_id'      => $this->_template_id ? $this->_template_id : $this->_obj->_template_id,
+					'template_id'      => $this->_template_id ? $this->_template_id : $this->inheritedObject->_template_id,
 					'required_startup' => $this->_required_startup
 				)
 			);
@@ -559,82 +557,11 @@ class OnApp_VirtualMachine extends OnApp {
 	 */
 	function save() {
 		if( ! is_null( $this->_id ) ) {
-			foreach( $this->fields as $field => $value ) {
-				unset( $this->fields[ $field ][ ONAPP_FIELD_DEFAULT_VALUE ] );
-				unset( $this->fields[ $field ][ ONAPP_FIELD_REQUIRED ] );
-			}
-
 			parent::save();
 			return;
 		}
 
-		$fields = $this->fields;
-
-		$this->fields[ 'primary_disk_size' ]              = array(
-			ONAPP_FIELD_MAP           => '_primary_disk_size',
-			ONAPP_FIELD_TYPE          => 'integer',
-			ONAPP_FIELD_REQUIRED      => TRUE,
-			ONAPP_FIELD_DEFAULT_VALUE => 5
-		);
-		$this->fields[ 'swap_disk_size' ]                 = array(
-			ONAPP_FIELD_MAP           => '_swap_disk_size',
-			ONAPP_FIELD_TYPE          => 'integer',
-			ONAPP_FIELD_REQUIRED      => TRUE,
-			ONAPP_FIELD_DEFAULT_VALUE => 0
-		);
-		$this->fields[ 'primary_network_id' ]             = array(
-			ONAPP_FIELD_MAP           => '_primary_network_id',
-			ONAPP_FIELD_TYPE          => 'integer',
-			ONAPP_FIELD_REQUIRED      => TRUE,
-			ONAPP_FIELD_DEFAULT_VALUE => ''
-		);
-		$this->fields[ 'required_automatic_backup' ]      = array(
-			ONAPP_FIELD_MAP           => '_required_automatic_backup',
-			ONAPP_FIELD_TYPE          => 'boolean',
-			ONAPP_FIELD_REQUIRED      => TRUE,
-			ONAPP_FIELD_DEFAULT_VALUE => ''
-		);
-		$this->fields[ 'rate_limit' ]                     = array(
-			ONAPP_FIELD_MAP           => '_rate_limit',
-			ONAPP_FIELD_TYPE          => 'integer',
-			ONAPP_FIELD_DEFAULT_VALUE => ''
-		);
-		$this->fields[ 'required_ip_address_assignment' ] = array(
-			ONAPP_FIELD_MAP           => '_required_ip_address_assignment',
-			ONAPP_FIELD_TYPE          => 'boolean',
-			ONAPP_FIELD_REQUIRED      => TRUE,
-			ONAPP_FIELD_DEFAULT_VALUE => '1'
-		);
-		$this->fields[ 'required_virtual_machine_build' ] = array(
-			ONAPP_FIELD_MAP           => '_required_virtual_machine_build',
-			ONAPP_FIELD_TYPE          => 'boolean',
-			ONAPP_FIELD_REQUIRED      => TRUE,
-			ONAPP_FIELD_DEFAULT_VALUE => ''
-		);
-		$this->fields[ 'hypervisor_group_id' ]            = array(
-			ONAPP_FIELD_MAP  => '_hypervisor_group_id',
-			ONAPP_FIELD_TYPE => 'integer',
-		);
-		$this->fields[ 'data_store_group_primary_id' ]    = array(
-			ONAPP_FIELD_MAP  => '_data_store_group_primary_id',
-			ONAPP_FIELD_TYPE => 'integer',
-		);
-		$this->fields[ 'data_store_group_swap_id' ]       = array(
-			ONAPP_FIELD_MAP  => '_data_store_group_swap_id',
-			ONAPP_FIELD_TYPE => 'integer',
-		);
-		$this->fields[ 'required_automatic_backup' ]      = array(
-			ONAPP_FIELD_MAP  => '_required_automatic_backup',
-			ONAPP_FIELD_TYPE => 'boolean',
-		);
-		$this->fields[ 'required_public_ip_address' ]     = array(
-			ONAPP_FIELD_MAP  => '_required_public_ip_address',
-			ONAPP_FIELD_TYPE => 'boolean',
-		);
-
 		parent::save();
-
-		$this->fields = $fields;
 	}
 
 	/**

@@ -20,21 +20,20 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer user_id
+ * @property integer virtual_machine_id
+ * @property string  data_received
+ * @property string  data_sent
+ * @property string  data_read
+ * @property string  data_written
+ * @property string  writes_completed
+ * @property string  reads_completed
+ * @property string  cpu_usage
+ */
 class OnApp_UsageStatistic extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer user_id
-	 * @property integer virtual_machine_id
-	 * @property string  data_received
-	 * @property string  data_sent
-	 * @property string  data_read
-	 * @property string  data_written
-	 * @property string  writes_completed
-	 * @property string  reads_completed
-	 * @property string  cpu_usage
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *
@@ -70,7 +69,7 @@ class OnApp_UsageStatistic extends OnApp {
 		}
 	}
 
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		return parent::getURL( $action );
 		/**
 		 * ROUTE :

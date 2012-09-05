@@ -33,22 +33,21 @@ define( 'ONAPP_GETRESOURCE_CREATE_COPY', 'copy' );
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property string   label
+ * @property string   created_at
+ * @property string   updated_at
+ * @property integer  id
+ * @property integer  monthly_price
+ * @property string   currency_code
+ * @property boolean  show_price
+ * @property boolean  allows_mak
+ * @property boolean  allows_kms
+ * @property boolean  allows_own
+ */
 class OnApp_BillingPlan extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property label
-	 * @property datetime created_at
-	 * @property datetime updated_at
-	 * @property integer  id
-	 * @property integer  monthly_price
-	 * @property string   currency_code
-	 * @property boolean  show_price
-	 * @property boolean  allows_mak
-	 * @property boolean  allows_kms
-	 * @property boolean  allows_own
-	 */
-
 	public static $nestedData = array(
 		'base_resources' => 'BillingPlan_BaseResource',
 	);
@@ -72,7 +71,7 @@ class OnApp_BillingPlan extends OnApp {
 		$this->className = __CLASS__;
 	}
 
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_GETLIST_USERS:
 				/**

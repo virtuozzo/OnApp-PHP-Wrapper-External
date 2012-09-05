@@ -21,16 +21,15 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property string   label
+ * @property string   created_at
+ * @property string   updated_at
+ * @property integer  id
+ */
 class OnApp_UserGroup extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property label
-	 * @property datetime created_at
-	 * @property datetime updated_at
-	 * @property integer  id
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *

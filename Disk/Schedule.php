@@ -26,26 +26,25 @@
  */
 define( 'ONAPP_GETRESOURCE_LIST_BY_DISK_ID', 'get list by disk id' );
 
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer id
+ * @property integer duration
+ * @property integer target_id
+ * @property string  schedule_logs
+ * @property string  period
+ * @property string  updated_at
+ * @property string  action
+ * @property string  start_at
+ * @property integer user_id
+ * @property integer failure_count
+ * @property string  params
+ * @property string  status
+ * @property string  target_type
+ * @property string  created_at
+ */
 class OnApp_Disk_Schedule extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer id
-	 * @property integer duration
-	 * @property integer target_id
-	 * @property string  schedule_logs
-	 * @property string  period
-	 * @property string  updated_at
-	 * @property string  action
-	 * @property string  start_at
-	 * @property integer user_id
-	 * @property integer failure_count
-	 * @property string  params
-	 * @property string  status
-	 * @property string  target_type
-	 * @property string  created_at
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *
@@ -73,11 +72,11 @@ class OnApp_Disk_Schedule extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		$show_log_msg = TRUE;
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_LIST_BY_DISK_ID:
-				$resource = 'settings/disks/' . $this->_target_id . '/' . $this->_resource;
+				$resource = 'settings/disks/' . $this->_target_id . '/' . $this->URLPath;
 				break;
 
 			default:
@@ -124,6 +123,7 @@ class OnApp_Disk_Schedule extends OnApp {
 
 	function save() {
 		if( $this->_target_id ) {
+			//todo check this code
 			$this->fields[ 'target_id' ][ ONAPP_FIELD_REQUIRED ]        = TRUE;
 			$this->fields[ 'target_type' ][ ONAPP_FIELD_REQUIRED ]      = TRUE;
 			$this->fields[ 'target_type' ][ ONAPP_FIELD_DEFAULT_VALUE ] = 'Disk';

@@ -20,41 +20,40 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property string   created_at
+ * @property string   activated_at
+ * @property integer  memory_available
+ * @property integer  used_memory
+ * @property float    outstanding_amount
+ * @property string   suspend_at
+ * @property string   remember_token_expires_at
+ * @property float    total_amount
+ * @property string   updated_at
+ * @property string   deleted_at
+ * @property integer  billing_plan_id
+ * @property integer  used_disk_size
+ * @property integer  id
+ * @property integer  group_id
+ * @property integer  user_group_id
+ * @property integer  disk_space_available
+ * @property integer  used_cpu_shares
+ * @property decimal  payment_amount
+ * @property integer  remember_token
+ * @property string   last_name
+ * @property string   time_zone
+ * @property string   locale
+ * @property integer  image_template_group_id
+ * @property integer  used_cpus
+ * @property string   status
+ * @property string   login
+ * @property string   first_name
+ * @property string   email
+ * @property bolean   update_billing_stat
+ */
 class OnApp_Profile extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property datetime created_at
-	 * @property datetime activated_at
-	 * @property integer  memory_available
-	 * @property integer  used_memory
-	 * @property float    outstanding_amount
-	 * @property datetime suspend_at
-	 * @property datetime remember_token_expires_at
-	 * @property float    total_amount
-	 * @property datetime updated_at
-	 * @property datetime deleted_at
-	 * @property integer  billing_plan_id
-	 * @property integer  used_disk_size
-	 * @property integer  id
-	 * @property integer  group_id
-	 * @property integer  user_group_id
-	 * @property integer  disk_space_available
-	 * @property integer  used_cpu_shares
-	 * @property decimal  payment_amount
-	 * @property integer  remember_token
-	 * @property string   last_name
-	 * @property string   time_zone
-	 * @property string   locale
-	 * @property integer  image_template_group_id
-	 * @property integer  used_cpus
-	 * @property string   status
-	 * @property string   login
-	 * @property string   first_name
-	 * @property string   email
-	 * @property bolean   update_billing_stat
-	 */
-
 	public static $nestedData = array(
 		'roles'             => 'Role',
 		'used_ip_addresses' => 'IpAddress',
@@ -95,7 +94,7 @@ class OnApp_Profile extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		/**
 		 * ROUTE :
 		 *
@@ -104,7 +103,7 @@ class OnApp_Profile extends OnApp {
 		 * @alias    /profile(.:format)
 		 * @format   {:controller=>"users", :action=>"profile"}
 		 */
-		$resource = $this->_resource;
+		$resource = $this->URLPath;
 		$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 
 		return $resource;
@@ -125,7 +124,7 @@ class OnApp_Profile extends OnApp {
 	function load( $id = NULL ) {
 		$this->activate( ONAPP_ACTIVATE_LOAD );
 
-		$this->logger->add( "load: Load class" );
+		$this->logger->add( 'load: Load class' );
 
 		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 
@@ -133,7 +132,7 @@ class OnApp_Profile extends OnApp {
 
 		$result = $this->_castResponseToClass( $response );
 
-		$this->_obj = $result;
+		$this->inheritedObject = $result;
 
 		return $result;
 	}

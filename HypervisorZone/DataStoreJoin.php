@@ -23,18 +23,17 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer  id
+ * @property string   created_at
+ * @property string   updated_at
+ * @property integer  data_store_id
+ * @property integer  target_join_id
+ * @property string   target_join_type
+ */
 class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property datetime created_at
-	 * @property datetime updated_at
-	 * @property integer  data_store_id
-	 * @property integer  target_join_id
-	 * @property string   target_join_type
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *
@@ -62,7 +61,7 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -73,7 +72,7 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
 				 * @alias   /settings/hyrvisor_zones/:hypervisor_id/data_store_joins(.:format)
 				 * @format  {:controller=>"data_store_joins", :action=>"index"}
 				 */
-				$resource = 'settings/hypervisor_zones/' . $this->_target_join_id . '/' . $this->_resource;
+				$resource = 'settings/hypervisor_zones/' . $this->_target_join_id . '/' . $this->URLPath;
 				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 

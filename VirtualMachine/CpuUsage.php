@@ -22,19 +22,18 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
+/**
+ * Magic properties used for autocomplete
+ *
+ * @property integer  id
+ * @property string   created_at
+ * @property string   updated_at
+ * @property integer  cpu_time
+ * @property integer  virtual_machine_id
+ * @property string   stat_time
+ * @property integer  user_id
+ */
 class OnApp_VirtualMachine_CpuUsage extends OnApp {
-	/**
-	 * Magic properties
-	 *
-	 * @property integer  id
-	 * @property datetime created_at
-	 * @property datetime updated_at
-	 * @property integer  cpu_time
-	 * @property integer  virtual_machine_id
-	 * @property datetime stat_time
-	 * @property integer  user_id
-	 */
-
 	/**
 	 * root tag used in the API request
 	 *
@@ -62,7 +61,7 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
 	 * @return string API resource
 	 * @access public
 	 */
-	function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_LIST:
 				/**
@@ -73,20 +72,20 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
 				 * @alias   /virtual_machines/:id/cpu_usage(.:format)
 				 * @format  {:controller=>"virtual_machines", :action=>"cpu_usage"}
 				 */
-				if( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
+				if( is_null( $this->_virtual_machine_id ) && is_null( $this->inheritedObject->_virtual_machine_id ) ) {
 					$this->logger->error(
-						"getURL($action): argument _virtual_machine_id not set.",
+						'getURL( ' . $action . ' ): argument virtual_machine_id not set.',
 						__FILE__,
 						__LINE__
 					);
 				}
 				else {
 					if( is_null( $this->_virtual_machine_id ) ) {
-						$this->_virtual_machine_id = $this->_obj->_virtual_machine_id;
+						$this->_virtual_machine_id = $this->inheritedObject->_virtual_machine_id;
 					}
 				}
 
-				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->_resource;
+				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->URLPath;
 				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
