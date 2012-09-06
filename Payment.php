@@ -29,12 +29,12 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer  id
- * @property decimal  amount
- * @property string   created_at
- * @property string   invoice_number
- * @property string   updated_at
- * @property integer  user_id
+ * @property integer  $id
+ * @property decimal  $amount
+ * @property string   $created_at
+ * @property string   $invoice_number
+ * @property string   $updated_at
+ * @property integer  $user_id
  */
 class OnApp_Payment extends OnApp {
 

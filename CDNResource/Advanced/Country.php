@@ -22,12 +22,12 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property string continent
- * @property string name
- * @property string created_at
- * @property string code
- * @property string updated_at
- * @property string id
+ * @property string $continent
+ * @property string $name
+ * @property string $created_at
+ * @property string $code
+ * @property string $updated_at
+ * @property string $id
  */
 class OnApp_CDNResource_Advanced_Country extends OnApp {
 	/**

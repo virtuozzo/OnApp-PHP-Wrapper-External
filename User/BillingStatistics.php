@@ -26,15 +26,15 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property string   created_at
- * @property float    cost
- * @property string   updated_at
- * @property string   stat_time
- * @property integer  id
- * @property integer  user_id
- * @property integer  vm_billing_stat_id
- * @property integer  virtual_machine_id
- * @property string   billing_stats
+ * @property string   $created_at
+ * @property float    $cost
+ * @property string   $updated_at
+ * @property string   $stat_time
+ * @property integer  $id
+ * @property integer  $user_id
+ * @property integer  $vm_billing_stat_id
+ * @property integer  $virtual_machine_id
+ * @property string   $billing_stats
  */
 class OnApp_User_BillingStatistics extends OnApp {
 	/**

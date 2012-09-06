@@ -28,14 +28,14 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer  id
- * @property string   created_at
- * @property string   updated_at
- * @property integer  network_id
- * @property integer  hypervisor_id
- * @property string   interface
- * @property integer  target_join_id
- * @property string   target_join_type
+ * @property integer  $id
+ * @property string   $created_at
+ * @property string   $updated_at
+ * @property integer  $network_id
+ * @property integer  $hypervisor_id
+ * @property string   $interface
+ * @property integer  $target_join_id
+ * @property string   $target_join_type
  */
 class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	/**

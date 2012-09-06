@@ -25,13 +25,13 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer  id
- * @property string   called_in_at
- * @property string   created_at
- * @property integer  port
- * @property string   updated_at
- * @property integer  virtual_machine_id
- * @property string   remote_key
+ * @property integer  $id
+ * @property string   $called_in_at
+ * @property string   $created_at
+ * @property integer  $port
+ * @property string   $updated_at
+ * @property integer  $virtual_machine_id
+ * @property string   $remote_key
  */
 class OnApp_Console extends OnApp {
 	/**

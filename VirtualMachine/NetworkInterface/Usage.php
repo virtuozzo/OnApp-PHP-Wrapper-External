@@ -26,14 +26,14 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer  id
- * @property string   created_at
- * @property string   updated_at
- * @property integer  data_received
- * @property integer  data_sent
- * @property integer  user_id
- * @property integer  network_interface_id
- * @property integer  virtual_machine_id
+ * @property integer  $id
+ * @property string   $created_at
+ * @property string   $updated_at
+ * @property integer  $data_received
+ * @property integer  $data_sent
+ * @property integer  $user_id
+ * @property integer  $network_interface_id
+ * @property integer  $virtual_machine_id
  */
 class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 	/**

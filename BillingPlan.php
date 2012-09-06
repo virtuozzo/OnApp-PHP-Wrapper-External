@@ -36,16 +36,16 @@ define( 'ONAPP_GETRESOURCE_CREATE_COPY', 'copy' );
 /**
  * Magic properties used for autocomplete
  *
- * @property string   label
- * @property string   created_at
- * @property string   updated_at
- * @property integer  id
- * @property integer  monthly_price
- * @property string   currency_code
- * @property boolean  show_price
- * @property boolean  allows_mak
- * @property boolean  allows_kms
- * @property boolean  allows_own
+ * @property string   $label
+ * @property string   $created_at
+ * @property string   $updated_at
+ * @property integer  $id
+ * @property integer  $monthly_price
+ * @property string   $currency_code
+ * @property boolean  $show_price
+ * @property boolean  $allows_mak
+ * @property boolean  $allows_kms
+ * @property boolean  $allows_own
  */
 class OnApp_BillingPlan extends OnApp {
 	public static $nestedData = array(

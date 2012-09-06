@@ -24,19 +24,19 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property string  name
- * @property string  companyName
- * @property string  companyDescription
- * @property string  statusReason
- * @property string  updatedAt
- * @property string  username
- * @property string  role
- * @property integer id
- * @property string  companyPhone
- * @property integer principal
- * @property string  createdAt
- * @property string  status
- * @property string  email
+ * @property string  $name
+ * @property string  $companyName
+ * @property string  $companyDescription
+ * @property string  $statusReason
+ * @property string  $updatedAt
+ * @property string  $username
+ * @property string  $role
+ * @property integer $id
+ * @property string  $companyPhone
+ * @property integer $principal
+ * @property string  $createdAt
+ * @property string  $status
+ * @property string  $email
  */
 class OnApp_EdgeGroup_Location_Operator extends OnApp {
 	public static $nestedData = array(

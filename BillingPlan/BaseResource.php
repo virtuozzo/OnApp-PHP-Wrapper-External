@@ -22,21 +22,21 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer  id
- * @property string   label
- * @property string   created_at
- * @property string   updated_at
- * @property integer  billing_plan_id
- * @property string   unit
- * @property string   resource_name
- * @property string   limit
- * @property string   limit_type
- * @property string   limit_free
- * @property string   price
- * @property string   price_on
- * @property string   price_off
- * @property string   resource_class
- * @property integer  target_id
+ * @property integer  $id
+ * @property string   $label
+ * @property string   $created_at
+ * @property string   $updated_at
+ * @property integer  $billing_plan_id
+ * @property string   $unit
+ * @property string   $resource_name
+ * @property string   $limit
+ * @property string   $limit_type
+ * @property string   $limit_free
+ * @property string   $price
+ * @property string   $price_on
+ * @property string   $price_off
+ * @property string   $resource_class
+ * @property integer  $target_id
  */
 class OnApp_BillingPlan_BaseResource extends OnApp {
 	public static $nestedData = array(

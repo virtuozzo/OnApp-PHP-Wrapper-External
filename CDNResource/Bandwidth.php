@@ -24,9 +24,9 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property string non_cached
- * @property string date
- * @property string cached
+ * @property string $non_cached
+ * @property string $date
+ * @property string $cached
  */
 class OnApp_CDNResource_Bandwidth extends OnApp {
 	/**

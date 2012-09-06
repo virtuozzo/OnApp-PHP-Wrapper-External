@@ -43,32 +43,32 @@ define( 'ONAPP_GETRESOURCE_HYPERVISOR_REBOOT', 'hypervisor_reboot' );
 /**
  * Magic properties used for autocomplete
  *
- * @property integer    id
- * @property string     called_in_at
- * @property string     created_at
- * @property integer    failure_count
- * @property string     health
- * @property string     ip_address
- * @property string     label
- * @property boolean    locked
- * @property integer    memory_overhead
- * @property boolean    online
- * @property boolean    spare
- * @property string     updated_at
- * @property string     xen_info
- * @property boolean    enabled
- * @property integer    hypervisor_group_id
- * @property string     hypervisor_type
- * @property integer    cpu_cores
- * @property integer    free_memory
- * @property integer    total_cpus
- * @property integer    total_memory
- * @property integer    used_cpu_resources
- * @property integer    memory_allocated_by_running_vms
- * @property integer    total_memory_allocated_by_vms
- * @property boolean    disable_failover
- * @property string     redis_password
- * @property array      free_disk_space
+ * @property integer    $id
+ * @property string     $called_in_at
+ * @property string     $created_at
+ * @property integer    $failure_count
+ * @property string     $health
+ * @property string     $ip_address
+ * @property string     $label
+ * @property boolean    $locked
+ * @property integer    $memory_overhead
+ * @property boolean    $online
+ * @property boolean    $spare
+ * @property string     $updated_at
+ * @property string     $xen_info
+ * @property boolean    $enabled
+ * @property integer    $hypervisor_group_id
+ * @property string     $hypervisor_type
+ * @property integer    $cpu_cores
+ * @property integer    $free_memory
+ * @property integer    $total_cpus
+ * @property integer    $total_memory
+ * @property integer    $used_cpu_resources
+ * @property integer    $memory_allocated_by_running_vms
+ * @property integer    $total_memory_allocated_by_vms
+ * @property boolean    $disable_failover
+ * @property string     $redis_password
+ * @property array      $free_disk_space
  */
 class OnApp_Hypervisor extends OnApp {
 	/**

@@ -23,15 +23,15 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer user_id
- * @property integer virtual_machine_id
- * @property string  data_received
- * @property string  data_sent
- * @property string  data_read
- * @property string  data_written
- * @property string  writes_completed
- * @property string  reads_completed
- * @property string  cpu_usage
+ * @property integer $user_id
+ * @property integer $virtual_machine_id
+ * @property string  $data_received
+ * @property string  $data_sent
+ * @property string  $data_read
+ * @property string  $data_written
+ * @property string  $writes_completed
+ * @property string  $reads_completed
+ * @property string  $cpu_usage
  */
 class OnApp_UsageStatistic extends OnApp {
 	/**

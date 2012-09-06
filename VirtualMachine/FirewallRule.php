@@ -28,15 +28,15 @@ define( 'ONAPP_GETRESOURCE_UPDATE_DEFAULTS', 'update_defaults' );
 /**
  * Magic properties used for autocomplete
  *
- * @property integer id
- * @property string  address
- * @property string  position
- * @property string  created_at
- * @property string  updated_at
- * @property string  command
- * @property integer port
- * @property string  protocol
- * @property integer network_interface_id
+ * @property integer $id
+ * @property string  $address
+ * @property string  $position
+ * @property string  $created_at
+ * @property string  $updated_at
+ * @property string  $command
+ * @property integer $port
+ * @property string  $protocol
+ * @property integer $network_interface_id
  */
 class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	/**

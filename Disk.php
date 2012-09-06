@@ -29,21 +29,21 @@ define( 'ONAPP_GETRESOURCE_TAKE_BACKUP', 'backups' );
 /**
  * Magic properties used for autocomplete
  *
- * @property integer  id
- * @property string   created_at
- * @property string   updated_at
- * @property boolean  add_to_linux_fstab
- * @property integer  disk_size
- * @property boolean  primary
- * @property integer  data_store_id
- * @property integer  disk_vm_number
- * @property boolean  is_swap
- * @property string   mount_point
- * @property string   identifier
- * @property integer  virtual_machine_id
- * @property boolean  built
- * @property boolean  locked
- * @property boolean  has_autobackups
+ * @property integer  $id
+ * @property string   $created_at
+ * @property string   $updated_at
+ * @property boolean  $add_to_linux_fstab
+ * @property integer  $disk_size
+ * @property boolean  $primary
+ * @property integer  $data_store_id
+ * @property integer  $disk_vm_number
+ * @property boolean  $is_swap
+ * @property string   $mount_point
+ * @property string   $identifier
+ * @property integer  $virtual_machine_id
+ * @property boolean  $built
+ * @property boolean  $locked
+ * @property boolean  $has_autobackups
  */
 class OnApp_Disk extends OnApp {
 	/**

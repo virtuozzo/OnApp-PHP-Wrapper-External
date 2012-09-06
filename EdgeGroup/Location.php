@@ -24,19 +24,19 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property string  city
- * @property string  region
- * @property float   price
- * @property float   latitude
- * @property string  country
- * @property boolean deleted
- * @property integer id
- * @property boolean geoblocking
- * @property string  createdAt
- * @property integer updatedAt
- * @property string  description
- * @property float   longitude
- * @property string  status
+ * @property string  $city
+ * @property string  $region
+ * @property float   $price
+ * @property float   $latitude
+ * @property string  $country
+ * @property boolean $deleted
+ * @property integer $id
+ * @property boolean $geoblocking
+ * @property string  $createdAt
+ * @property integer $updatedAt
+ * @property string  $description
+ * @property float   $longitude
+ * @property string  $status
  */
 class OnApp_EdgeGroup_Location extends OnApp {
 	public static $nestedData = array(

@@ -26,16 +26,16 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer  id
- * @property string   created_at
- * @property string   updated_at
- * @property string   arch
- * @property integer  total
- * @property string   distro
- * @property integer  count
- * @property string   tail
- * @property string   edition
- * @property string   license
+ * @property integer  $id
+ * @property string   $created_at
+ * @property string   $updated_at
+ * @property string   $arch
+ * @property integer  $total
+ * @property string   $distro
+ * @property integer  $count
+ * @property string   $tail
+ * @property string   $edition
+ * @property string   $license
  */
 class OnApp_SoftwareLincense extends OnApp {
 	/**

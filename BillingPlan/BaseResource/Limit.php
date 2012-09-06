@@ -13,8 +13,8 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer limit_free
- * @property integer limit
+ * @property integer $limit_free
+ * @property integer $limit
  */
 class OnApp_BillingPlan_BaseResource_Limit extends OnApp {
 	public function __construct() {

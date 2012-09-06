@@ -26,13 +26,13 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer  id
- * @property integer  target_id
- * @property string   created_at
- * @property string   target_type
- * @property string   updated_at
- * @property string   action
- * @property string   status
+ * @property integer  $id
+ * @property integer  $target_id
+ * @property string   $created_at
+ * @property string   $target_type
+ * @property string   $updated_at
+ * @property string   $action
+ * @property string   $status
  */
 class OnApp_Log extends OnApp {
 	/**

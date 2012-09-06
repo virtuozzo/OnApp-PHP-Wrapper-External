@@ -29,20 +29,20 @@ define( 'ONAPP_GETRESOURCE_LIST_BY_DISK_ID', 'get list by disk id' );
 /**
  * Magic properties used for autocomplete
  *
- * @property integer id
- * @property integer duration
- * @property integer target_id
- * @property string  schedule_logs
- * @property string  period
- * @property string  updated_at
- * @property string  action
- * @property string  start_at
- * @property integer user_id
- * @property integer failure_count
- * @property string  params
- * @property string  status
- * @property string  target_type
- * @property string  created_at
+ * @property integer $id
+ * @property integer $duration
+ * @property integer $target_id
+ * @property string  $schedule_logs
+ * @property string  $period
+ * @property string  $updated_at
+ * @property string  $action
+ * @property string  $start_at
+ * @property integer $user_id
+ * @property integer $failure_count
+ * @property string  $params
+ * @property string  $status
+ * @property string  $target_type
+ * @property string  $created_at
  */
 class OnApp_Disk_Schedule extends OnApp {
 	/**

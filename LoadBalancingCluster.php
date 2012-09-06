@@ -27,17 +27,17 @@ define( 'ONAPP_GETRESOURCE_GETLIST_BY_USER_ID', 'get_list_by_user_id' );
 /**
  * Magic properties used for autocomplete
  *
- * @property string  name
- * @property string  created_at
- * @property integer port
- * @property integer load_balancer_id
- * @property string  load_balancer_password
- * @property string  updated_at
- * @property integer id
- * @property integer user_id
- * @property string  cluster_type
- * @property string  identifier
- * @property integer image_template_id
+ * @property string  $name
+ * @property string  $created_at
+ * @property integer $port
+ * @property integer $load_balancer_id
+ * @property string  $load_balancer_password
+ * @property string  $updated_at
+ * @property integer $id
+ * @property integer $user_id
+ * @property string  $cluster_type
+ * @property string  $identifier
+ * @property integer $image_template_id
  */
 class OnApp_LoadBalancingCluster extends OnApp {
 	public static $nestedData = array(

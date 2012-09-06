@@ -20,10 +20,10 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer cpus
- * @property integer cpu_shares
- * @property integer memory
- * @property integer rate_limit
+ * @property integer $cpus
+ * @property integer $cpu_shares
+ * @property integer $memory
+ * @property integer $rate_limit
  */
 class OnApp_LoadBalancingCluster_NodeAtribute extends OnApp {
 	public function __construct() {

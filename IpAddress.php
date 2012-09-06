@@ -23,18 +23,18 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer  id
- * @property string   created_at
- * @property string   updated_at
- * @property string   address
- * @property string   netmask
- * @property string   broadcast
- * @property string   network_address
- * @property string   gateway
- * @property integer  network_id
- * @property boolean  free
- * @property boolean  disallowed_primary
- * @property integer  user_id
+ * @property integer  $id
+ * @property string   $created_at
+ * @property string   $updated_at
+ * @property string   $address
+ * @property string   $netmask
+ * @property string   $broadcast
+ * @property string   $network_address
+ * @property string   $gateway
+ * @property integer  $network_id
+ * @property boolean  $free
+ * @property boolean  $disallowed_primary
+ * @property integer  $user_id
  */
 class OnApp_IpAddress extends OnApp {
 	/**

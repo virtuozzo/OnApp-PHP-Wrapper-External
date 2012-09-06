@@ -28,8 +28,8 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property float   cost
- * @property integer month
+ * @property float   $cost
+ * @property integer $month
  */
 class OnApp_User_MonthlyBill extends OnApp {
 	/**

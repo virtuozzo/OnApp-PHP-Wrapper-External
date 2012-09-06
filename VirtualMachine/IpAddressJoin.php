@@ -24,11 +24,11 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer  id
- * @property string   created_at
- * @property string   updated_at
- * @property integer  network_interface_id
- * @property integer  ip_address_id
+ * @property integer  $id
+ * @property string   $created_at
+ * @property string   $updated_at
+ * @property integer  $network_interface_id
+ * @property integer  $ip_address_id
  */
 class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 	public static $nestedData = array(

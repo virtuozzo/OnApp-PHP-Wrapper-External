@@ -41,24 +41,24 @@ define( 'ONAPP_GETRESOURCE_DISK_BACKUPS', 'disk_backups' );
 /**
  * Magic properties used for autocomplete
  *
- * @property integer  id
- * @property string   created_at
- * @property string   updated_at
- * @property string   built_at
- * @property integer  disk_id
- * @property string   operating_system
- * @property string   operating_system_distro
- * @property integer  template_id
- * @property string   backup_type
- * @property boolean  allow_resize_without_reboot
- * @property integer  backup_size
- * @property string   identifier
- * @property integer  min_disk_size
- * @property boolean  built
- * @property boolean  locked
- * @property boolean  allowed_hot_migrate
- * @property boolean  allowed_swap
- * @property integer  backup_server_id
+ * @property integer  $id
+ * @property string   $created_at
+ * @property string   $updated_at
+ * @property string   $built_at
+ * @property integer  $disk_id
+ * @property string   $operating_system
+ * @property string   $operating_system_distro
+ * @property integer  $template_id
+ * @property string   $backup_type
+ * @property boolean  $allow_resize_without_reboot
+ * @property integer  $backup_size
+ * @property string   $identifier
+ * @property integer  $min_disk_size
+ * @property boolean  $built
+ * @property boolean  $locked
+ * @property boolean  $allowed_hot_migrate
+ * @property boolean  $allowed_swap
+ * @property integer  $backup_server_id
  */
 class OnApp_VirtualMachine_Backup extends OnApp {
 	/**

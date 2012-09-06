@@ -12,8 +12,8 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property string code
- * @property string name
+ * @property string $code
+ * @property string $name
  */
 class OnApp_Locale extends OnApp {
 	/**

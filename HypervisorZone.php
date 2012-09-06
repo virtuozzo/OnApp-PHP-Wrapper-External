@@ -27,10 +27,10 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer  id
- * @property string   created_at
- * @property string   updated_at
- * @property string   label
+ * @property integer  $id
+ * @property string   $created_at
+ * @property string   $updated_at
+ * @property string   $label
  */
 class OnApp_HypervisorZone extends OnApp {
 	/**

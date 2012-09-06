@@ -40,46 +40,45 @@ define( 'ONAPP_GETRESOURCE_DELETE_USER', 'delete_user' );
 /**
  * Magic properties used for autocomplete
  *
- * @property int           $id                            ID
- * @property int           $used_cpu_shares
- * @property int           $used_cpus
- * @property int           $used_disk_size
- * @property int           $used_memory
- * @property int           $memory_available
- * @property int           $disk_space_available
- * @property int           $billing_plan_id
- * @property int           $image_template_group_id
- * @property int           $user_group_id
- * @property int           $aflexi_user_id
- * @property string        $email                         email
- * @property string        $first_name                    first name
- * @property string        $last_name                     last name
- * @property string        $login                         login
- * @property string        $activated_at                  activation date
- * @property string        $created_at                    creation date
- * @property string        $deleted_at                    deletion date
- * @property string        $updated_at                    updating date
- * @property string        $suspend_at                    suspension date
- * @property string        $time_zone                     time zone
- * @property string        $status                        status
- * @property string        $locale                        locale
- * @property string        $aflexi_username
- * @property string        $aflexi_key
- * @property string        $cdn_status
- * @property string        $cdn_account_status
- * @property string        $aflexi_password
- * @property string        $remember_token
- * @property string        $remember_token_expires_at
- * @property float         $outstanding_amount            outstanding amount
- * @property float         $payment_amount                payment amount
- * @property float         $total_amount                  total amount
- * @property array         $roles
- * @property array         $used_ip_addresses
- * @property array         $additional_fields
- * @property boolean       $update_billing_stat
+ * @property integer $id                            ID
+ * @property integer $used_cpu_shares
+ * @property integer $used_cpus
+ * @property integer $used_disk_size
+ * @property integer $used_memory
+ * @property integer $memory_available
+ * @property integer $disk_space_available
+ * @property integer $billing_plan_id
+ * @property integer $image_template_group_id
+ * @property integer $user_group_id
+ * @property integer $aflexi_user_id
+ * @property string  $email                         email
+ * @property string  $first_name                    first name
+ * @property string  $last_name                     last name
+ * @property string  $login                         login
+ * @property string  $activated_at                  activation date
+ * @property boolean $update_billing_stat
+ * @property string  $created_at                    creation date
+ * @property string  $deleted_at                    deletion date
+ * @property string  $updated_at                    updating date
+ * @property string  $suspend_at                    suspension date
+ * @property string  $time_zone                     time zone
+ * @property string  $status                        status
+ * @property string  $locale                        locale
+ * @property string  $aflexi_username
+ * @property string  $aflexi_key
+ * @property string  $cdn_status
+ * @property string  $cdn_account_status
+ * @property string  $aflexi_password
+ * @property string  $remember_token
+ * @property string  $remember_token_expires_at XXX
+ * @property float   $outstanding_amount            outstanding amount
+ * @property float   $payment_amount                payment amount
+ * @property float   $total_amount                  total amount
+ * @property array   $roles
+ * @property array   $used_ip_addresses
+ * @property array   $additional_fields
  */
 class OnApp_User extends OnApp {
-
 	public static $nestedData = array(
 		'roles'             => 'Role',
 		'used_ip_addresses' => 'User_UsedIpAddress',
@@ -219,7 +218,7 @@ class OnApp_User extends OnApp {
 	/**
 	 * Gets list of users by group id
 	 *
-	 * @param integer|null $group_id user group id
+	 * @param integereger|null $group_id user group id
 	 *
 	 * @return bool|mixed
 	 */

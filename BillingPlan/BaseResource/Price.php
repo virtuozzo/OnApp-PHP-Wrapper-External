@@ -13,9 +13,9 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer price_on
- * @property integer price_off
- * @property integer price
+ * @property integer $price_on
+ * @property integer $price_off
+ * @property integer $price
  */
 class OnApp_BillingPlan_BaseResource_Price extends OnApp {
 	protected $rootElement = 'price';

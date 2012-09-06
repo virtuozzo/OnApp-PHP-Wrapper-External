@@ -24,14 +24,14 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer id
- * @property string  data_cached
- * @property string  data_non_cached
- * @property integer edge_group_id
- * @property string  cost
- * @property string  edge_group_label
- * @property string  stat_time
- * @property string  value
+ * @property integer $id
+ * @property string  $data_cached
+ * @property string  $data_non_cached
+ * @property integer $edge_group_id
+ * @property string  $cost
+ * @property string  $edge_group_label
+ * @property string  $stat_time
+ * @property string  $value
  */
 class OnApp_CDNResource_BillingStatistic extends OnApp {
 	/**

@@ -22,17 +22,17 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property string  price
- * @property string  city
- * @property string  created_at
- * @property string  updated_at
- * @property string  country
- * @property integer aflexi_location_id
- * @property integer id
- * @property string  operator
- * @property integer edge_group_id
- * @property boolean streamSupported
- * @property boolean httpSupported
+ * @property string  $price
+ * @property string  $city
+ * @property string  $created_at
+ * @property string  $updated_at
+ * @property string  $country
+ * @property integer $aflexi_location_id
+ * @property integer $id
+ * @property string  $operator
+ * @property integer $edge_group_id
+ * @property boolean $streamSupported
+ * @property boolean $httpSupported
  */
 class OnApp_CDNResource_AvailableEdgeGroup_Location extends OnApp {
 	/**

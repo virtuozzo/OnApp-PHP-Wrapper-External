@@ -24,10 +24,10 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer id
- * @property string  name
- * @property integer default_value
- * @property string  data_type
+ * @property integer $id
+ * @property string  $name
+ * @property integer $default_value
+ * @property string  $data_type
  */
 class OnApp_UserAdditionalField extends OnApp {
 	/**

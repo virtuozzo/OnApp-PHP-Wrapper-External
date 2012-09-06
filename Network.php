@@ -43,13 +43,13 @@ define( 'ONAPP_GETRESOURCE_NETWORKS_LIST_BY_HYPERVISOR_GROUP_ID', 'networks_list
 /**
  * Magic properties used for autocomplete
  *
- * @property integer  id
- * @property string   created_at
- * @property string   identifier
- * @property string   label
- * @property string   updated_at
- * @property integer  vlan
- * @property integer  network_group_id
+ * @property integer  $id
+ * @property string   $created_at
+ * @property string   $identifier
+ * @property string   $label
+ * @property string   $updated_at
+ * @property integer  $vlan
+ * @property integer  $network_group_id
  */
 class OnApp_Network extends OnApp {
 	/**

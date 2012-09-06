@@ -27,11 +27,11 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer  id
+ * @property integer  $id
  * @property  address
- * @property string   created_at
- * @property integer  network_id
- * @property string   updated_at
+ * @property string   $created_at
+ * @property integer  $network_id
+ * @property string   $updated_at
  */
 class OnApp_Nameserver extends OnApp {
 	/**

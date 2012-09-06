@@ -20,12 +20,12 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer cluster_id
- * @property integer ip_address_id
- * @property string  updated_at
- * @property string  created_at
- * @property integer id
- * @property integer virtual_machine_id
+ * @property integer $cluster_id
+ * @property integer $ip_address_id
+ * @property string  $updated_at
+ * @property string  $created_at
+ * @property integer $id
+ * @property integer $virtual_machine_id
  */
 class OnApp_LoadBalancingCluster_Node extends OnApp {
 	/**

@@ -24,10 +24,10 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property string   label
- * @property string   created_at
- * @property string   updated_at
- * @property integer  id
+ * @property string   $label
+ * @property string   $created_at
+ * @property string   $updated_at
+ * @property integer  $id
  */
 class OnApp_UserGroup extends OnApp {
 	/**

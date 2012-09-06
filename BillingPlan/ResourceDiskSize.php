@@ -21,7 +21,7 @@
  */
 class OnApp_BillingPlan_ResourceDiskSize extends OnApp_BillingPlan_BaseResource {
 	/**
-	 * @property string resource_class
+	 * @property string $resource_class
 	 */
 	protected $resource_class = 'Resource::DiskSize';
 }

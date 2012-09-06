@@ -33,11 +33,11 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer  id
- * @property string   created_at
- * @property string   identifier
- * @property string   label
- * @property string   updated_at
+ * @property integer  $id
+ * @property string   $created_at
+ * @property string   $identifier
+ * @property string   $label
+ * @property string   $updated_at
  */
 class OnApp_Role extends OnApp {
 	public static $nestedData = array(

@@ -29,24 +29,24 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer     id
- * @property string      action
- * @property mixed       actor
- * @property string      created_at
- * @property integer     dependent_transaction_id
- * @property string      log_output
- * @property string      params
- * @property integer     parent_id
- * @property string      parent_type
- * @property integer     pid
- * @property integer     priority
- * @property string      status
- * @property string      updated_at
- * @property integer     user_id
- * @property boolean     allowed_cancel
- * @property string      identifier
- * @property string      start_after
- * @property string      started_at
+ * @property integer     $id
+ * @property string      $action
+ * @property mixed       $actor
+ * @property string      $created_at
+ * @property integer     $dependent_transaction_id
+ * @property string      $log_output
+ * @property string      $params
+ * @property integer     $parent_id
+ * @property string      $parent_type
+ * @property integer     $pid
+ * @property integer     $priority
+ * @property string      $status
+ * @property string      $updated_at
+ * @property integer     $user_id
+ * @property boolean     $allowed_cancel
+ * @property string      $identifier
+ * @property string      $start_after
+ * @property string      $started_at
  */
 class OnApp_Transaction extends OnApp {
 	/**

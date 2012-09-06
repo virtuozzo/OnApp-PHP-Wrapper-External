@@ -28,10 +28,10 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property string   label
- * @property string   created_at
- * @property string   updated_at
- * @property integer  id
+ * @property string   $label
+ * @property string   $created_at
+ * @property string   $updated_at
+ * @property integer  $id
  */
 class OnApp_CDNResource_AvailableEdgeGroup extends OnApp {
 	public static $nestedData = array(

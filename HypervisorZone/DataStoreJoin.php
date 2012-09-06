@@ -26,12 +26,12 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer  id
- * @property string   created_at
- * @property string   updated_at
- * @property integer  data_store_id
- * @property integer  target_join_id
- * @property string   target_join_type
+ * @property integer  $id
+ * @property string   $created_at
+ * @property string   $updated_at
+ * @property integer  $data_store_id
+ * @property integer  $target_join_id
+ * @property string   $target_join_type
  */
 class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
 	/**

@@ -26,14 +26,14 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property float backup_cost
- * @property float vm_cost
- * @property float monit_cost
- * @property float storage_disk_size_cost
- * @property float user_resources_cost
- * @property float template_cost
- * @property float total_cost
- * @property float edge_group_cost
+ * @property float $backup_cost
+ * @property float $vm_cost
+ * @property float $monit_cost
+ * @property float $storage_disk_size_cost
+ * @property float $user_resources_cost
+ * @property float $template_cost
+ * @property float $total_cost
+ * @property float $edge_group_cost
  */
 class OnApp_User_Statistics extends OnApp {
 	public static $nestedData = array(

@@ -20,8 +20,8 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer max_node_amount
- * @property integer min_node_amount
+ * @property integer $max_node_amount
+ * @property integer $min_node_amount
  */
 class OnApp_LoadBalancingCluster_Config extends OnApp {
 	public function __construct() {

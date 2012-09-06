@@ -28,12 +28,12 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer  id
- * @property string   created_at
- * @property string   updated_at
- * @property integer  user_id
- * @property string   ip
- * @property string   description
+ * @property integer  $id
+ * @property string   $created_at
+ * @property string   $updated_at
+ * @property integer  $user_id
+ * @property string   $ip
+ * @property string   $description
  */
 class OnApp_User_WhiteList extends OnApp {
 	/**

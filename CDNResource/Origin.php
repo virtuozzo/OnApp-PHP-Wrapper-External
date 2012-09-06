@@ -22,8 +22,8 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property string value
- * @property string key
+ * @property string $value
+ * @property string $key
  */
 class OnApp_CDNResource_Origin extends OnApp {
 	/**

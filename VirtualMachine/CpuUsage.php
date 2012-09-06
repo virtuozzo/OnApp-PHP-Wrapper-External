@@ -25,13 +25,13 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer  id
- * @property string   created_at
- * @property string   updated_at
- * @property integer  cpu_time
- * @property integer  virtual_machine_id
- * @property string   stat_time
- * @property integer  user_id
+ * @property integer  $id
+ * @property string   $created_at
+ * @property string   $updated_at
+ * @property integer  $cpu_time
+ * @property integer  $virtual_machine_id
+ * @property string   $stat_time
+ * @property integer  $user_id
  */
 class OnApp_VirtualMachine_CpuUsage extends OnApp {
 	/**

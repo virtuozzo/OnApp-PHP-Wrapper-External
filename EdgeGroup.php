@@ -30,10 +30,10 @@ define( 'ONAPP_GETRESOURCE_EDGE_GROUP_UNASSIGN_LOCATION', 'edge_group_unassign_l
 /**
  * Magic properties used for autocomplete
  *
- * @property string   label
- * @property string   created_at
- * @property string   updated_at
- * @property integer  id
+ * @property string   $label
+ * @property string   $created_at
+ * @property string   $updated_at
+ * @property integer  $id
  */
 class OnApp_EdgeGroup extends OnApp {
 	public static $nestedData = array(

@@ -27,11 +27,11 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer  target_id
- * @property float    not_cached
- * @property string   updated_at
- * @property integer  user_id
- * @property float    cached
+ * @property integer  $target_id
+ * @property float    $not_cached
+ * @property string   $updated_at
+ * @property integer  $user_id
+ * @property float    $cached
  */
 class OnApp_CDNUsageStatistic extends OnApp {
 	/**

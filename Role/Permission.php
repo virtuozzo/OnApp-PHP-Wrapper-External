@@ -24,11 +24,11 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer  id
- * @property string   label
- * @property string   created_at
- * @property string   updated_at
- * @property string   identifier
+ * @property integer  $id
+ * @property string   $label
+ * @property string   $created_at
+ * @property string   $updated_at
+ * @property string   $identifier
  */
 class OnApp_Role_Permission extends OnApp {
 	/**

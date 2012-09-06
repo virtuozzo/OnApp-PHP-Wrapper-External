@@ -35,19 +35,19 @@ define( 'ONAPP_GETRESOURCE_DATASTORES_LIST_BY_HYPERVISOR_GROUP_ID', 'hypervisor_
 /**
  * Magic properties used for autocomplete
  *
- * @property integer  id
- * @property string   created_at
- * @property integer  data_store_size
- * @property string   identifier
- * @property string   label
- * @property integer  local_hypervisor_id
- * @property string   updated_at
- * @property integer  zombie_disks_size
- * @property boolean  enabled
- * @property integer  data_store_group_id
- * @property string   ip
- * @property integer  usage
- * @property mixed    capacity
+ * @property integer  $id
+ * @property string   $created_at
+ * @property integer  $data_store_size
+ * @property string   $identifier
+ * @property string   $label
+ * @property integer  $local_hypervisor_id
+ * @property string   $updated_at
+ * @property integer  $zombie_disks_size
+ * @property boolean  $enabled
+ * @property integer  $data_store_group_id
+ * @property string   $ip
+ * @property integer  $usage
+ * @property mixed    $capacity
  */
 class OnApp_DataStore extends OnApp {
 	/**

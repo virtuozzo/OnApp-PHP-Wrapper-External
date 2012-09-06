@@ -24,20 +24,20 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer     id
- * @property string      label
- * @property string      created_at
- * @property string      updated_at
- * @property mixed       usage
- * @property boolean     primary
- * @property string      usage_month_rolled_at
- * @property string      mac_address
- * @property string      usage_last_reset_at
- * @property integer     rate_limit
- * @property string      identifier
- * @property integer     network_join_id
- * @property integer     virtual_machine_id
- * @property string      default_firewall_rule
+ * @property integer     $id
+ * @property string      $label
+ * @property string      $created_at
+ * @property string      $updated_at
+ * @property mixed       $usage
+ * @property boolean     $primary
+ * @property string      $usage_month_rolled_at
+ * @property string      $mac_address
+ * @property string      $usage_last_reset_at
+ * @property integer     $rate_limit
+ * @property string      $identifier
+ * @property integer     $network_join_id
+ * @property integer     $virtual_machine_id
+ * @property string      $default_firewall_rule
  */
 class OnApp_VirtualMachine_NetworkInterface extends OnApp {
 	/**

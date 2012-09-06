@@ -27,19 +27,19 @@
 /**
  * Magic properties used for autocomplete
  *
- * @property integer  cpu_shares
- * @property integer  cpus
- * @property string   created_at
- * @property integer  disk_size
- * @property integer  memory
- * @property string   updated_at
- * @property integer  user_id
- * @property integer  storage_disk_size
- * @property integer  virtual_machines_count
- * @property integer  ip_address_count
- * @property integer  ip_address_mask
- * @property integer  backups_templates_count
- * @property integer  rate
+ * @property integer  $cpu_shares
+ * @property integer  $cpus
+ * @property string   $created_at
+ * @property integer  $disk_size
+ * @property integer  $memory
+ * @property string   $updated_at
+ * @property integer  $user_id
+ * @property integer  $storage_disk_size
+ * @property integer  $virtual_machines_count
+ * @property integer  $ip_address_count
+ * @property integer  $ip_address_mask
+ * @property integer  $backups_templates_count
+ * @property integer  $rate
  */
 class OnApp_ResourceLimit extends OnApp {
 	/**
