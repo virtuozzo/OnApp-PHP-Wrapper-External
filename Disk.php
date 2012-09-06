@@ -100,7 +100,7 @@ class OnApp_Disk extends OnApp {
 				 */
 				if( is_null( $this->_virtual_machine_id ) ) {
 					$this->logger->error(
-						'getURL( ' . $action . ' ): argument _virtual_machine_id not set.',
+						'getURL( ' . $action . ' ): property virtual_machine_id not set.',
 						__FILE__,
 						__LINE__
 					);

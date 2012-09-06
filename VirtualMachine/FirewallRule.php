@@ -176,7 +176,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'getList: argument _virtual_machine_id not set.',
+				'getList: property virtual_machine_id not set.',
 				__FILE__,
 				__LINE__
 			);
@@ -238,14 +238,14 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 		else {
 			if( is_null( $id ) ) {
 				$this->logger->error(
-					'load: argument _id not set.',
+					'load: property id not set.',
 					__FILE__,
 					__LINE__
 				);
 			}
 			else {
 				$this->logger->error(
-					'load: argument _virtual_machine_id not set.',
+					'load: property virtual_machine_id not set.',
 					__FILE__,
 					__LINE__
 				);

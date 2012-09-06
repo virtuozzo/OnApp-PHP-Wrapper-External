@@ -109,7 +109,7 @@ class OnApp_IpAddress extends OnApp {
 				 */
 				if( is_null( $this->_network_id ) && is_null( $this->inheritedObject->_network_id ) ) {
 					$this->logger->error(
-						'getURL( ' . $action . '): argument _network_id not set.',
+						'getURL( ' . $action . '): property network_id not set.',
 						__FILE__,
 						__LINE__
 					);
@@ -151,7 +151,7 @@ class OnApp_IpAddress extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'getList: argument _network_id not set.',
+				'getList: property network_id not set.',
 				__FILE__,
 				__LINE__
 			);
@@ -203,14 +203,14 @@ class OnApp_IpAddress extends OnApp {
 		else {
 			if( is_null( $id ) ) {
 				$this->logger->error(
-					'load: argument _id not set.',
+					'load: property id not set.',
 					__FILE__,
 					__LINE__
 				);
 			}
 			else {
 				$this->logger->error(
-					'load: argument _network_id not set.',
+					'load: property network_id not set.',
 					__FILE__,
 					__LINE__
 				);

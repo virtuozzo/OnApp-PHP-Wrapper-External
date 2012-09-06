@@ -94,7 +94,7 @@ class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
 		}
 		else {
 			$this->logger->error(
-				'getList: argument _virtual_machine_id not set.',
+				'getList: property virtual_machine_id not set.',
 				__FILE__,
 				__LINE__
 			);

@@ -117,7 +117,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 				 */
 				if( is_null( $this->_billing_plan_id ) && is_null( $this->inheritedObject->_billing_plan_id ) ) {
 					$this->logger->error(
-						'getURL( ' . $action . ' ): argument _billing_plan_id not set.',
+						'getURL( ' . $action . ' ): property billing_plan_id not set.',
 						__FILE__,
 						__LINE__
 					);
@@ -164,7 +164,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'getList: argument _billing_plan_id not set.',
+				'getList: property billing_plan_id not set.',
 				__FILE__,
 				__LINE__
 			);

@@ -183,7 +183,7 @@ class OnApp_LoadBalancingCluster extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'getListByUserId: argument _user_id not set.',
+				'getListByUserId: property user_id not set.',
 				__FILE__,
 				__LINE__
 			);

@@ -77,7 +77,7 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 				 */
 				if( is_null( $this->_virtual_machine_id ) && is_null( $this->inheritedObject->_virtual_machine_id ) ) {
 					$this->logger->error(
-						'getURL( ' . $action . ' ): argument _virtual_machine_id not set.',
+						'getURL( ' . $action . ' ): property virtual_machine_id not set.',
 						__FILE__,
 						__LINE__
 					);
@@ -90,7 +90,7 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 
 				if( is_null( $this->_network_interface_id ) && is_null( $this->inheritedObject->_network_interface_id ) ) {
 					$this->logger->error(
-						'getURL( ' . $action . ' ): argument _network_interface_id not set.',
+						'getURL( ' . $action . ' ): property network_interface_id not set.',
 						__FILE__,
 						__LINE__
 					);
@@ -135,7 +135,7 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'getList: argument _virtual_machine_id not set.',
+				'getList: property virtual_machine_id not set.',
 				__FILE__,
 				__LINE__
 			);
@@ -150,7 +150,7 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'getList: argument _network_interface_id not set.',
+				'getList: property network_interface_id not set.',
 				__FILE__,
 				__LINE__
 			);

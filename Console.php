@@ -130,7 +130,7 @@ class OnApp_Console extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'load: argument _virtual_machine_id not set.',
+				'load: property virtual_machine_id not set.',
 				__FILE__,
 				__LINE__
 			);

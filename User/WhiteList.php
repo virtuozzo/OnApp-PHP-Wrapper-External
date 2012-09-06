@@ -150,7 +150,7 @@ class OnApp_User_WhiteList extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'getList: argument _user_id not set.',
+				'getList: property user_id not set.',
 				__FILE__,
 				__LINE__
 			);
@@ -212,14 +212,14 @@ class OnApp_User_WhiteList extends OnApp {
 		else {
 			if( is_null( $id ) ) {
 				$this->logger->error(
-					'load: argument _id not set.',
+					'load: property id not set.',
 					__FILE__,
 					__LINE__
 				);
 			}
 			else {
 				$this->logger->error(
-					'load: argument _user_id not set.',
+					'load: property user_id not set.',
 					__FILE__,
 					__LINE__
 				);

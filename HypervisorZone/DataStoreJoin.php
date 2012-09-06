@@ -101,7 +101,7 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'getList: argument _target_join_id not set.',
+				'getList: property target_join_id not set.',
 				__FILE__,
 				__LINE__
 			);

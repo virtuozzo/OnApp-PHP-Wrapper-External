@@ -132,7 +132,7 @@ class OnApp_Network extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'getListByHypervisorGroupId: argument _hypervisor_group_id not set.',
+				'getListByHypervisorGroupId: property hypervisor_group_id not set.',
 				__FILE__,
 				__LINE__
 			);

@@ -89,7 +89,7 @@ class OnApp_ResourceLimit extends OnApp {
 				 */
 				if( is_null( $this->_user_id ) && is_null( $this->inheritedObject->_user_id ) ) {
 					$this->logger->error(
-						'getURL( ' . $action . ' ): argument _user_id not set.',
+						'getURL( ' . $action . ' ): property user_id not set.',
 						__FILE__,
 						__LINE__
 					);
@@ -164,7 +164,7 @@ class OnApp_ResourceLimit extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'load: argument _user_id not set.',
+				'load: property user_id not set.',
 				__FILE__,
 				__LINE__
 			);

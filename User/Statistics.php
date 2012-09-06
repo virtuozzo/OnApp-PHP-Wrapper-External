@@ -122,7 +122,7 @@ class OnApp_User_Statistics extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'getList: argument _user_id not set.',
+				'getList: property user_id not set.',
 				__FILE__,
 				__LINE__
 			);

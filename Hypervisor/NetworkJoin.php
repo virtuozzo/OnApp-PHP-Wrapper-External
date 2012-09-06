@@ -94,7 +94,7 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 				 */
 				if( is_null( $this->_hypervisor_id ) && is_null( $this->inheritedObject->_hypervisor_id ) ) {
 					$this->logger->error(
-						'getURL( ' . $action . ' ): argument _hypervisor_id not set.',
+						'getURL( ' . $action . ' ): property hypervisor_id not set.',
 						__FILE__,
 						__LINE__
 					);
@@ -135,7 +135,7 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'getList: argument _hypervisor_id not set.',
+				'getList: property hypervisor_id not set.',
 				__FILE__,
 				__LINE__
 			);
@@ -190,14 +190,14 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 		else {
 			if( is_null( $id ) ) {
 				$this->logger->error(
-					'load: argument _id not set.',
+					'load: property id not set.',
 					__FILE__,
 					__LINE__
 				);
 			}
 			else {
 				$this->logger->error(
-					'load: argument _hypervisor_id not set.',
+					'load: property hypervisor_id not set.',
 					__FILE__,
 					__LINE__
 				);

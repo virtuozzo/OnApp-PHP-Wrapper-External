@@ -180,7 +180,7 @@ class OnApp_Hypervisor extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'GetListByGroupId: argument _group_id not set.',
+				'GetListByGroupId: property group_id not set.',
 				__FILE__,
 				__LINE__
 			);
@@ -215,7 +215,7 @@ class OnApp_Hypervisor extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'reboot: argument _hypervisor_id not set.',
+				'reboot: property hypervisor_id not set.',
 				__FILE__,
 				__LINE__
 			);

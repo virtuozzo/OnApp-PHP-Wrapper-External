@@ -102,7 +102,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				 */
 				if( is_null( $this->_virtual_machine_id ) && is_null( $this->inheritedObject->_virtual_machine_id ) ) {
 					$this->logger->error(
-						'getURL( ' . $action . ' ): argument _virtual_machine_id not set.',
+						'getURL( ' . $action . ' ): property virtual_machine_id not set.',
 						__FILE__,
 						__LINE__
 					);
@@ -127,7 +127,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				 */
 				if( is_null( $this->_disk_id ) && is_null( $this->inheritedObject->_disk_id ) ) {
 					$this->logger->error(
-						'getURL( ' . $action . ' ): argument _disk_id not set.',
+						'getURL( ' . $action . ' ): property disk_id not set.',
 						__FILE__,
 						__LINE__
 					);
@@ -173,7 +173,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				 */
 				if( is_null( $this->_id ) && is_null( $this->inheritedObject->_id ) ) {
 					$this->logger->error(
-						'getURL( ' . $action . ' ): argument _id not set.',
+						'getURL( ' . $action . ' ): property id not set.',
 						__FILE__,
 						__LINE__
 					);
