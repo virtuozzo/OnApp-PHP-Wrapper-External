@@ -72,7 +72,7 @@ class OnApp_User_MonthlyBill extends OnApp {
 				 */
 				if( is_null( $this->_user_id ) && is_null( $this->inheritedObject->_user_id ) ) {
 					$this->logger->error(
-						'getURL( ' . $action . ' ): argument user_id not set.',
+						'getURL( ' . $action . ' ): property user_id not set.',
 						__FILE__,
 						__LINE__
 					);

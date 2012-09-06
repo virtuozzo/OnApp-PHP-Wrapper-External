@@ -242,7 +242,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'getList: argument virtual_machine_id not set.',
+				'getList: property virtual_machine_id not set.',
 				__FILE__,
 				__LINE__
 			);

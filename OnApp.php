@@ -1135,11 +1135,7 @@ abstract class OnApp {
 		}
 
 		if( is_null( $id ) ) {
-			$this->logger->error(
-				'load: Can\'t set variable ' . $id,
-				__FILE__,
-				__LINE__
-			);
+			$this->logger->error( 'load: Can\'t load ID = ' . $id, __FILE__, __LINE__ );
 		}
 
 		$this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
@@ -1157,11 +1153,7 @@ abstract class OnApp {
 			return $result;
 		}
 		else {
-			$this->logger->error(
-				'load: argument id not set.',
-				__FILE__,
-				__LINE__
-			);
+			$this->logger->error( 'load: property id not set.', __FILE__, __LINE__ );
 		}
 	}
 

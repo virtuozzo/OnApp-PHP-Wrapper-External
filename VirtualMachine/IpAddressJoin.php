@@ -103,7 +103,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 
 				if( is_null( $this->virtual_machine_id ) && is_null( $this->inheritedObject->virtual_machine_id ) ) {
 					$this->logger->error(
-						'getURL( ' . $action . ' ): argument virtual_machine_id not set.',
+						'getURL( ' . $action . ' ): property virtual_machine_id not set.',
 						__FILE__,
 						__LINE__
 					);
@@ -147,7 +147,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'getList: argument virtual_machine_id not set.',
+				'getList: property virtual_machine_id not set.',
 				__FILE__,
 				__LINE__
 			);
@@ -203,14 +203,14 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 		else {
 			if( is_null( $id ) ) {
 				$this->logger->error(
-					'load: argument id not set.',
+					'load: property id not set.',
 					__FILE__,
 					__LINE__
 				);
 			}
 			else {
 				$this->logger->error(
-					'load: argument virtual_machine_id not set.',
+					'load: property virtual_machine_id not set.',
 					__FILE__,
 					__LINE__
 				);

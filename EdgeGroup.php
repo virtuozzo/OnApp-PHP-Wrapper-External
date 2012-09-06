@@ -107,7 +107,7 @@ class OnApp_EdgeGroup extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'assign: argument edge_group_id not set.',
+				'assign: property edge_group_id not set.',
 				__FILE__,
 				__LINE__
 			);
@@ -115,7 +115,7 @@ class OnApp_EdgeGroup extends OnApp {
 
 		if( ! $location_id ) {
 			$this->logger->error(
-				'assign: argument location_id not set.',
+				'assign: property location_id not set.',
 				__FILE__,
 				__LINE__
 			);
@@ -142,7 +142,7 @@ class OnApp_EdgeGroup extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'assign: argument edge_group_id not set.',
+				'assign: property edge_group_id not set.',
 				__FILE__,
 				__LINE__
 			);
@@ -150,7 +150,7 @@ class OnApp_EdgeGroup extends OnApp {
 
 		if( ! $location_id ) {
 			$this->logger->error(
-				'assign: argument location_id not set.',
+				'assign: property location_id not set.',
 				__FILE__,
 				__LINE__
 			);

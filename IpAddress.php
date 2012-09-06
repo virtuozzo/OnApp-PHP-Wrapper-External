@@ -202,18 +202,10 @@ class OnApp_IpAddress extends OnApp {
 		}
 		else {
 			if( is_null( $id ) ) {
-				$this->logger->error(
-					'load: property id not set.',
-					__FILE__,
-					__LINE__
-				);
+				$this->logger->error( 'load: property id not set.', __FILE__, __LINE__ );
 			}
 			else {
-				$this->logger->error(
-					'load: property network_id not set.',
-					__FILE__,
-					__LINE__
-				);
+				$this->logger->error( 'load: property network_id not set.', __FILE__, __LINE__ );
 			}
 		}
 	}

@@ -74,7 +74,7 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
 				 */
 				if( is_null( $this->_virtual_machine_id ) && is_null( $this->inheritedObject->_virtual_machine_id ) ) {
 					$this->logger->error(
-						'getURL( ' . $action . ' ): argument virtual_machine_id not set.',
+						'getURL( ' . $action . ' ): property virtual_machine_id not set.',
 						__FILE__,
 						__LINE__
 					);

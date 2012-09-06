@@ -228,7 +228,7 @@ class OnApp_User extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'getListByHypervisorGroupId: argument "group_id" not set.',
+				'getListByHypervisorGroupId: property "group_id" not set.',
 				__FILE__,
 				__LINE__
 			);
@@ -257,7 +257,7 @@ class OnApp_User extends OnApp {
 	public function delete( $force = FALSE ) {
 		if( ! $this->_id ) {
 			$this->logger->error(
-				'DeleteUser: argument "id" not set.',
+				'DeleteUser: property "id" not set.',
 				__FILE__,
 				__LINE__
 			);

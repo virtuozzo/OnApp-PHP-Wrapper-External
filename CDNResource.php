@@ -159,7 +159,7 @@ class OnApp_CDNResource extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'prefetch: argument $cdn_resource_id not set.',
+				'prefetch: property cdn_resource_id not set.',
 				__FILE__,
 				__LINE__
 			);
@@ -187,7 +187,7 @@ class OnApp_CDNResource extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'prefetch: argument $cdn_resource_id not set.',
+				'prefetch: property cdn_resource_id not set.',
 				__FILE__,
 				__LINE__
 			);

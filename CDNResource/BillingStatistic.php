@@ -95,7 +95,7 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
 		}
 		else {
 			$this->logger->error(
-				'getList: argument $cdn_resource_id not set.',
+				'getList: property cdn_resource_id not set.',
 				__FILE__,
 				__LINE__
 			);
