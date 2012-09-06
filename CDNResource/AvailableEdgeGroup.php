@@ -52,11 +52,6 @@ class OnApp_CDNResource_AvailableEdgeGroup extends OnApp {
 	 */
 	protected $URLPath = 'cdn_resources/available_edge_groups';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	/**
 	 * Activates action performed with object
 	 *

@@ -38,11 +38,6 @@ class OnApp_LoadBalancer extends OnApp_VirtualMachine {
 	 */
 	protected $URLPath = 'load_balancers';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	/**
 	 * Activates action performed with object
 	 *

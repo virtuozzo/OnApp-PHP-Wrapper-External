@@ -75,11 +75,6 @@ class OnApp_Template extends OnApp {
 	 */
 	protected $URLPath = 'templates';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	public function getUserTemplates() {
 		return $this->sendGet( ONAPP_GET_USERTEMPLATES_LIST );
 	}

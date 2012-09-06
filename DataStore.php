@@ -64,11 +64,6 @@ class OnApp_DataStore extends OnApp {
 	 */
 	protected $URLPath = 'settings/data_stores';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DATASTORES_LIST_BY_HYPERVISOR_GROUP_ID:

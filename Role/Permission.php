@@ -44,9 +44,4 @@ class OnApp_Role_Permission extends OnApp {
 	 * @var string
 	 */
 	protected $URLPath = 'permissions';
-
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
 }

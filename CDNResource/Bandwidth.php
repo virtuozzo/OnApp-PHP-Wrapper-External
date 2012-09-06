@@ -43,11 +43,6 @@ class OnApp_CDNResource_Bandwidth extends OnApp {
 	 */
 	protected $URLPath = 'cdn_resources/bandwidth';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	/**
 	 * Sends an API request to get the Objects. After requesting,
 	 * unserializes the received response into the array of Objects

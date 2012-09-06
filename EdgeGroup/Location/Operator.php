@@ -57,11 +57,6 @@ class OnApp_EdgeGroup_Location_Operator extends OnApp {
 	 */
 	protected $URLPath = '';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	/**
 	 * Activates action performed with object
 	 *

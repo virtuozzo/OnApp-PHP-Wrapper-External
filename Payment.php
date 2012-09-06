@@ -52,11 +52,6 @@ class OnApp_Payment extends OnApp {
 	 */
 	protected $URLPath = 'payments';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:

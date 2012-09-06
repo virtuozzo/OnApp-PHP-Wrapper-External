@@ -42,9 +42,4 @@ class OnApp_Group extends OnApp {
 	 * @var string
 	 */
 	protected $URLPath = 'groups';
-
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
 }

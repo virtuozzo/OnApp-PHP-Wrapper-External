@@ -18,8 +18,4 @@
  *
  */
 class OnApp_LoadBalancingCluster_AutoScalingInCpu extends OnApp_LoadBalancingCluster_AutoScaling {
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
 }

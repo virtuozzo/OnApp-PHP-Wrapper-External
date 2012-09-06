@@ -94,11 +94,6 @@ class OnApp_CDNResource extends OnApp {
 	 */
 	protected $URLPath = 'cdn_resources';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_ENABLE_CDN:

@@ -48,11 +48,6 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
 	 */
 	protected $URLPath = 'billing';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	/**
 	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *

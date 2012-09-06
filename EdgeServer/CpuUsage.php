@@ -25,11 +25,6 @@
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	/**
 	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *

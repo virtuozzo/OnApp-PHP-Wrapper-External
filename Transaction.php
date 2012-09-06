@@ -63,11 +63,6 @@ class OnApp_Transaction extends OnApp {
 	 */
 	protected $URLPath = 'transactions';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	function activate( $action_name ) {
 		switch( $action_name ) {
 			case ONAPP_ACTIVATE_SAVE:

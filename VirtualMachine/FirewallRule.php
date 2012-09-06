@@ -53,11 +53,6 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 */
 	protected $URLPath = 'firewall_rules';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	/**
 	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *

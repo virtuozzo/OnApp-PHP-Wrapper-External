@@ -43,9 +43,4 @@ class OnApp_UserAdditionalField extends OnApp {
 	 * @var string
 	 */
 	protected $URLPath = 'user_additional_fields';
-
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
 }

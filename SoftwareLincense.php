@@ -51,9 +51,4 @@ class OnApp_SoftwareLincense extends OnApp {
 	 * @var string
 	 */
 	protected $URLPath = 'software_licenses';
-
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
 }

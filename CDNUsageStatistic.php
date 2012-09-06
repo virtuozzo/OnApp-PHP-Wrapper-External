@@ -48,11 +48,6 @@ class OnApp_CDNUsageStatistic extends OnApp {
 	 */
 	protected $URLPath = 'cdn_usage_statistics';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	/**
 	 * Activates action performed with object
 	 *

@@ -10,8 +10,6 @@
  * @link        http://www.onapp.com/
  */
 class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
-	private $className;
-
 	public function __construct() {
 	}
 
@@ -116,7 +114,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 		$obj           = new $this->className;
 		$obj->options  = parent::$obj->options;
 		$obj->_ch      = parent::$obj->_ch;
-		$obj->_is_auth = parent::$obj->_is_auth;
+		$obj->isAuthenticated = parent::$isAuthenticated;
 
 		foreach( $item as $name => $value ) {
 			if( is_array( $value ) ) {

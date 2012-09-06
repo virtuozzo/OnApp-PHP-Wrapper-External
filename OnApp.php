@@ -398,12 +398,7 @@ abstract class OnApp {
 	 */
 	var $_tagRequired = NULL;
 
-	/**
-	 * @access private
-	 * @var    boolean
-	 * @todo   move in to getter an setter
-	 */
-	var $_is_auth = FALSE;
+	protected $isAuthenticated = FALSE;
 
 	/**
 	 * @access private
@@ -579,8 +574,8 @@ abstract class OnApp {
 	 *
 	 * @todo   move to the defaut getter
 	 */
-	function isAuthenticate() {
-		return $this->_is_auth;
+	public function isAuthenticate() {
+		return $this->isAuthenticated;
 	}
 
 	/**
@@ -658,11 +653,11 @@ abstract class OnApp {
 			$this->setAPIVersion( $response[ 'response_body' ] );
 
 			$this->setErrors();
-			$this->_is_auth = TRUE;
+			$this->isAuthenticated = TRUE;
 		}
 		else {
 			$this->setErrors( $response[ 'response_body' ] );
-			$this->_is_auth = FALSE;
+			$this->isAuthenticated = FALSE;
 		}
 	}
 
@@ -1480,6 +1475,7 @@ abstract class OnApp {
 
 	// getters, setters & other magic stuff //
 	public function __construct() {
+		$this->className = get_class( $this );
 		$this->options = $this->defaultOptions;
 		$this->logger  = new OnApp_Helper_Logger;
 	}

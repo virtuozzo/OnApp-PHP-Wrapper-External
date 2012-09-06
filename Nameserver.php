@@ -48,11 +48,6 @@ class OnApp_Nameserver extends OnApp {
 	 */
 	protected $URLPath = 'settings/nameservers';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		return parent::getURL( $action );
 		/**

@@ -66,11 +66,6 @@ class OnApp_BillingPlan extends OnApp {
 	 */
 	protected $URLPath = 'billing_plans';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_GETLIST_USERS:

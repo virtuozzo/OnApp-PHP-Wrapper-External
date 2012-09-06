@@ -37,9 +37,4 @@ class OnApp_EdgeGroup_AssignedLocation extends OnApp_EdgeGroup_Location {
 	 * @var string
 	 */
 	protected $URLPath = '';
-
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
 }

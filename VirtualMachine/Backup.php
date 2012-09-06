@@ -75,11 +75,6 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	 */
 	protected $URLPath = 'backups';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	/**
 	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *

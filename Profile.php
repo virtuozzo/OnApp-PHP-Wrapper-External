@@ -73,11 +73,6 @@ class OnApp_Profile extends OnApp {
 	 */
 	protected $URLPath = 'profile';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	function activate( $action_name ) {
 		switch( $action_name ) {
 			case ONAPP_ACTIVATE_GETLIST:

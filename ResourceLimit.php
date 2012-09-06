@@ -56,11 +56,6 @@ class OnApp_ResourceLimit extends OnApp {
 	 */
 	protected $URLPath = 'resource_limit';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	/**
 	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *

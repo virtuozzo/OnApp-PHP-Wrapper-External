@@ -49,11 +49,6 @@ class OnApp_Log extends OnApp {
 	 */
 	protected $URLPath = 'logs';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:

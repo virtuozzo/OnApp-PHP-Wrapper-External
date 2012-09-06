@@ -52,11 +52,6 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	 */
 	protected $URLPath = 'network_joins';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	/**
 	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
@@ -104,7 +99,7 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 						$this->_hypervisor_id = $this->inheritedObject->_hypervisor_id;
 					}
 				}
-				$resource = 'settings/hypervisors/' . $this->_hypervisor_id . '/' . $this->URLPath;
+				$resource = 'settings/hypervisors/' . $this->hypervisor_id . '/' . $this->URLPath;
 				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 

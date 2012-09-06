@@ -40,11 +40,6 @@ class OnApp_CDNResource_Origin extends OnApp {
 	 */
 	protected $URLPath = 'origins_for_api';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	/**
 	 * Activates action performed with object
 	 *

@@ -37,9 +37,4 @@ class OnApp_EdgeServer extends OnApp_VirtualMachine {
 	 * @var string
 	 */
 	protected $URLPath = 'edge_servers';
-
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
 }

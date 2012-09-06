@@ -46,11 +46,6 @@ class OnApp_User_MonthlyBill extends OnApp {
 	 */
 	protected $URLPath = 'monthly_bills';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	/**
 	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *

@@ -1,6 +1,6 @@
 <?php
 /**
- * Serialize and Unserialize Object to/from JSON|XML for OnApp wrapper
+ * Serialize|Unserialize Object to/from JSON|XML for OnApp wrapper
  *
  * @category    OBJECT CAST
  * @package     OnApp
@@ -9,7 +9,7 @@
  * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
  */
-class OnApp_Helper_Caster {
+class OnApp_Helper_Caster extends OnApp {
 	protected static $obj;
 	protected static $APIVersion;
 
@@ -65,7 +65,7 @@ class OnApp_Helper_Caster {
 		$tmp_obj           = new $className;
 		$tmp_obj->options  = self::$obj->options;
 		$tmp_obj->_ch      = self::$obj->_ch;
-		$tmp_obj->_is_auth = self::$obj->_is_auth;
+		$tmp_obj->isAuthenticated = self::$obj->isAuthenticated;
 
 		$tmp = array();
 		foreach( $object->data as $data ) {

@@ -17,8 +17,4 @@
  * @property integer $limit
  */
 class OnApp_BillingPlan_BaseResource_Limit extends OnApp {
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Serialize and Unserialize Object to/from XML for OnApp wrapper
+ * Serialize|Unserialize Object to|from XML for OnApp wrapper
  *
  * @category    OBJECT CAST
  * @package     OnApp
@@ -10,7 +10,6 @@
  * @link        http://www.onapp.com/
  */
 class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
-	private $className;
 	private $types = array(
 		'datetime' => 's',
 		'float'    => 'f',
@@ -114,7 +113,7 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 		$obj           = new $this->className;
 		$obj->options  = parent::$obj->options;
 		$obj->_ch      = parent::$obj->_ch;
-		$obj->_is_auth = parent::$obj->_is_auth;
+		$obj->isAuthenticated = parent::$obj->isAuthenticated;
 
 		foreach( $item as $name => $value ) {
 			$boolean = $type = FALSE;

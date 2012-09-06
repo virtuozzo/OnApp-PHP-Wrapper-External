@@ -43,9 +43,4 @@ class OnApp_NetworkZone extends OnApp {
 	 * @var string
 	 */
 	protected $URLPath = 'network_zones';
-
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
 }

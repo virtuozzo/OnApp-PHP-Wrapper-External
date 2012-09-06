@@ -50,11 +50,6 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 	 */
 	protected $URLPath = 'usage';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	/**
 	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *

@@ -55,11 +55,6 @@ class OnApp_EdgeGroup extends OnApp {
 	 */
 	protected $URLPath = 'edge_groups';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	/**
 	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *

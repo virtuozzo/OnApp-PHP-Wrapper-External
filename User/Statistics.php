@@ -54,11 +54,6 @@ class OnApp_User_Statistics extends OnApp {
 	 */
 	protected $URLPath = 'user_statistics';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	/**
 	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *

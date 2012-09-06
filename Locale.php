@@ -30,11 +30,6 @@ class OnApp_Locale extends OnApp {
 	 */
 	protected $URLPath = '/settings/internationalization';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		return parent::getURL( $action );
 		/**

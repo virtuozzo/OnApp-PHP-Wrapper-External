@@ -36,11 +36,6 @@ class OnApp_User_UsedIpAddress extends OnApp_IpAddress {
 	 */
 	protected $URLPath = '';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	/**
 	 * Activates action performed with object
 	 *

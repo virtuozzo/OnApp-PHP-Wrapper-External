@@ -26,8 +26,4 @@
  * @property integer $rate_limit
  */
 class OnApp_LoadBalancingCluster_NodeAtribute extends OnApp {
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
 }

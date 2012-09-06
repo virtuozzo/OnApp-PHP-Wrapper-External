@@ -85,11 +85,6 @@ class OnApp_Hypervisor extends OnApp {
 	 */
 	protected $URLPath = 'settings/hypervisors';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_HYPERVISORS_BY_HYPERVISOR_GROUP_ID:

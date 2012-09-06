@@ -52,11 +52,6 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
 	 */
 	protected $URLPath = 'vm_stats';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	/**
 	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *

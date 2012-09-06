@@ -19,9 +19,4 @@
  */
 class OnApp_BillingPlan_BaseResource_Price extends OnApp {
 	protected $rootElement = 'price';
-
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
 }

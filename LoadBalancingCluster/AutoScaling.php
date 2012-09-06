@@ -29,8 +29,4 @@
  * @property integer $value
  */
 class OnApp_LoadBalancingCluster_AutoScaling extends OnApp {
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
 }

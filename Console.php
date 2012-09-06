@@ -48,11 +48,6 @@ class OnApp_Console extends OnApp {
 	 */
 	protected $URLPath = 'console';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	/**
 	 * Returns the URL Alias for Load of objects of the API Class that inherits the OnApp class
 	 *

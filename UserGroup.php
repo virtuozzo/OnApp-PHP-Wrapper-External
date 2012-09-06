@@ -43,9 +43,4 @@ class OnApp_UserGroup extends OnApp {
 	 * @var string
 	 */
 	protected $URLPath = 'user_groups';
-
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
 }

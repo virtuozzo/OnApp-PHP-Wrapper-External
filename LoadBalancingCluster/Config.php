@@ -24,8 +24,4 @@
  * @property integer $min_node_amount
  */
 class OnApp_LoadBalancingCluster_Config extends OnApp {
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
 }

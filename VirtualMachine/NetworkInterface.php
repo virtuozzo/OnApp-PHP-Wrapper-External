@@ -54,11 +54,6 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
 	 */
 	protected $URLPath = 'network_interfaces';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
-
 	/**
 	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
