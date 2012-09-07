@@ -342,7 +342,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 *
 	 * @param mixed $recovery reboot mode
 	 */
-	function reboot( $recovery = FALSE ) {
+	function reboot( $recovery = false ) {
 		if( ! $recovery ) {
 			$this->sendPost( ONAPP_GETRESOURCE_REBOOT, '' );
 		}
@@ -412,7 +412,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 *
 	 * @return response object
 	 */
-	function change_owner( $user_id = FALSE ) {
+	function change_owner( $user_id = false ) {
 		if( ! $user_id ) {
 			$this->sendPost( ONAPP_GETRESOURCE_STARTUP );
 		}
@@ -445,7 +445,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 *
 	 * @return object response object
 	 */
-	function startup( $recovery = FALSE ) {
+	function startup( $recovery = false ) {
 		if( ! $recovery ) {
 			$this->sendPost( ONAPP_GETRESOURCE_STARTUP, '' );
 		}
@@ -517,7 +517,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 *
 	 * @return array|bool
 	 */
-	function getList( $user_id = NULL, $url_args = NULL ) {
+	function getList( $user_id = null, $url_args = null ) {
 		//todo rewrite to use parent method
 		if( is_null( $user_id ) ) {
 			return parent::getList( $user_id, $url_args );
@@ -533,12 +533,12 @@ class OnApp_VirtualMachine extends OnApp {
 
 			$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-			$result = $this->castStringToClass( $response );
+			$result = $this->doCastResponseToClass( $response );
 
 			if( ! empty( $response[ 'errors' ] ) ) {
 				//todo test this stuff
 				//$this->errors = $result->errors;
-				return FALSE;
+				return false;
 			}
 			if( ! is_array( $result ) && ! is_null( $result ) ) {
 				$result = array( $result );

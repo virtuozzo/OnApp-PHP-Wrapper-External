@@ -115,7 +115,7 @@ class OnApp_Payment extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $user_id = NULL, $url_args = NULL ) {
+	function getList( $user_id = null, $url_args = null ) {
 		if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
 			$user_id = $this->_user_id;
 		}
@@ -146,7 +146,7 @@ class OnApp_Payment extends OnApp {
 	 * @return mixed serialized Object instance from API
 	 * @access public
 	 */
-	function load( $id = NULL, $user_id = NULL ) {
+	function load( $id = null, $user_id = null ) {
 		if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
 			$user_id = $this->_user_id;
 		}
@@ -172,7 +172,7 @@ class OnApp_Payment extends OnApp {
 
 			$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-			$result = $this->_castResponseToClass( $response );
+			$result = $this->castResponseToClass( $response );
 
 			$this->inheritedObject = $result;
 

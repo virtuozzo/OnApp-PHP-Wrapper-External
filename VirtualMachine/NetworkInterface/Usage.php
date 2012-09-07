@@ -59,7 +59,7 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 	 * @access public
 	 */
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-		$show_log_msg = TRUE;
+		$show_log_msg = true;
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -120,7 +120,7 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $virtual_machine_id = NULL, $network_interface_id = NULL, $url_args = '' ) {
+	function getList( $virtual_machine_id = null, $network_interface_id = null, $url_args = '' ) {
 		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
 			$virtual_machine_id = $this->_virtual_machine_id;
 		}
@@ -151,6 +151,6 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 			);
 		}
 
-		return parent::getList( NULL, $url_args );
+		return parent::getList( null, $url_args );
 	}
 }

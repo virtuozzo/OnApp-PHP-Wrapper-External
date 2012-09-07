@@ -96,7 +96,7 @@ class OnApp_Console extends OnApp {
 	 * @return mixed serialized Object instance from API
 	 * @access public
 	 */
-	function load( $virtual_machine_id = NULL ) {
+	function load( $virtual_machine_id = null ) {
 		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
 			$virtual_machine_id = $this->_virtual_machine_id;
 		}
@@ -117,7 +117,7 @@ class OnApp_Console extends OnApp {
 
 			$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-			$result = $this->_castResponseToClass( $response );
+			$result = $this->castResponseToClass( $response );
 
 			$this->inheritedObject = $result;
 

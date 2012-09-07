@@ -150,10 +150,10 @@ class OnApp_DataStore extends OnApp {
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-		$result = $this->castStringToClass( $response );
+		$result = $this->doCastResponseToClass( $response );
 
 		if( ! empty( $response[ 'errors' ] ) ) {
-			return FALSE;
+			return false;
 		}
 
 		$this->inheritedObject = $result;

@@ -78,7 +78,7 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	public function getList( $cdn_resource_id = NULL, $url_args = NULL ) {
+	public function getList( $cdn_resource_id = null, $url_args = null ) {
 		if( is_null( $cdn_resource_id ) && ! is_null( $this->_id ) ) {
 			$cdn_resource_id = $this->_id;
 		}

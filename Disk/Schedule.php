@@ -68,7 +68,7 @@ class OnApp_Disk_Schedule extends OnApp {
 	 * @access public
 	 */
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-		$show_log_msg = TRUE;
+		$show_log_msg = true;
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_LIST_BY_DISK_ID:
 				$resource = 'settings/disks/' . $this->_target_id . '/' . $this->URLPath;
@@ -76,7 +76,7 @@ class OnApp_Disk_Schedule extends OnApp {
 
 			default:
 				$resource     = parent::getURL( $action );
-				$show_log_msg = FALSE;
+				$show_log_msg = false;
 		}
 
 		if( $show_log_msg ) {
@@ -95,7 +95,7 @@ class OnApp_Disk_Schedule extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getListByDiskId( $disk_id = NULL ) {
+	function getListByDiskId( $disk_id = null ) {
 		if( $disk_id ) {
 			$this->_target_id = $disk_id;
 		}
@@ -107,10 +107,10 @@ class OnApp_Disk_Schedule extends OnApp {
 		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LIST_BY_DISK_ID ) );
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-		$result = $this->castStringToClass( $response );
+		$result = $this->doCastResponseToClass( $response );
 
 		if( ! empty( $response[ 'errors' ] ) ) {
-			return FALSE;
+			return false;
 		}
 
 		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
@@ -119,10 +119,10 @@ class OnApp_Disk_Schedule extends OnApp {
 	function save() {
 		if( $this->_target_id ) {
 			//todo check this code
-			$this->fields[ 'target_id' ][ ONAPP_FIELD_REQUIRED ]        = TRUE;
-			$this->fields[ 'target_type' ][ ONAPP_FIELD_REQUIRED ]      = TRUE;
+			$this->fields[ 'target_id' ][ ONAPP_FIELD_REQUIRED ]        = true;
+			$this->fields[ 'target_type' ][ ONAPP_FIELD_REQUIRED ]      = true;
 			$this->fields[ 'target_type' ][ ONAPP_FIELD_DEFAULT_VALUE ] = 'Disk';
-			$this->fields[ 'action' ][ ONAPP_FIELD_REQUIRED ]           = TRUE;
+			$this->fields[ 'action' ][ ONAPP_FIELD_REQUIRED ]           = true;
 			$this->fields[ 'action' ][ ONAPP_FIELD_DEFAULT_VALUE ]      = 'autobackup';
 		}
 

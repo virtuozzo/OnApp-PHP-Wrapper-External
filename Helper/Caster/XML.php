@@ -62,13 +62,13 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 				}
 				else {
 					//todo add log message
-					return NULL;
+					return null;
 				}
 			}
 		}
 		catch( Exception $e ) {
 			echo PHP_EOL, $e->getMessage(), PHP_EOL;
-			return NULL;
+			return null;
 		}
 
 		// get API version
@@ -110,13 +110,13 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 	 * @return object
 	 */
 	private function process( $item ) {
-		$obj           = new $this->className;
-		$obj->options  = parent::$obj->options;
-		$obj->_ch      = parent::$obj->_ch;
+		$obj                  = new $this->className;
+		$obj->options         = parent::$obj->options;
+		$obj->ch             = parent::$obj->ch;
 		$obj->isAuthenticated = parent::$obj->isAuthenticated;
 
 		foreach( $item as $name => $value ) {
-			$boolean = $type = FALSE;
+			$boolean = $type = false;
 
 			if( isset( $value->attributes()->type ) ) {
 				if( $value->attributes()->type == 'array' ) {
@@ -147,12 +147,12 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 			if( $boolean ) {
 				switch( strtolower( $value ) ) {
 					case 'false':
-						$value = FALSE;
+						$value = false;
 						break;
 
 					case 'true':
 					default:
-						$value = TRUE;
+						$value = true;
 				}
 			}
 
@@ -172,7 +172,7 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 	 *
 	 * @return string XML
 	 */
-	private function getXML( $data, $root, $xml = NULL ) {
+	private function getXML( $data, $root, $xml = null ) {
 		if( is_array( $data ) ) {
 			if( is_null( $xml ) ) {
 				$xml = simplexml_load_string( '<?xml version="1.0" encoding="UTF-8"?><' . $root . ' />' );

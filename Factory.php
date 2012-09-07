@@ -20,7 +20,7 @@ class OnApp_Factory extends OnApp {
 	 * @param string      $password
 	 * @param string|null $proxy
 	 */
-	public function __construct( $hostname, $username, $password, $proxy = NULL ) {
+	public function __construct( $hostname, $username, $password, $proxy = null ) {
 		parent::__construct();
 		$this->auth( $hostname, $username, $password );
 	}
@@ -33,7 +33,7 @@ class OnApp_Factory extends OnApp {
 	 *
 	 * @return object instance of class
 	 */
-	public function factory( $name, $debug = FALSE ) {
+	public function factory( $name, $debug = false ) {
 		$class_name = 'OnApp_' . $name;
 
 		$result = new $class_name();
@@ -43,7 +43,7 @@ class OnApp_Factory extends OnApp {
 		$result->logger->setTimezone();
 		$result->version = $this->getAPIVersion();
 		$result->options = $this->options;
-		$result->_ch     = $this->_ch;
+		$result->ch      = $this->ch;
 		return $result;
 	}
 }

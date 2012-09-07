@@ -169,7 +169,7 @@ class OnApp_Hypervisor extends OnApp {
 	 *
 	 * @return bool|mixed
 	 */
-	function GetListByGroupId( $group_id = NULL ) {
+	function GetListByGroupId( $group_id = null ) {
 		if( $group_id ) {
 			$this->_hypervisor_group_id = $group_id;
 		}
@@ -187,10 +187,10 @@ class OnApp_Hypervisor extends OnApp {
 
 		if( ! empty( $response[ 'errors' ] ) ) {
 			$this->errors = $response[ 'errors' ];
-			return FALSE;
+			return false;
 		}
 
-		$result                = $this->castStringToClass( $response );
+		$result                = $this->doCastResponseToClass( $response );
 		$this->inheritedObject = $result;
 
 		return ( is_array( $result ) || ! $result ) ? $result : array( $result );

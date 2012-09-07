@@ -84,7 +84,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	 * @access public
 	 */
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-		$show_log_msg = TRUE;
+		$show_log_msg = true;
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -207,7 +207,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 
 			default:
 				$resource     = parent::getURL( $action );
-				$show_log_msg = FALSE;
+				$show_log_msg = false;
 		}
 
 		if( $show_log_msg ) {
@@ -226,7 +226,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $virtual_machine_id = NULL, $url_args = NULL ) {
+	function getList( $virtual_machine_id = null, $url_args = null ) {
 		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
 			$virtual_machine_id = $this->_virtual_machine_id;
 		}
@@ -251,7 +251,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	 *
 	 * @return response object
 	 */
-	function diskBackups( $disk_id = NULL ) {
+	function diskBackups( $disk_id = null ) {
 		if( $disk_id ) {
 			$this->_disk_id = $disk_id;
 		}
@@ -262,10 +262,10 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 
 		if( ! empty( $response[ 'errors' ] ) ) {
 			$this->errors = $response[ 'errors' ];
-			return FALSE;
+			return false;
 		}
 
-		$result = $this->castStringToClass( $response );
+		$result = $this->doCastResponseToClass( $response );
 
 		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
 	}
@@ -305,7 +305,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	function restore() {
 		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_BACKUP_RESTORE ) );
 		$response              = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
-		$result                = $this->_castResponseToClass( $response );
+		$result                = $this->castResponseToClass( $response );
 		$this->inheritedObject = $result;
 	}
 }

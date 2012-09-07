@@ -116,7 +116,7 @@ class OnApp_Profile extends OnApp {
 	 * @return mixed serialized Object instance from API
 	 * @access public
 	 */
-	function load( $id = NULL ) {
+	function load( $id = null ) {
 		$this->activate( ONAPP_ACTIVATE_LOAD );
 
 		$this->logger->add( 'load: Load class' );
@@ -125,7 +125,7 @@ class OnApp_Profile extends OnApp {
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-		$result = $this->_castResponseToClass( $response );
+		$result = $this->castResponseToClass( $response );
 
 		$this->inheritedObject = $result;
 

@@ -67,7 +67,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	 * @access public
 	 */
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-		$show_log_msg = TRUE;
+		$show_log_msg = true;
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				/**
@@ -128,7 +128,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 
 			default:
 				$resource     = parent::getURL( $action );
-				$show_log_msg = FALSE;
+				$show_log_msg = false;
 		}
 
 		if( $show_log_msg ) {
@@ -147,7 +147,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $billing_plan_id = NULL, $url_args = NULL ) {
+	function getList( $billing_plan_id = null, $url_args = null ) {
 		if( is_null( $billing_plan_id ) && ! is_null( $this->_billing_plan_id ) ) {
 			$billing_plan_id = $this->_billing_plan_id;
 		}

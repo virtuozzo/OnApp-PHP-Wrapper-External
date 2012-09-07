@@ -121,7 +121,7 @@ class OnApp_Network extends OnApp {
 	 *
 	 * @return bool|mixed
 	 */
-	function getListByHypervisorGroupId( $hypervisor_group_id = NULL ) {
+	function getListByHypervisorGroupId( $hypervisor_group_id = null ) {
 		if( $hypervisor_group_id ) {
 			$this->_hypervisor_group_id = $hypervisor_group_id;
 		}
@@ -139,10 +139,10 @@ class OnApp_Network extends OnApp {
 
 		if( ! empty( $response[ 'errors' ] ) ) {
 			$this->errors = $response[ 'errors' ];
-			return FALSE;
+			return false;
 		}
 
-		$result                = $this->castStringToClass( $response );
+		$result                = $this->doCastResponseToClass( $response );
 		$this->inheritedObject = $result;
 
 		return ( is_array( $result ) || ! $result ) ? $result : array( $result );

@@ -70,7 +70,7 @@ define( 'ONAPP_GETRESOURCE_DELETE_USER', 'delete_user' );
  * @property string  $cdn_account_status
  * @property string  $aflexi_password
  * @property string  $remember_token
- * @property string  $remember_token_expires_at XXX
+ * @property string  $remember_token_expires_at     XXX
  * @property float   $outstanding_amount            outstanding amount
  * @property float   $payment_amount                payment amount
  * @property float   $total_amount                  total amount
@@ -159,7 +159,7 @@ class OnApp_User extends OnApp {
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
 
-		$result = $this->_castResponseToClass( $response );
+		$result = $this->castResponseToClass( $response );
 
 		$this->inheritedObject = $result;
 	}
@@ -174,7 +174,7 @@ class OnApp_User extends OnApp {
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
 
-		$result = $this->_castResponseToClass( $response );
+		$result = $this->castResponseToClass( $response );
 
 		$this->inheritedObject = $result;
 	}
@@ -205,7 +205,7 @@ class OnApp_User extends OnApp {
 		}
 	}
 
-	public function load( $id = NULL ) {
+	public function load( $id = null ) {
 		$result = parent::load( $id );
 		return $result;
 	}
@@ -217,7 +217,7 @@ class OnApp_User extends OnApp {
 	 *
 	 * @return bool|mixed
 	 */
-	public function getListByGroupId( $group_id = NULL ) {
+	public function getListByGroupId( $group_id = null ) {
 		if( $group_id ) {
 			$this->_user_group_id = $group_id;
 		}
@@ -235,10 +235,10 @@ class OnApp_User extends OnApp {
 
 		if( ! empty( $response[ 'errors' ] ) ) {
 			$this->errors = $response[ 'errors' ];
-			return FALSE;
+			return false;
 		}
 
-		$result                = $this->castStringToClass( $response );
+		$result                = $this->doCastResponseToClass( $response );
 		$this->inheritedObject = $result;
 
 		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
@@ -249,15 +249,13 @@ class OnApp_User extends OnApp {
 	 *
 	 * @param boolean $force whether to delete completely
 	 */
-	public function delete( $force = FALSE ) {
-		if( ! $this->_id ) {
-			$this->logger->error(
-				'DeleteUser: property "id" not set.',
-				__FILE__,
-				__LINE__
-			);
+	public function delete( $force = false ) {
+		if( ! isset( $this->id ) ) {
+			$this->logger->error( 'DeleteUser: property "id" not set.', __FILE__, __LINE__ );
 		}
 
+		var_dump( '*' );
+		
 		if( $force ) {
 			$data = array(
 				'root' => 'tmp_holder',
@@ -283,7 +281,7 @@ class OnApp_User extends OnApp {
 				$data = $this->inheritedObject->roles;
 			}
 			else {
-				return NULL;
+				return null;
 			}
 
 			foreach( $data as $role ) {

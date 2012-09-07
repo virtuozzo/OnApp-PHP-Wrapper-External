@@ -206,7 +206,7 @@ class OnApp_Disk extends OnApp {
 	 *
 	 * @return void
 	 */
-	function enableAutobackup( $id = NULL ) {
+	function enableAutobackup( $id = null ) {
 		if( $id ) {
 			$this->_id = $id;
 		}
@@ -220,7 +220,7 @@ class OnApp_Disk extends OnApp {
 	 *
 	 * @return void
 	 */
-	function disableAutobackup( $id = NULL ) {
+	function disableAutobackup( $id = null ) {
 		if( $id ) {
 			$this->_id = $id;
 		}
@@ -237,7 +237,7 @@ class OnApp_Disk extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $vm_id = NULL, $url_args = NULL ) {
+	function getList( $vm_id = null, $url_args = null ) {
 		if( $vm_id ) {
 			$this->_virtual_machine_id = $vm_id;
 		}
@@ -258,16 +258,16 @@ class OnApp_Disk extends OnApp {
 			$this->fields[ 'require_format_disk' ] = array(
 				ONAPP_FIELD_MAP           => '_require_format_disk',
 				ONAPP_FIELD_TYPE          => 'integer',
-				ONAPP_FIELD_REQUIRED      => TRUE,
-				ONAPP_FIELD_DEFAULT_VALUE => FALSE,
+				ONAPP_FIELD_REQUIRED      => true,
+				ONAPP_FIELD_DEFAULT_VALUE => false,
 			);
 		}
 
 		if( $this->_id ) {
-			$this->fields[ 'add_to_linux_fstab' ][ ONAPP_FIELD_REQUIRED ] = FALSE;
-			$this->fields[ 'data_store_id' ][ ONAPP_FIELD_REQUIRED ]      = FALSE;
-			$this->fields[ 'is_swap' ][ ONAPP_FIELD_REQUIRED ]            = FALSE;
-			$this->fields[ 'mount_point' ][ ONAPP_FIELD_REQUIRED ]        = FALSE;
+			$this->fields[ 'add_to_linux_fstab' ][ ONAPP_FIELD_REQUIRED ] = false;
+			$this->fields[ 'data_store_id' ][ ONAPP_FIELD_REQUIRED ]      = false;
+			$this->fields[ 'is_swap' ][ ONAPP_FIELD_REQUIRED ]            = false;
+			$this->fields[ 'mount_point' ][ ONAPP_FIELD_REQUIRED ]        = false;
 		}
 
 		return parent::save();

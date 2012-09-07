@@ -30,7 +30,7 @@ class OnApp_Helper_Caster extends OnApp {
 	 * @return string
 	 */
 	public function serialize( $root, $data ) {
-		self::$obj->logger->debug( 'Data to serialize: ' . print_r( $data, TRUE ) );
+		self::$obj->logger->debug( 'Data to serialize: ' . print_r( $data, true ) );
 
 		return self::getCaster()->serialize( $root, $data );
 	}
@@ -61,10 +61,10 @@ class OnApp_Helper_Caster extends OnApp {
 	public static function unserializeNested( OnAppNestedDataHolder $object ) {
 		self::$obj->logger->add( 'castStringToClass: call ' . __METHOD__ );
 
-		$className         = 'OnApp_' . $object->className;
-		$tmp_obj           = new $className;
-		$tmp_obj->options  = self::$obj->options;
-		$tmp_obj->_ch      = self::$obj->_ch;
+		$className                = 'OnApp_' . $object->className;
+		$tmp_obj                  = new $className;
+		$tmp_obj->options         = self::$obj->options;
+		$tmp_obj->ch             = self::$obj->ch;
 		$tmp_obj->isAuthenticated = self::$obj->isAuthenticated;
 
 		$tmp = array();

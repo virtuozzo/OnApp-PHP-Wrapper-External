@@ -55,7 +55,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 		}
 
 		if( empty( $data ) ) {
-			return NULL;
+			return null;
 		}
 		/*
 		todo check this code
@@ -87,7 +87,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 			return $errors;
 		}
 
-		$result = NULL;
+		$result = null;
 		if( count( $data ) > 1 ) {
 			foreach( $data as $item ) {
 				$result[ ] = $this->process( $this->fixRootTag( $item, $root ) );
@@ -111,10 +111,10 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 	 * @return object
 	 */
 	private function process( $item ) {
-		$obj           = new $this->className;
-		$obj->options  = parent::$obj->options;
-		$obj->_ch      = parent::$obj->_ch;
-		$obj->isAuthenticated = parent::$isAuthenticated;
+		$obj                  = new $this->className;
+		$obj->options         = parent::$obj->options;
+		$obj->ch             = parent::$obj->ch;
+		$obj->isAuthenticated = parent::isAuthenticate();
 
 		foreach( $item as $name => $value ) {
 			if( is_array( $value ) ) {
@@ -141,7 +141,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 
 	private function runBefore( &$data ) {
 		if( is_string( $data ) ) {
-			if( strpos( $data, '{"error"' ) !== FALSE ) {
+			if( strpos( $data, '{"error"' ) !== false ) {
 				$data = str_replace( '"error"', '"errors"', $data );
 			}
 		}

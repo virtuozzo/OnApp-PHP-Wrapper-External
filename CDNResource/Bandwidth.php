@@ -52,7 +52,7 @@ class OnApp_CDNResource_Bandwidth extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	public function getList( $params = NULL, $url_args = NULL ) {
+	public function getList( $params = null, $url_args = null ) {
 		return parent::getList( $params, $url_args );
 	}
 

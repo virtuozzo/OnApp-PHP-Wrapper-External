@@ -79,7 +79,7 @@ class OnApp_Transaction extends OnApp {
 	 *
 	 * @return the array of Object instances
 	 */
-	function getList( $page = 1, $url_args = NULL ) {
+	function getList( $page = 1, $url_args = null ) {
 		$data = array(
 			'root' => 'page',
 			'data' => $page,
@@ -117,6 +117,6 @@ class OnApp_Transaction extends OnApp {
 	 */
 	function load_with_output( $id ) {
 		$this->_id = $id;
-		return $this->sendGet( ONAPP_GETRESOURCE_LOAD, NULL, array( 'log' => '' ) );
+		return $this->sendGet( ONAPP_GETRESOURCE_LOAD, null, array( 'log' => '' ) );
 	}
 }

@@ -148,7 +148,7 @@ class OnApp_BillingPlan extends OnApp {
 
 		if( ! empty( $response[ 'errors' ] ) ) {
 			$this->errors = $response[ 'errors' ];
-			return FALSE;
+			return false;
 		}
 
 		$class = new ONAPP_User();
@@ -159,9 +159,9 @@ class OnApp_BillingPlan extends OnApp {
 
 		$class->logger->setTimezone();
 
-		$class->_ch = $this->_ch;
+		$class->ch = $this->ch;
 
-		$result = $class->castStringToClass( $response );
+		$result = $class->doCastResponseToClass( $response );
 
 		return $result;
 	}
@@ -175,7 +175,7 @@ class OnApp_BillingPlan extends OnApp {
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST, $data );
 
-		$result = $this->castStringToClass( $response );
+		$result = $this->doCastResponseToClass( $response );
 
 		return $result;
 	}

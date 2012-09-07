@@ -159,7 +159,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $virtual_machine_id = NULL, $url_args = NULL ) {
+	function getList( $virtual_machine_id = null, $url_args = null ) {
 		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
 			$virtual_machine_id = $this->_virtual_machine_id;
 		}
@@ -191,7 +191,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 * @return mixed serialized Object instance from API
 	 * @access public
 	 */
-	function load( $id = NULL, $virtual_machine_id = NULL ) {
+	function load( $id = null, $virtual_machine_id = null ) {
 		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
 			$virtual_machine_id = $this->_virtual_machine_id;
 		}
@@ -224,7 +224,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 
 			$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-			$result = $this->_castResponseToClass( $response );
+			$result = $this->castResponseToClass( $response );
 
 			$this->inheritedObject = $result;
 
@@ -280,7 +280,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 * @param integer $virtual_machine_id VM Id
 	 *
 	 */
-	function update( $virtual_machine_id = NULL ) {
+	function update( $virtual_machine_id = null ) {
 		if( $virtual_machine_id ) {
 			$this->_virtual_machine_id = $virtual_machine_id;
 		}

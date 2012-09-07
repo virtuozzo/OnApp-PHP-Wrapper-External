@@ -129,7 +129,7 @@ class OnApp_ResourceLimit extends OnApp {
 	 * @return object serialized Object instance from API
 	 * @access public
 	 */
-	function load( $user_id = NULL ) {
+	function load( $user_id = null ) {
 		if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
 			$user_id = $this->_user_id;
 		}
@@ -150,7 +150,7 @@ class OnApp_ResourceLimit extends OnApp {
 
 			$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-			$result = $this->_castResponseToClass( $response );
+			$result = $this->castResponseToClass( $response );
 
 			$this->inheritedObject = $result;
 			$this->_user_id        = $this->inheritedObject->_user_id;
