@@ -1269,6 +1269,9 @@ abstract class OnApp {
 		foreach( $this->getErrorsAsArray() as $Key => $Value ) {
 			if( is_array( $Value ) ) {
 				foreach( $Value as $key => $value ) {
+					if( ! is_array( $value ) ) {
+						$value = (array)$value;
+					}
 					$errors .= $glue . $Key . ': ' . implode( $glue . $Key . ': ', $value );
 				}
 			}
@@ -1276,7 +1279,10 @@ abstract class OnApp {
 				$errors .= $Value . $glue;
 			}
 		}
-		$errors = substr( $errors, strlen( $glue ) );
+
+		if( strpos( $errors, $glue ) == 0 ) {
+			$errors = substr( $errors, strlen( $glue ) );
+		}
 
 		return $errors;
 	}
