@@ -227,6 +227,13 @@ class OnApp_Helper_CURL {
 		$this->super->logger->error( $msg . PHP_EOL, __FILE__, __LINE__ );
 	}
 
+	/**
+	 * Get error description by code
+	 *
+	 * @param integer $errorCode error code
+	 *
+	 * @return string error description
+	 */
 	private function getErrorDescription( $errorCode ) {
 		$errorCodes = array(
 			1  => 'CURLE_UNSUPPORTED_PROTOCOL',
@@ -310,4 +317,3 @@ class OnApp_Helper_CURL {
 		return $errorCodes[ $errorCode ];
 	}
 }
-
