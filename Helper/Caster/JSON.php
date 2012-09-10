@@ -44,37 +44,16 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 	 */
 	public function unserialize( $className, $data, $root ) {
 		parent::$obj->logger->add( 'castStringToClass ' . $className . ': call ' . __METHOD__ );
-
-		$this->runBefore( $data );
-
 		$this->className = $className;
 
-		$z = $data;
 		if( is_string( $data ) ) {
 			$data = json_decode( $data );
 		}
 
 		if( empty( $data ) ) {
+			parent::$obj->logger->add( __METHOD__ . ': get empty data for casting' );
 			return null;
 		}
-		/*
-		todo check this code
-		try {
-			if( empty( $data ) ) {
-				if( IS_CLI ) {
-					throw new Exception( __METHOD__ . ' Data for casting could not be empty' );
-				}
-				else {
-					//todo add log message
-					return NULL;
-				}
-			}
-		}
-		catch( Exception $e ) {
-			echo PHP_EOL, $e->getMessage(), PHP_EOL;
-			return NULL;
-		}
-		*/
 
 		// get API version
 		if( is_null( parent::$obj->getAPIVersion() ) ) {
@@ -113,7 +92,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 	private function process( $item ) {
 		$obj                  = new $this->className;
 		$obj->options         = parent::$obj->options;
-		$obj->ch             = parent::$obj->ch;
+		$obj->ch              = parent::$obj->ch;
 		$obj->isAuthenticated = parent::isAuthenticate();
 
 		foreach( $item as $name => $value ) {
@@ -139,14 +118,6 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 		return $obj;
 	}
 
-	private function runBefore( &$data ) {
-		if( is_string( $data ) ) {
-			if( strpos( $data, '{"error"' ) !== false ) {
-				$data = str_replace( '"error"', '"errors"', $data );
-			}
-		}
-	}
-
 	private function fixRootTag( $item, $root ) {
 		if( isset( $item->$root ) ) {
 			return $item->$root;
@@ -154,8 +125,5 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 		else {
 			return $item;
 		}
-	}
-
-	private function runAfter() {
 	}
 }
