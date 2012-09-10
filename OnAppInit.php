@@ -67,7 +67,7 @@ if( ! defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
 	/**
 	 * Detect if the code run in CLI for testing purposes
 	 */
-	if( defined( 'STDIN' ) ) {
+	if( defined( 'STDIN' ) || ( php_sapi_name() == 'cli' ) ) {
 		define( 'IS_CLI', true );
 	}
 	else {
