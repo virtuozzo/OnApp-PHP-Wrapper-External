@@ -331,7 +331,7 @@ class OnApp_VirtualMachine extends OnApp {
 		);
 
 		if( in_array( $action, $actions ) ) {
-			$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
+			$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
 		}
 
 		return $resource;
@@ -525,7 +525,7 @@ class OnApp_VirtualMachine extends OnApp {
 		else {
 			$this->activate( ONAPP_ACTIVATE_GETLIST );
 
-			$this->logger->add( 'getList: Get Transaction list.' );
+			$this->logger->logMessage( 'getList: Get Transaction list.' );
 
 			$this->_user_id = $user_id;
 

@@ -71,7 +71,7 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 				 * @format  {:controller=>"backups", :action=>"index"}
 				 */
 				if( is_null( $this->_virtual_machine_id ) && is_null( $this->inheritedObject->_virtual_machine_id ) ) {
-					$this->logger->error(
+					$this->logger->logErrorMessage(
 						'getURL( ' . $action . ' ): property virtual_machine_id not set.',
 						__FILE__,
 						__LINE__
@@ -84,7 +84,7 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 				}
 
 				if( is_null( $this->_network_interface_id ) && is_null( $this->inheritedObject->_network_interface_id ) ) {
-					$this->logger->error(
+					$this->logger->logErrorMessage(
 						'getURL( ' . $action . ' ): property network_interface_id not set.',
 						__FILE__,
 						__LINE__
@@ -104,7 +104,7 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 		}
 
 		if( $show_log_msg ) {
-			$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
+			$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
 		}
 
 		return $resource;
@@ -129,7 +129,7 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 			$this->_virtual_machine_id = $virtual_machine_id;
 		}
 		else {
-			$this->logger->error(
+			$this->logger->logErrorMessage(
 				'getList: property virtual_machine_id not set.',
 				__FILE__,
 				__LINE__
@@ -144,7 +144,7 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 			$this->_network_interface_id = $network_interface_id;
 		}
 		else {
-			$this->logger->error(
+			$this->logger->logErrorMessage(
 				'getList: property network_interface_id not set.',
 				__FILE__,
 				__LINE__

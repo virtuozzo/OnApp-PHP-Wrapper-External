@@ -91,7 +91,7 @@ class OnApp_EdgeGroup extends OnApp {
 				$resource = parent::getURL( $action );
 		}
 
-		$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
+		$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
 
 		return $resource;
 	}
@@ -101,7 +101,7 @@ class OnApp_EdgeGroup extends OnApp {
 			$this->_id = $edge_group_id;
 		}
 		else {
-			$this->logger->error(
+			$this->logger->logErrorMessage(
 				'assign: property edge_group_id not set.',
 				__FILE__,
 				__LINE__
@@ -109,7 +109,7 @@ class OnApp_EdgeGroup extends OnApp {
 		}
 
 		if( ! $location_id ) {
-			$this->logger->error(
+			$this->logger->logErrorMessage(
 				'assign: property location_id not set.',
 				__FILE__,
 				__LINE__
@@ -136,7 +136,7 @@ class OnApp_EdgeGroup extends OnApp {
 			$this->_id = $edge_group_id;
 		}
 		else {
-			$this->logger->error(
+			$this->logger->logErrorMessage(
 				'assign: property edge_group_id not set.',
 				__FILE__,
 				__LINE__
@@ -144,7 +144,7 @@ class OnApp_EdgeGroup extends OnApp {
 		}
 
 		if( ! $location_id ) {
-			$this->logger->error(
+			$this->logger->logErrorMessage(
 				'assign: property location_id not set.',
 				__FILE__,
 				__LINE__

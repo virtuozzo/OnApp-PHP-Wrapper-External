@@ -45,7 +45,7 @@ class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
 				 * @format  {:controller=>"edge_servers", :action=>"cpu_usage"}
 				 */
 				if( is_null( $this->_virtual_machine_id ) && is_null( $this->inheritedObject->_virtual_machine_id ) ) {
-					$this->logger->error(
+					$this->logger->logErrorMessage(
 						'getURL( ' . $action . ' ): property edge_server_id is not set.',
 						__FILE__,
 						__LINE__
@@ -58,7 +58,7 @@ class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
 				}
 
 				$resource = 'edge_servers/' . $this->_virtual_machine_id . '/' . $this->URLPath;
-				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
+				$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
@@ -88,7 +88,7 @@ class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
 			return parent::getList( $virtual_machine_id, $url_args );
 		}
 		else {
-			$this->logger->error( 'getList: property virtual_machine_id not set.', __FILE__, __LINE__ );
+			$this->logger->logErrorMessage( 'getList: property virtual_machine_id not set.', __FILE__, __LINE__ );
 		}
 	}
 }

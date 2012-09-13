@@ -177,7 +177,7 @@ class OnApp_LoadBalancingCluster extends OnApp {
 			$this->_user_id = $user_id;
 		}
 		else {
-			$this->logger->error(
+			$this->logger->logErrorMessage(
 				'getListByUserId: property user_id not set.',
 				__FILE__,
 				__LINE__

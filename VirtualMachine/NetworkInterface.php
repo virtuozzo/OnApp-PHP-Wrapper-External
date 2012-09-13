@@ -106,7 +106,7 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
 				 * @format  {:controller=>"network_interfaces", :action=>"destroy"}
 				 */
 				if( is_null( $this->_virtual_machine_id ) && is_null( $this->inheritedObject->_virtual_machine_id ) ) {
-					$this->logger->error(
+					$this->logger->logErrorMessage(
 						'getURL( ' . $action . ' ): property virtual_machine_id not set.',
 						__FILE__,
 						__LINE__
@@ -118,7 +118,7 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
 					}
 				}
 				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->URLPath;
-				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
+				$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
@@ -154,7 +154,7 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
 			return parent::getList( $virtual_machine_id, $url_args );
 		}
 		else {
-			$this->logger->error(
+			$this->logger->logErrorMessage(
 				'getList: property virtual_machine_id not set.',
 				__FILE__,
 				__LINE__
@@ -198,7 +198,7 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
 			$id = $this->inheritedObject->_id;
 		}
 
-		$this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
+		$this->logger->logMessage( 'load: Load class ( id => ' . $id . ' ).' );
 
 		if( ! is_null( $id ) && ! is_null( $virtual_machine_id ) ) {
 			$this->_id                 = $id;
@@ -216,14 +216,14 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
 		}
 		else {
 			if( is_null( $id ) ) {
-				$this->logger->error(
+				$this->logger->logErrorMessage(
 					'load: property id not set.',
 					__FILE__,
 					__LINE__
 				);
 			}
 			else {
-				$this->logger->error(
+				$this->logger->logErrorMessage(
 					'load: property virtual_machine_id not set.',
 					__FILE__,
 					__LINE__

@@ -69,7 +69,7 @@ class OnApp_Log extends OnApp {
 				 * @format   {:controller=>"log_items", :action=>"show"}
 				 */
 
-				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $this->URLPath );
+				$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $this->URLPath );
 				break;
 
 			default:

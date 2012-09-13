@@ -49,7 +49,7 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_JOIN:
 				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->URLPath;
-				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
+				$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:

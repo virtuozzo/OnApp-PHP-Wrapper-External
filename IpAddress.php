@@ -103,7 +103,7 @@ class OnApp_IpAddress extends OnApp {
 				 * @format {:controller=>"ip_addresses", :action=>"destroy"}
 				 */
 				if( is_null( $this->_network_id ) && is_null( $this->inheritedObject->_network_id ) ) {
-					$this->logger->error(
+					$this->logger->logErrorMessage(
 						'getURL( ' . $action . '): property network_id not set.',
 						__FILE__,
 						__LINE__
@@ -116,7 +116,7 @@ class OnApp_IpAddress extends OnApp {
 				}
 
 				$resource = 'settings/networks/' . $this->_network_id . '/' . $this->URLPath;
-				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
+				$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
@@ -145,7 +145,7 @@ class OnApp_IpAddress extends OnApp {
 			return parent::getList( $network_id, $url_args );
 		}
 		else {
-			$this->logger->error(
+			$this->logger->logErrorMessage(
 				'getList: property network_id not set.',
 				__FILE__,
 				__LINE__
@@ -179,7 +179,7 @@ class OnApp_IpAddress extends OnApp {
 			$id = $this->inheritedObject->_id;
 		}
 
-		$this->logger->add( 'load: Load class ( id => "' . $id . '").' );
+		$this->logger->logMessage( 'load: Load class ( id => "' . $id . '").' );
 
 		if( ! is_null( $id ) && ! is_null( $network_id ) ) {
 			$this->_id         = $id;
@@ -197,10 +197,10 @@ class OnApp_IpAddress extends OnApp {
 		}
 		else {
 			if( is_null( $id ) ) {
-				$this->logger->error( 'load: property id not set.', __FILE__, __LINE__ );
+				$this->logger->logErrorMessage( 'load: property id not set.', __FILE__, __LINE__ );
 			}
 			else {
-				$this->logger->error( 'load: property network_id not set.', __FILE__, __LINE__ );
+				$this->logger->logErrorMessage( 'load: property network_id not set.', __FILE__, __LINE__ );
 			}
 		}
 	}

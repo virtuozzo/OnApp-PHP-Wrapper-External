@@ -68,7 +68,7 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
 				 * @format  {:controller=>"virtual_machines", :action=>"cpu_usage"}
 				 */
 				if( is_null( $this->_virtual_machine_id ) && is_null( $this->inheritedObject->_virtual_machine_id ) ) {
-					$this->logger->error(
+					$this->logger->logErrorMessage(
 						'getURL( ' . $action . ' ): property virtual_machine_id not set.',
 						__FILE__,
 						__LINE__
@@ -81,7 +81,7 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
 				}
 
 				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->URLPath;
-				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
+				$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
@@ -111,7 +111,7 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
 			return parent::getList( $virtual_machine_id, $url_args );
 		}
 		else {
-			$this->logger->error(
+			$this->logger->logErrorMessage(
 				'getList: property virtual_machine_id not set.',
 				__FILE__,
 				__LINE__

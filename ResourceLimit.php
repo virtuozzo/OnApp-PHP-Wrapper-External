@@ -83,7 +83,7 @@ class OnApp_ResourceLimit extends OnApp {
 				 * @format  {:controller=>"resource_limits", :action=>"update"}
 				 */
 				if( is_null( $this->_user_id ) && is_null( $this->inheritedObject->_user_id ) ) {
-					$this->logger->error(
+					$this->logger->logErrorMessage(
 						'getURL( ' . $action . ' ): property user_id not set.',
 						__FILE__,
 						__LINE__
@@ -111,7 +111,7 @@ class OnApp_ResourceLimit extends OnApp {
 			ONAPP_GETRESOURCE_EDIT,
 		);
 		if( in_array( $action, $actions ) ) {
-			$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
+			$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
 		}
 
 		return $resource;
@@ -141,7 +141,7 @@ class OnApp_ResourceLimit extends OnApp {
 			$user_id = $this->inheritedObject->_user_id;
 		}
 
-		$this->logger->add( 'load: Load class ( id => ' . $user_id . ').' );
+		$this->logger->logMessage( 'load: Load class ( id => ' . $user_id . ').' );
 
 		if( ! is_null( $user_id ) ) {
 			$this->_user_id = $user_id;
@@ -158,7 +158,7 @@ class OnApp_ResourceLimit extends OnApp {
 			return $result;
 		}
 		else {
-			$this->logger->error(
+			$this->logger->logErrorMessage(
 				'load: property user_id not set.',
 				__FILE__,
 				__LINE__

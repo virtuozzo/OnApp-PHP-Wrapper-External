@@ -99,7 +99,7 @@ class OnApp_Profile extends OnApp {
 		 * @format   {:controller=>"users", :action=>"profile"}
 		 */
 		$resource = $this->URLPath;
-		$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
+		$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
 
 		return $resource;
 	}
@@ -119,7 +119,7 @@ class OnApp_Profile extends OnApp {
 	function load( $id = null ) {
 		$this->activate( ONAPP_ACTIVATE_LOAD );
 
-		$this->logger->add( 'load: Load class' );
+		$this->logger->logMessage( 'load: Load class' );
 
 		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 

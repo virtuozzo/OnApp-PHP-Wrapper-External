@@ -20,11 +20,8 @@
  */
 
 define( 'ONAPP_GETRESOURCE_SUSPEND_USER', 'suspend' );
-
 define( 'ONAPP_GETRESOURCE_ACTIVATE', 'activate' );
-
 define( 'ONAPP_GETRESOURCE_NETWORKS_LIST_BY_GROUP_ID', 'get_list_by_group_id' );
-
 define( 'ONAPP_GETRESOURCE_DELETE_USER', 'delete_user' );
 
 /**
@@ -143,7 +140,7 @@ class OnApp_User extends OnApp {
 		);
 
 		if( in_array( $action, $actions ) ) {
-			$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
+			$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
 		}
 
 		return $resource;
@@ -222,7 +219,7 @@ class OnApp_User extends OnApp {
 			$this->_user_group_id = $group_id;
 		}
 		else {
-			$this->logger->error(
+			$this->logger->logErrorMessage(
 				'getListByHypervisorGroupId: property "group_id" not set.',
 				__FILE__,
 				__LINE__
@@ -253,7 +250,7 @@ class OnApp_User extends OnApp {
 	 */
 	public function delete( $force = false ) {
 		if( ! isset( $this->id ) ) {
-			$this->logger->error( 'DeleteUser: property "id" not set.', __FILE__, __LINE__ );
+			$this->logger->logErrorMessage( 'DeleteUser: property "id" not set.', __FILE__, __LINE__ );
 		}
 
 		if( $force ) {

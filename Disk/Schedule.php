@@ -80,7 +80,7 @@ class OnApp_Disk_Schedule extends OnApp {
 		}
 
 		if( $show_log_msg ) {
-			$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
+			$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
 		}
 
 		return $resource;
@@ -102,7 +102,7 @@ class OnApp_Disk_Schedule extends OnApp {
 
 		$this->activate( ONAPP_ACTIVATE_GETLIST );
 
-		$this->logger->add( 'getList: Get Transaction list.' );
+		$this->logger->logMessage( 'getList: Get Transaction list.' );
 
 		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LIST_BY_DISK_ID ) );
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );

@@ -140,7 +140,7 @@ class OnApp_DataStore extends OnApp {
 			$this->_hypervisor_group_id = $hypervisor_group_id;
 		}
 		else {
-			$this->logger->error(
+			$this->logger->logErrorMessage(
 				'getListByHypervisorGroupId: property hypervisor_group_id not set.',
 				__FILE__,
 				__LINE__

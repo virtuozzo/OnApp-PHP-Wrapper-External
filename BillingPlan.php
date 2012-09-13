@@ -140,7 +140,7 @@ class OnApp_BillingPlan extends OnApp {
 	}
 
 	function users() {
-		$this->logger->add( 'getList: Get Users list.' );
+		$this->logger->logMessage( 'getList: Get Users list.' );
 
 		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_GETLIST_USERS ) );
 
@@ -167,7 +167,7 @@ class OnApp_BillingPlan extends OnApp {
 	}
 
 	function create_copy() {
-		$this->logger->add( 'getList: Create Billing plan copy' );
+		$this->logger->logMessage( 'getList: Create Billing plan copy' );
 
 		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_CREATE_COPY ) );
 

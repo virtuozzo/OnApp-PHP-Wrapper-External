@@ -1,6 +1,6 @@
 <?php
 
-class OnApp_Helper_CURL {
+class OnApp_Helper_Handler_CURL {
 	private $ch;
 	private $super;
 	private $infoStorage;

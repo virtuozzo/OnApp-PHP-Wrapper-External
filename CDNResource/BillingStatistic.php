@@ -60,7 +60,7 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_DEFAULT:
 				$resource = 'cdn_resources/' . $this->_id . '/' . $this->URLPath;
-				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
+				$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
@@ -89,7 +89,7 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
 			return parent::getList( $cdn_resource_id, $url_args );
 		}
 		else {
-			$this->logger->error(
+			$this->logger->logErrorMessage(
 				'getList: property cdn_resource_id not set.',
 				__FILE__,
 				__LINE__

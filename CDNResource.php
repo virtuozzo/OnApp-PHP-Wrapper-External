@@ -136,7 +136,7 @@ class OnApp_CDNResource extends OnApp {
 				$resource = parent::getURL( $action );
 		}
 
-		$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
+		$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
 
 		return $resource;
 	}
@@ -153,7 +153,7 @@ class OnApp_CDNResource extends OnApp {
 			$this->_id = $cdn_resource_id;
 		}
 		else {
-			$this->logger->error(
+			$this->logger->logErrorMessage(
 				'prefetch: property cdn_resource_id not set.',
 				__FILE__,
 				__LINE__
@@ -181,7 +181,7 @@ class OnApp_CDNResource extends OnApp {
 			$this->_id = $cdn_resource_id;
 		}
 		else {
-			$this->logger->error(
+			$this->logger->logErrorMessage(
 				'prefetch: property cdn_resource_id not set.',
 				__FILE__,
 				__LINE__

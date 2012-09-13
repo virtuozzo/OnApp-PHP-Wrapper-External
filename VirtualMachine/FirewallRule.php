@@ -170,7 +170,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 			return parent::getList( $virtual_machine_id, $url_args );
 		}
 		else {
-			$this->logger->error(
+			$this->logger->logErrorMessage(
 				'getList: property virtual_machine_id not set.',
 				__FILE__,
 				__LINE__
@@ -214,7 +214,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 			$id = $this->inheritedObject->_id;
 		}
 
-		$this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
+		$this->logger->logMessage( 'load: Load class ( id => ' . $id . ' ).' );
 
 		if( ! is_null( $id ) && ! is_null( $virtual_machine_id ) ) {
 			$this->_id                 = $id;
@@ -232,14 +232,14 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 		}
 		else {
 			if( is_null( $id ) ) {
-				$this->logger->error(
+				$this->logger->logErrorMessage(
 					'load: property id not set.',
 					__FILE__,
 					__LINE__
 				);
 			}
 			else {
-				$this->logger->error(
+				$this->logger->logErrorMessage(
 					'load: property virtual_machine_id not set.',
 					__FILE__,
 					__LINE__
@@ -257,7 +257,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 */
 	function move( $position ) {
 		if( ! $position ) {
-			$this->logger->error(
+			$this->logger->logErrorMessage(
 				"_GETAction: Firewall rule move position have to be specified
 				(apiVersion => '" . $this->_apiVersion . "').", __FILE__, __LINE__
 			);

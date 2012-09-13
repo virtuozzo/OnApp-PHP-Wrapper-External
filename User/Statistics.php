@@ -74,7 +74,7 @@ class OnApp_User_Statistics extends OnApp {
 				 * @format  {:controller=>"vm_stats", :action=>"index"}
 				 */
 				if( is_null( $this->_user_id ) && is_null( $this->inheritedObject->_user_id ) ) {
-					$this->logger->error(
+					$this->logger->logErrorMessage(
 						'getURL( ' . $action . ' ): property user_id not set.',
 						__FILE__,
 						__LINE__
@@ -86,7 +86,7 @@ class OnApp_User_Statistics extends OnApp {
 					}
 				}
 				$resource = 'users/' . $this->_user_id . '/' . $this->URLPath;
-				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
+				$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
@@ -116,7 +116,7 @@ class OnApp_User_Statistics extends OnApp {
 			return parent::getList( $user_id, $url_args );
 		}
 		else {
-			$this->logger->error(
+			$this->logger->logErrorMessage(
 				'getList: property user_id not set.',
 				__FILE__,
 				__LINE__
@@ -136,7 +136,7 @@ class OnApp_User_Statistics extends OnApp {
 			case ONAPP_ACTIVATE_LOAD:
 			case ONAPP_ACTIVATE_SAVE:
 			case ONAPP_ACTIVATE_DELETE:
-				$this->logger->error( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()',
+				$this->logger->logErrorMessage( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()',
 					__FILE__,
 					__LINE__
 				);

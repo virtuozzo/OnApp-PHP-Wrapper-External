@@ -68,7 +68,7 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
 				 * @format  {:controller=>"data_store_joins", :action=>"index"}
 				 */
 				$resource = 'settings/hypervisor_zones/' . $this->_target_join_id . '/' . $this->URLPath;
-				$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $resource );
+				$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
@@ -95,7 +95,7 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
 			return parent::getList( $target_join_id, $url_args );
 		}
 		else {
-			$this->logger->error(
+			$this->logger->logErrorMessage(
 				'getList: property target_join_id not set.',
 				__FILE__,
 				__LINE__
