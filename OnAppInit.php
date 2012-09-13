@@ -64,6 +64,9 @@ if( ! defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
 	 */
 	spl_autoload_register( 'OnAppAutoLoad' );
 
+	// start errors handler
+	OnApp_Helper_Handler_Errors::init();
+
 	/**
 	 * Detect if the code run in CLI for testing purposes
 	 */

@@ -360,7 +360,7 @@ abstract class OnApp {
 	/**
 	 * Object cURL
 	 *
-	 * @var OnApp_Helper_CURL
+	 * @var OnApp_Helper_Handler_CURL
 	 */
 	protected $ch;
 
@@ -502,7 +502,7 @@ abstract class OnApp {
 	 * @access public
 	 */
 	function setOption( $name, $value ) {
-		$this->logger->debug( 'setOption: Set option ' . $name . ' => ' . $value );
+		$this->logger->logDebugMessage( 'setOption: Set option ' . $name . ' => ' . $value );
 		$this->options[ $name ] = $value;
 	}
 
@@ -555,7 +555,7 @@ abstract class OnApp {
 			default:
 				$URL = $this->URLPath;
 		}
-		$this->logger->debug( 'getURL( ' . $action . ' ): return ' . $URL );
+		$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $URL );
 
 		return $URL;
 	}
@@ -608,7 +608,7 @@ abstract class OnApp {
 	 */
 	function logs() {
 		if( isset( $this->logger ) ) {
-			return $this->logger->logs();
+			return $this->logger->getLog();
 		}
 	}
 
@@ -628,11 +628,11 @@ abstract class OnApp {
 	 * @access public
 	 */
 	function auth( $url, $user, $pass, $proxy = '' ) {
-		$this->logger->setDebug( $this->options[ ONAPP_OPTION_DEBUG_MODE ] );
+		$this->logger->setDebugMode( $this->options[ ONAPP_OPTION_DEBUG_MODE ] );
 
 		$this->logger->setTimezone();
 
-		$this->logger->debug( 'auth: Authorization( url => ' . $url . ', user => ' . $user . ', pass => ******** ).' );
+		$this->logger->logDebugMessage( 'auth: Authorization( url => ' . $url . ', user => ' . $user . ', pass => ******** ).' );
 
 		$this->setOption( ONAPP_OPTION_CURL_URL, $url );
 		$this->setOption( ONAPP_OPTION_CURL_PROXY, $proxy );
@@ -676,7 +676,7 @@ abstract class OnApp {
 				}
 				catch( Exception $e ) {
 					echo $e->getMessage();
-					exit( $this->logger->logs() );
+					exit( $this->logger->getLog() );
 				}
 		}
 		$this->version = (float)$this->version;
@@ -715,9 +715,9 @@ abstract class OnApp {
 	*/
 
 	protected function _init_curl( $user, $pass, $cookiesFile = null ) {
-		$this->logger->debug( '_init_curl: Init Curl ( cookies file => "' . $cookiesFile . '" ).' );
+		$this->logger->logDebugMessage( '_init_curl: Init Curl ( cookies file => "' . $cookiesFile . '" ).' );
 
-		$this->ch = new OnApp_Helper_CURL( $this );
+		$this->ch = new OnApp_Helper_Handler_CURL( $this );
 
 		if( ! empty( $this->options[ ONAPP_OPTION_CURL_PROXY ] ) ) {
 			$this->ch->setOption( CURLOPT_PROXY, $this->options[ ONAPP_OPTION_CURL_PROXY ] );
@@ -745,7 +745,7 @@ abstract class OnApp {
 		$url = sprintf(
 			'%1$s/%2$s.%3$s', $this->options[ ONAPP_OPTION_CURL_URL ], $resource, $this->options[ ONAPP_OPTION_API_TYPE ] );
 		$this->ch->setOption( CURLOPT_URL, $url );
-		$this->logger->add(
+		$this->logger->logMessage(
 			'setAPIResource: Set an option for a cURL transfer (' .
 				' url => "' . $url . '", ' .
 				' resource => "' . $resource . '", ' .
@@ -771,14 +771,14 @@ abstract class OnApp {
 			ONAPP_REQUEST_METHOD_DELETE,
 		);
 		if( ! in_array( $method, $alowed_methods ) ) {
-			$this->logger->error( 'Wrong request method: ' . $method );
+			$this->logger->logErrorMessage( 'Wrong request method: ' . $method );
 		}
 
 		$debug_msg = 'Send ' . $method . ' request.';
 		if( $data ) {
 			$debug_msg .= ' Request:' . PHP_EOL . print_r( $data, true );
 		}
-		$this->logger->debug( $debug_msg );
+		$this->logger->logDebugMessage( $debug_msg );
 
 		$this->ch->setHeader( 'Content-Length', strlen( $data ) );
 		$this->ch->setHeader( 'Accept', $this->options[ ONAPP_OPTION_API_CONTENT ] );
@@ -791,13 +791,13 @@ abstract class OnApp {
 		$method = strtolower( $method );
 		$body   = $this->ch->$method()->getResponseBody();
 		if( $this->ch->getRequestError() ) {
-			$this->logger->error( 'Error during sending request' );
+			$this->logger->logErrorMessage( 'Error during sending request' );
 		}
 		elseif( empty( $body ) && ( $this->ch->getResponseStatusCode() != 204 ) ) {
-			$this->logger->error( 'Response body couldn\'t be empty for status code: ' . $this->ch->getResponseStatusCode() );
+			$this->logger->logErrorMessage( 'Response body couldn\'t be empty for status code: ' . $this->ch->getResponseStatusCode() );
 		}
 
-		$this->logger->debug( 'Receive Response ' . print_r( $this->ch->getResponseBody(), true ) );
+		$this->logger->logDebugMessage( 'Receive Response ' . print_r( $this->ch->getResponseBody(), true ) );
 
 		if( $this->ch->getRequestInfo( 'content_type' ) == $this->options[ ONAPP_OPTION_API_CONTENT ] . "; " . $this->options[ ONAPP_OPTION_API_CHARSET ] ) {
 			switch( $this->ch->getResponseStatusCode() ) {
@@ -811,17 +811,17 @@ abstract class OnApp {
 					switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
 						case 'xml':
 						case 'json':
-							$this->logger->add( 'Response (code => ' . $this->ch->getResponseStatusCode() . ', cast:' . PHP_EOL . $this->ch->getResponseBody() );
+							$this->logger->logMessage( 'Response (code => ' . $this->ch->getResponseStatusCode() . ', cast:' . PHP_EOL . "\t" . $this->ch->getResponseBody() );
 							break;
 					}
 					break;
 
 				default:
-					$this->logger->warning( 'Response (code => ' . $this->ch->getResponseStatusCode() . ', body: ' . PHP_EOL . $this->ch->getResponseBody() );
+					$this->logger->logWarningMessage( 'Response (code => ' . $this->ch->getResponseStatusCode() . ', body: ' . PHP_EOL . $this->ch->getResponseBody() );
 			}
 		}
 		else {
-			$this->logger->add( 'sendRequest: Response:' . PHP_EOL . $this->ch->getResponseBody() );
+			$this->logger->logMessage( 'sendRequest: Response:' . PHP_EOL . $this->ch->getResponseBody() );
 		}
 	}
 
@@ -832,7 +832,7 @@ abstract class OnApp {
 	 */
 	protected function castResponseToClass() {
 		if( $this->ch->getRequestError() ) {
-			$this->logger->error(
+			$this->logger->logErrorMessage(
 				'castResponseToClass: Can\'t parse ' . $this->ch->getResponseBody(),
 				__FILE__,
 				__LINE__
@@ -868,7 +868,7 @@ abstract class OnApp {
 	protected function doCastResponseToClass() {
 		$className = $this->getClassName();
 
-		$this->logger->add( 'doCastResponseToClass: cast data into the ' . $className . ' object.' );
+		$this->logger->logMessage( 'doCastResponseToClass: cast data into the ' . $className . ' object.' );
 
 		//todo add errors
 		switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
@@ -900,7 +900,7 @@ abstract class OnApp {
 				catch( Exception $e ) {
 					echo $e->getMessage();
 					//todo ???
-					exit( $this->logger->logs() );
+					exit( $this->logger->getLog() );
 				}
 		}
 	}
@@ -927,7 +927,7 @@ abstract class OnApp {
 	public function getList( $params = null, $url_args = null ) {
 		$this->activate( ONAPP_ACTIVATE_GETLIST );
 
-		$this->logger->add( 'Run ' . __METHOD__ );
+		$this->logger->logMessage( 'Run ' . __METHOD__ );
 
 		$result = $this->sendGet( ONAPP_GETRESOURCE_LIST, $params, $url_args );
 
@@ -969,10 +969,10 @@ abstract class OnApp {
 		}
 
 		if( is_null( $id ) ) {
-			$this->logger->error( 'load: Can\'t load ID = ' . $id, __FILE__, __LINE__ );
+			$this->logger->logErrorMessage( 'load: Can\'t load ID = ' . $id, __FILE__, __LINE__ );
 		}
 
-		$this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
+		$this->logger->logMessage( 'load: Load class ( id => ' . $id . ' ).' );
 
 		if( strlen( $id ) > 0 ) {
 			$this->_id = $id;
@@ -987,7 +987,7 @@ abstract class OnApp {
 			return $result;
 		}
 		else {
-			$this->logger->error( 'load: property id not set.', __FILE__, __LINE__ );
+			$this->logger->logErrorMessage( 'load: property id not set.', __FILE__, __LINE__ );
 		}
 	}
 
@@ -1035,14 +1035,14 @@ abstract class OnApp {
 	 * @access private
 	 */
 	protected function _create() {
-		$this->logger->add( 'Create new Object.' );
+		$this->logger->logMessage( 'Create new Object.' );
 
 		switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
 			case 'xml':
 			case 'json':
 				$objCast = new OnApp_Helper_Caster( $this );
 				$data    = $objCast->serialize( $this->rootElement, $this->getFieldsToSend() );
-				$this->logger->debug( 'serialize: serialized data:' . PHP_EOL . $data );
+				$this->logger->logDebugMessage( 'serialize: serialized data:' . PHP_EOL . $data );
 				$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_ADD ) );
 				$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST, $data );
 
@@ -1059,7 +1059,7 @@ abstract class OnApp {
 				catch( Exception $e ) {
 					echo $e->getMessage();
 					//todo ???
-					exit( $this->logger->logs() );
+					exit( $this->logger->getLog() );
 				}
 		}
 		return $result;
@@ -1076,7 +1076,7 @@ abstract class OnApp {
 			case 'json':
 				$objCast = new OnApp_Helper_Caster( $this );
 				$data    = $objCast->serialize( $this->rootElement, $this->getFieldsToSend() );
-				$this->logger->debug( 'serialize: serialized data:' . PHP_EOL . $data );
+				$this->logger->logDebugMessage( 'serialize: serialized data:' . PHP_EOL . $data );
 				$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_EDIT ) );
 				$response = $this->sendRequest( ONAPP_REQUEST_METHOD_PUT, $data );
 
@@ -1097,7 +1097,7 @@ abstract class OnApp {
 				catch( Exception $e ) {
 					echo $e->getMessage();
 					//todo ???
-					exit( $this->logger->logs() );
+					exit( $this->logger->getLog() );
 				}
 		}
 	}
@@ -1111,7 +1111,7 @@ abstract class OnApp {
 	 * @access private
 	 */
 	protected function getFieldsToSend() {
-		$this->logger->debug( 'getFieldsToSend: Prepare data array:' );
+		$this->logger->logDebugMessage( 'getFieldsToSend: Prepare data array:' );
 		if( empty( $this->inheritedObject->dynamicFields ) ) {
 			$result = $this->dynamicFields;
 		}
@@ -1150,7 +1150,7 @@ abstract class OnApp {
 	function delete() {
 		$this->activate( ONAPP_ACTIVATE_DELETE );
 
-		$this->logger->add( 'Delete existing Object ( id => ' . $this->_id . ' ).' );
+		$this->logger->logMessage( 'Delete existing Object ( id => ' . $this->_id . ' ).' );
 
 		$this->sendDelete( ONAPP_GETRESOURCE_DELETE );
 
@@ -1191,7 +1191,7 @@ abstract class OnApp {
 				if( ! is_null( $data ) ) {
 					$objCast = new OnApp_Helper_Caster( $this );
 					$data    = $objCast->serialize( $data[ 'root' ], $data[ 'data' ] );
-					$this->logger->debug( 'Additional parameters: ' . $data );
+					$this->logger->logDebugMessage( 'Additional parameters: ' . $data );
 				}
 
 				$url_args = ( $url_args ) ? preg_replace( '/%5B(0-9){1,4}%5D/', '%5B%5D', http_build_query( $url_args ) ) : '';
@@ -1217,7 +1217,7 @@ abstract class OnApp {
 				break;
 
 			default:
-				$this->logger->error( '_action: Can\'t find serialize and unserialize functions for type (apiVersion => \'' . $this->getAPIVersion() . "').", __FILE__, __LINE__ );
+				$this->logger->logErrorMessage( '_action: Can\'t find serialize and unserialize functions for type (apiVersion => \'' . $this->getAPIVersion() . "').", __FILE__, __LINE__ );
 		}
 
 		return $result;
@@ -1316,7 +1316,7 @@ abstract class OnApp {
 	public function __construct() {
 		$this->className = get_class( $this );
 		$this->options   = $this->defaultOptions;
-		$this->logger    = new OnApp_Helper_Logger;
+		$this->logger    = new OnApp_Helper_Handler_Log;
 	}
 
 	/**
