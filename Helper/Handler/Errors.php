@@ -9,9 +9,22 @@
  * @link        http://www.onapp.com/
  */
 class OnApp_Helper_Handler_Errors {
+	/**
+	 * @var OnApp_Helper_Handler_Errors
+	 */
 	private static $instance;
+
+	/**
+	 * @var string store display_errors setting
+	 */
 	private $displayErrors;
+
+	/**
+	 * @var array set errors description
+	 * @link http://php.net/manual/en/errorfunc.constants.php
+	 */
 	private $errorsDescriptions = array();
+
 	/**
 	 * @var OnApp_Helper_Handler_Log
 	 */
