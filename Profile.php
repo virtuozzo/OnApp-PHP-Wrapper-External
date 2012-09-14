@@ -99,7 +99,7 @@ class OnApp_Profile extends OnApp {
 		 * @format   {:controller=>"users", :action=>"profile"}
 		 */
 		$resource = $this->URLPath;
-		$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
+		$this->logger->logDebug( 'getURL( ' . $action . ' ): return ' . $resource );
 
 		return $resource;
 	}

@@ -96,7 +96,7 @@ class OnApp_Payment extends OnApp {
 				 * @format  {:controller=>"payments", :action=>"destroy"}
 				 */
 				$resource = 'users/' . $this->_user_id . '/' . $this->URLPath;
-				$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
+				$this->logger->logDebug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
@@ -125,7 +125,7 @@ class OnApp_Payment extends OnApp {
 			return parent::getList( $user_id, $url_args );
 		}
 		else {
-			$this->logger->logErrorMessage(
+			$this->logger->logError(
 				'getList: property user_id not set.',
 				__FILE__,
 				__LINE__
@@ -177,14 +177,14 @@ class OnApp_Payment extends OnApp {
 		}
 		else {
 			if( is_null( $id ) ) {
-				$this->logger->logErrorMessage(
+				$this->logger->logError(
 					'load: property id not set.',
 					__FILE__,
 					__LINE__
 				);
 			}
 			else {
-				$this->logger->logErrorMessage(
+				$this->logger->logError(
 					'load: property user_id not set.',
 					__FILE__,
 					__LINE__

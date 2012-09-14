@@ -71,7 +71,7 @@ class OnApp_User_BillingStatistics extends OnApp {
 				 * @format  {:controller=>"vm_stats", :action=>"index"}
 				 */
 				if( is_null( $this->_user_id ) && is_null( $this->inheritedObject->_user_id ) ) {
-					$this->logger->logErrorMessage(
+					$this->logger->logError(
 						'getURL( ' . $action . ' ): property user_id not set.',
 						__FILE__,
 						__LINE__
@@ -83,7 +83,7 @@ class OnApp_User_BillingStatistics extends OnApp {
 					}
 				}
 				$resource = 'users/' . $this->_user_id . '/' . $this->URLPath;
-				$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
+				$this->logger->logDebug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
@@ -113,7 +113,7 @@ class OnApp_User_BillingStatistics extends OnApp {
 			return parent::getList( $user_id, $url_args );
 		}
 		else {
-			$this->logger->logErrorMessage(
+			$this->logger->logError(
 				'getList: property user_id not set.',
 				__FILE__,
 				__LINE__

@@ -206,10 +206,10 @@ class OnApp_Helper_Handler_CURL {
 			$this->infoStorage[ 'response_body' ]    = trim( $tmp[ $cnt - 1 ] );
 			$this->infoStorage[ 'response_headers' ] = $tmp[ $cnt - 2 ];
 
-			$tmp                                                  = explode( "\r\n", $this->infoStorage[ 'response_headers' ] );
+			$tmp = explode( "\r\n", $this->infoStorage[ 'response_headers' ] );
 			$this->infoStorage[ 'response_headers_parsed' ][ '' ] = $tmp[ 0 ];
 			for( $i = 1, $size = count( $tmp ); $i < $size; ++$i ) {
-				$s                                                         = explode( ': ', $tmp[ $i ], 2 );
+				$s = explode( ': ', $tmp[ $i ], 2 );
 				$this->infoStorage[ 'response_headers_parsed' ][ $s[ 0 ] ] = $s[ 1 ];
 			}
 		}

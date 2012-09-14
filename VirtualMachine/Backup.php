@@ -96,7 +96,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				 * @format  {:controller=>"backups", :action=>"index"}
 				 */
 				if( is_null( $this->_virtual_machine_id ) && is_null( $this->inheritedObject->_virtual_machine_id ) ) {
-					$this->logger->logErrorMessage(
+					$this->logger->logError(
 						'getURL( ' . $action . ' ): property virtual_machine_id not set.',
 						__FILE__,
 						__LINE__
@@ -121,7 +121,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				 * @format  {:controller=>"backups", :action=>"create"}
 				 */
 				if( is_null( $this->_disk_id ) && is_null( $this->inheritedObject->_disk_id ) ) {
-					$this->logger->logErrorMessage(
+					$this->logger->logError(
 						'getURL( ' . $action . ' ): property disk_id not set.',
 						__FILE__,
 						__LINE__
@@ -167,7 +167,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				 * @format   {:controller=>"backups", :action=>"destroy"}
 				 */
 				if( is_null( $this->_id ) && is_null( $this->inheritedObject->_id ) ) {
-					$this->logger->logErrorMessage(
+					$this->logger->logError(
 						'getURL( ' . $action . ' ): property id not set.',
 						__FILE__,
 						__LINE__
@@ -211,7 +211,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 		}
 
 		if( $show_log_msg ) {
-			$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
+			$this->logger->logDebug( 'getURL( ' . $action . ' ): return ' . $resource );
 		}
 
 		return $resource;
@@ -236,7 +236,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 			return parent::getList( $virtual_machine_id, $url_args );
 		}
 		else {
-			$this->logger->logErrorMessage(
+			$this->logger->logError(
 				'getList: property virtual_machine_id not set.',
 				__FILE__,
 				__LINE__

@@ -140,7 +140,7 @@ class OnApp_User extends OnApp {
 		);
 
 		if( in_array( $action, $actions ) ) {
-			$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
+			$this->logger->logDebug( 'getURL( ' . $action . ' ): return ' . $resource );
 		}
 
 		return $resource;
@@ -212,7 +212,7 @@ class OnApp_User extends OnApp {
 			$this->_user_group_id = $group_id;
 		}
 		else {
-			$this->logger->logErrorMessage(
+			$this->logger->logError(
 				'getListByHypervisorGroupId: property "group_id" not set.',
 				__FILE__,
 				__LINE__
@@ -243,7 +243,7 @@ class OnApp_User extends OnApp {
 	 */
 	public function delete( $force = false ) {
 		if( ! isset( $this->id ) ) {
-			$this->logger->logErrorMessage( 'DeleteUser: property "id" not set.', __FILE__, __LINE__ );
+			$this->logger->logError( 'DeleteUser: property "id" not set.', __FILE__, __LINE__ );
 		}
 
 		if( $force ) {

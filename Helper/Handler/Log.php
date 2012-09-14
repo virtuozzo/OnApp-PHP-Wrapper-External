@@ -60,13 +60,6 @@ define( 'ONAPP_LOGGER_VALUE_DEBUG', 'DEBUG' );
 define( 'ONAPP_LOGGER_VALUE_MESSAGE', 'MESSAGE' );
 
 /**
- * The constant that stands for the loglevel
- * When it is set, the information needed for the system development or processed information tracing is added
- * to the logs
- */
-define( 'ONAPP_LOGGER_VALUE_PHP_MESSAGE', 'PHP' );
-
-/**
  * The Logger class provides a simple but sophisticated logging utility
  * Each message has a level, and the Logger itself has a level, which acts as
  * a filter, so you can control the amount of information emitted from the
@@ -162,17 +155,6 @@ class OnApp_Helper_Handler_Log {
 	}
 
 	/**
-	 * Adds the log message to the logger buffer
-	 *
-	 * @param string $msg log message
-	 *
-	 * @return void
-	 */
-	public function logPHPMessage( $msg ) {
-		$this->addToLog( $msg, ONAPP_LOGGER_VALUE_PHP_MESSAGE );
-	}
-
-	/**
 	 * Adds the error message to the logger buffer and stops
 	 * executing
 	 *
@@ -182,10 +164,8 @@ class OnApp_Helper_Handler_Log {
 	 *
 	 * @return void
 	 */
-	public function logErrorMessage( $msg, $file = '', $line = '' ) {
+	public function logError( $msg, $file = '', $line = '' ) {
 		$this->addToLog( $msg, ONAPP_LOGGER_VALUE_ERROR );
-		echo $this->getLog();
-		trigger_error( "FILE => '$file', LINE => '$line'\n$msg", E_USER_ERROR );
 	}
 
 	/**
@@ -195,7 +175,7 @@ class OnApp_Helper_Handler_Log {
 	 *
 	 * @return void
 	 */
-	public function logWarningMessage( $msg ) {
+	public function logWarning( $msg ) {
 		$this->addToLog( $msg, ONAPP_LOGGER_VALUE_WARNING );
 	}
 
@@ -207,7 +187,7 @@ class OnApp_Helper_Handler_Log {
 	 * @return void
 	 * @access public
 	 */
-	public function logDebugMessage( $msg ) {
+	public function logDebug( $msg ) {
 		if( $this->debugMode ) {
 			$this->addToLog( $msg, ONAPP_LOGGER_VALUE_DEBUG );
 		}
@@ -226,7 +206,7 @@ class OnApp_Helper_Handler_Log {
 		}
 
 		if( ! date_default_timezone_set( $timezone ) ) {
-			$this->logWarningMessage( 'setTimezone: can\'t set timezone ' . $timezone );
+			$this->logWarning( 'setTimezone: can\'t set timezone ' . $timezone );
 		}
 		else {
 			$this->logMessage( 'setTimezone: set timezone to ' . $timezone );
@@ -265,10 +245,10 @@ class OnApp_Helper_Handler_Log {
 					case ONAPP_LOGGER_VALUE_ERROR:
 						$str = $colors->text( $str )->fc( 'red' )->bold()->get();
 						break;
-
-					case ONAPP_LOGGER_VALUE_PHP_MESSAGE:
-						$str = $colors->text( $str )->fc( 'cyan' )->bold()->get();
-						break;
+//
+//					case ONAPP_LOGGER_VALUE_PHP_MESSAGE:
+//						$str = $colors->text( $str )->fc( 'cyan' )->bold()->get();
+//						break;
 				}
 
 				$output .= $str;
@@ -321,24 +301,24 @@ class OnApp_Helper_Handler_Log {
 	}
 
 	/**
-	 * @depricated use logErrorMessage instead
+	 * @depricated use logError instead
 	 */
 	public function error( $msg, $file = '', $line = '' ) {
-		$this->logErrorMessage( $msg, $file, $line );
+		$this->logError( $msg, $file, $line );
 	}
 
 	/**
-	 * @depricated use logWarningMessage instead
+	 * @depricated use logWarning instead
 	 */
 	public function warning( $msg ) {
-		$this->logWarningMessage( $msg );
+		$this->logWarning( $msg );
 	}
 
 	/**
-	 * @depricated use logDebugMessage instead
+	 * @depricated use logDebug instead
 	 */
 	public function debug( $msg ) {
-		$this->logDebugMessage( $msg );
+		$this->logDebug( $msg );
 	}
 
 	/**

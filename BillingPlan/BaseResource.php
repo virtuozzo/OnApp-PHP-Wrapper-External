@@ -111,7 +111,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 				 * @format  {:controller=>"base_resources", :action=>"destroy"}
 				 */
 				if( is_null( $this->_billing_plan_id ) && is_null( $this->inheritedObject->_billing_plan_id ) ) {
-					$this->logger->logErrorMessage(
+					$this->logger->logError(
 						'getURL( ' . $action . ' ): property billing_plan_id not set.',
 						__FILE__,
 						__LINE__
@@ -132,7 +132,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 		}
 
 		if( $show_log_msg ) {
-			$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
+			$this->logger->logDebug( 'getURL( ' . $action . ' ): return ' . $resource );
 		}
 
 		return $resource;
@@ -158,7 +158,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 			return parent::getList( $billing_plan_id, $url_args );
 		}
 		else {
-			$this->logger->logErrorMessage(
+			$this->logger->logError(
 				'getList: property billing_plan_id not set.',
 				__FILE__,
 				__LINE__

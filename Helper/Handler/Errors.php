@@ -60,8 +60,8 @@ class OnApp_Helper_Handler_Errors {
 			case E_PARSE:
 			case E_USER_ERROR:
 			case E_RECOVERABLE_ERROR:
-				$this->addToLog( $msg );
-				$this->halt( $msg );
+				$this->addToLog( $msg, ONAPP_LOGGER_VALUE_ERROR );
+				$this->halt();
 				break;
 
 			case E_WARNING:
@@ -73,7 +73,7 @@ class OnApp_Helper_Handler_Errors {
 			case E_STRICT:
 			case E_DEPRECATED:
 			case E_USER_DEPRECATED:
-				$this->addToLog( $msg );
+				$this->addToLog( $msg, ONAPP_LOGGER_VALUE_WARNING );
 				break;
 
 			default:
@@ -90,7 +90,7 @@ class OnApp_Helper_Handler_Errors {
 		}
 		$msg .= ' in ' . $e->getFile() . ' on line ' . $e->getLine();
 
-		$this->addToLog( $msg );
+		$this->addToLog( $msg, ONAPP_LOGGER_VALUE_ERROR );
 		exit( $msg . PHP_EOL );
 	}
 
@@ -100,17 +100,12 @@ class OnApp_Helper_Handler_Errors {
 			$msg = $this->errorsDescriptions[ $e[ 'type' ] ] . ': ' . $e[ 'message' ];
 			$msg .= ' in ' . $e[ 'file' ] . ' on line ' . $e[ 'line' ] . PHP_EOL;
 			$this->addToLog( $msg );
-			return $ob;
-			return $ob . $msg;
 		}
-		else {
-			return $ob;
-		}
+		return $ob;
 	}
 
 	public function shutdownHandler() {
 		$e = error_get_last();
-
 		if( ! is_null( $e ) ) {
 			$msg = $this->errorsDescriptions[ $e[ 'type' ] ] . ': ' . $e[ 'message' ];
 			$msg .= ' in ' . $e[ 'file' ] . ' on line ' . $e[ 'line' ];
@@ -123,8 +118,8 @@ class OnApp_Helper_Handler_Errors {
 				case E_USER_ERROR:
 				case E_RECOVERABLE_ERROR:
 					$msg = str_replace( $this->errorsDescriptions[ $e[ 'type' ] ], $this->errorsDescriptions[ $e[ 'type' ] ] . ' (fatal)', $msg );
-					$this->addToLog( $msg );
-					$this->halt( $msg );
+					$this->addToLog( $msg, ONAPP_LOGGER_VALUE_ERROR );
+					$this->halt();
 					break;
 
 				case E_WARNING:
@@ -136,7 +131,7 @@ class OnApp_Helper_Handler_Errors {
 				case E_STRICT:
 				case E_DEPRECATED:
 				case E_USER_DEPRECATED:
-					$this->addToLog( $msg );
+					$this->addToLog( $msg, ONAPP_LOGGER_VALUE_WARNING );
 					break;
 
 				default:
@@ -158,15 +153,22 @@ class OnApp_Helper_Handler_Errors {
 		return self::$instance;
 	}
 
-	private function addToLog( $msg ) {
+	private function addToLog( $msg, $type = ONAPP_LOGGER_VALUE_MESSAGE ) {
 		if( ! is_null( $this->logger ) ) {
-			$this->logger->logPHPMessage( $msg );
+			$call = 'log' . ucfirst( strtolower( $type ) );
+			$this->logger->$call( $msg );
 		}
 	}
 
-	private function halt( $msg ) {
+	private function halt() {
 		if( $this->displayErrors ) {
-			exit( $msg . PHP_EOL );
+			if( ONAPP_CLI_MODE ) {
+				echo $this->logger->getLog();
+			}
+			else {
+				echo $this->logger->getLogAsHMTL();
+			}
+			exit;
 		}
 		else {
 			exit;

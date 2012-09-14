@@ -174,7 +174,7 @@ class OnApp_Hypervisor extends OnApp {
 			$this->_hypervisor_group_id = $group_id;
 		}
 		else {
-			$this->logger->logErrorMessage(
+			$this->logger->logError(
 				'GetListByGroupId: property group_id not set.',
 				__FILE__,
 				__LINE__
@@ -209,7 +209,7 @@ class OnApp_Hypervisor extends OnApp {
 			$this->_id = $hypervisor_id;
 		}
 		else {
-			$this->logger->logErrorMessage(
+			$this->logger->logError(
 				'reboot: property hypervisor_id not set.',
 				__FILE__,
 				__LINE__

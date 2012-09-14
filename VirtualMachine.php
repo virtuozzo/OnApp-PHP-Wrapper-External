@@ -331,7 +331,7 @@ class OnApp_VirtualMachine extends OnApp {
 		);
 
 		if( in_array( $action, $actions ) ) {
-			$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
+			$this->logger->logDebug( 'getURL( ' . $action . ' ): return ' . $resource );
 		}
 
 		return $resource;

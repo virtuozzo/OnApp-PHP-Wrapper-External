@@ -88,7 +88,7 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 				 * @format  {:controller=>"network_joins", :action=>"destroy"}
 				 */
 				if( is_null( $this->_hypervisor_id ) && is_null( $this->inheritedObject->_hypervisor_id ) ) {
-					$this->logger->logErrorMessage(
+					$this->logger->logError(
 						'getURL( ' . $action . ' ): property hypervisor_id not set.',
 						__FILE__,
 						__LINE__
@@ -100,7 +100,7 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 					}
 				}
 				$resource = 'settings/hypervisors/' . $this->hypervisor_id . '/' . $this->URLPath;
-				$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
+				$this->logger->logDebug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
@@ -129,7 +129,7 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 			return parent::getList( $hypervisor_id, $url_args );
 		}
 		else {
-			$this->logger->logErrorMessage(
+			$this->logger->logError(
 				'getList: property hypervisor_id not set.',
 				__FILE__,
 				__LINE__
@@ -180,14 +180,14 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 		}
 		else {
 			if( is_null( $id ) ) {
-				$this->logger->logErrorMessage(
+				$this->logger->logError(
 					'load: property id not set.',
 					__FILE__,
 					__LINE__
 				);
 			}
 			else {
-				$this->logger->logErrorMessage(
+				$this->logger->logError(
 					'load: property hypervisor_id not set.',
 					__FILE__,
 					__LINE__

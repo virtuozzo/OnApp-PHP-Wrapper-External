@@ -80,7 +80,7 @@ class OnApp_Disk_Schedule extends OnApp {
 		}
 
 		if( $show_log_msg ) {
-			$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
+			$this->logger->logDebug( 'getURL( ' . $action . ' ): return ' . $resource );
 		}
 
 		return $resource;

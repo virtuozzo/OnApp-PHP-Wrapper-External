@@ -460,7 +460,7 @@ abstract class OnApp {
 	 * @return void
 	 */
 	public function setOption( $name, $value ) {
-		$this->logger->logDebugMessage( 'setOption: Set option ' . $name . ' => ' . $value );
+		$this->logger->logDebug( 'setOption: Set option ' . $name . ' => ' . $value );
 		$this->options[ $name ] = $value;
 	}
 
@@ -512,7 +512,7 @@ abstract class OnApp {
 			default:
 				$URL = $this->URLPath;
 		}
-		$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $URL );
+		$this->logger->logDebug( 'getURL( ' . $action . ' ): return ' . $URL );
 
 		return $URL;
 	}
@@ -578,7 +578,7 @@ abstract class OnApp {
 
 		$this->logger->setTimezone();
 
-		$this->logger->logDebugMessage( 'auth: Authorization( url => ' . $url . ', user => ' . $user . ', pass => ******** ).' );
+		$this->logger->logDebug( 'auth: Authorization( url => ' . $url . ', user => ' . $user . ', pass => ******** ).' );
 
 		$this->setOption( ONAPP_OPTION_CURL_URL, $url );
 		$this->setOption( ONAPP_OPTION_CURL_PROXY, $proxy );
@@ -598,7 +598,7 @@ abstract class OnApp {
 	}
 
 	protected function initCURL( $user, $pass, $cookiesFile = null ) {
-		$this->logger->logDebugMessage( __METHOD__ . ': Init Curl ( cookies file => "' . $cookiesFile . '" ).' );
+		$this->logger->logDebug( __METHOD__ . ': Init Curl ( cookies file => "' . $cookiesFile . '" ).' );
 
 		$this->ch = new OnApp_Helper_Handler_CURL( $this );
 
@@ -652,14 +652,14 @@ abstract class OnApp {
 			ONAPP_REQUEST_METHOD_DELETE,
 		);
 		if( ! in_array( $method, $alowed_methods ) ) {
-			$this->logger->logErrorMessage( 'Wrong request method: ' . $method );
+			$this->logger->logError( 'Wrong request method: ' . $method );
 		}
 
 		$debug_msg = 'Send ' . $method . ' request.';
 		if( $data ) {
 			$debug_msg .= ' Request:' . PHP_EOL . print_r( $data, true );
 		}
-		$this->logger->logDebugMessage( $debug_msg );
+		$this->logger->logDebug( $debug_msg );
 
 		$this->ch->setHeader( 'Content-Length', strlen( $data ) );
 		$this->ch->setHeader( 'Accept', $this->options[ ONAPP_OPTION_API_CONTENT ] );
@@ -672,13 +672,13 @@ abstract class OnApp {
 		$method = strtolower( $method );
 		$body   = $this->ch->$method()->getResponseBody();
 		if( $this->ch->getRequestError() ) {
-			$this->logger->logErrorMessage( 'Error during sending request' );
+			$this->logger->logError( 'Error during sending request' );
 		}
 		elseif( empty( $body ) && ( $this->ch->getResponseStatusCode() != 204 ) ) {
-			$this->logger->logErrorMessage( 'Response body couldn\'t be empty for status code: ' . $this->ch->getResponseStatusCode() );
+			$this->logger->logError( 'Response body couldn\'t be empty for status code: ' . $this->ch->getResponseStatusCode() );
 		}
 
-		$this->logger->logDebugMessage( 'Receive Response ' . print_r( $this->ch->getResponseBody(), true ) );
+		$this->logger->logDebug( 'Receive Response ' . print_r( $this->ch->getResponseBody(), true ) );
 
 		if( $this->ch->getRequestInfo( 'content_type' ) == $this->options[ ONAPP_OPTION_API_CONTENT ] . "; " . $this->options[ ONAPP_OPTION_API_CHARSET ] ) {
 			switch( $this->ch->getResponseStatusCode() ) {
@@ -708,7 +708,7 @@ abstract class OnApp {
 	 */
 	protected function castResponseToClass() {
 		if( $this->ch->getRequestError() ) {
-			$this->logger->logErrorMessage(
+			$this->logger->logError(
 				'castResponseToClass: Can\'t parse ' . $this->ch->getResponseBody(),
 				__FILE__,
 				__LINE__
@@ -834,7 +834,7 @@ abstract class OnApp {
 		}
 
 		if( is_null( $id ) ) {
-			$this->logger->logErrorMessage( 'load: Can\'t load ID = ' . $id, __FILE__, __LINE__ );
+			$this->logger->logError( 'load: Can\'t load ID = ' . $id, __FILE__, __LINE__ );
 		}
 
 		$this->logger->logMessage( 'load: Load class ( id => ' . $id . ' ).' );
@@ -848,7 +848,7 @@ abstract class OnApp {
 			$this->id              = $this->inheritedObject->id;
 		}
 		else {
-			$this->logger->logErrorMessage( 'load: property id not set.', __FILE__, __LINE__ );
+			$this->logger->logError( 'load: property id not set.', __FILE__, __LINE__ );
 		}
 	}
 
@@ -901,7 +901,7 @@ abstract class OnApp {
 			case 'json':
 				$objCast = new OnApp_Helper_Caster( $this );
 				$data    = $objCast->serialize( $this->rootElement, $this->getFieldsToSend() );
-				$this->logger->logDebugMessage( 'serialize: serialized data:' . PHP_EOL . $data );
+				$this->logger->logDebug( 'serialize: serialized data:' . PHP_EOL . $data );
 				$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_ADD ) );
 				$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST, $data );
 
@@ -928,7 +928,7 @@ abstract class OnApp {
 			case 'json':
 				$objCast = new OnApp_Helper_Caster( $this );
 				$data    = $objCast->serialize( $this->rootElement, $this->getFieldsToSend() );
-				$this->logger->logDebugMessage( 'serialize: serialized data:' . PHP_EOL . $data );
+				$this->logger->logDebug( 'serialize: serialized data:' . PHP_EOL . $data );
 				$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_EDIT ) );
 				$this->sendRequest( ONAPP_REQUEST_METHOD_PUT, $data );
 				break;
@@ -947,7 +947,7 @@ abstract class OnApp {
 	 * @return hash of string
 	 */
 	protected function getFieldsToSend() {
-		$this->logger->logDebugMessage( 'getFieldsToSend: Prepare data array:' );
+		$this->logger->logDebug( 'getFieldsToSend: Prepare data array:' );
 		if( empty( $this->inheritedObject->dynamicFields ) ) {
 			$result = $this->dynamicFields;
 		}
@@ -1027,7 +1027,7 @@ abstract class OnApp {
 				if( ! is_null( $data ) ) {
 					$objCast = new OnApp_Helper_Caster( $this );
 					$data    = $objCast->serialize( $data[ 'root' ], $data[ 'data' ] );
-					$this->logger->logDebugMessage( 'Additional parameters: ' . $data );
+					$this->logger->logDebug( 'Additional parameters: ' . $data );
 				}
 
 				$url_args = ( $url_args ) ? preg_replace( '/%5B(0-9){1,4}%5D/', '%5B%5D', http_build_query( $url_args ) ) : '';
@@ -1052,7 +1052,7 @@ abstract class OnApp {
 				break;
 
 			default:
-				$this->logger->logErrorMessage( __METHOD__ . ': Can\'t find serialize and unserialize functions for type.', __FILE__, __LINE__ );
+				$this->logger->logError( __METHOD__ . ': Can\'t find serialize and unserialize functions for type.', __FILE__, __LINE__ );
 		}
 
 		return $result;

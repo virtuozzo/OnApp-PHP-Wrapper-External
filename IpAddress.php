@@ -103,7 +103,7 @@ class OnApp_IpAddress extends OnApp {
 				 * @format {:controller=>"ip_addresses", :action=>"destroy"}
 				 */
 				if( is_null( $this->_network_id ) && is_null( $this->inheritedObject->_network_id ) ) {
-					$this->logger->logErrorMessage(
+					$this->logger->logError(
 						'getURL( ' . $action . '): property network_id not set.',
 						__FILE__,
 						__LINE__
@@ -116,7 +116,7 @@ class OnApp_IpAddress extends OnApp {
 				}
 
 				$resource = 'settings/networks/' . $this->_network_id . '/' . $this->URLPath;
-				$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
+				$this->logger->logDebug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
@@ -145,7 +145,7 @@ class OnApp_IpAddress extends OnApp {
 			return parent::getList( $network_id, $url_args );
 		}
 		else {
-			$this->logger->logErrorMessage(
+			$this->logger->logError(
 				'getList: property network_id not set.',
 				__FILE__,
 				__LINE__
@@ -194,10 +194,10 @@ class OnApp_IpAddress extends OnApp {
 		}
 		else {
 			if( is_null( $id ) ) {
-				$this->logger->logErrorMessage( 'load: property id not set.', __FILE__, __LINE__ );
+				$this->logger->logError( 'load: property id not set.', __FILE__, __LINE__ );
 			}
 			else {
-				$this->logger->logErrorMessage( 'load: property network_id not set.', __FILE__, __LINE__ );
+				$this->logger->logError( 'load: property network_id not set.', __FILE__, __LINE__ );
 			}
 		}
 	}

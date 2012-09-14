@@ -74,7 +74,7 @@ class OnApp_Console extends OnApp {
 				 * @format {:controller=>"virtual_machines", :action=>"console_remote"}
 				 */
 				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->URLPath;
-				$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
+				$this->logger->logDebug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
@@ -121,7 +121,7 @@ class OnApp_Console extends OnApp {
 			return $result;
 		}
 		else {
-			$this->logger->logErrorMessage(
+			$this->logger->logError(
 				'load: property virtual_machine_id not set.',
 				__FILE__,
 				__LINE__

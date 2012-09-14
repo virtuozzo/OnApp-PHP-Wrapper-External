@@ -97,7 +97,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 				}
 
 				if( is_null( $this->virtual_machine_id ) && is_null( $this->inheritedObject->virtual_machine_id ) ) {
-					$this->logger->logErrorMessage(
+					$this->logger->logError(
 						'getURL( ' . $action . ' ): property virtual_machine_id not set.',
 						__FILE__,
 						__LINE__
@@ -110,7 +110,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 				}
 
 				$resource = 'virtual_machines/' . $this->virtual_machine_id . '/' . $this->URLPath;
-				$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
+				$this->logger->logDebug( 'getURL( ' . $action . ' ): return ' . $resource );
 				unset( $this->virtual_machine_id );
 				break;
 
@@ -141,7 +141,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 			return parent::getList( $virtual_machine_id, $url_args );
 		}
 		else {
-			$this->logger->logErrorMessage(
+			$this->logger->logError(
 				'getList: property virtual_machine_id not set.',
 				__FILE__,
 				__LINE__
@@ -193,14 +193,14 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 		}
 		else {
 			if( is_null( $id ) ) {
-				$this->logger->logErrorMessage(
+				$this->logger->logError(
 					'load: property id not set.',
 					__FILE__,
 					__LINE__
 				);
 			}
 			else {
-				$this->logger->logErrorMessage(
+				$this->logger->logError(
 					'load: property virtual_machine_id not set.',
 					__FILE__,
 					__LINE__

@@ -72,7 +72,7 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
 				 * @format {:controller=>"vm_stats", :action=>"index"}
 				 */
 				if( is_null( $this->_virtual_machine_id ) && is_null( $this->inheritedObject->_virtual_machine_id ) ) {
-					$this->logger->logErrorMessage(
+					$this->logger->logError(
 						'getURL( ' . $action . ' ): property virtual_machine_id not set.',
 						__FILE__,
 						__LINE__
@@ -85,7 +85,7 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
 				}
 
 				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->URLPath;
-				$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
+				$this->logger->logDebug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
 			default:
@@ -115,7 +115,7 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
 			return parent::getList( $virtual_machine_id, $url_args );
 		}
 		else {
-			$this->logger->logErrorMessage(
+			$this->logger->logError(
 				'getList: property virtual_machine_id not set.',
 				__FILE__,
 				__LINE__

@@ -94,7 +94,7 @@ class OnApp_Disk extends OnApp {
 				 * @format    {:controller=>"disks", :action=>"create"}
 				 */
 				if( is_null( $this->_virtual_machine_id ) ) {
-					$this->logger->logErrorMessage(
+					$this->logger->logError(
 						'getURL( ' . $action . ' ): property virtual_machine_id not set.',
 						__FILE__,
 						__LINE__
@@ -193,7 +193,7 @@ class OnApp_Disk extends OnApp {
 		);
 
 		if( in_array( $action, $actions ) ) {
-			$this->logger->logDebugMessage( 'getURL( ' . $action . ' ): return ' . $resource );
+			$this->logger->logDebug( 'getURL( ' . $action . ' ): return ' . $resource );
 		}
 
 		return $resource;
