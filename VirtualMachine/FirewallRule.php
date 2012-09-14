@@ -258,8 +258,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	function move( $position ) {
 		if( ! $position ) {
 			$this->logger->logErrorMessage(
-				"_GETAction: Firewall rule move position have to be specified
-				(apiVersion => '" . $this->_apiVersion . "').", __FILE__, __LINE__
+				'_GETAction: Firewall rule move position have to be specified', __FILE__, __LINE__
 			);
 		}
 		else {

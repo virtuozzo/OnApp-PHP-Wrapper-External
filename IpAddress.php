@@ -217,7 +217,7 @@ class OnApp_IpAddress extends OnApp {
 	 */
 	function save() {
 		if( isset( $this->_id ) ) {
-			$obj = $this->_edit();
+			$obj = $this->editObject();
 
 			if( isset( $obj ) && ! isset( $obj->errors ) ) {
 				$this->load();

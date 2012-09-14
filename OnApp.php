@@ -12,8 +12,6 @@
  * @author      Lev Bartashevsky
  * @copyright   (c) 2011-2012 OnApp
  * @link        http://www.onapp.com/
- *
- * @todo        Pack using the lib (http://pecl.php.net/)
  */
 
 /**
@@ -56,11 +54,6 @@ define( 'ONAPP_OPTION_API_CHARSET', 'charset' );
  *   - application/json (will be available after the Json parcer is created)
  */
 define( 'ONAPP_OPTION_API_CONTENT', 'content' );
-
-/**
- * TODO add description
- */
-define( 'ONAPP_OPTION_DEBUG_MODE', 'debug_mode' );
 
 /**
  * The OnApp class uses this field name to map this field in the API response and variable in the class
@@ -118,6 +111,8 @@ define( 'ONAPP_FIELD_DEFAULT_VALUE', 'default' );
  */
 define( 'ONAPP_FIELD_CLASS', 'class' );
 
+define( 'ONAPP_OPTION_DEBUG_MODE', 'debug_mode' );
+
 define( 'ONAPP_GETRESOURCE_DEFAULT', 'default' );
 
 define( 'ONAPP_GETRESOURCE_LOAD', 'load' );
@@ -167,11 +162,7 @@ define( 'ONAPP_REQUEST_METHOD_DELETE', 'DELETE' );
 /**
  * API Wrapper for OnApp
  *
- *
  * @package OnApp
- *
- *
- * @todo    Pack using the lib (http://pecl.php.net/)
  *
  * The wrapper is used to describe the following basic methods: {@link load},
  * {@link save}, {@link delete} and {@link getList}.
@@ -286,27 +277,22 @@ define( 'ONAPP_REQUEST_METHOD_DELETE', 'DELETE' );
  */
 abstract class OnApp {
 	/**
-	 * The list of all available options used in the class to create API requests and receive responses,
-	 * as well as to serialize and unserialize.
+	 * Object cURL
 	 *
-	 * @access private
-	 * @var    array
+	 * @var OnApp_Helper_Handler_CURL
 	 */
-	var $_knownOptions = array(
-		ONAPP_OPTION_CURL_PROXY,
-		ONAPP_OPTION_CURL_URL,
-		ONAPP_OPTION_API_TYPE,
-		ONAPP_OPTION_API_CHARSET,
-		ONAPP_OPTION_API_CONTENT,
-		ONAPP_OPTION_DEBUG_MODE
-	);
+	protected $ch;
+
+	/**
+	 * @var string current class' name
+	 */
+	protected $className;
 
 	/**
 	 * Default options used in the class to create API requests and receive responses,
 	 * as well as serialize and unserialize objects.
 	 *
-	 * @access private
-	 * @var    array
+	 * @var array
 	 */
 	private $defaultOptions = array(
 		// cURL proxy
@@ -322,6 +308,65 @@ abstract class OnApp {
 		// Debug mode
 		ONAPP_OPTION_DEBUG_MODE  => false,
 	);
+
+	/**
+	 * Holder for storing properties that were setted via magic setter
+	 *
+	 * @var array
+	 */
+	protected $dynamicFields = array();
+
+	/**
+	 * Variable for error handling
+	 *
+	 * @var    string
+	 */
+	protected $errors;
+
+	/**
+	 * Variable storing the data loaded by the API request. The data is static and cannot be changed by the class setters
+	 *
+	 * @var object
+	 */
+	public $inheritedObject;
+
+	/**
+	 * @var boolean
+	 */
+	protected $isAuthenticated = false;
+
+	/**
+	 * @var boolean
+	 */
+	protected $isChanged = false;
+
+	/**
+	 * @var boolean
+	 */
+	protected $isDeleted = false;
+
+	/**
+	 * The list of all available options used in the class to create API requests and receive responses,
+	 * as well as to serialize and unserialize.
+	 *
+	 * @var array
+	 */
+	private $knownOptions = array(
+		ONAPP_OPTION_CURL_PROXY,
+		ONAPP_OPTION_CURL_URL,
+		ONAPP_OPTION_API_TYPE,
+		ONAPP_OPTION_API_CHARSET,
+		ONAPP_OPTION_API_CONTENT,
+		ONAPP_OPTION_DEBUG_MODE
+	);
+
+	/**
+	 * The Object Logger used to log the processes in the basic and inherited classes
+	 * It is possible to use the debug add error log methods
+	 *
+	 * @var OnApp_Helper_Handler_Log
+	 */
+	public $logger;
 
 	/**
 	 * The array of the options used to create API requests and receive responses,
@@ -352,140 +397,54 @@ abstract class OnApp {
 	 *    );
 	 * </code>
 	 *
-	 * @access public
-	 * @var    array
+	 * @var array
 	 */
 	var $options = array();
 
 	/**
-	 * Object cURL
-	 *
-	 * @var OnApp_Helper_Handler_CURL
+	 * @var string
 	 */
-	protected $ch;
-
-	/**
-	 * Variable storing the data loaded by the API request. The data is static and cannot be changed by the class setters
-	 *
-	 * @access private
-	 * @var    object
-	 */
-	protected $inheritedObject;
-
-	/**
-	 * cURL Object alias used as the basic alias to the load, save, delete and getList methods
-	 *
-	 * @access private
-	 * @var    string
-	 */
-	protected $URLPath = null;
-
-	/**
-	 * @access private
-	 * @var    string
-	 */
-	protected $rootElement = null;
-
-	/**
-	 * @access private
-	 * @var    array
-	 */
-	var $_tagRequired = null;
-
-	protected $isAuthenticated = false;
-
-	/**
-	 * @access private
-	 * @var    boolean
-	 * @todo   move in to getter an setter
-	 */
-	var $_is_changed = false;
-
-	/**
-	 * @access private
-	 * @var    boolean
-	 * @todo   move in to getter an setter
-	 */
-	var $_is_deleted = false;
-
-	/**
-	 * Return OnApp version
-	 *
-	 * @access private
-	 * @var    sting
-	 */
-	protected $version;
-
-	/**
-	 * Return OnApp release
-	 *
-	 * @access private
-	 * @var       sting
-	 */
-	var $_release;
-
-	/**
-	 * Holder for storing properties that were setted via magic setter
-	 *
-	 * @var  array
-	 * @access  protected
-	 */
-	protected $dynamicFields;
-
-	/**
-	 * The Object Logger used to log the processes in the basic and inherited classes
-	 * It is possible to use the debug add error log methods
-	 */
-	public $logger = null;
-
-	protected $response;
-
-	/**
-	 * Variable for error handling
-	 *
-	 * @var    string
-	 */
-	protected $errors;
-
-	/**
-	 * @var string current class' name
-	 */
-	protected $className;
+	protected $rootElement;
 
 	/**
 	 * @var array fields which should be excluded from API request
 	 */
 	protected $skipFromRequest = array();
 
+	/**
+	 * @var integer
+	 */
 	protected $URLID;
 
 	/**
-	 * Returns API version
+	 * cURL Object alias used as the basic alias to the load, save, delete and getList methods
 	 *
-	 * @access private
-	 * @return string  $version API version
+	 * @var string
 	 */
-	function _apiVersion() {
-		return $this->version;
-	}
+	protected $URLPath;
 
 	/**
-	 * Returns Curl Response
-	 *
-	 * @access public
-	 * @return array response
+	 * @var integer|float OnApp version
 	 */
-	function getResponse() {
-		return $this->response;
+	protected $version;
+
+	public function getOnAppVersion() {
+		if( is_null( $this->version ) ) {
+			$this->setAPIResource( ONAPP_GETRESOURCE_VERSION );
+			$this->sendRequest( ONAPP_REQUEST_METHOD_GET );
+			if( $this->ch->getResponseStatusCode() == 200 ) {
+				$this->setOnAppVersion( $this->ch->getResponseBody() );
+			}
+		}
+		return $this->version;
 	}
 
 	/**
 	 * Resets all options to default options
 	 *
 	 * @return void
-	 * @access public
 	 */
-	function resetOptions() {
+	public function resetOptions() {
 		$this->options = $this->defaultOptions;
 	}
 
@@ -499,9 +458,8 @@ abstract class OnApp {
 	 * @param mixed  $value option value
 	 *
 	 * @return void
-	 * @access public
 	 */
-	function setOption( $name, $value ) {
+	public function setOption( $name, $value ) {
 		$this->logger->logDebugMessage( 'setOption: Set option ' . $name . ' => ' . $value );
 		$this->options[ $name ] = $value;
 	}
@@ -515,9 +473,8 @@ abstract class OnApp {
 	 * @param array $options options array
 	 *
 	 * @return void
-	 * @access public
 	 */
-	function setOptions( array $options ) {
+	public function setOptions( array $options ) {
 		$this->options = array_merge( $this->options, $options );
 	}
 
@@ -564,37 +521,28 @@ abstract class OnApp {
 	 * Returns true if the API instance has authentication information set and authentication was succesful
 	 *
 	 * @return boolean true if authenticated
-	 * @access public
-	 *
-	 * @todo   move to the defaut getter
 	 */
-	public function isAuthenticate() {
+	public function isAuthenticated() {
 		return $this->isAuthenticated;
 	}
 
 	/**
-	 * Returns true if the Object was changed and API response was succesfull
+	 * Returns true if the Object was changed and API response was successful
 	 *
 	 * @return boolean true if the Object was changed
-	 * @access public
-	 *
-	 * @todo   move to the defaut getter
 	 */
-	function isChanged() {
-		return $this->_is_changed;
+	public function isChanged() {
+		return $this->isChanged;
 	}
 
 	/**
 	 * Returns true if the Object was deleted in the API instance
-	 * and API response was succesfull
+	 * and API response was successful
 	 *
 	 * @return boolean true if the Object was deleted
-	 * @access public
-	 *
-	 * @todo   move to the defaut getter
 	 */
-	function isDelete() {
-		return $this->_is_deleted;
+	public function isDeleted() {
+		return $this->isDeleted;
 	}
 
 	/**
@@ -604,9 +552,8 @@ abstract class OnApp {
 	 * included
 	 *
 	 * @return string All formatted logs
-	 * @access public
 	 */
-	function logs() {
+	public function getLog() {
 		if( isset( $this->logger ) ) {
 			return $this->logger->getLog();
 		}
@@ -625,9 +572,8 @@ abstract class OnApp {
 	 * @param string $proxy (optional) proxy server
 	 *
 	 * @return void
-	 * @access public
 	 */
-	function auth( $url, $user, $pass, $proxy = '' ) {
+	public function auth( $url, $user, $pass, $proxy = '' ) {
 		$this->logger->setDebugMode( $this->options[ ONAPP_OPTION_DEBUG_MODE ] );
 
 		$this->logger->setTimezone();
@@ -637,85 +583,22 @@ abstract class OnApp {
 		$this->setOption( ONAPP_OPTION_CURL_URL, $url );
 		$this->setOption( ONAPP_OPTION_CURL_PROXY, $proxy );
 
-		$this->_init_curl( $user, $pass );
+		$this->initCURL( $user, $pass );
+	}
 
-		$this->setAPIResource( ONAPP_GETRESOURCE_VERSION );
-
-		$this->sendRequest( ONAPP_REQUEST_METHOD_GET );
-
-		// todo check this code
-		if( $this->ch->getResponseStatusCode() == '200' ) {
-			$this->setAPIVersion( $this->ch->getResponseBody() );
-
-			$this->setErrors();
-			$this->isAuthenticated = true;
+	protected function setOnAppVersion( $data ) {
+		preg_match( '#(\d\.\d.\d)#', $data, $m );
+		if( isset( $m[ 1 ] ) ) {
+			$this->version = (float)$m[ 1 ];
 		}
 		else {
-			$this->setErrors( $this->ch->getResponseBody() );
-			$this->isAuthenticated = false;
+			$msg = 'Can not get version from \'' . $data . '\'';
+			throw new Exception( $msg );
 		}
 	}
 
-	protected function setAPIVersion( $data ) {
-		switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
-			case 'xml':
-			case 'json':
-				$tag           = 'version';
-				$this->version = null;
-
-				$objCast       = new OnApp_Helper_Caster( $this );
-				$this->version = $objCast->unserialize( $this->getClassName(), $data, $tag );
-				break;
-
-			default:
-				//todo add CLI check
-				$msg = 'FATAL ERROR: Caster for "' . $this->options[ ONAPP_OPTION_API_TYPE ] . '" is not defined'
-					. ' in FILE ' . __FILE__ . ' LINE ' . __LINE__ . PHP_EOL . PHP_EOL;
-				try {
-					throw new Exception( $msg );
-				}
-				catch( Exception $e ) {
-					echo $e->getMessage();
-					exit( $this->logger->getLog() );
-				}
-		}
-		$this->version = (float)$this->version;
-	}
-
-	// todo delete
-	/*
-	public $fields;
-	public function initFields( $version = NULL, $className = '' ) {
-		return array();
-
-		if( ! is_null( $version ) ) {
-			$this->version = $version;
-		}
-
-		if( is_null( $this->fields ) && ( $this->getClassName() != 'OnApp' ) ) {
-			$this->logger->debug( 'No fields defined for current API version [ ' . $version . ' ]' );
-			//			if( IS_CLI ) {
-			//				throw new Exception( 'No fields defined for current API version [ ' . $version . ' ]' );
-			//			}
-			//			else {
-			//				$this->logger->error( 'No fields defined for current API version [ ' . $version . ' ]' );
-			//			}
-		}
-		elseif( ! is_null( $version ) ) {
-			if( $version == $this->version ) {
-				if( $this->defaultOptions[ ONAPP_OPTION_DEBUG_MODE ] ) {
-					$this->logger->debug( $className . '::initFields, version ' . $version . PHP_EOL . print_r( $this->fields, TRUE ) );
-				}
-				else {
-					$this->logger->add( $className . '::initFields, version ' . $version );
-				}
-			}
-		}
-	}
-	*/
-
-	protected function _init_curl( $user, $pass, $cookiesFile = null ) {
-		$this->logger->logDebugMessage( '_init_curl: Init Curl ( cookies file => "' . $cookiesFile . '" ).' );
+	protected function initCURL( $user, $pass, $cookiesFile = null ) {
+		$this->logger->logDebugMessage( __METHOD__ . ': Init Curl ( cookies file => "' . $cookiesFile . '" ).' );
 
 		$this->ch = new OnApp_Helper_Handler_CURL( $this );
 
@@ -739,7 +622,6 @@ abstract class OnApp {
 	 * @param string  $queryString API request
 	 *
 	 * @return void
-	 * @access public
 	 */
 	protected function setAPIResource( $resource, $append_api_version = true, $queryString = '' ) {
 		$url = sprintf(
@@ -750,7 +632,6 @@ abstract class OnApp {
 				' url => "' . $url . '", ' .
 				' resource => "' . $resource . '", ' .
 				' data_type => "' . $this->options[ ONAPP_OPTION_API_TYPE ] . '"' .
-				' append_api_version => ' . $this->getAPIVersion() . ',' .
 				' queryString => "' . $queryString . '" ).'
 		);
 	}
@@ -804,25 +685,20 @@ abstract class OnApp {
 				case 200:
 				case 201:
 				case 204:
-					break;
-
 				case 422:
 				case 404:
-					switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
-						case 'xml':
-						case 'json':
-							$this->logger->logMessage( 'Response (code => ' . $this->ch->getResponseStatusCode() . ', cast:' . PHP_EOL . "\t" . $this->ch->getResponseBody() );
-							break;
-					}
+					$this->isAuthenticated = true;
 					break;
 
-				default:
-					$this->logger->logWarningMessage( 'Response (code => ' . $this->ch->getResponseStatusCode() . ', body: ' . PHP_EOL . $this->ch->getResponseBody() );
+				case 401:
+					$this->isAuthenticated = false;
+					break;
 			}
 		}
-		else {
-			$this->logger->logMessage( 'sendRequest: Response:' . PHP_EOL . $this->ch->getResponseBody() );
-		}
+
+		$this->logger->logMessage( __METHOD__ . ': get response (code => ' . $this->ch->getResponseStatusCode() . ', body:' . PHP_EOL . "\t" . $this->ch->getResponseBody() );
+
+		return $this->castResponseToClass();
 	}
 
 	/**
@@ -839,11 +715,13 @@ abstract class OnApp {
 			);
 		}
 		else {
+			$this->logger->logMessage( __METHOD__ );
 			switch( $this->ch->getResponseStatusCode() ) {
 				case 200:
 				case 201:
 				case 404:
 				case 422:
+				case 401:
 					return $this->doCastResponseToClass();
 					break;
 
@@ -851,6 +729,7 @@ abstract class OnApp {
 					break;
 
 				case 500:
+					$this->isAuthenticated = false;
 					$this->setErrors( 'We\'re sorry, but something went wrong.' );
 					return $this;
 
@@ -863,14 +742,12 @@ abstract class OnApp {
 	/**
 	 * Casts string (API response body content) to the Object
 	 *
-	 * @return mixed array of Objects or Object
+	 * @return array|object
+	 * @throws Exception
 	 */
 	protected function doCastResponseToClass() {
 		$className = $this->getClassName();
-
-		$this->logger->logMessage( 'doCastResponseToClass: cast data into the ' . $className . ' object.' );
-
-		//todo add errors
+		$this->logger->logMessage( $this->ch->getResponseStatusCode() . ' ' . __METHOD__ . ': cast data into the ' . $className . ' object.' );
 		switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
 			case 'xml':
 			case 'json':
@@ -891,17 +768,8 @@ abstract class OnApp {
 				}
 
 			default:
-				//todo check
-				$msg = 'FATAL ERROR: Caster for "' . $this->options[ ONAPP_OPTION_API_TYPE ] . '" is not defined'
-					. ' in FILE ' . __FILE__ . ' LINE ' . __LINE__ . PHP_EOL . PHP_EOL;
-				try {
-					throw new Exception( $msg );
-				}
-				catch( Exception $e ) {
-					echo $e->getMessage();
-					//todo ???
-					exit( $this->logger->getLog() );
-				}
+				$msg = 'Caster for "' . $this->options[ ONAPP_OPTION_API_TYPE ] . '" is not defined';
+				throw new Exception( $msg );
 		}
 	}
 
@@ -909,10 +777,8 @@ abstract class OnApp {
 	 * Activates action performed with object
 	 *
 	 * @param string $action_name the name of action
-	 *
-	 * @access public
 	 */
-	function activate( $action_name ) {
+	public function activate( $action_name ) {
 	}
 
 	/**
@@ -952,9 +818,8 @@ abstract class OnApp {
 	 * @param integer $id Object id
 	 *
 	 * @return mixed serialized Object instance from API
-	 * @access public
 	 */
-	function load( $id = null ) {
+	public function load( $id = null ) {
 		$this->activate( ONAPP_ACTIVATE_LOAD );
 
 		if( is_null( $id ) && ! is_null( $this->_id ) ) {
@@ -975,16 +840,13 @@ abstract class OnApp {
 		$this->logger->logMessage( 'load: Load class ( id => ' . $id . ' ).' );
 
 		if( strlen( $id ) > 0 ) {
-			$this->_id = $id;
+			$this->id = $id;
 
 			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
-			$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
-			$result   = $this->doCastResponseToClass( $response );
 
-			$this->inheritedObject = $result;
-			$this->_id             = $this->inheritedObject->_id;
-
-			return $result;
+			$this->inheritedObject = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
+			$this->id              = $this->inheritedObject->id;
+//			return;
 		}
 		else {
 			$this->logger->logErrorMessage( 'load: property id not set.', __FILE__, __LINE__ );
@@ -1010,19 +872,17 @@ abstract class OnApp {
 	 * </code>
 	 *
 	 * @return void
-	 * @access public
 	 */
-	function save() {
+	public function save() {
 		$this->activate( ONAPP_ACTIVATE_SAVE );
 
-		if( is_null( $this->_id ) ) {
-			$obj = $this->_create();
+		if( is_null( $this->id ) ) {
+			$obj = $this->createObject();
 		}
 		else {
-			$obj = $this->_edit();
+			$obj = $this->editObject();
 		}
 
-		//todo handle errors
 		if( isset( $obj ) && ! isset( $obj->errors ) ) {
 			$this->load();
 		}
@@ -1031,10 +891,10 @@ abstract class OnApp {
 	/**
 	 * The method creates a new Object
 	 *
-	 * @return object Serialized API Response
-	 * @access private
+	 * @return mixed object Serialized API Response
+	 * @throws Exception
 	 */
-	protected function _create() {
+	protected function createObject() {
 		$this->logger->logMessage( 'Create new Object.' );
 
 		switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
@@ -1051,16 +911,8 @@ abstract class OnApp {
 				break;
 
 			default:
-				$msg = 'FATAL ERROR: Caster for "' . $this->options[ ONAPP_OPTION_API_TYPE ] . '" is not defined'
-					. ' in FILE ' . __FILE__ . ' LINE ' . __LINE__ . PHP_EOL . PHP_EOL;
-				try {
-					throw new Exception( $msg );
-				}
-				catch( Exception $e ) {
-					echo $e->getMessage();
-					//todo ???
-					exit( $this->logger->getLog() );
-				}
+				$msg = 'Caster for "' . $this->options[ ONAPP_OPTION_API_TYPE ] . '" is not defined';
+				throw new Exception( $msg );
 		}
 		return $result;
 	}
@@ -1069,8 +921,9 @@ abstract class OnApp {
 	 * The method edits an existing Object
 	 *
 	 * @return object Serialized API Response
+	 * @throws Exception
 	 */
-	protected function _edit() {
+	protected function editObject() {
 		switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
 			case 'xml':
 			case 'json':
@@ -1078,27 +931,12 @@ abstract class OnApp {
 				$data    = $objCast->serialize( $this->rootElement, $this->getFieldsToSend() );
 				$this->logger->logDebugMessage( 'serialize: serialized data:' . PHP_EOL . $data );
 				$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_EDIT ) );
-				$response = $this->sendRequest( ONAPP_REQUEST_METHOD_PUT, $data );
-
-				if( $response[ 'info' ][ 'http_code' ] > 201 ) {
-					$this->castResponseToClass( $response );
-				}
-				else {
-					$this->load( $this->_id );
-				}
+				$this->sendRequest( ONAPP_REQUEST_METHOD_PUT, $data );
 				break;
 
 			default:
-				$msg = 'FATAL ERROR: Caster for "' . $this->options[ ONAPP_OPTION_API_TYPE ] . '" is not defined'
-					. ' in FILE ' . __FILE__ . ' LINE ' . __LINE__ . PHP_EOL . PHP_EOL;
-				try {
-					throw new Exception( $msg );
-				}
-				catch( Exception $e ) {
-					echo $e->getMessage();
-					//todo ???
-					exit( $this->logger->getLog() );
-				}
+				$msg = 'Caster for "' . $this->options[ ONAPP_OPTION_API_TYPE ] . '" is not defined';
+				throw new Exception( $msg );
 		}
 	}
 
@@ -1108,7 +946,6 @@ abstract class OnApp {
 	 * Returns the Hash of Object fields with values
 	 *
 	 * @return hash of string
-	 * @access private
 	 */
 	protected function getFieldsToSend() {
 		$this->logger->logDebugMessage( 'getFieldsToSend: Prepare data array:' );
@@ -1145,46 +982,46 @@ abstract class OnApp {
 	 * </code>
 	 *
 	 * @return boolean the Object deleted
-	 * @access public
 	 */
-	function delete() {
+	public function delete() {
 		$this->activate( ONAPP_ACTIVATE_DELETE );
 
 		$this->logger->logMessage( 'Delete existing Object ( id => ' . $this->_id . ' ).' );
 
 		$this->sendDelete( ONAPP_GETRESOURCE_DELETE );
 
-		if( count( $this->getErrorsAsArray() ) < 1 ) {
-			$this->_is_deleted = true;
+		if( is_null( $this->errors ) ) {
+			$this->isDeleted = true;
 		}
 	}
 
-	function sendPost( $resource, $data = null ) {
-		return $this->_action( ONAPP_REQUEST_METHOD_POST, $resource, $data );
+	protected function sendPost( $resource, $data = null ) {
+		return $this->sendAPIRequest( ONAPP_REQUEST_METHOD_POST, $resource, $data );
 	}
 
 	protected function sendGet( $resource, $data = null, $url_args = null ) {
-		return $this->_action( ONAPP_REQUEST_METHOD_GET, $resource, $data, $url_args );
+		return $this->sendAPIRequest( ONAPP_REQUEST_METHOD_GET, $resource, $data, $url_args );
 	}
 
-	function sendPut( $resource, $data = null ) {
-		return $this->_action( ONAPP_REQUEST_METHOD_PUT, $resource, $data );
+	protected function sendPut( $resource, $data = null ) {
+		return $this->sendAPIRequest( ONAPP_REQUEST_METHOD_PUT, $resource, $data );
 	}
 
-	function sendDelete( $resource, $data = null ) {
-		return $this->_action( ONAPP_REQUEST_METHOD_DELETE, $resource, $data );
+	protected function sendDelete( $resource, $data = null ) {
+		return $this->sendAPIRequest( ONAPP_REQUEST_METHOD_DELETE, $resource, $data );
 	}
 
 	/**
 	 * Sends API Requests to realize not base actions
 	 *
-	 * @param string     $method
-	 * @param string     $resource
-	 * @param array|null $data
+	 * @param string      $method
+	 * @param string      $resource
+	 * @param null|string $data
+	 * @param null|string $url_args
 	 *
-	 * @return bool|mixed (Array of Object or Object)
+	 * @return mixed
 	 */
-	protected function _action( $method, $resource, $data = null, $url_args = null ) {
+	protected function sendAPIRequest( $method, $resource, $data = null, $url_args = null ) {
 		switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
 			case 'xml':
 			case 'json':
@@ -1199,8 +1036,7 @@ abstract class OnApp {
 				$this->setAPIResource( $this->getURL( $resource ), true, $url_args );
 				$this->sendRequest( $method, $data );
 
-				$this->sendRequest( $method, $data );
-				$result = $this->castResponseToClass( $this->ch->getResponseBody() );
+				$result = $this->sendRequest( $method, $data );
 
 				if( $this->ch->getResponseStatusCode() > 400 ) {
 					if( is_null( $result ) ) {
@@ -1217,24 +1053,14 @@ abstract class OnApp {
 				break;
 
 			default:
-				$this->logger->logErrorMessage( '_action: Can\'t find serialize and unserialize functions for type (apiVersion => \'' . $this->getAPIVersion() . "').", __FILE__, __LINE__ );
+				$this->logger->logErrorMessage( __METHOD__ . ': Can\'t find serialize and unserialize functions for type.', __FILE__, __LINE__ );
 		}
 
 		return $result;
 	}
 
 	public function getClassName() {
-		if( is_null( $this->className ) ) {
-			return __CLASS__;
-		}
-		else {
-			return $this->className;
-		}
-	}
-
-	//todo check this code
-	public function getAPIVersion() {
-		return $this->version;
+		return $this->className;
 	}
 
 	/**
@@ -1296,27 +1122,11 @@ abstract class OnApp {
 		return $this->errors;
 	}
 
-	//todo check this code
-	/**
-	 * Unset unnecessary fields
-	 *
-	 * @param array $fields fields name
-	 *
-	 * @return void
-	 */
-	/*
-	protected function unsetFields( $fields ) {
-		foreach( $fields as $field ) {
-			unset( $this->fields[ $field ] );
-		}
-	}
-	*/
-
 	// getters, setters & other magic stuff //
 	public function __construct() {
 		$this->className = get_class( $this );
 		$this->options   = $this->defaultOptions;
-		$this->logger    = new OnApp_Helper_Handler_Log;
+		$this->logger    = OnApp_Helper_Handler_Log::init();
 	}
 
 	/**
@@ -1334,11 +1144,7 @@ abstract class OnApp {
 			case 'error':
 				return $this->getErrorsAsArray();
 
-			case '_version':
-				return $this->getAPIVersion();
-
 			case '_obj':
-				var_dump( '_obj [ ' . __METHOD__ . ' ]' );
 				return $this->inheritedObject;
 		}
 

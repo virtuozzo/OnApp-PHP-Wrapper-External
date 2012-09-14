@@ -9,27 +9,35 @@
  * @link        http://www.onapp.com/
  */
 class OnApp_Helper_Handler_Errors {
-	private static $log;
-	private static $displayErrors;
-	private static $errorsDescriptions = array();
+	private static $instance;
+	private $displayErrors;
+	private $errorsDescriptions = array();
+	/**
+	 * @var OnApp_Helper_Handler_Log
+	 */
+	private $logger;
 
-	public static function init() {
-		self::setErrorsDescriptions();
-		self::$displayErrors = ini_get( 'display_errors' );
+	private function __construct() {
+		$this->setErrorsDescriptions();
+		$this->displayErrors = ini_get( 'display_errors' );
 
 		// set error reporting level
 		error_reporting( E_ALL | E_STRICT );
+
 		// switch off displaying errors
 		ini_set( 'display_errors', 0 );
 		// set errors handlers
-		set_error_handler( array( __CLASS__, 'errorHandler' ), E_ALL );
-		set_exception_handler( array( __CLASS__, 'exceptionHandler' ) );
-		register_shutdown_function( array( __CLASS__, 'fatalHandler' ) );
-		ob_start( array( __CLASS__, 'obHandler' ) );
+		set_error_handler( array( $this, 'errorHandler' ), E_ALL );
+		set_exception_handler( array( $this, 'exceptionHandler' ) );
+		register_shutdown_function( array( $this, 'shutdownHandler' ) );
+
+		if( ONAPP_CLI_MODE ) {
+			ob_start( array( $this, 'obHandler' ) );
+		}
 	}
 
-	public static function errorHandler( $errorCode, $errorText, $errorFile, $errorLine ) {
-		$msg = self::$errorsDescriptions[ $errorCode ] . ': ' . $errorText;
+	public function errorHandler( $errorCode, $errorText, $errorFile, $errorLine ) {
+		$msg = $this->errorsDescriptions[ $errorCode ] . ': ' . $errorText;
 		$msg .= ' in ' . $errorFile . ' on line ' . $errorLine;
 
 		switch( $errorCode ) {
@@ -39,8 +47,8 @@ class OnApp_Helper_Handler_Errors {
 			case E_PARSE:
 			case E_USER_ERROR:
 			case E_RECOVERABLE_ERROR:
-				self::addToLog( $msg );
-				self::halt( $msg );
+				$this->addToLog( $msg );
+				$this->halt( $msg );
 				break;
 
 			case E_WARNING:
@@ -52,16 +60,16 @@ class OnApp_Helper_Handler_Errors {
 			case E_STRICT:
 			case E_DEPRECATED:
 			case E_USER_DEPRECATED:
-				self::addToLog( $msg );
+				$this->addToLog( $msg );
 				break;
 
 			default:
 				$msg .= PHP_EOL . "\t Unknown error type: " . $errorCode;
-				self::addToLog( $msg );
+				$this->addToLog( $msg );
 		}
 	}
 
-	public static function exceptionHandler( Exception $e ) {
+	public function exceptionHandler( Exception $e ) {
 		$msg  = 'Uncaught ' . get_class( $e );
 		$emsg = $e->getMessage();
 		if( ! empty( $emsg ) ) {
@@ -69,36 +77,90 @@ class OnApp_Helper_Handler_Errors {
 		}
 		$msg .= ' in ' . $e->getFile() . ' on line ' . $e->getLine();
 
-		self::addToLog( $msg );
+		$this->addToLog( $msg );
 		exit( $msg . PHP_EOL );
 	}
 
-	public static function obHandler( $ob ) {
+	public function obHandler( $ob ) {
 		$e = error_get_last();
-		if( ! is_null( $e ) && self::$displayErrors ) {
-			$msg = self::$errorsDescriptions[ $e[ 'type' ] ] . ': ' . $e[ 'message' ];
+		if( ! is_null( $e ) && $this->displayErrors ) {
+			$msg = $this->errorsDescriptions[ $e[ 'type' ] ] . ': ' . $e[ 'message' ];
 			$msg .= ' in ' . $e[ 'file' ] . ' on line ' . $e[ 'line' ] . PHP_EOL;
-			return $msg;
+			$this->addToLog( $msg );
+			return $ob;
+			return $ob . $msg;
 		}
 		else {
 			return $ob;
 		}
 	}
 
-	public static function fatalHandler() {
+	public function shutdownHandler() {
 		$e = error_get_last();
+
 		if( ! is_null( $e ) ) {
-			$msg = self::$errorsDescriptions[ $e[ 'type' ] ] . ' (fatal): ' . $e[ 'message' ];
+			$msg = $this->errorsDescriptions[ $e[ 'type' ] ] . ': ' . $e[ 'message' ];
 			$msg .= ' in ' . $e[ 'file' ] . ' on line ' . $e[ 'line' ];
-			self::halt( $msg );
+
+			switch( $e[ 'type' ] ) {
+				case E_ERROR:
+				case E_CORE_ERROR:
+				case E_COMPILE_ERROR:
+				case E_PARSE:
+				case E_USER_ERROR:
+				case E_RECOVERABLE_ERROR:
+					$msg = str_replace( $this->errorsDescriptions[ $e[ 'type' ] ], $this->errorsDescriptions[ $e[ 'type' ] ] . ' (fatal)', $msg );
+					$this->addToLog( $msg );
+					$this->halt( $msg );
+					break;
+
+				case E_WARNING:
+				case E_CORE_WARNING:
+				case E_COMPILE_WARNING:
+				case E_USER_WARNING:
+				case E_NOTICE:
+				case E_USER_NOTICE:
+				case E_STRICT:
+				case E_DEPRECATED:
+				case E_USER_DEPRECATED:
+					$this->addToLog( $msg );
+					break;
+
+				default:
+					$msg .= PHP_EOL . "\t Unknown error type: " . $e[ 'type' ];
+					$this->addToLog( $msg );
+			}
 		}
 	}
 
-	public static function setLog( OnApp_Helper_Handler_Log $log ) {
-		self::$log = $log;
+	public function setLog( OnApp_Helper_Handler_Log $log ) {
+		$this->logger = $log;
 	}
 
-	public static function setErrorsDescriptions() {
+	public static function init() {
+		if( is_null( self::$instance ) ) {
+			$className = __CLASS__;
+			self::$instance = new $className;
+		}
+		return self::$instance;
+	}
+
+	private function addToLog( $msg ) {
+		if( ! is_null( $this->logger ) ) {
+			$this->logger->logPHPMessage( $msg );
+		}
+	}
+
+	private function halt( $msg ) {
+		if( $this->displayErrors ) {
+			exit( $msg . PHP_EOL );
+		}
+		else {
+			exit;
+		}
+	}
+
+	private function setErrorsDescriptions() {
 		$errorLevels = array(
 			'E_ALL',
 			'E_USER_DEPRECATED',
@@ -120,21 +182,8 @@ class OnApp_Helper_Handler_Errors {
 
 		foreach( $errorLevels as $level ) {
 			if( defined( $level ) ) {
-				self::$errorsDescriptions[ constant( $level ) ] = $level;
+				$this->errorsDescriptions[ constant( $level ) ] = $level;
 			}
-		}
-	}
-
-	private static function addToLog( $msg ) {
-		self::$log->logPHPMessage( $msg );
-	}
-
-	private static function halt( $msg ) {
-		if( self::$displayErrors ) {
-			exit( $msg . PHP_EOL );
-		}
-		else {
-			exit;
 		}
 	}
 }

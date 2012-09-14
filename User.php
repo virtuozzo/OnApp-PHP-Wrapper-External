@@ -190,10 +190,11 @@ class OnApp_User extends OnApp {
 		$this->role_ids = $this->fillRolesIDs();
 
 		if( is_null( $this->id ) ) {
-			$obj = $this->_create();
+			$obj = $this->createObject();
 		}
 		else {
-			$obj = $this->_edit();
+			unset( $this->login, $this->inheritedObject->login );
+			$obj = $this->editObject();
 		}
 		unset( $this->password, $this->password_confirmation );
 

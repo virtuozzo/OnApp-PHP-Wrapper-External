@@ -116,8 +116,18 @@ class OnApp_Helper_Handler_Log {
 	 */
 	private $log = array();
 
-	public function __construct() {
-		OnApp_Helper_Handler_Errors::setLog( $this );
+	private static $instance;
+
+	private function __construct() {
+		OnApp_Helper_Handler_Errors::init()->setLog( $this );
+	}
+
+	public static function init() {
+		if( is_null( self::$instance ) ) {
+			$className      = __CLASS__;
+			self::$instance = new $className;
+		}
+		return self::$instance;
 	}
 
 	/**
@@ -223,6 +233,10 @@ class OnApp_Helper_Handler_Log {
 		}
 	}
 
+	public function getLogAsHMTL() {
+		return '<pre>' . $this->getLog() .  '</pre>';
+	}
+
 	/**
 	 * Shows Logger buffer messages (error, log, and debug)
 	 *
@@ -233,7 +247,7 @@ class OnApp_Helper_Handler_Log {
 	 */
 	public function getLog() {
 		$output = '';
-		if( IS_CLI && $this->colorMode ) {
+		if( ONAPP_CLI_MODE && $this->colorMode ) {
 			$colors = new CLI_Colors;
 
 			foreach( $this->log as $value ) {

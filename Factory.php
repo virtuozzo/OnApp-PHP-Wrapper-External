@@ -41,7 +41,6 @@ class OnApp_Factory extends OnApp {
 
 		$result->setOption( ONAPP_OPTION_DEBUG_MODE, $debug );
 		$result->logger->setTimezone();
-		$result->version = $this->getAPIVersion();
 		$result->options = $this->options;
 		$result->ch      = $this->ch;
 		return $result;

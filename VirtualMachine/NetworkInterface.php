@@ -244,7 +244,7 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
 	 */
 	function save() {
 		if( isset( $this->_id ) ) {
-			$obj = $this->_edit();
+			$obj = $this->editObject();
 			$this->load();
 		}
 		else {

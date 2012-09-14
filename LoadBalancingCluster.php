@@ -160,8 +160,6 @@ class OnApp_LoadBalancingCluster extends OnApp {
 		);
 
 		parent::save();
-		$this->initFields( $this->getAPIVersion() );
-
 		return $result;
 	}
 

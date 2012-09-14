@@ -477,7 +477,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 * @access public
 	 */
 	function build() {
-		if( $this->getAPIVersion() < 2.3 ) {
+		if( $this->getOnAppVersion() < 2.3 ) {
 			if( isset( $this->_template_id ) && ( $this->_template_id != $this->inheritedObject->_template_id ) ) {
 				$data = array(
 					'root' => 'virtual_machine',
