@@ -115,10 +115,7 @@ class OnApp_Console extends OnApp {
 
 			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 
-			$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
-
-			$result = $this->castResponseToClass( $response );
-
+			$result                = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 			$this->inheritedObject = $result;
 
 			return $result;

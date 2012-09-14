@@ -846,7 +846,6 @@ abstract class OnApp {
 
 			$this->inheritedObject = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 			$this->id              = $this->inheritedObject->id;
-//			return;
 		}
 		else {
 			$this->logger->logErrorMessage( 'load: property id not set.', __FILE__, __LINE__ );

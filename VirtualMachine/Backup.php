@@ -291,9 +291,6 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 		// workaround because we get template data in response
 		$this->rootElement = 'image_template';
 		$this->className   = 'OnApp_Template';
-		//todo check this code
-		//$template          = new OnApp_Template();
-		//$this->fields      = $template->getClassFields();
 		$this->sendPost( ONAPP_GETRESOURCE_BACKUP_CONVERT, $data );
 	}
 
@@ -304,8 +301,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	 */
 	function restore() {
 		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_BACKUP_RESTORE ) );
-		$response              = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
-		$result                = $this->castResponseToClass( $response );
+		$result                = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
 		$this->inheritedObject = $result;
 	}
 }

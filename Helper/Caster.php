@@ -17,7 +17,7 @@ class OnApp_Helper_Caster extends OnApp {
 	 * @param object $obj       wrapper object
 	 */
 	public function __construct( $obj ) {
-		self::$obj        = $obj;
+		self::$obj = $obj;
 	}
 
 	/**

@@ -234,7 +234,7 @@ class OnApp_Helper_Handler_Log {
 	}
 
 	public function getLogAsHMTL() {
-		return '<pre>' . $this->getLog() .  '</pre>';
+		return '<pre>' . $this->getLog() . '</pre>';
 	}
 
 	/**
@@ -298,8 +298,8 @@ class OnApp_Helper_Handler_Log {
 			$micro = sprintf( '%06d', ( $time - floor( $time ) ) * 1000000 );
 			$time  = date( $this->dateFormat . '.' . $micro, $time );
 
-			$this->log[] = array(
-				'log' => $msg,
+			$this->log[ ] = array(
+				'log'  => $msg,
 				'time' => $time,
 				'type' => $type,
 			);

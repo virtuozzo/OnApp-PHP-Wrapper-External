@@ -153,11 +153,7 @@ class OnApp_User extends OnApp {
 	 */
 	public function suspend() {
 		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_SUSPEND_USER ) );
-
-		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
-
-		$result = $this->castResponseToClass( $response );
-
+		$result                = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
 		$this->inheritedObject = $result;
 	}
 
@@ -168,11 +164,7 @@ class OnApp_User extends OnApp {
 	 */
 	public function activate_user() {
 		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_ACTIVATE ) );
-
-		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
-
-		$result = $this->castResponseToClass( $response );
-
+		$result                = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
 		$this->inheritedObject = $result;
 	}
 

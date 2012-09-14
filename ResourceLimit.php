@@ -148,12 +148,9 @@ class OnApp_ResourceLimit extends OnApp {
 
 			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 
-			$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
-
-			$result = $this->castResponseToClass( $response );
-
+			$result                = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 			$this->inheritedObject = $result;
-			$this->_user_id        = $this->inheritedObject->_user_id;
+			$this->user_id         = $this->inheritedObject->user_id;
 
 			return $result;
 		}

@@ -195,11 +195,7 @@ class OnApp_User_WhiteList extends OnApp {
 			$this->_user_id = $user_id;
 
 			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
-
-			$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
-
-			$result = $this->castResponseToClass( $response );
-
+			$result                = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 			$this->inheritedObject = $result;
 
 			return $result;

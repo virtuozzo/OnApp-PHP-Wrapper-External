@@ -139,7 +139,7 @@ class OnApp_Helper_Handler_Errors {
 
 	public static function init() {
 		if( is_null( self::$instance ) ) {
-			$className = __CLASS__;
+			$className      = __CLASS__;
 			self::$instance = new $className;
 		}
 		return self::$instance;

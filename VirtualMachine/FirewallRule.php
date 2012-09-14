@@ -221,11 +221,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 			$this->_virtual_machine_id = $virtual_machine_id;
 
 			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
-
-			$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
-
-			$result = $this->castResponseToClass( $response );
-
+			$result                = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 			$this->inheritedObject = $result;
 
 			return $result;
