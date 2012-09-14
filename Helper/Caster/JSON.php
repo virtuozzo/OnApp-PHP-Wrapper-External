@@ -34,16 +34,14 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 	/**
 	 * Unserialize JSON data to wrapper object(s)
 	 *
-	 * @param string        $className    className to cast into
-	 * @param string|array  $data         JSON or array containing nested data
-	 * @param string        $root         root tag
-	 *
-	 * @throws Exception    $e            if data is empty
+	 * @param string       $className className to cast into
+	 * @param string|array $data      JSON or array containing nested data
+	 * @param string       $root      root tag
 	 *
 	 * @return array|null|object
 	 */
 	public function unserialize( $className, $data, $root ) {
-		parent::$obj->logger->add( 'castStringToClass ' . $className . ': call ' . __METHOD__ );
+		parent::$obj->logger->add( 'cast data into ' . $className . ', call ' . __METHOD__ );
 		$this->className = $className;
 
 		if( is_string( $data ) ) {
@@ -53,11 +51,6 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 		if( empty( $data ) ) {
 			parent::$obj->logger->add( __METHOD__ . ': get empty data for casting' );
 			return null;
-		}
-
-		// get API version
-		if( is_null( parent::$obj->getAPIVersion() ) ) {
-			return $data->$root;
 		}
 
 		// get errors
@@ -93,7 +86,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 		$obj                  = new $this->className;
 		$obj->options         = parent::$obj->options;
 		$obj->ch              = parent::$obj->ch;
-		$obj->isAuthenticated = parent::isAuthenticate();
+		$obj->isAuthenticated = parent::isAuthenticated();
 
 		foreach( $item as $name => $value ) {
 			if( is_array( $value ) ) {

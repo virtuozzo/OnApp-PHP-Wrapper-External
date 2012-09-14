@@ -40,14 +40,15 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 	/**
 	 * Unserialize XML data to wrapper object(s)
 	 *
-	 * @param string        $className   class name to cast into
-	 * @param string|array  $data        XML or array containing nested data
-	 * @param string        $root        root tag
+	 * @param string       $className className to cast into
+	 * @param string|array $data      XML or array containing nested data
+	 * @param string       $root      root tag
 	 *
-	 * @return array|object
+	 * @return array|null|object
+	 * @throws Exception
 	 */
 	public function unserialize( $className, $data, $root ) {
-		parent::$obj->logger->add( 'castStringToClass: call ' . __METHOD__ );
+		parent::$obj->logger->add( 'cast data into ' . $className . ', call ' . __METHOD__ );
 
 		$this->className = $className;
 
@@ -55,9 +56,10 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 			$data = simplexml_load_string( $data );
 		}
 
+		// todo check this code
 		try {
 			if( ! $data->count() ) {
-				if( IS_CLI ) {
+				if( ONAPP_CLI_MODE ) {
 					throw new Exception( __METHOD__ . ' Data for casting could not be empty' );
 				}
 				else {
@@ -69,11 +71,6 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 		catch( Exception $e ) {
 			echo PHP_EOL, $e->getMessage(), PHP_EOL;
 			return null;
-		}
-
-		// get API version
-		if( is_null( parent::$obj->getAPIVersion() ) ) {
-			return $data->$root;
 		}
 
 		// get errors
@@ -112,8 +109,8 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 	private function process( $item ) {
 		$obj                  = new $this->className;
 		$obj->options         = parent::$obj->options;
-		$obj->ch             = parent::$obj->ch;
-		$obj->isAuthenticated = parent::$obj->isAuthenticated;
+		$obj->ch              = parent::$obj->ch;
+		$obj->isAuthenticated = parent::$obj->isAuthenticated();
 
 		foreach( $item as $name => $value ) {
 			$boolean = $type = false;

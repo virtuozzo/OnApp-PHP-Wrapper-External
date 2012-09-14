@@ -18,7 +18,6 @@ class OnApp_Helper_Caster extends OnApp {
 	 */
 	public function __construct( $obj ) {
 		self::$obj        = $obj;
-		self::$APIVersion = $obj->getAPIVersion();
 	}
 
 	/**
@@ -59,13 +58,13 @@ class OnApp_Helper_Caster extends OnApp {
 	 * @return array
 	 */
 	public static function unserializeNested( OnAppNestedDataHolder $object ) {
-		self::$obj->logger->add( 'castStringToClass: call ' . __METHOD__ );
+		self::$obj->logger->add( 'lazy casting, call ' . __METHOD__ );
 
 		$className                = 'OnApp_' . $object->className;
 		$tmp_obj                  = new $className;
 		$tmp_obj->options         = self::$obj->options;
-		$tmp_obj->ch             = self::$obj->ch;
-		$tmp_obj->isAuthenticated = self::$obj->isAuthenticated;
+		$tmp_obj->ch              = self::$obj->ch;
+		$tmp_obj->isAuthenticated = self::$obj->isAuthenticated();
 
 		$tmp = array();
 		foreach( $object->data as $data ) {
@@ -95,12 +94,4 @@ class OnApp_Helper_Caster extends OnApp {
  * Holder class for storing nested data
  */
 class OnAppNestedDataHolder extends stdClass {
-}
-
-/**
- * Hide errors if running in CLI to pass unit tests
- */
-if( IS_CLI ) {
-	//todo uncomment
-	//error_reporting( 0 );
 }
