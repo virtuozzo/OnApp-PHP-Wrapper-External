@@ -1,4 +1,5 @@
 <?php
+
 /**
  * OnApp API wrapper bootstrap
  *
@@ -22,40 +23,27 @@ if( ! defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
 	 * @return bool
 	 */
 	function OnAppAutoLoad( $className ) {
-		// compatibility with legacy code
-		//$className = str_replace( 'ONAPP', 'OnApp', $className );
-
 		$path = str_replace( 'OnApp_', '', $className );
 		$path = explode( '_', $path );
 		$path = ONAPP_WRAPPER_ROOT_DIR . implode( DIRECTORY_SEPARATOR, $path ) . '.php';
 
+		$error = false;
 		if( ! file_exists( $path ) ) {
-			if( IS_CLI ) {
-				echo '[ AUTOLOAD ]    File ' . $path . ' does not exist or can not be read';
-			}
-			else {
-				//todo add loging instead of printing
-			}
-
-			return false;
+			$error = __FUNCTION__ . ': File ' . $path . ' does not exist or can not be read';
 		}
 		else {
 			require $path;
 
 			if( ! class_exists( $className ) ) {
-				var_dump( $className, $path );
-				if( IS_CLI ) {
-					echo '[ AUTOLOAD ]    File ' . $path . ' does not exist or can not be read';
-				}
-				else {
-					//todo add loging instead of printing
-				}
+				$error = __FUNCTION__ . ': Class ' . $className . ' not found in ' . $path;
+			}
+		}
 
-				return false;
-			}
-			else {
-				return true;
-			}
+		if( $error ) {
+			throw new Exception( $error );
+		}
+		else {
+			return true;
 		}
 	}
 
@@ -64,16 +52,16 @@ if( ! defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
 	 */
 	spl_autoload_register( 'OnAppAutoLoad' );
 
-	// start errors handler
-	OnApp_Helper_Handler_Errors::init();
-
 	/**
 	 * Detect if the code run in CLI for testing purposes
 	 */
 	if( defined( 'STDIN' ) || ( php_sapi_name() == 'cli' ) ) {
-		define( 'IS_CLI', true );
+		define( 'ONAPP_CLI_MODE', true );
 	}
 	else {
-		define( 'IS_CLI', false );
+		define( 'ONAPP_CLI_MODE', false );
 	}
+
+	// start errors handler
+	OnApp_Helper_Handler_Errors::init();
 }
