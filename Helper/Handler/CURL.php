@@ -194,22 +194,23 @@ class OnApp_Helper_Handler_CURL {
 	 */
 	private function processResponse( $data ) {
 		if( $data === false ) {
-			$this->requestError = true;
+			$this->requestError                   = true;
 			$this->infoStorage[ 'response_body' ] = $data;
 		}
 		elseif( isset( $this->customOptions[ CURLOPT_HEADER ] ) && $this->customOptions[ CURLOPT_HEADER ] ) {
 			$this->infoStorage[ 'request_headers' ] = trim( $this->infoStorage[ 'request_info' ][ 'request_header' ] );
 			unset( $this->infoStorage[ 'request_info' ][ 'request_header' ] );
 
-			$tmp                                     = explode( "\r\n\r\n", $data, 2 );
-			$this->infoStorage[ 'response_body' ]    = $data = trim( $tmp[ 1 ] );
-			$this->infoStorage[ 'response_headers' ] = $tmp[ 0 ];
+			$tmp                                     = explode( "\r\n\r\n", $data );
+			$cnt                                     = count( $tmp );
+			$this->infoStorage[ 'response_body' ]    = trim( $tmp[ $cnt - 1 ] );
+			$this->infoStorage[ 'response_headers' ] = $tmp[ $cnt - 2 ];
 
 			$tmp = explode( "\r\n", $this->infoStorage[ 'response_headers' ] );
 			$this->infoStorage[ 'response_headers_parsed' ][ '' ] = $tmp[ 0 ];
 			for( $i = 1, $size = count( $tmp ); $i < $size; ++$i ) {
-				$string                                                         = explode( ': ', $tmp[ $i ], 2 );
-				$this->infoStorage[ 'response_headers_parsed' ][ $string[ 0 ] ] = $string[ 1 ];
+				$s = explode( ': ', $tmp[ $i ], 2 );
+				$this->infoStorage[ 'response_headers_parsed' ][ $s[ 0 ] ] = $s[ 1 ];
 			}
 		}
 	}
