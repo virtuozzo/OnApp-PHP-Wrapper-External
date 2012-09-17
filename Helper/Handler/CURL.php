@@ -2,11 +2,15 @@
 
 class OnApp_Helper_Handler_CURL {
 	private $ch;
-	private $super;
 	private $infoStorage;
 	private $requestError = false;
 	private $customOptions = array();
 	private $customHeaders = array();
+
+	/**
+	 * @var OnApp
+	 */
+	private $super;
 
 	private $defaultOptions = array(
 		CURLOPT_SSL_VERIFYPEER => false,
@@ -190,7 +194,7 @@ class OnApp_Helper_Handler_CURL {
 	/**
 	 * Process response
 	 *
-	 * @param boolean|text $data CURL response
+	 * @param bool|string $data CURL response
 	 */
 	private function processResponse( $data ) {
 		if( $data === false ) {
@@ -225,7 +229,7 @@ class OnApp_Helper_Handler_CURL {
 			default:
 				$msg = 'UNKNOWN_CURL_ERROR CODE: ' . $errorCode;
 		}
-		$this->super->logger->error( $msg . PHP_EOL, __FILE__, __LINE__ );
+		$this->super->logger->logError( $msg . PHP_EOL, __FILE__, __LINE__ );
 	}
 
 	/**
