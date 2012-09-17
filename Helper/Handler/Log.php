@@ -213,7 +213,18 @@ class OnApp_Helper_Handler_Log {
 		}
 	}
 
-	public function getLogAsHMTL() {
+	public function printLogWithPre() {
+		echo $this->getLogWithPre();
+	}
+
+	public function printLog() {
+		echo $this->getLog();
+	}
+
+	/**
+	 * @return string log wrapped with pre tag
+	 */
+	public function getLogWithPre() {
 		return '<pre>' . $this->getLog() . '</pre>';
 	}
 
