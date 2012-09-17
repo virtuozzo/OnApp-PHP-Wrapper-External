@@ -31,7 +31,7 @@
  * @package     OnApp
  * @subpackage  Helper
  * @author      Andrew Yatskovets
- * @copyright   (c) 2011 OnApp
+ * @copyright   (c) 2012 OnApp
  * @link        http://www.onapp.com/
  */
 

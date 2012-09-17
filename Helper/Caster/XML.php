@@ -6,7 +6,7 @@
  * @package     OnApp
  * @subpackage  Caster
  * @author      Lev Bartashevsky
- * @copyright   (c) 2011 OnApp
+ * @copyright   (c) 2012 OnApp
  * @link        http://www.onapp.com/
  */
 class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
@@ -33,7 +33,7 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 	 * @return string
 	 */
 	public function serialize( $root, $data ) {
-		parent::$obj->logger->add( 'Call ' . __METHOD__ );
+		parent::$super->logger->add( 'Call ' . __METHOD__ );
 		return $this->getXML( $data, $root );
 	}
 
@@ -48,7 +48,7 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 	 * @throws Exception
 	 */
 	public function unserialize( $className, $data, $root ) {
-		parent::$obj->logger->add( 'cast data into ' . $className . ', call ' . __METHOD__ );
+		parent::$super->logger->add( 'cast data into ' . $className . ', call ' . __METHOD__ );
 
 		$this->className = $className;
 
@@ -108,9 +108,9 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 	 */
 	private function process( $item ) {
 		$obj                  = new $this->className;
-		$obj->options         = parent::$obj->options;
-		$obj->ch              = parent::$obj->ch;
-		$obj->isAuthenticated = parent::$obj->isAuthenticated();
+		$obj->options         = parent::$super->options;
+		$obj->ch              = parent::$super->ch;
+		$obj->isAuthenticated = parent::$super->isAuthenticated();
 
 		foreach( $item as $name => $value ) {
 			$boolean = $type = false;
@@ -122,7 +122,6 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 					}
 					else {
 						$tmp             = new OnAppNestedDataHolder;
-						$tmp->APIVersion = parent::$APIVersion;
 						$tmp->className  = $obj::$nestedData[ $name ];
 						$tmp->data       = $value;
 						$value           = $tmp;

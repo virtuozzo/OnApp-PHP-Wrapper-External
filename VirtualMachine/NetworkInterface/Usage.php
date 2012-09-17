@@ -8,7 +8,7 @@
  * @package     OnApp
  * @subpackage  VirtualMachine_NetworkInterface
  * @author      Yuriy Yakubskiy
- * @copyright   (c) 2011 OnApp
+ * @copyright   (c) 2012 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */

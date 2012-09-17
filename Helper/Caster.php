@@ -6,18 +6,20 @@
  * @package     OnApp
  * @subpackage  Helper
  * @author      Lev Bartashevsky
- * @copyright   (c) 2011 OnApp
+ * @copyright   (c) 2012 OnApp
  * @link        http://www.onapp.com/
  */
 class OnApp_Helper_Caster extends OnApp {
-	protected static $obj;
-	protected static $APIVersion;
+	/**
+	 * @var OnApp
+	 */
+	protected static $super;
 
 	/**
-	 * @param object $obj       wrapper object
+	 * @param object $obj wrapper object
 	 */
 	public function __construct( $obj ) {
-		self::$obj = $obj;
+		self::$super = $obj;
 	}
 
 	/**
@@ -29,7 +31,7 @@ class OnApp_Helper_Caster extends OnApp {
 	 * @return string
 	 */
 	public function serialize( $root, $data ) {
-		self::$obj->logger->debug( 'Data to serialize: ' . print_r( $data, true ) );
+		self::$super->logger->debug( 'Data to serialize: ' . print_r( $data, true ) );
 
 		return self::getCaster()->serialize( $root, $data );
 	}
@@ -44,7 +46,7 @@ class OnApp_Helper_Caster extends OnApp {
 	 * @return array|object unserialized data
 	 */
 	public function unserialize( $className, $data, $root ) {
-		self::$obj->logger->debug( 'Data to unserialize into ' . $className . ':' . PHP_EOL . $data );
+		self::$super->logger->debug( 'Data to unserialize into ' . $className . ':' . PHP_EOL . $data );
 		return self::getCaster()->unserialize( $className, $data, $root );
 	}
 
@@ -58,13 +60,13 @@ class OnApp_Helper_Caster extends OnApp {
 	 * @return array
 	 */
 	public static function unserializeNested( OnAppNestedDataHolder $object ) {
-		self::$obj->logger->add( 'lazy casting, call ' . __METHOD__ );
+		self::$super->logger->add( 'lazy casting, call ' . __METHOD__ );
 
 		$className                = 'OnApp_' . $object->className;
 		$tmp_obj                  = new $className;
-		$tmp_obj->options         = self::$obj->options;
-		$tmp_obj->ch              = self::$obj->ch;
-		$tmp_obj->isAuthenticated = self::$obj->isAuthenticated();
+		$tmp_obj->options         = self::$super->options;
+		$tmp_obj->ch              = self::$super->ch;
+		$tmp_obj->isAuthenticated = self::$super->isAuthenticated();
 
 		$tmp = array();
 		foreach( $object->data as $data ) {
@@ -85,7 +87,7 @@ class OnApp_Helper_Caster extends OnApp {
 	 * @return object
 	 */
 	private static function getCaster() {
-		$caster = __CLASS__ . '_' . strtoupper( self::$obj->options[ 'data_type' ] );
+		$caster = __CLASS__ . '_' . strtoupper( self::$super->options[ 'data_type' ] );
 		return new $caster;
 	}
 }
