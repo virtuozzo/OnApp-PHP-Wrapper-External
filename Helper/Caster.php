@@ -9,7 +9,7 @@
  * @copyright   (c) 2012 OnApp
  * @link        http://www.onapp.com/
  */
-class OnApp_Helper_Caster extends OnApp {
+class OnApp_Helper_Caster {
 	/**
 	 * @var OnApp
 	 */
@@ -74,10 +74,6 @@ class OnApp_Helper_Caster extends OnApp {
 		}
 
 		return $tmp;
-	}
-
-	public function parseVersion( $data, $tag ) {
-		return self::getCaster()->parseVersion( $data, $tag );
 	}
 
 	/**

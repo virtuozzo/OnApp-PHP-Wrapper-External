@@ -86,7 +86,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 		$obj                  = new $this->className;
 		$obj->options         = parent::$super->options;
 		$obj->ch              = parent::$super->ch;
-		$obj->isAuthenticated = parent::isAuthenticated();
+		$obj->isAuthenticated = parent::$super->isAuthenticated();
 
 		foreach( $item as $name => $value ) {
 			if( is_array( $value ) ) {
