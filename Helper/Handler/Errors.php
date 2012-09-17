@@ -163,16 +163,13 @@ class OnApp_Helper_Handler_Errors {
 	private function halt() {
 		if( $this->displayErrors ) {
 			if( ONAPP_CLI_MODE ) {
-				echo $this->logger->getLog();
+				$this->logger->printLog();
 			}
 			else {
-				echo $this->logger->getLogAsHMTL();
+				$this->logger->printLogWithPre();
 			}
-			exit;
 		}
-		else {
-			exit;
-		}
+		exit;
 	}
 
 	private function setErrorsDescriptions() {
