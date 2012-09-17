@@ -109,12 +109,20 @@ class OnApp_Helper_Handler_Log {
 	 */
 	private $log = array();
 
+	/**
+	 * @var OnApp_Helper_Handler_Log log instance
+	 */
 	private static $instance;
 
 	private function __construct() {
 		OnApp_Helper_Handler_Errors::init()->setLog( $this );
 	}
 
+	/**
+	 * Initialize or get existing log
+	 *
+	 * @return OnApp_Helper_Handler_Log log instance
+	 */
 	public static function init() {
 		if( is_null( self::$instance ) ) {
 			$className      = __CLASS__;
@@ -213,10 +221,16 @@ class OnApp_Helper_Handler_Log {
 		}
 	}
 
+	/**
+	 * print log wrapped with pre tag
+	 */
 	public function printLogWithPre() {
 		echo $this->getLogWithPre();
 	}
 
+	/**
+	 * Print log
+	 */
 	public function printLog() {
 		echo $this->getLog();
 	}
@@ -256,10 +270,6 @@ class OnApp_Helper_Handler_Log {
 					case ONAPP_LOGGER_VALUE_ERROR:
 						$str = $colors->text( $str )->fc( 'red' )->bold()->get();
 						break;
-//
-//					case ONAPP_LOGGER_VALUE_PHP_MESSAGE:
-//						$str = $colors->text( $str )->fc( 'cyan' )->bold()->get();
-//						break;
 				}
 
 				$output .= $str;
