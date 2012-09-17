@@ -623,9 +623,13 @@ abstract class OnApp {
 	 *
 	 * @return void
 	 */
-	protected function setAPIResource( $resource, $append_api_version = true, $queryString = '' ) {
+	protected function setAPIResource( $resource, $queryString = '' ) {
+		if( ! empty( $queryString ) ) {
+			$queryString = '?' . $queryString;
+		}
 		$url = sprintf(
-			'%1$s/%2$s.%3$s', $this->options[ ONAPP_OPTION_CURL_URL ], $resource, $this->options[ ONAPP_OPTION_API_TYPE ] );
+			'%1$s/%2$s.%3$s%4$s', $this->options[ ONAPP_OPTION_CURL_URL ], $resource, $this->options[ ONAPP_OPTION_API_TYPE ], $queryString );
+
 		$this->ch->setOption( CURLOPT_URL, $url );
 		$this->logger->logMessage(
 			'setAPIResource: Set an option for a cURL transfer (' .
@@ -1032,7 +1036,7 @@ abstract class OnApp {
 
 				$url_args = ( $url_args ) ? preg_replace( '/%5B(0-9){1,4}%5D/', '%5B%5D', http_build_query( $url_args ) ) : '';
 
-				$this->setAPIResource( $this->getURL( $resource ), true, $url_args );
+				$this->setAPIResource( $this->getURL( $resource ), $url_args );
 				$this->sendRequest( $method, $data );
 
 				$result = $this->sendRequest( $method, $data );
