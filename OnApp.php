@@ -747,7 +747,7 @@ abstract class OnApp {
 	 */
 	protected function doCastResponseToClass() {
 		$className = $this->getClassName();
-		$this->logger->logMessage( $this->ch->getResponseStatusCode() . ' ' . __METHOD__ . ': cast data into the ' . $className . ' object.' );
+		$this->logger->logMessage( __METHOD__ . ': cast data into the ' . $className . ' object.' );
 		switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
 			case 'xml':
 			case 'json':
@@ -1228,5 +1228,12 @@ abstract class OnApp {
 		}
 
 		unset( $this->dynamicFields[ $name ] );
+	}
+
+	/**
+	 * @return \OnApp_Helper_Handler_CURL
+	 */
+	public function getCURLHandler() {
+		return $this->ch;
 	}
 }
