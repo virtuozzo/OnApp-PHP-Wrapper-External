@@ -35,14 +35,10 @@ class OnApp_Factory extends OnApp {
 	 */
 	public function factory( $name, $debug = false ) {
 		$class_name = 'OnApp_' . $name;
-
 		$result = new $class_name();
 		$result->logger->setDebug( $debug );
-
 		$result->setOption( ONAPP_OPTION_DEBUG_MODE, $debug );
-		$result->logger->setTimezone();
 		$result->options = $this->options;
-		$result->ch      = $this->ch;
 		return $result;
 	}
 }
