@@ -9,17 +9,13 @@
  * @copyright   (c) 2012 OnApp
  * @link        http://www.onapp.com/
  */
-class OnApp_Helper_Caster {
+class OnApp_Helper_Caster extends OnApp_Helper_Stub {
 	/**
-	 * @var OnApp
-	 */
-	protected static $super;
-
-	/**
-	 * @param object $obj wrapper object
+	 * @param OnApp $obj wrapper object
 	 */
 	public function __construct( $obj ) {
-		self::$super = $obj;
+		//parent::setSuper( $obj );
+		$this->super = $obj;
 	}
 
 	/**
@@ -31,9 +27,9 @@ class OnApp_Helper_Caster {
 	 * @return string
 	 */
 	public function serialize( $root, $data ) {
-		self::$super->logger->debug( 'Data to serialize: ' . print_r( $data, true ) );
+		$this->super->logger->debug( 'Data to serialize: ' . print_r( $data, true ) );
 
-		return self::getCaster()->serialize( $root, $data );
+		return $this->getCaster()->serialize( $root, $data );
 	}
 
 	/**
@@ -46,8 +42,8 @@ class OnApp_Helper_Caster {
 	 * @return array|object unserialized data
 	 */
 	public function unserialize( $className, $data, $root ) {
-		self::$super->logger->debug( 'Data to unserialize into ' . $className . ':' . PHP_EOL . $data );
-		return self::getCaster()->unserialize( $className, $data, $root );
+		$this->super->logger->debug( 'Data to unserialize into ' . $className . ':' . PHP_EOL . $data );
+		return $this->getCaster()->unserialize( $className, $data, $root );
 	}
 
 	/**
@@ -59,18 +55,16 @@ class OnApp_Helper_Caster {
 	 *
 	 * @return array
 	 */
-	public static function unserializeNested( OnAppNestedDataHolder $object ) {
-		self::$super->logger->add( 'lazy casting, call ' . __METHOD__ );
+	public function unserializeNested( OnAppNestedDataHolder $object ) {
+		$this->super->logger->add( 'lazy casting, call ' . __METHOD__ );
 
-		$className                = 'OnApp_' . $object->className;
-		$tmp_obj                  = new $className;
-		$tmp_obj->options         = self::$super->options;
-		$tmp_obj->ch              = self::$super->ch;
-		$tmp_obj->isAuthenticated = self::$super->isAuthenticated();
+		$className        = 'OnApp_' . $object->className;
+		$tmp_obj          = new $className;
+		$tmp_obj->options = $this->super->options;
 
 		$tmp = array();
 		foreach( $object->data as $data ) {
-			$tmp[ ] = self::getCaster()->unserialize( $className, $data, $tmp_obj->rootElement );
+			$tmp[ ] = $this->getCaster()->unserialize( $className, $data, $tmp_obj->rootElement );
 		}
 
 		return $tmp;
@@ -82,9 +76,13 @@ class OnApp_Helper_Caster {
 	 * @static
 	 * @return object
 	 */
-	private static function getCaster() {
-		$caster = __CLASS__ . '_' . strtoupper( self::$super->options[ 'data_type' ] );
-		return new $caster;
+	private function getCaster() {
+		$caster = __CLASS__ . '_' . strtoupper( $this->super->options[ 'data_type' ] );
+		return new $caster( $this->super );
+	}
+
+	protected function get() {
+		return $this->super;
 	}
 }
 

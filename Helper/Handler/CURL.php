@@ -1,16 +1,11 @@
 <?php
 
-class OnApp_Helper_Handler_CURL {
+class OnApp_Helper_Handler_CURL extends OnApp_Helper_Stub {
 	private $ch;
 	private $infoStorage;
 	private $requestError = false;
 	private $customOptions = array();
 	private $customHeaders = array();
-
-	/**
-	 * @var OnApp
-	 */
-	private $super;
 
 	private $defaultOptions = array(
 		CURLOPT_SSL_VERIFYPEER => false,
@@ -21,6 +16,9 @@ class OnApp_Helper_Handler_CURL {
 		CURLOPT_NOBODY         => false,
 	);
 
+	/**
+	 * @param OnApp $super
+	 */
 	public function __construct( $super ) {
 		$this->super = $super;
 		$this->ch    = curl_init();

@@ -10,6 +10,7 @@
  * @link        http://www.onapp.com/
  */
 class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
+	private $unknown_tag = 'item';
 	private $types = array(
 		'datetime' => 's',
 		'float'    => 'f',
@@ -18,11 +19,6 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 		'boolean'  => 's',
 		''         => 's'
 	);
-
-	private static $unknown_tag = 'item';
-
-	public function __construct() {
-	}
 
 	/**
 	 * Serialize wrapper data to XML
@@ -33,7 +29,7 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 	 * @return string
 	 */
 	public function serialize( $root, $data ) {
-		parent::$super->logger->add( 'Call ' . __METHOD__ );
+		$this->super->logger->logMessage( 'Call ' . __METHOD__ );
 		return $this->getXML( $data, $root );
 	}
 
@@ -48,7 +44,7 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 	 * @throws Exception
 	 */
 	public function unserialize( $className, $data, $root ) {
-		parent::$super->logger->add( 'cast data into ' . $className . ', call ' . __METHOD__ );
+		$this->super->logger->logMessage( 'cast data into ' . $className . ', call ' . __METHOD__ );
 
 		$this->className = $className;
 
@@ -56,20 +52,8 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 			$data = simplexml_load_string( $data );
 		}
 
-		// todo check this code
-		try {
-			if( ! $data->count() ) {
-				if( ONAPP_CLI_MODE ) {
-					throw new Exception( __METHOD__ . ' Data for casting could not be empty' );
-				}
-				else {
-					//todo add log message
-					return null;
-				}
-			}
-		}
-		catch( Exception $e ) {
-			echo PHP_EOL, $e->getMessage(), PHP_EOL;
+		if( empty( $data ) ) {
+			$this->super->logger->logMessage( __METHOD__ . ': get empty data for casting' );
 			return null;
 		}
 
@@ -107,10 +91,8 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 	 * @return object
 	 */
 	private function process( $item ) {
-		$obj                  = new $this->className;
-		$obj->options         = parent::$super->options;
-		$obj->ch              = parent::$super->ch;
-		$obj->isAuthenticated = parent::$super->isAuthenticated();
+		$obj          = new $this->className;
+		$obj->options = $this->super->options;
 
 		foreach( $item as $name => $value ) {
 			$boolean = $type = false;
@@ -185,7 +167,7 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 				}
 				else {
 					if( is_integer( $name ) ) {
-						$name = self::$unknown_tag;
+						$name = $this->unknown_tag;
 					}
 					$xml->addChild( $name, htmlentities( $value ) );
 				}
@@ -199,9 +181,6 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
 		}
 
 		return $this->runAfter( $xml->asXML() );
-	}
-
-	private function runBefore( &$data ) {
 	}
 
 	private function runAfter( $xml ) {

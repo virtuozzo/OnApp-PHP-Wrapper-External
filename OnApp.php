@@ -281,7 +281,7 @@ abstract class OnApp {
 	 *
 	 * @var OnApp_Helper_Handler_CURL
 	 */
-	protected $ch;
+	protected static $ch;
 
 	/**
 	 * @var string current class' name
@@ -399,7 +399,7 @@ abstract class OnApp {
 	 *
 	 * @var array
 	 */
-	var $options = array();
+	public $options = array();
 
 	/**
 	 * @var string
@@ -432,8 +432,8 @@ abstract class OnApp {
 		if( is_null( $this->version ) ) {
 			$this->setAPIResource( ONAPP_GETRESOURCE_VERSION );
 			$this->sendRequest( ONAPP_REQUEST_METHOD_GET );
-			if( $this->ch->getResponseStatusCode() == 200 ) {
-				$this->setOnAppVersion( $this->ch->getResponseBody() );
+			if( self::$ch->getResponseStatusCode() == 200 ) {
+				$this->setOnAppVersion( self::$ch->getResponseBody() );
 			}
 		}
 		return $this->version;
@@ -600,18 +600,18 @@ abstract class OnApp {
 	protected function initCURL( $user, $pass, $cookiesFile = null ) {
 		$this->logger->logDebug( __METHOD__ . ': Init Curl ( cookies file => "' . $cookiesFile . '" ).' );
 
-		$this->ch = new OnApp_Helper_Handler_CURL( $this );
+		self::$ch = new OnApp_Helper_Handler_CURL( $this );
 
 		if( ! empty( $this->options[ ONAPP_OPTION_CURL_PROXY ] ) ) {
-			$this->ch->setOption( CURLOPT_PROXY, $this->options[ ONAPP_OPTION_CURL_PROXY ] );
+			self::$ch->setOption( CURLOPT_PROXY, $this->options[ ONAPP_OPTION_CURL_PROXY ] );
 		}
 
 		if( ! is_null( $cookiesFile ) ) {
-			$this->ch->useCookies();
+			self::$ch->useCookies();
 		}
 
-		$this->ch->setOption( CURLOPT_USERPWD, $user . ':' . $pass );
-		$this->ch->setOption( CURLOPT_HEADER, true );
+		self::$ch->setOption( CURLOPT_USERPWD, $user . ':' . $pass );
+		self::$ch->setOption( CURLOPT_HEADER, true );
 	}
 
 	/**
@@ -630,7 +630,7 @@ abstract class OnApp {
 		$url = sprintf(
 			'%1$s/%2$s.%3$s%4$s', $this->options[ ONAPP_OPTION_CURL_URL ], $resource, $this->options[ ONAPP_OPTION_API_TYPE ], $queryString );
 
-		$this->ch->setOption( CURLOPT_URL, $url );
+		self::$ch->setOption( CURLOPT_URL, $url );
 		$this->logger->logMessage(
 			'setAPIResource: Set an option for a cURL transfer (' .
 				' url => "' . $url . '", ' .
@@ -665,27 +665,27 @@ abstract class OnApp {
 		}
 		$this->logger->logDebug( $debug_msg );
 
-		$this->ch->setHeader( 'Content-Length', strlen( $data ) );
-		$this->ch->setHeader( 'Accept', $this->options[ ONAPP_OPTION_API_CONTENT ] );
-		$this->ch->setHeader( 'Content-Type', $this->options[ ONAPP_OPTION_API_CONTENT ] );
+		self::$ch->setHeader( 'Content-Length', strlen( $data ) );
+		self::$ch->setHeader( 'Accept', $this->options[ ONAPP_OPTION_API_CONTENT ] );
+		self::$ch->setHeader( 'Content-Type', $this->options[ ONAPP_OPTION_API_CONTENT ] );
 
 		if( ! is_null( $data ) ) {
-			$this->ch->setOption( CURLOPT_POSTFIELDS, $data );
+			self::$ch->setOption( CURLOPT_POSTFIELDS, $data );
 		}
 
 		$method = strtolower( $method );
-		$body   = $this->ch->$method()->getResponseBody();
-		if( $this->ch->getRequestError() ) {
+		$body   = self::$ch->$method()->getResponseBody();
+		if( self::$ch->getRequestError() ) {
 			$this->logger->logError( 'Error during sending request' );
 		}
-		elseif( empty( $body ) && ( $this->ch->getResponseStatusCode() != 204 ) ) {
-			$this->logger->logError( 'Response body couldn\'t be empty for status code: ' . $this->ch->getResponseStatusCode() );
+		elseif( empty( $body ) && ( self::$ch->getResponseStatusCode() != 204 ) ) {
+			$this->logger->logError( 'Response body couldn\'t be empty for status code: ' . self::$ch->getResponseStatusCode() );
 		}
 
-		$this->logger->logDebug( 'Receive Response ' . print_r( $this->ch->getResponseBody(), true ) );
+		$this->logger->logDebug( 'Receive Response ' . print_r( self::$ch->getResponseBody(), true ) );
 
-		if( $this->ch->getRequestInfo( 'content_type' ) == $this->options[ ONAPP_OPTION_API_CONTENT ] . "; " . $this->options[ ONAPP_OPTION_API_CHARSET ] ) {
-			switch( $this->ch->getResponseStatusCode() ) {
+		if( self::$ch->getRequestInfo( 'content_type' ) == $this->options[ ONAPP_OPTION_API_CONTENT ] . "; " . $this->options[ ONAPP_OPTION_API_CHARSET ] ) {
+			switch( self::$ch->getResponseStatusCode() ) {
 				case 200:
 				case 201:
 				case 204:
@@ -700,7 +700,7 @@ abstract class OnApp {
 			}
 		}
 
-		$this->logger->logMessage( __METHOD__ . ': get response (code => ' . $this->ch->getResponseStatusCode() . ', body:' . PHP_EOL . "\t" . $this->ch->getResponseBody() );
+		$this->logger->logMessage( __METHOD__ . ': get response (code => ' . self::$ch->getResponseStatusCode() . ', body:' . PHP_EOL . "\t" . self::$ch->getResponseBody() );
 
 		return $this->castResponseToClass();
 	}
@@ -711,16 +711,16 @@ abstract class OnApp {
 	 * @return mixed (Array of Object or Object)
 	 */
 	protected function castResponseToClass() {
-		if( $this->ch->getRequestError() ) {
+		if( self::$ch->getRequestError() ) {
 			$this->logger->logError(
-				'castResponseToClass: Can\'t parse ' . $this->ch->getResponseBody(),
+				'castResponseToClass: Can\'t parse ' . self::$ch->getResponseBody(),
 				__FILE__,
 				__LINE__
 			);
 		}
 		else {
 			$this->logger->logMessage( __METHOD__ );
-			switch( $this->ch->getResponseStatusCode() ) {
+			switch( self::$ch->getResponseStatusCode() ) {
 				case 200:
 				case 201:
 				case 404:
@@ -738,7 +738,7 @@ abstract class OnApp {
 					return $this;
 
 				default:
-					$this->setErrors( 'Bad response ( code => ' . $this->ch->getResponseStatusCode() . ', response => ' . $this->ch->getResponseBody() . ' )' );
+					$this->setErrors( 'Bad response ( code => ' . self::$ch->getResponseStatusCode() . ', response => ' . self::$ch->getResponseBody() . ' )' );
 			}
 		}
 	}
@@ -756,11 +756,11 @@ abstract class OnApp {
 			case 'xml':
 			case 'json':
 				$root = $this->rootElement;
-				$data = $this->ch->getResponseBody();
+				$data = self::$ch->getResponseBody();
 
 				$objCast = new OnApp_Helper_Caster( $this );
 
-				if( $this->ch->getResponseStatusCode() > 201 ) {
+				if( self::$ch->getResponseStatusCode() > 201 ) {
 					$root   = 'errors';
 					$errors = $objCast->unserialize( $className, $data, $root );
 					$this->setErrors( $errors );
@@ -967,6 +967,9 @@ abstract class OnApp {
 			$result = array_diff_key( $result, $this->skipFromRequest );
 		}
 
+//		unset( $result['infoboxes'], $result[ 'avatar' ] );
+//		print_r( $result );
+//		exit;
 		return $result;
 	}
 
@@ -1041,7 +1044,7 @@ abstract class OnApp {
 
 				$result = $this->sendRequest( $method, $data );
 
-				if( $this->ch->getResponseStatusCode() > 400 ) {
+				if( self::$ch->getResponseStatusCode() > 400 ) {
 					if( is_null( $result ) ) {
 						$this->inheritedObject = clone $this;
 					}
@@ -1165,7 +1168,8 @@ abstract class OnApp {
 
 		if( is_object( $this->dynamicFields[ $name ] ) ) {
 			if( $this->dynamicFields[ $name ] instanceof OnAppNestedDataHolder ) {
-				$this->dynamicFields[ $name ] = OnApp_Helper_Caster::unserializeNested( $this->dynamicFields[ $name ] );
+				$caster = new OnApp_Helper_Caster( $this );
+				$this->dynamicFields[ $name ] = $caster->unserializeNested( $this->dynamicFields[ $name ] );
 			}
 		}
 		return $this->dynamicFields[ $name ];
@@ -1238,6 +1242,6 @@ abstract class OnApp {
 	 * @return \OnApp_Helper_Handler_CURL
 	 */
 	public function getCURLHandler() {
-		return $this->ch;
+		return self::$ch;
 	}
 }
