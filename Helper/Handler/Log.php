@@ -102,6 +102,13 @@ class OnApp_Helper_Handler_Log {
 	private $colorMode = false;
 
 	/**
+	 * Whether show log after execution or no
+	 *
+	 * @var bool $printLogAtFinish
+	 */
+	private $printLogAtFinish = false;
+
+	/**
 	 * Buffer containing all the information on the messages used in the class
 	 *
 	 * @access private
@@ -116,6 +123,17 @@ class OnApp_Helper_Handler_Log {
 
 	private function __construct() {
 		OnApp_Helper_Handler_Errors::init()->setLog( $this );
+	}
+
+	public function __destruct() {
+		if( $this->printLogAtFinish ) {
+			if( ONAPP_CLI_MODE ) {
+				$this->printLog();
+			}
+			else {
+				$this->printLogWithPre();
+			}
+		}
 	}
 
 	/**
@@ -134,12 +152,16 @@ class OnApp_Helper_Handler_Log {
 	/**
 	 * Sets debug status
 	 *
-	 * @param boolean $debug set new debug status
+	 * @param boolean $debugMode set new debug status
 	 *
 	 * @return void
 	 */
-	public function setDebugMode( $debug = false ) {
-		$this->debugMode = $debug;
+	public function setDebugMode( $debugMode = true ) {
+		$this->debugMode = $debugMode;
+	}
+
+	public function setPrintLogAtFinish( $printLogAtFinish = true ) {
+		$this->printLogAtFinish = $printLogAtFinish;
 	}
 
 	/**
