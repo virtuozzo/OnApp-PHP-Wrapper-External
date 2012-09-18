@@ -21,6 +21,7 @@ if( ! defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
 	 * @param string $className requested class' name
 	 *
 	 * @return bool
+	 * @throws Exception
 	 */
 	function OnAppAutoLoad( $className ) {
 		$path = str_replace( 'OnApp_', '', $className );
