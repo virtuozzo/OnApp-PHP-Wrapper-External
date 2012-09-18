@@ -36,7 +36,6 @@ class OnApp_Helper_Handler_Errors {
 
 		// set error reporting level
 		error_reporting( E_ALL | E_STRICT );
-
 		// switch off displaying errors
 		ini_set( 'display_errors', 0 );
 		// set errors handlers

@@ -967,9 +967,6 @@ abstract class OnApp {
 			$result = array_diff_key( $result, $this->skipFromRequest );
 		}
 
-//		unset( $result['infoboxes'], $result[ 'avatar' ] );
-//		print_r( $result );
-//		exit;
 		return $result;
 	}
 
