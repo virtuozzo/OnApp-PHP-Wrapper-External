@@ -266,9 +266,11 @@ class OnApp_User extends OnApp {
 			$ids = array();
 			if( ! is_null( $this->roles ) ) {
 				$data = $this->roles;
+				unset( $this->roles );
 			}
 			elseif( isset( $this->inheritedObject->roles ) && ! is_null( $this->inheritedObject->roles ) ) {
 				$data = $this->inheritedObject->roles;
+				unset( $this->inheritedObject->roles );
 			}
 			else {
 				return null;
