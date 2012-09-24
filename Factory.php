@@ -31,7 +31,7 @@ class OnApp_Factory extends OnApp {
 	 * @param string $name  class name
 	 * @param bool   $debug flag for debug mode
 	 *
-	 * @return object instance of class
+	 * @return OnApp instance of class
 	 */
 	public function factory( $name, $debug = false ) {
 		$class_name = 'OnApp_' . $name;
