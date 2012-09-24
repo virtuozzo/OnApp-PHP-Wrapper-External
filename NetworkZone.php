@@ -42,5 +42,5 @@ class OnApp_NetworkZone extends OnApp {
 	 *
 	 * @var string
 	 */
-	protected $URLPath = 'network_zones';
+	protected $URLPath = 'settings/network_zones';
 }
