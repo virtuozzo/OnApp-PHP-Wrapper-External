@@ -169,7 +169,7 @@ class OnApp_Helper_Handler_Log {
 	 *
 	 * @param boolean $colorMode
 	 */
-	public function setColorMode( $colorMode = false ) {
+	public function setColorMode( $colorMode = true ) {
 		$this->colorMode = $colorMode;
 	}
 
