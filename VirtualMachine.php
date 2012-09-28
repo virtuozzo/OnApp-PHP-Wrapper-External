@@ -342,7 +342,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 *
 	 * @param mixed $recovery reboot mode
 	 */
-	function reboot( $recovery = false ) {
+	public function reboot( $recovery = false ) {
 		if( ! $recovery ) {
 			$this->sendPost( ONAPP_GETRESOURCE_REBOOT, '' );
 		}
@@ -361,7 +361,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 *
 	 * @access public
 	 */
-	function reset_password() {
+	public function reset_password() {
 		return $this->sendPost( ONAPP_RESET_ROOT_PASSWORD );
 	}
 
@@ -370,7 +370,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 *
 	 * @access public
 	 */
-	function suspend() {
+	public function suspend() {
 		$this->sendPost( ONAPP_GETRESOURCE_SUSPEND_VM, '' );
 	}
 
@@ -379,7 +379,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 *
 	 * @access public
 	 */
-	function shutdown() {
+	public function shutdown() {
 		$this->sendPost( ONAPP_GETRESOURCE_SHUTDOWN, '' );
 	}
 
@@ -389,7 +389,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 * @param int $id            virtual machine id
 	 * @param int $hypervisor_id destination hypervisor id
 	 */
-	function migrate( $id, $hypervisor_id ) {
+	public function migrate( $id, $hypervisor_id ) {
 		if( $id ) {
 			$this->_id = $id;
 		}
@@ -412,7 +412,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 *
 	 * @return response object
 	 */
-	function change_owner( $user_id = false ) {
+	public function change_owner( $user_id = false ) {
 		if( ! $user_id ) {
 			$this->sendPost( ONAPP_GETRESOURCE_STARTUP );
 		}
@@ -434,7 +434,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 *
 	 * @access public
 	 */
-	function rebuild_network() {
+	public function rebuild_network() {
 		$this->sendPost( ONAPP_GETRESOURCE_REBUILD_NETWORK );
 	}
 
@@ -445,7 +445,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 *
 	 * @return object response object
 	 */
-	function startup( $recovery = false ) {
+	public function startup( $recovery = false ) {
 		if( ! $recovery ) {
 			$this->sendPost( ONAPP_GETRESOURCE_STARTUP, '' );
 		}
@@ -467,7 +467,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 *
 	 * @access public
 	 */
-	function unlock() {
+	public function unlock() {
 		$this->sendPost( ONAPP_GETRESOURCE_UNLOCK );
 	}
 
@@ -476,7 +476,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 *
 	 * @access public
 	 */
-	function build() {
+	public function build() {
 		if( $this->getOnAppVersion() < 2.3 ) {
 			if( isset( $this->_template_id ) && ( $this->_template_id != $this->inheritedObject->_template_id ) ) {
 				$data = array(
@@ -513,11 +513,12 @@ class OnApp_VirtualMachine extends OnApp {
 	 * Sends an API request to get the Objects. After requesting,
 	 * unserializes the received response into the array of Objects
 	 *
-	 * @param int|null $user_id
+	 * @param null|int $user_id
+	 * @param null     $url_args
 	 *
-	 * @return array|bool
+	 * @return array|bool|null
 	 */
-	function getList( $user_id = null, $url_args = null ) {
+	public function getList( $user_id = null, $url_args = null ) {
 		//todo rewrite to use parent method
 		if( is_null( $user_id ) ) {
 			return parent::getList( $user_id, $url_args );
@@ -550,7 +551,7 @@ class OnApp_VirtualMachine extends OnApp {
 	/**
 	 * Save Object in to your account.
 	 */
-	function save() {
+	public function save() {
 		if( ! is_null( $this->_id ) ) {
 			parent::save();
 			return;
@@ -567,7 +568,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 *
 	 * @return void
 	 */
-	function editAdminNote( $id, $admin_note ) {
+	public function editAdminNote( $id, $admin_note ) {
 		if( $admin_note ) {
 			$this->_admin_note = $admin_note;
 		}
