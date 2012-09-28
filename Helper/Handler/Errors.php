@@ -8,11 +8,11 @@
  * @copyright   (c) 2012 OnApp
  * @link        http://www.onapp.com/
  */
-class OnApp_Helper_Handler_Errors {
+class OnApp_Helper_Handler_Errors extends OnApp_Helper_Handler_Log {
 	/**
 	 * @var OnApp_Helper_Handler_Errors
 	 */
-	private static $instance;
+	private static $errorHandlerInstance;
 
 	/**
 	 * @var string store display_errors setting
@@ -24,11 +24,6 @@ class OnApp_Helper_Handler_Errors {
 	 * @link http://php.net/manual/en/errorfunc.constants.php
 	 */
 	private $errorsDescriptions = array();
-
-	/**
-	 * @var OnApp_Helper_Handler_Log
-	 */
-	private $logger;
 
 	private function __construct() {
 		$this->setErrorsDescriptions();
@@ -140,32 +135,28 @@ class OnApp_Helper_Handler_Errors {
 		}
 	}
 
-	public function setLog( OnApp_Helper_Handler_Log $log ) {
-		$this->logger = $log;
-	}
-
 	public static function init() {
-		if( is_null( self::$instance ) ) {
+		if( is_null( self::$errorHandlerInstance ) ) {
 			$className      = __CLASS__;
-			self::$instance = new $className;
+			self::$errorHandlerInstance = new $className;
 		}
-		return self::$instance;
+		return self::$errorHandlerInstance;
 	}
 
 	private function addToLog( $msg, $type = ONAPP_LOGGER_VALUE_MESSAGE ) {
-		if( ! is_null( $this->logger ) ) {
+		if( ! is_null( self::$logInstance ) ) {
 			$call = 'log' . ucfirst( strtolower( $type ) );
-			$this->logger->$call( $msg );
+			self::$logInstance->$call( $msg );
 		}
 	}
 
 	private function halt() {
-		if( $this->displayErrors ) {
+		if( $this->displayErrors && ! is_null( self::$logInstance ) ) {
 			if( ONAPP_CLI_MODE ) {
-				$this->logger->printLog();
+				self::$logInstance->printLog();
 			}
 			else {
-				$this->logger->printLogWithPre();
+				self::$logInstance->printLogWithPre();
 			}
 		}
 		exit;

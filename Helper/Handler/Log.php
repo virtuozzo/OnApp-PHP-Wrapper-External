@@ -119,10 +119,9 @@ class OnApp_Helper_Handler_Log {
 	/**
 	 * @var OnApp_Helper_Handler_Log log instance
 	 */
-	private static $instance;
+	protected static $logInstance;
 
 	private function __construct() {
-		OnApp_Helper_Handler_Errors::init()->setLog( $this );
 	}
 
 	public function __destruct() {
@@ -142,11 +141,11 @@ class OnApp_Helper_Handler_Log {
 	 * @return OnApp_Helper_Handler_Log log instance
 	 */
 	public static function init() {
-		if( is_null( self::$instance ) ) {
+		if( is_null( self::$logInstance ) ) {
 			$className      = __CLASS__;
-			self::$instance = new $className;
+			self::$logInstance = new $className;
 		}
-		return self::$instance;
+		return self::$logInstance;
 	}
 
 	/**
