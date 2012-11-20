@@ -24,7 +24,7 @@
  * 
  *
  */
-class OnApp_EdgeGroup_AssignedLocation extends Location {
+class OnApp_EdgeGroup_AssignedLocation extends OnApp {
 
     /**
      * root tag used in the API request
@@ -44,6 +44,27 @@ class OnApp_EdgeGroup_AssignedLocation extends Location {
         $this->className = __CLASS__;
     }
 
-    
-    
+    /**
+    * API Fields description
+    *
+    * @param string|float $version OnApp API version
+    * @param string $className current class' name
+    * @return array
+    */
+    public function initFields( $version = null, $className = '' ) {
+        switch( $version ) {
+            case '2.3':
+                $this->fields = array(
+                    'location' => array(
+                        ONAPP_FIELD_MAP => '_location',
+                        ONAPP_FIELD_TYPE => 'object',
+                        ONAPP_FIELD_CLASS => 'EdgeGroup_Location',
+                    )
+                );
+                break;
+        }
+        
+        parent::initFields( $version, __CLASS__ );
+        return $this->fields;
+    }
 }
