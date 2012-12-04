@@ -509,4 +509,21 @@ class OnApp_User extends OnApp {
 			parent::delete();
 		}
 	}
+	
+	public function getJson( $id ) {
+		$this->_id = $id;
+		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
+		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
+		$root = json_decode($response[ 'response_body' ]);
+		return $root->user;
+	}
+	
+	public function castJsonToClass( $json ) {
+		$content = array();
+		$content[ 'info' ][ 'http_code' ] = 200;
+		$data = new Object();
+		$data->user = $json;
+		$content[ 'content_body' ] = json_decode($data);
+		return $this->castStringToClass( $data );
+	}
 }
