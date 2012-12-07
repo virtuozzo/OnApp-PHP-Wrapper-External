@@ -79,7 +79,6 @@ class OnApp_User extends OnApp {
 	public static $nestedData = array(
 		'roles'             => 'Role',
 		'used_ip_addresses' => 'User_UsedIpAddress',
-		'additional_fields' => 'User_AdditionalField'
 	);
 
 	/**
@@ -197,6 +196,7 @@ class OnApp_User extends OnApp {
 
 	public function load( $id = null ) {
 		$result = parent::load( $id );
+		$this->parseAdditionalFields();
 		return $result;
 	}
 
@@ -284,6 +284,17 @@ class OnApp_User extends OnApp {
 		}
 		else {
 			return $this->role_ids;
+		}
+	}
+
+	private function parseAdditionalFields() {
+		if( ! empty( $this->inheritedObject->additional_fields ) ) {
+			$tmp = new stdClass();
+			foreach( $this->inheritedObject->additional_fields as $field ) {
+				$tmp->{$field->additional_field->name} = $field->additional_field->value;
+			}
+			$this->inheritedObject->additional_fields = $tmp;
+			unset( $tmp );
 		}
 	}
 }
