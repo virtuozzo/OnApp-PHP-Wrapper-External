@@ -74,7 +74,8 @@ class OnApp_Helper_Caster extends OnApp_Helper_Stub {
 	 * Get caster depending on data type
 	 *
 	 * @static
-	 * @return object
+	 *
+	 * @return OnApp_Helper_Caster_JSON|OnApp_Helper_Caster_XML
 	 */
 	private function getCaster() {
 		$caster = __CLASS__ . '_' . strtoupper( $this->super->options[ 'data_type' ] );
