@@ -288,10 +288,28 @@ class OnApp_User extends OnApp {
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'wowza_key' ]   = array(
-					ONAPP_FIELD_MAP => '_wowza_key',
+				$this->fields[ 'wowza_key' ] = array(
+					ONAPP_FIELD_MAP       => '_wowza_key',
+					ONAPP_FIELD_TYPE      => 'string',
+					ONAPP_FIELD_READ_ONLY => true,
+				);
+				$this->fields[ 'avatar' ]   = array(
+					ONAPP_FIELD_MAP => 'avatar',
 					ONAPP_FIELD_TYPE => 'string',
 					ONAPP_FIELD_READ_ONLY => true,
+				);
+				$this->fields[ 'password_changed_at' ]   = array(
+					ONAPP_FIELD_MAP => 'password_changed_at',
+					ONAPP_FIELD_TYPE => 'string',
+					ONAPP_FIELD_READ_ONLY => true,
+				);
+				$this->fields[ 'use_gravatar' ]   = array(
+					ONAPP_FIELD_MAP => 'use_gravatar',
+					ONAPP_FIELD_TYPE => 'boolean',
+					ONAPP_FIELD_READ_ONLY => true,
+				);
+				$this->fields[ 'infoboxes' ]   = array(
+					ONAPP_FIELD_MAP => 'infoboxes',
 				);
 				break;
 		}
@@ -415,6 +433,7 @@ class OnApp_User extends OnApp {
 	function load( $id = null ) {
 		$result = parent::load( $id );
 		$this->initFields( $this->getAPIVersion() );
+		$this->parseAdditionalFields();
 
 		return $result;
 	}
@@ -426,7 +445,7 @@ class OnApp_User extends OnApp {
 	 *
 	 * @return bool|mixed
 	 */
-	function getListByGroupId( $group_id = NULL ) {
+	function getListByGroupId( $group_id = null ) {
 		if( $group_id ) {
 			$this->_user_group_id = $group_id;
 		}
@@ -507,6 +526,17 @@ class OnApp_User extends OnApp {
 		}
 		else {
 			parent::delete();
+		}
+	}
+
+	private function parseAdditionalFields() {
+		if( ! empty( $this->_obj->_additional_fields ) ) {
+			$tmp = new stdClass();
+			foreach( $this->_obj->_additional_fields as $field ) {
+				$tmp->{$field->additional_field->name} = $field->additional_field->value;
+			}
+			$this->_obj->_additional_fields = $tmp;
+			unset( $tmp );
 		}
 	}
 }
