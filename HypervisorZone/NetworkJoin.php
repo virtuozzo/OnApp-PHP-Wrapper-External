@@ -77,7 +77,7 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 					'hypervisor_id' => array(
 						ONAPP_FIELD_MAP => '_hypervisor_id',
 						ONAPP_FIELD_TYPE => 'integer',
-					),                    
+					),
 				);
 				break;
 
@@ -101,7 +101,7 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 				break;
            case 3.0:
 				$this->fields = $this->initFields( 2.3 );
-				break;            
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -158,7 +158,7 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 	 * @param integet hypervisor zone id
 	 * @return array of newtwork join objects
 	 */
-	function getList( $target_join_id = null ) {
+	function getList( $target_join_id = null, $url_args = null ) {
 		if( is_null( $target_join_id ) && !is_null( $this->_target_join_id ) ) {
 			$target_join_id = $this->_target_join_id;
 		}
