@@ -24,6 +24,11 @@ if( ! defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
 	 * @throws Exception
 	 */
 	function OnAppAutoLoad( $className ) {
+		// check if called class belongs to OnApp wrapper
+		if( strpos( $className, 'OnApp' ) !== 0 ) {
+			return false;
+		}
+
 		$path = str_replace( 'OnApp_', '', $className );
 		$path = explode( '_', $path );
 		$path = ONAPP_WRAPPER_ROOT_DIR . implode( DIRECTORY_SEPARATOR, $path ) . '.php';
@@ -51,7 +56,7 @@ if( ! defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
 	/**
 	 * Register autoload handler
 	 */
-	spl_autoload_register( 'OnAppAutoLoad' );
+	spl_autoload_register( 'OnAppAutoLoad', true, true );
 
 	/**
 	 * Detect if the code run in CLI for testing purposes
