@@ -1037,8 +1037,6 @@ abstract class OnApp {
 				$url_args = ( $url_args ) ? preg_replace( '/%5B(0-9){1,4}%5D/', '%5B%5D', http_build_query( $url_args ) ) : '';
 
 				$this->setAPIResource( $this->getURL( $resource ), $url_args );
-				$this->sendRequest( $method, $data );
-
 				$result = $this->sendRequest( $method, $data );
 
 				if( self::$ch->getResponseStatusCode() > 400 ) {
