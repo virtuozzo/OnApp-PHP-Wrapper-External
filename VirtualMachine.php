@@ -357,18 +357,26 @@ class OnApp_VirtualMachine extends OnApp {
 	}
 
 	/**
-	 * Resets Virtual Machine Root Password
+	 * Set|Reset Virtual Machine Root Password
 	 *
-	 * @access public
+	 * @param string|null $newPassword new password
+	 *
+	 * @return object
 	 */
-	public function reset_password() {
-		return $this->sendPost( ONAPP_RESET_ROOT_PASSWORD );
+	public function reset_password( $newPassword = null ) {
+		if( $newPassword ) {
+			$this->initial_root_password = $newPassword;
+			//$this->initial_root_password_confirmation = $newPassword;
+			$newPassword = array(
+				'root' => $this->rootElement,
+				'data' => array( 'initial_root_password' => $newPassword ),
+			);
+		}
+		return $this->sendPost( ONAPP_RESET_ROOT_PASSWORD, $newPassword );
 	}
 
 	/**
 	 * Suspends Virtual Machine
-	 *
-	 * @access public
 	 */
 	public function suspend() {
 		$this->sendPost( ONAPP_GETRESOURCE_SUSPEND_VM, '' );
@@ -376,8 +384,6 @@ class OnApp_VirtualMachine extends OnApp {
 
 	/**
 	 * Stop Virtual Machine
-	 *
-	 * @access public
 	 */
 	public function shutdown() {
 		$this->sendPost( ONAPP_GETRESOURCE_SHUTDOWN, '' );
@@ -432,7 +438,6 @@ class OnApp_VirtualMachine extends OnApp {
 	/**
 	 * Rebuilds network for virtual machine
 	 *
-	 * @access public
 	 */
 	public function rebuild_network() {
 		$this->sendPost( ONAPP_GETRESOURCE_REBUILD_NETWORK );
@@ -464,8 +469,6 @@ class OnApp_VirtualMachine extends OnApp {
 
 	/**
 	 * Unlock Virtual machine
-	 *
-	 * @access public
 	 */
 	public function unlock() {
 		$this->sendPost( ONAPP_GETRESOURCE_UNLOCK );
@@ -473,8 +476,6 @@ class OnApp_VirtualMachine extends OnApp {
 
 	/**
 	 * Build or rebuild Virtual machine
-	 *
-	 * @access public
 	 */
 	public function build() {
 		if( $this->getOnAppVersion() < 2.3 ) {
