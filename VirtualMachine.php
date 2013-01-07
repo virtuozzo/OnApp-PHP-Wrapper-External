@@ -118,6 +118,7 @@ define( 'ONAPP_GETRESOURCE_MIGRATE', 'migrate' );
  * @property integer  $vip
  * @property integer  $volume_limit
  * @property integer  $speed_limit
+ * @property integer  $required_startup
  * @property string   $state
  */
 class OnApp_VirtualMachine extends OnApp {
@@ -501,8 +502,8 @@ class OnApp_VirtualMachine extends OnApp {
 			$data = array(
 				'root' => 'virtual_machine',
 				'data' => array(
-					'template_id'      => $this->_template_id ? $this->_template_id : $this->inheritedObject->_template_id,
-					'required_startup' => $this->_required_startup
+					'template_id'      => $this->template_id ? $this->template_id : $this->inheritedObject->template_id,
+					'required_startup' => $this->required_startup
 				)
 			);
 		}

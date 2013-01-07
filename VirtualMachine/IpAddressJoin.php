@@ -29,6 +29,7 @@
  * @property string   $updated_at
  * @property integer  $network_interface_id
  * @property integer  $ip_address_id
+ * @property integer  $virtual_machine_id
  */
 class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 	public static $nestedData = array(
