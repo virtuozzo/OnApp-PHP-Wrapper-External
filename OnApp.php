@@ -111,8 +111,6 @@ define( 'ONAPP_FIELD_DEFAULT_VALUE', 'default' );
  */
 define( 'ONAPP_FIELD_CLASS', 'class' );
 
-define( 'ONAPP_OPTION_DEBUG_MODE', 'debug_mode' );
-
 define( 'ONAPP_GETRESOURCE_DEFAULT', 'default' );
 
 define( 'ONAPP_GETRESOURCE_LOAD', 'load' );
@@ -305,8 +303,6 @@ abstract class OnApp {
 		ONAPP_OPTION_API_TYPE    => 'json',
 		// API request and response content
 		ONAPP_OPTION_API_CONTENT => 'application/json',
-		// Debug mode
-		ONAPP_OPTION_DEBUG_MODE  => false,
 	);
 
 	/**
@@ -357,7 +353,6 @@ abstract class OnApp {
 		ONAPP_OPTION_API_TYPE,
 		ONAPP_OPTION_API_CHARSET,
 		ONAPP_OPTION_API_CONTENT,
-		ONAPP_OPTION_DEBUG_MODE
 	);
 
 	/**
@@ -391,9 +386,6 @@ abstract class OnApp {
 	 *
 	 *        // API request and response content
 	 *        ONAPP_OPTION_API_CONTENT   => 'application/xml',
-	 *
-	 *          // Debug mode
-	 *          ONAPP_OPTION_DEBUG_MODE => false
 	 *    );
 	 * </code>
 	 *
@@ -574,8 +566,6 @@ abstract class OnApp {
 	 * @return void
 	 */
 	public function auth( $url, $user, $pass, $proxy = '' ) {
-		$this->logger->setDebugMode( $this->options[ ONAPP_OPTION_DEBUG_MODE ] );
-
 		$this->logger->setTimezone();
 
 		$this->logger->logDebug( 'auth: Authorization( url => ' . $url . ', user => ' . $user . ', pass => ******** ).' );

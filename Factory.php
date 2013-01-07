@@ -29,15 +29,12 @@ class OnApp_Factory extends OnApp {
 	 * Craft new object
 	 *
 	 * @param string $name  class name
-	 * @param bool   $debug flag for debug mode
 	 *
 	 * @return OnApp instance of class
 	 */
-	public function factory( $name, $debug = false ) {
+	public function factory( $name ) {
 		$class_name = 'OnApp_' . $name;
 		$result = new $class_name();
-		$result->logger->setDebug( $debug );
-		$result->setOption( ONAPP_OPTION_DEBUG_MODE, $debug );
 		$result->options = $this->options;
 		return $result;
 	}
