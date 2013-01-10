@@ -75,7 +75,8 @@ class OnApp_Transaction extends OnApp {
 	 * Sends an API request to get the Objects. After requesting,
 	 * unserializes the received response into the array of Objects
 	 *
-	 * @param int $page
+	 * @param int   $page
+	 * @param mixed $url_args additional parameters
 	 *
 	 * @return the array of Object instances
 	 */
@@ -116,7 +117,7 @@ class OnApp_Transaction extends OnApp {
 	 * @return type
 	 */
 	function load_with_output( $id ) {
-		$this->_id = $id;
+		$this->id = $id;
 		return $this->sendGet( ONAPP_GETRESOURCE_LOAD, null, array( 'log' => '' ) );
 	}
 }

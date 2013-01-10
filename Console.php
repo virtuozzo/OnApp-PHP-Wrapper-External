@@ -58,7 +58,6 @@ class OnApp_Console extends OnApp {
 	 * @param string $action action name
 	 *
 	 * @return string API resource
-	 * @access public
 	 *
 	 * @see    getURL
 	 */
@@ -73,7 +72,7 @@ class OnApp_Console extends OnApp {
 				 * @alias  /console_remote/:remote_key(.:format)
 				 * @format {:controller=>"virtual_machines", :action=>"console_remote"}
 				 */
-				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->URLPath;
+				$resource = 'virtual_machines/' . $this->virtual_machine_id . '/' . $this->URLPath;
 				$this->logger->logDebug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
@@ -94,29 +93,28 @@ class OnApp_Console extends OnApp {
 	 * @param integer $virtual_machine_id Object id
 	 *
 	 * @return mixed serialized Object instance from API
-	 * @access public
 	 */
 	function load( $virtual_machine_id = null ) {
-		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
-			$virtual_machine_id = $this->_virtual_machine_id;
+		if( is_null( $virtual_machine_id ) && ! is_null( $this->virtual_machine_id ) ) {
+			$virtual_machine_id = $this->virtual_machine_id;
 		}
 
 		if( is_null( $virtual_machine_id ) &&
-			isset( $this->inheritedObject ) &&
-			! is_null( $this->inheritedObject->_virtual_machine_id )
+			isset( $this->loadedObject ) &&
+			! is_null( $this->loadedObject->virtual_machine_id )
 		) {
-			$virtual_machine_id = $this->inheritedObject->_virtual_machine_id;
+			$virtual_machine_id = $this->loadedObject->virtual_machine_id;
 		}
 
 		$this->logger->logMessage( 'load: Load class ( id => "' . $virtual_machine_id . '").' );
 
 		if( ! is_null( $virtual_machine_id ) ) {
-			$this->_virtual_machine_id = $virtual_machine_id;
+			$this->virtual_machine_id = $virtual_machine_id;
 
 			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 
 			$result                = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
-			$this->inheritedObject = $result;
+			$this->loadedObject = $result;
 
 			return $result;
 		}
@@ -133,8 +131,6 @@ class OnApp_Console extends OnApp {
 	 * Activates action performed with object
 	 *
 	 * @param string $action_name the name of action
-	 *
-	 * @access public
 	 */
 	function activate( $action_name ) {
 		switch( $action_name ) {

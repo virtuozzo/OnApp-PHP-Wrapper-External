@@ -77,7 +77,7 @@ class OnApp_LoadBalancingCluster extends OnApp {
 				 * @alias  /users/:user_id/load_balancing_clusters(.:format)
 				 * @format {:controller=>"load_balancing_clusters", :action=>"index"}
 				 */
-				$resource = 'users/' . $this->_user_id . '/load_balancing_clusters';
+				$resource = 'users/' . $this->user_id . '/load_balancing_clusters';
 				break;
 
 			default:
@@ -160,7 +160,6 @@ class OnApp_LoadBalancingCluster extends OnApp {
 		);
 
 		parent::save();
-		return $result;
 	}
 
 	/**
@@ -172,7 +171,7 @@ class OnApp_LoadBalancingCluster extends OnApp {
 	 */
 	function getListByUserId( $user_id = null ) {
 		if( $user_id ) {
-			$this->_user_id = $user_id;
+			$this->user_id = $user_id;
 		}
 		else {
 			$this->logger->logError(
@@ -191,8 +190,8 @@ class OnApp_LoadBalancingCluster extends OnApp {
 			return false;
 		}
 
-		$result                = $this->doCastResponseToClass( $response );
-		$this->inheritedObject = $result;
+		$result             = $this->doCastResponseToClass( $response );
+		$this->loadedObject = $result;
 
 		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
 	}

@@ -56,7 +56,6 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 	 * @param string $action action name
 	 *
 	 * @return string API resource
-	 * @access public
 	 */
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
@@ -97,7 +96,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 					$this->virtual_machine_id = $this->URLID;
 				}
 
-				if( is_null( $this->virtual_machine_id ) && is_null( $this->inheritedObject->virtual_machine_id ) ) {
+				if( is_null( $this->virtual_machine_id ) && is_null( $this->loadedObject->virtual_machine_id ) ) {
 					$this->logger->logError(
 						'getURL( ' . $action . ' ): property virtual_machine_id not set.',
 						__FILE__,
@@ -106,7 +105,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 				}
 				else {
 					if( is_null( $this->virtual_machine_id ) ) {
-						$this->virtual_machine_id = $this->inheritedObject->virtual_machine_id;
+						$this->virtual_machine_id = $this->loadedObject->virtual_machine_id;
 					}
 				}
 
@@ -127,9 +126,9 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 	 * unserializes the received response into the array of Objects
 	 *
 	 * @param integer $virtual_machine_id Virtual Machine id
+	 * @param mixed   $url_args           additional parameters
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
-	 * @access public
 	 */
 	function getList( $virtual_machine_id = null, $url_args = null ) {
 		if( is_null( $virtual_machine_id ) && ! is_null( $this->virtual_machine_id ) ) {
@@ -161,7 +160,6 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 	 * @param integer $virtual_machine_id Virtual Machine id
 	 *
 	 * @return mixed serialized Object instance from API
-	 * @access public
 	 */
 	function load( $id = null, $virtual_machine_id = null ) {
 		if( ! is_null( $this->URLID ) ) {
@@ -176,8 +174,8 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 			$id = $this->id;
 		}
 
-		if( is_null( $id ) && isset( $this->inheritedObject ) && ! is_null( $this->inheritedObject->id ) ) {
-			$id = $this->inheritedObject->id;
+		if( is_null( $id ) && isset( $this->loadedObject ) && ! is_null( $this->loadedObject->id ) ) {
+			$id = $this->loadedObject->id;
 		}
 
 		$this->logger->logMessage( 'load: Load class ( id => ' . $id . ' ).' );
@@ -188,7 +186,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 
 			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 			$result                = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
-			$this->inheritedObject = $result;
+			$this->loadedObject = $result;
 
 			return $result;
 		}

@@ -87,7 +87,6 @@ class OnApp_Profile extends OnApp {
 	 * @param string $action action name
 	 *
 	 * @return string API resource
-	 * @access public
 	 */
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		/**
@@ -114,7 +113,6 @@ class OnApp_Profile extends OnApp {
 	 * @param integer $id Object id
 	 *
 	 * @return mixed serialized Object instance from API
-	 * @access public
 	 */
 	function load( $id = null ) {
 		$this->activate( ONAPP_ACTIVATE_LOAD );
@@ -124,7 +122,7 @@ class OnApp_Profile extends OnApp {
 		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 
 		$result                = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
-		$this->inheritedObject = $result;
+		$this->loadedObject = $result;
 
 		return $result;
 	}

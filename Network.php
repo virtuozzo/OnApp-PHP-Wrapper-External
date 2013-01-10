@@ -77,7 +77,7 @@ class OnApp_Network extends OnApp {
 				 * @alias  /settings/hypervisor_zones/:hypervisor_group_id/networks(.:format)
 				 * @format {:controller=>"networks", :action=>"index"}
 				 */
-				$resource = 'settings/hypervisor_zones/' . $this->_hypervisor_group_id . '/networks';
+				$resource = 'settings/hypervisor_zones/' . $this->hypervisor_group_id . '/networks';
 				break;
 
 			case ONAPP_GETRESOURCE_IP_ADDRESSES:
@@ -89,7 +89,7 @@ class OnApp_Network extends OnApp {
 				 * @alias  /settings/networks/:network_id/ip_addresses(.:format)
 				 * @format {:controller=>"ip_addresses", :action=>"index"}
 				 */
-				$resource = $this->URLPath . '/' . $this->_id . '/ip_address';
+				$resource = $this->URLPath . '/' . $this->id . '/ip_address';
 				break;
 
 			default:
@@ -123,7 +123,7 @@ class OnApp_Network extends OnApp {
 	 */
 	function getListByHypervisorGroupId( $hypervisor_group_id = null ) {
 		if( $hypervisor_group_id ) {
-			$this->_hypervisor_group_id = $hypervisor_group_id;
+			$this->hypervisor_group_id = $hypervisor_group_id;
 		}
 		else {
 			$this->logger->logError(
@@ -143,7 +143,7 @@ class OnApp_Network extends OnApp {
 		}
 
 		$result                = $this->doCastResponseToClass( $response );
-		$this->inheritedObject = $result;
+		$this->loadedObject = $result;
 
 		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
 	}

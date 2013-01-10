@@ -56,7 +56,6 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 	 * @param string $action action name
 	 *
 	 * @return string API resource
-	 * @access public
 	 */
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
@@ -85,7 +84,7 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 				 * @alias   /settings/hypervisor_zones/:hypervisor_group_id/network_joins/:id(.:format)
 				 * @format  {:controller=>"network_joins", :action=>"destroy"}
 				 */
-				$resource = 'settings/hypervisor_zones/' . $this->_target_join_id . '/' . $this->URLPath;
+				$resource = 'settings/hypervisor_zones/' . $this->target_join_id . '/' . $this->URLPath;
 				$this->logger->logDebug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
@@ -99,17 +98,18 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 	/**
 	 * Gets list of network joins to particular hypervisor zone
 	 *
-	 * @param integet hypervisor zone id
+	 * @param integer $target_join_id hypervisor zone id
+	 * @param mixed   $url_args       additional parameters
 	 *
-	 * @return array of newtwork join objects
+	 * @return array of network join objects
 	 */
 	function getList( $target_join_id = null, $url_args = null ) {
-		if( is_null( $target_join_id ) && ! is_null( $this->_target_join_id ) ) {
-			$target_join_id = $this->_target_join_id;
+		if( is_null( $target_join_id ) && ! is_null( $this->target_join_id ) ) {
+			$target_join_id = $this->target_join_id;
 		}
 
 		if( ! is_null( $target_join_id ) ) {
-			$this->_target_join_id = $target_join_id;
+			$this->target_join_id = $target_join_id;
 			return parent::getList( $target_join_id, $url_args );
 		}
 		else {

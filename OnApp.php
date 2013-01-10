@@ -241,15 +241,15 @@ define( 'ONAPP_REQUEST_METHOD_DELETE', 'DELETE' );
  * Create a VM:
  *
  * <code>
- *     $vm_obj->_label               = '{VM Label}';
- *     $vm_obj->_memory              = {VM RAM };
- *     $vm_obj->_cpu_shares          = {VM CPU priority};
- *     $vm_obj->_hostname            = '{Hostname}';
- *     $vm_obj->_cpus                = {number of VM CPUs};
- *     $vm_obj->_primary_disk_size   = {VM Disk Space};
- *     $vm_obj->_swap_disk_size      = {VM Swap Size};
- *     $vm_obj->_template_id         = {VM Template ID};
- *     $vm_obj->_allowed_hot_migrate = {VM Hot Migrate Boolean Value};
+ *     $vm_obj->label               = '{VM Label}';
+ *     $vm_obj->memory              = {VM RAM };
+ *     $vm_obj->cpu_shares          = {VM CPU priority};
+ *     $vm_obj->hostname            = '{Hostname}';
+ *     $vm_obj->cpus                = {number of VM CPUs};
+ *     $vm_obj->primary_disk_size   = {VM Disk Space};
+ *     $vm_obj->swap_disk_size      = {VM Swap Size};
+ *     $vm_obj->template_id         = {VM Template ID};
+ *     $vm_obj->allowed_hot_migrate = {VM Hot Migrate Boolean Value};
  *
  *     $vm_obj->save();
  * </code>
@@ -258,8 +258,8 @@ define( 'ONAPP_REQUEST_METHOD_DELETE', 'DELETE' );
  * Edit VM:
  *
  * <code>
- *     $vm_obj->_id = {VM ID};
- *     $vm_obj->_{Field You Want To Edit} = {New Value};
+ *     $vm_obj->id = {VM ID};
+ *     $vm_obj->{Field You Want To Edit} = {New Value};
  *
  *     $vm_obj->save();
  * </code>
@@ -324,7 +324,7 @@ abstract class OnApp {
 	 *
 	 * @var object
 	 */
-	public $inheritedObject;
+	public $loadedObject;
 
 	/**
 	 * @var boolean
@@ -479,7 +479,7 @@ abstract class OnApp {
 	 *
 	 * <code>
 	 *    function getURL() {
-	 *        return "alias/" . $this->_field_name . "/" . $this->URLPath;
+	 *        return "alias/" . $this->field_name . "/" . $this->URLPath;
 	 *    }
 	 * </code>
 	 *
@@ -816,15 +816,15 @@ abstract class OnApp {
 	public function load( $id = null ) {
 		$this->activate( ONAPP_ACTIVATE_LOAD );
 
-		if( is_null( $id ) && ! is_null( $this->_id ) ) {
-			$id = $this->_id;
+		if( is_null( $id ) && ! is_null( $this->id ) ) {
+			$id = $this->id;
 		}
 
 		if( is_null( $id ) &&
-			isset( $this->inheritedObject ) &&
-			! is_null( $this->inheritedObject->_id )
+			isset( $this->loadedObject ) &&
+			! is_null( $this->loadedObject->id )
 		) {
-			$id = $this->inheritedObject->_id;
+			$id = $this->loadedObject->id;
 		}
 
 		if( is_null( $id ) ) {
@@ -838,8 +838,8 @@ abstract class OnApp {
 
 			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 
-			$this->inheritedObject = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
-			$this->id              = $this->inheritedObject->id;
+			$this->loadedObject = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
+			$this->id              = $this->loadedObject->id;
 		}
 		else {
 			$this->logger->logError( 'load: property id not set.', __FILE__, __LINE__ );
@@ -900,7 +900,7 @@ abstract class OnApp {
 				$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST, $data );
 
 				$result                = $this->castResponseToClass( $response );
-				$this->inheritedObject = $result;
+				$this->loadedObject = $result;
 				break;
 
 			default:
@@ -942,11 +942,11 @@ abstract class OnApp {
 	 */
 	protected function getFieldsToSend() {
 		$this->logger->logDebug( 'getFieldsToSend: Prepare data array:' );
-		if( empty( $this->inheritedObject->dynamicFields ) ) {
+		if( empty( $this->loadedObject->dynamicFields ) ) {
 			$result = $this->dynamicFields;
 		}
 		else {
-			$result = array_merge( $this->inheritedObject->dynamicFields, $this->dynamicFields );
+			$result = array_merge( $this->loadedObject->dynamicFields, $this->dynamicFields );
 		}
 
 		if( ! empty( $this->skipFromRequest ) ) {
@@ -979,7 +979,7 @@ abstract class OnApp {
 	public function delete() {
 		$this->activate( ONAPP_ACTIVATE_DELETE );
 
-		$this->logger->logMessage( 'Delete existing Object ( id => ' . $this->_id . ' ).' );
+		$this->logger->logMessage( 'Delete existing Object ( id => ' . $this->id . ' ).' );
 
 		$this->sendDelete( ONAPP_GETRESOURCE_DELETE );
 
@@ -1031,15 +1031,15 @@ abstract class OnApp {
 
 				if( self::$ch->getResponseStatusCode() > 400 ) {
 					if( is_null( $result ) ) {
-						$this->inheritedObject = clone $this;
+						$this->loadedObject = clone $this;
 					}
 					else {
-						$this->inheritedObject->errors = $result->getErrorsAsArray();
+						$this->loadedObject->errors = $result->getErrorsAsArray();
 					}
 					return false;
 				}
 				else {
-					$this->inheritedObject = $result;
+					$this->loadedObject = $result;
 				}
 				break;
 
@@ -1136,7 +1136,7 @@ abstract class OnApp {
 				return $this->getErrorsAsArray();
 
 			case '_obj':
-				return $this->inheritedObject;
+				return $this->loadedObject;
 		}
 
 		if( ! isset( $this->dynamicFields[ $name ] ) ) {

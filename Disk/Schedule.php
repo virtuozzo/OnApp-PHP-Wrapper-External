@@ -65,13 +65,12 @@ class OnApp_Disk_Schedule extends OnApp {
 	 * @param string $action action name
 	 *
 	 * @return string API resource
-	 * @access public
 	 */
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		$show_log_msg = true;
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_LIST_BY_DISK_ID:
-				$resource = 'settings/disks/' . $this->_target_id . '/' . $this->URLPath;
+				$resource = 'settings/disks/' . $this->target_id . '/' . $this->URLPath;
 				break;
 
 			default:
@@ -93,11 +92,10 @@ class OnApp_Disk_Schedule extends OnApp {
 	 * @param integer $disk_id Virtual Machine Disk id
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
-	 * @access public
 	 */
 	function getListByDiskId( $disk_id = null ) {
 		if( $disk_id ) {
-			$this->_target_id = $disk_id;
+			$this->target_id = $disk_id;
 		}
 
 		$this->activate( ONAPP_ACTIVATE_GETLIST );
@@ -117,7 +115,7 @@ class OnApp_Disk_Schedule extends OnApp {
 	}
 
 	function save() {
-		if( $this->_target_id ) {
+		if( $this->target_id ) {
 			//todo check this code
 			$this->fields[ 'target_id' ][ ONAPP_FIELD_REQUIRED ]        = true;
 			$this->fields[ 'target_type' ][ ONAPP_FIELD_REQUIRED ]      = true;

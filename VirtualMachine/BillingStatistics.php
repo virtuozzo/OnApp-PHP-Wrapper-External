@@ -58,7 +58,6 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
 	 * @param string $action action name
 	 *
 	 * @return string API resource
-	 * @access public
 	 */
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
@@ -71,7 +70,7 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
 				 * @alias  /virtual_machines/:virtual_machine_id/vm_stats(.:format)
 				 * @format {:controller=>"vm_stats", :action=>"index"}
 				 */
-				if( is_null( $this->_virtual_machine_id ) && is_null( $this->inheritedObject->_virtual_machine_id ) ) {
+				if( is_null( $this->virtual_machine_id ) && is_null( $this->loadedObject->virtual_machine_id ) ) {
 					$this->logger->logError(
 						'getURL( ' . $action . ' ): property virtual_machine_id not set.',
 						__FILE__,
@@ -79,12 +78,12 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
 					);
 				}
 				else {
-					if( is_null( $this->_virtual_machine_id ) ) {
-						$this->_virtual_machine_id = $this->inheritedObject->_virtual_machine_id;
+					if( is_null( $this->virtual_machine_id ) ) {
+						$this->virtual_machine_id = $this->loadedObject->virtual_machine_id;
 					}
 				}
 
-				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->URLPath;
+				$resource = 'virtual_machines/' . $this->virtual_machine_id . '/' . $this->URLPath;
 				$this->logger->logDebug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
@@ -100,17 +99,17 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
 	 * unserializes the received response into the array of Objects
 	 *
 	 * @param integer $virtual_machine_id User ID
+	 * @param mixed   $url_args           additional parameters
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
-	 * @access public
 	 */
 	function getList( $virtual_machine_id = null, $url_args = null ) {
-		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
-			$virtual_machine_id = $this->_virtual_machine_id;
+		if( is_null( $virtual_machine_id ) && ! is_null( $this->virtual_machine_id ) ) {
+			$virtual_machine_id = $this->virtual_machine_id;
 		}
 
 		if( ! is_null( $virtual_machine_id ) ) {
-			$this->_virtual_machine_id = $virtual_machine_id;
+			$this->virtual_machine_id = $virtual_machine_id;
 
 			return parent::getList( $virtual_machine_id, $url_args );
 		}
@@ -127,8 +126,6 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
 	 * Activates action performed with object
 	 *
 	 * @param string $action_name the name of action
-	 *
-	 * @access public
 	 */
 	function activate( $action_name ) {
 		switch( $action_name ) {

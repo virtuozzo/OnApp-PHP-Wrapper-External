@@ -64,7 +64,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	 * @param string $action action name
 	 *
 	 * @return string API resource
-	 * @access public
+
 	 */
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		$show_log_msg = true;
@@ -110,7 +110,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 				 * @alias   /billing_plans/:billing_plan_id/base_resources/:id(.:format)
 				 * @format  {:controller=>"base_resources", :action=>"destroy"}
 				 */
-				if( is_null( $this->_billing_plan_id ) && is_null( $this->inheritedObject->_billing_plan_id ) ) {
+				if( is_null( $this->billing_plan_id ) && is_null( $this->loadedObject->billing_plan_id ) ) {
 					$this->logger->logError(
 						'getURL( ' . $action . ' ): property billing_plan_id not set.',
 						__FILE__,
@@ -118,12 +118,12 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 					);
 				}
 				else {
-					if( is_null( $this->_billing_plan_id ) ) {
-						$this->_billing_plan_id = $this->inheritedObject->_billing_plan_id;
+					if( is_null( $this->billing_plan_id ) ) {
+						$this->billing_plan_id = $this->loadedObject->billing_plan_id;
 					}
 				}
 
-				$resource = 'billing_plans/' . $this->_billing_plan_id . '/' . $this->URLPath;
+				$resource = 'billing_plans/' . $this->billing_plan_id . '/' . $this->URLPath;
 				break;
 
 			default:
@@ -142,18 +142,18 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	 * Sends an API request to get the Objects. After requesting,
 	 * unserializes the received response into the array of Objects
 	 *
-	 * @param integer $virtual_machine_id Virtual Machine id
+	 * @param integer $billing_plan_id Virtual Machine id
+	 * @param mixed   $url_args        additional parameters
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
-	 * @access public
 	 */
 	function getList( $billing_plan_id = null, $url_args = null ) {
-		if( is_null( $billing_plan_id ) && ! is_null( $this->_billing_plan_id ) ) {
-			$billing_plan_id = $this->_billing_plan_id;
+		if( is_null( $billing_plan_id ) && ! is_null( $this->billing_plan_id ) ) {
+			$billing_plan_id = $this->billing_plan_id;
 		}
 
 		if( ! is_null( $billing_plan_id ) ) {
-			$this->_billing_plan_id = $billing_plan_id;
+			$this->billing_plan_id = $billing_plan_id;
 
 			return parent::getList( $billing_plan_id, $url_args );
 		}
@@ -185,50 +185,49 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	 * </code>
 	 *
 	 * @return void
-	 * @access public
 	 */
 	function save() {
-		if( is_null( $this->_limit ) ) {
-			$this->_limit = isset( $this->_limits->_limit )
-				? $this->_limits->_limit : (
-				isset( $this->inheritedObject->_limits->_limit )
-					? $this->inheritedObject->_limits->_limit
+		if( is_null( $this->limit ) ) {
+			$this->limit = isset( $this->limits->limit )
+				? $this->limits->limit : (
+				isset( $this->loadedObject->limits->limit )
+					? $this->loadedObject->limits->limit
 					: ''
 				);
 		}
 
-		if( is_null( $this->_limit_free ) ) {
-			$this->_limit_free = isset( $this->_limits->_limit_free )
-				? $this->_limits->_limit_free : (
-				isset( $this->inheritedObject->_limits->_limit_free )
-					? $this->inheritedObject->_limits->_limit_free
+		if( is_null( $this->limit_free ) ) {
+			$this->limit_free = isset( $this->limits->limit_free )
+				? $this->limits->limit_free : (
+				isset( $this->loadedObject->limits->limit_free )
+					? $this->loadedObject->limits->limit_free
 					: ''
 				);
 		}
 
-		if( is_null( $this->_price_on ) ) {
-			$this->_price_on = isset( $this->_prices->_price_on )
-				? $this->_prices->_price_on : (
-				isset( $this->inheritedObject->_prices->_price_on ) ?
-					$this->inheritedObject->_prices->_price_on
+		if( is_null( $this->price_on ) ) {
+			$this->price_on = isset( $this->prices->price_on )
+				? $this->prices->price_on : (
+				isset( $this->loadedObject->prices->price_on ) ?
+					$this->loadedObject->prices->price_on
 					: ''
 				);
 		}
 
-		if( is_null( $this->_price_off ) ) {
-			$this->_price_off = isset( $this->_limits->_price_off )
-				? $this->_prices->_price_off : (
-				isset( $this->inheritedObject->_prices->_price_off )
-					? $this->inheritedObject->_prices->_price_off
+		if( is_null( $this->price_off ) ) {
+			$this->price_off = isset( $this->limits->price_off )
+				? $this->prices->price_off : (
+				isset( $this->loadedObject->prices->price_off )
+					? $this->loadedObject->prices->price_off
 					: ""
 				);
 		}
 
-		if( is_null( $this->_price ) ) {
-			$this->_price = isset( $this->_limits->_price )
-				? $this->_prices->_price
-				: ( isset( $this->inheritedObject->_prices->_price )
-					? $this->inheritedObject->_prices->_price
+		if( is_null( $this->price ) ) {
+			$this->price = isset( $this->limits->price )
+				? $this->prices->price
+				: ( isset( $this->loadedObject->prices->price )
+					? $this->loadedObject->prices->price
 					: '' );
 		}
 

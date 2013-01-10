@@ -47,10 +47,10 @@ class OnApp_CDNResource_Bandwidth extends OnApp {
 	 * Sends an API request to get the Objects. After requesting,
 	 * unserializes the received response into the array of Objects
 	 *
-	 * @param array $url_args [start, end, type, resource_type, resources[] ]
+	 * @param array $params   [start, end, type, resource_type, resources[] ]
+	 * @param mixed $url_args additional parameters
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
-	 * @access public
 	 */
 	public function getList( $params = null, $url_args = null ) {
 		return parent::getList( $params, $url_args );
@@ -60,8 +60,6 @@ class OnApp_CDNResource_Bandwidth extends OnApp {
 	 * Activates action performed with object
 	 *
 	 * @param string $action_name the name of action
-	 *
-	 * @access public
 	 */
 	function activate( $action_name ) {
 		switch( $action_name ) {

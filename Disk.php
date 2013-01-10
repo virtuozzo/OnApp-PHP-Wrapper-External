@@ -66,7 +66,6 @@ class OnApp_Disk extends OnApp {
 	 * @param string $action action name
 	 *
 	 * @return string API resource
-	 * @access public
 	 */
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
@@ -79,8 +78,8 @@ class OnApp_Disk extends OnApp {
 				 * @alias  /virtual_machines/:virtual_machine_id/disks(.:format)
 				 * @format {:controller=>"disks", :action=>"index"}
 				 */
-				$resource = $this->_virtual_machine_id ?
-					'virtual_machines/' . $this->_virtual_machine_id . '/disks' :
+				$resource = $this->virtual_machine_id ?
+					'virtual_machines/' . $this->virtual_machine_id . '/disks' :
 					$this->getURL();
 				break;
 
@@ -93,7 +92,7 @@ class OnApp_Disk extends OnApp {
 				 * @alias     /virtual_machines/:virtual_machine_id/disks(.:format)
 				 * @format    {:controller=>"disks", :action=>"create"}
 				 */
-				if( is_null( $this->_virtual_machine_id ) ) {
+				if( is_null( $this->virtual_machine_id ) ) {
 					$this->logger->logError(
 						'getURL( ' . $action . ' ): property virtual_machine_id not set.',
 						__FILE__,
@@ -101,7 +100,7 @@ class OnApp_Disk extends OnApp {
 					);
 				}
 				else {
-					$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/disks';
+					$resource = 'virtual_machines/' . $this->virtual_machine_id . '/disks';
 				}
 				break;
 
@@ -208,7 +207,7 @@ class OnApp_Disk extends OnApp {
 	 */
 	function enableAutobackup( $id = null ) {
 		if( $id ) {
-			$this->_id = $id;
+			$this->id = $id;
 		}
 		$this->sendPost( ONAPP_GETRESOURCE_AUTOBACKUP_ENABLE, '' );
 	}
@@ -222,7 +221,7 @@ class OnApp_Disk extends OnApp {
 	 */
 	function disableAutobackup( $id = null ) {
 		if( $id ) {
-			$this->_id = $id;
+			$this->id = $id;
 		}
 
 		$this->sendPost( ONAPP_GETRESOURCE_AUTOBACKUP_DISABLE, '' );
@@ -233,13 +232,13 @@ class OnApp_Disk extends OnApp {
 	 * unserializes the received response into the array of Objects
 	 *
 	 * @param integer $vm_id VM ID
+	 * @param mixed   $url_args
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
-	 * @access public
 	 */
 	function getList( $vm_id = null, $url_args = null ) {
 		if( $vm_id ) {
-			$this->_virtual_machine_id = $vm_id;
+			$this->virtual_machine_id = $vm_id;
 		}
 		return parent::getList( $vm_id, $url_args );
 	}
@@ -247,14 +246,11 @@ class OnApp_Disk extends OnApp {
 	/**
 	 * The method saves an Object to your account
 	 *
-	 * @param integer $vm_id VM ID
-	 *
 	 * @return mixed Serialized API Response
-	 * @access private
 	 */
 	function save() {
 		//todo check this code
-		if( $this->_virtual_machine_id ) {
+		if( $this->virtual_machine_id ) {
 			$this->fields[ 'require_format_disk' ] = array(
 				ONAPP_FIELD_MAP           => '_require_format_disk',
 				ONAPP_FIELD_TYPE          => 'integer',
@@ -263,7 +259,7 @@ class OnApp_Disk extends OnApp {
 			);
 		}
 
-		if( $this->_id ) {
+		if( $this->id ) {
 			$this->fields[ 'add_to_linux_fstab' ][ ONAPP_FIELD_REQUIRED ] = false;
 			$this->fields[ 'data_store_id' ][ ONAPP_FIELD_REQUIRED ]      = false;
 			$this->fields[ 'is_swap' ][ ONAPP_FIELD_REQUIRED ]            = false;
@@ -282,7 +278,7 @@ class OnApp_Disk extends OnApp {
 	 */
 	function takeBackup( $disk_id ) {
 		if( $disk_id ) {
-			$this->_id = $disk_id;
+			$this->id = $disk_id;
 		}
 		// workaround because we get backup data in response
 		$this->rootElement = 'backup';

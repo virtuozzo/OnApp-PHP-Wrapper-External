@@ -61,7 +61,6 @@ class OnApp_EdgeGroup extends OnApp {
 	 * @param string $action action name
 	 *
 	 * @return string API resource
-	 * @access public
 	 */
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
@@ -73,7 +72,7 @@ class OnApp_EdgeGroup extends OnApp {
 				 *
 				 *
 				 */
-				$resource = $this->getURL() . '/' . $this->_id . '/assign';
+				$resource = $this->getURL() . '/' . $this->id . '/assign';
 				break;
 
 			case ONAPP_GETRESOURCE_EDGE_GROUP_UNASSIGN_LOCATION:
@@ -84,7 +83,7 @@ class OnApp_EdgeGroup extends OnApp {
 				 *
 				 *
 				 */
-				$resource = $this->getURL() . '/' . $this->_id . '/unassign';
+				$resource = $this->getURL() . '/' . $this->id . '/unassign';
 				break;
 
 			default:
@@ -98,7 +97,7 @@ class OnApp_EdgeGroup extends OnApp {
 
 	function assign_location( $edge_group_id, $location_id ) {
 		if( $edge_group_id ) {
-			$this->_id = $edge_group_id;
+			$this->id = $edge_group_id;
 		}
 		else {
 			$this->logger->logError(
@@ -133,7 +132,7 @@ class OnApp_EdgeGroup extends OnApp {
 	 */
 	function unassign_location( $edge_group_id, $location_id ) {
 		if( $edge_group_id ) {
-			$this->_id = $edge_group_id;
+			$this->id = $edge_group_id;
 		}
 		else {
 			$this->logger->logError(

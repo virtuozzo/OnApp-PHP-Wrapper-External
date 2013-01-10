@@ -111,7 +111,6 @@ class OnApp_Helper_Handler_Log {
 	/**
 	 * Buffer containing all the information on the messages used in the class
 	 *
-	 * @access private
 	 * @var    array $log
 	 */
 	private $log = array();
@@ -214,7 +213,6 @@ class OnApp_Helper_Handler_Log {
 	 * @param string $msg log message
 	 *
 	 * @return void
-	 * @access public
 	 */
 	public function logDebug( $msg ) {
 		if( $this->debugMode ) {
@@ -269,7 +267,6 @@ class OnApp_Helper_Handler_Log {
 	 * @param void
 	 *
 	 * @return string full Logger buffer
-	 * @access public
 	 */
 	public function getLog() {
 		$output = '';

@@ -83,10 +83,10 @@ class OnApp_Log extends OnApp {
 	 * Sends an API request to get the Objects. After requesting,
 	 * unserializes the received response into the array of Objects
 	 *
-	 * @param array $url_args
+	 * @param array $params
+	 * @param mixed $url_args additional parameters
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
-	 * @access public
 	 */
 	function getList( $params = null, $url_args = null ) {
 		return parent::getList( $params, $url_args );

@@ -59,8 +59,9 @@ class OnApp_ResourceLimit extends OnApp {
 	/**
 	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
+	 * @param string $action action name
+	 *
 	 * @return string API resource
-	 * @access public
 	 */
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
@@ -82,7 +83,7 @@ class OnApp_ResourceLimit extends OnApp {
 				 * @alias   /users/:user_id/resource_limit(.:format)
 				 * @format  {:controller=>"resource_limits", :action=>"update"}
 				 */
-				if( is_null( $this->_user_id ) && is_null( $this->inheritedObject->_user_id ) ) {
+				if( is_null( $this->user_id ) && is_null( $this->loadedObject->user_id ) ) {
 					$this->logger->logError(
 						'getURL( ' . $action . ' ): property user_id not set.',
 						__FILE__,
@@ -90,11 +91,11 @@ class OnApp_ResourceLimit extends OnApp {
 					);
 				}
 				else {
-					if( is_null( $this->_user_id ) ) {
-						$this->_user_id = $this->inheritedObject->_user_id;
+					if( is_null( $this->user_id ) ) {
+						$this->user_id = $this->loadedObject->user_id;
 					}
 				}
-				$resource = 'users/' . $this->_user_id . '/' . $this->URLPath;
+				$resource = 'users/' . $this->user_id . '/' . $this->URLPath;
 				break;
 
 			case ONAPP_GETRESOURCE_LOAD:
@@ -127,30 +128,29 @@ class OnApp_ResourceLimit extends OnApp {
 	 * @param integer $id Object id
 	 *
 	 * @return object serialized Object instance from API
-	 * @access public
 	 */
 	function load( $user_id = null ) {
-		if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
-			$user_id = $this->_user_id;
+		if( is_null( $user_id ) && ! is_null( $this->user_id ) ) {
+			$user_id = $this->user_id;
 		}
 
 		if( is_null( $user_id ) &&
-			isset( $this->inheritedObject ) &&
-			! is_null( $this->inheritedObject->_user_id )
+			isset( $this->loadedObject ) &&
+			! is_null( $this->loadedObject->user_id )
 		) {
-			$user_id = $this->inheritedObject->_user_id;
+			$user_id = $this->loadedObject->user_id;
 		}
 
 		$this->logger->logMessage( 'load: Load class ( id => ' . $user_id . ').' );
 
 		if( ! is_null( $user_id ) ) {
-			$this->_user_id = $user_id;
+			$this->user_id = $user_id;
 
 			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 
 			$result                = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
-			$this->inheritedObject = $result;
-			$this->user_id         = $this->inheritedObject->user_id;
+			$this->loadedObject = $result;
+			$this->user_id         = $this->loadedObject->user_id;
 
 			return $result;
 		}
@@ -171,10 +171,9 @@ class OnApp_ResourceLimit extends OnApp {
 	 * exisitng object with the new data.
 	 *
 	 * @return void
-	 * @access public
 	 */
 	function save() {
-		if( isset( $this->_user_id ) ) {
+		if( isset( $this->user_id ) ) {
 			$obj = $this->editObject();
 
 			if( isset( $obj ) && ! isset( $obj->errors ) ) {

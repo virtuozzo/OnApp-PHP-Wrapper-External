@@ -59,7 +59,6 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 * @param string $action action name
 	 *
 	 * @return string API resource
-	 * @access public
 	 */
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
@@ -104,7 +103,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 				 * @alias     /virtual_machines/:virtual_machine_id/firewall_rules/:id(.:format)
 				 * @format    {:controller=>"firewall_rules", :action=>"destroy"}
 				 */
-				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->URLPath;
+				$resource = 'virtual_machines/' . $this->virtual_machine_id . '/' . $this->URLPath;
 				break;
 
 			case ONAPP_GETRESOURCE_MOVE:
@@ -116,7 +115,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 				 * @alias     /virtual_machines/:virtual_machine_id/firewall_rules/:id/move(.:format)
 				 * @format    {:controller=>"firewall_rules", :action=>"move"}
 				 */
-				$resource = $this->getURL( ONAPP_GETRESOURCE_DEFAULT ) . '/' . $this->_id . '/move';
+				$resource = $this->getURL( ONAPP_GETRESOURCE_DEFAULT ) . '/' . $this->id . '/move';
 				break;
 
 			case ONAPP_GETRESOURCE_UPDATE:
@@ -128,7 +127,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 				 * @alias     /virtual_machines/:id/update_firewall_rules(.:format)
 				 * @format    {:controller=>"virtual_machines", :action=>"update_firewall_rules"}
 				 */
-				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/update_firewall_rules';
+				$resource = 'virtual_machines/' . $this->virtual_machine_id . '/update_firewall_rules';
 				break;
 
 			case ONAPP_GETRESOURCE_UPDATE_DEFAULTS:
@@ -140,7 +139,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 				 * @alias   /virtual_machines/:id/update_firewall_rules(.:format)
 				 * @format  {:controller=>"virtual_machines", :action=>"update_firewall_rules"}
 				 */
-				$resource = '/virtual_machines/' . $this->_virtual_machine_id . '/firewall_rules/update_defaults';
+				$resource = '/virtual_machines/' . $this->virtual_machine_id . '/firewall_rules/update_defaults';
 				break;
 
 			default:
@@ -155,17 +154,17 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 * unserializes the received response into the array of Objects
 	 *
 	 * @param integer $virtual_machine_id VM id
+	 * @param mixed   $url_args           additional parameters
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
-	 * @access public
 	 */
 	function getList( $virtual_machine_id = null, $url_args = null ) {
-		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
-			$virtual_machine_id = $this->_virtual_machine_id;
+		if( is_null( $virtual_machine_id ) && ! is_null( $this->virtual_machine_id ) ) {
+			$virtual_machine_id = $this->virtual_machine_id;
 		}
 
 		if( ! is_null( $virtual_machine_id ) ) {
-			$this->_virtual_machine_id = $virtual_machine_id;
+			$this->virtual_machine_id = $virtual_machine_id;
 
 			return parent::getList( $virtual_machine_id, $url_args );
 		}
@@ -189,40 +188,39 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 * @param integer $virtual_machine_id Virtual Machine id
 	 *
 	 * @return mixed serialized Object instance from API
-	 * @access public
 	 */
 	function load( $id = null, $virtual_machine_id = null ) {
-		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
-			$virtual_machine_id = $this->_virtual_machine_id;
+		if( is_null( $virtual_machine_id ) && ! is_null( $this->virtual_machine_id ) ) {
+			$virtual_machine_id = $this->virtual_machine_id;
 		}
 
 		if( is_null( $virtual_machine_id ) &&
-			isset( $this->inheritedObject ) &&
-			! is_null( $this->inheritedObject->_virtual_machine_id )
+			isset( $this->loadedObject ) &&
+			! is_null( $this->loadedObject->virtual_machine_id )
 		) {
-			$virtual_machine_id = $this->inheritedObject->_virtual_machine_id;
+			$virtual_machine_id = $this->loadedObject->virtual_machine_id;
 		}
 
-		if( is_null( $id ) && ! is_null( $this->_id ) ) {
-			$id = $this->_id;
+		if( is_null( $id ) && ! is_null( $this->id ) ) {
+			$id = $this->id;
 		}
 
 		if( is_null( $id ) &&
-			isset( $this->inheritedObject ) &&
-			! is_null( $this->inheritedObject->_id )
+			isset( $this->loadedObject ) &&
+			! is_null( $this->loadedObject->id )
 		) {
-			$id = $this->inheritedObject->_id;
+			$id = $this->loadedObject->id;
 		}
 
 		$this->logger->logMessage( 'load: Load class ( id => ' . $id . ' ).' );
 
 		if( ! is_null( $id ) && ! is_null( $virtual_machine_id ) ) {
-			$this->_id                 = $id;
-			$this->_virtual_machine_id = $virtual_machine_id;
+			$this->id                 = $id;
+			$this->virtual_machine_id = $virtual_machine_id;
 
 			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 			$result                = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
-			$this->inheritedObject = $result;
+			$this->loadedObject = $result;
 
 			return $result;
 		}
@@ -273,11 +271,10 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 * Applies all custom Firewall Rules for particular VM
 	 *
 	 * @param integer $virtual_machine_id VM Id
-	 *
 	 */
 	function update( $virtual_machine_id = null ) {
 		if( $virtual_machine_id ) {
-			$this->_virtual_machine_id = $virtual_machine_id;
+			$this->virtual_machine_id = $virtual_machine_id;
 		}
 
 		$this->sendPost( ONAPP_GETRESOURCE_UPDATE );
@@ -293,7 +290,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 */
 	function updateDefaults( $virtual_machine_id, $networkInterfaces ) {
 		if( $virtual_machine_id ) {
-			$this->_virtual_machine_id = $virtual_machine_id;
+			$this->virtual_machine_id = $virtual_machine_id;
 		}
 
 		foreach( $networkInterfaces as $interface_id => $command ) {

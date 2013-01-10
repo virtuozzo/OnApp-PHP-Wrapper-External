@@ -25,7 +25,7 @@ if( ! defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
 	 */
 	function OnAppAutoLoad( $className ) {
 		// check if called class belongs to OnApp wrapper
-		if( strpos( $className, 'OnApp' ) !== 0 ) {
+		if( strpos( strtolower( $className ), 'onapp' ) !== 0 ) {
 			return false;
 		}
 

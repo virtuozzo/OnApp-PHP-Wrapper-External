@@ -117,7 +117,7 @@ class OnApp_CDNResource extends OnApp {
 				 * @alias  /cdn_resources/:id/prefetch(.:format)
 				 * @format {:controller=>"cdn_resources", :action=>"prefetch"}
 				 */
-				$resource = $this->URLPath . '/' . $this->_id . '/prefetch';
+				$resource = $this->URLPath . '/' . $this->id . '/prefetch';
 				break;
 
 			case ONAPP_GETRESOURCE_CDN_PURGE:
@@ -129,7 +129,7 @@ class OnApp_CDNResource extends OnApp {
 				 * @alias  /cdn_resources/:id/purge(.:format)
 				 * @format {:controller=>"cdn_resources", :action=>"purge"}
 				 */
-				$resource = $this->URLPath . '/' . $this->_id . '/purge';
+				$resource = $this->URLPath . '/' . $this->id . '/purge';
 				break;
 
 			default:
@@ -150,7 +150,7 @@ class OnApp_CDNResource extends OnApp {
 	 */
 	public function prefetch( $cdn_resource_id, $prefetch_paths ) {
 		if( $cdn_resource_id ) {
-			$this->_id = $cdn_resource_id;
+			$this->id = $cdn_resource_id;
 		}
 		else {
 			$this->logger->logError(
@@ -178,7 +178,7 @@ class OnApp_CDNResource extends OnApp {
 	 */
 	public function purge( $cdn_resource_id, $purge_paths ) {
 		if( $cdn_resource_id ) {
-			$this->_id = $cdn_resource_id;
+			$this->id = $cdn_resource_id;
 		}
 		else {
 			$this->logger->logError(
@@ -200,7 +200,6 @@ class OnApp_CDNResource extends OnApp {
 
 	/**
 	 * Enables cdn
-	 *
 	 */
 	public function enable() {
 		$this->sendPost( ONAPP_GETRESOURCE_ENABLE_CDN );

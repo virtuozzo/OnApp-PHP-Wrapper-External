@@ -43,12 +43,11 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 	 * @param string $action action name
 	 *
 	 * @return string API resource
-	 * @access public
 	 */
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
 			case ONAPP_GETRESOURCE_JOIN:
-				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->URLPath;
+				$resource = 'virtual_machines/' . $this->virtual_machine_id . '/' . $this->URLPath;
 				$this->logger->logDebug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
@@ -67,20 +66,20 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 	 */
 	function join( $ip_address_id = null, $virtual_machine_id = null, $network_interface_id = null ) {
 		if( $virtual_machine_id ) {
-			$this->_virtual_machine_id = $virtual_machine_id;
+			$this->virtual_machine_id = $virtual_machine_id;
 		}
 		if( $network_interface_id ) {
-			$this->_network_interface_id = $network_interface_id;
+			$this->network_interface_id = $network_interface_id;
 		}
 		if( $ip_address_id ) {
-			$this->_id = $ip_address_id;
+			$this->id = $ip_address_id;
 		}
 
 		$data = array(
 			'root' => 'ip_address_join',
 			'data' => array(
-				'network_interface_id' => $this->_network_interface_id,
-				'ip_address_id'        => $this->_id
+				'network_interface_id' => $this->network_interface_id,
+				'ip_address_id'        => $this->id
 			)
 		);
 
@@ -91,8 +90,6 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 	 * Activates action performed with object
 	 *
 	 * @param string $action_name the name of action
-	 *
-	 * @access public
 	 */
 	function activate( $action_name ) {
 		switch( $action_name ) {

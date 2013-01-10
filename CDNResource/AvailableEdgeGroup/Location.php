@@ -53,8 +53,6 @@ class OnApp_CDNResource_AvailableEdgeGroup_Location extends OnApp {
 	 * Activates action performed with object
 	 *
 	 * @param string $action_name the name of action
-	 *
-	 * @access public
 	 */
 	function activate( $action_name ) {
 		switch( $action_name ) {

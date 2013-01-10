@@ -101,7 +101,6 @@ class OnApp_User extends OnApp {
 	 * @param string $action action name
 	 *
 	 * @return string API resource
-	 * @access public
 	 */
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
@@ -114,7 +113,7 @@ class OnApp_User extends OnApp {
 				 * @alias   /user_groups/:user_group_id/users(.:format)
 				 * @format  {:controller=>"users", :action=>"index"}
 				 */
-				$resource = 'user_groups/' . $this->_user_group_id . '/' . $this->resource;
+				$resource = 'user_groups/' . $this->user_group_id . '/' . $this->resource;
 				break;
 
 			case ONAPP_GETRESOURCE_SUSPEND_USER:
@@ -147,24 +146,20 @@ class OnApp_User extends OnApp {
 
 	/**
 	 * Suspend User
-	 *
-	 * @access public
 	 */
 	public function suspend() {
 		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_SUSPEND_USER ) );
 		$result                = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
-		$this->inheritedObject = $result;
+		$this->loadedObject = $result;
 	}
 
 	/**
 	 * Activate User
-	 *
-	 * @access public
 	 */
 	public function activate_user() {
 		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_ACTIVATE ) );
 		$result                = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
-		$this->inheritedObject = $result;
+		$this->loadedObject = $result;
 	}
 
 	/**
@@ -184,7 +179,7 @@ class OnApp_User extends OnApp {
 			$obj = $this->createObject();
 		}
 		else {
-			unset( $this->login, $this->inheritedObject->login );
+			unset( $this->login, $this->loadedObject->login );
 			$obj = $this->editObject();
 		}
 		unset( $this->password, $this->password_confirmation );
@@ -209,7 +204,7 @@ class OnApp_User extends OnApp {
 	 */
 	public function getListByGroupId( $group_id = null ) {
 		if( $group_id ) {
-			$this->_user_group_id = $group_id;
+			$this->user_group_id = $group_id;
 		}
 		else {
 			$this->logger->logError(
@@ -229,7 +224,7 @@ class OnApp_User extends OnApp {
 		}
 
 		$result                = $this->doCastResponseToClass( $response );
-		$this->inheritedObject = $result;
+		$this->loadedObject = $result;
 
 		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
 	}
@@ -268,9 +263,9 @@ class OnApp_User extends OnApp {
 				$data = $this->roles;
 				unset( $this->roles );
 			}
-			elseif( isset( $this->inheritedObject->roles ) && ! is_null( $this->inheritedObject->roles ) ) {
-				$data = $this->inheritedObject->roles;
-				unset( $this->inheritedObject->roles );
+			elseif( isset( $this->loadedObject->roles ) && ! is_null( $this->loadedObject->roles ) ) {
+				$data = $this->loadedObject->roles;
+				unset( $this->loadedObject->roles );
 			}
 			else {
 				return null;
@@ -288,12 +283,12 @@ class OnApp_User extends OnApp {
 	}
 
 	private function parseAdditionalFields() {
-		if( ! empty( $this->inheritedObject->additional_fields ) ) {
+		if( ! empty( $this->loadedObject->additional_fields ) ) {
 			$tmp = new stdClass();
-			foreach( $this->inheritedObject->additional_fields as $field ) {
+			foreach( $this->loadedObject->additional_fields as $field ) {
 				$tmp->{$field->additional_field->name} = $field->additional_field->value;
 			}
-			$this->inheritedObject->additional_fields = $tmp;
+			$this->loadedObject->additional_fields = $tmp;
 			unset( $tmp );
 		}
 	}

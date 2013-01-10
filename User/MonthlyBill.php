@@ -52,7 +52,6 @@ class OnApp_User_MonthlyBill extends OnApp {
 	 * @param string $action action name
 	 *
 	 * @return string API resource
-	 * @access public
 	 */
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
@@ -65,7 +64,7 @@ class OnApp_User_MonthlyBill extends OnApp {
 				 * @alias   /users/:user_id/monthly_bills(.:format)
 				 * @format  {:controller=>"monthly_bills", :action=>"index"}
 				 */
-				if( is_null( $this->_user_id ) && is_null( $this->inheritedObject->_user_id ) ) {
+				if( is_null( $this->user_id ) && is_null( $this->loadedObject->user_id ) ) {
 					$this->logger->logError(
 						'getURL( ' . $action . ' ): property user_id not set.',
 						__FILE__,
@@ -73,11 +72,11 @@ class OnApp_User_MonthlyBill extends OnApp {
 					);
 				}
 				else {
-					if( is_null( $this->_user_id ) ) {
-						$this->_user_id = $this->inheritedObject->_user_id;
+					if( is_null( $this->user_id ) ) {
+						$this->user_id = $this->loadedObject->user_id;
 					}
 				}
-				$resource = 'users/' . $this->_user_id . '/' . $this->URLPath;
+				$resource = 'users/' . $this->user_id . '/' . $this->URLPath;
 				$this->logger->logDebug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
@@ -92,18 +91,18 @@ class OnApp_User_MonthlyBill extends OnApp {
 	 * Sends an API request to get the Objects. After requesting,
 	 * unserializes the received response into the array of Objects
 	 *
-	 * @param integer $user_id User ID
+	 * @param integer $user_id  User ID
+	 * @param mixed   $url_args additional parameters
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
-	 * @access public
 	 */
 	function getList( $user_id = null, $url_args = null ) {
-		if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
-			$user_id = $this->_user_id;
+		if( is_null( $user_id ) && ! is_null( $this->user_id ) ) {
+			$user_id = $this->user_id;
 		}
 
 		if( ! is_null( $user_id ) ) {
-			$this->_user_id = $user_id;
+			$this->user_id = $user_id;
 
 			return parent::getList( $user_id, $url_args );
 		}

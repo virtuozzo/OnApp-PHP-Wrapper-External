@@ -56,7 +56,6 @@ class OnApp_User_WhiteList extends OnApp {
 	 * @param string $action action name
 	 *
 	 * @return string API resource
-	 * @access public
 	 */
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
@@ -101,7 +100,7 @@ class OnApp_User_WhiteList extends OnApp {
 				 * @alias   /users/:user_id/user_white_lists/:id(.:format)
 				 * @format  {:controller=>"user_white_lists", :action=>"destroy"}
 				 */
-				if( is_null( $this->_user_id ) && is_null( $this->inheritedObject->_user_id ) ) {
+				if( is_null( $this->user_id ) && is_null( $this->loadedObject->user_id ) ) {
 					$this->logger->logError(
 						'getURL( ' . $action . ' ): property user_id not set.',
 						__FILE__,
@@ -109,11 +108,11 @@ class OnApp_User_WhiteList extends OnApp {
 					);
 				}
 				else {
-					if( is_null( $this->_user_id ) ) {
-						$this->_user_id = $this->inheritedObject->_user_id;
+					if( is_null( $this->user_id ) ) {
+						$this->user_id = $this->loadedObject->user_id;
 					}
 				}
-				$resource = 'users/' . $this->_user_id . '/' . $this->URLPath;
+				$resource = 'users/' . $this->user_id . '/' . $this->URLPath;
 				$this->logger->logDebug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
@@ -128,18 +127,18 @@ class OnApp_User_WhiteList extends OnApp {
 	 * Sends an API request to get the Objects. After requesting,
 	 * unserializes the received response into the array of Objects
 	 *
-	 * @param integer $user_id User ID
+	 * @param integer $user_id  User ID
+	 * @param mixed   $url_args additional parameters
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
-	 * @access public
 	 */
 	function getList( $user_id = null, $url_args = null ) {
-		if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
-			$user_id = $this->_user_id;
+		if( is_null( $user_id ) && ! is_null( $this->user_id ) ) {
+			$user_id = $this->user_id;
 		}
 
 		if( ! is_null( $user_id ) ) {
-			$this->_user_id = $user_id;
+			$this->user_id = $user_id;
 
 			return parent::getList( $user_id, $url_args );
 		}
@@ -163,40 +162,39 @@ class OnApp_User_WhiteList extends OnApp {
 	 * @param integer $user_id User id
 	 *
 	 * @return mixed serialized Object instance from API
-	 * @access public
 	 */
 	function load( $id = null, $user_id = null ) {
-		if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
-			$user_id = $this->_user_id;
+		if( is_null( $user_id ) && ! is_null( $this->user_id ) ) {
+			$user_id = $this->user_id;
 		}
 
 		if( is_null( $user_id ) &&
-			isset( $this->inheritedObject ) &&
-			! is_null( $this->inheritedObject->_user_id )
+			isset( $this->loadedObject ) &&
+			! is_null( $this->loadedObject->user_id )
 		) {
-			$user_id = $this->inheritedObject->_user_id;
+			$user_id = $this->loadedObject->user_id;
 		}
 
-		if( is_null( $id ) && ! is_null( $this->_id ) ) {
-			$id = $this->_id;
+		if( is_null( $id ) && ! is_null( $this->id ) ) {
+			$id = $this->id;
 		}
 
 		if( is_null( $id ) &&
-			isset( $this->inheritedObject ) &&
-			! is_null( $this->inheritedObject->_id )
+			isset( $this->loadedObject ) &&
+			! is_null( $this->loadedObject->id )
 		) {
-			$id = $this->inheritedObject->_id;
+			$id = $this->loadedObject->id;
 		}
 
 		$this->logger->logMessage( 'load: Load class ( id => ' . $id . ' ).' );
 
 		if( ! is_null( $id ) && ! is_null( $user_id ) ) {
-			$this->_id      = $id;
-			$this->_user_id = $user_id;
+			$this->id      = $id;
+			$this->user_id = $user_id;
 
 			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 			$result                = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
-			$this->inheritedObject = $result;
+			$this->loadedObject = $result;
 
 			return $result;
 		}

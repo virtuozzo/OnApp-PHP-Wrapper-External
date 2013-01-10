@@ -56,7 +56,6 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 	 * @param string $action action name
 	 *
 	 * @return string API resource
-	 * @access public
 	 */
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		$show_log_msg = true;
@@ -70,7 +69,7 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 				 * @alias   /virtual_machines/:virtual_machine_id/backups(.:format)
 				 * @format  {:controller=>"backups", :action=>"index"}
 				 */
-				if( is_null( $this->_virtual_machine_id ) && is_null( $this->inheritedObject->_virtual_machine_id ) ) {
+				if( is_null( $this->virtual_machine_id ) && is_null( $this->loadedObject->virtual_machine_id ) ) {
 					$this->logger->logError(
 						'getURL( ' . $action . ' ): property virtual_machine_id not set.',
 						__FILE__,
@@ -78,12 +77,12 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 					);
 				}
 				else {
-					if( is_null( $this->_virtual_machine_id ) ) {
-						$this->_virtual_machine_id = $this->inheritedObject->_virtual_machine_id;
+					if( is_null( $this->virtual_machine_id ) ) {
+						$this->virtual_machine_id = $this->loadedObject->virtual_machine_id;
 					}
 				}
 
-				if( is_null( $this->_network_interface_id ) && is_null( $this->inheritedObject->_network_interface_id ) ) {
+				if( is_null( $this->network_interface_id ) && is_null( $this->loadedObject->network_interface_id ) ) {
 					$this->logger->logError(
 						'getURL( ' . $action . ' ): property network_interface_id not set.',
 						__FILE__,
@@ -91,12 +90,12 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 					);
 				}
 				else {
-					if( is_null( $this->_network_interface_id ) ) {
-						$this->_network_interface_id = $this->inheritedObject->_network_interface_id;
+					if( is_null( $this->network_interface_id ) ) {
+						$this->network_interface_id = $this->loadedObject->network_interface_id;
 					}
 				}
 
-				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/network_interfaces/' . $this->_network_interface_id . '/' . $this->URLPath;
+				$resource = 'virtual_machines/' . $this->virtual_machine_id . '/network_interfaces/' . $this->network_interface_id . '/' . $this->URLPath;
 				break;
 
 			default:
@@ -116,17 +115,17 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 	 *
 	 * @param integer $virtual_machine_id   Virtual Machine id
 	 * @param integer $network_interface_id Network Interface id
+	 * @param mixed   $url_args             additional parameters
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
-	 * @access public
 	 */
 	function getList( $virtual_machine_id = null, $network_interface_id = null, $url_args = '' ) {
-		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
-			$virtual_machine_id = $this->_virtual_machine_id;
+		if( is_null( $virtual_machine_id ) && ! is_null( $this->virtual_machine_id ) ) {
+			$virtual_machine_id = $this->virtual_machine_id;
 		}
 
 		if( ! is_null( $virtual_machine_id ) ) {
-			$this->_virtual_machine_id = $virtual_machine_id;
+			$this->virtual_machine_id = $virtual_machine_id;
 		}
 		else {
 			$this->logger->logError(
@@ -136,12 +135,12 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 			);
 		}
 
-		if( is_null( $network_interface_id ) && ! is_null( $this->_network_interface_id ) ) {
-			$network_interface_id = $this->_network_interface_id;
+		if( is_null( $network_interface_id ) && ! is_null( $this->network_interface_id ) ) {
+			$network_interface_id = $this->network_interface_id;
 		}
 
 		if( ! is_null( $network_interface_id ) ) {
-			$this->_network_interface_id = $network_interface_id;
+			$this->network_interface_id = $network_interface_id;
 		}
 		else {
 			$this->logger->logError(

@@ -96,7 +96,7 @@ class OnApp_Hypervisor extends OnApp {
 				 * @alias  /settings/hypervisor_zones/:hypervisor_group_id/hypervisors(.:format)
 				 * @format {:controller=>"hypervisors", :action=>"index"}
 				 */
-				$resource = 'settings/hypervisor_zones/' . $this->_hypervisor_group_id . '/hypervisors';
+				$resource = 'settings/hypervisor_zones/' . $this->hypervisor_group_id . '/hypervisors';
 				break;
 
 			case ONAPP_GETRESOURCE_DEFAULT:
@@ -152,7 +152,7 @@ class OnApp_Hypervisor extends OnApp {
 				 * @alias   /settings/hypervisors/:id/reboot(.:format)
 				 * @format  {:action=>"reboot", :controller=>"settings_hypervisors"}
 				 */
-				$resource = $this->URLPath . '/' . $this->_id . '/reboot';
+				$resource = $this->URLPath . '/' . $this->id . '/reboot';
 				break;
 
 			default:
@@ -171,7 +171,7 @@ class OnApp_Hypervisor extends OnApp {
 	 */
 	function GetListByGroupId( $group_id = null ) {
 		if( $group_id ) {
-			$this->_hypervisor_group_id = $group_id;
+			$this->hypervisor_group_id = $group_id;
 		}
 		else {
 			$this->logger->logError(
@@ -191,7 +191,7 @@ class OnApp_Hypervisor extends OnApp {
 		}
 
 		$result                = $this->doCastResponseToClass( $response );
-		$this->inheritedObject = $result;
+		$this->loadedObject = $result;
 
 		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
 	}
@@ -202,11 +202,10 @@ class OnApp_Hypervisor extends OnApp {
 	 * @param integer $hypervisor_id hypervisor id
 	 *
 	 * @return void
-	 *
 	 */
 	function reboot( $hypervisor_id ) {
 		if( $hypervisor_id ) {
-			$this->_id = $hypervisor_id;
+			$this->id = $hypervisor_id;
 		}
 		else {
 			$this->logger->logError(
@@ -229,7 +228,7 @@ class OnApp_Hypervisor extends OnApp {
 	function save() {
 		//todo check this code
 		/*
-		if( $this->_id ) {
+		if( $this->id ) {
 			$this->fields[ 'hypervisor_group_id' ][ ONAPP_FIELD_REQUIRED ] = FALSE;
 		}
 		*/

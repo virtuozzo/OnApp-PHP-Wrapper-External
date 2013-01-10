@@ -57,7 +57,6 @@ class OnApp_IpAddress extends OnApp {
 	 * @param string $action action name
 	 *
 	 * @return string API resource
-	 * @access public
 	 */
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
@@ -102,7 +101,7 @@ class OnApp_IpAddress extends OnApp {
 				 * @alias  /settings/networks/:network_id/ip_addresses/:id(.:format)
 				 * @format {:controller=>"ip_addresses", :action=>"destroy"}
 				 */
-				if( is_null( $this->_network_id ) && is_null( $this->inheritedObject->_network_id ) ) {
+				if( is_null( $this->network_id ) && is_null( $this->loadedObject->network_id ) ) {
 					$this->logger->logError(
 						'getURL( ' . $action . '): property network_id not set.',
 						__FILE__,
@@ -110,12 +109,12 @@ class OnApp_IpAddress extends OnApp {
 					);
 				}
 				else {
-					if( is_null( $this->_network_id ) ) {
-						$this->_network_id = $this->inheritedObject->_network_id;
+					if( is_null( $this->network_id ) ) {
+						$this->network_id = $this->loadedObject->network_id;
 					}
 				}
 
-				$resource = 'settings/networks/' . $this->_network_id . '/' . $this->URLPath;
+				$resource = 'settings/networks/' . $this->network_id . '/' . $this->URLPath;
 				$this->logger->logDebug( 'getURL( ' . $action . ' ): return ' . $resource );
 				break;
 
@@ -131,9 +130,9 @@ class OnApp_IpAddress extends OnApp {
 	 * unserializes the received response into the array of Objects
 	 *
 	 * @param integer $network_id Network ID
+	 * @param mixed   $url_args   additional parameters
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
-	 * @access public
 	 */
 	function getList( $network_id = null, $url_args = null ) {
 		if( is_null( $network_id ) && ! is_null( $this->network_id ) ) {
@@ -164,31 +163,30 @@ class OnApp_IpAddress extends OnApp {
 	 * @param integer $virtual_machine_id Virtual Machine id
 	 *
 	 * @return mixed serialized Object instance from API
-	 * @access public
 	 */
 	function load( $id = null, $network_id = null ) {
-		if( is_null( $network_id ) && ! is_null( $this->_network_id ) ) {
-			$network_id = $this->_network_id;
+		if( is_null( $network_id ) && ! is_null( $this->network_id ) ) {
+			$network_id = $this->network_id;
 		}
 
-		if( is_null( $id ) && ! is_null( $this->_id ) ) {
-			$id = $this->_id;
+		if( is_null( $id ) && ! is_null( $this->id ) ) {
+			$id = $this->id;
 		}
 
-		if( is_null( $id ) && isset( $this->inheritedObject ) && ! is_null( $this->inheritedObject->_id ) ) {
-			$id = $this->inheritedObject->_id;
+		if( is_null( $id ) && isset( $this->loadedObject ) && ! is_null( $this->loadedObject->id ) ) {
+			$id = $this->loadedObject->id;
 		}
 
 		$this->logger->logMessage( 'load: Load class ( id => "' . $id . '").' );
 
 		if( ! is_null( $id ) && ! is_null( $network_id ) ) {
-			$this->_id         = $id;
-			$this->_network_id = $network_id;
+			$this->id         = $id;
+			$this->network_id = $network_id;
 
 			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 
 			$result                = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
-			$this->inheritedObject = $result;
+			$this->loadedObject = $result;
 
 			return $result;
 		}
@@ -210,10 +208,9 @@ class OnApp_IpAddress extends OnApp {
 	 * exisitng object with the new data.
 	 *
 	 * @return void
-	 * @access public
 	 */
 	function save() {
-		if( isset( $this->_id ) ) {
+		if( isset( $this->id ) ) {
 			$obj = $this->editObject();
 
 			if( isset( $obj ) && ! isset( $obj->errors ) ) {

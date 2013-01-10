@@ -58,7 +58,6 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	 * @param string $action action name
 	 *
 	 * @return string API resource
-	 * @access public
 	 */
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		switch( $action ) {
@@ -87,7 +86,7 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 				 * @alias   /settings/hypervisors/:hypervisor_id/network_joins/:id(.:format)
 				 * @format  {:controller=>"network_joins", :action=>"destroy"}
 				 */
-				if( is_null( $this->_hypervisor_id ) && is_null( $this->inheritedObject->_hypervisor_id ) ) {
+				if( is_null( $this->hypervisor_id ) && is_null( $this->loadedObject->hypervisor_id ) ) {
 					$this->logger->logError(
 						'getURL( ' . $action . ' ): property hypervisor_id not set.',
 						__FILE__,
@@ -95,8 +94,8 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 					);
 				}
 				else {
-					if( is_null( $this->_hypervisor_id ) ) {
-						$this->_hypervisor_id = $this->inheritedObject->_hypervisor_id;
+					if( is_null( $this->hypervisor_id ) ) {
+						$this->hypervisor_id = $this->loadedObject->hypervisor_id;
 					}
 				}
 				$resource = 'settings/hypervisors/' . $this->hypervisor_id . '/' . $this->URLPath;
@@ -114,18 +113,18 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	 * Sends an API request to get the Objects. After requesting,
 	 * unserializes the received response into the array of Objects
 	 *
-	 * @param integer $hypervisor_id Hypervisor ID
+	 * @param integer $hypervisor_id   Hypervisor ID
+	 * @param mixed   $url_args        additional parameters
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
-	 * @access public
 	 */
 	function getList( $hypervisor_id = null, $url_args = null ) {
-		if( is_null( $hypervisor_id ) && ! is_null( $this->_hypervisor_id ) ) {
-			$hypervisor_id = $this->_hypervisor_id;
+		if( is_null( $hypervisor_id ) && ! is_null( $this->hypervisor_id ) ) {
+			$hypervisor_id = $this->hypervisor_id;
 		}
 
 		if( ! is_null( $hypervisor_id ) ) {
-			$this->_hypervisor_id = $hypervisor_id;
+			$this->hypervisor_id = $hypervisor_id;
 			return parent::getList( $hypervisor_id, $url_args );
 		}
 		else {
@@ -148,33 +147,32 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	 * @param integer $hypervisor_id Hypervisor ID
 	 *
 	 * @return mixed serialized Object instance from API
-	 * @access public
 	 */
 	function load( $id = null, $hypervisor_id = null ) {
-		if( is_null( $hypervisor_id ) && ! is_null( $this->_hypervisor_id ) ) {
-			$hypervisor_id = $this->_hypervisor_id;
+		if( is_null( $hypervisor_id ) && ! is_null( $this->hypervisor_id ) ) {
+			$hypervisor_id = $this->hypervisor_id;
 		}
 
-		if( is_null( $id ) && ! is_null( $this->_id ) ) {
-			$id = $this->_id;
+		if( is_null( $id ) && ! is_null( $this->id ) ) {
+			$id = $this->id;
 		}
 
 		if( is_null( $id ) &&
-			isset( $this->inheritedObject ) &&
-			! is_null( $this->inheritedObject->_id )
+			isset( $this->loadedObject ) &&
+			! is_null( $this->loadedObject->id )
 		) {
-			$id = $this->inheritedObject->_id;
+			$id = $this->loadedObject->id;
 		}
 
 		$this->logger->logMessage( 'load: Load class ( id => ' . $id . ' ).' );
 
 		if( ! is_null( $id ) && ! is_null( $hypervisor_id ) ) {
-			$this->_id            = $id;
-			$this->_hypervisor_id = $hypervisor_id;
+			$this->id            = $id;
+			$this->hypervisor_id = $hypervisor_id;
 
 			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 			$result                = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
-			$this->inheritedObject = $result;
+			$this->loadedObject = $result;
 
 			return $result;
 		}

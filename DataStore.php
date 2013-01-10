@@ -75,7 +75,7 @@ class OnApp_DataStore extends OnApp {
 				 * @alias  /settings/hypervisor_zones/:hypervisor_group_id/data_stores(.:format)
 				 * @format {:action=>"index", :controller=>"data_stores"}
 				 */
-				$resource = 'settings/hypervisor_zones/' . $this->_hypervisor_group_id . '/data_stores';
+				$resource = 'settings/hypervisor_zones/' . $this->hypervisor_group_id . '/data_stores';
 				break;
 
 			case ONAPP_GETRESOURCE_DEFAULT:
@@ -137,7 +137,7 @@ class OnApp_DataStore extends OnApp {
 	 */
 	function getListByHypervisorGroupId( $hypervisor_group_id ) {
 		if( $hypervisor_group_id ) {
-			$this->_hypervisor_group_id = $hypervisor_group_id;
+			$this->hypervisor_group_id = $hypervisor_group_id;
 		}
 		else {
 			$this->logger->logError(
@@ -156,7 +156,7 @@ class OnApp_DataStore extends OnApp {
 			return false;
 		}
 
-		$this->inheritedObject = $result;
+		$this->loadedObject = $result;
 
 		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
 	}

@@ -81,7 +81,6 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	 * @param string $action action name
 	 *
 	 * @return string API resource
-	 * @access public
 	 */
 	protected function getURL( $action = ONAPP_GETRESOURCE_DEFAULT ) {
 		$show_log_msg = true;
@@ -95,7 +94,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				 * @alias   /virtual_machines/:virtual_machine_id/backups(.:format)
 				 * @format  {:controller=>"backups", :action=>"index"}
 				 */
-				if( is_null( $this->_virtual_machine_id ) && is_null( $this->inheritedObject->_virtual_machine_id ) ) {
+				if( is_null( $this->virtual_machine_id ) && is_null( $this->loadedObject->virtual_machine_id ) ) {
 					$this->logger->logError(
 						'getURL( ' . $action . ' ): property virtual_machine_id not set.',
 						__FILE__,
@@ -103,12 +102,12 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 					);
 				}
 				else {
-					if( is_null( $this->_virtual_machine_id ) ) {
-						$this->_virtual_machine_id = $this->inheritedObject->_virtual_machine_id;
+					if( is_null( $this->virtual_machine_id ) ) {
+						$this->virtual_machine_id = $this->loadedObject->virtual_machine_id;
 					}
 				}
 
-				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->URLPath;
+				$resource = 'virtual_machines/' . $this->virtual_machine_id . '/' . $this->URLPath;
 				break;
 
 			case ONAPP_GETRESOURCE_ADD:
@@ -120,7 +119,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				 * @alias   /virtual_machines/:virtual_machine_id/backups(.:format)
 				 * @format  {:controller=>"backups", :action=>"create"}
 				 */
-				if( is_null( $this->_disk_id ) && is_null( $this->inheritedObject->_disk_id ) ) {
+				if( is_null( $this->disk_id ) && is_null( $this->loadedObject->disk_id ) ) {
 					$this->logger->logError(
 						'getURL( ' . $action . ' ): property disk_id not set.',
 						__FILE__,
@@ -128,12 +127,12 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 					);
 				}
 				else {
-					if( is_null( $this->_disk_id ) ) {
-						$this->_disk_id = $this->inheritedObject->_disk_id;
+					if( is_null( $this->disk_id ) ) {
+						$this->disk_id = $this->loadedObject->disk_id;
 					}
 				}
 
-				$resource = 'settings/disks/' . $this->_disk_id . '/' . $this->URLPath;
+				$resource = 'settings/disks/' . $this->disk_id . '/' . $this->URLPath;
 				break;
 
 			case ONAPP_GETRESOURCE_DISK_BACKUPS:
@@ -145,7 +144,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				 * @alias  /settings/disks/:disk_id/backups(.:format)
 				 * @format {:controller=>"backups", :action=>"index"}
 				 */
-				$resource = 'settings/disks/' . $this->_disk_id . '/' . $this->URLPath;
+				$resource = 'settings/disks/' . $this->disk_id . '/' . $this->URLPath;
 				break;
 
 			case ONAPP_GETRESOURCE_LOAD:
@@ -166,7 +165,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				 * @alias    /backups/:id(.:format)
 				 * @format   {:controller=>"backups", :action=>"destroy"}
 				 */
-				if( is_null( $this->_id ) && is_null( $this->inheritedObject->_id ) ) {
+				if( is_null( $this->id ) && is_null( $this->loadedObject->id ) ) {
 					$this->logger->logError(
 						'getURL( ' . $action . ' ): property id not set.',
 						__FILE__,
@@ -174,12 +173,12 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 					);
 				}
 				else {
-					if( is_null( $this->_id ) ) {
-						$this->_id = $this->inheritedObject->_id;
+					if( is_null( $this->id ) ) {
+						$this->id = $this->loadedObject->id;
 					}
 				}
 
-				return $this->URLPath . '/' . $this->_id;
+				return $this->URLPath . '/' . $this->id;
 
 			case ONAPP_GETRESOURCE_BACKUP_CONVERT:
 				/**
@@ -222,17 +221,17 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	 * unserializes the received response into the array of Objects
 	 *
 	 * @param integer $virtual_machine_id Virtual Machine id
+	 * @param mixed   $url_args           additional parameters
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
-	 * @access public
 	 */
 	function getList( $virtual_machine_id = null, $url_args = null ) {
-		if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
-			$virtual_machine_id = $this->_virtual_machine_id;
+		if( is_null( $virtual_machine_id ) && ! is_null( $this->virtual_machine_id ) ) {
+			$virtual_machine_id = $this->virtual_machine_id;
 		}
 
 		if( ! is_null( $virtual_machine_id ) ) {
-			$this->_virtual_machine_id = $virtual_machine_id;
+			$this->virtual_machine_id = $virtual_machine_id;
 			return parent::getList( $virtual_machine_id, $url_args );
 		}
 		else {
@@ -253,7 +252,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	 */
 	function diskBackups( $disk_id = null ) {
 		if( $disk_id ) {
-			$this->_disk_id = $disk_id;
+			$this->disk_id = $disk_id;
 		}
 
 		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_DISK_BACKUPS ) );
@@ -276,7 +275,6 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	 * @param string $label The label of new template
 	 *
 	 * @return mixed serialized Object instance from API
-	 * @access public
 	 */
 	function convert( $label ) {
 		$this->logger->logMessage( 'Convert backup to template.' );
@@ -285,7 +283,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 			'root' => $this->rootElement,
 			'data' => array(
 				'label' => $label,
-				'id'    => $this->_id
+				'id'    => $this->id
 			)
 		);
 		// workaround because we get template data in response
@@ -296,12 +294,10 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 
 	/**
 	 * Restore backup
-	 *
-	 * @access public
 	 */
 	function restore() {
 		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_BACKUP_RESTORE ) );
 		$result                = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
-		$this->inheritedObject = $result;
+		$this->loadedObject = $result;
 	}
 }

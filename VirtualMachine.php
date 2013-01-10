@@ -273,7 +273,7 @@ class OnApp_VirtualMachine extends OnApp {
 				 * @alias  /users/:user_id/virtual_machines(.:format)
 				 * @format {:controller=>"virtual_machines", :action=>"index"}
 				 */
-				$resource = '/users/' . $this->_user_id . '/virtual_machines';
+				$resource = '/users/' . $this->user_id . '/virtual_machines';
 				break;
 
 			default:
@@ -398,7 +398,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 */
 	public function migrate( $id, $hypervisor_id ) {
 		if( $id ) {
-			$this->_id = $id;
+			$this->id = $id;
 		}
 
 		//todo add check for cold migrate
@@ -433,12 +433,11 @@ class OnApp_VirtualMachine extends OnApp {
 
 			$this->sendPost( ONAPP_GETRESOURCE_CHANGE_OWNER, $data );
 		}
-		return $this->inheritedObject;
+		return $this->loadedObject;
 	}
 
 	/**
 	 * Rebuilds network for virtual machine
-	 *
 	 */
 	public function rebuild_network() {
 		$this->sendPost( ONAPP_GETRESOURCE_REBUILD_NETWORK );
@@ -465,7 +464,7 @@ class OnApp_VirtualMachine extends OnApp {
 
 			$this->sendPost( ONAPP_GETRESOURCE_STARTUP, $data );
 		}
-		return $this->inheritedObject;
+		return $this->loadedObject;
 	}
 
 	/**
@@ -480,12 +479,12 @@ class OnApp_VirtualMachine extends OnApp {
 	 */
 	public function build() {
 		if( $this->getOnAppVersion() < 2.3 ) {
-			if( isset( $this->_template_id ) && ( $this->_template_id != $this->inheritedObject->_template_id ) ) {
+			if( isset( $this->template_id ) && ( $this->template_id != $this->loadedObject->template_id ) ) {
 				$data = array(
 					'root' => 'virtual_machine',
 					'data' => array(
-						'template_id'      => $this->_template_id,
-						'required_startup' => $this->_required_startup
+						'template_id'      => $this->template_id,
+						'required_startup' => $this->required_startup
 					)
 				);
 			}
@@ -493,7 +492,7 @@ class OnApp_VirtualMachine extends OnApp {
 				$data = array(
 					'root' => 'virtual_machine',
 					'data' => array(
-						'required_startup' => $this->_required_startup
+						'required_startup' => $this->required_startup
 					)
 				);
 			}
@@ -502,7 +501,7 @@ class OnApp_VirtualMachine extends OnApp {
 			$data = array(
 				'root' => 'virtual_machine',
 				'data' => array(
-					'template_id'      => $this->template_id ? $this->template_id : $this->inheritedObject->template_id,
+					'template_id'      => $this->template_id ? $this->template_id : $this->loadedObject->template_id,
 					'required_startup' => $this->required_startup
 				)
 			);
@@ -530,7 +529,7 @@ class OnApp_VirtualMachine extends OnApp {
 
 			$this->logger->logMessage( 'getList: Get Transaction list.' );
 
-			$this->_user_id = $user_id;
+			$this->user_id = $user_id;
 
 			$this->setAPIResource( $this->getURL( ONAPP_ACTIVATE_GETLIST_USER ) );
 
@@ -554,7 +553,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 * Save Object in to your account.
 	 */
 	public function save() {
-		if( ! is_null( $this->_id ) ) {
+		if( ! is_null( $this->id ) ) {
 			parent::save();
 			return;
 		}
@@ -572,11 +571,11 @@ class OnApp_VirtualMachine extends OnApp {
 	 */
 	public function editAdminNote( $id, $admin_note ) {
 		if( $admin_note ) {
-			$this->_admin_note = $admin_note;
+			$this->admin_note = $admin_note;
 		}
 
 		if( $id ) {
-			$this->_id = $id;
+			$this->id = $id;
 		}
 		parent::save();
 	}
