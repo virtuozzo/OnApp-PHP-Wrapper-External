@@ -1,5 +1,4 @@
 <?php
-
 /**
  * OnApp API wrapper bootstrap
  *
@@ -23,9 +22,9 @@ if( ! defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
 	 * @return bool
 	 * @throws Exception
 	 */
-	public function OnAppAutoLoad( $className ) {
+	function OnAppAutoLoad( $className ) {
 		// check if called class belongs to OnApp wrapper
-		if( strpos( strtolower( $className ), 'onapp' ) !== 0 ) {
+		if( strpos( $className, 'OnApp' ) !== 0 ) {
 			return false;
 		}
 
