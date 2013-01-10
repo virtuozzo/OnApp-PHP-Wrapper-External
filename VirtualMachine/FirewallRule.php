@@ -158,7 +158,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 */
-	function getList( $virtual_machine_id = null, $url_args = null ) {
+	public function getList( $virtual_machine_id = null, $url_args = null ) {
 		if( is_null( $virtual_machine_id ) && ! is_null( $this->virtual_machine_id ) ) {
 			$virtual_machine_id = $this->virtual_machine_id;
 		}
@@ -189,7 +189,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 *
 	 * @return mixed serialized Object instance from API
 	 */
-	function load( $id = null, $virtual_machine_id = null ) {
+	public function load( $id = null, $virtual_machine_id = null ) {
 		if( is_null( $virtual_machine_id ) && ! is_null( $this->virtual_machine_id ) ) {
 			$virtual_machine_id = $this->virtual_machine_id;
 		}
@@ -249,7 +249,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 *
 	 * @return void
 	 */
-	function move( $position ) {
+	public function move( $position ) {
 		if( ! $position ) {
 			$this->logger->logError(
 				'_GETAction: Firewall rule move position have to be specified', __FILE__, __LINE__
@@ -272,7 +272,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 *
 	 * @param integer $virtual_machine_id VM Id
 	 */
-	function update( $virtual_machine_id = null ) {
+	public function update( $virtual_machine_id = null ) {
 		if( $virtual_machine_id ) {
 			$this->virtual_machine_id = $virtual_machine_id;
 		}
@@ -288,7 +288,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 	 *
 	 * @return void
 	 */
-	function updateDefaults( $virtual_machine_id, $networkInterfaces ) {
+	public function updateDefaults( $virtual_machine_id, $networkInterfaces ) {
 		if( $virtual_machine_id ) {
 			$this->virtual_machine_id = $virtual_machine_id;
 		}

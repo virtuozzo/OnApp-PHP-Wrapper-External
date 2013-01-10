@@ -121,7 +121,7 @@ class OnApp_Network extends OnApp {
 	 *
 	 * @return bool|mixed
 	 */
-	function getListByHypervisorGroupId( $hypervisor_group_id = null ) {
+	public function getListByHypervisorGroupId( $hypervisor_group_id = null ) {
 		if( $hypervisor_group_id ) {
 			$this->hypervisor_group_id = $hypervisor_group_id;
 		}
@@ -148,7 +148,7 @@ class OnApp_Network extends OnApp {
 		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
 	}
 
-	function activate( $action_name ) {
+	public function activate( $action_name ) {
 		switch( $action_name ) {
 			case ONAPP_ACTIVATE_SAVE:
 			case ONAPP_ACTIVATE_DELETE:

@@ -63,7 +63,7 @@ class OnApp_Transaction extends OnApp {
 	 */
 	protected $URLPath = 'transactions';
 
-	function activate( $action_name ) {
+	public function activate( $action_name ) {
 		switch( $action_name ) {
 			case ONAPP_ACTIVATE_SAVE:
 			case ONAPP_ACTIVATE_DELETE:
@@ -80,7 +80,7 @@ class OnApp_Transaction extends OnApp {
 	 *
 	 * @return the array of Object instances
 	 */
-	function getList( $page = 1, $url_args = null ) {
+	public function getList( $page = 1, $url_args = null ) {
 		$data = array(
 			'root' => 'page',
 			'data' => $page,
@@ -116,7 +116,7 @@ class OnApp_Transaction extends OnApp {
 	 *
 	 * @return type
 	 */
-	function load_with_output( $id ) {
+	public function load_with_output( $id ) {
 		$this->id = $id;
 		return $this->sendGet( ONAPP_GETRESOURCE_LOAD, null, array( 'log' => '' ) );
 	}

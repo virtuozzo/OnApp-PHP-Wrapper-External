@@ -169,7 +169,7 @@ class OnApp_Hypervisor extends OnApp {
 	 *
 	 * @return bool|mixed
 	 */
-	function GetListByGroupId( $group_id = null ) {
+	public function GetListByGroupId( $group_id = null ) {
 		if( $group_id ) {
 			$this->hypervisor_group_id = $group_id;
 		}
@@ -203,7 +203,7 @@ class OnApp_Hypervisor extends OnApp {
 	 *
 	 * @return void
 	 */
-	function reboot( $hypervisor_id ) {
+	public function reboot( $hypervisor_id ) {
 		if( $hypervisor_id ) {
 			$this->id = $hypervisor_id;
 		}
@@ -225,7 +225,7 @@ class OnApp_Hypervisor extends OnApp {
 		$this->sendPost( ONAPP_GETRESOURCE_HYPERVISOR_REBOOT, $data );
 	}
 
-	function save() {
+	public function save() {
 		//todo check this code
 		/*
 		if( $this->id ) {

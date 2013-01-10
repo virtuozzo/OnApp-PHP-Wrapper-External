@@ -135,7 +135,7 @@ class OnApp_DataStore extends OnApp {
 	 *
 	 * @return bool|array
 	 */
-	function getListByHypervisorGroupId( $hypervisor_group_id ) {
+	public function getListByHypervisorGroupId( $hypervisor_group_id ) {
 		if( $hypervisor_group_id ) {
 			$this->hypervisor_group_id = $hypervisor_group_id;
 		}

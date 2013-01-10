@@ -116,7 +116,7 @@ class OnApp_Template extends OnApp {
 		return $resource;
 	}
 
-	function activate( $action_name ) {
+	public function activate( $action_name ) {
 		switch( $action_name ) {
 			case ONAPP_ACTIVATE_SAVE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );

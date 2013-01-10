@@ -100,7 +100,7 @@ class OnApp_User_BillingStatistics extends OnApp {
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 */
-	function getList( $user_id = null, $url_args = null ) {
+	public function getList( $user_id = null, $url_args = null ) {
 		if( is_null( $user_id ) && ! is_null( $this->user_id ) ) {
 			$user_id = $this->user_id;
 		}
@@ -124,7 +124,7 @@ class OnApp_User_BillingStatistics extends OnApp {
 	 *
 	 * @param string $action_name the name of action
 	 */
-	function activate( $action_name ) {
+	public function activate( $action_name ) {
 		switch( $action_name ) {
 			case ONAPP_ACTIVATE_LOAD:
 			case ONAPP_ACTIVATE_SAVE:

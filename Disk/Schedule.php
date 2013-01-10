@@ -93,7 +93,7 @@ class OnApp_Disk_Schedule extends OnApp {
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 */
-	function getListByDiskId( $disk_id = null ) {
+	public function getListByDiskId( $disk_id = null ) {
 		if( $disk_id ) {
 			$this->target_id = $disk_id;
 		}
@@ -114,7 +114,7 @@ class OnApp_Disk_Schedule extends OnApp {
 		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
 	}
 
-	function save() {
+	public function save() {
 		if( $this->target_id ) {
 			//todo check this code
 			$this->fields[ 'target_id' ][ ONAPP_FIELD_REQUIRED ]        = true;

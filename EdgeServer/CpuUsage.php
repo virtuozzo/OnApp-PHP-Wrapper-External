@@ -76,7 +76,7 @@ class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 */
-	function getList( $virtual_machine_id = null, $url_args = null ) {
+	public function getList( $virtual_machine_id = null, $url_args = null ) {
 		if( is_null( $virtual_machine_id ) && ! is_null( $this->virtual_machine_id ) ) {
 			$virtual_machine_id = $this->virtual_machine_id;
 		}

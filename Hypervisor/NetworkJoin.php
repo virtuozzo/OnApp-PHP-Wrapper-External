@@ -118,7 +118,7 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 */
-	function getList( $hypervisor_id = null, $url_args = null ) {
+	public function getList( $hypervisor_id = null, $url_args = null ) {
 		if( is_null( $hypervisor_id ) && ! is_null( $this->hypervisor_id ) ) {
 			$hypervisor_id = $this->hypervisor_id;
 		}
@@ -148,7 +148,7 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	 *
 	 * @return mixed serialized Object instance from API
 	 */
-	function load( $id = null, $hypervisor_id = null ) {
+	public function load( $id = null, $hypervisor_id = null ) {
 		if( is_null( $hypervisor_id ) && ! is_null( $this->hypervisor_id ) ) {
 			$hypervisor_id = $this->hypervisor_id;
 		}

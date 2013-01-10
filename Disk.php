@@ -205,7 +205,7 @@ class OnApp_Disk extends OnApp {
 	 *
 	 * @return void
 	 */
-	function enableAutobackup( $id = null ) {
+	public function enableAutobackup( $id = null ) {
 		if( $id ) {
 			$this->id = $id;
 		}
@@ -219,7 +219,7 @@ class OnApp_Disk extends OnApp {
 	 *
 	 * @return void
 	 */
-	function disableAutobackup( $id = null ) {
+	public function disableAutobackup( $id = null ) {
 		if( $id ) {
 			$this->id = $id;
 		}
@@ -236,7 +236,7 @@ class OnApp_Disk extends OnApp {
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 */
-	function getList( $vm_id = null, $url_args = null ) {
+	public function getList( $vm_id = null, $url_args = null ) {
 		if( $vm_id ) {
 			$this->virtual_machine_id = $vm_id;
 		}
@@ -248,7 +248,7 @@ class OnApp_Disk extends OnApp {
 	 *
 	 * @return mixed Serialized API Response
 	 */
-	function save() {
+	public function save() {
 		//todo check this code
 		if( $this->virtual_machine_id ) {
 			$this->fields[ 'require_format_disk' ] = array(
@@ -276,7 +276,7 @@ class OnApp_Disk extends OnApp {
 	 *
 	 * @return void
 	 */
-	function takeBackup( $disk_id ) {
+	public function takeBackup( $disk_id ) {
 		if( $disk_id ) {
 			$this->id = $disk_id;
 		}

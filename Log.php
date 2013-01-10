@@ -88,11 +88,11 @@ class OnApp_Log extends OnApp {
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 */
-	function getList( $params = null, $url_args = null ) {
+	public function getList( $params = null, $url_args = null ) {
 		return parent::getList( $params, $url_args );
 	}
 
-	function activate( $action_name ) {
+	public function activate( $action_name ) {
 		switch( $action_name ) {
 			case ONAPP_ACTIVATE_SAVE:
 			case ONAPP_ACTIVATE_DELETE:

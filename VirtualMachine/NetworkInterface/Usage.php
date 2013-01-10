@@ -119,7 +119,7 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 */
-	function getList( $virtual_machine_id = null, $network_interface_id = null, $url_args = '' ) {
+	public function getList( $virtual_machine_id = null, $network_interface_id = null, $url_args = '' ) {
 		if( is_null( $virtual_machine_id ) && ! is_null( $this->virtual_machine_id ) ) {
 			$virtual_machine_id = $this->virtual_machine_id;
 		}

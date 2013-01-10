@@ -43,7 +43,7 @@ class OnApp_LoadBalancer extends OnApp_VirtualMachine {
 	 *
 	 * @param string $action_name the name of action
 	 */
-	function activate( $action_name ) {
+	public function activate( $action_name ) {
 		switch( $action_name ) {
 			case ONAPP_ACTIVATE_SAVE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );

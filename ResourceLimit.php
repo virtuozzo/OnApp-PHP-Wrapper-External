@@ -129,7 +129,7 @@ class OnApp_ResourceLimit extends OnApp {
 	 *
 	 * @return object serialized Object instance from API
 	 */
-	function load( $user_id = null ) {
+	public function load( $user_id = null ) {
 		if( is_null( $user_id ) && ! is_null( $this->user_id ) ) {
 			$user_id = $this->user_id;
 		}
@@ -172,7 +172,7 @@ class OnApp_ResourceLimit extends OnApp {
 	 *
 	 * @return void
 	 */
-	function save() {
+	public function save() {
 		if( isset( $this->user_id ) ) {
 			$obj = $this->editObject();
 
@@ -182,7 +182,7 @@ class OnApp_ResourceLimit extends OnApp {
 		}
 	}
 
-	function activate( $action_name ) {
+	public function activate( $action_name ) {
 		switch( $action_name ) {
 			case ONAPP_ACTIVATE_DELETE:
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );

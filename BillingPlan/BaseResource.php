@@ -147,7 +147,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 */
-	function getList( $billing_plan_id = null, $url_args = null ) {
+	public function getList( $billing_plan_id = null, $url_args = null ) {
 		if( is_null( $billing_plan_id ) && ! is_null( $this->billing_plan_id ) ) {
 			$billing_plan_id = $this->billing_plan_id;
 		}
@@ -186,7 +186,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	 *
 	 * @return void
 	 */
-	function save() {
+	public function save() {
 		if( is_null( $this->limit ) ) {
 			$this->limit = isset( $this->limits->limit )
 				? $this->limits->limit : (

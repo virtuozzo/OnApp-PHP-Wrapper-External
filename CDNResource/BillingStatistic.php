@@ -101,7 +101,7 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
 	 *
 	 * @param string $action_name the name of action
 	 */
-	function activate( $action_name ) {
+	public function activate( $action_name ) {
 		switch( $action_name ) {
 			case ONAPP_ACTIVATE_LOAD:
 			case ONAPP_ACTIVATE_SAVE:

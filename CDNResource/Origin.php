@@ -45,7 +45,7 @@ class OnApp_CDNResource_Origin extends OnApp {
 	 *
 	 * @param string $action_name the name of action
 	 */
-	function activate( $action_name ) {
+	public function activate( $action_name ) {
 		switch( $action_name ) {
 			case ONAPP_ACTIVATE_GETLIST:
 			case ONAPP_ACTIVATE_LOAD:

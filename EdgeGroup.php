@@ -95,7 +95,7 @@ class OnApp_EdgeGroup extends OnApp {
 		return $resource;
 	}
 
-	function assign_location( $edge_group_id, $location_id ) {
+	public function assign_location( $edge_group_id, $location_id ) {
 		if( $edge_group_id ) {
 			$this->id = $edge_group_id;
 		}
@@ -130,7 +130,7 @@ class OnApp_EdgeGroup extends OnApp {
 	 * @param <type> $edge_group_id
 	 * @param <type> $location_id
 	 */
-	function unassign_location( $edge_group_id, $location_id ) {
+	public function unassign_location( $edge_group_id, $location_id ) {
 		if( $edge_group_id ) {
 			$this->id = $edge_group_id;
 		}

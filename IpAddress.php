@@ -134,7 +134,7 @@ class OnApp_IpAddress extends OnApp {
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 */
-	function getList( $network_id = null, $url_args = null ) {
+	public function getList( $network_id = null, $url_args = null ) {
 		if( is_null( $network_id ) && ! is_null( $this->network_id ) ) {
 			$network_id = $this->network_id;
 		}
@@ -164,7 +164,7 @@ class OnApp_IpAddress extends OnApp {
 	 *
 	 * @return mixed serialized Object instance from API
 	 */
-	function load( $id = null, $network_id = null ) {
+	public function load( $id = null, $network_id = null ) {
 		if( is_null( $network_id ) && ! is_null( $this->network_id ) ) {
 			$network_id = $this->network_id;
 		}
@@ -209,7 +209,7 @@ class OnApp_IpAddress extends OnApp {
 	 *
 	 * @return void
 	 */
-	function save() {
+	public function save() {
 		if( isset( $this->id ) ) {
 			$obj = $this->editObject();
 

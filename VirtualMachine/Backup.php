@@ -225,7 +225,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 */
-	function getList( $virtual_machine_id = null, $url_args = null ) {
+	public function getList( $virtual_machine_id = null, $url_args = null ) {
 		if( is_null( $virtual_machine_id ) && ! is_null( $this->virtual_machine_id ) ) {
 			$virtual_machine_id = $this->virtual_machine_id;
 		}
@@ -250,7 +250,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	 *
 	 * @return response object
 	 */
-	function diskBackups( $disk_id = null ) {
+	public function diskBackups( $disk_id = null ) {
 		if( $disk_id ) {
 			$this->disk_id = $disk_id;
 		}
@@ -276,7 +276,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	 *
 	 * @return mixed serialized Object instance from API
 	 */
-	function convert( $label ) {
+	public function convert( $label ) {
 		$this->logger->logMessage( 'Convert backup to template.' );
 		$this->label = $label;
 		$data        = array(
@@ -295,7 +295,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 	/**
 	 * Restore backup
 	 */
-	function restore() {
+	public function restore() {
 		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_BACKUP_RESTORE ) );
 		$result                = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
 		$this->loadedObject = $result;

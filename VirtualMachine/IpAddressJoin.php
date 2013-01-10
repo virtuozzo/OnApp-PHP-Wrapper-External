@@ -130,7 +130,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 */
-	function getList( $virtual_machine_id = null, $url_args = null ) {
+	public function getList( $virtual_machine_id = null, $url_args = null ) {
 		if( is_null( $virtual_machine_id ) && ! is_null( $this->virtual_machine_id ) ) {
 			$virtual_machine_id = $this->virtual_machine_id;
 		}
@@ -161,7 +161,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 	 *
 	 * @return mixed serialized Object instance from API
 	 */
-	function load( $id = null, $virtual_machine_id = null ) {
+	public function load( $id = null, $virtual_machine_id = null ) {
 		if( ! is_null( $this->URLID ) ) {
 			$this->virtual_machine_id = $this->URLID;
 		}

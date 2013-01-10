@@ -103,7 +103,7 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 	 *
 	 * @return array of network join objects
 	 */
-	function getList( $target_join_id = null, $url_args = null ) {
+	public function getList( $target_join_id = null, $url_args = null ) {
 		if( is_null( $target_join_id ) && ! is_null( $this->target_join_id ) ) {
 			$target_join_id = $this->target_join_id;
 		}

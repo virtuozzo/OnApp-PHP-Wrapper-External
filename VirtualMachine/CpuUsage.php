@@ -99,7 +99,7 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 */
-	function getList( $virtual_machine_id = null, $url_args = null ) {
+	public function getList( $virtual_machine_id = null, $url_args = null ) {
 		if( is_null( $virtual_machine_id ) && ! is_null( $this->virtual_machine_id ) ) {
 			$virtual_machine_id = $this->virtual_machine_id;
 		}
@@ -123,7 +123,7 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
 	 *
 	 * @param string $action_name the name of action
 	 */
-	function activate( $action_name ) {
+	public function activate( $action_name ) {
 		switch( $action_name ) {
 			case ONAPP_ACTIVATE_LOAD:
 			case ONAPP_ACTIVATE_SAVE:

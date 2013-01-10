@@ -85,7 +85,7 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
 	 *
 	 * @return array of datastore join objects
 	 */
-	function getList( $target_join_id = null, $url_args = null ) {
+	public function getList( $target_join_id = null, $url_args = null ) {
 		if( is_null( $target_join_id ) && ! is_null( $this->target_join_id ) ) {
 			$target_join_id = $this->target_join_id;
 		}
@@ -108,7 +108,7 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
 	 *
 	 * @param string $action_name the name of action
 	 */
-	function activate( $action_name ) {
+	public function activate( $action_name ) {
 		switch( $action_name ) {
 			case ONAPP_ACTIVATE_LOAD:
 			case ONAPP_ACTIVATE_SAVE:

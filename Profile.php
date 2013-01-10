@@ -73,7 +73,7 @@ class OnApp_Profile extends OnApp {
 	 */
 	protected $URLPath = 'profile';
 
-	function activate( $action_name ) {
+	public function activate( $action_name ) {
 		switch( $action_name ) {
 			case ONAPP_ACTIVATE_GETLIST:
 			case ONAPP_ACTIVATE_DELETE:
@@ -114,7 +114,7 @@ class OnApp_Profile extends OnApp {
 	 *
 	 * @return mixed serialized Object instance from API
 	 */
-	function load( $id = null ) {
+	public function load( $id = null ) {
 		$this->activate( ONAPP_ACTIVATE_LOAD );
 
 		$this->logger->logMessage( 'load: Load class' );

@@ -64,7 +64,7 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 	 * @param integer $virtual_machine_id   virtual machine id
 	 * @param integer $network_interface_id network interface id
 	 */
-	function join( $ip_address_id = null, $virtual_machine_id = null, $network_interface_id = null ) {
+	public function join( $ip_address_id = null, $virtual_machine_id = null, $network_interface_id = null ) {
 		if( $virtual_machine_id ) {
 			$this->virtual_machine_id = $virtual_machine_id;
 		}
@@ -91,7 +91,7 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 	 *
 	 * @param string $action_name the name of action
 	 */
-	function activate( $action_name ) {
+	public function activate( $action_name ) {
 		switch( $action_name ) {
 			case ONAPP_ACTIVATE_GETLIST:
 			case ONAPP_ACTIVATE_LOAD:

@@ -132,7 +132,7 @@ class OnApp_LoadBalancingCluster extends OnApp {
 	 *
 	 * @return mixed API query response
 	 */
-	function save() {
+	public function save() {
 		//todo check this code
 		$this->fields[ 'load_balancer_attributes' ]                        = array(
 			ONAPP_FIELD_MAP => '_load_balancer_attributes',
@@ -169,7 +169,7 @@ class OnApp_LoadBalancingCluster extends OnApp {
 	 *
 	 * @return bool|mixed
 	 */
-	function getListByUserId( $user_id = null ) {
+	public function getListByUserId( $user_id = null ) {
 		if( $user_id ) {
 			$this->user_id = $user_id;
 		}

@@ -94,7 +94,7 @@ class OnApp_Console extends OnApp {
 	 *
 	 * @return mixed serialized Object instance from API
 	 */
-	function load( $virtual_machine_id = null ) {
+	public function load( $virtual_machine_id = null ) {
 		if( is_null( $virtual_machine_id ) && ! is_null( $this->virtual_machine_id ) ) {
 			$virtual_machine_id = $this->virtual_machine_id;
 		}
@@ -132,7 +132,7 @@ class OnApp_Console extends OnApp {
 	 *
 	 * @param string $action_name the name of action
 	 */
-	function activate( $action_name ) {
+	public function activate( $action_name ) {
 		switch( $action_name ) {
 			case ONAPP_ACTIVATE_GETLIST:
 			case ONAPP_ACTIVATE_SAVE:
