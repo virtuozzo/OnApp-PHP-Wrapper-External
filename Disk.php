@@ -266,7 +266,7 @@ class OnApp_Disk extends OnApp {
 			$this->fields[ 'mount_point' ][ ONAPP_FIELD_REQUIRED ]        = false;
 		}
 
-		return parent::save();
+		parent::save();
 	}
 
 	/**

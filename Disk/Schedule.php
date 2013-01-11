@@ -124,6 +124,6 @@ class OnApp_Disk_Schedule extends OnApp {
 			$this->fields[ 'action' ][ ONAPP_FIELD_DEFAULT_VALUE ]      = 'autobackup';
 		}
 
-		return parent::save();
+		parent::save();
 	}
 }

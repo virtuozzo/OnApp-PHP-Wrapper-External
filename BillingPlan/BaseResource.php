@@ -231,6 +231,6 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 					: '' );
 		}
 
-		return parent::save();
+		parent::save();
 	}
 }

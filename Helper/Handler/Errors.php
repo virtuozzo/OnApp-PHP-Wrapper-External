@@ -137,7 +137,7 @@ class OnApp_Helper_Handler_Errors extends OnApp_Helper_Handler_Log {
 
 	public static function init() {
 		if( is_null( self::$errorHandlerInstance ) ) {
-			$className      = __CLASS__;
+			$className                  = __CLASS__;
 			self::$errorHandlerInstance = new $className;
 		}
 		return self::$errorHandlerInstance;

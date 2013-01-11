@@ -224,15 +224,4 @@ class OnApp_Hypervisor extends OnApp {
 
 		$this->sendPost( ONAPP_GETRESOURCE_HYPERVISOR_REBOOT, $data );
 	}
-
-	public function save() {
-		//todo check this code
-		/*
-		if( $this->id ) {
-			$this->fields[ 'hypervisor_group_id' ][ ONAPP_FIELD_REQUIRED ] = FALSE;
-		}
-		*/
-
-		return parent::save();
-	}
 }
