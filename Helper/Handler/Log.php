@@ -121,6 +121,7 @@ class OnApp_Helper_Handler_Log {
 	protected static $logInstance;
 
 	private function __construct() {
+		$this->setTimezone();
 	}
 
 	public function __destruct() {

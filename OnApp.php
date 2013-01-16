@@ -566,8 +566,6 @@ abstract class OnApp {
 	 * @return void
 	 */
 	public function auth( $url, $user, $pass, $proxy = '' ) {
-		$this->logger->setTimezone();
-
 		$this->logger->logDebug( 'auth: Authorization( url => ' . $url . ', user => ' . $user . ', pass => ******** ).' );
 
 		$this->setOption( ONAPP_OPTION_CURL_URL, $url );
@@ -608,7 +606,6 @@ abstract class OnApp {
 	 * Sets full API path to the variable cURL
 	 *
 	 * @param string  $resource    API alias
-	 * @param boolean $append_api_version
 	 * @param string  $queryString API request
 	 *
 	 * @return void
@@ -1055,13 +1052,28 @@ abstract class OnApp {
 	}
 
 	/**
+	 * Sets debug status
+	 *
+	 * @param boolean $debugMode set new debug status
+	 *
+	 * @return void
+	 */
+	public function setDebugMode( $debugMode = true ) {
+		$this->logger->setDebugMode();
+	}
+
+	public function isError() {
+		return ! empty( $this->errors );
+	}
+
+	/**
 	 * Store errors
 	 *
 	 * @param mixed $errors
 	 *
 	 * @return void
 	 */
-	public function setErrors( $errors = null ) {
+	protected function setErrors( $errors = null ) {
 		if( is_null( $errors ) ) {
 			$this->errors = null;
 		}
