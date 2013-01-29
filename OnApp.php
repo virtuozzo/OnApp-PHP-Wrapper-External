@@ -992,7 +992,7 @@ class OnApp {
 	 *
 	 * @return string
 	 */
-	public function getHeader( $label = NULL ) {
+	public function getHeader( $label = null ) {
 		if( ! $label ) {
 			return $this->response[ 'headers' ];
 		}
@@ -1152,8 +1152,9 @@ class OnApp {
 	 * unserializes the received response into the array of Objects
 	 *
 	 * @param mixed $params
+	 * @param mixed $url_args
 	 *
-	 * @return the array of Object instances
+	 * @return array|bool the array of Object instances
 	 */
 	public function getList( $params = null, $url_args = null ) {
 		$this->activate( ONAPP_ACTIVATE_GETLIST );
@@ -1432,19 +1433,19 @@ class OnApp {
 		}
 	}
 
-	function sendPost( $resource, $data = NULL ) {
+	function sendPost( $resource, $data = null ) {
 		return $this->_action( ONAPP_REQUEST_METHOD_POST, $resource, $data );
 	}
 
-	protected function sendGet( $resource, $data = NULL, $url_args = NULL ) {
+	protected function sendGet( $resource, $data = null, $url_args = null ) {
 		return $this->_action( ONAPP_REQUEST_METHOD_GET, $resource, $data, $url_args );
 	}
 
-	function sendPut( $resource, $data = NULL ) {
+	function sendPut( $resource, $data = null ) {
 		return $this->_action( ONAPP_REQUEST_METHOD_PUT, $resource, $data );
 	}
 
-	function sendDelete( $resource, $data = NULL ) {
+	function sendDelete( $resource, $data = null ) {
 		return $this->_action( ONAPP_REQUEST_METHOD_DELETE, $resource, $data );
 	}
 
@@ -1457,7 +1458,7 @@ class OnApp {
 	 *
 	 * @return bool|mixed (Array of Object or Object)
 	 */
-	protected function _action( $method, $resource, $data = NULL, $url_args = NULL ) {
+	protected function _action( $method, $resource, $data = null, $url_args = null ) {
 		switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
 			case 'xml':
 			case 'json':
