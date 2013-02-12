@@ -234,6 +234,11 @@ class OnApp_User extends OnApp {
 					ONAPP_FIELD_TYPE => 'string',
 					ONAPP_FIELD_DEFAULT_VALUE => 'en',
 				);
+				$this->fields[ 'api_key' ]                           = array(
+					ONAPP_FIELD_MAP => '_api_key',
+					ONAPP_FIELD_TYPE => 'string',
+					ONAPP_FIELD_DEFAULT_VALUE => '',
+				);
 				break;
 
 			case 2.2:
@@ -350,6 +355,10 @@ class OnApp_User extends OnApp {
 				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/activate';
 				break;
 
+			case ONAPP_GETRESOURCE_GENERATE_API_KEY:
+				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/make_new_api_key';
+				break;
+
 			default:
 				$resource = parent::getResource( $action );
 				break;
@@ -358,6 +367,7 @@ class OnApp_User extends OnApp {
 		$actions = array(
 			ONAPP_GETRESOURCE_SUSPEND_USER,
 			ONAPP_GETRESOURCE_ACTIVATE,
+			ONAPP_GETRESOURCE_GENERATE_API_KEY,
 		);
 
 		if( in_array( $action, $actions ) ) {
@@ -535,6 +545,23 @@ class OnApp_User extends OnApp {
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 		$root = json_decode($response[ 'response_body' ]);
 		return $root->user;
+	}
+
+	/**
+	* Generates a new API key for this user
+	* https://onappdev.atlassian.net/wiki/display/3api/Generate+API+Key
+	*
+	* Note that we don't bother casting this to a class because then we'd have to write the methods
+	* to get the actual API key!
+	*
+	*@param $id the userid to generate a new key for
+	*@return the json returned from the server
+	*/
+	public function generateApiKey() {
+		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_GENERATE_API_KEY ) );
+		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
+		$result = $this->_castResponseToClass( $response );
+		$this->_obj = $result;
 	}
 
 	public function castJsonToClass( $json ) {
