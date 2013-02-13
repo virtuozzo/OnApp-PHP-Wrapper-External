@@ -32,6 +32,11 @@ define( 'ONAPP_GETRESOURCE_ACTIVATE', 'activate' );
 /**
  *
  */
+define( 'ONAPP_GETRESOURCE_GENERATE_API_KEY', 'make_new_api_key' );
+
+/**
+ *
+ */
 define( 'ONAPP_GETRESOURCE_NETWORKS_LIST_BY_GROUP_ID', 'get_list_by_group_id' );
 
 /**
@@ -237,7 +242,7 @@ class OnApp_User extends OnApp {
 				$this->fields[ 'api_key' ]                           = array(
 					ONAPP_FIELD_MAP => '_api_key',
 					ONAPP_FIELD_TYPE => 'string',
-					ONAPP_FIELD_DEFAULT_VALUE => '',
+					ONAPP_FIELD_READ_ONLY => true,
 				);
 				break;
 
@@ -551,18 +556,17 @@ class OnApp_User extends OnApp {
 	* Generates a new API key for this user
 	* https://onappdev.atlassian.net/wiki/display/3api/Generate+API+Key
 	*
-	* Note that we don't bother casting this to a class because then we'd have to write the methods
-	* to get the actual API key!
-	*
 	*@param $id the userid to generate a new key for
-	*@return the json returned from the server
+	*@return a new user object that contains the _api_key
 	*/
 	public function generateApiKey() {
 		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_GENERATE_API_KEY ) );
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
-		$result = $this->_castResponseToClass( $response );
+		$result = $this->castStringToClass( $response );
 		$this->_obj = $result;
+		return $result;
 	}
+
 
 	public function castJsonToClass( $json ) {
 		$content = array();
