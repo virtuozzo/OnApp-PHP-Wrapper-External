@@ -276,6 +276,9 @@ class OnApp_User extends OnApp {
 				    ONAPP_FIELD_MAP => '_additional_fields',
 		        );
 				break;
+            default:
+                $this->initFields('2.3');
+                break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
