@@ -58,6 +58,12 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	 */
 	protected $URLPath = 'base_resources';
 
+	public function __construct() {
+		parent::__construct();
+
+		$this->dynamicFields[ 'resource_class' ] = $this->resource_class;
+	}
+
 	/**
 	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
@@ -187,6 +193,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 	 * @return void
 	 */
 	public function save() {
+		/*
 		if( is_null( $this->limit ) ) {
 			$this->limit = isset( $this->limits->limit )
 				? $this->limits->limit : (
@@ -230,6 +237,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 					? $this->loadedObject->prices->price
 					: '' );
 		}
+		*/
 
 		parent::save();
 	}
