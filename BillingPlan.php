@@ -171,9 +171,7 @@ class OnApp_BillingPlan extends OnApp {
 
 		$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_CREATE_COPY ) );
 
-		$data = '<billing_plan><label>TEST</label></billing_plan>';
-
-		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST, $data );
+		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST, $data = '' );
 
 		$result = $this->doCastResponseToClass( $response );
 
