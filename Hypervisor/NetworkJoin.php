@@ -183,7 +183,7 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $hypervisor_id = null ) {
+	function getList( $hypervisor_id = null, $url_args = null ) {
 		if( is_null( $hypervisor_id ) && ! is_null( $this->_hypervisor_id ) ) {
 			$hypervisor_id = $this->_hypervisor_id;
 		}
