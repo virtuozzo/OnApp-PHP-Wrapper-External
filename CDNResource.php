@@ -392,4 +392,12 @@ class OnApp_CDNResource extends OnApp {
 	public function enable() {
 		$this->sendPost( ONAPP_GETRESOURCE_ENABLE_CDN );
 	}
+
+        public function save() {
+            if(count($this->_countries) == 0)
+                unset($this->fields['countries']);
+
+            return parent::save();
+        }
+
 }
