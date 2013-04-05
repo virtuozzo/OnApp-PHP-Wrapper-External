@@ -728,8 +728,21 @@ class OnApp_VirtualMachine extends OnApp {
 	 *
 	 * @access public
 	 */
-	function rebuild_network() {
-		$this->sendPost( ONAPP_GETRESOURCE_REBUILD_NETWORK );
+	function rebuild_network($shutdown_type = null, $required_startup = null) {
+        $data = array();
+
+        if(!is_null($shutdown_type) && $shutdown_type != "")
+            $data['shutdown_type'] = $shutdown_type;
+
+        if(!is_null($required_startup) && $required_startup != "")
+            $data['required_startup'] = $required_startup;
+
+        $data = array(
+            'root' => 'tmp_holder',
+            'data' => $data
+        );
+
+		$this->sendPost( ONAPP_GETRESOURCE_REBUILD_NETWORK, $data );
 	}
 
 	/**
