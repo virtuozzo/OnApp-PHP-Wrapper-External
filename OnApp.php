@@ -698,7 +698,29 @@ class OnApp {
 			$this->_is_auth = true;
 		}
 		else {
-			$this->setErrors( $response[ 'response_body' ] );
+			switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
+				case 'xml':
+				case 'json':
+					$tag = 'version';
+					$this->version = null;
+
+					$objCast = new OnApp_Helper_Caster( $this );
+					$error = $objCast->unserialize( $this->getClassName(), $response[ 'response_body' ], null, 'errors' );
+					break;
+
+				default:
+					//todo add CLI check
+					$msg = 'FATAL ERROR: Caster for "' . $this->options[ ONAPP_OPTION_API_TYPE ] . '" is not defined'
+							. ' in FILE ' . __FILE__ . ' LINE ' . __LINE__ . PHP_EOL . PHP_EOL;
+					try {
+						throw new Exception( $msg );
+					}
+					catch( Exception $e ) {
+						echo $e->getMessage();
+						exit( $this->logger->logs() );
+					}
+			}
+			$this->setErrors( $error );
 			$this->_is_auth = false;
 		}
 	}
