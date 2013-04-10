@@ -187,13 +187,17 @@ class OnApp_Helper_Handler_Log {
 	 * Adds the error message to the logger buffer and stops
 	 * executing
 	 *
-	 * @param string $msg  log message
-	 * @param string $file file which initialized error
-	 * @param string $line string in which was initialized error
+	 * @param string  $msg  log message
+	 * @param string  $file file which initialized error
+	 * @param integer $line string in which was initialized error
 	 *
 	 * @return void
 	 */
-	public function logError( $msg, $file = '', $line = '' ) {
+	public function logError( $msg, $file = '', $line = 0 ) {
+		if( !empty( $file ) && ( $line > 0 ) ) {
+			$msg .= PHP_EOL . 'file: ' . $file;
+			$msg .= PHP_EOL . 'line: ' . $line;
+		}
 		$this->addToLog( $msg, ONAPP_LOGGER_VALUE_ERROR );
 	}
 
@@ -275,7 +279,7 @@ class OnApp_Helper_Handler_Log {
 			$colors = new CLI_Colors;
 
 			foreach( $this->log as $value ) {
-				$str = $value[ 'time' ] . ' [' . $value[ 'type' ] . "]\t" . $value[ 'log' ] . PHP_EOL;
+				$str = $value[ 'time' ] . ' [' . $value[ 'type' ] . "]\t" . $value[ 'log' ] . PHP_EOL . PHP_EOL;
 
 				switch( $value[ 'type' ] ) {
 					case ONAPP_LOGGER_VALUE_WARNING:
@@ -296,7 +300,7 @@ class OnApp_Helper_Handler_Log {
 		}
 		else {
 			foreach( $this->log as $value ) {
-				$output .= $value[ 'time' ] . ' [' . $value[ 'type' ] . "]\t" . $value[ 'log' ] . PHP_EOL;
+				$output .= $value[ 'time' ] . ' [' . $value[ 'type' ] . "]\t" . $value[ 'log' ] . PHP_EOL . PHP_EOL;
 			}
 		}
 
