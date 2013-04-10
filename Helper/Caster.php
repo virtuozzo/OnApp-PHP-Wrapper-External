@@ -14,7 +14,6 @@ class OnApp_Helper_Caster extends OnApp_Helper_Stub {
 	 * @param OnApp $obj wrapper object
 	 */
 	public function __construct( $obj ) {
-		//parent::setSuper( $obj );
 		$this->super = $obj;
 	}
 
@@ -78,7 +77,7 @@ class OnApp_Helper_Caster extends OnApp_Helper_Stub {
 	 * @return OnApp_Helper_Caster_JSON|OnApp_Helper_Caster_XML
 	 */
 	private function getCaster() {
-		$caster = __CLASS__ . '_' . strtoupper( $this->super->options[ 'data_type' ] );
+		$caster = __CLASS__ . '_' . strtoupper( $this->super->options[ ONAPP_OPTION_API_TYPE ] );
 		return new $caster( $this->super );
 	}
 
