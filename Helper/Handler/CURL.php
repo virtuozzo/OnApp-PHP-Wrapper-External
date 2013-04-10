@@ -6,14 +6,16 @@ class OnApp_Helper_Handler_CURL extends OnApp_Helper_Stub {
 	private $requestError = false;
 	private $customOptions = array();
 	private $customHeaders = array();
-
 	private $defaultOptions = array(
-		CURLOPT_SSL_VERIFYPEER => false,
-		CURLOPT_SSL_VERIFYHOST => false,
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_USERAGENT      => 'OnApp_CURL',
-		CURLOPT_HEADER         => false,
-		CURLOPT_NOBODY         => false,
+		CURLOPT_SSL_VERIFYPEER    => false,
+		CURLOPT_SSL_VERIFYHOST    => false,
+		CURLOPT_RETURNTRANSFER    => true,
+		CURLOPT_USERAGENT         => 'OnApp_CURL',
+		CURLOPT_HEADER            => false,
+		CURLOPT_NOBODY            => false,
+		CURLOPT_TIMEOUT           => 60,
+		CURLOPT_CONNECTTIMEOUT    => 10,
+		CURLOPT_DNS_CACHE_TIMEOUT => 3600
 	);
 
 	/**
@@ -21,7 +23,7 @@ class OnApp_Helper_Handler_CURL extends OnApp_Helper_Stub {
 	 */
 	public function __construct( $super ) {
 		$this->super = $super;
-		$this->ch    = curl_init();
+		$this->ch = curl_init();
 	}
 
 	/**
@@ -34,7 +36,7 @@ class OnApp_Helper_Handler_CURL extends OnApp_Helper_Stub {
 			$cookiesFile = tempnam( '/tmp', 'OnApp_CURL_cookies' );
 		}
 		$this->defaultOptions[ CURLOPT_COOKIEFILE ] = $cookiesFile;
-		$this->defaultOptions[ CURLOPT_COOKIEJAR ]  = $cookiesFile;
+		$this->defaultOptions[ CURLOPT_COOKIEJAR ] = $cookiesFile;
 	}
 
 	/**
@@ -196,16 +198,16 @@ class OnApp_Helper_Handler_CURL extends OnApp_Helper_Stub {
 	 */
 	private function processResponse( $data ) {
 		if( $data === false ) {
-			$this->requestError                   = true;
+			$this->requestError = true;
 			$this->infoStorage[ 'response_body' ] = $data;
 		}
 		elseif( isset( $this->customOptions[ CURLOPT_HEADER ] ) && $this->customOptions[ CURLOPT_HEADER ] ) {
 			$this->infoStorage[ 'request_headers' ] = trim( $this->infoStorage[ 'request_info' ][ 'request_header' ] );
 			unset( $this->infoStorage[ 'request_info' ][ 'request_header' ] );
 
-			$tmp                                     = explode( "\r\n\r\n", $data );
-			$cnt                                     = count( $tmp );
-			$this->infoStorage[ 'response_body' ]    = trim( $tmp[ $cnt - 1 ] );
+			$tmp = explode( "\r\n\r\n", $data );
+			$cnt = count( $tmp );
+			$this->infoStorage[ 'response_body' ] = trim( $tmp[ $cnt - 1 ] );
 			$this->infoStorage[ 'response_headers' ] = $tmp[ $cnt - 2 ];
 
 			$tmp = explode( "\r\n", $this->infoStorage[ 'response_headers' ] );
@@ -227,7 +229,7 @@ class OnApp_Helper_Handler_CURL extends OnApp_Helper_Stub {
 			default:
 				$msg = 'UNKNOWN_CURL_ERROR CODE: ' . $errorCode;
 		}
-		$this->super->logger->logError( $msg . PHP_EOL, __FILE__, __LINE__ );
+		$this->super->logger->logError( $msg, __FILE__, __LINE__ );
 	}
 
 	/**
