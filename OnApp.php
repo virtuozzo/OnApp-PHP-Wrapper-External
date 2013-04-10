@@ -29,6 +29,10 @@ define( 'ONAPP_OPTION_CURL_PROXY', 'proxy' );
  */
 define( 'ONAPP_OPTION_CURL_URL', 'url' );
 
+define( 'ONAPP_OPTION_CURL_CONNECTTIMEOUT', 'connectTimeout' );
+define( 'ONAPP_OPTION_CURL_TIMEOUT', 'timeout' );
+define( 'ONAPP_OPTION_CURL_DNS_CACHE_TIMEOUT', 'DNSTimeout' );
+
 /**
  * The OnApp class uses this variable to define the data type which would help transfer data between the client and the API server
  *
@@ -36,7 +40,7 @@ define( 'ONAPP_OPTION_CURL_URL', 'url' );
  *   - xml  (default)
  *   - json (will be available after the parcer is created)
  */
-define( 'ONAPP_OPTION_API_TYPE', 'data_type' );
+define( 'ONAPP_OPTION_API_TYPE', 'dataType' );
 
 /**
  * The OnApp class uses this variable to define the charsets used to transfer data between the client and the API server
@@ -294,15 +298,22 @@ abstract class OnApp {
 	 */
 	private $defaultOptions = array(
 		// cURL proxy
-		ONAPP_OPTION_CURL_PROXY  => '',
+		ONAPP_OPTION_CURL_PROXY             => '',
 		// cURL url
-		ONAPP_OPTION_CURL_URL    => '',
+		ONAPP_OPTION_CURL_URL               => '',
+		// The number of seconds to wait while trying to connect.
+		// Use 0 to wait indefinitely.
+		ONAPP_OPTION_CURL_CONNECTTIMEOUT    => 10,
+		// The maximum number of seconds to allow cURL functions to execute.
+		ONAPP_OPTION_CURL_TIMEOUT           => 60,
+		// The number of seconds to keep DNS entries in memory.
+		ONAPP_OPTION_CURL_DNS_CACHE_TIMEOUT => 18000,
 		// API request and response charset
-		ONAPP_OPTION_API_CHARSET => 'charset=utf-8',
+		ONAPP_OPTION_API_CHARSET            => 'charset=utf-8',
 		// API request and response type
-		ONAPP_OPTION_API_TYPE    => 'json',
+		ONAPP_OPTION_API_TYPE               => 'json',
 		// API request and response content
-		ONAPP_OPTION_API_CONTENT => 'application/json',
+		ONAPP_OPTION_API_CONTENT            => 'application/json',
 	);
 
 	/**
@@ -315,7 +326,7 @@ abstract class OnApp {
 	/**
 	 * Variable for error handling
 	 *
-	 * @var    string
+	 * @var string
 	 */
 	protected $errors;
 
@@ -342,20 +353,6 @@ abstract class OnApp {
 	protected $isDeleted = false;
 
 	/**
-	 * The list of all available options used in the class to create API requests and receive responses,
-	 * as well as to serialize and unserialize.
-	 *
-	 * @var array
-	 */
-	private $knownOptions = array(
-		ONAPP_OPTION_CURL_PROXY,
-		ONAPP_OPTION_CURL_URL,
-		ONAPP_OPTION_API_TYPE,
-		ONAPP_OPTION_API_CHARSET,
-		ONAPP_OPTION_API_CONTENT,
-	);
-
-	/**
 	 * The Object Logger used to log the processes in the basic and inherited classes
 	 * It is possible to use the debug add error log methods
 	 *
@@ -367,7 +364,7 @@ abstract class OnApp {
 	 * The array of the options used to create API requests and receive responses,
 	 * as well as serialize and unserialize objects in the class
 	 *
-	 * By default equals to $_defaultOptions
+	 * By default equals to $defaultOptions
 	 *
 	 * <code>
 	 *    var $options = array(
@@ -600,6 +597,9 @@ abstract class OnApp {
 
 		self::$ch->setOption( CURLOPT_USERPWD, $user . ':' . $pass );
 		self::$ch->setOption( CURLOPT_HEADER, true );
+		self::$ch->setOption( CURLOPT_TIMEOUT, ONAPP_OPTION_CURL_TIMEOUT );
+		self::$ch->setOption( CURLOPT_CONNECTTIMEOUT, ONAPP_OPTION_CURL_CONNECTTIMEOUT );
+		self::$ch->setOption( CURLOPT_DNS_CACHE_TIMEOUT, ONAPP_OPTION_CURL_DNS_CACHE_TIMEOUT );
 	}
 
 	/**
@@ -622,7 +622,7 @@ abstract class OnApp {
 			'setAPIResource: Set an option for a cURL transfer (' .
 				' url => "' . $url . '", ' .
 				' resource => "' . $resource . '", ' .
-				' data_type => "' . $this->options[ ONAPP_OPTION_API_TYPE ] . '"' .
+				' dataType => "' . $this->options[ ONAPP_OPTION_API_TYPE ] . '"' .
 				' queryString => "' . $queryString . '" ).'
 		);
 	}
@@ -663,7 +663,9 @@ abstract class OnApp {
 		$method = strtolower( $method );
 		$body   = self::$ch->$method()->getResponseBody();
 		if( self::$ch->getRequestError() ) {
-			$this->logger->logError( 'Error during sending request' );
+			$msg = 'Error during sending request: response code is ' . self::$ch->getResponseStatusCode();
+			$this->setErrors( $msg );
+			$this->logger->logError( $msg );
 		}
 		elseif( empty( $body ) && ( self::$ch->getResponseStatusCode() != 204 ) ) {
 			$this->logger->logError( 'Response body couldn\'t be empty for status code: ' . self::$ch->getResponseStatusCode() );
@@ -828,7 +830,7 @@ abstract class OnApp {
 			$this->logger->logError( 'load: Can\'t load ID = ' . $id, __FILE__, __LINE__ );
 		}
 
-		$this->logger->logMessage( 'load: Load class ( id => ' . $id . ' ).' );
+		$this->logger->logMessage( 'load: ' . $this->getClassName() . ' ( id => ' . $id . ' ).' );
 
 		if( strlen( $id ) > 0 ) {
 			$this->id = $id;
@@ -836,10 +838,13 @@ abstract class OnApp {
 			$this->setAPIResource( $this->getURL( ONAPP_GETRESOURCE_LOAD ) );
 
 			$this->loadedObject = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
-			$this->id              = $this->loadedObject->id;
+
+			if( isset( $this->loadedObject ) ) {
+				$this->id = $this->loadedObject->id;
+			}
 		}
 		else {
-			$this->logger->logError( 'load: property id not set.', __FILE__, __LINE__ );
+			$this->logger->logError( 'load: property id is not set.', __FILE__, __LINE__ );
 		}
 	}
 
