@@ -4,13 +4,13 @@
 /**
  *  Represents OnApp CDNResource AvailableEdgeGroup Locations
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	CDNResource_AvailableEdgeGroup
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2012 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @subpackage  CDNResource_AvailableEdgeGroup
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2012 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -19,8 +19,6 @@
  * The OnApp_CDNResource_AvailableEdgeGroup_Location class doesn't support any basic method.
  *
  */
-
-
 class OnApp_CDNResource_AvailableEdgeGroup_Location extends OnApp {
 	/**
 	 * root tag used in the API request
@@ -44,8 +42,9 @@ class OnApp_CDNResource_AvailableEdgeGroup_Location extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -97,13 +96,25 @@ class OnApp_CDNResource_AvailableEdgeGroup_Location extends OnApp {
 						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-                    'edge_group_id' => array(
+					'edge_group_id' => array(
 						ONAPP_FIELD_MAP => '_edge_group_id',
 						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
 				$this->fields = $this->initFields( 2.1 );
+				break;
+
+			case 3.0:
+				$this->fields                      = $this->initFields( 2.3 );
+				$this->fields[ 'streamSupported' ] = array(
+					ONAPP_FIELD_MAP => '_streamSupported',
+					ONAPP_FIELD_TYPE => 'boolean',
+				);
+				$this->fields[ 'httpSupported' ]   = array(
+					ONAPP_FIELD_MAP => '_httpSupported',
+					ONAPP_FIELD_TYPE => 'boolean',
+				);
 				break;
 		}
 

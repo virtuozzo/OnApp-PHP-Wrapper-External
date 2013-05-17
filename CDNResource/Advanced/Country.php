@@ -4,13 +4,13 @@
 /**
  * VM IP Adresses
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	CDNResource_Advanced
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2012 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @subpackage  CDNResource_Advanced
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2012 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -19,8 +19,6 @@
  * The OnApp_CDNResource_Advanced_Country class doesn't support any basic method.
  *
  */
-
-
 class OnApp_CDNResource_Advanced_Country extends OnApp {
 	/**
 	 * root tag used in the API request
@@ -44,8 +42,9 @@ class OnApp_CDNResource_Advanced_Country extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -93,6 +92,10 @@ class OnApp_CDNResource_Advanced_Country extends OnApp {
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 				);
+				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
 				break;
 		}
 

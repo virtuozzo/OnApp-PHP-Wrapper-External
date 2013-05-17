@@ -4,25 +4,25 @@
 /**
  * User White List
  *
- * @todo write description
+ * @todo        write description
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	User
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @subpackage  User
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
  * User White List
  *
- * The ONAPP_User_WhiteList class supports the following basic methods
- * 
- * The ONAPP_User_WhiteList class uses the following basic methods:
+ * The OnApp_User_WhiteList class supports the following basic methods
+ *
+ * The OnApp_User_WhiteList class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_User_WhiteList extends OnApp {
@@ -48,8 +48,9 @@ class OnApp_User_WhiteList extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -74,17 +75,17 @@ class OnApp_User_WhiteList extends OnApp {
 					),
 					'user_id' => array(
 						ONAPP_FIELD_MAP => '_user_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'ip' => array(
 						ONAPP_FIELD_MAP => '_ip',
-                        ONAPP_FIELD_TYPE => 'string',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'description' => array(
 						ONAPP_FIELD_MAP => '_description',
-                        ONAPP_FIELD_TYPE => 'string',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 
@@ -95,14 +96,18 @@ class OnApp_User_WhiteList extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
 		return $this->fields;
 	}
 
-    /**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	/**
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -116,35 +121,35 @@ class OnApp_User_WhiteList extends OnApp {
 				 * ROUTE :
 				 * @name user_user_white_lists
 				 * @method GET
-				 * @alias  /users/:user_id/user_white_lists(.:format)
+				 * @alias   /users/:user_id/user_white_lists(.:format)
 				 * @format  {:controller=>"user_white_lists", :action=>"index"}
 				 */
-                /**
+				/**
 				 * ROUTE :
 				 * @name user_user_white_list
 				 * @method GET
 				 * @alias  /users/:user_id/user_white_lists/:id(.:format)
 				 * @format {:controller=>"user_white_lists", :action=>"show"}
 				 */
-                /**
+				/**
 				 * ROUTE :
 				 * @name
 				 * @method PUT
 				 * @alias  /users/:user_id/user_white_lists/:id(.:format)
 				 * @format {:controller=>"user_white_lists", :action=>"update"}
 				 */
-                /**
+				/**
 				 * ROUTE :
 				 * @name
 				 * @method POST
 				 * @alias  /users/:user_id/user_white_lists(.:format)
 				 * @format {:controller=>"user_white_lists", :action=>"create"}
 				 */
-                /**
+				/**
 				 * ROUTE :
 				 * @name user_vm_stats
 				 * @method DELETE
-				 * @alias  /users/:user_id/user_white_lists/:id(.:format)
+				 * @alias   /users/:user_id/user_white_lists/:id(.:format)
 				 * @format  {:controller=>"user_white_lists", :action=>"destroy"}
 				 */
 				if( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {
@@ -181,11 +186,11 @@ class OnApp_User_WhiteList extends OnApp {
 	 * @access public
 	 */
 	function getList( $user_id = null ) {
-		if( is_null( $user_id ) && !is_null( $this->_user_id ) ) {
+		if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
 			$user_id = $this->_user_id;
 		}
 
-		if( !is_null( $user_id ) ) {
+		if( ! is_null( $user_id ) ) {
 			$this->_user_id = $user_id;
 
 			return parent::getList();
@@ -199,46 +204,46 @@ class OnApp_User_WhiteList extends OnApp {
 		}
 	}
 
-    /**
+	/**
 	 * Sends an API request to get the Object after sending,
 	 * unserializes the response into an object
 	 *
 	 * The key field Parameter ID is used to load the Object. You can re-set
-	 * this parameter in the class inheriting Class ONAPP.
+	 * this parameter in the class inheriting OnApp class.
 	 *
-	 * @param integer $id white list id
+	 * @param integer $id      white list id
 	 * @param integer $user_id User id
 	 *
 	 * @return mixed serialized Object instance from API
 	 * @access public
 	 */
 	function load( $id = null, $user_id = null ) {
-		if( is_null( $user_id ) && !is_null( $this->_user_id ) ) {
+		if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
 			$user_id = $this->_user_id;
 		}
 
 		if( is_null( $user_id ) &&
 			isset( $this->_obj ) &&
-			!is_null( $this->_obj->_user_id )
+			! is_null( $this->_obj->_user_id )
 		) {
 			$user_id = $this->_obj->_user_id;
 		}
 
-		if( is_null( $id ) && !is_null( $this->_id ) ) {
+		if( is_null( $id ) && ! is_null( $this->_id ) ) {
 			$id = $this->_id;
 		}
 
 		if( is_null( $id ) &&
 			isset( $this->_obj ) &&
-			!is_null( $this->_obj->_id )
+			! is_null( $this->_obj->_id )
 		) {
 			$id = $this->_obj->_id;
 		}
 
 		$this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
 
-		if( !is_null( $id ) && !is_null( $user_id ) ) {
-			$this->_id = $id;
+		if( ! is_null( $id ) && ! is_null( $user_id ) ) {
+			$this->_id      = $id;
 			$this->_user_id = $user_id;
 
 			$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
@@ -268,6 +273,4 @@ class OnApp_User_WhiteList extends OnApp {
 			}
 		}
 	}
-
-
 }

@@ -4,13 +4,13 @@
 /**
  * VM Backups
  *
- * @category	API WRAPPER
- * @package		OnApp
+ * @category    API wrapper
+ * @package     OnApp
  * @subpackage  VirtualMachine_NetworkInterface
- * @author		Yuriy Yakubskiy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @author      Yuriy Yakubskiy
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -18,13 +18,12 @@
  *
  * This class represents the VM Network Interface Usage.
  *
- * The ONAPP_VirtualMachine_NetworkInterface_Usage class uses the following basic methods:
+ * The OnApp_VirtualMachine_NetworkInterface_Usage class uses the following basic methods:
  * {@link load}, {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
-
-class ONAPP_VirtualMachine_NetworkInterface_Usage extends OnApp {
+class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
 	/**
 	 * root tag used in the API request
 	 *
@@ -47,8 +46,9 @@ class ONAPP_VirtualMachine_NetworkInterface_Usage extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -82,19 +82,19 @@ class ONAPP_VirtualMachine_NetworkInterface_Usage extends OnApp {
 					),
 					'user_id' => array(
 						ONAPP_FIELD_MAP => '_user_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'network_interface_id' => array(
 						ONAPP_FIELD_MAP => '_network_interface_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'virtual_machine_id' => array(
 						ONAPP_FIELD_MAP => '_virtual_machine_id',
 						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
-                    )
+					)
 				);
 				break;
 
@@ -103,6 +103,10 @@ class ONAPP_VirtualMachine_NetworkInterface_Usage extends OnApp {
 			case '2.3':
 				$this->fields = $this->initFields( 2.0 );
 				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -110,7 +114,7 @@ class ONAPP_VirtualMachine_NetworkInterface_Usage extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -125,7 +129,7 @@ class ONAPP_VirtualMachine_NetworkInterface_Usage extends OnApp {
 				 * ROUTE :
 				 * @name virtual_machine_backups
 				 * @method GET
-				 * @alias  /virtual_machines/:virtual_machine_id/backups(.:format)
+				 * @alias   /virtual_machines/:virtual_machine_id/backups(.:format)
 				 * @format  {:controller=>"backups", :action=>"index"}
 				 */
 				if( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
@@ -135,28 +139,28 @@ class ONAPP_VirtualMachine_NetworkInterface_Usage extends OnApp {
 						__LINE__
 					);
 				}
-                else {
+				else {
 					if( is_null( $this->_virtual_machine_id ) ) {
 						$this->_virtual_machine_id = $this->_obj->_virtual_machine_id;
 					}
 				}
 
-                if( is_null( $this->_network_interface_id ) && is_null( $this->_obj->_network_interface_id ) ) {
+				if( is_null( $this->_network_interface_id ) && is_null( $this->_obj->_network_interface_id ) ) {
 					$this->logger->error(
 						'getResource( ' . $action . ' ): argument _network_interface_id not set.',
 						__FILE__,
 						__LINE__
 					);
 				}
-                else {
+				else {
 					if( is_null( $this->_network_interface_id ) ) {
 						$this->_network_interface_id = $this->_obj->_network_interface_id;
 					}
 				}
 
-				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/network_interfaces/' . $this->_network_interface_id . '/'. $this->_resource;
+				$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/network_interfaces/' . $this->_network_interface_id . '/' . $this->_resource;
 				break;
-                
+
 			default:
 				$resource = parent::getResource( $action );
 				break;
@@ -173,8 +177,8 @@ class ONAPP_VirtualMachine_NetworkInterface_Usage extends OnApp {
 	 * Sends an API request to get the Objects. After requesting,
 	 * unserializes the received response into the array of Objects
 	 *
-	 * @param integer $virtual_machine_id Virtual Machine id
-     * @param integer $network_interface_id Network Interface id
+	 * @param integer $virtual_machine_id   Virtual Machine id
+	 * @param integer $network_interface_id Network Interface id
 	 *
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
@@ -187,7 +191,7 @@ class ONAPP_VirtualMachine_NetworkInterface_Usage extends OnApp {
 		if( ! is_null( $virtual_machine_id ) ) {
 			$this->_virtual_machine_id = $virtual_machine_id;
 		}
-        else {
+		else {
 			$this->logger->error(
 				'getList: argument _virtual_machine_id not set.',
 				__FILE__,
@@ -195,7 +199,7 @@ class ONAPP_VirtualMachine_NetworkInterface_Usage extends OnApp {
 			);
 		}
 
-        if( is_null( $network_interface_id ) && ! is_null( $this->_network_interface_id ) ) {
+		if( is_null( $network_interface_id ) && ! is_null( $this->_network_interface_id ) ) {
 			$network_interface_id = $this->_network_interface_id;
 		}
 
@@ -210,7 +214,6 @@ class ONAPP_VirtualMachine_NetworkInterface_Usage extends OnApp {
 			);
 		}
 
-        return parent::getList( null, $url_args );
+		return parent::getList( null, $url_args );
 	}
-
 }

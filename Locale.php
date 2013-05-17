@@ -1,14 +1,13 @@
 <?php
-
 /**
  * Get locale from OnApp CP
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Lev Bartashevsky
- * @copyright	(c) 2012 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Lev Bartashevsky
+ * @copyright   (c) 2012 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 class OnApp_Locale extends OnApp {
 	/**
@@ -23,7 +22,7 @@ class OnApp_Locale extends OnApp {
 	 *
 	 * @var string
 	 */
-	var $_resource = 'internationalization';
+	var $_resource = '/settings/internationalization';
 
 	public function __construct() {
 		parent::__construct();
@@ -33,8 +32,9 @@ class OnApp_Locale extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -43,13 +43,17 @@ class OnApp_Locale extends OnApp {
 				$this->fields = array(
 					'code' => array(
 						ONAPP_FIELD_MAP => 'code',
-                        ONAPP_FIELD_TYPE => 'string',
+						ONAPP_FIELD_TYPE => 'string',
 					),
 					'name' => array(
 						ONAPP_FIELD_MAP => 'name',
-                        ONAPP_FIELD_TYPE => 'string',
+						ONAPP_FIELD_TYPE => 'string',
 					),
 				);
+				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
 				break;
 		}
 
@@ -63,21 +67,21 @@ class OnApp_Locale extends OnApp {
 		 * ROUTE :
 		 * @name roles
 		 * @method GET
-		 * @alias  /roles(.:format)
+		 * @alias   /roles(.:format)
 		 * @format  {:controller=>"roles", :action=>"index"}
 		 */
 		/**
 		 * ROUTE :
 		 * @name role
 		 * @method GET
-		 * @alias  /roles/:id(.:format)
+		 * @alias   /roles/:id(.:format)
 		 * @format  {:controller=>"roles", :action=>"show"}
 		 */
 		/**
 		 * ROUTE :
 		 * @name
 		 * @method POST
-		 * @alias  /roles(.:format)
+		 * @alias   /roles(.:format)
 		 * @format  {:controller=>"roles", :action=>"create"}
 		 */
 		/**

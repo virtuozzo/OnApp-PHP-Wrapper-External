@@ -4,12 +4,12 @@
 /**
  * Managing Edge Groups
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -28,11 +28,11 @@ define( 'ONAPP_GETRESOURCE_EDGE_GROUP_UNASSIGN_LOCATION', 'edge_group_unassign_l
  * Managing Edge Groups
  *
  * The Edge Group class represents the Edge groups.
- * The ONAPP_EdgeGroup class is the parent of the OnApp class.
+ * The OnApp_EdgeGroup class is the parent of the OnApp class.
  *
- * The ONAPP_EdgeGroup uses the following basic methods:
+ * The OnApp_EdgeGroup uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_EdgeGroup extends OnApp {
@@ -58,25 +58,26 @@ class OnApp_EdgeGroup extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
 		switch( $version ) {
 			case '2.3':
 				$this->fields = array(
-                    'label' => array(
+					'label' => array(
 						ONAPP_FIELD_MAP => '_label',
 						ONAPP_FIELD_REQUIRED => true,
 						ONAPP_FIELD_DEFAULT_VALUE => ''
 					),
-                    'created_at' => array(
+					'created_at' => array(
 						ONAPP_FIELD_MAP => '_created_at',
 						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true
 					),
-                    'updated_at' => array(
+					'updated_at' => array(
 						ONAPP_FIELD_MAP => '_updated_at',
 						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true
@@ -89,7 +90,7 @@ class OnApp_EdgeGroup extends OnApp {
 					'assigned_locations' => array(
 						ONAPP_FIELD_MAP => '_assigned_locations',
 						ONAPP_FIELD_TYPE => 'array',
-                        ONAPP_FIELD_CLASS => 'EdgeGroup_AssignedLocation'
+						ONAPP_FIELD_CLASS => 'EdgeGroup_AssignedLocation'
 
 					),
 					'available_locations' => array(
@@ -98,15 +99,19 @@ class OnApp_EdgeGroup extends OnApp {
 						ONAPP_FIELD_CLASS => 'EdgeGroup_AvailableLocation'
 					),
 				);
-                break;
+				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
 		return $this->fields;
 	}
-    
-    /**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+
+	/**
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -118,23 +123,23 @@ class OnApp_EdgeGroup extends OnApp {
 			case ONAPP_GETRESOURCE_EDGE_GROUP_ASSIGN_LOCATION:
 				/**
 				 * TODO: ADD ROUTE
-				 * 
-				 * 
 				 *
-				 * 
+				 *
+				 *
+				 *
 				 */
-				$resource = $this->getResource() . '/' . $this->_id . '/assign' ;
+				$resource = $this->getResource() . '/' . $this->_id . '/assign';
 				break;
 
-            case ONAPP_GETRESOURCE_EDGE_GROUP_UNASSIGN_LOCATION:
+			case ONAPP_GETRESOURCE_EDGE_GROUP_UNASSIGN_LOCATION:
 				/**
 				 * TODO: ADD ROUTE
-				 * 
-				 * 
-				 * 
-				 * 
+				 *
+				 *
+				 *
+				 *
 				 */
-				$resource = $this->getResource() . '/' . $this->_id . '/unassign' ;
+				$resource = $this->getResource() . '/' . $this->_id . '/unassign';
 				break;
 
 			default:
@@ -142,17 +147,16 @@ class OnApp_EdgeGroup extends OnApp {
 				break;
 		}
 
-        $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
-		
+		$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
 
 		return $resource;
 	}
 
-    function assign_location ( $edge_group_id, $location_id ) {
-        if ( $edge_group_id ) {
-            $this->_id = $edge_group_id;
-        }
-        else {
+	function assign_location( $edge_group_id, $location_id ) {
+		if( $edge_group_id ) {
+			$this->_id = $edge_group_id;
+		}
+		else {
 			$this->logger->error(
 				'assign: argument edge_group_id not set.',
 				__FILE__,
@@ -160,35 +164,34 @@ class OnApp_EdgeGroup extends OnApp {
 			);
 		}
 
-        if ( ! $location_id ) {
-            $this->logger->error(
+		if( ! $location_id ) {
+			$this->logger->error(
 				'assign: argument location_id not set.',
 				__FILE__,
 				__LINE__
 			);
-        }
+		}
 
-        $data = array(
+		$data = array(
 			'root' => 'tmp_holder',
 			'data' => array(
 				'location' => $location_id,
 			),
 		);
 
-        $this->sendPost( ONAPP_GETRESOURCE_EDGE_GROUP_ASSIGN_LOCATION, $data );
-        
-    }
+		$this->sendPost( ONAPP_GETRESOURCE_EDGE_GROUP_ASSIGN_LOCATION, $data );
+	}
 
-    /**
-     *
-     * @param <type> $edge_group_id
-     * @param <type> $location_id 
-     */
-    function unassign_location ( $edge_group_id, $location_id ) {
-        if ( $edge_group_id ) {
-            $this->_id = $edge_group_id;
-        }
-        else {
+	/**
+	 *
+	 * @param <type> $edge_group_id
+	 * @param <type> $location_id
+	 */
+	function unassign_location( $edge_group_id, $location_id ) {
+		if( $edge_group_id ) {
+			$this->_id = $edge_group_id;
+		}
+		else {
 			$this->logger->error(
 				'assign: argument edge_group_id not set.',
 				__FILE__,
@@ -196,22 +199,21 @@ class OnApp_EdgeGroup extends OnApp {
 			);
 		}
 
-        if ( ! $location_id ) {
-            $this->logger->error(
+		if( ! $location_id ) {
+			$this->logger->error(
 				'assign: argument location_id not set.',
 				__FILE__,
 				__LINE__
 			);
-        }
+		}
 
-        $data = array(
+		$data = array(
 			'root' => 'tmp_holder',
 			'data' => array(
 				'location' => $location_id,
 			),
 		);
 
-        $this->sendPost( ONAPP_GETRESOURCE_EDGE_GROUP_UNASSIGN_LOCATION, $data );
-        
-    }
+		$this->sendPost( ONAPP_GETRESOURCE_EDGE_GROUP_UNASSIGN_LOCATION, $data );
+	}
 }

@@ -3,24 +3,24 @@
  * Scheduleds
  *
  *
- * @category	API WRAPPER
- * @package		OnApp
+ * @category    API wrapper
+ * @package     OnApp
  * @subpackage  Disk
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
  *
  * Managing Disk Backups Schedules
  *
- * The ONAPP_Disk_Schedule class uses the following basic methods:
+ * The OnApp_Disk_Schedule class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
- * The ONAPP_Disk_Schedule class represents Disk Backups Schedules.
- * The ONAPP class is a parent of ONAPP_Disk_Schedule class.
+ * The OnApp_Disk_Schedule class represents Disk Backups Schedules.
+ * The OnApp class is a parent of ONAPP_Disk_Schedule class.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
@@ -49,8 +49,9 @@ class OnApp_Disk_Schedule extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -137,6 +138,10 @@ class OnApp_Disk_Schedule extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -144,7 +149,7 @@ class OnApp_Disk_Schedule extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -158,7 +163,7 @@ class OnApp_Disk_Schedule extends OnApp {
 				$resource = 'settings/disks/' . $this->_target_id . '/' . $this->_resource;
 				break;
 			default:
-				$resource = parent::getResource( $action );
+				$resource     = parent::getResource( $action );
 				$show_log_msg = false;
 				break;
 		}
@@ -193,20 +198,20 @@ class OnApp_Disk_Schedule extends OnApp {
 
 		$result = $this->castStringToClass( $response );
 
-		if( !empty( $response[ 'errors' ] ) ) {
+		if( ! empty( $response[ 'errors' ] ) ) {
 			return false;
 		}
 
-		return ( is_array( $result ) || ! $result ) ? $result : array($result);
+		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
 	}
 
 	function save() {
 		if( $this->_target_id ) {
-			$this->fields[ 'target_id' ][ ONAPP_FIELD_REQUIRED ] = true;
-			$this->fields[ 'target_type' ][ ONAPP_FIELD_REQUIRED ] = true;
+			$this->fields[ 'target_id' ][ ONAPP_FIELD_REQUIRED ]        = true;
+			$this->fields[ 'target_type' ][ ONAPP_FIELD_REQUIRED ]      = true;
 			$this->fields[ 'target_type' ][ ONAPP_FIELD_DEFAULT_VALUE ] = 'Disk';
-			$this->fields[ 'action' ][ ONAPP_FIELD_REQUIRED ] = true;
-			$this->fields[ 'action' ][ ONAPP_FIELD_DEFAULT_VALUE ] = 'autobackup';
+			$this->fields[ 'action' ][ ONAPP_FIELD_REQUIRED ]           = true;
+			$this->fields[ 'action' ][ ONAPP_FIELD_DEFAULT_VALUE ]      = 'autobackup';
 		}
 
 		return parent::save();

@@ -2,23 +2,23 @@
 /**
  * Managing Role Permissions
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	Role
- * @author		Lev Bartashevsky
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @subpackage  Role
+ * @author      Lev Bartashevsky
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
  * Managing Role Permissions
  *
- * The ONAPP_Role_Permission class represents the billing plans. The ONAPP class is the parent of the OnApp class.
+ * The OnApp_Role_Permission class represents the billing plans. The OnApp class is the parent of the OnApp class.
  *
- * The ONAPP_BillingPlan class uses the following basic methods:
+ * The OnApp_BillingPlan class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
- * 
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_Role_Permission extends OnApp {
@@ -44,8 +44,9 @@ class OnApp_Role_Permission extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -82,6 +83,10 @@ class OnApp_Role_Permission extends OnApp {
 			case 2.2:
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
+				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
 				break;
 		}
 

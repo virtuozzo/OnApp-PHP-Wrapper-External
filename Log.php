@@ -5,12 +5,12 @@
  * Managing VM Logs
  *
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -21,7 +21,7 @@
  * The OnApp_Log class uses the following basic methods:
  * {@link load} and {@link getList}.
  *
- * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 ) 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_Log extends OnApp {
 	/**
@@ -46,8 +46,9 @@ class OnApp_Log extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -63,7 +64,7 @@ class OnApp_Log extends OnApp {
 					'target_id' => array(
 						ONAPP_FIELD_MAP => '_target_id',
 						ONAPP_FIELD_TYPE => 'integer',
-                        ONAPP_FIELD_READ_ONLY => true,
+						ONAPP_FIELD_READ_ONLY => true,
 					),
 					'created_at' => array(
 						ONAPP_FIELD_MAP => '_created_at',
@@ -72,7 +73,7 @@ class OnApp_Log extends OnApp {
 					),
 					'target_type' => array(
 						ONAPP_FIELD_MAP => '_target_type',
-                        ONAPP_FIELD_TYPE => 'string',
+						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_REQUIRED => true,
 					),
 					'updated_at' => array(
@@ -89,13 +90,17 @@ class OnApp_Log extends OnApp {
 						ONAPP_FIELD_MAP => '_status',
 						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true
-					),                    
+					),
 				);
 				break;
 
 			case 2.2:
 			case 2.3:
 				$this->initFields( 2.1 );
+				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
 				break;
 		}
 
@@ -110,17 +115,17 @@ class OnApp_Log extends OnApp {
 				 * ROUTE :
 				 * @name log_items
 				 * @method GET
-				 * @alias  /logs(.:format)
+				 * @alias   /logs(.:format)
 				 * @format  {:controller=>"log_items", :action=>"index"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name log_item
 				 * @method GET
-				 * @alias  /logs/:id(.:format)
+				 * @alias    /logs/:id(.:format)
 				 * @format   {:controller=>"log_items", :action=>"show"}
 				 */
-                
+
 				$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $this->_resource );
 				break;
 
@@ -132,7 +137,7 @@ class OnApp_Log extends OnApp {
 		return $this->_resource;
 	}
 
-    /**
+	/**
 	 * Sends an API request to get the Objects. After requesting,
 	 * unserializes the received response into the array of Objects
 	 *
@@ -141,10 +146,10 @@ class OnApp_Log extends OnApp {
 	 * @return mixed an array of Object instances on success. Otherwise false
 	 * @access public
 	 */
-	function getList( $url_args = null ) {
-        return parent::getList( null, $url_args );
+	function getList( $params = null, $url_args = null ) {
+		return parent::getList( null, $url_args );
 	}
-    
+
 	function activate( $action_name ) {
 		switch( $action_name ) {
 			case ONAPP_ACTIVATE_SAVE:
@@ -152,6 +157,5 @@ class OnApp_Log extends OnApp {
 				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
 				break;
 		}
-	}    
-
+	}
 }
