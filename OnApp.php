@@ -775,6 +775,15 @@ class OnApp {
 				}
 			}
 		}
+
+        if(is_null($this->fields) && get_called_class() != 'OnApp') {
+            die(sprintf(
+                "The wrapper class '%s' does not support OnApp version '%s'",
+                get_called_class(),
+                $version
+            ));
+        }
+
 	}
 
 	/**
