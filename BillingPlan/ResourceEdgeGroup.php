@@ -28,24 +28,24 @@ class OnApp_BillingPlan_ResourceEdgeGroup extends OnApp_BillingPlan_BaseResource
      */
 //    var $_resource = 'resource_edge_groups';
 
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version   OnApp API version
-	 * @param string       $className current class' name
-	 *
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		parent::initFields( $version, __CLASS__ );
+    /**
+     * API Fields description
+     *
+     * @param string|float $version   OnApp API version
+     * @param string       $className current class' name
+     *
+     * @return array
+     */
+    public function initFields( $version = null, $className = '' ) {
+        parent::initFields( $version, __CLASS__ );
 
-		$this->fields[ 'resource_class' ] = array(
-			ONAPP_FIELD_MAP => '_resource_class',
-			ONAPP_FIELD_TYPE => 'string',
-			ONAPP_FIELD_REQUIRED => true,
-			ONAPP_FIELD_READ_ONLY => true,
-			ONAPP_FIELD_DEFAULT_VALUE => 'Resource::EdgeGroup'
-		);
+        $this->fields[ 'resource_class' ] = array(
+            ONAPP_FIELD_MAP => '_resource_class',
+            ONAPP_FIELD_TYPE => 'string',
+            ONAPP_FIELD_REQUIRED => true,
+            ONAPP_FIELD_READ_ONLY => true,
+            ONAPP_FIELD_DEFAULT_VALUE => 'Resource::EdgeGroup'
+        );
 
 
         $this->fields[ 'target_type' ] = array(
@@ -62,6 +62,6 @@ class OnApp_BillingPlan_ResourceEdgeGroup extends OnApp_BillingPlan_BaseResource
             unset($this->fields[ $field ]);
         }
 
-		return $this->fields;
-	}
+        return $this->fields;
+    }
 }

@@ -36,184 +36,184 @@ define( 'ONAPP_GETRESOURCE_EDGE_GROUP_UNASSIGN_LOCATION', 'edge_group_unassign_l
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_EdgeGroup extends OnApp {
-	/**
-	 * root tag used in the API request
-	 *
-	 * @var string
-	 */
-	var $_tagRoot = 'edge_group';
+    /**
+     * root tag used in the API request
+     *
+     * @var string
+     */
+    var $_tagRoot = 'edge_group';
 
-	/**
-	 * alias processing the object data
-	 *
-	 * @var string
-	 */
-	var $_resource = 'edge_groups';
+    /**
+     * alias processing the object data
+     *
+     * @var string
+     */
+    var $_resource = 'edge_groups';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
+    public function __construct() {
+        parent::__construct();
+        $this->className = __CLASS__;
+    }
 
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version   OnApp API version
-	 * @param string       $className current class' name
-	 *
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		switch( $version ) {
-			case '2.3':
-				$this->fields = array(
-					'label' => array(
-						ONAPP_FIELD_MAP => '_label',
-						ONAPP_FIELD_REQUIRED => true,
-						ONAPP_FIELD_DEFAULT_VALUE => ''
-					),
-					'created_at' => array(
-						ONAPP_FIELD_MAP => '_created_at',
-						ONAPP_FIELD_TYPE => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true
-					),
-					'updated_at' => array(
-						ONAPP_FIELD_MAP => '_updated_at',
-						ONAPP_FIELD_TYPE => 'datetime',
-						ONAPP_FIELD_READ_ONLY => true
-					),
-					'id' => array(
-						ONAPP_FIELD_MAP => '_id',
-						ONAPP_FIELD_TYPE => 'integer',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-					'assigned_locations' => array(
-						ONAPP_FIELD_MAP => '_assigned_locations',
-						ONAPP_FIELD_TYPE => 'array',
-						ONAPP_FIELD_CLASS => 'EdgeGroup_AssignedLocation'
+    /**
+     * API Fields description
+     *
+     * @param string|float $version   OnApp API version
+     * @param string       $className current class' name
+     *
+     * @return array
+     */
+    public function initFields( $version = null, $className = '' ) {
+        switch( $version ) {
+            case '2.3':
+                $this->fields = array(
+                    'label' => array(
+                        ONAPP_FIELD_MAP => '_label',
+                        ONAPP_FIELD_REQUIRED => true,
+                        ONAPP_FIELD_DEFAULT_VALUE => ''
+                    ),
+                    'created_at' => array(
+                        ONAPP_FIELD_MAP => '_created_at',
+                        ONAPP_FIELD_TYPE => 'datetime',
+                        ONAPP_FIELD_READ_ONLY => true
+                    ),
+                    'updated_at' => array(
+                        ONAPP_FIELD_MAP => '_updated_at',
+                        ONAPP_FIELD_TYPE => 'datetime',
+                        ONAPP_FIELD_READ_ONLY => true
+                    ),
+                    'id' => array(
+                        ONAPP_FIELD_MAP => '_id',
+                        ONAPP_FIELD_TYPE => 'integer',
+                        ONAPP_FIELD_READ_ONLY => true,
+                    ),
+                    'assigned_locations' => array(
+                        ONAPP_FIELD_MAP => '_assigned_locations',
+                        ONAPP_FIELD_TYPE => 'array',
+                        ONAPP_FIELD_CLASS => 'EdgeGroup_AssignedLocation'
 
-					),
-					'available_locations' => array(
-						ONAPP_FIELD_MAP => '_available_locations',
-						ONAPP_FIELD_TYPE => 'array',
-						ONAPP_FIELD_CLASS => 'EdgeGroup_AvailableLocation'
-					),
-				);
-				break;
+                    ),
+                    'available_locations' => array(
+                        ONAPP_FIELD_MAP => '_available_locations',
+                        ONAPP_FIELD_TYPE => 'array',
+                        ONAPP_FIELD_CLASS => 'EdgeGroup_AvailableLocation'
+                    ),
+                );
+                break;
 
-			case 3.0:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
+            case 3.0:
+                $this->fields = $this->initFields( 2.3 );
+                break;
+        }
 
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
-	}
+        parent::initFields( $version, __CLASS__ );
+        return $this->fields;
+    }
 
-	/**
-	 * Returns the URL Alias of the API Class that inherits the OnApp class
-	 *
-	 * @param string $action action name
-	 *
-	 * @return string API resource
-	 * @access public
-	 */
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-		switch( $action ) {
-			case ONAPP_GETRESOURCE_EDGE_GROUP_ASSIGN_LOCATION:
-				/**
-				 * TODO: ADD ROUTE
-				 *
-				 *
-				 *
-				 *
-				 */
-				$resource = $this->getResource() . '/' . $this->_id . '/assign';
-				break;
+    /**
+     * Returns the URL Alias of the API Class that inherits the OnApp class
+     *
+     * @param string $action action name
+     *
+     * @return string API resource
+     * @access public
+     */
+    function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+        switch( $action ) {
+            case ONAPP_GETRESOURCE_EDGE_GROUP_ASSIGN_LOCATION:
+                /**
+                 * TODO: ADD ROUTE
+                 *
+                 *
+                 *
+                 *
+                 */
+                $resource = $this->getResource() . '/' . $this->_id . '/assign';
+                break;
 
-			case ONAPP_GETRESOURCE_EDGE_GROUP_UNASSIGN_LOCATION:
-				/**
-				 * TODO: ADD ROUTE
-				 *
-				 *
-				 *
-				 *
-				 */
-				$resource = $this->getResource() . '/' . $this->_id . '/unassign';
-				break;
+            case ONAPP_GETRESOURCE_EDGE_GROUP_UNASSIGN_LOCATION:
+                /**
+                 * TODO: ADD ROUTE
+                 *
+                 *
+                 *
+                 *
+                 */
+                $resource = $this->getResource() . '/' . $this->_id . '/unassign';
+                break;
 
-			default:
-				$resource = parent::getResource( $action );
-				break;
-		}
+            default:
+                $resource = parent::getResource( $action );
+                break;
+        }
 
-		$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+        $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
 
-		return $resource;
-	}
+        return $resource;
+    }
 
-	function assign_location( $edge_group_id, $location_id ) {
-		if( $edge_group_id ) {
-			$this->_id = $edge_group_id;
-		}
-		else {
-			$this->logger->error(
-				'assign: argument edge_group_id not set.',
-				__FILE__,
-				__LINE__
-			);
-		}
+    function assign_location( $edge_group_id, $location_id ) {
+        if( $edge_group_id ) {
+            $this->_id = $edge_group_id;
+        }
+        else {
+            $this->logger->error(
+                'assign: argument edge_group_id not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
 
-		if( ! $location_id ) {
-			$this->logger->error(
-				'assign: argument location_id not set.',
-				__FILE__,
-				__LINE__
-			);
-		}
+        if( ! $location_id ) {
+            $this->logger->error(
+                'assign: argument location_id not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
 
-		$data = array(
-			'root' => 'tmp_holder',
-			'data' => array(
-				'location' => $location_id,
-			),
-		);
+        $data = array(
+            'root' => 'tmp_holder',
+            'data' => array(
+                'location' => $location_id,
+            ),
+        );
 
-		$this->sendPost( ONAPP_GETRESOURCE_EDGE_GROUP_ASSIGN_LOCATION, $data );
-	}
+        $this->sendPost( ONAPP_GETRESOURCE_EDGE_GROUP_ASSIGN_LOCATION, $data );
+    }
 
-	/**
-	 *
-	 * @param <type> $edge_group_id
-	 * @param <type> $location_id
-	 */
-	function unassign_location( $edge_group_id, $location_id ) {
-		if( $edge_group_id ) {
-			$this->_id = $edge_group_id;
-		}
-		else {
-			$this->logger->error(
-				'assign: argument edge_group_id not set.',
-				__FILE__,
-				__LINE__
-			);
-		}
+    /**
+     *
+     * @param <type> $edge_group_id
+     * @param <type> $location_id
+     */
+    function unassign_location( $edge_group_id, $location_id ) {
+        if( $edge_group_id ) {
+            $this->_id = $edge_group_id;
+        }
+        else {
+            $this->logger->error(
+                'assign: argument edge_group_id not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
 
-		if( ! $location_id ) {
-			$this->logger->error(
-				'assign: argument location_id not set.',
-				__FILE__,
-				__LINE__
-			);
-		}
+        if( ! $location_id ) {
+            $this->logger->error(
+                'assign: argument location_id not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
 
-		$data = array(
-			'root' => 'tmp_holder',
-			'data' => array(
-				'location' => $location_id,
-			),
-		);
+        $data = array(
+            'root' => 'tmp_holder',
+            'data' => array(
+                'location' => $location_id,
+            ),
+        );
 
-		$this->sendPost( ONAPP_GETRESOURCE_EDGE_GROUP_UNASSIGN_LOCATION, $data );
-	}
+        $this->sendPost( ONAPP_GETRESOURCE_EDGE_GROUP_UNASSIGN_LOCATION, $data );
+    }
 }
