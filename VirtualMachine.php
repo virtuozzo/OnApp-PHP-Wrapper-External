@@ -732,8 +732,10 @@ class OnApp_VirtualMachine extends OnApp {
     function rebuild_network($shutdown_type = null, $required_startup = null) {
         $data = array();
 
-        if(!is_null($shutdown_type) && $shutdown_type != "")
+        if(!is_null($shutdown_type) && $shutdown_type != "") {
             $data['shutdown_type'] = $shutdown_type;
+            $data['force'] = '1';
+        }
 
         if(!is_null($required_startup) && $required_startup != "")
             $data['required_startup'] = $required_startup;
