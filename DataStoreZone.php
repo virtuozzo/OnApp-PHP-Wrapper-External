@@ -76,16 +76,14 @@ class OnApp_DataStoreZone extends OnApp {
 				);
 				break;
 
-			case '2.1':
+			case 2.1:
+            case 2.2:
+            case 2.3:
 				$this->fields = $this->initFields( '2.0' );
 				break;
 
-			case 2.2:
-			case 2.3:
-				$this->fields = $this->initFields( 2.1 );
-				break;
-
 			case 3.0:
+			case 3.1:
 				$this->fields = $this->initFields( 2.3 );
 				break;
 		}

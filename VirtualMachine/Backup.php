@@ -174,6 +174,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 				break;
 
 			case 3.0:
+			case 3.1:
 				$this->fields = $this->initFields( 2.3 );
 				break;
 		}

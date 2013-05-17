@@ -117,6 +117,7 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
 				break;
 
 			case 2.2:
+			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				$fields       = array(
 					'cpu_time_raw',
@@ -126,11 +127,8 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
 				$this->unsetFields( $fields );
 				break;
 
-			case 2.3:
-				$this->fields = $this->initFields( 2.2 );
-				break;
-
 			case 3.0:
+            case 3.1:
 				$this->fields = $this->initFields( 2.3 );
 				break;
 		}

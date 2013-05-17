@@ -112,6 +112,7 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 				break;
 
 			case 3.0:
+            case 3.1:
 				$this->fields = $this->initFields( 2.3 );
 				break;
 		}
