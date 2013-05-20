@@ -282,6 +282,7 @@ class OnApp_User extends OnApp {
                 break;
 
             case 3.0:
+            case 3.1:
                 $this->fields                  = $this->initFields( 2.3 );
                 $this->fields[ 'firewall_id' ] = array(
                     ONAPP_FIELD_MAP => '_firewall_id',
