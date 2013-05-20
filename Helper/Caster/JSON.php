@@ -125,7 +125,6 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
         $obj->_is_auth = parent::$obj->_is_auth;
         $obj->initFields( parent::$APIVersion );
         foreach( $item as $name => $value ) {
-            $field = $this->map[ $name ][ ONAPP_FIELD_MAP ];
 
             if( isset( $this->map[ $name ][ ONAPP_FIELD_TYPE ] ) ) {
                 if( $this->map[ $name ][ ONAPP_FIELD_TYPE ] == 'array' ) {
@@ -156,7 +155,12 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
                 }
             }
 
-            $obj->$field = $value;
+            if(array_key_exists($name, $this->map))
+            {
+                $field = $this->map[ $name ][ ONAPP_FIELD_MAP ];
+
+                $obj->$field = $value;
+            }
         }
 
         return $obj;
