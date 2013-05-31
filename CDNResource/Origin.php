@@ -20,24 +20,24 @@
  *
  */
 class OnApp_CDNResource_Origin extends OnApp {
-	/**
-	 * root tag used in the API request
-	 *
-	 * @var string
-	 */
-	var $_tagRoot = 'origin';
+    /**
+     * root tag used in the API request
+     *
+     * @var string
+     */
+    var $_tagRoot = 'origin';
 
-	/**
-	 * alias processing the object data
-	 *
-	 * @var string
-	 */
-	var $_resource = 'origins_for_api';
+    /**
+     * alias processing the object data
+     *
+     * @var string
+     */
+    var $_resource = 'origins_for_api';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
+    public function __construct() {
+        parent::__construct();
+        $this->className = __CLASS__;
+    }
 
 	/**
 	 * API Fields description
@@ -49,8 +49,10 @@ class OnApp_CDNResource_Origin extends OnApp {
 	 */
 	public function initFields( $version = null, $className = '' ) {
 		switch( $version ) {
-			case '2.0':
-			case '2.1':
+			case 2.0:
+			case 2.1:
+			case 2.2:
+			case 2.3:
 				$this->fields = array(
 					'key' => array(
 						ONAPP_FIELD_MAP => '_value',
@@ -60,39 +62,31 @@ class OnApp_CDNResource_Origin extends OnApp {
 				);
 				break;
 
-			case 2.2:
-			case 2.3:
-				$this->fields = $this->initFields( 2.1 );
-				break;
-
 			case 3.0:
+			case 3.1:
 				$this->fields = $this->initFields( 2.3 );
 				break;
-
-			case 3.1:
-				$this->fields = $this->initFields( 3.0 );
-				break;
 		}
 
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
-	}
+        parent::initFields( $version, __CLASS__ );
+        return $this->fields;
+    }
 
-	/**
-	 * Activates action performed with object
-	 *
-	 * @param string $action_name the name of action
-	 *
-	 * @access public
-	 */
-	function activate( $action_name ) {
-		switch( $action_name ) {
-			case ONAPP_ACTIVATE_GETLIST:
-			case ONAPP_ACTIVATE_LOAD:
-			case ONAPP_ACTIVATE_SAVE:
-			case ONAPP_ACTIVATE_DELETE:
-				exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
-				break;
-		}
-	}
+    /**
+     * Activates action performed with object
+     *
+     * @param string $action_name the name of action
+     *
+     * @access public
+     */
+    function activate( $action_name ) {
+        switch( $action_name ) {
+            case ONAPP_ACTIVATE_GETLIST:
+            case ONAPP_ACTIVATE_LOAD:
+            case ONAPP_ACTIVATE_SAVE:
+            case ONAPP_ACTIVATE_DELETE:
+                exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
+                break;
+        }
+    }
 }

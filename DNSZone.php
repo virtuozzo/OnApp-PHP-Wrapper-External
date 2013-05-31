@@ -61,7 +61,8 @@ class OnApp_DNSZone extends OnApp {
      */
     public function initFields( $version = null, $className = '' ) {
         switch( $version ) {
-            case '3.0':
+            case 3.0:
+			case 3.1:
                 $this->fields = array(
                     'id' => array(
                         ONAPP_FIELD_MAP => '_id',
@@ -97,6 +98,7 @@ class OnApp_DNSZone extends OnApp {
                     )
                 );
                 break;
+
             default:
                 $this->fields = $this->initFields('3.0');
                 break;

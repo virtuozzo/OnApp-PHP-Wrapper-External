@@ -56,10 +56,10 @@ class OnApp_CDNResource extends OnApp {
 	 */
 	var $_resource = 'cdn_resources';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
+    public function __construct() {
+        parent::__construct();
+        $this->className = __CLASS__;
+    }
 
 	/**
 	 * API Fields description
@@ -308,121 +308,119 @@ class OnApp_CDNResource extends OnApp {
 				break;
 		}
 
-		parent::initFields( $version, __CLASS__ );
-		return $this->fields;
-	}
+        parent::initFields( $version, __CLASS__ );
+        return $this->fields;
+    }
 
-	function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-		switch( $action ) {
-			case ONAPP_GETRESOURCE_ENABLE_CDN:
-				/**
-				 * ROUTE :
-				 *
-				 * @name
-				 * @method POST
-				 * @alias  /cdn_resources/enable(.:format)
-				 * @format {:controller=>"cdn_resources", :action=>"enable"}
-				 */
-				$resource = $this->_resource . '/enable';
-				break;
+    function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+        switch( $action ) {
+            case ONAPP_GETRESOURCE_ENABLE_CDN:
+                /**
+                 * ROUTE :
+                 * @name
+                 * @method POST
+                 * @alias  /cdn_resources/enable(.:format)
+                 * @format {:controller=>"cdn_resources", :action=>"enable"}
+                 */
+                $resource = $this->_resource . '/enable';
+                break;
 
-			case ONAPP_GETRESOURCE_CDN_PREFETCH:
-				/**
-				 * ROUTE :
-				 *
-				 * @name
-				 * @method POST
-				 * @alias  /cdn_resources/:id/prefetch(.:format)
-				 * @format {:controller=>"cdn_resources", :action=>"prefetch"}
-				 */
-				$resource = $this->_resource . '/' . $this->_id . '/prefetch';
-				break;
+            case ONAPP_GETRESOURCE_CDN_PREFETCH:
+                /**
+                 * ROUTE :
+                 * @name
+                 * @method POST
+                 * @alias  /cdn_resources/:id/prefetch(.:format)
+                 * @format {:controller=>"cdn_resources", :action=>"prefetch"}
+                 */
+                $resource = $this->_resource . '/' . $this->_id . '/prefetch';
+                break;
 
-			case ONAPP_GETRESOURCE_CDN_PURGE:
-				/**
-				 * ROUTE :
-				 *
-				 * @name
-				 * @method POST
-				 * @alias  /cdn_resources/:id/purge(.:format)
-				 * @format {:controller=>"cdn_resources", :action=>"purge"}
-				 */
-				$resource = $this->_resource . '/' . $this->_id . '/purge';
-				break;
+            case ONAPP_GETRESOURCE_CDN_PURGE:
+                /**
+                 * ROUTE :
+                 * @name
+                 * @method POST
+                 * @alias  /cdn_resources/:id/purge(.:format)
+                 * @format {:controller=>"cdn_resources", :action=>"purge"}
+                 */
+                $resource = $this->_resource . '/' . $this->_id . '/purge';
+                break;
 
-			default:
-				$resource = parent::getResource( $action );
-				break;
-		}
+            default:
+                $resource = parent::getResource( $action );
+                break;
+        }
 
-		$this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+        $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
 
-		return $resource;
-	}
+        return $resource;
+    }
 
-	/**
-	 * This tool allows HTTP Pull content to be pre-populated to the CDN.
-	 * Recommended only if files especially large.
-	 *
-	 * @param integer $cdn_resource_id CDN resource id
-	 * @param string  $prefetch_paths  Paths to prefetch
-	 */
-	public function prefetch( $cdn_resource_id, $prefetch_paths ) {
-		if( $cdn_resource_id ) {
-			$this->_id = $cdn_resource_id;
-		}
-		else {
-			$this->logger->error(
-				'prefetch: argument $cdn_resource_id not set.',
-				__FILE__,
-				__LINE__
-			);
-		}
+    /**
+     * This tool allows HTTP Pull content to be pre-populated to the CDN.
+     * Recommended only if files especially large.
+     *
+     * @param integer $cdn_resource_id CDN resource id
+     * @param string  $prefetch_paths  Paths to prefetch
+     */
+    public function prefetch( $cdn_resource_id, $prefetch_paths ) {
+        if( $cdn_resource_id ) {
+            $this->_id = $cdn_resource_id;
+        }
+        else {
+            $this->logger->error(
+                'prefetch: argument $cdn_resource_id not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
 
-		$data = array(
-			'root' => 'tmp_holder',
-			'data' => array(
-				'prefetch_paths' => $prefetch_paths
-			)
-		);
+        $data = array(
+            'root' => 'tmp_holder',
+            'data' => array(
+                'prefetch_paths' => $prefetch_paths
+            )
+        );
 
-		$this->sendPost( ONAPP_GETRESOURCE_CDN_PREFETCH, $data );
-	}
+        $this->sendPost( ONAPP_GETRESOURCE_CDN_PREFETCH, $data );
+    }
 
-	/**
-	 * This tool allows instant removal of HTTP Pull cache content in the CDN
-	 *
-	 * @param integer $cdn_resource_id CDN resource id
-	 * @param string  $purge_paths     Paths to prefetch
-	 */
-	public function purge( $cdn_resource_id, $purge_paths ) {
-		if( $cdn_resource_id ) {
-			$this->_id = $cdn_resource_id;
-		}
-		else {
-			$this->logger->error(
-				'prefetch: argument $cdn_resource_id not set.',
-				__FILE__,
-				__LINE__
-			);
-		}
+    /**
+     * This tool allows instant removal of HTTP Pull cache content in the CDN
+     *
+     * @param integer $cdn_resource_id CDN resource id
+     * @param string  $purge_paths     Paths to prefetch
+     */
+    public function purge( $cdn_resource_id, $purge_paths ) {
+        if( $cdn_resource_id ) {
+            $this->_id = $cdn_resource_id;
+        }
+        else {
+            $this->logger->error(
+                'prefetch: argument $cdn_resource_id not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
 
-		$data = array(
-			'root' => 'tmp_holder',
-			'data' => array(
-				'purge_paths' => $purge_paths
-			)
-		);
+        $data = array(
+            'root' => 'tmp_holder',
+            'data' => array(
+                'purge_paths' => $purge_paths
+            )
+        );
 
-		$this->sendPost( ONAPP_GETRESOURCE_CDN_PURGE, $data );
-	}
+        $this->sendPost( ONAPP_GETRESOURCE_CDN_PURGE, $data );
+    }
 
-	/**
-	 * Enables cdn
-	 */
-	public function enable() {
-		$this->sendPost( ONAPP_GETRESOURCE_ENABLE_CDN );
-	}
+    /**
+     * Enables cdn
+     *
+     */
+    public function enable() {
+        $this->sendPost( ONAPP_GETRESOURCE_ENABLE_CDN );
+    }
 
 	public function save() {
 		if( count( $this->_countries ) == 0 ) {

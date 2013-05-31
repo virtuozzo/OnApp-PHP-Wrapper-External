@@ -65,6 +65,8 @@ class OnApp_BillingPlan extends OnApp {
 		switch( $version ) {
 			case '2.0':
 			case '2.1':
+			case 2.2:
+			case 2.3:
 				$this->fields = array(
 					'label' => array(
 						ONAPP_FIELD_MAP => '_label',
@@ -126,11 +128,6 @@ class OnApp_BillingPlan extends OnApp {
 						ONAPP_FIELD_READ_ONLY => true
 					),
 				);
-				break;
-
-			case 2.2:
-			case 2.3:
-				$this->fields = $this->initFields( 2.1 );
 				break;
 
 			case 3.0:
