@@ -155,7 +155,20 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 				break;
 
 			case 3.0:
+			case 3.1:
 				$this->fields = $this->initFields( 2.3 );
+				$this->fields[ 'is_default' ] = array(
+					ONAPP_FIELD_MAP       => 'is_default',
+					ONAPP_FIELD_TYPE      => 'boolean',
+				);
+				$this->fields[ 'use_default' ] = array(
+					ONAPP_FIELD_MAP       => 'use_default',
+					ONAPP_FIELD_TYPE      => 'boolean',
+				);
+				$this->fields[ 'preferences' ] = array(
+					ONAPP_FIELD_MAP       => 'preferences',
+					ONAPP_FIELD_TYPE      => 'string',
+				);
 				break;
 		}
 
