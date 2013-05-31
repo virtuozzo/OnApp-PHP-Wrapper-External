@@ -119,6 +119,30 @@ class OnApp_EdgeGroup_Location extends OnApp {
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
 				break;
+
+			case 3.1:
+				$this->fields = $this->initFields( 3.0 );
+				$this->fields[ 'geoBlocking' ] = array(
+					ONAPP_FIELD_MAP  => 'geoBlocking',
+					ONAPP_FIELD_TYPE => 'boolean',
+				);
+				$this->fields[ 'onSaleStreamSupported' ] = array(
+					ONAPP_FIELD_MAP  => 'onSaleStreamSupported',
+					ONAPP_FIELD_TYPE => 'boolean',
+				);
+				$this->fields[ 'onSaleHttpSupported' ] = array(
+					ONAPP_FIELD_MAP  => 'onSaleHttpSupported',
+					ONAPP_FIELD_TYPE => 'boolean',
+				);
+				$this->fields[ 'streamSupported' ] = array(
+					ONAPP_FIELD_MAP  => 'streamSupported',
+					ONAPP_FIELD_TYPE => 'boolean',
+				);
+				$this->fields[ 'httpSupported' ] = array(
+					ONAPP_FIELD_MAP  => 'httpSupported',
+					ONAPP_FIELD_TYPE => 'boolean',
+				);
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
