@@ -133,6 +133,7 @@ class OnApp_CDNResource_Advanced extends OnApp {
 				break;
 
 			case 3.0:
+			case 3.1:
 				$this->fields = $this->initFields( 2.3 );
 				$this->fields[ 'secondary_hostnames' ]  = array(
 					ONAPP_FIELD_MAP => '_secondary_hostnames',
@@ -153,6 +154,25 @@ class OnApp_CDNResource_Advanced extends OnApp {
 				$this->fields[ 'ignore_set_cookie_on' ] = array(
 					ONAPP_FIELD_MAP => '_ignore_set_cookie_on',
 					ONAPP_FIELD_TYPE => 'boolean',
+				);
+				$this->fields[ 'http_bot_blocked' ] = array(
+					ONAPP_FIELD_MAP => 'http_bot_blocked',
+					ONAPP_FIELD_TYPE => 'boolean',
+				);
+				$this->fields[ 'limit_rate' ] = array(
+					ONAPP_FIELD_MAP => 'limit_rate',
+				);
+				$this->fields[ 'limit_rate_after' ] = array(
+					ONAPP_FIELD_MAP => 'limit_rate_after',
+				);
+				$this->fields[ 'proxy_cache_key' ] = array(
+					ONAPP_FIELD_MAP => 'proxy_cache_key',
+				);
+				$this->fields[ 'proxy_read_time_out' ] = array(
+					ONAPP_FIELD_MAP => 'proxy_read_time_out',
+				);
+				$this->fields[ 'proxy_connect_time_out' ] = array(
+					ONAPP_FIELD_MAP => 'proxy_connect_time_out',
 				);
 				break;
 		}
