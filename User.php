@@ -312,6 +312,10 @@ class OnApp_User extends OnApp {
 					ONAPP_FIELD_MAP => 'infoboxes',
 				);
 				break;
+
+			case 3.1:
+				$this->fields = $this->initFields( 3.0 );
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
