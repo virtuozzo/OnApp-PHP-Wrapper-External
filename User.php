@@ -219,6 +219,11 @@ class OnApp_User extends OnApp {
                     ONAPP_FIELD_MAP => '_image_template_group_id',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
+                $this->fields[ 'api_key' ]                       = array(
+                    ONAPP_FIELD_MAP => '_api_key',
+                    ONAPP_FIELD_TYPE => 'string',
+                    ONAPP_FIELD_READ_ONLY => true
+                );
                 $this->fields[ 'suspend_at' ]                       = array(
                     ONAPP_FIELD_MAP => '_suspend_at',
                     ONAPP_FIELD_TYPE => 'string',
