@@ -40,6 +40,11 @@ define( 'ONAPP_GETRESOURCE_NETWORKS_LIST_BY_GROUP_ID', 'get_list_by_group_id' );
 define( 'ONAPP_GETRESOURCE_DELETE_USER', 'delete_user' );
 
 /**
+ * 
+ */
+define( 'ONAPP_GETRESOURCE_MAKE_NEW_API_KEY_USER', 'make_new_api_key' );
+
+/**
  * Users
  *
  * The User class represents the Users of the OnApp installation.
@@ -356,6 +361,10 @@ class OnApp_User extends OnApp {
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/activate';
                 break;
 
+            case ONAPP_GETRESOURCE_MAKE_NEW_API_KEY_USER:
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/make_new_api_key';
+                break;
+
             default:
                 $resource = parent::getResource( $action );
                 break;
@@ -364,6 +373,7 @@ class OnApp_User extends OnApp {
         $actions = array(
             ONAPP_GETRESOURCE_SUSPEND_USER,
             ONAPP_GETRESOURCE_ACTIVATE,
+            ONAPP_GETRESOURCE_MAKE_NEW_API_KEY_USER,
         );
 
         if( in_array( $action, $actions ) ) {
@@ -395,6 +405,21 @@ class OnApp_User extends OnApp {
      */
     function activate_user() {
         $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_ACTIVATE ) );
+
+        $response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
+
+        $result = $this->_castResponseToClass( $response );
+
+        $this->_obj = $result;
+    }
+    
+    /**
+     * Generate a new API Key
+     *
+     * @access public
+     */
+    function make_new_api_key() {
+        $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_MAKE_NEW_API_KEY_USER ) );
 
         $response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
 
