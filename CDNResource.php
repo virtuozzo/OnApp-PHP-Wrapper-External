@@ -275,6 +275,18 @@ class OnApp_CDNResource extends OnApp {
 					ONAPP_FIELD_MAP => '_failover_external_publishing_url',
 					ONAPP_FIELD_TYPE => 'integer',
 				);
+                $this->fields[ 'origin_sites' ] = array(
+					ONAPP_FIELD_MAP  => 'origin_sites',
+					ONAPP_FIELD_TYPE => 'string',
+				);
+				$this->fields[ 'cname' ] = array(
+					ONAPP_FIELD_MAP  => 'cname',
+					ONAPP_FIELD_TYPE => 'string',
+				);
+				$this->fields[ 'push_origin_hostname' ] = array(
+					ONAPP_FIELD_MAP  => 'push_origin_hostname',
+					ONAPP_FIELD_TYPE => 'string',
+				);
 
 				break;
 		}
