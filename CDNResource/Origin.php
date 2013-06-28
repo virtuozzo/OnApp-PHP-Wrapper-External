@@ -58,7 +58,7 @@ class OnApp_CDNResource_Origin extends OnApp {
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
 					'key' => array(
-						ONAPP_FIELD_MAP => '_value',
+						ONAPP_FIELD_MAP => '_key',
 						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
