@@ -347,6 +347,17 @@ class OnApp_CDNResource extends OnApp {
                 $resource = $this->_resource . '/' . $this->_id . '/purge';
                 break;
 
+            case ONAPP_POSTRESOURCE_PURGE_ALL:
+                /**
+                 * ROUTE :
+                 * @name
+                 * @method POST
+                 * @alias  /cdn_resources/:id/purge_all(.:format)
+                 * @format {:controller=>"cdn_resources", :action=>"purge_all"}
+                 */
+                $resource = $this->_resource . '/' . $this->_id . '/purge_all';
+                break;
+
             default:
                 $resource = parent::getResource( $action );
                 break;
@@ -420,6 +431,26 @@ class OnApp_CDNResource extends OnApp {
      */
     public function enable() {
         $this->sendPost( ONAPP_GETRESOURCE_ENABLE_CDN );
+    }
+
+    /**
+     * This function allows to purge all content
+     *
+     * @param integer $cdn_resource_id CDN resource id
+     */
+    function purge_all($cdn_resource_id) {
+        if( $cdn_resource_id ) {
+            $this->_id = $cdn_resource_id;
+        }
+        else {
+            $this->logger->error(
+                'prefetch: argument $cdn_resource_id not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
+
+        $this->sendPost( ONAPP_POSTRESOURCE_PURGE_ALL );
     }
 
 	public function save() {
