@@ -51,11 +51,6 @@ class OnApp_CDNResource_Advanced extends OnApp {
      */
     public function initFields( $version = null, $className = '' ) {
         switch( $version ) {
-            case '2.0':
-            case '2.1':
-            case '2.2':
-                break;
-
             case '2.3':
                 $this->fields = array(
                     'id' => array(
@@ -192,6 +187,7 @@ class OnApp_CDNResource_Advanced extends OnApp {
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         switch( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
+            case ONAPP_GETRESOURCE_LOAD:
                 $resource = 'cdn_resources/' . $this->_id . '/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
@@ -239,7 +235,8 @@ class OnApp_CDNResource_Advanced extends OnApp {
      */
     function activate( $action_name ) {
         switch( $action_name ) {
-            case ONAPP_ACTIVATE_LOAD:
+            case ONAPP_ACTIVATE_GETLIST:
+//            case ONAPP_ACTIVATE_LOAD:
             case ONAPP_ACTIVATE_SAVE:
             case ONAPP_ACTIVATE_DELETE:
                 exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
