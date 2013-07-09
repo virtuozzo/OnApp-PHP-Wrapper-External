@@ -55,8 +55,9 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
         switch( $version ) {
             case '2.0':
             case '2.1':
-			case 2.2:
-			case 2.3:
+            case '2.2':
+            case '2.3':
+            case '3.0':
                 $this->fields = array(
                     'created_at' => array(
                         ONAPP_FIELD_MAP => '_created_at',
@@ -106,9 +107,36 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
                 );
                 break;
 
-            case 3.0:
-			case 3.1:
-                $this->fields = $this->initFields( 2.3 );
+            case 3.1:
+                $this->fields = $this->initFields( 3.0 );
+
+                unset($this->fields['cost']);
+                unset($this->fields['billing_stats']);
+
+                $this->fields['currency_code'] = array(
+                    ONAPP_FIELD_MAP => '_currency_code',
+                    ONAPP_FIELD_TYPE => 'string',
+                    ONAPP_FIELD_READ_ONLY => true,
+                );
+
+                $this->fields['total_cost'] = array(
+                    ONAPP_FIELD_MAP => '_total_cost',
+                    ONAPP_FIELD_TYPE => 'string',
+                    ONAPP_FIELD_READ_ONLY => true,
+                );
+
+                $this->fields['vm_resources_cost'] = array(
+                    ONAPP_FIELD_MAP => '_vm_resources_cost',
+                    ONAPP_FIELD_TYPE => 'string',
+                    ONAPP_FIELD_READ_ONLY => true,
+                );
+
+                $this->fields['usage_cost'] = array(
+                    ONAPP_FIELD_MAP => '_usage_cost',
+                    ONAPP_FIELD_TYPE => 'string',
+                    ONAPP_FIELD_READ_ONLY => true,
+                );
+
                 break;
         }
 
