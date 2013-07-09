@@ -130,6 +130,7 @@ class OnApp_CDNResource_Advanced extends OnApp {
 			case 3.0:
 			case 3.1:
 				$this->fields = $this->initFields( 2.3 );
+
 				$this->fields[ 'secondary_hostnames' ]  = array(
 					ONAPP_FIELD_MAP => '_secondary_hostnames',
 					ONAPP_FIELD_TYPE => '_array',
@@ -191,6 +192,11 @@ class OnApp_CDNResource_Advanced extends OnApp {
                 $resource = 'cdn_resources/' . $this->_id . '/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
+            case ONAPP_GETRESOURCE_EDIT:
+            case ONAPP_GETRESOURCE_SAVE:
+                $resource = 'cdn_resources/' . $this->_id ;
+                $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+                break;
             default:
                 $resource = parent::getResource( $action );
                 break;
@@ -237,10 +243,34 @@ class OnApp_CDNResource_Advanced extends OnApp {
         switch( $action_name ) {
             case ONAPP_ACTIVATE_GETLIST:
 //            case ONAPP_ACTIVATE_LOAD:
-            case ONAPP_ACTIVATE_SAVE:
+//            case ONAPP_ACTIVATE_SAVE:
             case ONAPP_ACTIVATE_DELETE:
                 exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
                 break;
         }
+    }
+
+    function load($id) {
+        parent::load($id);
+
+        $this->_id = $id;
+    }
+
+    function save()
+    {
+        $passowrd = $this->fields[ 'passwords' ];
+        unset($this->fields[ 'passwords' ]);
+
+        if(is_null($this->_countries))
+            $this->_countries = $this->_obj->_countries;
+
+        if(is_null($this->_secondary_hostnames) && count($this->_obj->_secondary_hostnames) != 0)
+            $this->_secondary_hostnames = $this->_obj->_secondary_hostnames;
+       else
+           $this->_secondary_hostnames = array('');
+
+        parent::save();
+
+        $this->fields[ 'passwords' ] = $passowrd;
     }
 }
