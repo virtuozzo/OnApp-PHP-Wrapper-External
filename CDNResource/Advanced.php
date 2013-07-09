@@ -261,10 +261,12 @@ class OnApp_CDNResource_Advanced extends OnApp {
         $passowrd = $this->fields[ 'passwords' ];
         unset($this->fields[ 'passwords' ]);
 
-        if(is_null($this->_countries))
+        if(is_null($this->_countries) && isset($this->_obj))
             $this->_countries = $this->_obj->_countries;
+        elseif(is_null($this->_countries))
+            $this->_countries = array('');
 
-        if(is_null($this->_secondary_hostnames) && count($this->_obj->_secondary_hostnames) != 0)
+        if( is_null($this->_secondary_hostnames) && isset($this->_obj) && count($this->_obj->_secondary_hostnames) != 0 )
             $this->_secondary_hostnames = $this->_obj->_secondary_hostnames;
        else
            $this->_secondary_hostnames = array('');
