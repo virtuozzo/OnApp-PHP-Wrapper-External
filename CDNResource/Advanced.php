@@ -251,9 +251,11 @@ class OnApp_CDNResource_Advanced extends OnApp {
     }
 
     function load($id) {
-        parent::load($id);
+        $return = parent::load($id);
 
         $this->_id = $id;
+
+        return $return;
     }
 
     function save()
@@ -271,8 +273,10 @@ class OnApp_CDNResource_Advanced extends OnApp {
        else
            $this->_secondary_hostnames = array('');
 
-        parent::save();
+        $return = parent::save();
 
         $this->fields[ 'passwords' ] = $passowrd;
+
+        return $return;
     }
 }
