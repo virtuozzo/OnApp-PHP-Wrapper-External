@@ -4,26 +4,26 @@
 /**
  * VM IP Adresses
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	VirtualMachine
- * @author		Vitaliy Kondratyuk
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @subpackage  VirtualMachine
+ * @author      Vitaliy Kondratyuk
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
  * VM IP Adresses
  *
- * The ONAPP_VirtualMachine_IpAddress class doesn't support any basic method.
+ * The OnApp_VirtualMachine_IpAddress class doesn't support any basic method.
  *
  */
 
 /**
-*
-*/
-define( 'ONAPP_GETRESOURCE_JOIN', 'ip_address_join');
+ *
+ */
+define( 'ONAPP_GETRESOURCE_JOIN', 'ip_address_join' );
 
 class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 	/**
@@ -48,8 +48,9 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -109,6 +110,10 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -116,7 +121,7 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -139,8 +144,8 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 	/**
 	 * Joins another Ip Address to particular virtual machine
 	 *
-	 * @param integer $ip_address_id ip address id
-	 * @param integer $virtual_machine_id virtual machine id
+	 * @param integer $ip_address_id        ip address id
+	 * @param integer $virtual_machine_id   virtual machine id
 	 * @param integer $network_interface_id network interface id
 	 */
 	function join( $ip_address_id = NULL, $virtual_machine_id = NULL, $network_interface_id = NULL ) {
@@ -154,7 +159,7 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
 			$this->_id = $ip_address_id;
 		}
 
-        $data = array(
+		$data = array(
 			'root' => 'ip_address_join',
 			'data' => array(
 				'network_interface_id' => $this->_network_interface_id,

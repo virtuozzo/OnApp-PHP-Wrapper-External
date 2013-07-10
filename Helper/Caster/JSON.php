@@ -2,12 +2,12 @@
 /**
  * Serialize and Unserialize Object to/from JSON for OnApp wrapper
  *
- * @category	OBJECT CAST
- * @package		OnApp
- * @subpackage	Caster
- * @author		Lev Bartashevsky
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
+ * @category    OBJECT CAST
+ * @package     OnApp
+ * @subpackage  Caster
+ * @author      Lev Bartashevsky
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
  */
 class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 	private $map;
@@ -37,10 +37,10 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 	/**
 	 * Unserialize JSON data to wrapper object(s)
 	 *
-	 * @param string		$className  className to cast into
-	 * @param string|array  $data		JSON or array containing nested data
-	 * @param array			$map		fields map
-	 * @param string		$root		root tag
+	 * @param string           $className   className to cast into
+	 * @param string|array     $data        JSON or array containing nested data
+	 * @param array            $map         fields map
+	 * @param string           $root        root tag
 	 *
 	 * @return array|object
 	 */
@@ -49,7 +49,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 
 		$this->runBefore( $data );
 
-		$this->map = $map;
+		$this->map       = $map;
 		$this->className = $className;
 
 		if( is_string( $data ) ) {
@@ -79,10 +79,10 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 
 		// get errors
 		if( $root === 'errors' ) {
-			$errors = (array)$data->$root;
+			$errors = $this->objectToArray( $data->$root );
 
-			if( count( $errors ) == 1 ) {
-				$errors = $errors[ 0 ];
+			if( count( $errors ) == 1 && isset( $errors[ 0 ] ) ) {
+				$errors = array_shift( $errors );
 			}
 			return $errors;
 		}
@@ -112,17 +112,16 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 	 */
 	private function process( $item ) {
 		if( ! ( is_array( $item ) || is_object( $item ) ) ) {
-			$tmp = new $this->className;
+			$tmp  = new $this->className;
 			$item = array(
 				$tmp->_tagRoot => $item
 			);
 			unset( $tmp );
 		}
 
-
-		$obj = new $this->className;
-		$obj->options = parent::$obj->options;
-		$obj->_ch = parent::$obj->_ch;
+		$obj           = new $this->className;
+		$obj->options  = parent::$obj->options;
+		$obj->_ch      = parent::$obj->_ch;
 		$obj->_is_auth = parent::$obj->_is_auth;
 		$obj->initFields( parent::$APIVersion );
 		foreach( $item as $name => $value ) {
@@ -134,10 +133,24 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 						$value = array();
 					}
 					else {
-						$tmp = new DataHolder;
+						$tmp             = new DataHolder;
 						$tmp->APIVersion = parent::$APIVersion;
-						$tmp->className = $this->map[ $name ][ ONAPP_FIELD_CLASS ];
-						$tmp->data = $value;
+						$tmp->className  = $this->map[ $name ][ ONAPP_FIELD_CLASS ];
+						$tmp->data       = $value;
+						$value           = $tmp;
+					}
+				}
+
+				if( $this->map[ $name ][ ONAPP_FIELD_TYPE ] == '_array' ) {
+					if( empty( $value ) ) {
+						$value = array();
+					}
+					else {
+						$tmp = array();
+						foreach( $value as $key => $obj_v ) {
+							$tmp[ $key ] = $obj_v;
+						}
+
 						$value = $tmp;
 					}
 				}
@@ -167,5 +180,25 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 	}
 
 	private function runAfter() {
+	}
+
+	/**
+	 * Convert object to array
+	 *
+	 * @param mixed $d
+	 *
+	 * @return array
+	 */
+	private function objectToArray( $d ) {
+		if( is_object( $d ) ) {
+			$d = get_object_vars( $d );
+		}
+
+		if( is_array( $d ) ) {
+			return array_map( __METHOD__, $d );
+		}
+		else {
+			return $d;
+		}
 	}
 }

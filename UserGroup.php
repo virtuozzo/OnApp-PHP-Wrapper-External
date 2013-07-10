@@ -4,12 +4,21 @@
  *
  * User Groups are created to set custom layout to selected users.
  *
+<<<<<<< HEAD
  * @category	API WRAPPER
  * @package		OnApp
  * @author		Lev Bartashevsky
  * @copyright	(c) 2011 OnApp
  * @link		http://www.onapp.com/
  * @see			OnApp
+=======
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Lev Bartashevsky
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
+>>>>>>> 3.0.0
  */
 
 /**
@@ -44,8 +53,9 @@ class OnApp_UserGroup extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -79,6 +89,10 @@ class OnApp_UserGroup extends OnApp {
 			case 2.2:
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
+				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
 				break;
 		}
 

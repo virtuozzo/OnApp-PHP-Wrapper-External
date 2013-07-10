@@ -1,22 +1,21 @@
 <?php
-
 /**
  * Manages LoadBalancingCluster Node Atributes
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	LoadBalancingCluster
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @subpackage  LoadBalancingCluster
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
  * Manages OnApp Load Balancing Cluster Node Atribute
  *
  * The OnApp_LoadBalancingCluster_NodeAtribute class uses no basic methods and is nested of OnApp_LoadBalancingCluster class
- * 
+ *
  */
 class OnApp_LoadBalancingCluster_NodeAtribute extends OnApp {
 	public function __construct() {
@@ -27,8 +26,9 @@ class OnApp_LoadBalancingCluster_NodeAtribute extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -45,12 +45,12 @@ class OnApp_LoadBalancingCluster_NodeAtribute extends OnApp {
 						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-                    'memory' => array(
+					'memory' => array(
 						ONAPP_FIELD_MAP => '_memory',
 						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-                    'rate_limit' => array(
+					'rate_limit' => array(
 						ONAPP_FIELD_MAP => '_rate_limit',
 						ONAPP_FIELD_TYPE => 'integer',
 						ONAPP_FIELD_READ_ONLY => true,
@@ -61,6 +61,10 @@ class OnApp_LoadBalancingCluster_NodeAtribute extends OnApp {
 			case 2.2:
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
+				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
 				break;
 		}
 

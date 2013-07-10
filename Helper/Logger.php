@@ -2,7 +2,7 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
- * Logger for ONAPP Wrapper
+ * Logger for OnApp Wrapper
  *
  * Log management (LM) comprises an approach to dealing with large volumes of
  * computer-generated log messages (also known as audit records, audit trails,
@@ -27,12 +27,12 @@
  * is a complicated process and organizations often make mistakes while
  * approaching it.
  *
- * @category  LOGGER
- * @package		OnApp
- * @subpackage	Helper
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
+ * @category    LOGGER
+ * @package     OnApp
+ * @subpackage  Helper
+ * @author      Andrew Yatskovets
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
  */
 
 /**
@@ -76,7 +76,7 @@ class OnApp_Helper_Logger {
 	 * referred to as the local time.
 	 *
 	 * @access private
-	 * @var	string
+	 * @var    string
 	 */
 	var $_timezone = 'America/Los_Angeles';
 
@@ -84,7 +84,7 @@ class OnApp_Helper_Logger {
 	 * Outputs the date format inside of Logger
 	 *
 	 * @access private
-	 * @var	string
+	 * @var    string
 	 */
 	var $_date_format = 'Y-m-d H:i:s';
 
@@ -93,7 +93,7 @@ class OnApp_Helper_Logger {
 	 * the system.
 	 *
 	 * @access private
-	 * @var	boolean
+	 * @var    boolean
 	 */
 	var $_debug = false;
 
@@ -101,7 +101,7 @@ class OnApp_Helper_Logger {
 	 * Buffer containing all the information on the messages used in the class
 	 *
 	 * @access private
-	 * @var	array
+	 * @var    array
 	 */
 	var $_log = array();
 
@@ -114,7 +114,7 @@ class OnApp_Helper_Logger {
 	 * @access public
 	 */
 	function setDebug( $debug ) {
-		if( !is_null( $debug ) ) {
+		if( ! is_null( $debug ) ) {
 			$this->_debug = $debug;
 		}
 	}
@@ -135,7 +135,7 @@ class OnApp_Helper_Logger {
 	 * Adds the error message to the logger buffer and stops
 	 * executing
 	 *
-	 * @param string  $msg log message
+	 * @param string  $msg  log message
 	 * @param string  $file file which initialized error
 	 * @param integer $line string in which was initialized error
 	 *
@@ -178,7 +178,7 @@ class OnApp_Helper_Logger {
 	 * Adds the message and additional data to the buffer depending
 	 * on the message type
 	 *
-	 * @param string $msg log message
+	 * @param string $msg  log message
 	 * @param string $type log type
 	 *
 	 * @return boolean
@@ -205,9 +205,9 @@ class OnApp_Helper_Logger {
 					break;
 			}
 
-			$time = microtime( true );
+			$time  = microtime( true );
 			$micro = sprintf( "%06d", ( $time - floor( $time ) ) * 1000000 );
-			$date = date( "$date_format $micro", $time );
+			$date  = date( "$date_format $micro", $time );
 
 			$this->_log[ $date ] = array(
 				'log' => $log
@@ -247,12 +247,12 @@ class OnApp_Helper_Logger {
 			$timezone = $this->_timezone;
 		}
 
-		if( !function_exists( 'date_default_timezone_set' ) ) {
+		if( ! function_exists( 'date_default_timezone_set' ) ) {
 			$this->warning( "This PHP version not suport functions date_default_timezone_set or date_default_timezone_get." );
 		}
 		else {
 			if( strlen( ini_get( 'date.timezone' ) ) == 0 ) {
-//                 	          date_default_timezone_set( $timezone );
+				//                 	          date_default_timezone_set( $timezone );
 				$this->add( "setTimezone: Change default date.timezone." );
 			}
 			else {

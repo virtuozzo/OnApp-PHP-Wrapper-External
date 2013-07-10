@@ -2,12 +2,12 @@
 /**
  * Serialize and Unserialize Object to/from JSON|XML for OnApp wrapper
  *
- * @category	OBJECT CAST
- * @package		OnApp
- * @subpackage	Helper
- * @author		Lev Bartashevsky
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
+ * @category    OBJECT CAST
+ * @package     OnApp
+ * @subpackage  Helper
+ * @author      Lev Bartashevsky
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
  */
 class OnApp_Helper_Caster {
 	protected static $obj;
@@ -15,10 +15,10 @@ class OnApp_Helper_Caster {
 
 	/**
 	 * @param string $version   OnApp API version
-	 * @param object $obj	   wrapper object
+	 * @param object $obj       wrapper object
 	 */
 	public function __construct( $obj ) {
-		self::$obj = $obj;
+		self::$obj        = $obj;
 		self::$APIVersion = $obj->getAPIVersion();
 	}
 
@@ -39,10 +39,10 @@ class OnApp_Helper_Caster {
 	/**
 	 * Unserialize data to wrapper object(s)
 	 *
-	 * @param string		$className  classname to cast into
-	 * @param string|array  $data	   XML|JSON or array containing nested data
-	 * @param array		 $map		fields map
-	 * @param string		$root	   root tag
+	 * @param string        $className  classname to cast into
+	 * @param string|array  $data       XML|JSON or array containing nested data
+	 * @param array         $map        fields map
+	 * @param string        $root       root tag
 	 *
 	 * @return array|object unserialized data
 	 */
@@ -55,6 +55,7 @@ class OnApp_Helper_Caster {
 	 * Unserialize nested data
 	 *
 	 * @static
+	 *
 	 * @param DataHolder $object object storing nested data
 	 *
 	 * @return array
@@ -63,15 +64,23 @@ class OnApp_Helper_Caster {
 		self::$obj->logger->add( 'castStringToClass: call ' . __METHOD__ );
 
 		$className = 'OnApp_' . $object->className;
-		$tmp_obj = new $className;
+		$tmp_obj   = new $className;
 		$tmp_obj->initFields( $object->APIVersion );
-		$tmp_obj->options = self::$obj->options;
-		$tmp_obj->_ch = self::$obj->_ch;
+		$tmp_obj->options  = self::$obj->options;
+		$tmp_obj->_ch      = self::$obj->_ch;
 		$tmp_obj->_is_auth = self::$obj->_is_auth;
 
-		$tmp = array();
-		foreach( $object->data as $data ) {
-			$tmp[ ] = self::getCaster()->unserialize( $className, $data, $tmp_obj->getClassFields(), $tmp_obj->_tagRoot );
+		if( is_object( $object->data ) && get_class( $object->data ) == 'SimpleXMLElement'
+			&& (string)$object->data->attributes()->type != 'array' || is_object( $object->data )
+			&& get_class( $object->data ) == 'stdClass' && ! is_array( $object->data )
+		) {
+			$tmp = self::getCaster()->unserialize( $className, $object->data, $tmp_obj->getClassFields(), $tmp_obj->_tagRoot );
+		}
+		else {
+			$tmp = array();
+			foreach( $object->data as $data ) {
+				$tmp[ ] = self::getCaster()->unserialize( $className, $data, $tmp_obj->getClassFields(), $tmp_obj->_tagRoot );
+			}
 		}
 
 		return $tmp;
@@ -92,13 +101,11 @@ class OnApp_Helper_Caster {
 		return new $caster;
 	}
 }
-
 /**
  * Holder class for storing nested data
  */
 class DataHolder extends stdClass {
 }
-
 /**
  * Hide errors if running in CLI to pass unit tests
  */

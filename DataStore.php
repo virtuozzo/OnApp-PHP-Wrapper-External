@@ -12,12 +12,12 @@
  * The minimum requirements for the virtual machine Data Stores are:
  *  - 1TB Block Storage (iSCSI, AoE, Fiber - can even be on a shared SAN)
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Andrew Yatskovets
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -31,7 +31,7 @@ define( 'ONAPP_GETRESOURCE_DATASTORES_LIST_BY_HYPERVISOR_GROUP_ID', 'hypervisor_
  *
  * The DataStore class represents the Data Storages of the OnAPP installation.
  *
- * The ONAPP_DataStore class uses the following basic methods:
+ * The OnApp_DataStore class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -59,8 +59,9 @@ class OnApp_DataStore extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -122,7 +123,7 @@ class OnApp_DataStore extends OnApp {
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_REQUIRED => true,
 				);
-				$this->fields[ 'ip' ] = array(
+				$this->fields[ 'ip' ]                  = array(
 					ONAPP_FIELD_MAP => '_ip',
 					ONAPP_FIELD_TYPE => 'string',
 					ONAPP_FIELD_REQUIRED => true,
@@ -137,20 +138,19 @@ class OnApp_DataStore extends OnApp {
 					ONAPP_FIELD_MAP => 'raw_stats',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'usage' ] = array(
+				$this->fields[ 'usage' ]     = array(
 					ONAPP_FIELD_MAP => 'usage',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'capacity' ] = array(
+				$this->fields[ 'capacity' ]  = array(
 					ONAPP_FIELD_MAP => 'capacity',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
 				break;
 
-
 			case 2.3:
 				$this->fields = $this->initFields( 2.2 );
-				$fields = array(
+				$fields       = array(
 					'raw_stats',
 				);
 				$this->unsetFields( $fields );
@@ -159,6 +159,10 @@ class OnApp_DataStore extends OnApp {
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
+				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
 				break;
 		}
 
@@ -198,7 +202,7 @@ class OnApp_DataStore extends OnApp {
 				 * ROUTE :
 				 * @name
 				 * @method POST
-				 * @alias  /settings/data_stores(.:format)
+				 * @alias   /settings/data_stores(.:format)
 				 * @format  {:controller=>"data_stores", :action=>"create"}
 				 */
 				/**
@@ -229,6 +233,7 @@ class OnApp_DataStore extends OnApp {
 	 * Description
 	 *
 	 * @param integer $hypervisor_group_id hypervisor_group_id
+	 *
 	 * @return bool|array
 	 */
 	function getListByHypervisorGroupId( $hypervisor_group_id ) {
@@ -248,12 +253,12 @@ class OnApp_DataStore extends OnApp {
 
 		$result = $this->castStringToClass( $response );
 
-		if( !empty( $response[ 'errors' ] ) ) {
+		if( ! empty( $response[ 'errors' ] ) ) {
 			return false;
 		}
 
 		$this->_obj = $result;
 
-		return ( is_array( $result ) || ! $result ) ? $result : array($result);
+		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
 	}
 }

@@ -2,11 +2,12 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
- * Managing Edge Servers
+ * Manages Assigned Location
  *
  *
  * @category    API wrapper
  * @package     OnApp
+ * @subpackage  EdgeGroup
  * @author      Yakubskiy Yuriy
  * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
@@ -16,27 +17,26 @@
 /**
  * Edge Server
  *
- * The Edge Server class represents the Edge Server of the OnAPP installation.
+ * The OnApp_EdgeGroup_AssignedLocation class represents the OnApp_EdgeGroup_AssignedLocation of the OnAPP installation.
  *
- * The OnApp_EdgeServer class uses the following basic methods:
- * {@link getList} and {@link load} and .
+ * The OnApp_EdgeGroup_AssignedLocation class uses no basic methods and is nested of OnApp_EdgeGroup class
  *
- * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
+ *
  */
-class OnApp_EdgeServer extends OnApp_VirtualMachine {
-
+class OnApp_EdgeGroup_AssignedLocation extends OnApp_EdgeGroup_Location {
 	/**
 	 * root tag used in the API request
 	 *
 	 * @var string
 	 */
-	var $_tagRoot = 'edge_server';
+	var $_tagRoot = '';
+
 	/**
 	 * alias processing the object data
 	 *
 	 * @var string
 	 */
-	var $_resource = 'edge_servers';
+	var $_resource = '';
 
 	public function __construct() {
 		parent::__construct();

@@ -4,23 +4,23 @@
 /**
  * User Statistics
  *
- * @todo write description
+ * @todo        write description
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	User
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @subpackage  User
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
  * User IP User Statistics
  *
- *  The ONAPP_User_Statistics class uses the following basic methods:
+ *  The OnApp_User_Statistics class uses the following basic methods:
  *  {@link getList}.
- *  
+ *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_User_Statistics extends OnApp {
@@ -46,8 +46,9 @@ class OnApp_User_Statistics extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -109,6 +110,10 @@ class OnApp_User_Statistics extends OnApp {
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
 				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
+				break;
 		}
 
 		parent::initFields( $version, __CLASS__ );
@@ -116,7 +121,7 @@ class OnApp_User_Statistics extends OnApp {
 	}
 
 	/**
-	 * Returns the URL Alias of the API Class that inherits the Class ONAPP
+	 * Returns the URL Alias of the API Class that inherits the OnApp class
 	 *
 	 * @param string $action action name
 	 *
@@ -130,7 +135,7 @@ class OnApp_User_Statistics extends OnApp {
 				 * ROUTE :
 				 * @name user_vm_stats
 				 * @method GET
-				 * @alias  /users/:user_id/vm_stats(.:format)
+				 * @alias   /users/:user_id/vm_stats(.:format)
 				 * @format  {:controller=>"vm_stats", :action=>"index"}
 				 */
 				if( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {
@@ -167,11 +172,11 @@ class OnApp_User_Statistics extends OnApp {
 	 * @access public
 	 */
 	function getList( $user_id = null, $url_args = array() ) {
-		if( is_null( $user_id ) && !is_null( $this->_user_id ) ) {
+		if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
 			$user_id = $this->_user_id;
 		}
 
-		if( !is_null( $user_id ) ) {
+		if( ! is_null( $user_id ) ) {
 			$this->_user_id = $user_id;
 
 			return parent::getList( null, $url_args );

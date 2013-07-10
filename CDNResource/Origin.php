@@ -4,23 +4,21 @@
 /**
  * CDN Resource Origins for API
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	CDNResource
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2012 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @subpackage  CDNResource
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2012 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
  * CDN Origins For API
  *
- * The ONAPP_CDNResource_Origin class doesn't support any basic method.
+ * The OnApp_CDNResource_Origin class doesn't support any basic method.
  *
  */
-
-
 class OnApp_CDNResource_Origin extends OnApp {
 	/**
 	 * root tag used in the API request
@@ -44,8 +42,9 @@ class OnApp_CDNResource_Origin extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -53,13 +52,13 @@ class OnApp_CDNResource_Origin extends OnApp {
 			case '2.0':
 			case '2.1':
 				$this->fields = array(
-					'value' => array(
-						ONAPP_FIELD_MAP => '_value',
-						ONAPP_FIELD_TYPE => 'string',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
+//					'value' => array(
+//						ONAPP_FIELD_MAP => '_value',
+//						ONAPP_FIELD_TYPE => 'string',
+//						ONAPP_FIELD_READ_ONLY => true,
+//					),
 					'key' => array(
-						ONAPP_FIELD_MAP => '_key',
+						ONAPP_FIELD_MAP => '_value',
 						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
@@ -69,6 +68,10 @@ class OnApp_CDNResource_Origin extends OnApp {
 			case 2.2:
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
+				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
 				break;
 		}
 

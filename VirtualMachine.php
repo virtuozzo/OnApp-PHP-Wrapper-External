@@ -23,12 +23,12 @@
  * the detailed log records of all the tasks which are currently running,
  * pending, failed or completed.
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Andrew Yatskovets
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -102,7 +102,7 @@ define( 'ONAPP_GETRESOURCE_MIGRATE', 'migrate' );
  *
  * The Virtual Machine class represents the Virtual Machines of the OnAPP installation.
  *
- * The ONAPP_VirtualMachine class uses the following basic methods:
+ * The OnApp_VirtualMachine class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -130,8 +130,9 @@ class OnApp_VirtualMachine extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -288,17 +289,17 @@ class OnApp_VirtualMachine extends OnApp {
 			case '2.1':
 				$this->fields = $this->initFields( '2.0' );
 
-				$this->fields[ 'admin_note' ] = array(
+				$this->fields[ 'admin_note' ]                = array(
 					ONAPP_FIELD_MAP => '_admin_note',
 					ONAPP_FIELD_TYPE => 'string',
 				);
-				$this->fields[ 'allowed_hot_migrate' ] = array(
+				$this->fields[ 'allowed_hot_migrate' ]       = array(
 					ONAPP_FIELD_MAP => '_allowed_hot_migrate',
 					ONAPP_FIELD_TYPE => 'boolean',
 					ONAPP_FIELD_REQUIRED => true,
 					ONAPP_FIELD_DEFAULT_VALUE => '0'
 				);
-				$this->fields[ 'note' ] = array(
+				$this->fields[ 'note' ]                      = array(
 					ONAPP_FIELD_MAP => '_note',
 					ONAPP_FIELD_TYPE => 'string',
 				);
@@ -306,16 +307,16 @@ class OnApp_VirtualMachine extends OnApp {
 					ONAPP_FIELD_MAP => '_strict_virtual_machine_id',
 					ONAPP_FIELD_TYPE => 'integer',
 				);
-				$this->fields[ 'suspended' ] = array(
+				$this->fields[ 'suspended' ]                 = array(
 					ONAPP_FIELD_MAP => '_suspended',
 					ONAPP_FIELD_TYPE => 'boolean',
 				);
-				$this->fields[ 'enable_autoscale' ] = array(
+				$this->fields[ 'enable_autoscale' ]          = array(
 					ONAPP_FIELD_MAP => '_enable_autoscale',
 					ONAPP_FIELD_TYPE => 'boolean',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'enable_monitis' ] = array(
+				$this->fields[ 'enable_monitis' ]            = array(
 					ONAPP_FIELD_MAP => '_enable_monitis',
 					ONAPP_FIELD_TYPE => 'boolean',
 					ONAPP_FIELD_READ_ONLY => true,
@@ -334,7 +335,7 @@ class OnApp_VirtualMachine extends OnApp {
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'update_billing_stat' ] = array(
+				$this->fields[ 'update_billing_stat' ]    = array(
 					ONAPP_FIELD_MAP => 'update_billing_stat',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
@@ -342,18 +343,18 @@ class OnApp_VirtualMachine extends OnApp {
 				break;
 
 			case 2.3:
-				$this->fields = $this->initFields( 2.2 );
-				$this->fields[ 'aflexi_id' ] = array(
+				$this->fields                             = $this->initFields( 2.2 );
+				$this->fields[ 'aflexi_id' ]              = array(
 					ONAPP_FIELD_MAP => 'aflexi_id',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'aflexi_city_id' ] = array(
+				$this->fields[ 'aflexi_city_id' ]         = array(
 					ONAPP_FIELD_MAP => 'aflexi_city_id',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'aflexi_price' ] = array(
+				$this->fields[ 'aflexi_price' ]           = array(
 					ONAPP_FIELD_MAP => 'aflexi_price',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
@@ -363,64 +364,68 @@ class OnApp_VirtualMachine extends OnApp {
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'custom_nginx_config' ] = array(
+				$this->fields[ 'custom_nginx_config' ]    = array(
 					ONAPP_FIELD_MAP => 'custom_nginx_config',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'add_to_marketplace' ] = array(
+				$this->fields[ 'add_to_marketplace' ]     = array(
 					ONAPP_FIELD_MAP => 'add_to_marketplace',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'vip' ] = array(
+				$this->fields[ 'vip' ]                    = array(
 					ONAPP_FIELD_MAP => 'vip',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'volume_limit' ] = array(
+				$this->fields[ 'volume_limit' ]           = array(
 					ONAPP_FIELD_MAP => 'volume_limit',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'speed_limit' ] = array(
+				$this->fields[ 'speed_limit' ]            = array(
 					ONAPP_FIELD_MAP => 'speed_limit',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'state' ] = array(
+				$this->fields[ 'state' ]                  = array(
 					ONAPP_FIELD_MAP => 'state',
 					ONAPP_FIELD_TYPE => 'string',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
 				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
+				break;
 		}
 
 		if( is_null( $this->_id ) ) {
-			$this->fields[ 'primary_disk_size' ] = array(
+			$this->fields[ 'primary_disk_size' ]              = array(
 				ONAPP_FIELD_MAP => '_primary_disk_size',
 				ONAPP_FIELD_TYPE => 'integer',
 				ONAPP_FIELD_REQUIRED => true,
 				ONAPP_FIELD_DEFAULT_VALUE => 5
 			);
-			$this->fields[ 'swap_disk_size' ] = array(
+			$this->fields[ 'swap_disk_size' ]                 = array(
 				ONAPP_FIELD_MAP => '_swap_disk_size',
 				ONAPP_FIELD_TYPE => 'integer',
 				ONAPP_FIELD_DEFAULT_VALUE => 0
 			);
-			$this->fields[ 'primary_network_id' ] = array(
+			$this->fields[ 'primary_network_id' ]             = array(
 				ONAPP_FIELD_MAP => '_primary_network_id',
 				ONAPP_FIELD_TYPE => 'integer',
 				ONAPP_FIELD_REQUIRED => true,
 				ONAPP_FIELD_DEFAULT_VALUE => ''
 			);
-			$this->fields[ 'required_automatic_backup' ] = array(
+			$this->fields[ 'required_automatic_backup' ]      = array(
 				ONAPP_FIELD_MAP => '_required_automatic_backup',
 				ONAPP_FIELD_TYPE => 'boolean',
 				ONAPP_FIELD_REQUIRED => true,
 				ONAPP_FIELD_DEFAULT_VALUE => ''
 			);
-			$this->fields[ 'rate_limit' ] = array(
+			$this->fields[ 'rate_limit' ]                     = array(
 				ONAPP_FIELD_MAP => '_rate_limit',
 				ONAPP_FIELD_TYPE => 'integer',
 			);
@@ -449,7 +454,7 @@ class OnApp_VirtualMachine extends OnApp {
 				 * ROUTE :
 				 * @name reboot_virtual_machine
 				 * @method POST
-				 * @alias  /virtual_machines/:id/reboot(.:format)
+				 * @alias    /virtual_machines/:id/reboot(.:format)
 				 * @format   {:controller=>"virtual_machines", :action=>"reboot"}
 				 */
 				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/reboot';
@@ -460,7 +465,7 @@ class OnApp_VirtualMachine extends OnApp {
 				 * ROUTE :
 				 * @name shutdown_virtual_machine
 				 * @method POST
-				 * @alias  /virtual_machines/:id/shutdown(.:format)
+				 * @alias    /virtual_machines/:id/shutdown(.:format)
 				 * @format   {:controller=>"virtual_machines", :action=>"shutdown"}
 				 */
 				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/shutdown';
@@ -471,7 +476,7 @@ class OnApp_VirtualMachine extends OnApp {
 				 * ROUTE :
 				 * @name change_owner_virtual_machine
 				 * @method POST
-				 * @alias  /virtual_machines/:id/change_owner(.:format)
+				 * @alias   /virtual_machines/:id/change_owner(.:format)
 				 * @format  {:controller=>"virtual_machines", :action=>"change_owner"}
 				 */
 				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/change_owner';
@@ -482,7 +487,7 @@ class OnApp_VirtualMachine extends OnApp {
 				 * ROUTE :
 				 * @name rebuild_network_virtual_machine
 				 * @method POST
-				 * @alias  /virtual_machines/:id/rebuild_network(.:format)
+				 * @alias   /virtual_machines/:id/rebuild_network(.:format)
 				 * @format  {:controller=>"virtual_machines", :action=>"rebuild_network"}
 				 */
 				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/rebuild_network';
@@ -493,7 +498,7 @@ class OnApp_VirtualMachine extends OnApp {
 				 * ROUTE :
 				 * @name shutdown_virtual_machine
 				 * @method POST
-				 * @alias  /virtual_machines/:id/startup(.:format)
+				 * @alias    /virtual_machines/:id/startup(.:format)
 				 * @format   {:controller=>"virtual_machines", :action=>"startup"}
 				 */
 				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/startup';
@@ -504,7 +509,7 @@ class OnApp_VirtualMachine extends OnApp {
 				 * ROUTE :
 				 * @name shutdown_virtual_machine
 				 * @method POST
-				 * @alias  /virtual_machines/:id/unlock(.:format)
+				 * @alias   /virtual_machines/:id/unlock(.:format)
 				 * @format  {:controller=>"virtual_machines", :action=>"unlock"}
 				 */
 				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/unlock';
@@ -528,7 +533,7 @@ class OnApp_VirtualMachine extends OnApp {
 				 * ROUTE :
 				 * @name suspend_virtual_machine
 				 * @method POST
-				 * @alias  /virtual_machines/:id/suspend(.:format)
+				 * @alias   /virtual_machines/:id/suspend(.:format)
 				 * @format  {:controller=>"virtual_machines", :action=>"suspend"}
 				 */
 				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/suspend';
@@ -539,7 +544,7 @@ class OnApp_VirtualMachine extends OnApp {
 				 * ROUTE :
 				 * @name build_virtual_machine
 				 * @method POST
-				 * @alias  /virtual_machines/:id/build(.:format)
+				 * @alias    /virtual_machines/:id/build(.:format)
 				 * @format   {:controller=>"virtual_machines", :action=>"build"}
 				 */
 				$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/build';
@@ -572,21 +577,21 @@ class OnApp_VirtualMachine extends OnApp {
 				 * ROUTE :
 				 * @name virtual_machines
 				 * @method GET
-				 * @alias  /virtual_machines(.:format)
+				 * @alias   /virtual_machines(.:format)
 				 * @format  {:controller=>"virtual_machines", :action=>"index"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name virtual_machine
 				 * @method GET
-				 * @alias  /virtual_machines/:id(.:format)
+				 * @alias    /virtual_machines/:id(.:format)
 				 * @format   {:controller=>"virtual_machines", :action=>"show"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name
 				 * @method POST
-				 * @alias  /virtual_machines(.:format)
+				 * @alias    /virtual_machines(.:format)
 				 * @format   {:controller=>"virtual_machines", :action=>"create"}
 				 */
 				/**
@@ -600,7 +605,7 @@ class OnApp_VirtualMachine extends OnApp {
 				 * ROUTE :
 				 * @name
 				 * @method DELETE
-				 * @alias  /virtual_machines/:id(.:format)
+				 * @alias   /virtual_machines/:id(.:format)
 				 * @format  {:controller=>"virtual_machines", :action=>"destroy"}
 				 */
 				$resource = parent::getResource( $action );
@@ -631,7 +636,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 * @param mixed $recovery reboot mode
 	 */
 	function reboot( $recovery = false ) {
-		if( !$recovery ) {
+		if( ! $recovery ) {
 			$this->sendPost( ONAPP_GETRESOURCE_REBOOT, '' );
 		}
 		else {
@@ -650,7 +655,7 @@ class OnApp_VirtualMachine extends OnApp {
 	 * @access public
 	 */
 	function reset_password() {
-		$this->sendPost( ONAPP_RESET_ROOT_PASSWORD );
+		return $this->sendPost( ONAPP_RESET_ROOT_PASSWORD );
 	}
 
 	/**
@@ -674,7 +679,7 @@ class OnApp_VirtualMachine extends OnApp {
 	/**
 	 * Migrates Virtual Machine to the other hypervisor
 	 *
-	 * @param int $id virtual machine id
+	 * @param int $id            virtual machine id
 	 * @param int $hypervisor_id destination hypervisor id
 	 */
 	function migrate( $id, $hypervisor_id ) {
@@ -698,10 +703,11 @@ class OnApp_VirtualMachine extends OnApp {
 	 * Change Virtual Machine Owner
 	 *
 	 * @param int|bool $user_id
+	 *
 	 * @return response object
 	 */
 	function change_owner( $user_id = false ) {
-		if( !$user_id ) {
+		if( ! $user_id ) {
 			$this->sendPost( ONAPP_GETRESOURCE_STARTUP );
 		}
 		else {
@@ -722,18 +728,32 @@ class OnApp_VirtualMachine extends OnApp {
 	 *
 	 * @access public
 	 */
-	function rebuild_network() {
-		$this->sendPost( ONAPP_GETRESOURCE_REBUILD_NETWORK );
+	function rebuild_network($shutdown_type = null, $required_startup = null) {
+        $data = array();
+
+        if(!is_null($shutdown_type) && $shutdown_type != "")
+            $data['shutdown_type'] = $shutdown_type;
+
+        if(!is_null($required_startup) && $required_startup != "")
+            $data['required_startup'] = $required_startup;
+
+        $data = array(
+            'root' => 'tmp_holder',
+            'data' => $data
+        );
+
+		$this->sendPost( ONAPP_GETRESOURCE_REBUILD_NETWORK, $data );
 	}
 
 	/**
 	 * Start Virtual machine
 	 *
 	 * @param int|bool $recovery
+	 *
 	 * @return object response object
 	 */
 	function startup( $recovery = false ) {
-		if( !$recovery ) {
+		if( ! $recovery ) {
 			$this->sendPost( ONAPP_GETRESOURCE_STARTUP, '' );
 		}
 		else {
@@ -769,8 +789,8 @@ class OnApp_VirtualMachine extends OnApp {
 				$data = array(
 					'root' => 'virtual_machine',
 					'data' => array(
-						'template_id'      => $this->_template_id,
-                        'required_startup' => $this->_required_startup
+						'template_id' => $this->_template_id,
+						'required_startup' => $this->_required_startup
 					)
 				);
 			}
@@ -778,7 +798,7 @@ class OnApp_VirtualMachine extends OnApp {
 				$data = array(
 					'root' => 'virtual_machine',
 					'data' => array(
-                        'required_startup' => $this->_required_startup
+						'required_startup' => $this->_required_startup
 					)
 				);
 			}
@@ -788,7 +808,7 @@ class OnApp_VirtualMachine extends OnApp {
 				'root' => 'virtual_machine',
 				'data' => array(
 					'template_id' => $this->_template_id ? $this->_template_id : $this->_obj->_template_id,
-                    'required_startup' => $this->_required_startup
+					'required_startup' => $this->_required_startup
 				)
 			);
 		}
@@ -801,9 +821,10 @@ class OnApp_VirtualMachine extends OnApp {
 	 * unserializes the received response into the array of Objects
 	 *
 	 * @param int|null $user_id
+	 *
 	 * @return array|bool
 	 */
-	function getList( $user_id = NULL ) {
+	function getList( $user_id = null, $url_args = null ) {
 		//todo rewrite to use parent method
 		if( is_null( $user_id ) ) {
 			return parent::getList();
@@ -821,12 +842,12 @@ class OnApp_VirtualMachine extends OnApp {
 
 			$result = $this->castStringToClass( $response );
 
-			if( !empty( $response[ 'errors' ] ) ) {
+			if( ! empty( $response[ 'errors' ] ) ) {
 				//todo test this stuff
 				//$this->errors = $result->errors;
 				return false;
 			}
-			if( !is_array( $result ) && !is_null( $result ) ) {
+			if( ! is_array( $result ) && ! is_null( $result ) ) {
 				$result = array( $result );
 			}
 			return $result;
@@ -837,11 +858,11 @@ class OnApp_VirtualMachine extends OnApp {
 	 * Save Object in to your account.
 	 */
 	function save() {
-		if( !is_null( $this->_id ) ) {
-            foreach ( $this->fields as $field => $value ) {
-                unset( $this->fields[$field][ONAPP_FIELD_DEFAULT_VALUE] );
-                unset( $this->fields[$field][ONAPP_FIELD_REQUIRED] );
-            }
+		if( ! is_null( $this->_id ) ) {
+			foreach( $this->fields as $field => $value ) {
+				unset( $this->fields[ $field ][ ONAPP_FIELD_DEFAULT_VALUE ] );
+				unset( $this->fields[ $field ][ ONAPP_FIELD_REQUIRED ] );
+			}
 
 			parent::save();
 			return;
@@ -849,31 +870,31 @@ class OnApp_VirtualMachine extends OnApp {
 
 		$fields = $this->fields;
 
-		$this->fields[ 'primary_disk_size' ] = array(
+		$this->fields[ 'primary_disk_size' ]              = array(
 			ONAPP_FIELD_MAP => '_primary_disk_size',
 			ONAPP_FIELD_TYPE => 'integer',
 			ONAPP_FIELD_REQUIRED => true,
 			ONAPP_FIELD_DEFAULT_VALUE => 5
 		);
-		$this->fields[ 'swap_disk_size' ] = array(
+		$this->fields[ 'swap_disk_size' ]                 = array(
 			ONAPP_FIELD_MAP => '_swap_disk_size',
 			ONAPP_FIELD_TYPE => 'integer',
 			ONAPP_FIELD_REQUIRED => true,
 			ONAPP_FIELD_DEFAULT_VALUE => 0
 		);
-		$this->fields[ 'primary_network_id' ] = array(
+		$this->fields[ 'primary_network_id' ]             = array(
 			ONAPP_FIELD_MAP => '_primary_network_id',
 			ONAPP_FIELD_TYPE => 'integer',
 			ONAPP_FIELD_REQUIRED => true,
 			ONAPP_FIELD_DEFAULT_VALUE => ''
 		);
-		$this->fields[ 'required_automatic_backup' ] = array(
+		$this->fields[ 'required_automatic_backup' ]      = array(
 			ONAPP_FIELD_MAP => '_required_automatic_backup',
 			ONAPP_FIELD_TYPE => 'boolean',
 			ONAPP_FIELD_REQUIRED => true,
 			ONAPP_FIELD_DEFAULT_VALUE => ''
 		);
-		$this->fields[ 'rate_limit' ] = array(
+		$this->fields[ 'rate_limit' ]                     = array(
 			ONAPP_FIELD_MAP => '_rate_limit',
 			ONAPP_FIELD_TYPE => 'integer',
 			ONAPP_FIELD_DEFAULT_VALUE => ''
@@ -890,20 +911,24 @@ class OnApp_VirtualMachine extends OnApp {
 			ONAPP_FIELD_REQUIRED => true,
 			ONAPP_FIELD_DEFAULT_VALUE => ''
 		);
-                $this->fields[ 'hypervisor_group_id' ] = array(
+		$this->fields[ 'hypervisor_group_id' ]            = array(
 			ONAPP_FIELD_MAP => '_hypervisor_group_id',
 			ONAPP_FIELD_TYPE => 'integer',
 		);
-                $this->fields[ 'data_store_group_primary_id' ] = array(
+		$this->fields[ 'data_store_group_primary_id' ]    = array(
 			ONAPP_FIELD_MAP => '_data_store_group_primary_id',
 			ONAPP_FIELD_TYPE => 'integer',
 		);
-                $this->fields[ 'data_store_group_swap_id' ] = array(
+		$this->fields[ 'data_store_group_swap_id' ]       = array(
 			ONAPP_FIELD_MAP => '_data_store_group_swap_id',
 			ONAPP_FIELD_TYPE => 'integer',
 		);
-		$this->fields[ 'required_automatic_backup' ] = array(
+		$this->fields[ 'required_automatic_backup' ]      = array(
 			ONAPP_FIELD_MAP => '_required_automatic_backup',
+			ONAPP_FIELD_TYPE => 'boolean',
+		);
+		$this->fields[ 'required_public_ip_address' ]     = array(
+			ONAPP_FIELD_MAP => '_required_public_ip_address',
 			ONAPP_FIELD_TYPE => 'boolean',
 		);
 
@@ -915,8 +940,9 @@ class OnApp_VirtualMachine extends OnApp {
 	/**
 	 * Edit Administrator's Note
 	 *
-	 * @param int $id virtual machine id
+	 * @param int    $id         virtual machine id
 	 * @param string $admin_note Administrator's Note
+	 *
 	 * @return void
 	 */
 	function editAdminNote( $id, $admin_note ) {

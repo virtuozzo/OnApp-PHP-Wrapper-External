@@ -12,19 +12,18 @@
  * multiple instances of the same operating system, can share hardware
  * resources.
  * In OnApp the Hypervisor servers:
- *	- Provide the system resources, such as CPU, memory, and network
- *	- Control the virtual differentiation of entities, such as machines and corresponding application data being delivered to cloud-hosted applications
- *	- Take care of secure virtualization and channeling of storage, data communications and machine processing
- *	- Can be located at different geographical zones
- *	- Can have different CPU and RAM
-
+ *    - Provide the system resources, such as CPU, memory, and network
+ *    - Control the virtual differentiation of entities, such as machines and corresponding application data being delivered to cloud-hosted applications
+ *    - Take care of secure virtualization and channeling of storage, data communications and machine processing
+ *    - Can be located at different geographical zones
+ *    - Can have different CPU and RAM
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Andrew Yatskovets
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -41,12 +40,12 @@ define( 'ONAPP_GETRESOURCE_HYPERVISOR_REBOOT', 'hypervisor_reboot' );
 /**
  * Hypervisors
  *
- * This class represents the Hypervisors of your OnApp installation. The ONAPP class is the parent of the Hypervisors class.
+ * This class represents the Hypervisors of your OnApp installation. The OnApp class is the parent of the Hypervisors class.
  *
- * The ONAPP_Hypervisor class uses the following basic methods:
+ * The OnApp_Hypervisor class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
- * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 ) 
+ * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_Hypervisor extends OnApp {
 	/**
@@ -71,8 +70,9 @@ class OnApp_Hypervisor extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -174,38 +174,63 @@ class OnApp_Hypervisor extends OnApp {
 				$this->fields = $this->initFields( 2.1 );
 				break;
 
-
 			case 2.3:
 				$this->fields = $this->initFields( 2.2 );
-				$fields = array(
+				$fields       = array(
 					'raw_stats',
 				);
 				$this->unsetFields( $fields );
-				$this->fields[ 'cpu_cores' ] = array(
+				$this->fields[ 'cpu_cores' ]                       = array(
 					ONAPP_FIELD_MAP => 'cpu_cores',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'free_memory' ] = array(
+				$this->fields[ 'free_memory' ]                     = array(
 					ONAPP_FIELD_MAP => 'free_memory',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'total_cpus' ] = array(
+				$this->fields[ 'total_cpus' ]                      = array(
 					ONAPP_FIELD_MAP => 'total_cpus',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'total_memory' ] = array(
+				$this->fields[ 'total_memory' ]                    = array(
 					ONAPP_FIELD_MAP => 'total_memory',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
-				$this->fields[ 'used_cpu_resources' ] = array(
+				$this->fields[ 'used_cpu_resources' ]              = array(
 					ONAPP_FIELD_MAP => 'used_cpu_resources',
 					ONAPP_FIELD_TYPE => 'integer',
 					ONAPP_FIELD_READ_ONLY => true,
 				);
+				$this->fields[ 'memory_allocated_by_running_vms' ] = array(
+					ONAPP_FIELD_MAP => '_memory_allocated_by_running_vms',
+					ONAPP_FIELD_TYPE => 'integer',
+				);
+				$this->fields[ 'total_memory_allocated_by_vms' ]   = array(
+					ONAPP_FIELD_MAP => '_total_memory_allocated_by_vms',
+					ONAPP_FIELD_TYPE => 'integer',
+				);
+				$this->fields[ 'disable_failover' ]                = array(
+					ONAPP_FIELD_MAP => '_disable_failover',
+					ONAPP_FIELD_TYPE => 'boolean',
+				);
+				$this->fields[ 'redis_password' ]                  = array(
+					ONAPP_FIELD_MAP => '_redis_password',
+					ONAPP_FIELD_TYPE => 'string',
+				);
+				$this->fields[ 'free_disk_space' ]                 = array(
+					ONAPP_FIELD_MAP => '_free_disk_space',
+					ONAPP_FIELD_TYPE => '_array',
+
+				);
+
+				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
 				break;
 		}
 
@@ -238,14 +263,14 @@ class OnApp_Hypervisor extends OnApp {
 				 * ROUTE :
 				 * @name hypervisor
 				 * @method GET
-				 * @alias  /settings/hypervisors/:id(.:format)
+				 * @alias   /settings/hypervisors/:id(.:format)
 				 * @format  {:controller=>"settings_hypervisors", :action=>"show"}
 				 */
 				/**
 				 * ROUTE :
 				 * @name
 				 * @method POST
-				 * @alias  /settings/hypervisors(.:format)
+				 * @alias   /settings/hypervisors(.:format)
 				 * @format  {:controller=>"settings_hypervisors", :action=>"create"}
 				 */
 				/**
@@ -259,21 +284,21 @@ class OnApp_Hypervisor extends OnApp {
 				 * ROUTE :
 				 * @name
 				 * @method DELETE
-				 * @alias  /settings/hypervisors/:id(.:format)
+				 * @alias   /settings/hypervisors/:id(.:format)
 				 * @format  {:controller=>"settings_hypervisors", :action=>"destroy"}
 				 */
 				$resource = parent::getResource( $action );
 				break;
-            case ONAPP_GETRESOURCE_HYPERVISOR_REBOOT:
-                /**
+			case ONAPP_GETRESOURCE_HYPERVISOR_REBOOT:
+				/**
 				 * ROUTE :
 				 * @name reboot_hypervisor
 				 * @method POST
-				 * @alias  /settings/hypervisors/:id/reboot(.:format)
+				 * @alias   /settings/hypervisors/:id/reboot(.:format)
 				 * @format  {:action=>"reboot", :controller=>"settings_hypervisors"}
 				 */
-                $resource = $this->_resource . '/' . $this->_id . '/reboot';
-                break;
+				$resource = $this->_resource . '/' . $this->_id . '/reboot';
+				break;
 
 			default:
 				$resource = parent::getResource( $action );
@@ -306,29 +331,30 @@ class OnApp_Hypervisor extends OnApp {
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-		if( !empty( $response[ 'errors' ] ) ) {
+		if( ! empty( $response[ 'errors' ] ) ) {
 			$this->errors = $response[ 'errors' ];
 			return false;
 		}
 
-		$result = $this->castStringToClass( $response );
+		$result     = $this->castStringToClass( $response );
 		$this->_obj = $result;
 
-		return ( is_array( $result ) || ! $result ) ? $result : array($result);
+		return ( is_array( $result ) || ! $result ) ? $result : array( $result );
 	}
 
-    /**
-     * Reboots hypervisor
-     * 
-     * @param integer $hypervisor_id hypervisor id
-     * @return void
-     *
-     */
-    function reboot ( $hypervisor_id ) {
-        if ( $hypervisor_id ) {
-            $this->_id = $hypervisor_id;
-        }
-        else {
+	/**
+	 * Reboots hypervisor
+	 *
+	 * @param integer $hypervisor_id hypervisor id
+	 *
+	 * @return void
+	 *
+	 */
+	function reboot( $hypervisor_id ) {
+		if( $hypervisor_id ) {
+			$this->_id = $hypervisor_id;
+		}
+		else {
 			$this->logger->error(
 				'reboot: argument _hypervisor_id not set.',
 				__FILE__,
@@ -336,21 +362,21 @@ class OnApp_Hypervisor extends OnApp {
 			);
 		}
 
-        $data = array(
+		$data = array(
 			'root' => 'tmp_holder',
 			'data' => array(
 				'confirm' => '1',
 			),
 		);
 
-        $this->sendPost( ONAPP_GETRESOURCE_HYPERVISOR_REBOOT, $data );
-    }
+		$this->sendPost( ONAPP_GETRESOURCE_HYPERVISOR_REBOOT, $data );
+	}
 
-    function save() {
-        if ( $this->_id ) {
-            $this->fields[ 'hypervisor_group_id' ][ONAPP_FIELD_REQUIRED] = false;
-        }
+	function save() {
+		if( $this->_id ) {
+			$this->fields[ 'hypervisor_group_id' ][ ONAPP_FIELD_REQUIRED ] = false;
+		}
 
-        return parent::save();
-    }
+		return parent::save();
+	}
 }

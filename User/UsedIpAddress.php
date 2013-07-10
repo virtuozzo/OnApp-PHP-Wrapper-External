@@ -4,21 +4,21 @@
 /**
  * User IP Adresses
  *
- * @todo write description
+ * @todo        write description
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	User
- * @author		Vitaliy Kondratyuk
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @subpackage  User
+ * @author      Vitaliy Kondratyuk
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
  * User IP Adresses
  *
- * The ONAPP_User_UsedIpAddress class doesn't support any basic method.
+ * The OnApp_User_UsedIpAddress class doesn't support any basic method.
  *
  */
 class OnApp_User_UsedIpAddress extends OnApp_IpAddress {
@@ -44,8 +44,9 @@ class OnApp_User_UsedIpAddress extends OnApp_IpAddress {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -109,6 +110,10 @@ class OnApp_User_UsedIpAddress extends OnApp_IpAddress {
 			case 2.2:
 			case 2.3:
 				$this->fields = $this->initFields( 2.1 );
+				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
 				break;
 		}
 

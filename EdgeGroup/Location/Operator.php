@@ -4,15 +4,15 @@
 /**
  * Edge Group Location
  *
- * @todo Add description
+ * @todo        Add description
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @subpackage	EdgeGroup_Location
- * @author		Yakubskiy Yuriy
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @subpackage  EdgeGroup_Location
+ * @author      Yakubskiy Yuriy
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -44,8 +44,9 @@ class OnApp_EdgeGroup_Location_Operator extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -54,13 +55,13 @@ class OnApp_EdgeGroup_Location_Operator extends OnApp {
 				$this->fields = array(
 					'name' => array(
 						ONAPP_FIELD_MAP => '_name',
-                        ONAPP_FIELD_TYPE => 'string',
+						ONAPP_FIELD_TYPE => 'string',
 					),
-                    'companyName' => array(
+					'companyName' => array(
 						ONAPP_FIELD_MAP => '_companyName',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-                    'companyDescription' => array(
+					'companyDescription' => array(
 						ONAPP_FIELD_MAP => '_companyDescription',
 						ONAPP_FIELD_TYPE => 'string',
 					),
@@ -72,7 +73,7 @@ class OnApp_EdgeGroup_Location_Operator extends OnApp {
 						ONAPP_FIELD_MAP => '_updatedAt',
 						ONAPP_FIELD_TYPE => 'string',
 					),
-                    'username' => array(
+					'username' => array(
 						ONAPP_FIELD_MAP => '_username',
 						ONAPP_FIELD_TYPE => 'string',
 					),
@@ -94,22 +95,26 @@ class OnApp_EdgeGroup_Location_Operator extends OnApp {
 					),
 					'createdAt' => array(
 						ONAPP_FIELD_MAP => '_createdAt',
-                        ONAPP_FIELD_TYPE => 'string',
+						ONAPP_FIELD_TYPE => 'string',
 					),
-                    'settings' => array(
+					'settings' => array(
 						ONAPP_FIELD_MAP => '_settings',
-                        ONAPP_FIELD_TYPE => 'array',
-                        ONAPP_FIELD_CLASS => 'EdgeGroup_Location_Operator_Setting',
+						ONAPP_FIELD_TYPE => 'array',
+						ONAPP_FIELD_CLASS => 'EdgeGroup_Location_Operator_Setting',
 					),
-                    'status' => array(
+					'status' => array(
 						ONAPP_FIELD_MAP => '_status',
-                        ONAPP_FIELD_TYPE => 'string',
+						ONAPP_FIELD_TYPE => 'string',
 					),
-                    'email' => array(
+					'email' => array(
 						ONAPP_FIELD_MAP => '_email',
-                        ONAPP_FIELD_TYPE => 'string',
+						ONAPP_FIELD_TYPE => 'string',
 					),
 				);
+				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
 				break;
 		}
 
@@ -117,7 +122,7 @@ class OnApp_EdgeGroup_Location_Operator extends OnApp {
 		return $this->fields;
 	}
 
-    /**
+	/**
 	 * Activates action performed with object
 	 *
 	 * @param string $action_name the name of action
@@ -133,5 +138,4 @@ class OnApp_EdgeGroup_Location_Operator extends OnApp {
 				break;
 		}
 	}
-
 }

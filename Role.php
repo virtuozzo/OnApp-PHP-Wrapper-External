@@ -12,12 +12,12 @@
  * with the ability to perform actions becomes a matter of assigning them to the
  * specific role. Users are assigned roles during the creation process.
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Andrew Yatskovets
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Andrew Yatskovets
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
+ * @see         OnApp
  */
 
 /**
@@ -25,7 +25,7 @@
  *
  * This class represents the roles assigned  to the users in this OnApp installation
  *
- * The ONAPP_Role class uses the following basic methods:
+ * The OnApp_Role class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -53,8 +53,9 @@ class OnApp_Role extends OnApp {
 	/**
 	 * API Fields description
 	 *
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
+	 * @param string|float $version   OnApp API version
+	 * @param string       $className current class' name
+	 *
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
@@ -74,7 +75,7 @@ class OnApp_Role extends OnApp {
 					),
 					'identifier' => array(
 						ONAPP_FIELD_MAP => '_identifier',
-                        ONAPP_FIELD_TYPE => 'string',
+						ONAPP_FIELD_TYPE => 'string',
 					),
 					'permissions' => array(
 						ONAPP_FIELD_MAP => '_permissions',
@@ -90,7 +91,7 @@ class OnApp_Role extends OnApp {
 						ONAPP_FIELD_TYPE => 'datetime',
 						ONAPP_FIELD_READ_ONLY => true,
 					),
-                    'permission_ids' => array(
+					'permission_ids' => array(
 						ONAPP_FIELD_MAP => '_permission_ids',
 						ONAPP_FIELD_TYPE => 'string',
 						ONAPP_FIELD_READ_ONLY => true,
@@ -104,10 +105,14 @@ class OnApp_Role extends OnApp {
 
 			case 2.3:
 				$this->fields = $this->initFields( 2.2 );
-				$fields = array(
+				$fields       = array(
 					'permission_ids',
 				);
 				$this->unsetFields( $fields );
+				break;
+
+			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
 				break;
 		}
 
@@ -121,21 +126,21 @@ class OnApp_Role extends OnApp {
 		 * ROUTE :
 		 * @name roles
 		 * @method GET
-		 * @alias  /roles(.:format)
+		 * @alias   /roles(.:format)
 		 * @format  {:controller=>"roles", :action=>"index"}
 		 */
 		/**
 		 * ROUTE :
 		 * @name role
 		 * @method GET
-		 * @alias  /roles/:id(.:format)
+		 * @alias   /roles/:id(.:format)
 		 * @format  {:controller=>"roles", :action=>"show"}
 		 */
 		/**
 		 * ROUTE :
 		 * @name
 		 * @method POST
-		 * @alias  /roles(.:format)
+		 * @alias   /roles(.:format)
 		 * @format  {:controller=>"roles", :action=>"create"}
 		 */
 		/**

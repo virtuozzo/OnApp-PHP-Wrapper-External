@@ -2,13 +2,13 @@
 /**
  * OnApp API wrapper bootstrap
  *
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Lev Bartashevsky
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
+ * @category    API wrapper
+ * @package     OnApp
+ * @author      Lev Bartashevsky
+ * @copyright   (c) 2011 OnApp
+ * @link        http://www.onapp.com/
  */
-if( !defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
+if( ! defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
 	/**
 	 * Specify the wrapper root dir
 	 */
@@ -29,33 +29,15 @@ if( !defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
 		$path = explode( '_', $path );
 		$path = ONAPP_WRAPPER_ROOT_DIR . implode( DIRECTORY_SEPARATOR, $path ) . '.php';
 
-		if( !file_exists( $path ) ) {
-			if( IS_CLI ) {
-				echo '[ AUTOLOAD ]    File ' . $path . ' does not exist or can not be read';
-			}
-			else {
-				//todo add loging instead of printing
-			}
-
-			return false;
-		}
-		else {
+		if(file_exists( $path ) ) {
 			require $path;
-
-			if( !class_exists( $className ) ) {
-				if( IS_CLI ) {
-					echo '[ AUTOLOAD ]    File ' . $path . ' does not exist or can not be read';
-				}
-				else {
-					//todo add loging instead of printing
-				}
-
-				return false;
-			}
-			else {
+	
+			if( class_exists( $className ) ) {
 				return true;
 			}
+			//todo add loging instead of printing
 		}
+		return false;
 	}
 
 	/**
