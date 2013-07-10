@@ -26,16 +26,16 @@
 class OnApp_EdgeGroup_AvailableLocation extends Location {
 
 	/**
-	* root tag used in the API request
-	*
-	* @var string
-	*/
+	 * root tag used in the API request
+	 *
+	 * @var string
+	 */
 	var $_tagRoot = '';
 	/**
-	* alias processing the object data
-	*
-	* @var string
-	*/
+	 * alias processing the object data
+	 *
+	 * @var string
+	 */
 	var $_resource = '';
 
 	public function __construct() {
