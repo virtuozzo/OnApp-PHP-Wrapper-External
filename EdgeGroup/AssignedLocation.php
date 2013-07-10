@@ -24,22 +24,22 @@
  *
  */
 class OnApp_EdgeGroup_AssignedLocation extends OnApp_EdgeGroup_Location {
-    /**
-     * root tag used in the API request
-     *
-     * @var string
-     */
-    var $_tagRoot = '';
+	/**
+	* root tag used in the API request
+	*
+	* @var string
+	*/
+	var $_tagRoot = '';
 
-    /**
-     * alias processing the object data
-     *
-     * @var string
-     */
-    var $_resource = '';
+	/**
+	* alias processing the object data
+	*
+	* @var string
+	*/
+	var $_resource = '';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
+	public function __construct() {
+		parent::__construct();
+		$this->className = __CLASS__;
+	}
 }
