@@ -391,7 +391,7 @@ class OnApp_User extends OnApp {
     function suspend() {
         $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_SUSPEND_USER ) );
 
-        $response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
+        $response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
         $result = $this->_castResponseToClass( $response );
 
@@ -406,7 +406,7 @@ class OnApp_User extends OnApp {
     function activate_user() {
         $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_ACTIVATE ) );
 
-        $response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
+        $response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
         $result = $this->_castResponseToClass( $response );
 
@@ -558,6 +558,35 @@ class OnApp_User extends OnApp {
         else {
             parent::delete();
         }
+    }
+
+    /**
+    * Generates a new API key for this user
+    * https://onappdev.atlassian.net/wiki/display/3api/Generate+API+Key
+    *
+    *@param $id the userid to generate a new key for
+    *@return a new user object that contains the _api_key
+    */
+    public function generateApiKey() {
+        $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_GENERATE_API_KEY ) );
+        $response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
+        $result = $this->castStringToClass( $response );
+        $this->_obj = $result;
+        return $result;
+    }
+
+    /**
+    * Retrieves the raw JSON that was sent from the control server.
+    *
+    *@param id the userid to retrieve the JSON for
+    *@return an object representing the JSON returned from the server
+    */
+    public function getJson( $id ) {
+        $this->_id = $id;
+        $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
+        $response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
+        $root = json_decode($response[ 'response_body' ]);
+        return $root->user;
     }
 
     private function parseAdditionalFields() {
