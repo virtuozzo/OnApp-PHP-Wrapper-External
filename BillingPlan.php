@@ -63,8 +63,8 @@ class OnApp_BillingPlan extends OnApp {
 	 */
 	public function initFields( $version = null, $className = '' ) {
 		switch( $version ) {
-			case '2.0':
-			case '2.1':
+			case 2.0:
+			case 2.1:
 			case 2.2:
 			case 2.3:
 				$this->fields = array(
@@ -131,8 +131,18 @@ class OnApp_BillingPlan extends OnApp {
 				break;
 
 			case 3.0:
+				$this->fields = $this->initFields( 2.3 );
+				break;
+
 			case 3.1:
 				$this->fields = $this->initFields( 2.3 );
+				$this->fields[ 'default_base_resources' ] = array(
+					ONAPP_FIELD_MAP  => 'default_base_resources',
+					//ONAPP_FIELD_TYPE      => 'array',
+					ONAPP_FIELD_TYPE      => 'string',
+					ONAPP_FIELD_READ_ONLY => true,
+					ONAPP_FIELD_CLASS     => 'BillingPlan_BaseResource',
+				);
 				break;
 		}
 
@@ -207,7 +217,7 @@ class OnApp_BillingPlan extends OnApp {
 	}
 
 	function users() {
-		$this->logger->add( "getList: Get Users list." );
+		$this->logger->add( 'getList: Get Users list.' );
 
 		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_GETLIST_USERS ) );
 
@@ -236,11 +246,11 @@ class OnApp_BillingPlan extends OnApp {
 	}
 
 	function create_copy() {
-		$this->logger->add( "getList: Create Billing plan copy" );
+		$this->logger->add( 'getList: Create Billing plan copy' );
 
 		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_CREATE_COPY ) );
 
-		$data = "<billing_plan><label>TEST</label></billing_plan>";
+		$data = '';
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST, $data );
 
