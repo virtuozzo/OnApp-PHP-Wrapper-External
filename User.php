@@ -568,7 +568,7 @@ class OnApp_User extends OnApp {
     *@return a new user object that contains the _api_key
     */
     public function generateApiKey() {
-        $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_GENERATE_API_KEY ) );
+        $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_MAKE_NEW_API_KEY_USER ) );
         $response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
         $result = $this->castStringToClass( $response );
         $this->_obj = $result;
