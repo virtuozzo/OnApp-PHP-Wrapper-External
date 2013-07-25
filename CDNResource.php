@@ -32,6 +32,12 @@ define( 'ONAPP_GETRESOURCE_CDN_PREFETCH', 'cdn_prefetch' );
 define( 'ONAPP_GETRESOURCE_CDN_PURGE', 'cdn_purge' );
 
 /**
+ *
+ *
+ */
+define( 'ONAPP_POSTRESOURCE_PURGE_ALL', 'purge_all' );
+
+/**
  * Managing CDN Resource
  *
  * The CDN Resource class represents the CDN Resources.

@@ -64,7 +64,18 @@ class OnApp_CDNResource_Origin extends OnApp {
 
 			case 3.0:
 			case 3.1:
-				$this->fields = $this->initFields( 2.3 );
+				$this->fields = array(
+					'value' => array(
+						ONAPP_FIELD_MAP => '_value',
+						ONAPP_FIELD_TYPE => 'string',
+						ONAPP_FIELD_READ_ONLY => true,
+					),
+					'key' => array(
+						ONAPP_FIELD_MAP => '_key',
+						ONAPP_FIELD_TYPE => 'string',
+						ONAPP_FIELD_READ_ONLY => true,
+					),
+				);
 				break;
 		}
 
