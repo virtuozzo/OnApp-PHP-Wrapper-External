@@ -39,34 +39,45 @@ class OnApp_CDNResource_Origin extends OnApp {
         $this->className = __CLASS__;
     }
 
-	/**
-	 * API Fields description
-	 *
-	 * @param string|float $version   OnApp API version
-	 * @param string       $className current class' name
-	 *
-	 * @return array
-	 */
-	public function initFields( $version = null, $className = '' ) {
-		switch( $version ) {
-			case 2.0:
-			case 2.1:
-			case 2.2:
-			case 2.3:
-				$this->fields = array(
-					'key' => array(
-						ONAPP_FIELD_MAP => '_value',
-						ONAPP_FIELD_TYPE => 'string',
-						ONAPP_FIELD_READ_ONLY => true,
-					),
-				);
-				break;
+    /**
+     * API Fields description
+     *
+     * @param string|float $version   OnApp API version
+     * @param string       $className current class' name
+     *
+     * @return array
+     */
+    public function initFields( $version = null, $className = '' ) {
+        switch( $version ) {
+            case 2.0:
+            case 2.1:
+            case 2.2:
+            case 2.3:
+                $this->fields = array(
+                    'key' => array(
+                        ONAPP_FIELD_MAP => '_value',
+                        ONAPP_FIELD_TYPE => 'string',
+                        ONAPP_FIELD_READ_ONLY => true,
+                    ),
+                );
+                break;
 
-			case 3.0:
-			case 3.1:
-				$this->fields = $this->initFields( 2.3 );
-				break;
-		}
+            case 3.0:
+            case 3.1:
+                $this->fields = array(
+                    'value' => array(
+                        ONAPP_FIELD_MAP => '_value',
+                        ONAPP_FIELD_TYPE => 'string',
+                        ONAPP_FIELD_READ_ONLY => true,
+                    ),
+                    'key' => array(
+                        ONAPP_FIELD_MAP => '_key',
+                        ONAPP_FIELD_TYPE => 'string',
+                        ONAPP_FIELD_READ_ONLY => true,
+                    ),
+                );
+                break;
+        }
 
         parent::initFields( $version, __CLASS__ );
         return $this->fields;
