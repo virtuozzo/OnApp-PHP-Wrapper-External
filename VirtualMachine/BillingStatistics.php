@@ -29,7 +29,7 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
      *
      * @var string
      */
-    var $_tagRoot = 'vm_stat';
+    var $_tagRoot = 'vm_stats';
 
     /**
      * alias processing the object data
