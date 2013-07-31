@@ -271,11 +271,11 @@ class OnApp_CDNResource extends OnApp {
 					ONAPP_FIELD_MAP  => '_failover_internal_publishing_point',
 					ONAPP_FIELD_TYPE => 'integer',
 				);
-				$this->fields[ 'external_publishing_url' ] = array(
+				$this->fields[ 'external_publishing_location' ] = array(
 					ONAPP_FIELD_MAP  => '_external_publishing_url',
 					ONAPP_FIELD_TYPE => 'integer',
 				);
-				$this->fields[ 'failover_external_publishing_url' ] = array(
+				$this->fields[ 'failover_external_publishing_location' ] = array(
 					ONAPP_FIELD_MAP  => '_failover_external_publishing_url',
 					ONAPP_FIELD_TYPE => 'integer',
 				);

@@ -170,6 +170,14 @@ class OnApp_CDNResource_Advanced extends OnApp {
 				$this->fields[ 'proxy_connect_time_out' ] = array(
 					ONAPP_FIELD_MAP => 'proxy_connect_time_out',
 				);
+				$this->fields[ 'secure_wowza_on' ] = array(
+					ONAPP_FIELD_MAP => '_secure_wowza_on',
+					ONAPP_FIELD_TYPE => 'boolean',
+				);
+				$this->fields[ 'secure_wowza_token' ] = array(
+					ONAPP_FIELD_MAP => '_secure_wowza_token',
+					ONAPP_FIELD_TYPE => 'string',
+				);
 				break;
 		}
 
