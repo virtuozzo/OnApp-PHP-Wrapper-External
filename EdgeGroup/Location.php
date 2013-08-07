@@ -142,6 +142,9 @@ class OnApp_EdgeGroup_Location extends OnApp {
 					ONAPP_FIELD_MAP  => 'httpSupported',
 					ONAPP_FIELD_TYPE => 'boolean',
 				);
+				$this->fields[ 'location' ] = array(
+					ONAPP_FIELD_MAP  => 'location',
+				);
 				break;
 		}
 
