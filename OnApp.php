@@ -777,7 +777,7 @@ class OnApp {
         }
 
         if(is_null($this->fields) && get_called_class() != 'OnApp') {
-            die(sprintf(
+            throw new Exception(sprintf(
                 "The wrapper class '%s' does not support OnApp version '%s'",
                 get_called_class(),
                 $version
