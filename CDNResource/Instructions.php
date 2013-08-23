@@ -94,8 +94,6 @@ class OnApp_CDNResource_Instructions extends OnApp {
                     ),
                     'instructions' => array(
                         ONAPP_FIELD_MAP => '_instructions',
-                        ONAPP_FIELD_TYPE => 'array',
-                        ONAPP_FIELD_CLASS => 'OnApp_CDNResource_Instructions_Instructions'
                     ),
                 );
                 break;
