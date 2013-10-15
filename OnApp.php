@@ -688,7 +688,7 @@ class OnApp {
 
         $response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-        if( $response[ 'info' ][ 'http_code' ] == '200' ) {
+		if( $response[ 'info' ][ 'http_code' ] == '200' ) {
             $this->setAPIVersion( $response[ 'response_body' ] );
 
             if( $this->getClassName() != 'OnApp' ) {
