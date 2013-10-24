@@ -655,8 +655,20 @@ class OnApp_VirtualMachine extends OnApp {
      *
      * @access public
      */
-    function reset_password() {
-        return $this->sendPost( ONAPP_RESET_ROOT_PASSWORD );
+    function reset_password($password = null, $encryption_key = null) {
+        if (is_null($password) && is_null($encryption_key)) {
+            return $this->sendPost( ONAPP_RESET_ROOT_PASSWORD );
+        }
+
+        $data = array(
+            'root' => 'virtual_machine',
+            'data' => array(
+                'initial_root_password' => $password,
+                'initial_root_password_encryption_key' => $encryption_key
+            )
+        );
+
+        $this->sendPost( ONAPP_RESET_ROOT_PASSWORD, $data );
     }
 
     /**
