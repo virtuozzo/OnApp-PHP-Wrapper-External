@@ -34,7 +34,7 @@ class OnApp_NetworkZone extends OnApp {
      *
      * @var string
      */
-    var $_resource = 'network_zones';
+    var $_resource = 'settings/network_zones';
 
     public function __construct() {
         parent::__construct();
@@ -77,6 +77,7 @@ class OnApp_NetworkZone extends OnApp {
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                 );
+    		$this->$_resource = 'network_zones'; //according to https://docs.onapp.com/download/attachments/20449378/OnApp_Cloud_2-3-3_API_Guide.pdf?version=1&modificationDate=1383146111665&api=v2
                 break;
 
             case 3.0:
