@@ -121,6 +121,7 @@ class OnApp_EdgeGroup_Location extends OnApp {
 				break;
 
 			case 3.1:
+            case 3.2:
 				$this->fields = $this->initFields( 3.0 );
 				$this->fields[ 'geoBlocking' ] = array(
 					ONAPP_FIELD_MAP  => 'geoBlocking',
