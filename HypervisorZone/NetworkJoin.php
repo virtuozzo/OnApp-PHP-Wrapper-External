@@ -102,6 +102,7 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
 
             case 3.0:
             case 3.1:
+            case 3.2:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }

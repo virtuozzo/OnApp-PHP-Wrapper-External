@@ -63,6 +63,7 @@ class OnApp_DNSZone extends OnApp {
         switch( $version ) {
             case 3.0:
 			case 3.1:
+            case 3.2:
                 $this->fields = array(
                     'id' => array(
                         ONAPP_FIELD_MAP => '_id',

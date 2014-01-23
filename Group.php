@@ -160,6 +160,7 @@ class OnApp_Group extends OnApp {
             case 2.3:
 			case 3.0:
 			case 3.1:
+            case 3.2:
                 $this->fields = $this->initFields( 2.1 );
                 break;
         }

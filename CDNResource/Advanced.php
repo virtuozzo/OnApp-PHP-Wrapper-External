@@ -198,6 +198,7 @@ class OnApp_CDNResource_Advanced extends OnApp {
 
 			case 3.0:
 			case 3.1:
+            case 3.2:
 				$this->fields                             = $this->initFields( 2.3 );
 				$this->fields[ 'secondary_hostnames' ]    = array(
 					ONAPP_FIELD_MAP  => '_secondary_hostnames',
@@ -254,7 +255,7 @@ class OnApp_CDNResource_Advanced extends OnApp {
 		return $this->fields;
 	}
 
-	function load( $id ) {
+	function load( $id = null ) {
 		$return = parent::load( $id );
 
 		$this->_id = $id;

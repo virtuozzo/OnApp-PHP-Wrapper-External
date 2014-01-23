@@ -294,6 +294,7 @@ class OnApp_CDNResource extends OnApp {
 				break;
 
 			case 3.1:
+            case 3.2:
 				$this->fields = $this->initFields( 3.0 );
 				$this->fields[ 'cname' ] = array(
 					ONAPP_FIELD_MAP  => 'cname',

@@ -40,7 +40,7 @@ define( 'ONAPP_GETRESOURCE_NETWORKS_LIST_BY_GROUP_ID', 'get_list_by_group_id' );
 define( 'ONAPP_GETRESOURCE_DELETE_USER', 'delete_user' );
 
 /**
- * 
+ *
  */
 define( 'ONAPP_GETRESOURCE_MAKE_NEW_API_KEY_USER', 'make_new_api_key' );
 
@@ -293,6 +293,7 @@ class OnApp_User extends OnApp {
 
             case 3.0:
             case 3.1:
+            case 3.2:
                 $this->fields                  = $this->initFields( 2.3 );
                 $this->fields[ 'firewall_id' ] = array(
                     ONAPP_FIELD_MAP => '_firewall_id',
@@ -412,7 +413,7 @@ class OnApp_User extends OnApp {
 
         $this->_obj = $result;
     }
-    
+
     /**
      * Generate a new API Key
      *

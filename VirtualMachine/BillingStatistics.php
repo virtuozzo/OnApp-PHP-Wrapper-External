@@ -108,6 +108,7 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
                 break;
 
             case 3.1:
+            case 3.2:
                 $this->fields = $this->initFields( 3.0 );
 
                 unset($this->fields['cost']);
