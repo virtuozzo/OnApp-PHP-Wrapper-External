@@ -1,0 +1,14 @@
+{
+	"name": "onapp/onapp-php-wrapper-external",
+	"type": "library",
+	"description": "Enables you to make OnApp API calls from PHP applications.",
+	"homepage": "https://github.com/OnApp/OnApp-PHP-Wrapper-External",
+	"require": {
+		"php": ">=5.1.2",
+		"ext-json": "*",
+		"ext-simplexml": "*"
+	},
+	"autoload": {
+		"classmap": ["./"]
+	}
+}
