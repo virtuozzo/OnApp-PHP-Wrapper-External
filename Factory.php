@@ -22,7 +22,7 @@ class OnApp_Factory extends OnApp {
      */
     public function __construct( $hostname, $username, $password, $proxy = null ) {
         parent::__construct();
-        $this->auth( $hostname, $username, $password );
+        $this->auth( $hostname, $username, $password, $proxy );
         //todo ??? constructor should return instance instead of boolean value
         //return $this->_is_auth;
     }
