@@ -175,8 +175,12 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 
             case 3.0:
             case 3.1:
+				$this->fields = $this->initFields( 2.3 );
+				break;
+
             case 3.2:
-                $this->fields = $this->initFields( 2.3 );
+                $this->fields = $this->initFields( 3.1 );
+				$this->fields[ 'disk_id' ][ ONAPP_FIELD_SKIP_FROM_REQUEST ] = true;
                 break;
         }
 
