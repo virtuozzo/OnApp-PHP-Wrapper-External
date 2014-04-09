@@ -6,7 +6,7 @@
  * @package     OnApp
  * @author      Andrew Yatskovets
  * @subpackage  CDNResource
- * @copyright   (c) 2013 OnApp
+ * @copyright   © 2013 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -17,7 +17,6 @@ class OnApp_CDNResource_Instructions extends OnApp {
      * @var string
      */
     var $_tagRoot = 'cdn_resource';
-
     /**
      * alias processing the object data
      *
@@ -43,57 +42,57 @@ class OnApp_CDNResource_Instructions extends OnApp {
             case 3.1:
             case 3.2:
                 $this->fields = array(
-                    'cdn_hostname' => array(
-                        ONAPP_FIELD_MAP => '_cdn_hostname',
-                        ONAPP_FIELD_REQUIRED => true,
+                    'cdn_hostname'     => array(
+                        ONAPP_FIELD_MAP           => '_cdn_hostname',
+                        ONAPP_FIELD_REQUIRED      => true,
                         ONAPP_FIELD_DEFAULT_VALUE => ''
                     ),
-                    'cname' => array(
-                        ONAPP_FIELD_MAP => '_cdn_cname',
-                        ONAPP_FIELD_REQUIRED => true,
+                    'cname'            => array(
+                        ONAPP_FIELD_MAP           => '_cdn_cname',
+                        ONAPP_FIELD_REQUIRED      => true,
                         ONAPP_FIELD_DEFAULT_VALUE => ''
                     ),
-                    'created_at' => array(
-                        ONAPP_FIELD_MAP => '_created_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'created_at'       => array(
+                        ONAPP_FIELD_MAP       => '_created_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'resource_type' => array(
-                        ONAPP_FIELD_MAP => '_resource_type',
-                        ONAPP_FIELD_REQUIRED => true,
+                    'resource_type'    => array(
+                        ONAPP_FIELD_MAP           => '_resource_type',
+                        ONAPP_FIELD_REQUIRED      => true,
                         ONAPP_FIELD_DEFAULT_VALUE => ''
                     ),
-                    'user_id' => array(
-                        ONAPP_FIELD_MAP => '_user_id',
-                        ONAPP_FIELD_REQUIRED => true,
+                    'user_id'          => array(
+                        ONAPP_FIELD_MAP           => '_user_id',
+                        ONAPP_FIELD_REQUIRED      => true,
                         ONAPP_FIELD_DEFAULT_VALUE => ''
                     ),
-                    'last_24h_cost' => array(
-                        ONAPP_FIELD_MAP => '_last_24h_cost',
-                        ONAPP_FIELD_REQUIRED => true,
+                    'last_24h_cost'    => array(
+                        ONAPP_FIELD_MAP           => '_last_24h_cost',
+                        ONAPP_FIELD_REQUIRED      => true,
                         ONAPP_FIELD_DEFAULT_VALUE => ''
                     ),
-                    'cdn_reference' => array(
-                        ONAPP_FIELD_MAP => '_cdn_reference',
-                        ONAPP_FIELD_REQUIRED => true,
+                    'cdn_reference'    => array(
+                        ONAPP_FIELD_MAP           => '_cdn_reference',
+                        ONAPP_FIELD_REQUIRED      => true,
                         ONAPP_FIELD_DEFAULT_VALUE => ''
                     ),
                     'publishing_point' => array(
-                        ONAPP_FIELD_MAP => '_publishing_point',
-                        ONAPP_FIELD_REQUIRED => true,
+                        ONAPP_FIELD_MAP           => '_publishing_point',
+                        ONAPP_FIELD_REQUIRED      => true,
                         ONAPP_FIELD_DEFAULT_VALUE => ''
                     ),
-                    'updated_at' => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'updated_at'       => array(
+                        ONAPP_FIELD_MAP       => '_updated_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'id' => array(
-                        ONAPP_FIELD_MAP => '_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'id'               => array(
+                        ONAPP_FIELD_MAP       => '_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'instructions' => array(
+                    'instructions'     => array(
                         ONAPP_FIELD_MAP => '_instructions',
                     ),
                 );
@@ -101,6 +100,7 @@ class OnApp_CDNResource_Instructions extends OnApp {
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 
@@ -124,7 +124,6 @@ class OnApp_CDNResource_Instructions extends OnApp {
         }
         return $resource;
     }
-
 
     /**
      * Activates action performed with object

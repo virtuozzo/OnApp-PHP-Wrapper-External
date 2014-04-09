@@ -13,7 +13,7 @@
  * @category    API wrapper
  * @package     OnApp
  * @author      Andrew Yatskovets
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -37,7 +37,6 @@ class OnApp_Template extends OnApp {
      * @var string
      */
     var $_tagRoot = 'image_template';
-
     /**
      * alias processing the object data
      *
@@ -62,85 +61,85 @@ class OnApp_Template extends OnApp {
         switch( $version ) {
             case '2.0':
                 $this->fields = array(
-                    'id' => array(
-                        ONAPP_FIELD_MAP => '_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'id'                          => array(
+                        ONAPP_FIELD_MAP       => '_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
                     'allow_resize_without_reboot' => array(
-                        ONAPP_FIELD_MAP => '_allow_resize_without_reboot',
-                        ONAPP_FIELD_TYPE => 'boolean',
+                        ONAPP_FIELD_MAP       => '_allow_resize_without_reboot',
+                        ONAPP_FIELD_TYPE      => 'boolean',
                         ONAPP_FIELD_READ_ONLY => true,
-                        ONAPP_FIELD_REQUIRED => true,
+                        ONAPP_FIELD_REQUIRED  => true,
                     ),
-                    'allowed_swap' => array(
-                        ONAPP_FIELD_MAP => '_allowed_swap',
-                        ONAPP_FIELD_TYPE => 'boolean',
+                    'allowed_swap'                => array(
+                        ONAPP_FIELD_MAP       => '_allowed_swap',
+                        ONAPP_FIELD_TYPE      => 'boolean',
                         ONAPP_FIELD_READ_ONLY => true,
-                        ONAPP_FIELD_REQUIRED => true,
+                        ONAPP_FIELD_REQUIRED  => true,
                     ),
-                    'checksum' => array(
-                        ONAPP_FIELD_MAP => '_checksum',
+                    'checksum'                    => array(
+                        ONAPP_FIELD_MAP       => '_checksum',
                         ONAPP_FIELD_READ_ONLY => true,
-                        ONAPP_FIELD_REQUIRED => true,
+                        ONAPP_FIELD_REQUIRED  => true,
                     ),
-                    'created_at' => array(
-                        ONAPP_FIELD_MAP => '_created_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'created_at'                  => array(
+                        ONAPP_FIELD_MAP       => '_created_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
-                        ONAPP_FIELD_REQUIRED => true,
+                        ONAPP_FIELD_REQUIRED  => true,
                     ),
-                    'file_name' => array(
-                        ONAPP_FIELD_MAP => '_file_name',
+                    'file_name'                   => array(
+                        ONAPP_FIELD_MAP       => '_file_name',
                         ONAPP_FIELD_READ_ONLY => true,
-                        ONAPP_FIELD_REQUIRED => true,
+                        ONAPP_FIELD_REQUIRED  => true,
                     ),
-                    'label' => array(
-                        ONAPP_FIELD_MAP => '_label',
+                    'label'                       => array(
+                        ONAPP_FIELD_MAP       => '_label',
                         ONAPP_FIELD_READ_ONLY => true,
-                        ONAPP_FIELD_REQUIRED => true,
+                        ONAPP_FIELD_REQUIRED  => true,
                     ),
-                    'min_disk_size' => array(
-                        ONAPP_FIELD_MAP => '_min_disk_size',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'min_disk_size'               => array(
+                        ONAPP_FIELD_MAP       => '_min_disk_size',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
-                        ONAPP_FIELD_REQUIRED => true,
+                        ONAPP_FIELD_REQUIRED  => true,
                     ),
-                    'operating_system' => array(
-                        ONAPP_FIELD_MAP => '_operating_system',
+                    'operating_system'            => array(
+                        ONAPP_FIELD_MAP       => '_operating_system',
                         ONAPP_FIELD_READ_ONLY => true,
-                        ONAPP_FIELD_REQUIRED => true,
+                        ONAPP_FIELD_REQUIRED  => true,
                     ),
-                    'operating_system_distro' => array(
-                        ONAPP_FIELD_MAP => '_operating_system_distro',
+                    'operating_system_distro'     => array(
+                        ONAPP_FIELD_MAP       => '_operating_system_distro',
                         ONAPP_FIELD_READ_ONLY => true,
-                        ONAPP_FIELD_REQUIRED => true,
+                        ONAPP_FIELD_REQUIRED  => true,
                     ),
-                    'state' => array(
-                        ONAPP_FIELD_MAP => '_state',
+                    'state'                       => array(
+                        ONAPP_FIELD_MAP       => '_state',
                         ONAPP_FIELD_READ_ONLY => true,
-                        ONAPP_FIELD_REQUIRED => true,
+                        ONAPP_FIELD_REQUIRED  => true,
                     ),
-                    'updated_at' => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'updated_at'                  => array(
+                        ONAPP_FIELD_MAP       => '_updated_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
-                        ONAPP_FIELD_REQUIRED => true,
+                        ONAPP_FIELD_REQUIRED  => true,
                     ),
-                    'user_id' => array(
-                        ONAPP_FIELD_MAP => '_user_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'user_id'                     => array(
+                        ONAPP_FIELD_MAP       => '_user_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
-                        ONAPP_FIELD_REQUIRED => true,
+                        ONAPP_FIELD_REQUIRED  => true,
                     ),
-                    'version' => array(
-                        ONAPP_FIELD_MAP => '_template_version',
+                    'version'                     => array(
+                        ONAPP_FIELD_MAP       => '_template_version',
                         ONAPP_FIELD_READ_ONLY => true,
-                        ONAPP_FIELD_REQUIRED => true,
+                        ONAPP_FIELD_REQUIRED  => true,
                     ),
-                    'template_size' => array(
-                        ONAPP_FIELD_MAP => '_template_size',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'template_size'               => array(
+                        ONAPP_FIELD_MAP       => '_template_size',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                 );
@@ -149,71 +148,71 @@ class OnApp_Template extends OnApp {
             case '2.1':
                 $this->fields = $this->initFields( '2.0' );
 
-                $this->fields[ 'allowed_hot_migrate' ]      = array(
-                    ONAPP_FIELD_MAP => '_allowed_hot_migrate',
-                    ONAPP_FIELD_TYPE => 'boolean',
+                $this->fields[ 'allowed_hot_migrate' ] = array(
+                    ONAPP_FIELD_MAP      => '_allowed_hot_migrate',
+                    ONAPP_FIELD_TYPE     => 'boolean',
                     ONAPP_FIELD_REQUIRED => true
                 );
-                $this->fields[ 'operating_system_arch' ]    = array(
-                    ONAPP_FIELD_MAP => '_operating_system_arch',
-                    ONAPP_FIELD_TYPE => 'string',
+                $this->fields[ 'operating_system_arch' ] = array(
+                    ONAPP_FIELD_MAP      => '_operating_system_arch',
+                    ONAPP_FIELD_TYPE     => 'string',
                     ONAPP_FIELD_REQUIRED => true
                 );
                 $this->fields[ 'operating_system_edition' ] = array(
-                    ONAPP_FIELD_MAP => '_operating_system_edition',
-                    ONAPP_FIELD_TYPE => 'string',
+                    ONAPP_FIELD_MAP      => '_operating_system_edition',
+                    ONAPP_FIELD_TYPE     => 'string',
                     ONAPP_FIELD_REQUIRED => true
                 );
-                $this->fields[ 'operating_system_tail' ]    = array(
-                    ONAPP_FIELD_MAP => '_operating_system_tail',
-                    ONAPP_FIELD_TYPE => 'string',
+                $this->fields[ 'operating_system_tail' ] = array(
+                    ONAPP_FIELD_MAP      => '_operating_system_tail',
+                    ONAPP_FIELD_TYPE     => 'string',
                     ONAPP_FIELD_REQUIRED => true
                 );
-                $this->fields[ 'virtualization' ]           = array(
-                    ONAPP_FIELD_MAP => '_virtualization',
-                    ONAPP_FIELD_TYPE => 'string',
+                $this->fields[ 'virtualization' ] = array(
+                    ONAPP_FIELD_MAP      => '_virtualization',
+                    ONAPP_FIELD_TYPE     => 'string',
                     ONAPP_FIELD_REQUIRED => true
                 );
-                $this->fields[ 'parent_template_id' ]       = array(
-                    ONAPP_FIELD_MAP => '_template_size',
-                    ONAPP_FIELD_TYPE => 'integer',
+                $this->fields[ 'parent_template_id' ] = array(
+                    ONAPP_FIELD_MAP       => '_template_size',
+                    ONAPP_FIELD_TYPE      => 'integer',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
                 break;
 
             case 2.2:
-                $this->fields                         = $this->initFields( 2.1 );
-                $this->fields[ 'min_memory_size' ]    = array(
-                    ONAPP_FIELD_MAP => 'min_memory_size',
-                    ONAPP_FIELD_TYPE => 'integer',
+                $this->fields = $this->initFields( 2.1 );
+                $this->fields[ 'min_memory_size' ] = array(
+                    ONAPP_FIELD_MAP       => 'min_memory_size',
+                    ONAPP_FIELD_TYPE      => 'integer',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
                 $this->fields[ 'disk_target_device' ] = array(
-                    ONAPP_FIELD_MAP => 'disk_target_device',
-                    ONAPP_FIELD_TYPE => 'string',
+                    ONAPP_FIELD_MAP       => 'disk_target_device',
+                    ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
                 break;
 
             case 2.3:
-                $this->fields                         = $this->initFields( 2.2 );
+                $this->fields = $this->initFields( 2.2 );
                 $this->fields[ 'disk_target_device' ] = array(
-                    ONAPP_FIELD_MAP => 'disk_target_device',
-                    ONAPP_FIELD_TYPE => 'string',
+                    ONAPP_FIELD_MAP       => 'disk_target_device',
+                    ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'cdn' ]                = array(
-                    ONAPP_FIELD_MAP => 'cdn',
-                    ONAPP_FIELD_TYPE => 'boolean',
+                $this->fields[ 'cdn' ] = array(
+                    ONAPP_FIELD_MAP       => 'cdn',
+                    ONAPP_FIELD_TYPE      => 'boolean',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
                 // nested class
                 $this->fields[ 'template_set_ids' ] = array(
-                    ONAPP_FIELD_MAP => 'template_set_ids',
+                    ONAPP_FIELD_MAP       => 'template_set_ids',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
                 $this->fields[ 'backup_server_id' ] = array(
-                    ONAPP_FIELD_MAP => '_backup_server_id',
+                    ONAPP_FIELD_MAP  => '_backup_server_id',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
                 break;
@@ -226,6 +225,7 @@ class OnApp_Template extends OnApp {
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 
@@ -243,6 +243,7 @@ class OnApp_Template extends OnApp {
             default:
                 /**
                  * ROUTE :
+                 *
                  * @name image_templates
                  * @method GET
                  * @alias   /templates(.:format)
@@ -250,6 +251,7 @@ class OnApp_Template extends OnApp {
                  */
                 /**
                  * ROUTE :
+                 *
                  * @name image_template
                  * @method GET
                  * @alias   /templates/:id(.:format)
@@ -257,6 +259,7 @@ class OnApp_Template extends OnApp {
                  */
                 /**
                  * ROUTE :
+                 *
                  * @name
                  * @method DELETE
                  * @alias    /templates/:id(.:format)

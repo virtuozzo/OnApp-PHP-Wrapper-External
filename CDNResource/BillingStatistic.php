@@ -8,7 +8,7 @@
  * @package     OnApp
  * @subpackage  CDNResource
  * @author      Yakubskiy Yuriy
- * @copyright   (c) 2012 OnApp
+ * @copyright   © 2012 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -28,7 +28,6 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
      * @var string
      */
     var $_tagRoot = 'user_hourly_stat';
-
     /**
      * alias processing the object data
      *
@@ -58,59 +57,59 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
 
             case '2.3':
                 $this->fields = array(
-                    'id' => array(
-                        ONAPP_FIELD_MAP => '_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'id'                     => array(
+                        ONAPP_FIELD_MAP       => '_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'created_at' => array(
-                        ONAPP_FIELD_MAP => '_created_at',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'created_at'             => array(
+                        ONAPP_FIELD_MAP       => '_created_at',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'updated_at' => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'updated_at'             => array(
+                        ONAPP_FIELD_MAP       => '_updated_at',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'data_cached' => array(
-                        ONAPP_FIELD_MAP => '_data_cached',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'data_cached'            => array(
+                        ONAPP_FIELD_MAP       => '_data_cached',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'data_non_cached' => array(
-                        ONAPP_FIELD_MAP => '_data_non_cached',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'data_non_cached'        => array(
+                        ONAPP_FIELD_MAP       => '_data_non_cached',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'cdn_resource_id' => array(
-                        ONAPP_FIELD_MAP => '_cdn_resource_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'cdn_resource_id'        => array(
+                        ONAPP_FIELD_MAP       => '_cdn_resource_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'user_id' => array(
-                        ONAPP_FIELD_MAP => '_user_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'user_id'                => array(
+                        ONAPP_FIELD_MAP       => '_user_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                     'edge_group_location_id' => array(
-                        ONAPP_FIELD_MAP => '_edge_group_location_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                        ONAPP_FIELD_MAP       => '_edge_group_location_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'edge_id' => array(
-                        ONAPP_FIELD_MAP => '_edge_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'edge_id'                => array(
+                        ONAPP_FIELD_MAP       => '_edge_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'location_id' => array(
-                        ONAPP_FIELD_MAP => '_location_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'location_id'            => array(
+                        ONAPP_FIELD_MAP       => '_location_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'edge_group_id' => array(
-                        ONAPP_FIELD_MAP => '_edge_group_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'edge_group_id'          => array(
+                        ONAPP_FIELD_MAP       => '_edge_group_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                 );
@@ -118,10 +117,10 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
                 break;
 
             case 3.0:
-			case 3.1:
+            case 3.1:
             case 3.2:
                 $this->fields = $this->initFields( 2.3 );
-                $fields       = array(
+                $fields = array(
                     'created_at',
                     'updated_at',
                     'cdn_resource_id',
@@ -132,20 +131,20 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
                 );
                 $this->unsetFields( $fields );
 
-                $this->fields[ 'cost' ]             = array(
-                    ONAPP_FIELD_MAP => '_cost',
+                $this->fields[ 'cost' ] = array(
+                    ONAPP_FIELD_MAP  => '_cost',
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 $this->fields[ 'edge_group_label' ] = array(
-                    ONAPP_FIELD_MAP => '_edge_group_label',
+                    ONAPP_FIELD_MAP  => '_edge_group_label',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'stat_time' ]        = array(
-                    ONAPP_FIELD_MAP => '_stat_time',
+                $this->fields[ 'stat_time' ] = array(
+                    ONAPP_FIELD_MAP  => '_stat_time',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'value' ]            = array(
-                    ONAPP_FIELD_MAP => '_value',
+                $this->fields[ 'value' ] = array(
+                    ONAPP_FIELD_MAP  => '_value',
                     ONAPP_FIELD_TYPE => 'string',
                 );
 
@@ -153,6 +152,7 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 

@@ -21,7 +21,7 @@
  * @category    API wrapper
  * @package     OnApp
  * @author      Andrew Yatskovets
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -55,7 +55,6 @@ class OnApp_Network extends OnApp {
      * @var string
      */
     var $_tagRoot = 'network';
-
     /**
      * alias processing the object data
      *
@@ -80,48 +79,48 @@ class OnApp_Network extends OnApp {
         switch( $version ) {
             case '2.0':
                 $this->fields = array(
-                    'id' => array(
-                        ONAPP_FIELD_MAP => '_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'id'         => array(
+                        ONAPP_FIELD_MAP       => '_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
-                        ONAPP_FIELD_REQUIRED => true,
+                        ONAPP_FIELD_REQUIRED  => true,
                     ),
                     'created_at' => array(
-                        ONAPP_FIELD_MAP => '_created_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                        ONAPP_FIELD_MAP       => '_created_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
-                        ONAPP_FIELD_REQUIRED => true,
+                        ONAPP_FIELD_REQUIRED  => true,
                     ),
                     'identifier' => array(
-                        ONAPP_FIELD_MAP => '_identifier',
+                        ONAPP_FIELD_MAP       => '_identifier',
                         ONAPP_FIELD_READ_ONLY => true,
-                        ONAPP_FIELD_REQUIRED => true,
+                        ONAPP_FIELD_REQUIRED  => true,
                     ),
-                    'label' => array(
-                        ONAPP_FIELD_MAP => '_label',
+                    'label'      => array(
+                        ONAPP_FIELD_MAP       => '_label',
                         ONAPP_FIELD_READ_ONLY => true,
-                        ONAPP_FIELD_REQUIRED => true,
+                        ONAPP_FIELD_REQUIRED  => true,
                     ),
                     'updated_at' => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                        ONAPP_FIELD_MAP       => '_updated_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
-                        ONAPP_FIELD_REQUIRED => true,
+                        ONAPP_FIELD_REQUIRED  => true,
                     ),
-                    'vlan' => array(
-                        ONAPP_FIELD_MAP => '_vlan',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'vlan'       => array(
+                        ONAPP_FIELD_MAP       => '_vlan',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
-                        ONAPP_FIELD_REQUIRED => true,
+                        ONAPP_FIELD_REQUIRED  => true,
                     ),
                 );
                 break;
 
             case '2.1':
-                $this->fields                       = $this->initFields( '2.0' );
+                $this->fields = $this->initFields( '2.0' );
                 $this->fields[ 'network_group_id' ] = array(
-                    ONAPP_FIELD_MAP => '_network_group_id',
-                    ONAPP_FIELD_TYPE => 'integer',
+                    ONAPP_FIELD_MAP      => '_network_group_id',
+                    ONAPP_FIELD_TYPE     => 'integer',
                     ONAPP_FIELD_REQUIRED => true,
                 );
                 break;
@@ -139,6 +138,7 @@ class OnApp_Network extends OnApp {
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 
@@ -147,6 +147,7 @@ class OnApp_Network extends OnApp {
             case ONAPP_GETRESOURCE_NETWORKS_LIST_BY_HYPERVISOR_GROUP_ID:
                 /**
                  * ROUTE :
+                 *
                  * @name hypervisor_group_networks
                  * @method GET
                  * @alias  /settings/hypervisor_zones/:hypervisor_group_id/networks(.:format)
@@ -158,6 +159,7 @@ class OnApp_Network extends OnApp {
             case ONAPP_GETRESOURCE_IP_ADDRESSES:
                 /**
                  * ROUTE :
+                 *
                  * @name network_ip_addresses
                  * @method GET
                  * @alias  /settings/networks/:network_id/ip_addresses(.:format)
@@ -169,6 +171,7 @@ class OnApp_Network extends OnApp {
             default:
                 /**
                  * ROUTE :
+                 *
                  * @name networks
                  * @method GET
                  * @alias  /settings/networks(.:format)
@@ -176,6 +179,7 @@ class OnApp_Network extends OnApp {
                  */
                 /**
                  * ROUTE :
+                 *
                  * @name network
                  * @method GET
                  * @alias   /settings/networks/:id(.:format)
@@ -194,7 +198,7 @@ class OnApp_Network extends OnApp {
      *
      * @return bool|mixed
      */
-    function getListByHypervisorGroupId( $hypervisor_group_id = NULL ) {
+    function getListByHypervisorGroupId( $hypervisor_group_id = null ) {
         if( $hypervisor_group_id ) {
             $this->_hypervisor_group_id = $hypervisor_group_id;
         }
@@ -212,10 +216,11 @@ class OnApp_Network extends OnApp {
 
         if( ! empty( $response[ 'errors' ] ) ) {
             $this->errors = $response[ 'errors' ];
+
             return false;
         }
 
-        $result     = $this->castStringToClass( $response );
+        $result = $this->castStringToClass( $response );
         $this->_obj = $result;
 
         return ( is_array( $result ) || ! $result ) ? $result : array( $result );

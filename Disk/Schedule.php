@@ -7,7 +7,7 @@
  * @package     OnApp
  * @subpackage  Disk
  * @author      Yakubskiy Yuriy
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -33,7 +33,6 @@ class OnApp_Disk_Schedule extends OnApp {
      * @var string
      */
     var $_tagRoot = 'schedule';
-
     /**
      * alias processing the object data
      *
@@ -59,76 +58,76 @@ class OnApp_Disk_Schedule extends OnApp {
             case '2.0':
             case '2.1':
                 $this->fields = array(
-                    'id' => array(
-                        ONAPP_FIELD_MAP => '_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'id'            => array(
+                        ONAPP_FIELD_MAP       => '_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'duration' => array(
-                        ONAPP_FIELD_MAP => '_duration',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'duration'      => array(
+                        ONAPP_FIELD_MAP      => '_duration',
+                        ONAPP_FIELD_TYPE     => 'integer',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'target_id' => array(
-                        ONAPP_FIELD_MAP => '_target_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'target_id'     => array(
+                        ONAPP_FIELD_MAP       => '_target_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                     'schedule_logs' => array(
-                        ONAPP_FIELD_MAP => '_schedule_logs',
-                        ONAPP_FIELD_TYPE => 'string',
+                        ONAPP_FIELD_MAP       => '_schedule_logs',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'period' => array(
-                        ONAPP_FIELD_MAP => '_period',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'period'        => array(
+                        ONAPP_FIELD_MAP      => '_period',
+                        ONAPP_FIELD_TYPE     => 'string',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'updated_at' => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'updated_at'    => array(
+                        ONAPP_FIELD_MAP       => '_updated_at',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'action' => array(
-                        ONAPP_FIELD_MAP => '_action',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'action'        => array(
+                        ONAPP_FIELD_MAP       => '_action',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'start_at' => array(
-                        ONAPP_FIELD_MAP => '_start_at',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'start_at'      => array(
+                        ONAPP_FIELD_MAP       => '_start_at',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'user_id' => array(
-                        ONAPP_FIELD_MAP => '_user_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'user_id'       => array(
+                        ONAPP_FIELD_MAP       => '_user_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                     'failure_count' => array(
-                        ONAPP_FIELD_MAP => '_failure_count',
-                        ONAPP_FIELD_TYPE => 'integer',
+                        ONAPP_FIELD_MAP       => '_failure_count',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'params' => array(
-                        ONAPP_FIELD_MAP => '_params',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'params'        => array(
+                        ONAPP_FIELD_MAP       => '_params',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'status' => array(
-                        ONAPP_FIELD_MAP => '_status',
-                        ONAPP_FIELD_TYPE => 'string',
-                        ONAPP_FIELD_REQUIRED => true,
+                    'status'        => array(
+                        ONAPP_FIELD_MAP           => '_status',
+                        ONAPP_FIELD_TYPE          => 'string',
+                        ONAPP_FIELD_REQUIRED      => true,
                         ONAPP_FIELD_DEFAULT_VALUE => 'enabled',
 
                     ),
-                    'target_type' => array(
-                        ONAPP_FIELD_MAP => '_target_type',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'target_type'   => array(
+                        ONAPP_FIELD_MAP       => '_target_type',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'created_at' => array(
-                        ONAPP_FIELD_MAP => '_created_at',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'created_at'    => array(
+                        ONAPP_FIELD_MAP       => '_created_at',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                 );
@@ -140,13 +139,14 @@ class OnApp_Disk_Schedule extends OnApp {
                 break;
 
             case 3.0:
-			case 3.1:
+            case 3.1:
             case 3.2:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 
@@ -165,7 +165,7 @@ class OnApp_Disk_Schedule extends OnApp {
                 $resource = 'settings/disks/' . $this->_target_id . '/' . $this->_resource;
                 break;
             default:
-                $resource     = parent::getResource( $action );
+                $resource = parent::getResource( $action );
                 $show_log_msg = false;
                 break;
         }
@@ -209,11 +209,11 @@ class OnApp_Disk_Schedule extends OnApp {
 
     function save() {
         if( $this->_target_id ) {
-            $this->fields[ 'target_id' ][ ONAPP_FIELD_REQUIRED ]        = true;
-            $this->fields[ 'target_type' ][ ONAPP_FIELD_REQUIRED ]      = true;
+            $this->fields[ 'target_id' ][ ONAPP_FIELD_REQUIRED ] = true;
+            $this->fields[ 'target_type' ][ ONAPP_FIELD_REQUIRED ] = true;
             $this->fields[ 'target_type' ][ ONAPP_FIELD_DEFAULT_VALUE ] = 'Disk';
-            $this->fields[ 'action' ][ ONAPP_FIELD_REQUIRED ]           = true;
-            $this->fields[ 'action' ][ ONAPP_FIELD_DEFAULT_VALUE ]      = 'autobackup';
+            $this->fields[ 'action' ][ ONAPP_FIELD_REQUIRED ] = true;
+            $this->fields[ 'action' ][ ONAPP_FIELD_DEFAULT_VALUE ] = 'autobackup';
         }
 
         return parent::save();

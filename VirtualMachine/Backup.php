@@ -8,7 +8,7 @@
  * @package         OnApp
  * @subpackage      VirtualMachine
  * @author          Vitaliy Kondratyuk
- * @copyright       (c) 2011 OnApp
+ * @copyright       © 2011 OnApp
  * @link            http://www.onapp.com/
  * @see             OnApp
  */

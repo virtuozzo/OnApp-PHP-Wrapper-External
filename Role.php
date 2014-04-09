@@ -15,7 +15,7 @@
  * @category    API wrapper
  * @package     OnApp
  * @author      Andrew Yatskovets
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -37,7 +37,6 @@ class OnApp_Role extends OnApp {
      * @var string
      */
     var $_tagRoot = 'role';
-
     /**
      * alias processing the object data
      *
@@ -62,39 +61,39 @@ class OnApp_Role extends OnApp {
         switch( $version ) {
             case '2.0':
             case '2.1':
-			case 2.2:
+            case 2.2:
                 $this->fields = array(
-                    'id' => array(
-                        ONAPP_FIELD_MAP => '_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'id'             => array(
+                        ONAPP_FIELD_MAP       => '_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'created_at' => array(
-                        ONAPP_FIELD_MAP => '_created_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'created_at'     => array(
+                        ONAPP_FIELD_MAP       => '_created_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'identifier' => array(
-                        ONAPP_FIELD_MAP => '_identifier',
+                    'identifier'     => array(
+                        ONAPP_FIELD_MAP  => '_identifier',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'permissions' => array(
-                        ONAPP_FIELD_MAP => '_permissions',
-                        ONAPP_FIELD_TYPE => 'array',
+                    'permissions'    => array(
+                        ONAPP_FIELD_MAP   => '_permissions',
+                        ONAPP_FIELD_TYPE  => 'array',
                         ONAPP_FIELD_CLASS => 'Role_Permission',
                     ),
-                    'label' => array(
-                        ONAPP_FIELD_MAP => '_label',
+                    'label'          => array(
+                        ONAPP_FIELD_MAP      => '_label',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'updated_at' => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'updated_at'     => array(
+                        ONAPP_FIELD_MAP       => '_updated_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                     'permission_ids' => array(
-                        ONAPP_FIELD_MAP => '_permission_ids',
-                        ONAPP_FIELD_TYPE => 'string',
+                        ONAPP_FIELD_MAP       => '_permission_ids',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                 );
@@ -102,7 +101,7 @@ class OnApp_Role extends OnApp {
 
             case 2.3:
                 $this->fields = $this->initFields( 2.2 );
-                $fields       = array(
+                $fields = array(
                     'permission_ids',
                 );
                 $this->unsetFields( $fields );
@@ -116,6 +115,7 @@ class OnApp_Role extends OnApp {
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 
@@ -123,6 +123,7 @@ class OnApp_Role extends OnApp {
         return parent::getResource( $action );
         /**
          * ROUTE :
+         *
          * @name roles
          * @method GET
          * @alias   /roles(.:format)
@@ -130,6 +131,7 @@ class OnApp_Role extends OnApp {
          */
         /**
          * ROUTE :
+         *
          * @name role
          * @method GET
          * @alias   /roles/:id(.:format)
@@ -137,6 +139,7 @@ class OnApp_Role extends OnApp {
          */
         /**
          * ROUTE :
+         *
          * @name
          * @method POST
          * @alias   /roles(.:format)
@@ -144,6 +147,7 @@ class OnApp_Role extends OnApp {
          */
         /**
          * ROUTE :
+         *
          * @name
          * @method PUT
          * @alias  /roles/:id(.:format)
@@ -151,6 +155,7 @@ class OnApp_Role extends OnApp {
          */
         /**
          * ROUTE :
+         *
          * @name
          * @method DELETE
          * @alias  /roles/:id(.:format)

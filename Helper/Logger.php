@@ -31,7 +31,7 @@
  * @package     OnApp
  * @subpackage  Helper
  * @author      Andrew Yatskovets
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  */
 
@@ -79,7 +79,6 @@ class OnApp_Helper_Logger {
      * @var    string
      */
     var $_timezone = 'America/Los_Angeles';
-
     /**
      * Outputs the date format inside of Logger
      *
@@ -87,7 +86,6 @@ class OnApp_Helper_Logger {
      * @var    string
      */
     var $_date_format = 'Y-m-d H:i:s';
-
     /**
      * Stands for the adding of the information needed to adjust
      * the system.
@@ -96,7 +94,6 @@ class OnApp_Helper_Logger {
      * @var    boolean
      */
     var $_debug = false;
-
     /**
      * Buffer containing all the information on the messages used in the class
      *
@@ -205,9 +202,9 @@ class OnApp_Helper_Logger {
                     break;
             }
 
-            $time  = microtime( true );
+            $time = microtime( true );
             $micro = sprintf( "%06d", ( $time - floor( $time ) ) * 1000000 );
-            $date  = date( "$date_format $micro", $time );
+            $date = date( "$date_format $micro", $time );
 
             $this->_log[ $date ] = array(
                 'log' => $log

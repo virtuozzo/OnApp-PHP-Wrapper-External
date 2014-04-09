@@ -7,7 +7,7 @@
  * @category    API wrapper
  * @package     OnApp
  * @author      Lev Bartashevsky
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -28,7 +28,6 @@ class OnApp_UserGroup extends OnApp {
      * @var string
      */
     var $_tagRoot = 'user_group';
-
     /**
      * alias processing the object data
      *
@@ -53,27 +52,27 @@ class OnApp_UserGroup extends OnApp {
         switch( $version ) {
             case '2.0':
             case '2.1':
-			case 2.2:
-			case 2.3:
+            case 2.2:
+            case 2.3:
                 $this->fields = array(
-                    'label' => array(
-                        ONAPP_FIELD_MAP => '_label',
-                        ONAPP_FIELD_REQUIRED => true,
+                    'label'      => array(
+                        ONAPP_FIELD_MAP           => '_label',
+                        ONAPP_FIELD_REQUIRED      => true,
                         ONAPP_FIELD_DEFAULT_VALUE => ''
                     ),
                     'created_at' => array(
-                        ONAPP_FIELD_MAP => '_created_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                        ONAPP_FIELD_MAP       => '_created_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
                     'updated_at' => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                        ONAPP_FIELD_MAP       => '_updated_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'id' => array(
-                        ONAPP_FIELD_MAP => '_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'id'         => array(
+                        ONAPP_FIELD_MAP       => '_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                 );
@@ -87,6 +86,7 @@ class OnApp_UserGroup extends OnApp {
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 }

@@ -11,7 +11,7 @@
  * @category    API wrapper
  * @package     OnApp
  * @author      Andrew Yatskovets
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -33,7 +33,6 @@ class OnApp_Payment extends OnApp {
      * @var string
      */
     var $_tagRoot = 'payment';
-
     /**
      * alias processing the object data
      *
@@ -58,52 +57,53 @@ class OnApp_Payment extends OnApp {
         switch( $version ) {
             case '2.0':
             case '2.1':
-			case 2.2:
-			case 2.3:
+            case 2.2:
+            case 2.3:
                 $this->fields = array(
-                    'id' => array(
-                        ONAPP_FIELD_MAP => '_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'id'             => array(
+                        ONAPP_FIELD_MAP       => '_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'amount' => array(
-                        ONAPP_FIELD_MAP => '_amount',
-                        ONAPP_FIELD_TYPE => 'decimal',
-                        ONAPP_FIELD_REQUIRED => true,
+                    'amount'         => array(
+                        ONAPP_FIELD_MAP           => '_amount',
+                        ONAPP_FIELD_TYPE          => 'decimal',
+                        ONAPP_FIELD_REQUIRED      => true,
                         ONAPP_FIELD_DEFAULT_VALUE => '0.0',
                     ),
-                    'created_at' => array(
-                        ONAPP_FIELD_MAP => '_created_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'created_at'     => array(
+                        ONAPP_FIELD_MAP       => '_created_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
                     'invoice_number' => array(
-                        ONAPP_FIELD_MAP => '_invoice_number',
-                        ONAPP_FIELD_TYPE => 'string',
+                        ONAPP_FIELD_MAP      => '_invoice_number',
+                        ONAPP_FIELD_TYPE     => 'string',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'updated_at' => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'updated_at'     => array(
+                        ONAPP_FIELD_MAP       => '_updated_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'user_id' => array(
-                        ONAPP_FIELD_MAP => '_user_id',
-                        ONAPP_FIELD_TYPE => 'integer',
-                        ONAPP_FIELD_REQUIRED => true,
+                    'user_id'        => array(
+                        ONAPP_FIELD_MAP       => '_user_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
+                        ONAPP_FIELD_REQUIRED  => true,
                         ONAPP_FIELD_READ_ONLY => true
                     ),
                 );
                 break;
 
             case 3.0:
-			case 3.1:
+            case 3.1:
             case 3.2:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 
@@ -112,6 +112,7 @@ class OnApp_Payment extends OnApp {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
+                 *
                  * @name    /users/:user_id/payments(.:format)
                  * @method GET
                  * @alias   /virtual_machines(.:format)
@@ -119,6 +120,7 @@ class OnApp_Payment extends OnApp {
                  */
                 /**
                  * ROUTE :
+                 *
                  * @name user_payment
                  * @method GET
                  * @alias    /users/:user_id/payments/:id(.:format)
@@ -126,6 +128,7 @@ class OnApp_Payment extends OnApp {
                  */
                 /**
                  * ROUTE :
+                 *
                  * @name
                  * @method POST
                  * @alias   /users/:user_id/payments(.:format)
@@ -133,6 +136,7 @@ class OnApp_Payment extends OnApp {
                  */
                 /**
                  * ROUTE :
+                 *
                  * @name
                  * @method PUT
                  * @alias   /users/:user_id/payments/:id(.:format)
@@ -140,6 +144,7 @@ class OnApp_Payment extends OnApp {
                  */
                 /**
                  * ROUTE :
+                 *
                  * @name
                  * @method DELETE
                  * @alias   /users/:user_id/payments/:id(.:format)
@@ -173,6 +178,7 @@ class OnApp_Payment extends OnApp {
 
         if( ! is_null( $user_id ) ) {
             $this->_user_id = $user_id;
+
             return parent::getList();
         }
         else {
@@ -216,7 +222,7 @@ class OnApp_Payment extends OnApp {
         $this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
 
         if( ! is_null( $id ) && ! is_null( $user_id ) ) {
-            $this->_id      = $id;
+            $this->_id = $id;
             $this->_user_id = $user_id;
 
             $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );

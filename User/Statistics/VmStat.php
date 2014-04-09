@@ -10,7 +10,7 @@
  * @package     OnApp
  * @subpackage  User_Statistics
  * @author      Yakubskiy Yuriy
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -29,7 +29,6 @@ class OnApp_User_Statistics_VmStat extends OnApp {
      * @var string
      */
     var $_tagRoot = 'vm_stats';
-
     /**
      * alias processing the object data
      *
@@ -54,40 +53,41 @@ class OnApp_User_Statistics_VmStat extends OnApp {
         switch( $version ) {
             case '2.0':
             case '2.1':
-			case 2.2:
-			case 2.3:
+            case 2.2:
+            case 2.3:
                 $this->fields = array(
-                    'usage_cost' => array(
-                        ONAPP_FIELD_MAP => '_usage_cost',
-                        ONAPP_FIELD_TYPE => 'float',
+                    'usage_cost'         => array(
+                        ONAPP_FIELD_MAP       => '_usage_cost',
+                        ONAPP_FIELD_TYPE      => 'float',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'vm_resources_cost' => array(
-                        ONAPP_FIELD_MAP => '_vm_resources_cost',
-                        ONAPP_FIELD_TYPE => 'float',
+                    'vm_resources_cost'  => array(
+                        ONAPP_FIELD_MAP       => '_vm_resources_cost',
+                        ONAPP_FIELD_TYPE      => 'float',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                     'virtual_machine_id' => array(
-                        ONAPP_FIELD_MAP => '_virtual_machine_id',
-                        ONAPP_FIELD_TYPE => 'float',
+                        ONAPP_FIELD_MAP       => '_virtual_machine_id',
+                        ONAPP_FIELD_TYPE      => 'float',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'total_cost' => array(
-                        ONAPP_FIELD_MAP => '_total_cost',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'total_cost'         => array(
+                        ONAPP_FIELD_MAP       => '_total_cost',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     )
                 );
                 break;
 
             case 3.0:
-			case 3.1:
+            case 3.1:
             case 3.2:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 

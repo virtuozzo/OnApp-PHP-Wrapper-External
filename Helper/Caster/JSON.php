@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Serialize and Unserialize Object to/from JSON for OnApp wrapper
  *
@@ -6,7 +7,7 @@
  * @package     OnApp
  * @subpackage  Caster
  * @author      Lev Bartashevsky
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  */
 class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
@@ -19,8 +20,8 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
     /**
      * Serialize wrapper data to JSON
      *
-     * @param string $root  root tag
-     * @param array  $data  data to serialize
+     * @param string $root root tag
+     * @param array  $data data to serialize
      *
      * @return string
      */
@@ -37,10 +38,10 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
     /**
      * Unserialize JSON data to wrapper object(s)
      *
-     * @param string           $className   className to cast into
-     * @param string|array     $data        JSON or array containing nested data
-     * @param array            $map         fields map
-     * @param string           $root        root tag
+     * @param string       $className className to cast into
+     * @param string|array $data      JSON or array containing nested data
+     * @param array        $map       fields map
+     * @param string       $root      root tag
      *
      * @return array|object
      */
@@ -49,7 +50,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 
         $this->runBefore( $data );
 
-        $this->map       = $map;
+        $this->map = $map;
         $this->className = $className;
 
         if( is_string( $data ) ) {
@@ -69,6 +70,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
         }
         catch( Exception $e ) {
             echo PHP_EOL, $e->getMessage(), PHP_EOL;
+
             return null;
         }
 
@@ -81,9 +83,10 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
         if( $root === 'errors' ) {
             $errors = $this->objectToArray( $data->$root );
 
-            if( is_array($errors) && count( $errors ) == 1 && isset( $errors[ 0 ] ) ) {
+            if( is_array( $errors ) && count( $errors ) == 1 && isset( $errors[ 0 ] ) ) {
                 $errors = array_shift( $errors );
             }
+
             return $errors;
         }
 
@@ -112,16 +115,16 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
      */
     private function process( $item ) {
         if( ! ( is_array( $item ) || is_object( $item ) ) ) {
-            $tmp  = new $this->className;
+            $tmp = new $this->className;
             $item = array(
                 $tmp->_tagRoot => $item
             );
             unset( $tmp );
         }
 
-        $obj           = new $this->className;
-        $obj->options  = parent::$obj->options;
-        $obj->_ch      = parent::$obj->_ch;
+        $obj = new $this->className;
+        $obj->options = parent::$obj->options;
+        $obj->_ch = parent::$obj->_ch;
         $obj->_is_auth = parent::$obj->_is_auth;
         $obj->initFields( parent::$APIVersion );
         foreach( $item as $name => $value ) {
@@ -132,11 +135,11 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
                         $value = array();
                     }
                     else {
-                        $tmp             = new DataHolder;
+                        $tmp = new DataHolder;
                         $tmp->APIVersion = parent::$APIVersion;
-                        $tmp->className  = $this->map[ $name ][ ONAPP_FIELD_CLASS ];
-                        $tmp->data       = $value;
-                        $value           = $tmp;
+                        $tmp->className = $this->map[ $name ][ ONAPP_FIELD_CLASS ];
+                        $tmp->data = $value;
+                        $value = $tmp;
                     }
                 }
 
@@ -155,8 +158,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
                 }
             }
 
-            if(array_key_exists($name, $this->map))
-            {
+            if( array_key_exists( $name, $this->map ) ) {
                 $field = $this->map[ $name ][ ONAPP_FIELD_MAP ];
 
                 $obj->$field = $value;

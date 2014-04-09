@@ -8,7 +8,7 @@
  * @package     OnApp
  * @subpackage  CDNResource
  * @author      Yakubskiy Yuriy
- * @copyright   (c) 2012 OnApp
+ * @copyright   © 2012 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -26,7 +26,6 @@ class OnApp_CDNResource_Origin extends OnApp {
      * @var string
      */
     var $_tagRoot = 'origin';
-
     /**
      * alias processing the object data
      *
@@ -55,8 +54,8 @@ class OnApp_CDNResource_Origin extends OnApp {
             case 2.3:
                 $this->fields = array(
                     'key' => array(
-                        ONAPP_FIELD_MAP => '_value',
-                        ONAPP_FIELD_TYPE => 'string',
+                        ONAPP_FIELD_MAP       => '_value',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                 );
@@ -67,13 +66,13 @@ class OnApp_CDNResource_Origin extends OnApp {
             case 3.2:
                 $this->fields = array(
                     'value' => array(
-                        ONAPP_FIELD_MAP => '_value',
-                        ONAPP_FIELD_TYPE => 'string',
+                        ONAPP_FIELD_MAP       => '_value',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'key' => array(
-                        ONAPP_FIELD_MAP => '_key',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'key'   => array(
+                        ONAPP_FIELD_MAP       => '_key',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                 );
@@ -81,6 +80,7 @@ class OnApp_CDNResource_Origin extends OnApp {
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 

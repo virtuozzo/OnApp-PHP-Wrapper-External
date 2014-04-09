@@ -8,7 +8,7 @@
  * @package     OnApp
  * @subpackage  VirtualMachine
  * @author      Yakubskiy Yuriy
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -32,7 +32,6 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
      * @var string
      */
     var $_tagRoot = 'firewall_rule';
-
     /**
      * alias processing the object data
      *
@@ -57,50 +56,50 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
         switch( $version ) {
             case '2.0':
             case '2.1':
-			case 2.2:
-			case 2.3:
+            case 2.2:
+            case 2.3:
                 $this->fields = array(
-                    'id' => array(
-                        ONAPP_FIELD_MAP => '_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'id'                   => array(
+                        ONAPP_FIELD_MAP       => '_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'address' => array(
-                        ONAPP_FIELD_MAP => '_address',
+                    'address'              => array(
+                        ONAPP_FIELD_MAP  => '_address',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'position' => array(
-                        ONAPP_FIELD_MAP => '_position',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'position'             => array(
+                        ONAPP_FIELD_MAP       => '_position',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'created_at' => array(
-                        ONAPP_FIELD_MAP => '_created_at',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'created_at'           => array(
+                        ONAPP_FIELD_MAP       => '_created_at',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'updated_at' => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'updated_at'           => array(
+                        ONAPP_FIELD_MAP       => '_updated_at',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'command' => array(
-                        ONAPP_FIELD_MAP => '_command',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'command'              => array(
+                        ONAPP_FIELD_MAP      => '_command',
+                        ONAPP_FIELD_TYPE     => 'string',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'port' => array(
-                        ONAPP_FIELD_MAP => '_port',
+                    'port'                 => array(
+                        ONAPP_FIELD_MAP  => '_port',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'protocol' => array(
-                        ONAPP_FIELD_MAP => '_protocol',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'protocol'             => array(
+                        ONAPP_FIELD_MAP      => '_protocol',
+                        ONAPP_FIELD_TYPE     => 'string',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
                     'network_interface_id' => array(
-                        ONAPP_FIELD_MAP => '_network_interface_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                        ONAPP_FIELD_MAP      => '_network_interface_id',
+                        ONAPP_FIELD_TYPE     => 'integer',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
                 );
@@ -114,6 +113,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 
@@ -130,6 +130,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
+                 *
                  * @name virtual_machine_firewall_rules
                  * @method GET
                  * @alias     /virtual_machines/:virtual_machine_id/firewall_rules(.:format)
@@ -137,6 +138,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
                  */
                 /**
                  * ROUTE :
+                 *
                  * @name virtual_machine_firewall_rule
                  * @method GET
                  * @alias     /virtual_machines/:virtual_machine_id/firewall_rules/:id(.:format)
@@ -144,6 +146,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
                  */
                 /**
                  * ROUTE :
+                 *
                  * @name
                  * @method POST
                  * @alias     /virtual_machines/:virtual_machine_id/firewall_rules(.:format)
@@ -151,6 +154,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
                  */
                 /**
                  * ROUTE :
+                 *
                  * @name
                  * @method PUT
                  * @alias  /virtual_machines/:virtual_machine_id/firewall_rules/:id(.:format)
@@ -158,6 +162,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
                  */
                 /**
                  * ROUTE :
+                 *
                  * @name
                  * @method DELETE
                  * @alias     /virtual_machines/:virtual_machine_id/firewall_rules/:id(.:format)
@@ -169,6 +174,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
             case ONAPP_GETRESOURCE_MOVE:
                 /**
                  * ROUTE :
+                 *
                  * @name move_virtual_machine_firewall_rule
                  * @method GET
                  * @alias     /virtual_machines/:virtual_machine_id/firewall_rules/:id/move(.:format)
@@ -180,6 +186,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
             case ONAPP_GETRESOURCE_UPDATE:
                 /**
                  * ROUTE :
+                 *
                  * @name update_firewall_rules_virtual_machine
                  * @method POST
                  * @alias     /virtual_machines/:id/update_firewall_rules(.:format)
@@ -191,6 +198,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
 
                 /**
                  * ROUTE :
+                 *
                  * @name update_firewall_rules_virtual_machine
                  * @method POST
                  * @alias   /virtual_machines/:id/update_firewall_rules(.:format)
@@ -274,7 +282,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
         $this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
 
         if( ! is_null( $id ) && ! is_null( $virtual_machine_id ) ) {
-            $this->_id                 = $id;
+            $this->_id = $id;
             $this->_virtual_machine_id = $virtual_machine_id;
 
             $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
@@ -337,7 +345,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
      * @param integer $virtual_machine_id VM Id
      *
      */
-    function update( $virtual_machine_id = NULL ) {
+    function update( $virtual_machine_id = null ) {
         if( $virtual_machine_id ) {
             $this->_virtual_machine_id = $virtual_machine_id;
         }

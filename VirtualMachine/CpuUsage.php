@@ -9,7 +9,7 @@
  * @package     OnApp
  * @subpackage  VirtualMachine
  * @author      Vitaliy Kondratyuk
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -29,7 +29,6 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
      * @var string
      */
     var $_tagRoot = 'cpu_hourly_stat';
-
     /**
      * alias processing the object data
      *
@@ -55,53 +54,53 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
             case '2.0':
             case '2.1':
                 $this->fields = array(
-                    'id' => array(
-                        ONAPP_FIELD_MAP => '_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'id'                 => array(
+                        ONAPP_FIELD_MAP       => '_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'created_at' => array(
-                        ONAPP_FIELD_MAP => '_created_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'created_at'         => array(
+                        ONAPP_FIELD_MAP       => '_created_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'updated_at' => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'updated_at'         => array(
+                        ONAPP_FIELD_MAP       => '_updated_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'period' => array(
-                        ONAPP_FIELD_MAP => '_period',
+                    'period'             => array(
+                        ONAPP_FIELD_MAP       => '_period',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'cpu_time' => array(
-                        ONAPP_FIELD_MAP => '_cpu_time',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'cpu_time'           => array(
+                        ONAPP_FIELD_MAP       => '_cpu_time',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'cpu_time_raw' => array(
-                        ONAPP_FIELD_MAP => '_cpu_time_raw',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'cpu_time_raw'       => array(
+                        ONAPP_FIELD_MAP       => '_cpu_time_raw',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'elapsed_time' => array(
-                        ONAPP_FIELD_MAP => '_elapsed_time',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'elapsed_time'       => array(
+                        ONAPP_FIELD_MAP       => '_elapsed_time',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                     'virtual_machine_id' => array(
-                        ONAPP_FIELD_MAP => '_virtual_machine_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                        ONAPP_FIELD_MAP       => '_virtual_machine_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'stat_time' => array(
-                        ONAPP_FIELD_MAP => '_stat_time',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'stat_time'          => array(
+                        ONAPP_FIELD_MAP       => '_stat_time',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'user_id' => array(
-                        ONAPP_FIELD_MAP => '_user_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'user_id'            => array(
+                        ONAPP_FIELD_MAP       => '_user_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                 );
@@ -119,7 +118,7 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
             case 2.2:
             case 2.3:
                 $this->fields = $this->initFields( 2.1 );
-                $fields       = array(
+                $fields = array(
                     'cpu_time_raw',
                     'elapsed_time',
                     'period',
@@ -135,6 +134,7 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 
@@ -151,6 +151,7 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
             case ONAPP_GETRESOURCE_LIST:
                 /**
                  * ROUTE :
+                 *
                  * @name cpu_usage_virtual_machine
                  * @method GET
                  * @alias   /virtual_machines/:id/cpu_usage(.:format)

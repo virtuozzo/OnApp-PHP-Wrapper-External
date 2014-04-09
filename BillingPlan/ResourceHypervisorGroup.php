@@ -8,7 +8,7 @@
  * @package     OnApp
  * @subpackage  BillingPlan
  * @author      Andrew Yatskovets
- * @copyright   (c) 2014 OnApp
+ * @copyright   © 2014 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -20,7 +20,6 @@
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_BillingPlan_ResourceHypervisorGroup extends OnApp_BillingPlan_BaseResource {
-
     /**
      * alias processing the object data
      *
@@ -40,34 +39,33 @@ class OnApp_BillingPlan_ResourceHypervisorGroup extends OnApp_BillingPlan_BaseRe
         parent::initFields( $version, __CLASS__ );
 
         $this->fields[ 'resource_class' ] = array(
-            ONAPP_FIELD_MAP => '_resource_class',
-            ONAPP_FIELD_TYPE => 'string',
-            ONAPP_FIELD_REQUIRED => true,
-            ONAPP_FIELD_READ_ONLY => true,
+            ONAPP_FIELD_MAP           => '_resource_class',
+            ONAPP_FIELD_TYPE          => 'string',
+            ONAPP_FIELD_REQUIRED      => true,
+            ONAPP_FIELD_READ_ONLY     => true,
             ONAPP_FIELD_DEFAULT_VALUE => 'Resource::HypervisorGroup'
         );
 
-
         $this->fields[ 'target_type' ] = array(
-            ONAPP_FIELD_MAP => '_target_type',
-            ONAPP_FIELD_TYPE => 'string',
-            ONAPP_FIELD_REQUIRED => true,
-            ONAPP_FIELD_READ_ONLY => true,
+            ONAPP_FIELD_MAP           => '_target_type',
+            ONAPP_FIELD_TYPE          => 'string',
+            ONAPP_FIELD_REQUIRED      => true,
+            ONAPP_FIELD_READ_ONLY     => true,
             ONAPP_FIELD_DEFAULT_VALUE => 'EdgeGroup'
         );
 
         $this->fields[ 'in_bucket_zone' ] = array(
-            ONAPP_FIELD_MAP => '_in_bucket_zone',
-            ONAPP_FIELD_TYPE => 'string',
-            ONAPP_FIELD_REQUIRED => false,
-            ONAPP_FIELD_READ_ONLY => false,
+            ONAPP_FIELD_MAP           => '_in_bucket_zone',
+            ONAPP_FIELD_TYPE          => 'string',
+            ONAPP_FIELD_REQUIRED      => false,
+            ONAPP_FIELD_READ_ONLY     => false,
             ONAPP_FIELD_DEFAULT_VALUE => '1'
         );
 
         $this->fields[ 'id' ][ ONAPP_FIELD_REQUIRED ] = false;
 
-        foreach(array('unit', 'limit', 'limit_type', 'limit_free', 'price_on', 'price_off') as $field ) {
-            unset($this->fields[ $field ]);
+        foreach( array( 'unit', 'limit', 'limit_type', 'limit_free', 'price_on', 'price_off' ) as $field ) {
+            unset( $this->fields[ $field ] );
         }
 
         return $this->fields;

@@ -8,7 +8,7 @@
  * @package     OnApp
  * @subpackage  VirtualMachine
  * @author      Vitaliy Kondratyuk
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -28,7 +28,6 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
      * @var string
      */
     var $_tagRoot = 'network_interface';
-
     /**
      * alias processing the object data
      *
@@ -53,75 +52,75 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
         switch( $version ) {
             case '2.0':
             case '2.1':
-			case 2.2:
-			case 2.3:
+            case 2.2:
+            case 2.3:
                 $this->fields = array(
-                    'id' => array(
-                        ONAPP_FIELD_MAP => '_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'id'                    => array(
+                        ONAPP_FIELD_MAP       => '_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'label' => array(
-                        ONAPP_FIELD_MAP => '_label',
+                    'label'                 => array(
+                        ONAPP_FIELD_MAP      => '_label',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'created_at' => array(
-                        ONAPP_FIELD_MAP => '_created_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'created_at'            => array(
+                        ONAPP_FIELD_MAP       => '_created_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'updated_at' => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'updated_at'            => array(
+                        ONAPP_FIELD_MAP       => '_updated_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'usage' => array(
-                        ONAPP_FIELD_MAP => '_usage',
+                    'usage'                 => array(
+                        ONAPP_FIELD_MAP       => '_usage',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'primary' => array(
-                        ONAPP_FIELD_MAP => '_primary',
-                        ONAPP_FIELD_TYPE => 'boolean',
-                        ONAPP_FIELD_READ_ONLY => true,
-                        ONAPP_FIELD_REQUIRED => true,
+                    'primary'               => array(
+                        ONAPP_FIELD_MAP           => '_primary',
+                        ONAPP_FIELD_TYPE          => 'boolean',
+                        ONAPP_FIELD_READ_ONLY     => true,
+                        ONAPP_FIELD_REQUIRED      => true,
                         ONAPP_FIELD_DEFAULT_VALUE => '',
                     ),
                     'usage_month_rolled_at' => array(
-                        ONAPP_FIELD_MAP => '_usage_month_rolled_at',
-                        ONAPP_FIELD_TYPE => 'date',
+                        ONAPP_FIELD_MAP       => '_usage_month_rolled_at',
+                        ONAPP_FIELD_TYPE      => 'date',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'mac_address' => array(
-                        ONAPP_FIELD_MAP => '_mac_address',
+                    'mac_address'           => array(
+                        ONAPP_FIELD_MAP       => '_mac_address',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'usage_last_reset_at' => array(
-                        ONAPP_FIELD_MAP => '_usage_last_reset_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'usage_last_reset_at'   => array(
+                        ONAPP_FIELD_MAP       => '_usage_last_reset_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'rate_limit' => array(
-                        ONAPP_FIELD_MAP => '_rate_limit',
-                        ONAPP_FIELD_TYPE => 'integer',
-                        ONAPP_FIELD_REQUIRED => true,
+                    'rate_limit'            => array(
+                        ONAPP_FIELD_MAP           => '_rate_limit',
+                        ONAPP_FIELD_TYPE          => 'integer',
+                        ONAPP_FIELD_REQUIRED      => true,
                         ONAPP_FIELD_DEFAULT_VALUE => 0
                     ),
-                    'identifier' => array(
-                        ONAPP_FIELD_MAP => '_identifier',
+                    'identifier'            => array(
+                        ONAPP_FIELD_MAP       => '_identifier',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'network_join_id' => array(
-                        ONAPP_FIELD_MAP => '_network_join_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'network_join_id'       => array(
+                        ONAPP_FIELD_MAP      => '_network_join_id',
+                        ONAPP_FIELD_TYPE     => 'integer',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'virtual_machine_id' => array(
-                        ONAPP_FIELD_MAP => '_virtual_machine_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'virtual_machine_id'    => array(
+                        ONAPP_FIELD_MAP       => '_virtual_machine_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                     'default_firewall_rule' => array(
-                        ONAPP_FIELD_MAP => '_default_firewall_rule',
+                        ONAPP_FIELD_MAP       => '_default_firewall_rule',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                 );
@@ -135,6 +134,7 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 
@@ -151,6 +151,7 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
+                 *
                  * @name network_interfaces
                  * @method GET
                  * @alias   /network_interfaces(.:format)
@@ -158,6 +159,7 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
                  */
                 /**
                  * ROUTE :
+                 *
                  * @name  network_interface
                  * @method GET
                  * @alias    /network_interfaces/:id(.:format)
@@ -165,6 +167,7 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
                  */
                 /**
                  * ROUTE :
+                 *
                  * @name
                  * @method POST
                  * @alias   /network_interfaces(.:format)
@@ -172,6 +175,7 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
                  */
                 /**
                  * ROUTE :
+                 *
                  * @name
                  * @method PUT
                  * @alias  /network_interfaces/:id(.:format)
@@ -179,6 +183,7 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
                  */
                 /**
                  * ROUTE :
+                 *
                  * @name
                  * @method DELETE
                  * @alias   /network_interfaces/:id(.:format)
@@ -231,6 +236,7 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
 
         if( ! is_null( $virtual_machine_id ) ) {
             $this->_virtual_machine_id = $virtual_machine_id;
+
             return parent::getList();
         }
         else {
@@ -281,7 +287,7 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
         $this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
 
         if( ! is_null( $id ) && ! is_null( $virtual_machine_id ) ) {
-            $this->_id                 = $id;
+            $this->_id = $id;
             $this->_virtual_machine_id = $virtual_machine_id;
 
             $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );

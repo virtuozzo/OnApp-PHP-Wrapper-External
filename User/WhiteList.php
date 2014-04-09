@@ -10,7 +10,7 @@
  * @package     OnApp
  * @subpackage  User
  * @author      Yakubskiy Yuriy
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -32,7 +32,6 @@ class OnApp_User_WhiteList extends OnApp {
      * @var string
      */
     var $_tagRoot = 'user_white_list';
-
     /**
      * alias processing the object data
      *
@@ -57,37 +56,37 @@ class OnApp_User_WhiteList extends OnApp {
         switch( $version ) {
             case '2.0':
             case '2.1':
-			case 2.2:
-			case 2.3:
+            case 2.2:
+            case 2.3:
                 $this->fields = array(
-                    'id' => array(
-                        ONAPP_FIELD_MAP => '_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'id'          => array(
+                        ONAPP_FIELD_MAP       => '_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'created_at' => array(
-                        ONAPP_FIELD_MAP => '_created_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'created_at'  => array(
+                        ONAPP_FIELD_MAP       => '_created_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'updated_at' => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'updated_at'  => array(
+                        ONAPP_FIELD_MAP       => '_updated_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'user_id' => array(
-                        ONAPP_FIELD_MAP => '_user_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'user_id'     => array(
+                        ONAPP_FIELD_MAP       => '_user_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'ip' => array(
-                        ONAPP_FIELD_MAP => '_ip',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'ip'          => array(
+                        ONAPP_FIELD_MAP       => '_ip',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                     'description' => array(
-                        ONAPP_FIELD_MAP => '_description',
-                        ONAPP_FIELD_TYPE => 'string',
+                        ONAPP_FIELD_MAP       => '_description',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
 
@@ -95,13 +94,14 @@ class OnApp_User_WhiteList extends OnApp {
                 break;
 
             case 3.0:
-			case 3.1:
+            case 3.1:
             case 3.2:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 
@@ -118,6 +118,7 @@ class OnApp_User_WhiteList extends OnApp {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
+                 *
                  * @name user_user_white_lists
                  * @method GET
                  * @alias   /users/:user_id/user_white_lists(.:format)
@@ -125,6 +126,7 @@ class OnApp_User_WhiteList extends OnApp {
                  */
                 /**
                  * ROUTE :
+                 *
                  * @name user_user_white_list
                  * @method GET
                  * @alias  /users/:user_id/user_white_lists/:id(.:format)
@@ -132,6 +134,7 @@ class OnApp_User_WhiteList extends OnApp {
                  */
                 /**
                  * ROUTE :
+                 *
                  * @name
                  * @method PUT
                  * @alias  /users/:user_id/user_white_lists/:id(.:format)
@@ -139,6 +142,7 @@ class OnApp_User_WhiteList extends OnApp {
                  */
                 /**
                  * ROUTE :
+                 *
                  * @name
                  * @method POST
                  * @alias  /users/:user_id/user_white_lists(.:format)
@@ -146,6 +150,7 @@ class OnApp_User_WhiteList extends OnApp {
                  */
                 /**
                  * ROUTE :
+                 *
                  * @name user_vm_stats
                  * @method DELETE
                  * @alias   /users/:user_id/user_white_lists/:id(.:format)
@@ -242,7 +247,7 @@ class OnApp_User_WhiteList extends OnApp {
         $this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
 
         if( ! is_null( $id ) && ! is_null( $user_id ) ) {
-            $this->_id      = $id;
+            $this->_id = $id;
             $this->_user_id = $user_id;
 
             $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );

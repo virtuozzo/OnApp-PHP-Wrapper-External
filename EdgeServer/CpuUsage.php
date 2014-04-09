@@ -9,7 +9,7 @@
  * @package     OnApp
  * @subpackage  EdgeServer
  * @author      Yakubskiy Yuriy
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -43,6 +43,7 @@ class OnApp_EdgeServer_CpuUsage extends OnApp_VirtualMachine_CpuUsage {
             case ONAPP_GETRESOURCE_LIST:
                 /**
                  * ROUTE :
+                 *
                  * @name cpu_usage_edge_servers
                  * @method GET
                  * @alias   /edge_servers/:id/cpu_usage(.:format)

@@ -9,7 +9,7 @@
  * @package     OnApp
  * @author      Yakubskiy Yuriy
  * @subpackage  CDNResource
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -32,7 +32,6 @@ class OnApp_CDNResource_AvailableEdgeGroup extends OnApp {
      * @var string
      */
     var $_tagRoot = 'edge_group';
-
     /**
      * alias processing the object data
      *
@@ -57,42 +56,43 @@ class OnApp_CDNResource_AvailableEdgeGroup extends OnApp {
         switch( $version ) {
             case '2.3':
                 $this->fields = array(
-                    'label' => array(
-                        ONAPP_FIELD_MAP => '_label',
-                        ONAPP_FIELD_REQUIRED => true,
+                    'label'                => array(
+                        ONAPP_FIELD_MAP           => '_label',
+                        ONAPP_FIELD_REQUIRED      => true,
                         ONAPP_FIELD_DEFAULT_VALUE => ''
                     ),
-                    'created_at' => array(
-                        ONAPP_FIELD_MAP => '_created_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'created_at'           => array(
+                        ONAPP_FIELD_MAP       => '_created_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'updated_at' => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'updated_at'           => array(
+                        ONAPP_FIELD_MAP       => '_updated_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'id' => array(
-                        ONAPP_FIELD_MAP => '_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'id'                   => array(
+                        ONAPP_FIELD_MAP       => '_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                     'edge_group_locations' => array(
-                        ONAPP_FIELD_MAP => '_edge_group_locations',
-                        ONAPP_FIELD_TYPE => 'array',
+                        ONAPP_FIELD_MAP   => '_edge_group_locations',
+                        ONAPP_FIELD_TYPE  => 'array',
                         ONAPP_FIELD_CLASS => 'CDNResource_AvailableEdgeGroup_Location'
                     ),
                 );
                 break;
 
             case 3.0:
-			case 3.1:
+            case 3.1:
             case 3.2:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 

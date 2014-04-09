@@ -8,7 +8,7 @@
  * @category    API wrapper
  * @package     OnApp
  * @author      Yakubskiy Yuriy
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -24,7 +24,6 @@
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_LoadBalancer extends OnApp_VirtualMachine {
-
     /**
      * root tag used in the API request
      *

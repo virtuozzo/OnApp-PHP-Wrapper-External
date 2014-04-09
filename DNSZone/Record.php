@@ -8,7 +8,7 @@
  * @package     OnApp
  * @subpackage  DNSZone
  * @author      Andrew Yatskovets
- * @copyright   (c) 2013 OnApp
+ * @copyright   © 2013 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -23,7 +23,6 @@ class OnApp_DNSZone_Record extends OnApp {
      * @var string
      */
     var $_tagRoot = 'dns_record';
-
     /**
      * alias processing the object data
      *
@@ -51,94 +50,94 @@ class OnApp_DNSZone_Record extends OnApp {
             case 3.1:
             case 3.2:
                 $this->fields = array(
-                    'id' => array(
-                        ONAPP_FIELD_MAP => '_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'id'          => array(
+                        ONAPP_FIELD_MAP       => '_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
                     'dns_zone_id' => array(
-                        ONAPP_FIELD_MAP => '_dns_zone_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                        ONAPP_FIELD_MAP       => '_dns_zone_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'type' => array(
-                        ONAPP_FIELD_MAP => '_type',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'type'        => array(
+                        ONAPP_FIELD_MAP      => '_type',
+                        ONAPP_FIELD_TYPE     => 'string',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'name' => array(
-                        ONAPP_FIELD_MAP => '_name',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'name'        => array(
+                        ONAPP_FIELD_MAP      => '_name',
+                        ONAPP_FIELD_TYPE     => 'string',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'ttl' => array(
-                        ONAPP_FIELD_MAP => '_ttl',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'ttl'         => array(
+                        ONAPP_FIELD_MAP      => '_ttl',
+                        ONAPP_FIELD_TYPE     => 'integer',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'priority' => array(
-                        ONAPP_FIELD_MAP => '_priority',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'priority'    => array(
+                        ONAPP_FIELD_MAP      => '_priority',
+                        ONAPP_FIELD_TYPE     => 'integer',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'hostname' => array(
-                        ONAPP_FIELD_MAP => '_hostname',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'hostname'    => array(
+                        ONAPP_FIELD_MAP      => '_hostname',
+                        ONAPP_FIELD_TYPE     => 'string',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'port' => array(
-                        ONAPP_FIELD_MAP => '_port',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'port'        => array(
+                        ONAPP_FIELD_MAP      => '_port',
+                        ONAPP_FIELD_TYPE     => 'integer',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'weight' => array(
-                        ONAPP_FIELD_MAP => '_weight',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'weight'      => array(
+                        ONAPP_FIELD_MAP      => '_weight',
+                        ONAPP_FIELD_TYPE     => 'integer',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'ip' => array(
-                        ONAPP_FIELD_MAP => '_ip',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'ip'          => array(
+                        ONAPP_FIELD_MAP      => '_ip',
+                        ONAPP_FIELD_TYPE     => 'string',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'txt' => array(
-                        ONAPP_FIELD_MAP => '_txt',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'txt'         => array(
+                        ONAPP_FIELD_MAP      => '_txt',
+                        ONAPP_FIELD_TYPE     => 'string',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'serial' => array(
-                        ONAPP_FIELD_MAP => '_serial',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'serial'      => array(
+                        ONAPP_FIELD_MAP      => '_serial',
+                        ONAPP_FIELD_TYPE     => 'string',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'primaryNs' => array(
-                        ONAPP_FIELD_MAP => '_primaryNs',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'primaryNs'   => array(
+                        ONAPP_FIELD_MAP      => '_primaryNs',
+                        ONAPP_FIELD_TYPE     => 'string',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'retry' => array(
-                        ONAPP_FIELD_MAP => '_retry',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'retry'       => array(
+                        ONAPP_FIELD_MAP      => '_retry',
+                        ONAPP_FIELD_TYPE     => 'integer',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'refresh' => array(
-                        ONAPP_FIELD_MAP => '_refresh',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'refresh'     => array(
+                        ONAPP_FIELD_MAP      => '_refresh',
+                        ONAPP_FIELD_TYPE     => 'integer',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'minimum' => array(
-                        ONAPP_FIELD_MAP => '_minimum',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'minimum'     => array(
+                        ONAPP_FIELD_MAP      => '_minimum',
+                        ONAPP_FIELD_TYPE     => 'integer',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'expire' => array(
-                        ONAPP_FIELD_MAP => '_expire',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'expire'      => array(
+                        ONAPP_FIELD_MAP      => '_expire',
+                        ONAPP_FIELD_TYPE     => 'integer',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'hostmaster' => array(
-                        ONAPP_FIELD_MAP => '_hostmaster',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'hostmaster'  => array(
+                        ONAPP_FIELD_MAP      => '_hostmaster',
+                        ONAPP_FIELD_TYPE     => 'string',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
                 );
@@ -149,6 +148,7 @@ class OnApp_DNSZone_Record extends OnApp {
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 
@@ -183,7 +183,6 @@ class OnApp_DNSZone_Record extends OnApp {
         return $resource;
     }
 
-
     /**
      * Sends an API request to get the Objects. After requesting,
      * unserializes the received response into the array of Objects
@@ -207,6 +206,7 @@ class OnApp_DNSZone_Record extends OnApp {
 
         if( ! is_null( $dns_zone_id ) ) {
             $this->_dns_zone_id = $dns_zone_id;
+
             return parent::getList();
         }
         else {
@@ -252,7 +252,7 @@ class OnApp_DNSZone_Record extends OnApp {
         $this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
 
         if( ! is_null( $id ) && ! is_null( $dns_zone_id ) ) {
-            $this->_id                 = $id;
+            $this->_id = $id;
             $this->_dns_zone_id = $dns_zone_id;
 
             $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
@@ -312,45 +312,47 @@ class OnApp_DNSZone_Record extends OnApp {
             'hostmaster'
         );
 
-        foreach($_unset as $field)
-            $this->fields[$field][ONAPP_FIELD_REQUIRED] = false;
+        foreach( $_unset as $field ) {
+            $this->fields[ $field ][ ONAPP_FIELD_REQUIRED ] = false;
+        }
 
-        switch( $this->_type  ) {
+        switch( $this->_type ) {
             case 'MX':
-                $this->fields['priority'][ONAPP_FIELD_REQUIRED] =
-                $this->fields['hostname'][ONAPP_FIELD_REQUIRED] =
+                $this->fields[ 'priority' ][ ONAPP_FIELD_REQUIRED ] =
+                $this->fields[ 'hostname' ][ ONAPP_FIELD_REQUIRED ] =
                     true;
                 break;
             case 'SRV':
-                $this->fields['port'][ONAPP_FIELD_REQUIRED] =
-                $this->fields['weight'][ONAPP_FIELD_REQUIRED] =
-                $this->fields['priority'][ONAPP_FIELD_REQUIRED] =
-                $this->fields['hostname'][ONAPP_FIELD_REQUIRED] =
+                $this->fields[ 'port' ][ ONAPP_FIELD_REQUIRED ] =
+                $this->fields[ 'weight' ][ ONAPP_FIELD_REQUIRED ] =
+                $this->fields[ 'priority' ][ ONAPP_FIELD_REQUIRED ] =
+                $this->fields[ 'hostname' ][ ONAPP_FIELD_REQUIRED ] =
                     true;
                 break;
             case 'A':
             case 'AAAA':
-                $this->fields['ip'][ONAPP_FIELD_REQUIRED] = true;
+                $this->fields[ 'ip' ][ ONAPP_FIELD_REQUIRED ] = true;
                 break;
             case 'CNAME':
             case 'NS':
-                $this->fields['hostname'][ONAPP_FIELD_REQUIRED] = true;
+                $this->fields[ 'hostname' ][ ONAPP_FIELD_REQUIRED ] = true;
                 break;
             case 'TXT':
-                $this->fields['txt'][ONAPP_FIELD_REQUIRED] = true;
+                $this->fields[ 'txt' ][ ONAPP_FIELD_REQUIRED ] = true;
                 break;
             case 'SOA':
-                trigger_error('Cannot save SOA record', E_USER_ERROR);
+                trigger_error( 'Cannot save SOA record', E_USER_ERROR );
                 break;
             default:
-                trigger_error(sprintf("Cannot save '%s' record", $this->_type), E_USER_ERROR);
+                trigger_error( sprintf( "Cannot save '%s' record", $this->_type ), E_USER_ERROR );
                 break;
         }
 
         if( isset( $this->_id ) ) {
             $obj = $this->_edit();
             $this->load();
-        } else {
+        }
+        else {
             return parent::save();
         }
 
@@ -358,25 +360,26 @@ class OnApp_DNSZone_Record extends OnApp {
     }
 
     protected function sendRequest( $method, $data = null ) {
-        $result = parent::sendRequest( $method, $data);
+        $result = parent::sendRequest( $method, $data );
 
-        $response_body = $result['response_body'];
+        $response_body = $result[ 'response_body' ];
 
-        $data = json_decode($response_body, true);
+        $data = json_decode( $response_body, true );
 
-        if( isset( $data['dns_zone'] ) ) {
-            $records = $data['dns_zone']['records'];
+        if( isset( $data[ 'dns_zone' ] ) ) {
+            $records = $data[ 'dns_zone' ][ 'records' ];
 
             $dns_records = array();
 
-            foreach(array('MX', 'SRV', 'A', 'CNAME', 'AAAA', 'TXT', 'NS', 'SOA') as $type)
-                if(array_key_exists($type, $records))
-                    $dns_records = array_merge($dns_records, $records[$type]);
+            foreach( array( 'MX', 'SRV', 'A', 'CNAME', 'AAAA', 'TXT', 'NS', 'SOA' ) as $type ) {
+                if( array_key_exists( $type, $records ) ) {
+                    $dns_records = array_merge( $dns_records, $records[ $type ] );
+                }
+            }
 
-            $result['response_body'] = json_encode( $dns_records );
+            $result[ 'response_body' ] = json_encode( $dns_records );
         };
 
         return $result;
     }
-
 }

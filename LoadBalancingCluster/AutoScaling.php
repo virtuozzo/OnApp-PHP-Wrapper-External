@@ -6,7 +6,7 @@
  * @package     OnApp
  * @subpackage  LoadBalancingCluster
  * @author      Yakubskiy Yuriy
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -37,47 +37,48 @@ class OnApp_LoadBalancingCluster_AutoScaling extends OnApp {
             case '2.3':
                 $this->fields = array(
                     'for_minutes' => array(
-                        ONAPP_FIELD_MAP => '_for_minutes',
+                        ONAPP_FIELD_MAP  => '_for_minutes',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'enabled' => array(
-                        ONAPP_FIELD_MAP => '_enabled',
+                    'enabled'     => array(
+                        ONAPP_FIELD_MAP  => '_enabled',
                         ONAPP_FIELD_TYPE => 'boolean',
                     ),
-                    'created_at' => array(
-                        ONAPP_FIELD_MAP => '_created_at',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'created_at'  => array(
+                        ONAPP_FIELD_MAP       => '_created_at',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'updated_at' => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'updated_at'  => array(
+                        ONAPP_FIELD_MAP       => '_updated_at',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'id' => array(
-                        ONAPP_FIELD_MAP => '_id',
+                    'id'          => array(
+                        ONAPP_FIELD_MAP       => '_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
+                        ONAPP_FIELD_READ_ONLY => true,
+                    ),
+                    'units'       => array(
+                        ONAPP_FIELD_MAP  => '_units',
                         ONAPP_FIELD_TYPE => 'integer',
-                        ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'units' => array(
-                        ONAPP_FIELD_MAP => '_units',
-                        ONAPP_FIELD_TYPE => 'integer',
-                    ),
-                    'value' => array(
-                        ONAPP_FIELD_MAP => '_value',
+                    'value'       => array(
+                        ONAPP_FIELD_MAP  => '_value',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
                 );
                 break;
 
             case 3.0:
-			case 3.1:
+            case 3.1:
             case 3.2:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 }

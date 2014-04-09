@@ -8,7 +8,7 @@
  * @package     OnApp
  * @subpackage  VirtualMachine
  * @author      Vitaliy Kondratyuk
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -28,7 +28,6 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
      * @var string
      */
     var $_tagRoot = 'ip_address_join';
-
     /**
      * alias processing the object data
      *
@@ -54,50 +53,50 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
             case '2.0':
             case '2.1':
                 $this->fields = array(
-                    'id' => array(
-                        ONAPP_FIELD_MAP => '_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'id'                   => array(
+                        ONAPP_FIELD_MAP       => '_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'created_at' => array(
-                        ONAPP_FIELD_MAP => '_created_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'created_at'           => array(
+                        ONAPP_FIELD_MAP       => '_created_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'updated_at' => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'updated_at'           => array(
+                        ONAPP_FIELD_MAP       => '_updated_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                     'network_interface_id' => array(
-                        ONAPP_FIELD_MAP => '_network_interface_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                        ONAPP_FIELD_MAP      => '_network_interface_id',
+                        ONAPP_FIELD_TYPE     => 'integer',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'ip_address_id' => array(
-                        ONAPP_FIELD_MAP => '_ip_address_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'ip_address_id'        => array(
+                        ONAPP_FIELD_MAP      => '_ip_address_id',
+                        ONAPP_FIELD_TYPE     => 'integer',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'ip_address' => array(
-                        ONAPP_FIELD_MAP => '_ip_address',
+                    'ip_address'           => array(
+                        ONAPP_FIELD_MAP       => '_ip_address',
                         ONAPP_FIELD_READ_ONLY => true,
-                        ONAPP_FIELD_CLASS => 'VirtualMachine_IpAddress',
+                        ONAPP_FIELD_CLASS     => 'VirtualMachine_IpAddress',
                     ),
                 );
                 break;
 
             case 2.2:
-                $this->fields                         = $this->initFields( 2.1 );
+                $this->fields = $this->initFields( 2.1 );
                 $this->fields[ 'virtual_machine_id' ] = array(
-                    ONAPP_FIELD_MAP => 'virtual_machine_id',
+                    ONAPP_FIELD_MAP  => 'virtual_machine_id',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
                 break;
 
             case 2.3:
                 $this->fields = $this->initFields( 2.2 );
-                $fields       = array(
+                $fields = array(
                     'virtual_machine_id',
                 );
                 $this->unsetFields( $fields );
@@ -111,6 +110,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 
@@ -127,6 +127,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
+                 *
                  * @name virtual_machine_ip_address_joins
                  * @method GET
                  * @alias   /virtual_machines/:virtual_machine_id/ip_addresses(.:format)
@@ -134,6 +135,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
                  */
                 /**
                  * ROUTE :
+                 *
                  * @name virtual_machine_ip_address_join
                  * @method GET
                  * @alias    /virtual_machines/:virtual_machine_id/ip_addresses/:id(.:format)
@@ -141,6 +143,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
                  */
                 /**
                  * ROUTE :
+                 *
                  * @name
                  * @method POST
                  * @alias    /virtual_machines/:virtual_machine_id/ip_addresses(.:format)
@@ -148,6 +151,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
                  */
                 /**
                  * ROUTE :
+                 *
                  * @name
                  * @method DELETE
                  * @alias   /virtual_machines/:virtual_machine_id/ip_addresses/:id(.:format)
@@ -238,7 +242,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
         $this->logger->add( "load: Load class ( id => '$id')." );
 
         if( ! is_null( $id ) && ! is_null( $virtual_machine_id ) ) {
-            $this->_id                 = $id;
+            $this->_id = $id;
             $this->_virtual_machine_id = $virtual_machine_id;
 
             $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );

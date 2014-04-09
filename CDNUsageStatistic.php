@@ -8,7 +8,7 @@
  * @category    API wrapper
  * @package     OnApp
  * @author      Yakubskiy Yuriy
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -31,7 +31,6 @@ class OnApp_CDNUsageStatistic extends OnApp {
      * @var string
      */
     var $_tagRoot = 'user_stat';
-
     /**
      * alias processing the object data
      *
@@ -56,25 +55,25 @@ class OnApp_CDNUsageStatistic extends OnApp {
         switch( $version ) {
             case '2.3':
                 $this->fields = array(
-                    'target_id' => array(
-                        ONAPP_FIELD_MAP => '_target_id',
+                    'target_id'  => array(
+                        ONAPP_FIELD_MAP  => '_target_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
                     'not_cached' => array(
-                        ONAPP_FIELD_MAP => '_non_cached',
+                        ONAPP_FIELD_MAP  => '_non_cached',
                         ONAPP_FIELD_TYPE => 'float',
                     ),
                     'updated_at' => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                        ONAPP_FIELD_MAP       => '_updated_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'user_id' => array(
-                        ONAPP_FIELD_MAP => '_user_id',
+                    'user_id'    => array(
+                        ONAPP_FIELD_MAP  => '_user_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'cached' => array(
-                        ONAPP_FIELD_MAP => '_cached',
+                    'cached'     => array(
+                        ONAPP_FIELD_MAP  => '_cached',
                         ONAPP_FIELD_TYPE => 'float',
 
                     ),
@@ -82,13 +81,14 @@ class OnApp_CDNUsageStatistic extends OnApp {
                 break;
 
             case 3.0:
-			case 3.1:
+            case 3.1:
             case 3.2:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 

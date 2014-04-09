@@ -8,7 +8,7 @@
  * @package     OnApp
  * @subpackage  BillingPlan
  * @author      Andrew Yatskovets
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -32,10 +32,10 @@ class OnApp_BillingPlan_ResourceBackup extends OnApp_BillingPlan_BaseResource {
         parent::initFields( $version, __CLASS__ );
 
         $this->fields[ 'resource_class' ] = array(
-            ONAPP_FIELD_MAP => '_resource_class',
-            ONAPP_FIELD_TYPE => 'string',
-            ONAPP_FIELD_REQUIRED => true,
-            ONAPP_FIELD_READ_ONLY => true,
+            ONAPP_FIELD_MAP           => '_resource_class',
+            ONAPP_FIELD_TYPE          => 'string',
+            ONAPP_FIELD_REQUIRED      => true,
+            ONAPP_FIELD_READ_ONLY     => true,
             ONAPP_FIELD_DEFAULT_VALUE => 'Resource::Backup'
         );
 

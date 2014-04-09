@@ -8,7 +8,7 @@
  * @package     OnApp
  * @subpackage  CDNResource
  * @author      Yakubskiy Yuriy
- * @copyright   (c) 2012 OnApp
+ * @copyright   © 2012 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -28,7 +28,6 @@ class OnApp_CDNResource_Bandwidth extends OnApp {
      * @var string
      */
     var $_tagRoot = 'stat';
-
     /**
      * alias processing the object data
      *
@@ -58,18 +57,18 @@ class OnApp_CDNResource_Bandwidth extends OnApp {
             case '2.3':
                 $this->fields = array(
                     'non_cached' => array(
-                        ONAPP_FIELD_MAP => '_non_cached',
-                        ONAPP_FIELD_TYPE => 'string',
+                        ONAPP_FIELD_MAP       => '_non_cached',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'date' => array(
-                        ONAPP_FIELD_MAP => '_date',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'date'       => array(
+                        ONAPP_FIELD_MAP       => '_date',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'cached' => array(
-                        ONAPP_FIELD_MAP => '_cached',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'cached'     => array(
+                        ONAPP_FIELD_MAP       => '_cached',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                 );
@@ -77,13 +76,14 @@ class OnApp_CDNResource_Bandwidth extends OnApp {
                 break;
 
             case 3.0:
-			case 3.1:
+            case 3.1:
             case 3.2:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 

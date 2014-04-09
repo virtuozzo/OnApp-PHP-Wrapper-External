@@ -9,7 +9,7 @@
  * @category    API wrapper
  * @package     OnApp
  * @author      Andrew Yatskovets
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -29,7 +29,6 @@ class OnApp_Console extends OnApp {
      * @var string
      */
     var $_tagRoot = 'remote_access_session';
-
     /**
      * alias processing the object data
      *
@@ -54,42 +53,42 @@ class OnApp_Console extends OnApp {
         switch( $version ) {
             case '2.0':
             case '2.1':
-			case 2.2:
-			case 2.3:
+            case 2.2:
+            case 2.3:
                 $this->fields = array(
-                    'id' => array(
-                        ONAPP_FIELD_MAP => '_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'id'                 => array(
+                        ONAPP_FIELD_MAP       => '_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'called_in_at' => array(
-                        ONAPP_FIELD_MAP => '_called_in_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'called_in_at'       => array(
+                        ONAPP_FIELD_MAP       => '_called_in_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'created_at' => array(
-                        ONAPP_FIELD_MAP => '_created_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'created_at'         => array(
+                        ONAPP_FIELD_MAP       => '_created_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'port' => array(
-                        ONAPP_FIELD_MAP => '_port',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'port'               => array(
+                        ONAPP_FIELD_MAP       => '_port',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'updated_at' => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'updated_at'         => array(
+                        ONAPP_FIELD_MAP       => '_updated_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
                     'virtual_machine_id' => array(
-                        ONAPP_FIELD_MAP => '_virtual_machine_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                        ONAPP_FIELD_MAP       => '_virtual_machine_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'remote_key' => array(
-                        ONAPP_FIELD_MAP => '_remote_key',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'remote_key'         => array(
+                        ONAPP_FIELD_MAP       => '_remote_key',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                 );
@@ -103,6 +102,7 @@ class OnApp_Console extends OnApp {
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 
@@ -125,6 +125,7 @@ class OnApp_Console extends OnApp {
             case ONAPP_GETRESOURCE_LOAD:
                 /**
                  * ROUTE :
+                 *
                  * @name
                  * @method GET
                  * @alias  /console_remote/:remote_key(.:format)

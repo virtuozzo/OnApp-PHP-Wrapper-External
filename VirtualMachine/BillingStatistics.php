@@ -10,7 +10,7 @@
  * @package     OnApp
  * @subpackage  VirtualMachine
  * @author      Vitaliy Kondratyuk
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -30,7 +30,6 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
      * @var string
      */
     var $_tagRoot = 'vm_stats';
-
     /**
      * alias processing the object data
      *
@@ -59,49 +58,49 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
             case '2.3':
             case '3.0':
                 $this->fields = array(
-                    'created_at' => array(
-                        ONAPP_FIELD_MAP => '_created_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'created_at'         => array(
+                        ONAPP_FIELD_MAP       => '_created_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'cost' => array(
-                        ONAPP_FIELD_MAP => '_cost',
-                        ONAPP_FIELD_TYPE => 'float',
+                    'cost'               => array(
+                        ONAPP_FIELD_MAP       => '_cost',
+                        ONAPP_FIELD_TYPE      => 'float',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'updated_at' => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'updated_at'         => array(
+                        ONAPP_FIELD_MAP       => '_updated_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'stat_time' => array(
-                        ONAPP_FIELD_MAP => '_stat_time',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'stat_time'          => array(
+                        ONAPP_FIELD_MAP       => '_stat_time',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'id' => array(
-                        ONAPP_FIELD_MAP => '_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'id'                 => array(
+                        ONAPP_FIELD_MAP       => '_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'user_id' => array(
-                        ONAPP_FIELD_MAP => '_user_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'user_id'            => array(
+                        ONAPP_FIELD_MAP       => '_user_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                     'vm_billing_stat_id' => array(
-                        ONAPP_FIELD_MAP => '_vm_billing_stat_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                        ONAPP_FIELD_MAP       => '_vm_billing_stat_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                     'virtual_machine_id' => array(
-                        ONAPP_FIELD_MAP => '_virtual_machine_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                        ONAPP_FIELD_MAP       => '_virtual_machine_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'billing_stats' => array(
-                        ONAPP_FIELD_MAP => '_billing_stats',
-                        ONAPP_FIELD_TYPE => 'string',
+                    'billing_stats'      => array(
+                        ONAPP_FIELD_MAP       => '_billing_stats',
+                        ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     )
                 );
@@ -111,30 +110,30 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
             case 3.2:
                 $this->fields = $this->initFields( 3.0 );
 
-                unset($this->fields['cost']);
-                unset($this->fields['billing_stats']);
+                unset( $this->fields[ 'cost' ] );
+                unset( $this->fields[ 'billing_stats' ] );
 
-                $this->fields['currency_code'] = array(
-                    ONAPP_FIELD_MAP => '_currency_code',
-                    ONAPP_FIELD_TYPE => 'string',
+                $this->fields[ 'currency_code' ] = array(
+                    ONAPP_FIELD_MAP       => '_currency_code',
+                    ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
 
-                $this->fields['total_cost'] = array(
-                    ONAPP_FIELD_MAP => '_total_cost',
-                    ONAPP_FIELD_TYPE => 'string',
+                $this->fields[ 'total_cost' ] = array(
+                    ONAPP_FIELD_MAP       => '_total_cost',
+                    ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
 
-                $this->fields['vm_resources_cost'] = array(
-                    ONAPP_FIELD_MAP => '_vm_resources_cost',
-                    ONAPP_FIELD_TYPE => 'string',
+                $this->fields[ 'vm_resources_cost' ] = array(
+                    ONAPP_FIELD_MAP       => '_vm_resources_cost',
+                    ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
 
-                $this->fields['usage_cost'] = array(
-                    ONAPP_FIELD_MAP => '_usage_cost',
-                    ONAPP_FIELD_TYPE => 'string',
+                $this->fields[ 'usage_cost' ] = array(
+                    ONAPP_FIELD_MAP       => '_usage_cost',
+                    ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
 
@@ -142,6 +141,7 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 
@@ -158,6 +158,7 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
+                 *
                  * @name virtual_machine_vm_stats
                  * @method GET
                  * @alias  /virtual_machines/:virtual_machine_id/vm_stats(.:format)

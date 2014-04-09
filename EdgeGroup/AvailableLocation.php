@@ -9,7 +9,7 @@
  * @package     OnApp
  * @subpackage  EdgeGroup
  * @author      Yakubskiy Yuriy
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -24,7 +24,6 @@
  *
  */
 class OnApp_EdgeGroup_AvailableLocation extends Location {
-
     /**
      * root tag used in the API request
      *

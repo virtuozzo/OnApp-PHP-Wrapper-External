@@ -7,7 +7,7 @@
  * @category    API wrapper
  * @package     OnApp
  * @author      Andrew Yatskovets
- * @copyright   (c) 2013 OnApp
+ * @copyright   © 2013 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -29,7 +29,6 @@ class OnApp_DNSZone extends OnApp {
      * @var string
      */
     var $_tagRoot = 'dns_zone';
-
     /**
      * alias processing the object data
      *
@@ -62,46 +61,46 @@ class OnApp_DNSZone extends OnApp {
     public function initFields( $version = null, $className = '' ) {
         switch( $version ) {
             case 3.0:
-			case 3.1:
+            case 3.1:
             case 3.2:
                 $this->fields = array(
-                    'id' => array(
-                        ONAPP_FIELD_MAP => '_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'id'            => array(
+                        ONAPP_FIELD_MAP       => '_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'name' => array(
-                        ONAPP_FIELD_MAP => '_name',
-                        ONAPP_FIELD_REQUIRED => true,
-                        ONAPP_FIELD_TYPE => 'string',
+                    'name'          => array(
+                        ONAPP_FIELD_MAP           => '_name',
+                        ONAPP_FIELD_REQUIRED      => true,
+                        ONAPP_FIELD_TYPE          => 'string',
                         ONAPP_FIELD_DEFAULT_VALUE => ''
                     ),
-                    'created_at' => array(
-                        ONAPP_FIELD_MAP => '_created_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'created_at'    => array(
+                        ONAPP_FIELD_MAP       => '_created_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'updated_at' => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
-                        ONAPP_FIELD_TYPE => 'datetime',
+                    'updated_at'    => array(
+                        ONAPP_FIELD_MAP       => '_updated_at',
+                        ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'user_id' => array(
-                        ONAPP_FIELD_MAP => '_user_id',
-                        ONAPP_FIELD_TYPE => 'integer',
+                    'user_id'       => array(
+                        ONAPP_FIELD_MAP       => '_user_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                     'auto_populate' => array(
-                        ONAPP_FIELD_MAP => '_auto_populate',
-                        ONAPP_FIELD_TYPE => 'integer',
-                        ONAPP_FIELD_REQUIRED => true,
+                        ONAPP_FIELD_MAP           => '_auto_populate',
+                        ONAPP_FIELD_TYPE          => 'integer',
+                        ONAPP_FIELD_REQUIRED      => true,
                         ONAPP_FIELD_DEFAULT_VALUE => 0
                     )
                 );
                 break;
 
             default:
-                $this->fields = $this->initFields('3.0');
+                $this->fields = $this->initFields( '3.0' );
                 break;
         }
     }

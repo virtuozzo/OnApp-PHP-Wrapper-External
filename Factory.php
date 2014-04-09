@@ -1,4 +1,5 @@
 <?php
+
 /**
  * API Factory Wrapper for OnApp
  *
@@ -8,7 +9,7 @@
  * @category    Factory
  * @package     OnApp
  * @author      Andrew Yatskovets
- * @copyright   (c) 2011 OnApp
+ * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  */
 class OnApp_Factory extends OnApp {
@@ -45,8 +46,9 @@ class OnApp_Factory extends OnApp {
         $result->logger->setTimezone();
         $result->version = $this->getAPIVersion();
         $result->options = $this->options;
-        $result->_ch     = $this->_ch;
+        $result->_ch = $this->_ch;
         $result->initFields( $this->getAPIVersion() );
+
         return $result;
     }
 }
