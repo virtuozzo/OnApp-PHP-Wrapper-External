@@ -45,6 +45,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
      * @var string
      */
     var $_tagRoot = 'backup';
+    
     /**
      * alias processing the object data
      *
