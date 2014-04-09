@@ -75,6 +75,7 @@ class OnApp_User_MonthlyBill extends OnApp {
             case 3.0:
             case 3.1:
             case 3.2:
+            case 3.3:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }

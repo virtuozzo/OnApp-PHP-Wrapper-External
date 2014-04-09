@@ -41,6 +41,7 @@ class OnApp_CDNResource_Instructions extends OnApp {
         switch( $version ) {
             case 3.1:
             case 3.2:
+            case 3.3:
                 $this->fields = array(
                     'cdn_hostname'     => array(
                         ONAPP_FIELD_MAP           => '_cdn_hostname',
