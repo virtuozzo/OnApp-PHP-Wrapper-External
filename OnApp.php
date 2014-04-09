@@ -1595,6 +1595,7 @@ class OnApp {
     public function __construct() {
         $this->options = $this->defaultOptions;
         $this->logger = new OnApp_Helper_Logger;
+        $this->className = get_called_class();
     }
 
     /**
