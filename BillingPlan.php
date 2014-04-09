@@ -5,21 +5,12 @@
  * Billing Plans are created to set prices for the resources so that users know how
  * much they will be charged per unit.
  *
-<<<<<<< HEAD
- * @category	API WRAPPER
- * @package		OnApp
- * @author		Lev Bartashevsky
- * @copyright	(c) 2011 OnApp
- * @link		http://www.onapp.com/
- * @see			OnApp
-=======
  * @category    API wrapper
  * @package     OnApp
  * @author      Lev Bartashevsky
  * @copyright   (c) 2011 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
->>>>>>> 3.0.0
  */
 
 /**
@@ -35,19 +26,11 @@ define( 'ONAPP_GETRESOURCE_CREATE_COPY', 'copy' );
 /**
  * Managing Billing Plans
  *
-<<<<<<< HEAD
- * The ONAPP_BillingPlan class represents the billing plans. The ONAPP class is the parent of the BillingPlan class.
- *
- * The ONAPP_BillingPlan class uses the following basic methods:
- * {@link load}, {@link save}, {@link delete}, and {@link getList}.
- *
-=======
  * The OnApp_BillingPlan class represents the billing plans. The OnApp class is the parent of the BillingPlan class.
  *
  * The OnApp_BillingPlan class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
->>>>>>> 3.0.0
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
 class OnApp_BillingPlan extends OnApp {
@@ -73,20 +56,17 @@ class OnApp_BillingPlan extends OnApp {
 	/**
 	 * API Fields description
 	 *
-<<<<<<< HEAD
-	 * @param string|float $version OnApp API version
-	 * @param string $className current class' name
-=======
 	 * @param string|float $version   OnApp API version
 	 * @param string       $className current class' name
 	 *
->>>>>>> 3.0.0
 	 * @return array
 	 */
 	public function initFields( $version = null, $className = '' ) {
 		switch( $version ) {
-			case '2.0':
-			case '2.1':
+			case 2.0:
+			case 2.1:
+			case 2.2:
+			case 2.3:
 				$this->fields = array(
 					'label' => array(
 						ONAPP_FIELD_MAP => '_label',
@@ -150,13 +130,20 @@ class OnApp_BillingPlan extends OnApp {
 				);
 				break;
 
-			case 2.2:
-			case 2.3:
-				$this->fields = $this->initFields( 2.1 );
-				break;
-
 			case 3.0:
 				$this->fields = $this->initFields( 2.3 );
+				break;
+
+			case 3.1:
+            case 3.2:
+				$this->fields = $this->initFields( 2.3 );
+				$this->fields[ 'default_base_resources' ] = array(
+					ONAPP_FIELD_MAP  => 'default_base_resources',
+					//ONAPP_FIELD_TYPE      => 'array',
+					ONAPP_FIELD_TYPE      => 'string',
+					ONAPP_FIELD_READ_ONLY => true,
+					ONAPP_FIELD_CLASS     => 'BillingPlan_BaseResource',
+				);
 				break;
 		}
 
@@ -231,7 +218,7 @@ class OnApp_BillingPlan extends OnApp {
 	}
 
 	function users() {
-		$this->logger->add( "getList: Get Users list." );
+		$this->logger->add( 'getList: Get Users list.' );
 
 		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_GETLIST_USERS ) );
 
@@ -260,11 +247,11 @@ class OnApp_BillingPlan extends OnApp {
 	}
 
 	function create_copy() {
-		$this->logger->add( "getList: Create Billing plan copy" );
+		$this->logger->add( 'getList: Create Billing plan copy' );
 
 		$this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_CREATE_COPY ) );
 
-		$data = "<billing_plan><label>TEST</label></billing_plan>";
+		$data = '';
 
 		$response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST, $data );
 

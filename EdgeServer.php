@@ -25,21 +25,21 @@
  */
 class OnApp_EdgeServer extends OnApp_VirtualMachine {
 
-	/**
-	 * root tag used in the API request
-	 *
-	 * @var string
-	 */
-	var $_tagRoot = 'edge_server';
-	/**
-	 * alias processing the object data
-	 *
-	 * @var string
-	 */
-	var $_resource = 'edge_servers';
+    /**
+     * root tag used in the API request
+     *
+     * @var string
+     */
+    var $_tagRoot = 'edge_server';
+    /**
+     * alias processing the object data
+     *
+     * @var string
+     */
+    var $_resource = 'edge_servers';
 
-	public function __construct() {
-		parent::__construct();
-		$this->className = __CLASS__;
-	}
+    public function __construct() {
+        parent::__construct();
+        $this->className = __CLASS__;
+    }
 }

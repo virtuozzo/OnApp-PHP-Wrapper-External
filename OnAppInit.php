@@ -29,9 +29,9 @@ if( ! defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
 		$path = explode( '_', $path );
 		$path = ONAPP_WRAPPER_ROOT_DIR . implode( DIRECTORY_SEPARATOR, $path ) . '.php';
 
-		if(file_exists( $path ) ) {
+		if( file_exists( $path ) ) {
 			require $path;
-	
+
 			if( class_exists( $className ) ) {
 				return true;
 			}
