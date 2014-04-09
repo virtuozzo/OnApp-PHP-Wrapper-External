@@ -10,6 +10,14 @@
  */
 if( ! defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
     /**
+     * Check PHP version
+     * PHP 5.3+ is required
+     */
+    if( ( PHP_MAJOR_VERSION < 5 ) || ( PHP_MAJOR_VERSION == 5 && PHP_MINOR_VERSION < 3 ) ) {
+        exit( 'OnApp wrapper error: PHP 5.3+ is required. You have PHP ' . PHP_VERSION . PHP_EOL );
+    }
+
+    /**
      * Specify the wrapper root dir
      */
     define( 'ONAPP_WRAPPER_ROOT_DIR', dirname( __FILE__ ) . DIRECTORY_SEPARATOR );
