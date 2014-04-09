@@ -45,7 +45,6 @@ class OnApp_VirtualMachine_Backup extends OnApp {
      * @var string
      */
     var $_tagRoot = 'backup';
-
     /**
      * alias processing the object data
      *
@@ -206,8 +205,8 @@ class OnApp_VirtualMachine_Backup extends OnApp {
                  *
                  * @name virtual_machine_backups
                  * @method GET
-                 * @alias   /virtual_machines/:virtual_machine_id/backups(.:format)
-                 * @format  {:controller=>"backups", :action=>"index"}
+                 * @alias    /virtual_machines/:virtual_machine_id/backups(.:format)
+                 * @format    {:controller=>"backups", :action=>"index"}
                  */
                 if( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
                     $this->logger->error(
@@ -231,8 +230,8 @@ class OnApp_VirtualMachine_Backup extends OnApp {
                  *
                  * @name
                  * @method POST
-                 * @alias   /virtual_machines/:virtual_machine_id/backups(.:format)
-                 * @format  {:controller=>"backups", :action=>"create"}
+                 * @alias    /virtual_machines/:virtual_machine_id/backups(.:format)
+                 * @format    {:controller=>"backups", :action=>"create"}
                  */
                 if( is_null( $this->_disk_id ) && is_null( $this->_obj->_disk_id ) ) {
                     $this->logger->error(
@@ -268,16 +267,16 @@ class OnApp_VirtualMachine_Backup extends OnApp {
                  *
                  * @name backup
                  * @method GET
-                 * @alias   /backups/:id(.:format)
-                 * @format  {:controller=>"backups", :action=>"show"}
+                 * @alias    /backups/:id(.:format)
+                 * @format    {:controller=>"backups", :action=>"show"}
                  */
                 /**
                  * ROUTE :
                  *
                  * @name
                  * @method DELETE
-                 * @alias    /backups/:id(.:format)
-                 * @format   {:controller=>"backups", :action=>"destroy"}
+                 * @alias     /backups/:id(.:format)
+                 * @format     {:controller=>"backups", :action=>"destroy"}
                  */
                 if( is_null( $this->_id ) && is_null( $this->_obj->_id ) ) {
                     $this->logger->error(
@@ -300,8 +299,8 @@ class OnApp_VirtualMachine_Backup extends OnApp {
                  *
                  * @name convert_backup
                  * @method GET
-                 * @alias    /backups/:id/convert(.:format)
-                 * @format   {:controller=>"backups", :action=>"convert"}
+                 * @alias     /backups/:id/convert(.:format)
+                 * @format     {:controller=>"backups", :action=>"convert"}
                  */
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/convert';
                 break;
@@ -312,8 +311,8 @@ class OnApp_VirtualMachine_Backup extends OnApp {
                  *
                  * @name restore_backup
                  * @method POST
-                 * @alias     /backups/:id/restore(.:format)
-                 * @format    {:controller=>"backups", :action=>"restore"}
+                 * @alias      /backups/:id/restore(.:format)
+                 * @format      {:controller=>"backups", :action=>"restore"}
                  */
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/restore';
                 break;
@@ -420,7 +419,6 @@ class OnApp_VirtualMachine_Backup extends OnApp {
         $this->fields = $template->getClassFields();
         $this->sendPost( ONAPP_GETRESOURCE_BACKUP_CONVERT, $data );
     }
-
 
     /**
      * Restore backup
