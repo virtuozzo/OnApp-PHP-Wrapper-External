@@ -324,7 +324,6 @@ class OnApp {
         ONAPP_OPTION_API_CONTENT,
         ONAPP_OPTION_DEBUG_MODE
     );
-
     /**
      * Default options used in the class to create API requests and receive responses,
      * as well as serialize and unserialize objects.
@@ -334,24 +333,18 @@ class OnApp {
      */
     private $defaultOptions = array(
         // cURL proxy
-        ONAPP_OPTION_CURL_PROXY => '',
-
+        ONAPP_OPTION_CURL_PROXY  => '',
         // cURL url
-        ONAPP_OPTION_CURL_URL => '',
-
+        ONAPP_OPTION_CURL_URL    => '',
         // API request and response charset
         ONAPP_OPTION_API_CHARSET => 'charset=utf-8',
-
         // API request and response type
-        ONAPP_OPTION_API_TYPE => 'json',
-
+        ONAPP_OPTION_API_TYPE    => 'json',
         // API request and response content
         ONAPP_OPTION_API_CONTENT => 'application/json',
-
         // Debug mode
-        ONAPP_OPTION_DEBUG_MODE => false,
+        ONAPP_OPTION_DEBUG_MODE  => false,
     );
-
     /**
      * The array of the options used to create API requests and receive responses,
      * as well as serialize and unserialize objects in the class
@@ -385,7 +378,6 @@ class OnApp {
      * @var    array
      */
     var $options = array();
-
     /**
      * Object cURL
      * PHP supports libcurl, a library created by Daniel Stenberg,
@@ -398,7 +390,6 @@ class OnApp {
      * @var    cURL
      */
     var $_ch;
-
     /**
      * Variable storing the data loaded by the API request. The data is static and cannot be changed by the class setters
      *
@@ -406,7 +397,6 @@ class OnApp {
      * @var    object
      */
     var $_obj;
-
     /**
      * cURL Object alias used as the basic alias to the load, save, delete and getList methods
      *
@@ -414,40 +404,34 @@ class OnApp {
      * @var    string
      */
     var $_resource = null;
-
     /**
      * @access private
      * @var    string
      */
     var $_tagRoot = null;
-
     /**
      * @access private
      * @var    array
      */
     var $_tagRequired = null;
-
     /**
      * @access private
      * @var    boolean
      * @todo   move in to getter an setter
      */
     var $_is_auth = false;
-
     /**
      * @access private
      * @var    boolean
      * @todo   move in to getter an setter
      */
     var $_is_changed = false;
-
     /**
      * @access private
      * @var    boolean
      * @todo   move in to getter an setter
      */
     var $_is_deleted = false;
-
     /**
      * Return OnApp version
      *
@@ -455,7 +439,6 @@ class OnApp {
      * @var    sting
      */
     protected $version;
-
     /**
      * Return OnApp release
      *
@@ -463,7 +446,6 @@ class OnApp {
      * @var       sting
      */
     var $_release;
-
     /**
      * Return OnApp fields array mapping
      *
@@ -471,7 +453,6 @@ class OnApp {
      * @var    array
      */
     protected $fields;
-
     /**
      * Holder for storing properties that were setted via magic setter
      *
@@ -479,25 +460,21 @@ class OnApp {
      * @access  protected
      */
     protected $dynamicFields;
-
     /**
      * The Object Logger used to log the processes in the basic and inherited classes
      * It is possible to use the debug add error log methods
      */
     public $logger = null;
-
     /**
      * Variable for error handling
      *
      * @var    string
      */
     protected $errors;
-
     /**
      * @var string current class' name
      */
     protected $className;
-
     /**
      *
      *
@@ -688,7 +665,7 @@ class OnApp {
 
         $response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-		if( $response[ 'info' ][ 'http_code' ] == '200' ) {
+        if( $response[ 'info' ][ 'http_code' ] == '200' ) {
             $this->setAPIVersion( $response[ 'response_body' ] );
 
             if( $this->getClassName() != 'OnApp' ) {
@@ -711,7 +688,7 @@ class OnApp {
                 default:
                     //todo add CLI check
                     $msg = 'FATAL ERROR: Caster for "' . $this->options[ ONAPP_OPTION_API_TYPE ] . '" is not defined'
-                            . ' in FILE ' . __FILE__ . ' LINE ' . __LINE__ . PHP_EOL . PHP_EOL;
+                        . ' in FILE ' . __FILE__ . ' LINE ' . __LINE__ . PHP_EOL . PHP_EOL;
                     try {
                         throw new Exception( $msg );
                     }
@@ -729,10 +706,10 @@ class OnApp {
         switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
             case 'xml':
             case 'json':
-                $tag           = 'version';
+                $tag = 'version';
                 $this->version = null;
 
-                $objCast       = new OnApp_Helper_Caster( $this );
+                $objCast = new OnApp_Helper_Caster( $this );
                 $this->version = $objCast->unserialize( $this->getClassName(), $data, null, $tag );
                 break;
 
@@ -758,12 +735,12 @@ class OnApp {
 
         if( is_null( $this->fields ) && ( $this->getClassName() != 'OnApp' ) ) {
             $this->logger->debug( 'No fields defined for current API version [ ' . $version . ' ]' );
-//			if( IS_CLI ) {
-//				throw new Exception( 'No fields defined for current API version [ ' . $version . ' ]' );
-//			}
-//			else {
-//				$this->logger->error( 'No fields defined for current API version [ ' . $version . ' ]' );
-//			}
+//          if( IS_CLI ) {
+//              throw new Exception( 'No fields defined for current API version [ ' . $version . ' ]' );
+//          }
+//          else {
+//              $this->logger->error( 'No fields defined for current API version [ ' . $version . ' ]' );
+//          }
         }
         elseif( ! is_null( $version ) ) {
             if( $version == $this->version ) {
@@ -776,12 +753,12 @@ class OnApp {
             }
         }
 
-        if(is_null($this->fields) && get_called_class() != 'OnApp') {
-            throw new Exception(sprintf(
+        if( is_null( $this->fields ) && get_called_class() != 'OnApp' ) {
+            throw new Exception( sprintf(
                 "The wrapper class '%s' does not support OnApp version '%s'",
                 get_called_class(),
                 $version
-            ));
+            ) );
         }
     }
 
@@ -845,11 +822,11 @@ class OnApp {
         $url = $this->options[ ONAPP_OPTION_CURL_URL ];
         $this->logger->add(
             'setAPIResource: Set an option for a cURL transfer (' .
-                ' url => "' . $url . '", ' .
-                ' resource => "' . $resource . '", ' .
-                ' data_type => "' . $this->options[ ONAPP_OPTION_API_TYPE ] . '"' .
-                ' append_api_version => ' . $this->getAPIVersion() . ',' .
-                ' queryString => "' . $queryString . '" ).'
+            ' url => "' . $url . '", ' .
+            ' resource => "' . $resource . '", ' .
+            ' data_type => "' . $this->options[ ONAPP_OPTION_API_TYPE ] . '"' .
+            ' append_api_version => ' . $this->getAPIVersion() . ',' .
+            ' queryString => "' . $queryString . '" ).'
         );
 
         if( $append_api_version ) {
@@ -947,11 +924,11 @@ class OnApp {
         curl_setopt( $this->_ch, CURLOPT_HEADER, true );
         curl_setopt( $this->_ch, CURLOPT_HTTPHEADER, $http_header );
 
-        $result                    = array();
+        $result = array();
         $result[ 'response_body' ] = curl_exec( $this->_ch );
-        $result[ 'info' ]          = curl_getinfo( $this->_ch );
-        $curlHeaderSize            = $result[ 'info' ][ 'header_size' ];
-        $result[ 'headers' ]       = mb_substr( $result[ 'response_body' ], 0, $curlHeaderSize );
+        $result[ 'info' ] = curl_getinfo( $this->_ch );
+        $curlHeaderSize = $result[ 'info' ][ 'header_size' ];
+        $result[ 'headers' ] = mb_substr( $result[ 'response_body' ], 0, $curlHeaderSize );
         $result[ 'response_body' ] = mb_substr( $result[ 'response_body' ], $curlHeaderSize );
 
         if( ! $result[ 'response_body' ] && $method == ONAPP_REQUEST_METHOD_DELETE ||
@@ -976,6 +953,7 @@ class OnApp {
 
         if( ! $result[ 'response_body' ] ) {
             $this->logger->debug( 'Response body is empty for method: ' . $method );
+
             return false;
         }
 
@@ -1007,7 +985,7 @@ class OnApp {
         }
         else {
             $this->logger->add( 'sendRequest: Response:' . PHP_EOL . $result[ 'response_body' ] );
-            $result[ 'errors' ]         = 'Bad response content type: ' . $content_type;
+            $result[ 'errors' ] = 'Bad response content type: ' . $content_type;
             $result[ 'error_response' ] = $result[ 'response_body' ];
         }
 
@@ -1101,6 +1079,7 @@ class OnApp {
 
                 case 500:
                     $this->setErrors( 'We\'re sorry, but something went wrong.' );
+
                     return $this;
 
                 default:
@@ -1125,7 +1104,7 @@ class OnApp {
      */
     protected function castStringToClass( array $content ) {
         $className = $this->getClassName();
-        $tagMap    = $this->fields;
+        $tagMap = $this->fields;
 
         $this->logger->add( 'castStringToClass: cast data into the ' . $className . ' object.' );
 
@@ -1138,7 +1117,7 @@ class OnApp {
                 $objCast = new OnApp_Helper_Caster( $this );
 
                 if( $content[ 'info' ][ 'http_code' ] > 201 ) {
-                    $root   = 'errors';
+                    $root = 'errors';
                     $errors = $objCast->unserialize( $className, $data, $tagMap, $root );
                     $this->setErrors( $errors );
 
@@ -1200,6 +1179,7 @@ class OnApp {
             if( ! is_array( $result ) && ! is_null( $result ) ) {
                 $result = array( $result );
             }
+
             return $result;
         }
     }
@@ -1245,10 +1225,10 @@ class OnApp {
 
             $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
             $response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
-            $result   = $this->castStringToClass( $response );
+            $result = $this->castStringToClass( $response );
 
             $this->_obj = $result;
-            $this->_id  = $this->_obj->_id;
+            $this->_id = $this->_obj->_id;
 
             return $result;
         }
@@ -1311,12 +1291,12 @@ class OnApp {
             case 'xml':
             case 'json':
                 $objCast = new OnApp_Helper_Caster( $this );
-                $data    = $objCast->serialize( $this->_tagRoot, $this->getFieldsToSend() );
+                $data = $objCast->serialize( $this->_tagRoot, $this->getFieldsToSend() );
                 $this->logger->debug( 'serialize: serialized data:' . PHP_EOL . $data );
                 $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_ADD ) );
                 $response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST, $data );
 
-                $result     = $this->_castResponseToClass( $response );
+                $result = $this->_castResponseToClass( $response );
                 $this->_obj = $result;
                 break;
 
@@ -1332,6 +1312,7 @@ class OnApp {
                     exit( $this->logger->logs() );
                 }
         }
+
         return $result;
     }
 
@@ -1346,7 +1327,7 @@ class OnApp {
             case 'xml':
             case 'json':
                 $objCast = new OnApp_Helper_Caster( $this );
-                $data    = $objCast->serialize( $this->_tagRoot, $this->getFieldsToSend() );
+                $data = $objCast->serialize( $this->_tagRoot, $this->getFieldsToSend() );
                 $this->logger->debug( 'serialize: serialized data:' . PHP_EOL . $data );
                 $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_EDIT ) );
                 $response = $this->sendRequest( ONAPP_REQUEST_METHOD_PUT, $data );
@@ -1494,7 +1475,7 @@ class OnApp {
             case 'json':
                 if( ! is_null( $data ) ) {
                     $objCast = new OnApp_Helper_Caster( $this );
-                    $data    = $objCast->serialize( $data[ 'root' ], $data[ 'data' ] );
+                    $data = $objCast->serialize( $data[ 'root' ], $data[ 'data' ] );
                     $this->logger->debug( 'Additional parameters: ' . $data );
                 }
 
@@ -1513,6 +1494,7 @@ class OnApp {
                     else {
                         $this->_obj->errors = $result->getErrorsAsArray();
                     }
+
                     return false;
                 }
                 else {
@@ -1612,7 +1594,7 @@ class OnApp {
     // getters, setters & other magic stuff //
     public function __construct() {
         $this->options = $this->defaultOptions;
-        $this->logger  = new OnApp_Helper_Logger;
+        $this->logger = new OnApp_Helper_Logger;
     }
 
     /**
@@ -1645,6 +1627,7 @@ class OnApp {
                 $this->dynamicFields[ $name ] = OnApp_Helper_Caster::unserializeNested( $this->dynamicFields[ $name ] );
             }
         }
+
         return $this->dynamicFields[ $name ];
     }
 
@@ -1663,7 +1646,7 @@ class OnApp {
     /**
      * Standard method to check if property was set via setter
      *
-     * @param string $name  property name
+     * @param string $name property name
      *
      * @return bool         result of checking property
      */
