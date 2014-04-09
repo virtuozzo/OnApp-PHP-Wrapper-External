@@ -40,11 +40,6 @@ class OnApp_Payment extends OnApp {
      */
     var $_resource = 'payments';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

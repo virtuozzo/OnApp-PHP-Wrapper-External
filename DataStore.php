@@ -50,11 +50,6 @@ class OnApp_DataStore extends OnApp {
      */
     var $_resource = 'settings/data_stores';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

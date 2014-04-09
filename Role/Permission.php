@@ -35,11 +35,6 @@ class OnApp_Role_Permission extends OnApp {
      */
     var $_resource = 'permissions';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

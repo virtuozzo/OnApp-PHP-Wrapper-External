@@ -41,11 +41,6 @@ class OnApp_LoadBalancingCluster extends OnApp {
      */
     var $_resource = 'load_balancing_clusters';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

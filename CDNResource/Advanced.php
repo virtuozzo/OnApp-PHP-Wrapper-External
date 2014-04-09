@@ -35,11 +35,6 @@ class OnApp_CDNResource_Advanced extends OnApp {
      */
     var $_resource = 'advanced';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * Activates action performed with object
      *

@@ -36,9 +36,4 @@ class OnApp_EdgeGroup_AssignedLocation extends OnApp_EdgeGroup_Location {
      * @var string
      */
     var $_resource = '';
-
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
 }

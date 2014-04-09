@@ -14,11 +14,6 @@
 class OnApp_BillingPlan_BaseResource_Price extends OnApp {
     var $_tagRoot = 'price';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

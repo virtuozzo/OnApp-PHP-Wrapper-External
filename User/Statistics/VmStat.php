@@ -36,11 +36,6 @@ class OnApp_User_Statistics_VmStat extends OnApp {
      */
     var $_resource = '';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

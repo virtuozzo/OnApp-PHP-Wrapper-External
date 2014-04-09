@@ -35,11 +35,6 @@ class OnApp_NetworkZone extends OnApp {
      */
     var $_resource = 'network_zones';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

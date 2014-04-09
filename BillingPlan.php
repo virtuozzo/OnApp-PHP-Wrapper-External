@@ -47,11 +47,6 @@ class OnApp_BillingPlan extends OnApp {
      */
     var $_resource = 'billing_plans';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

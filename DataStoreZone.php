@@ -35,11 +35,6 @@ class OnApp_DataStoreZone extends OnApp {
      */
     var $_resource = 'settings/data_store_zones';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

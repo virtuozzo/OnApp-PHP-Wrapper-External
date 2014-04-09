@@ -24,11 +24,6 @@ class OnApp_Locale extends OnApp {
      */
     var $_resource = '/settings/internationalization';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

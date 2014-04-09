@@ -36,11 +36,6 @@ class OnApp_DNSZone extends OnApp {
      */
     var $_resource = 'dns_zones';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

@@ -38,11 +38,6 @@ class OnApp_CDNUsageStatistic extends OnApp {
      */
     var $_resource = 'cdn_usage_statistics';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

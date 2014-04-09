@@ -36,9 +36,4 @@ class OnApp_EdgeServer extends OnApp_VirtualMachine {
      * @var string
      */
     var $_resource = 'edge_servers';
-
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
 }

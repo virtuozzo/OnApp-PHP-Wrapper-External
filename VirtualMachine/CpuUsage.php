@@ -36,11 +36,6 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
      */
     var $_resource = 'cpu_usage';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

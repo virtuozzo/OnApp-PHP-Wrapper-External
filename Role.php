@@ -44,11 +44,6 @@ class OnApp_Role extends OnApp {
      */
     var $_resource = 'roles';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

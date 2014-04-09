@@ -37,11 +37,6 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
      */
     var $_resource = 'usage';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

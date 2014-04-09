@@ -42,11 +42,6 @@ class OnApp_Group extends OnApp {
      */
     var $_resource = 'groups';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

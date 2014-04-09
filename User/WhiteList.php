@@ -39,11 +39,6 @@ class OnApp_User_WhiteList extends OnApp {
      */
     var $_resource = 'user_white_lists';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

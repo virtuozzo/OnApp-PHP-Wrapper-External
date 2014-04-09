@@ -37,11 +37,6 @@ class OnApp_Settings extends OnApp {
      */
     var $_resource = 'settings';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * Returns the URL Alias of the API Class that inherits the Class ONAPP
      *

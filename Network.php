@@ -62,11 +62,6 @@ class OnApp_Network extends OnApp {
      */
     var $_resource = 'settings/networks';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

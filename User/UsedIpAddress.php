@@ -35,11 +35,6 @@ class OnApp_User_UsedIpAddress extends OnApp_IpAddress {
      */
     var $_resource = '';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

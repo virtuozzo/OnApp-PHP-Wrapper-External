@@ -33,11 +33,6 @@ class OnApp_CDNResource_Advanced_Country extends OnApp {
      */
     var $_resource = '';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

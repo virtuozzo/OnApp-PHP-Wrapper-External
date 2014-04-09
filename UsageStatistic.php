@@ -34,11 +34,6 @@ class OnApp_UsageStatistic extends OnApp {
      */
     var $_resource = 'usage_statistics';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

@@ -49,11 +49,6 @@ class OnApp_EdgeGroup extends OnApp {
      */
     var $_resource = 'edge_groups';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

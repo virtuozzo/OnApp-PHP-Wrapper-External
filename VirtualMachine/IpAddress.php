@@ -39,11 +39,6 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
      */
     var $_resource = 'ip_addresses';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

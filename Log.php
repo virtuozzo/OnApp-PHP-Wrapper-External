@@ -37,11 +37,6 @@ class OnApp_Log extends OnApp {
      */
     var $_resource = 'logs';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

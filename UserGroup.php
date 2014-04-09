@@ -35,11 +35,6 @@ class OnApp_UserGroup extends OnApp {
      */
     var $_resource = 'user_groups';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

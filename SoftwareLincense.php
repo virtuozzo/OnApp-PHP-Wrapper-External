@@ -37,11 +37,6 @@ class OnApp_SoftwareLincense extends OnApp {
      */
     var $_resource = 'software_licenses';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

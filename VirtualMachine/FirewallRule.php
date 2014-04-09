@@ -39,11 +39,6 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
      */
     var $_resource = 'firewall_rules';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

@@ -49,11 +49,6 @@ class OnApp_Disk extends OnApp {
      */
     var $_resource = 'settings/disks';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

@@ -38,11 +38,6 @@ class OnApp_Nameserver extends OnApp {
      */
     var $_resource = 'settings/nameservers';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

@@ -40,11 +40,6 @@ class OnApp_Transaction extends OnApp {
      */
     var $_resource = 'transactions';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

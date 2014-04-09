@@ -35,11 +35,6 @@ class OnApp_CDNResource_Bandwidth extends OnApp {
      */
     var $_resource = 'cdn_resources/bandwidth';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

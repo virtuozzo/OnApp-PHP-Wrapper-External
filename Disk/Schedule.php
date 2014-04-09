@@ -40,11 +40,6 @@ class OnApp_Disk_Schedule extends OnApp {
      */
     var $_resource = 'schedules';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

@@ -37,11 +37,6 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
      */
     var $_resource = 'data_store_joins';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

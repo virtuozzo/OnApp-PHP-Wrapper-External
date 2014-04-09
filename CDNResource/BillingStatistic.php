@@ -35,11 +35,6 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
      */
     var $_resource = 'billing';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

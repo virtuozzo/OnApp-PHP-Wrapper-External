@@ -37,11 +37,6 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
      */
     var $_resource = 'vm_stats';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

@@ -68,11 +68,6 @@ class OnApp_User extends OnApp {
      */
     var $_resource = 'users';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

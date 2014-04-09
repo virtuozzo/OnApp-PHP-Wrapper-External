@@ -33,11 +33,6 @@ class OnApp_CDNResource_Origin extends OnApp {
      */
     var $_resource = 'origins_for_api';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

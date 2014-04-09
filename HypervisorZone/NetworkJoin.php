@@ -37,11 +37,6 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
      */
     var $_resource = 'network_joins';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

@@ -39,11 +39,6 @@ class OnApp_User_MonthlyBill extends OnApp {
      */
     var $_resource = 'monthly_bills';
 
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
-
     /**
      * API Fields description
      *

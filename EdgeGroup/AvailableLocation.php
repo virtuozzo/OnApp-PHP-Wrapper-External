@@ -36,9 +36,4 @@ class OnApp_EdgeGroup_AvailableLocation extends Location {
      * @var string
      */
     var $_resource = '';
-
-    public function __construct() {
-        parent::__construct();
-        $this->className = __CLASS__;
-    }
 }
