@@ -1619,8 +1619,21 @@ class OnApp {
                 break;
         }
 
+        // legacy vars naming
         if( ! isset( $this->dynamicFields[ $name ] ) ) {
-            return null;
+            if( strpos( $name, '_' ) === 0 ) {
+                $tmpName = substr( $name, 1 );
+            }
+            else {
+                $tmpName = '_' . $name;
+            }
+
+            if( isset( $this->dynamicFields[ $tmpName ] ) ) {
+                return $this->dynamicFields[ $tmpName ];
+            }
+            else {
+                return null;
+            }
         }
 
         if( is_object( $this->dynamicFields[ $name ] ) ) {
@@ -1665,7 +1678,18 @@ class OnApp {
                 break;
         }
 
-        return isset( $this->dynamicFields[ $name ] );
+        if( isset( $this->dynamicFields[ $name ] ) ) {
+            return true;
+        }
+
+        if( strpos( $name, '_' ) === 0 ) {
+            $tmpName = substr( $name, 1 );
+        }
+        else {
+            $tmpName = '_' . $name;
+        }
+
+        return isset( $this->dynamicFields[ $tmpName ] );
     }
 
     /**
@@ -1676,6 +1700,20 @@ class OnApp {
      * @return void
      */
     public function __unset( $name ) {
-        unset( $this->dynamicFields[ $name ] );
+        if( ! isset( $this->dynamicFields[ $name ] ) ) {
+            if( strpos( $name, '_' ) === 0 ) {
+                $tmpName = substr( $name, 1 );
+            }
+            else {
+                $tmpName = '_' . $name;
+            }
+
+            if( isset( $this->dynamicFields[ $tmpName ] ) ) {
+                unset( $this->dynamicFields[ $tmpName ] );
+            }
+        }
+        else {
+            unset( $this->dynamicFields[ $name ] );
+        }
     }
 }
