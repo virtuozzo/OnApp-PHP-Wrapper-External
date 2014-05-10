@@ -15,7 +15,7 @@
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
-
+define('ON_APP_GETRESOURCE_VMTRANSACTIONS','vmtransactions');
 /**
  * Transactions
  *
@@ -171,8 +171,15 @@ class OnApp_Transaction extends OnApp {
             case 3.0:
 			case 3.1:
             case 3.2:
-                $this->fields = $this->initFields( 2.3 );
+                $this->fields = $this->initFields( 2.3 );             
                 break;
+        }
+        if ($version>=3.2) {
+           $this->fields[ 'vm_id' ] = array(
+                    ONAPP_FIELD_MAP => 'vm_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                    ONAPP_FIELD_READ_ONLY => false
+                );
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -196,16 +203,26 @@ class OnApp_Transaction extends OnApp {
      *
      * @return the array of Object instances
      */
-    function getList( $page = 1 ) {
-        $data = array(
-            'root' => 'page',
-            'data' => $page,
-        );
-
+    function getList( $page = 1,$url_args=NULL ) {
+        $data=null;
+        if (!$this->_vm_id) {
+            $data = array(
+                'root' => 'page',
+                'data' => $page,
+            );
+        }
         return parent::getList( $data );
+
+
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+        if ($this->_vm_id && $action===ONAPP_GETRESOURCE_LIST) {
+            return 'virtual_machines/' . $this->_vm_id . '/transactions';
+        }
+    
+    
+    
         return parent::getResource( $action );
         /**
          * ROUTE :
