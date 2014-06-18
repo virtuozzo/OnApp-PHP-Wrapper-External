@@ -7,4 +7,4 @@ PHP 5.3+
 [SimpleXML](http://php.net/manual/en/simplexml.installation.php) (if you wish to operate with XML-data)
 
 ## Updates
-You are welcome to sign up to the [RSS feed](https://github.com/OnApp/OnApp-WHMCS-UsersModule/releases.atom) or follow [@OnAppPHPTeam](https://twitter.com/intent/user?screen_name=OnAppPHPTeam) on Twitter to stay informed on new releases.
+You are welcome to [follow us](https://twitter.com/intent/user?screen_name=OnAppPHPTeam) on Twitter to stay informed on new releases.
