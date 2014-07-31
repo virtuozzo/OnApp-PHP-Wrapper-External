@@ -23,7 +23,7 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
-class OnApp_VirtualMachine_BillingStatistics extends OnApp {
+class OnApp_VirtualMachine_BillingStatistic extends OnApp {
     /**
      * root tag used in the API request
      *
