@@ -7,7 +7,7 @@
     },
     "autoload": {
         "files": {
-            "": "/src/OnAppinit.php"
+            "": "/src/OnAppInit.php"
         }
     },
     "minimum-stability": "stable"
