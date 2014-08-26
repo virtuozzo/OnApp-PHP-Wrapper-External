@@ -1,14 +1,13 @@
 <?php
-
 /**
  * Serialize and Unserialize Object to/from JSON for OnApp wrapper
  *
- * @category    OBJECT CAST
- * @package     OnApp
- * @subpackage  Caster
- * @author      Lev Bartashevsky
- * @copyright   © 2011 OnApp
- * @link        http://www.onapp.com/
+ * @category	OBJECT CAST
+ * @package		OnApp
+ * @subpackage	Caster
+ * @author		Lev Bartashevsky
+ * @copyright	© 2011 OnApp
+ * @link		http://www.onapp.com/
  */
 class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
     private $map;
@@ -21,7 +20,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
      * Serialize wrapper data to JSON
      *
      * @param string $root root tag
-     * @param array  $data data to serialize
+     * @param array	 $data data to serialize
      *
      * @return string
      */
@@ -38,10 +37,10 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
     /**
      * Unserialize JSON data to wrapper object(s)
      *
-     * @param string       $className className to cast into
-     * @param string|array $data      JSON or array containing nested data
-     * @param array        $map       fields map
-     * @param string       $root      root tag
+     * @param string	   $className className to cast into
+     * @param string|array $data	  JSON or array containing nested data
+     * @param array		   $map		  fields map
+     * @param string	   $root	  root tag
      *
      * @return array|object
      */
