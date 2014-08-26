@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Serialize and Unserialize Object to/from JSON for OnApp wrapper
+ * Serialize and Unserialize Object to/from XML for OnApp wrapper
  *
- * @category	OBJECT CAST
- * @package		OnApp
- * @subpackage	Caster
- * @author		Lev Bartashevsky
- * @copyright	© 2011 OnApp
- * @link		http://www.onapp.com/
+ * @category    OBJECT CAST
+ * @package     OnApp
+ * @subpackage  Caster
+ * @author      Lev Bartashevsky
+ * @copyright   © 2011 OnApp
+ * @link        http://www.onapp.com/
  */
 class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
     private $map;
