@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Serialize and Unserialize Object to/from JSON for OnApp wrapper
  *
