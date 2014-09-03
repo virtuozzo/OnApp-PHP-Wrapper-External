@@ -29,7 +29,7 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
      *
      * @var string
      */
-    var $_tagRoot = 'vm_stats';
+    var $_tagRoot = 'vm_hourly_stat';
 
     /**
      * alias processing the object data
@@ -112,7 +112,6 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
                 $this->fields = $this->initFields( 3.0 );
 
                 unset($this->fields['cost']);
-                unset($this->fields['billing_stats']);
 
                 $this->fields['currency_code'] = array(
                     ONAPP_FIELD_MAP => '_currency_code',
@@ -197,7 +196,7 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
      * @return mixed an array of Object instances on success. Otherwise false
      * @access public
      */
-    function getList( $virtual_machine_id = null ) {
+    function getList( $virtual_machine_id = null, $url_args = null ) {
         if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
             $virtual_machine_id = $this->_virtual_machine_id;
         }
@@ -205,7 +204,7 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
         if( ! is_null( $virtual_machine_id ) ) {
             $this->_virtual_machine_id = $virtual_machine_id;
 
-            return parent::getList();
+            return parent::getList(null, $url_args);
         }
         else {
             $this->logger->error(

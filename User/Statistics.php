@@ -112,6 +112,19 @@ class OnApp_User_Statistics extends OnApp {
 			case 3.1:
             case 3.2:
                 $this->fields = $this->initFields( 2.3 );
+
+                $this->fields['backup_count_cost'] = array(
+                    ONAPP_FIELD_MAP       => '_backup_count_cost',
+                    ONAPP_FIELD_TYPE      => 'float',
+                    ONAPP_FIELD_READ_ONLY => true
+                );
+
+                $this->fields['backup_disk_size_cost'] = array(
+                    ONAPP_FIELD_MAP       => '_backup_disk_size_cost',
+                    ONAPP_FIELD_TYPE      => 'float',
+                    ONAPP_FIELD_READ_ONLY => true
+                );
+
                 break;
         }
 
