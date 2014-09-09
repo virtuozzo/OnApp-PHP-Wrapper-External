@@ -23,7 +23,7 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
-class OnApp_VirtualMachine_BillingStatistics extends OnApp {
+class OnApp_VirtualMachine_BillingStatistic extends OnApp {
     /**
      * root tag used in the API request
      *
@@ -197,7 +197,7 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
      * @return mixed an array of Object instances on success. Otherwise false
      * @access public
      */
-    function getList( $virtual_machine_id = null ) {
+    function getList( $virtual_machine_id = null, $url_args = null ) {
         if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
             $virtual_machine_id = $this->_virtual_machine_id;
         }

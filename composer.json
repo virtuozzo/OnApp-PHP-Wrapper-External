@@ -1,0 +1,14 @@
+{
+    "name": "on-app/php-wrapper-external",
+    "description": "OnApp external PHP wrapper",
+    "version": "3.2.0.1",
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "files": {
+            "": "/src/OnAppInit.php"
+        }
+    },
+    "minimum-stability": "stable"
+}
