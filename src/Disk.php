@@ -239,6 +239,7 @@ class OnApp_Disk extends OnApp {
 				 * ROUTE :
 				 * @name migrate
 				 * @method POST
+				 * @format {:controller=>"disks", :action=>"migrate"}
 				 */
 				if( is_null( $this->_virtual_machine_id ) ) {
 					$this->logger->error(
@@ -316,8 +317,9 @@ class OnApp_Disk extends OnApp {
 	/**
 	 * Migrates disk to different data store
 	 *
-	 * @param int $id virtual machine id
+	 * @param integer $id virtual machine id
 	 * @param     $data_store_id
+	 * @access 	public
 	 */
 	function migrate( $data_store_id, $id = NULL ) {
 		if( $id ) {
@@ -325,10 +327,14 @@ class OnApp_Disk extends OnApp {
 		}
 
 		$data = array(
-			'disk' => array(
-				'data_store_id' => $data_store_id,
-			),
+			'root' => 'tmp_holder',
+			'data' => array(
+				'disk' => array(
+					'data_store_id' => $data_store_id
+				)
+			)
 		);
+
 		$this->sendPost( ONAPP_GETRESOURCE_MIGRATE, $data );
 	}
 
