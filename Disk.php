@@ -111,11 +111,19 @@ class OnApp_Disk extends OnApp {
                         ONAPP_FIELD_MAP => '_mount_point',
                     ),
                     'identifier'         => array(
-                        ONAPP_FIELD_MAP       => '_identifier',
+                        ONAPP_FIELD_MAP => '_identifier',
+                    ),
+                    'file_system'         => array(
+                        ONAPP_FIELD_MAP       => '_file_system',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                     'virtual_machine_id' => array(
                         ONAPP_FIELD_MAP       => '_virtual_machine_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
+                        ONAPP_FIELD_READ_ONLY => true,
+                    ),
+                    'require_format_disk' => array(
+                        ONAPP_FIELD_MAP       => '_require_format_disk',
                         ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
