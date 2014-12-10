@@ -122,18 +122,18 @@ class OnApp_Transaction extends OnApp {
                 break;
 
             case '2.1':
-                $this->fields = $this->initFields( '2.0' );
+                $this->fields                     = $this->initFields( '2.0' );
                 $this->fields[ 'allowed_cancel' ] = array(
                     ONAPP_FIELD_MAP       => '_allowed_cancel',
                     ONAPP_FIELD_TYPE      => 'boolean',
                     ONAPP_FIELD_READ_ONLY => true
                 );
-                $this->fields[ 'identifier' ] = array(
+                $this->fields[ 'identifier' ]     = array(
                     ONAPP_FIELD_MAP       => '_identifier',
                     ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true
                 );
-                $this->fields[ 'start_after' ] = array(
+                $this->fields[ 'start_after' ]    = array(
                     ONAPP_FIELD_MAP       => '_start_after',
                     ONAPP_FIELD_TYPE      => 'datetime',
                     ONAPP_FIELD_READ_ONLY => true
@@ -141,8 +141,8 @@ class OnApp_Transaction extends OnApp {
                 break;
 
             case 2.2:
-                $this->fields = $this->initFields( 2.1 );
-                $this->fields[ 'started_at' ] = array(
+                $this->fields                  = $this->initFields( 2.1 );
+                $this->fields[ 'started_at' ]  = array(
                     ONAPP_FIELD_MAP       => 'started_at',
                     ONAPP_FIELD_TYPE      => 'datetime',
                     ONAPP_FIELD_READ_ONLY => true
@@ -156,7 +156,7 @@ class OnApp_Transaction extends OnApp {
 
             case 2.3:
                 $this->fields = $this->initFields( 2.2 );
-                $fields = array(
+                $fields       = array(
                     'finished_at',
                 );
                 $this->unsetFields( $fields );
@@ -166,7 +166,7 @@ class OnApp_Transaction extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
- 			case 3.4:
+            case 3.4:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }

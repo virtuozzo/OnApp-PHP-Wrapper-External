@@ -96,7 +96,7 @@ class OnApp_Role extends OnApp {
 
             case 2.3:
                 $this->fields = $this->initFields( 2.2 );
-                $fields = array(
+                $fields       = array(
                     'permission_ids',
                 );
                 $this->unsetFields( $fields );
@@ -106,7 +106,7 @@ class OnApp_Role extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
- 			case 3.4:
+            case 3.4:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }

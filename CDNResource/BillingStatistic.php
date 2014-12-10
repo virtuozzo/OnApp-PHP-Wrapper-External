@@ -115,9 +115,9 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
- 			case 3.4:
+            case 3.4:
                 $this->fields = $this->initFields( 2.3 );
-                $fields = array(
+                $fields       = array(
                     'created_at',
                     'updated_at',
                     'cdn_resource_id',
@@ -128,7 +128,7 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
                 );
                 $this->unsetFields( $fields );
 
-                $this->fields[ 'cost' ] = array(
+                $this->fields[ 'cost' ]             = array(
                     ONAPP_FIELD_MAP  => '_cost',
                     ONAPP_FIELD_TYPE => 'string',
                 );
@@ -136,11 +136,11 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
                     ONAPP_FIELD_MAP  => '_edge_group_label',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'stat_time' ] = array(
+                $this->fields[ 'stat_time' ]        = array(
                     ONAPP_FIELD_MAP  => '_stat_time',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'value' ] = array(
+                $this->fields[ 'value' ]            = array(
                     ONAPP_FIELD_MAP  => '_value',
                     ONAPP_FIELD_TYPE => 'string',
                 );
@@ -171,6 +171,7 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
                 $resource = parent::getResource( $action );
                 break;
         }
+
         return $resource;
     }
 

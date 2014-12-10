@@ -126,7 +126,7 @@ class OnApp_UsageStatistic extends OnApp {
 
             case '2.1':
                 $this->fields = $this->initFields( '2.0' );
-                $fields = array(
+                $fields       = array(
                     'amount',
                     'bandwidth_used',
                     'booted',
@@ -139,12 +139,12 @@ class OnApp_UsageStatistic extends OnApp {
                     'ram',
                 );
                 $this->unsetFields( $fields );
-                $this->fields[ 'cost' ] = array(
+                $this->fields[ 'cost' ]               = array(
                     ONAPP_FIELD_MAP       => '_cost',
                     ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'stat_time' ] = array(
+                $this->fields[ 'stat_time' ]          = array(
                     ONAPP_FIELD_MAP       => '_stat_time',
                     ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true,
@@ -159,7 +159,7 @@ class OnApp_UsageStatistic extends OnApp {
             case 2.2:
             case 2.3:
                 $this->fields = $this->initFields( '2.1' );
-                $fields = array(
+                $fields       = array(
                     'id',
                     'cost',
                     'stat_time',
@@ -168,22 +168,22 @@ class OnApp_UsageStatistic extends OnApp {
                     'vm_billing_stat_id',
                 );
                 $this->unsetFields( $fields );
-                $this->fields[ 'data_received' ] = array(
+                $this->fields[ 'data_received' ]    = array(
                     ONAPP_FIELD_MAP       => '_data_received',
                     ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'data_sent' ] = array(
+                $this->fields[ 'data_sent' ]        = array(
                     ONAPP_FIELD_MAP       => '_data_sent',
                     ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'data_read' ] = array(
+                $this->fields[ 'data_read' ]        = array(
                     ONAPP_FIELD_MAP       => '_data_read',
                     ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'data_written' ] = array(
+                $this->fields[ 'data_written' ]     = array(
                     ONAPP_FIELD_MAP       => '_data_written',
                     ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true,
@@ -193,12 +193,12 @@ class OnApp_UsageStatistic extends OnApp {
                     ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'reads_completed' ] = array(
+                $this->fields[ 'reads_completed' ]  = array(
                     ONAPP_FIELD_MAP       => '_reads_completed',
                     ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'cpu_usage' ] = array(
+                $this->fields[ 'cpu_usage' ]        = array(
                     ONAPP_FIELD_MAP       => '_cpu_usage',
                     ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true,
@@ -209,7 +209,7 @@ class OnApp_UsageStatistic extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
- 			case 3.4:
+            case 3.4:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }

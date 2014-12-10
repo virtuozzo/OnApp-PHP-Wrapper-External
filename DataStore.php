@@ -117,7 +117,7 @@ class OnApp_DataStore extends OnApp {
                     ONAPP_FIELD_TYPE     => 'integer',
                     ONAPP_FIELD_REQUIRED => true,
                 );
-                $this->fields[ 'ip' ] = array(
+                $this->fields[ 'ip' ]                  = array(
                     ONAPP_FIELD_MAP      => '_ip',
                     ONAPP_FIELD_TYPE     => 'string',
                     ONAPP_FIELD_REQUIRED => true,
@@ -132,11 +132,11 @@ class OnApp_DataStore extends OnApp {
                     ONAPP_FIELD_MAP       => 'raw_stats',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'usage' ] = array(
+                $this->fields[ 'usage' ]     = array(
                     ONAPP_FIELD_MAP       => 'usage',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'capacity' ] = array(
+                $this->fields[ 'capacity' ]  = array(
                     ONAPP_FIELD_MAP       => 'capacity',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
@@ -144,7 +144,7 @@ class OnApp_DataStore extends OnApp {
 
             case 2.3:
                 $this->fields = $this->initFields( 2.2 );
-                $fields = array(
+                $fields       = array(
                     'raw_stats',
                 );
                 $this->unsetFields( $fields );
@@ -159,7 +159,7 @@ class OnApp_DataStore extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
- 			case 3.4:
+            case 3.4:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
@@ -231,6 +231,7 @@ class OnApp_DataStore extends OnApp {
                 $resource = parent::getResource( $action );
                 break;
         }
+
         return $resource;
     }
 

@@ -59,45 +59,45 @@ class OnApp_BillingPlan_BaseResource_Limit extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
- 			case 3.4:
-                $this->fields = $this->initFields( 2.3 );
-                $this->fields[ 'id' ] = array(
+            case 3.4:
+                $this->fields                              = $this->initFields( 2.3 );
+                $this->fields[ 'id' ]                      = array(
                     ONAPP_FIELD_MAP => '_id',
                 );
-                $this->fields[ 'billing_plan_id' ] = array(
+                $this->fields[ 'billing_plan_id' ]         = array(
                     ONAPP_FIELD_MAP => 'billing_plan_id',
                 );
-                $this->fields[ 'limit_free_cpu' ] = array(
+                $this->fields[ 'limit_free_cpu' ]          = array(
                     ONAPP_FIELD_MAP => 'limit_free_cpu',
                 );
-                $this->fields[ 'limit_free_cpu_share' ] = array(
+                $this->fields[ 'limit_free_cpu_share' ]    = array(
                     ONAPP_FIELD_MAP => 'limit_free_cpu_share',
                 );
-                $this->fields[ 'limit_free_memory' ] = array(
+                $this->fields[ 'limit_free_memory' ]       = array(
                     ONAPP_FIELD_MAP => 'limit_free_memory',
                 );
-                $this->fields[ 'limit_cpu' ] = array(
+                $this->fields[ 'limit_cpu' ]               = array(
                     ONAPP_FIELD_MAP => 'limit_cpu',
                 );
-                $this->fields[ 'limit_cpu_share' ] = array(
+                $this->fields[ 'limit_cpu_share' ]         = array(
                     ONAPP_FIELD_MAP => 'limit_cpu_share',
                 );
-                $this->fields[ 'limit_memory' ] = array(
+                $this->fields[ 'limit_memory' ]            = array(
                     ONAPP_FIELD_MAP => 'limit_memory',
                 );
-                $this->fields[ 'limit_default_cpu' ] = array(
+                $this->fields[ 'limit_default_cpu' ]       = array(
                     ONAPP_FIELD_MAP => 'limit_default_cpu',
                 );
                 $this->fields[ 'limit_default_cpu_share' ] = array(
                     ONAPP_FIELD_MAP => 'limit_default_cpu_share',
                 );
-                $this->fields[ 'limit_rate' ] = array(
+                $this->fields[ 'limit_rate' ]              = array(
                     ONAPP_FIELD_MAP => 'limit_rate',
                 );
-                $this->fields[ 'limit_ip' ] = array(
+                $this->fields[ 'limit_ip' ]                = array(
                     ONAPP_FIELD_MAP => 'limit_ip',
                 );
-                $this->fields[ 'limit' ] = array(
+                $this->fields[ 'limit' ]                   = array(
                     ONAPP_FIELD_MAP => 'limit',
                 );
                 break;
@@ -178,7 +178,7 @@ class OnApp_BillingPlan_BaseResource_Limit extends OnApp {
                 break;
 
             default:
-                $resource = parent::getResource( $action );
+                $resource     = parent::getResource( $action );
                 $show_log_msg = false;
                 break;
         }

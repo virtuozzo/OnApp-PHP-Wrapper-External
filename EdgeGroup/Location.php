@@ -117,9 +117,9 @@ class OnApp_EdgeGroup_Location extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
- 			case 3.4:
-                $this->fields = $this->initFields( 3.0 );
-                $this->fields[ 'geoBlocking' ] = array(
+            case 3.4:
+                $this->fields                            = $this->initFields( 3.0 );
+                $this->fields[ 'geoBlocking' ]           = array(
                     ONAPP_FIELD_MAP  => 'geoBlocking',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
@@ -127,15 +127,15 @@ class OnApp_EdgeGroup_Location extends OnApp {
                     ONAPP_FIELD_MAP  => 'onSaleStreamSupported',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'onSaleHttpSupported' ] = array(
+                $this->fields[ 'onSaleHttpSupported' ]   = array(
                     ONAPP_FIELD_MAP  => 'onSaleHttpSupported',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'streamSupported' ] = array(
+                $this->fields[ 'streamSupported' ]       = array(
                     ONAPP_FIELD_MAP  => 'streamSupported',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'httpSupported' ] = array(
+                $this->fields[ 'httpSupported' ]         = array(
                     ONAPP_FIELD_MAP  => 'httpSupported',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );

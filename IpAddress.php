@@ -103,7 +103,7 @@ class OnApp_IpAddress extends OnApp {
                 break;
 
             case 2.3:
-                $this->fields = $this->initFields( 2.2 );
+                $this->fields              = $this->initFields( 2.2 );
                 $this->fields[ 'user_id' ] = array(
                     ONAPP_FIELD_MAP       => 'user_id',
                     ONAPP_FIELD_TYPE      => 'integer',
@@ -115,7 +115,7 @@ class OnApp_IpAddress extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
- 			case 3.4:
+            case 3.4:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
@@ -261,7 +261,7 @@ class OnApp_IpAddress extends OnApp {
         $this->logger->add( "load: Load class ( id => '$id')." );
 
         if( ! is_null( $id ) && ! is_null( $network_id ) ) {
-            $this->_id = $id;
+            $this->_id         = $id;
             $this->_network_id = $network_id;
 
             $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );

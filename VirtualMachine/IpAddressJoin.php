@@ -82,7 +82,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
                 break;
 
             case 2.2:
-                $this->fields = $this->initFields( 2.1 );
+                $this->fields                         = $this->initFields( 2.1 );
                 $this->fields[ 'virtual_machine_id' ] = array(
                     ONAPP_FIELD_MAP  => 'virtual_machine_id',
                     ONAPP_FIELD_TYPE => 'integer',
@@ -91,7 +91,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 
             case 2.3:
                 $this->fields = $this->initFields( 2.2 );
-                $fields = array(
+                $fields       = array(
                     'virtual_machine_id',
                 );
                 $this->unsetFields( $fields );
@@ -101,7 +101,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
- 			case 3.4:
+            case 3.4:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
@@ -239,7 +239,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
         $this->logger->add( "load: Load class ( id => '$id')." );
 
         if( ! is_null( $id ) && ! is_null( $virtual_machine_id ) ) {
-            $this->_id = $id;
+            $this->_id                 = $id;
             $this->_virtual_machine_id = $virtual_machine_id;
 
             $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );

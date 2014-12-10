@@ -140,7 +140,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 
             case 2.2:
             case 2.3:
-                $this->fields = $this->initFields( 2.1 );
+                $this->fields                = $this->initFields( 2.1 );
                 $this->fields[ 'target_id' ] = array(
                     ONAPP_FIELD_MAP       => '_target_id',
                     ONAPP_FIELD_TYPE      => 'integer',
@@ -152,9 +152,9 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
- 			case 3.4:
-                $this->fields = $this->initFields( 2.3 );
-                $this->fields[ 'is_default' ] = array(
+            case 3.4:
+                $this->fields                  = $this->initFields( 2.3 );
+                $this->fields[ 'is_default' ]  = array(
                     ONAPP_FIELD_MAP  => 'is_default',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
@@ -243,7 +243,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
                 break;
 
             default:
-                $resource = parent::getResource( $action );
+                $resource     = parent::getResource( $action );
                 $show_log_msg = false;
                 break;
         }

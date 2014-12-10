@@ -75,8 +75,8 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
                 break;
 
             case '2.1':
-                $this->fields = $this->initFields( '2.0' );
-                $this->fields[ 'target_join_id' ] = array(
+                $this->fields                       = $this->initFields( '2.0' );
+                $this->fields[ 'target_join_id' ]   = array(
                     ONAPP_FIELD_MAP      => '_target_join_id',
                     ONAPP_FIELD_TYPE     => 'integer',
                     ONAPP_FIELD_REQUIRED => true
@@ -92,7 +92,7 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
- 			case 3.4:
+            case 3.4:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }

@@ -21,7 +21,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
      * Serialize wrapper data to JSON
      *
      * @param string $root root tag
-     * @param array	 $data data to serialize
+     * @param array  $data data to serialize
      *
      * @return string
      */
@@ -38,10 +38,10 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
     /**
      * Unserialize JSON data to wrapper object(s)
      *
-     * @param string	   $className className to cast into
-     * @param string|array $data	  JSON or array containing nested data
-     * @param array		   $map		  fields map
-     * @param string	   $root	  root tag
+     * @param string       $className className to cast into
+     * @param string|array $data      JSON or array containing nested data
+     * @param array        $map       fields map
+     * @param string       $root      root tag
      *
      * @return array|object
      */
@@ -50,7 +50,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 
         $this->runBefore( $data );
 
-        $this->map = $map;
+        $this->map       = $map;
         $this->className = $className;
 
         if( is_string( $data ) ) {
@@ -115,16 +115,16 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
      */
     private function process( $item ) {
         if( ! ( is_array( $item ) || is_object( $item ) ) ) {
-            $tmp = new $this->className;
+            $tmp  = new $this->className;
             $item = array(
                 $tmp->_tagRoot => $item
             );
             unset( $tmp );
         }
 
-        $obj = new $this->className;
-        $obj->options = parent::$obj->options;
-        $obj->_ch = parent::$obj->_ch;
+        $obj           = new $this->className;
+        $obj->options  = parent::$obj->options;
+        $obj->_ch      = parent::$obj->_ch;
         $obj->_is_auth = parent::$obj->_is_auth;
         $obj->initFields( parent::$APIVersion );
         foreach( $item as $name => $value ) {
@@ -135,11 +135,11 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
                         $value = array();
                     }
                     else {
-                        $tmp = new DataHolder;
+                        $tmp             = new DataHolder;
                         $tmp->APIVersion = parent::$APIVersion;
-                        $tmp->className = $this->map[ $name ][ ONAPP_FIELD_CLASS ];
-                        $tmp->data = $value;
-                        $value = $tmp;
+                        $tmp->className  = $this->map[ $name ][ ONAPP_FIELD_CLASS ];
+                        $tmp->data       = $value;
+                        $value           = $tmp;
                     }
                 }
 

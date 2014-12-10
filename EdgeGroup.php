@@ -99,13 +99,13 @@ class OnApp_EdgeGroup extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
- 			case 3.4:
-                $this->fields = $this->initFields( 2.3 );
+            case 3.4:
+                $this->fields                    = $this->initFields( 2.3 );
                 $this->fields[ 'cdn_reference' ] = array(
                     ONAPP_FIELD_MAP  => 'cdn_reference',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'aflexi_id' ] = array(
+                $this->fields[ 'aflexi_id' ]     = array(
                     ONAPP_FIELD_MAP  => 'aflexi_id',
                     ONAPP_FIELD_TYPE => 'integer',
                 );

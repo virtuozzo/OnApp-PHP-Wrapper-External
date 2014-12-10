@@ -114,12 +114,12 @@ class OnApp_ResourceLimit extends OnApp {
             case 2.3:
                 $this->fields = $this->initFields( 2.1 );
 
-                $this->fields[ 'ip_address_count' ] = array(
+                $this->fields[ 'ip_address_count' ]        = array(
                     ONAPP_FIELD_MAP       => 'ip_address_count',
                     ONAPP_FIELD_TYPE      => 'integer',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'ip_address_mask' ] = array(
+                $this->fields[ 'ip_address_mask' ]         = array(
                     ONAPP_FIELD_MAP       => 'ip_address_mask',
                     ONAPP_FIELD_TYPE      => 'integer',
                     ONAPP_FIELD_READ_ONLY => true,
@@ -129,7 +129,7 @@ class OnApp_ResourceLimit extends OnApp {
                     ONAPP_FIELD_TYPE      => 'integer',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'rate' ] = array(
+                $this->fields[ 'rate' ]                    = array(
                     ONAPP_FIELD_MAP       => 'rate',
                     ONAPP_FIELD_TYPE      => 'integer',
                     ONAPP_FIELD_READ_ONLY => true,
@@ -145,7 +145,7 @@ class OnApp_ResourceLimit extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
- 			case 3.4:
+            case 3.4:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
@@ -252,7 +252,7 @@ class OnApp_ResourceLimit extends OnApp {
 
             $result = $this->_castResponseToClass( $response );
 
-            $this->_obj = $result;
+            $this->_obj     = $result;
             $this->_user_id = $this->_obj->_user_id;
 
             return $result;

@@ -137,7 +137,7 @@ class OnApp_Disk_Schedule extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
- 			case 3.4:
+            case 3.4:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
@@ -162,7 +162,7 @@ class OnApp_Disk_Schedule extends OnApp {
                 $resource = 'settings/disks/' . $this->_target_id . '/' . $this->_resource;
                 break;
             default:
-                $resource = parent::getResource( $action );
+                $resource     = parent::getResource( $action );
                 $show_log_msg = false;
                 break;
         }
@@ -206,11 +206,11 @@ class OnApp_Disk_Schedule extends OnApp {
 
     function save() {
         if( $this->_target_id ) {
-            $this->fields[ 'target_id' ][ ONAPP_FIELD_REQUIRED ] = true;
-            $this->fields[ 'target_type' ][ ONAPP_FIELD_REQUIRED ] = true;
+            $this->fields[ 'target_id' ][ ONAPP_FIELD_REQUIRED ]        = true;
+            $this->fields[ 'target_type' ][ ONAPP_FIELD_REQUIRED ]      = true;
             $this->fields[ 'target_type' ][ ONAPP_FIELD_DEFAULT_VALUE ] = 'Disk';
-            $this->fields[ 'action' ][ ONAPP_FIELD_REQUIRED ] = true;
-            $this->fields[ 'action' ][ ONAPP_FIELD_DEFAULT_VALUE ] = 'autobackup';
+            $this->fields[ 'action' ][ ONAPP_FIELD_REQUIRED ]           = true;
+            $this->fields[ 'action' ][ ONAPP_FIELD_DEFAULT_VALUE ]      = 'autobackup';
         }
 
         return parent::save();

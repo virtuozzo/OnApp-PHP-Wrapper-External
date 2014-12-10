@@ -45,7 +45,7 @@ class OnApp_DNSZone_Record extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
- 			case 3.4:
+            case 3.4:
                 $this->fields = array(
                     'id'          => array(
                         ONAPP_FIELD_MAP       => '_id',
@@ -249,7 +249,7 @@ class OnApp_DNSZone_Record extends OnApp {
         $this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
 
         if( ! is_null( $id ) && ! is_null( $dns_zone_id ) ) {
-            $this->_id = $id;
+            $this->_id          = $id;
             $this->_dns_zone_id = $dns_zone_id;
 
             $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );

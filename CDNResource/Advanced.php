@@ -102,6 +102,7 @@ class OnApp_CDNResource_Advanced extends OnApp {
                 $resource = parent::getResource( $action );
                 break;
         }
+
         return $resource;
     }
 
@@ -194,52 +195,52 @@ class OnApp_CDNResource_Advanced extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
- 			case 3.4:
-                $this->fields = $this->initFields( 2.3 );
-                $this->fields[ 'secondary_hostnames' ] = array(
+            case 3.4:
+                $this->fields                             = $this->initFields( 2.3 );
+                $this->fields[ 'secondary_hostnames' ]    = array(
                     ONAPP_FIELD_MAP  => '_secondary_hostnames',
                     ONAPP_FIELD_TYPE => '_array',
                 );
-                $this->fields[ 'flv_pseudo_on' ] = array(
+                $this->fields[ 'flv_pseudo_on' ]          = array(
                     ONAPP_FIELD_MAP  => '_flv_pseudo_on',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'mp4_pseudo_on' ] = array(
+                $this->fields[ 'mp4_pseudo_on' ]          = array(
                     ONAPP_FIELD_MAP  => '_mp4_pseudo_on',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'ssl_on' ] = array(
+                $this->fields[ 'ssl_on' ]                 = array(
                     ONAPP_FIELD_MAP  => '_ssl_on',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'ignore_set_cookie_on' ] = array(
+                $this->fields[ 'ignore_set_cookie_on' ]   = array(
                     ONAPP_FIELD_MAP  => '_ignore_set_cookie_on',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'http_bot_blocked' ] = array(
+                $this->fields[ 'http_bot_blocked' ]       = array(
                     ONAPP_FIELD_MAP  => 'http_bot_blocked',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'limit_rate' ] = array(
+                $this->fields[ 'limit_rate' ]             = array(
                     ONAPP_FIELD_MAP => 'limit_rate',
                 );
-                $this->fields[ 'limit_rate_after' ] = array(
+                $this->fields[ 'limit_rate_after' ]       = array(
                     ONAPP_FIELD_MAP => 'limit_rate_after',
                 );
-                $this->fields[ 'proxy_cache_key' ] = array(
+                $this->fields[ 'proxy_cache_key' ]        = array(
                     ONAPP_FIELD_MAP => 'proxy_cache_key',
                 );
-                $this->fields[ 'proxy_read_time_out' ] = array(
+                $this->fields[ 'proxy_read_time_out' ]    = array(
                     ONAPP_FIELD_MAP => 'proxy_read_time_out',
                 );
                 $this->fields[ 'proxy_connect_time_out' ] = array(
                     ONAPP_FIELD_MAP => 'proxy_connect_time_out',
                 );
-                $this->fields[ 'secure_wowza_on' ] = array(
+                $this->fields[ 'secure_wowza_on' ]        = array(
                     ONAPP_FIELD_MAP  => '_secure_wowza_on',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'secure_wowza_token' ] = array(
+                $this->fields[ 'secure_wowza_token' ]     = array(
                     ONAPP_FIELD_MAP  => '_secure_wowza_token',
                     ONAPP_FIELD_TYPE => 'string',
                 );

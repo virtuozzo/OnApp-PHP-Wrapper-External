@@ -151,7 +151,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
                     ONAPP_FIELD_TYPE      => 'boolean',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'allowed_swap' ] = array(
+                $this->fields[ 'allowed_swap' ]        = array(
                     ONAPP_FIELD_MAP       => '_allowed_swap',
                     ONAPP_FIELD_TYPE      => 'boolean',
                     ONAPP_FIELD_READ_ONLY => true,
@@ -160,7 +160,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 
             case 2.2:
             case 2.3:
-                $this->fields = $this->initFields( 2.1 );
+                $this->fields                       = $this->initFields( 2.1 );
                 $this->fields[ 'backup_server_id' ] = array(
                     ONAPP_FIELD_MAP  => '_backup_server_id',
                     ONAPP_FIELD_TYPE => 'integer',
@@ -174,8 +174,8 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 
             case 3.2:
             case 3.3:
- 			case 3.4:
-                $this->fields = $this->initFields( 3.1 );
+            case 3.4:
+                $this->fields                                               = $this->initFields( 3.1 );
                 $this->fields[ 'disk_id' ][ ONAPP_FIELD_SKIP_FROM_REQUEST ] = true;
                 break;
         }
@@ -409,9 +409,9 @@ class OnApp_VirtualMachine_Backup extends OnApp {
             )
         );
         // workaround because we get template data in response
-        $this->_tagRoot = 'image_template';
+        $this->_tagRoot  = 'image_template';
         $this->className = 'OnApp_Template';
-        $template = new OnApp_Template();
+        $template        = new OnApp_Template();
         $template->initFields( $this->getAPIVersion() );
         $this->fields = $template->getClassFields();
         $this->sendPost( ONAPP_GETRESOURCE_BACKUP_CONVERT, $data );
@@ -424,8 +424,8 @@ class OnApp_VirtualMachine_Backup extends OnApp {
      */
     function restore() {
         $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_BACKUP_RESTORE ) );
-        $response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
-        $result = $this->_castResponseToClass( $response );
+        $response   = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
+        $result     = $this->_castResponseToClass( $response );
         $this->_obj = $result;
     }
 }

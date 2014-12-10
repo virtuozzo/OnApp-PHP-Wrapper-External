@@ -202,9 +202,9 @@ class OnApp_Helper_Logger {
                     break;
             }
 
-            $time = microtime( true );
+            $time  = microtime( true );
             $micro = sprintf( "%06d", ( $time - floor( $time ) ) * 1000000 );
-            $date = date( "$date_format $micro", $time );
+            $date  = date( "$date_format $micro", $time );
 
             $this->_log[ $date ] = array(
                 'log' => $log

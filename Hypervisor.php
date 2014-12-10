@@ -170,31 +170,31 @@ class OnApp_Hypervisor extends OnApp {
 
             case 2.3:
                 $this->fields = $this->initFields( 2.2 );
-                $fields = array(
+                $fields       = array(
                     'raw_stats',
                 );
                 $this->unsetFields( $fields );
-                $this->fields[ 'cpu_cores' ] = array(
+                $this->fields[ 'cpu_cores' ]                       = array(
                     ONAPP_FIELD_MAP       => 'cpu_cores',
                     ONAPP_FIELD_TYPE      => 'integer',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'free_memory' ] = array(
+                $this->fields[ 'free_memory' ]                     = array(
                     ONAPP_FIELD_MAP       => 'free_memory',
                     ONAPP_FIELD_TYPE      => 'integer',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'total_cpus' ] = array(
+                $this->fields[ 'total_cpus' ]                      = array(
                     ONAPP_FIELD_MAP       => 'total_cpus',
                     ONAPP_FIELD_TYPE      => 'integer',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'total_memory' ] = array(
+                $this->fields[ 'total_memory' ]                    = array(
                     ONAPP_FIELD_MAP       => 'total_memory',
                     ONAPP_FIELD_TYPE      => 'integer',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'used_cpu_resources' ] = array(
+                $this->fields[ 'used_cpu_resources' ]              = array(
                     ONAPP_FIELD_MAP       => 'used_cpu_resources',
                     ONAPP_FIELD_TYPE      => 'integer',
                     ONAPP_FIELD_READ_ONLY => true,
@@ -203,19 +203,19 @@ class OnApp_Hypervisor extends OnApp {
                     ONAPP_FIELD_MAP  => '_memory_allocated_by_running_vms',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'total_memory_allocated_by_vms' ] = array(
+                $this->fields[ 'total_memory_allocated_by_vms' ]   = array(
                     ONAPP_FIELD_MAP  => '_total_memory_allocated_by_vms',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'disable_failover' ] = array(
+                $this->fields[ 'disable_failover' ]                = array(
                     ONAPP_FIELD_MAP  => '_disable_failover',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'redis_password' ] = array(
+                $this->fields[ 'redis_password' ]                  = array(
                     ONAPP_FIELD_MAP  => '_redis_password',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'free_disk_space' ] = array(
+                $this->fields[ 'free_disk_space' ]                 = array(
                     ONAPP_FIELD_MAP  => '_free_disk_space',
                     ONAPP_FIELD_TYPE => '_array',
 
@@ -227,7 +227,7 @@ class OnApp_Hypervisor extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
- 			case 3.4:
+            case 3.4:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
@@ -343,7 +343,7 @@ class OnApp_Hypervisor extends OnApp {
             return false;
         }
 
-        $result = $this->castStringToClass( $response );
+        $result     = $this->castStringToClass( $response );
         $this->_obj = $result;
 
         return ( is_array( $result ) || ! $result ) ? $result : array( $result );

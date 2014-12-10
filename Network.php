@@ -112,7 +112,7 @@ class OnApp_Network extends OnApp {
                 break;
 
             case '2.1':
-                $this->fields = $this->initFields( '2.0' );
+                $this->fields                       = $this->initFields( '2.0' );
                 $this->fields[ 'network_group_id' ] = array(
                     ONAPP_FIELD_MAP      => '_network_group_id',
                     ONAPP_FIELD_TYPE     => 'integer',
@@ -129,7 +129,7 @@ class OnApp_Network extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
- 			case 3.4:
+            case 3.4:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
@@ -185,6 +185,7 @@ class OnApp_Network extends OnApp {
                 $resource = parent::getResource( $action );
                 break;
         }
+
         return $resource;
     }
 
@@ -217,7 +218,7 @@ class OnApp_Network extends OnApp {
             return false;
         }
 
-        $result = $this->castStringToClass( $response );
+        $result     = $this->castStringToClass( $response );
         $this->_obj = $result;
 
         return ( is_array( $result ) || ! $result ) ? $result : array( $result );

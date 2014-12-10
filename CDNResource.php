@@ -208,65 +208,65 @@ class OnApp_CDNResource extends OnApp {
 
             case 3.0:
                 $this->fields = $this->initFields( 2.3 );
-                $fields = array(
+                $fields       = array(
                     'origins_for_api',
                 );
                 $this->unsetFields( $fields );
 
-                $this->fields[ 'origins' ] = array(
+                $this->fields[ 'origins' ]                               = array(
                     ONAPP_FIELD_MAP   => '_origins',
                     ONAPP_FIELD_TYPE  => 'array',
                     ONAPP_FIELD_CLASS => 'CDNResource_Origin',
                 );
-                $this->fields[ 'secondary_hostnames' ] = array(
+                $this->fields[ 'secondary_hostnames' ]                   = array(
                     ONAPP_FIELD_MAP  => '_secondary_hostnames',
                     ONAPP_FIELD_TYPE => '_array',
                 );
-                $this->fields[ 'ftp_password' ] = array(
+                $this->fields[ 'ftp_password' ]                          = array(
                     ONAPP_FIELD_MAP  => '_ftp_password',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'mp4_pseudo_on' ] = array(
+                $this->fields[ 'mp4_pseudo_on' ]                         = array(
                     ONAPP_FIELD_MAP  => '_mp4_pseudo_on',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'flv_pseudo_on' ] = array(
+                $this->fields[ 'flv_pseudo_on' ]                         = array(
                     ONAPP_FIELD_MAP  => '_flv_pseudo_on',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'ignore_set_cookie_on' ] = array(
+                $this->fields[ 'ignore_set_cookie_on' ]                  = array(
                     ONAPP_FIELD_MAP  => '_ignore_set_cookie_on',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'publishing_point' ] = array(
+                $this->fields[ 'publishing_point' ]                      = array(
                     ONAPP_FIELD_MAP  => '_publishing_point',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'anti_leech_on' ] = array(
+                $this->fields[ 'anti_leech_on' ]                         = array(
                     ONAPP_FIELD_MAP  => '_anti_leech_on',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'anti_leech_domains' ] = array(
+                $this->fields[ 'anti_leech_domains' ]                    = array(
                     ONAPP_FIELD_MAP  => '_anti_leech_domains',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'secure_wowza_on' ] = array(
+                $this->fields[ 'secure_wowza_on' ]                       = array(
                     ONAPP_FIELD_MAP  => '_secure_wowza_on',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'secure_wowza_token' ] = array(
+                $this->fields[ 'secure_wowza_token' ]                    = array(
                     ONAPP_FIELD_MAP  => '_secure_wowza_token',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'internal_publishing_point' ] = array(
+                $this->fields[ 'internal_publishing_point' ]             = array(
                     ONAPP_FIELD_MAP  => '_internal_publishing_point',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'failover_internal_publishing_point' ] = array(
+                $this->fields[ 'failover_internal_publishing_point' ]    = array(
                     ONAPP_FIELD_MAP  => '_failover_internal_publishing_point',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'external_publishing_location' ] = array(
+                $this->fields[ 'external_publishing_location' ]          = array(
                     ONAPP_FIELD_MAP  => '_external_publishing_location',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
@@ -274,15 +274,15 @@ class OnApp_CDNResource extends OnApp {
                     ONAPP_FIELD_MAP  => '_failover_external_publishing_location',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'origin_sites' ] = array(
+                $this->fields[ 'origin_sites' ]                          = array(
                     ONAPP_FIELD_MAP  => 'origin_sites',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'cname' ] = array(
+                $this->fields[ 'cname' ]                                 = array(
                     ONAPP_FIELD_MAP  => 'cname',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'push_origin_hostname' ] = array(
+                $this->fields[ 'push_origin_hostname' ]                  = array(
                     ONAPP_FIELD_MAP  => 'push_origin_hostname',
                     ONAPP_FIELD_TYPE => 'string',
                 );
@@ -291,9 +291,9 @@ class OnApp_CDNResource extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
- 			case 3.4:
-                $this->fields = $this->initFields( 3.0 );
-                $this->fields[ 'cname' ] = array(
+            case 3.4:
+                $this->fields                           = $this->initFields( 3.0 );
+                $this->fields[ 'cname' ]                = array(
                     ONAPP_FIELD_MAP  => 'cname',
                     ONAPP_FIELD_TYPE => 'string',
                 );
@@ -301,11 +301,11 @@ class OnApp_CDNResource extends OnApp {
                     ONAPP_FIELD_MAP  => 'push_origin_hostname',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'origins' ] = array(
+                $this->fields[ 'origins' ]              = array(
                     ONAPP_FIELD_MAP  => '_origins',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'cdn_reference' ] = array(
+                $this->fields[ 'cdn_reference' ]        = array(
                     ONAPP_FIELD_MAP  => 'cdn_reference',
                     ONAPP_FIELD_TYPE => 'integer',
                 );

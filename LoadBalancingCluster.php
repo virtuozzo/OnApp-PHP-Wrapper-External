@@ -136,8 +136,8 @@ class OnApp_LoadBalancingCluster extends OnApp {
                 break;
 
             case '2.3':
-                $this->fields = $this->initFields( 2.2 );
-                $this->fields[ 'auto_scaling_out_cpu' ] = array(
+                $this->fields                              = $this->initFields( 2.2 );
+                $this->fields[ 'auto_scaling_out_cpu' ]    = array(
                     ONAPP_FIELD_MAP      => '_auto_scaling_out_cpu',
                     ONAPP_FIELD_TYPE     => 'array',
                     ONAPP_FIELD_REQUIRED => 'LoadBalancingCluster_AutoScalingOutCpu',
@@ -147,12 +147,12 @@ class OnApp_LoadBalancingCluster extends OnApp {
                     ONAPP_FIELD_TYPE     => 'array',
                     ONAPP_FIELD_REQUIRED => 'LoadBalancingCluster_AutoScalingOutMemory',
                 );
-                $this->fields[ 'auto_scaling_in_cpu' ] = array(
+                $this->fields[ 'auto_scaling_in_cpu' ]     = array(
                     ONAPP_FIELD_MAP      => '_auto_scaling_in_cpu',
                     ONAPP_FIELD_TYPE     => 'array',
                     ONAPP_FIELD_REQUIRED => 'LoadBalancingCluster_AutoScalingInCpu',
                 );
-                $this->fields[ 'auto_scaling_in_memory' ] = array(
+                $this->fields[ 'auto_scaling_in_memory' ]  = array(
                     ONAPP_FIELD_MAP      => '_auto_scaling_in_memory',
                     ONAPP_FIELD_TYPE     => 'array',
                     ONAPP_FIELD_REQUIRED => 'LoadBalancingCluster_AutoScalingInMemory',
@@ -163,7 +163,7 @@ class OnApp_LoadBalancingCluster extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
- 			case 3.4:
+            case 3.4:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
@@ -242,28 +242,28 @@ class OnApp_LoadBalancingCluster extends OnApp {
      * @return mixed API query response
      */
     function save() {
-        $this->fields[ 'load_balancer_attributes' ] = array(
+        $this->fields[ 'load_balancer_attributes' ]                        = array(
             ONAPP_FIELD_MAP => '_load_balancer_attributes',
         );
         $this->fields[ 'load_balancing_cluster_load_balancer_attributes' ] = array(
             ONAPP_FIELD_MAP => '_load_balancing_cluster_load_balancer_attributes',
         );
-        $this->fields[ 'auto_scaling_out_memory_attributes' ] = array(
+        $this->fields[ 'auto_scaling_out_memory_attributes' ]              = array(
             ONAPP_FIELD_MAP => '_auto_scaling_out_memory_attributes',
         );
-        $this->fields[ 'auto_scaling_out_cpu_attributes' ] = array(
+        $this->fields[ 'auto_scaling_out_cpu_attributes' ]                 = array(
             ONAPP_FIELD_MAP => '_auto_scaling_out_cpu_attributes',
         );
-        $this->fields[ 'auto_scaling_in_memory_attributes' ] = array(
+        $this->fields[ 'auto_scaling_in_memory_attributes' ]               = array(
             ONAPP_FIELD_MAP => '_auto_scaling_in_memory_attributes',
         );
-        $this->fields[ 'auto_scaling_in_cpu_attributes' ] = array(
+        $this->fields[ 'auto_scaling_in_cpu_attributes' ]                  = array(
             ONAPP_FIELD_MAP => '_auto_scaling_in_cpu_attributes',
         );
-        $this->fields[ 'available_vms' ] = array(
+        $this->fields[ 'available_vms' ]                                   = array(
             ONAPP_FIELD_MAP => '_available_vms',
         );
-        $this->fields[ 'image_template_id' ] = array(
+        $this->fields[ 'image_template_id' ]                               = array(
             ONAPP_FIELD_MAP => '_image_template_id',
         );
 
@@ -302,7 +302,7 @@ class OnApp_LoadBalancingCluster extends OnApp {
             return false;
         }
 
-        $result = $this->castStringToClass( $response );
+        $result     = $this->castStringToClass( $response );
         $this->_obj = $result;
 
         return ( is_array( $result ) || ! $result ) ? $result : array( $result );

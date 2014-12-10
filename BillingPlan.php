@@ -131,8 +131,8 @@ class OnApp_BillingPlan extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
- 			case 3.4:
-                $this->fields = $this->initFields( 2.3 );
+            case 3.4:
+                $this->fields                             = $this->initFields( 2.3 );
                 $this->fields[ 'default_base_resources' ] = array(
                     ONAPP_FIELD_MAP       => 'default_base_resources',
                     //ONAPP_FIELD_TYPE      => 'array',

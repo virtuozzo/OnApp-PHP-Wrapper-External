@@ -19,7 +19,7 @@ class OnApp_Helper_Caster {
      * @param object $obj     wrapper object
      */
     public function __construct( $obj ) {
-        self::$obj = $obj;
+        self::$obj        = $obj;
         self::$APIVersion = $obj->getAPIVersion();
     }
 
@@ -34,7 +34,8 @@ class OnApp_Helper_Caster {
     public function serialize( $root, $data ) {
         self::$obj->logger->debug( 'Data to serialize: ' . print_r( $data, true ) );
 
-        return self::getCaster()->serialize( $root, $data );
+        return self::getCaster()
+                   ->serialize( $root, $data );
     }
 
     /**
@@ -50,7 +51,8 @@ class OnApp_Helper_Caster {
     public function unserialize( $className, $data, $map, $root ) {
         self::$obj->logger->debug( 'Data to unserialize into ' . $className . ':' . PHP_EOL . $data );
 
-        return self::getCaster()->unserialize( $className, $data, $map, $root );
+        return self::getCaster()
+                   ->unserialize( $className, $data, $map, $root );
     }
 
     /**
@@ -66,22 +68,24 @@ class OnApp_Helper_Caster {
         self::$obj->logger->add( 'castStringToClass: call ' . __METHOD__ );
 
         $className = 'OnApp_' . $object->className;
-        $tmp_obj = new $className;
+        $tmp_obj   = new $className;
         $tmp_obj->initFields( $object->APIVersion );
-        $tmp_obj->options = self::$obj->options;
-        $tmp_obj->_ch = self::$obj->_ch;
+        $tmp_obj->options  = self::$obj->options;
+        $tmp_obj->_ch      = self::$obj->_ch;
         $tmp_obj->_is_auth = self::$obj->_is_auth;
 
         if( is_object( $object->data ) && get_class( $object->data ) == 'SimpleXMLElement'
             && (string)$object->data->attributes()->type != 'array' || is_object( $object->data )
             && get_class( $object->data ) == 'stdClass' && ! is_array( $object->data )
         ) {
-            $tmp = self::getCaster()->unserialize( $className, $object->data, $tmp_obj->getClassFields(), $tmp_obj->_tagRoot );
+            $tmp = self::getCaster()
+                       ->unserialize( $className, $object->data, $tmp_obj->getClassFields(), $tmp_obj->_tagRoot );
         }
         else {
             $tmp = array();
             foreach( $object->data as $data ) {
-                $tmp[ ] = self::getCaster()->unserialize( $className, $data, $tmp_obj->getClassFields(), $tmp_obj->_tagRoot );
+                $tmp[ ] = self::getCaster()
+                              ->unserialize( $className, $data, $tmp_obj->getClassFields(), $tmp_obj->_tagRoot );
             }
         }
 
@@ -89,7 +93,8 @@ class OnApp_Helper_Caster {
     }
 
     public function parseVersion( $data, $tag ) {
-        return self::getCaster()->parseVersion( $data, $tag );
+        return self::getCaster()
+                   ->parseVersion( $data, $tag );
     }
 
     /**

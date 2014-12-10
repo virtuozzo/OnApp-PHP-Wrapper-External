@@ -46,7 +46,7 @@ class OnApp_Factory extends OnApp {
         $result->logger->setTimezone();
         $result->version = $this->getAPIVersion();
         $result->options = $this->options;
-        $result->_ch = $this->_ch;
+        $result->_ch     = $this->_ch;
         $result->initFields( $this->getAPIVersion() );
 
         return $result;

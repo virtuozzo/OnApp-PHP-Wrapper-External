@@ -92,7 +92,7 @@ class OnApp_User_WhiteList extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
- 			case 3.4:
+            case 3.4:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
@@ -244,7 +244,7 @@ class OnApp_User_WhiteList extends OnApp {
         $this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
 
         if( ! is_null( $id ) && ! is_null( $user_id ) ) {
-            $this->_id = $id;
+            $this->_id      = $id;
             $this->_user_id = $user_id;
 
             $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
