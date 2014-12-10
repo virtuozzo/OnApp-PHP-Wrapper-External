@@ -59,6 +59,7 @@ class OnApp_DNSZone extends OnApp {
             case 3.1:
             case 3.2:
             case 3.3:
+ 			case 3.4:
                 $this->fields = array(
                     'id'            => array(
                         ONAPP_FIELD_MAP       => '_id',
