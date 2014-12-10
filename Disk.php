@@ -27,6 +27,8 @@ define( 'ONAPP_GETRESOURCE_AUTOBACKUP_DISABLE', 'autobackup_disable' );
  */
 define( 'ONAPP_GETRESOURCE_TAKE_BACKUP', 'backups' );
 
+define( 'ONAPP_GERRESOURCE_MIGRATE', 'migrate');
+
 /**
  * Managing Disks
  *
@@ -240,6 +242,32 @@ class OnApp_Disk extends OnApp {
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/backups';
                 break;
 
+			case ONAPP_GETRESOURCE_MIGRATE:
+				/**
+				 * ROUTE :
+				 * @name migrate
+				 * @method POST
+				 * @format {:controller=>"disks", :action=>"migrate"}
+				 */
+				if( is_null( $this->_virtual_machine_id ) ) {
+					$this->logger->error(
+						'getResource( ' . $action . ' ): argument _virtual_machine_id not set.',
+						__FILE__,
+						__LINE__
+					);
+				}
+				elseif( is_null( $this->_id ) ) {
+					$this->logger->error(
+						'getResource( ' . $action . ' ): argument _id not set.',
+						__FILE__,
+						__LINE__
+					);
+				}
+				else {
+					$resource = 'virtual_machines/' . $this->_virtual_machine_id . '/disks/'. $this -> _id .'/migrate';
+				}
+				break;
+
             default:
                 /**
                  * ROUTE :
@@ -290,6 +318,7 @@ class OnApp_Disk extends OnApp {
             ONAPP_GETRESOURCE_ADD,
             ONAPP_GETRESOURCE_AUTOBACKUP_ENABLE,
             ONAPP_GETRESOURCE_AUTOBACKUP_DISABLE,
+			ONAPP_GETRESOURCE_MIGRATE,
         );
 
         if( in_array( $action, $actions ) ) {
@@ -392,4 +421,26 @@ class OnApp_Disk extends OnApp {
         $this->fields = $backup->getClassFields();
         $this->sendPost( ONAPP_GETRESOURCE_TAKE_BACKUP );
     }
+
+	/**
+	 * Migrates disk to different data store
+	 *
+	 * @param integer $id virtual machine id
+	 * @param     $data_store_id
+	 * @access 	public
+	 */
+	function migrate( $data_store_id, $id = NULL ) {
+		if( $id ) {
+			$this->_id = $id;
+		}
+		$data = array(
+			'root' => 'tmp_holder',
+			'data' => array(
+				'disk' => array(
+					'data_store_id' => $data_store_id
+				)
+			)
+		);
+		$this->sendPost( ONAPP_GETRESOURCE_MIGRATE, $data );
+	}
 }
