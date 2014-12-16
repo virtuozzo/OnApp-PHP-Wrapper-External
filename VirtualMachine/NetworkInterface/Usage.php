@@ -69,34 +69,34 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
                     ),
                     'stat_time'  => array(
                         ONAPP_FIELD_MAP  => '_stat_time',
-                        ONAPP_FIELD_TYPE => 'datetime'
+                        ONAPP_FIELD_TYPE => 'datetime',
                        ONAPP_FIELD_READ_ONLY => true,
                     ),
                     'data_received'        => array(
-                ONAPP_FIELD_MAP       => '_data_received',
-                ONAPP_FIELD_TYPE      => 'integer',
-                ONAPP_FIELD_READ_ONLY => true,
-            ),
-                    'data_sent'            => array(
-                ONAPP_FIELD_MAP       => '_data_sent',
-                ONAPP_FIELD_TYPE      => 'integer',
-                ONAPP_FIELD_READ_ONLY => true,
-            ),
-                    'user_id'              => array(
-                ONAPP_FIELD_MAP       => '_user_id',
-                ONAPP_FIELD_TYPE      => 'integer',
-                ONAPP_FIELD_READ_ONLY => true,
-            ),
-                    'network_interface_id' => array(
-                ONAPP_FIELD_MAP       => '_network_interface_id',
-                ONAPP_FIELD_TYPE      => 'integer',
-                ONAPP_FIELD_READ_ONLY => true,
-            ),
-                    'virtual_machine_id'   => array(
-                ONAPP_FIELD_MAP       => '_virtual_machine_id',
-                ONAPP_FIELD_TYPE      => 'integer',
-                ONAPP_FIELD_READ_ONLY => true,
-            )
+                        ONAPP_FIELD_MAP       => '_data_received',
+                        ONAPP_FIELD_TYPE      => 'integer',
+                        ONAPP_FIELD_READ_ONLY => true,
+                    ),
+                            'data_sent'            => array(
+                        ONAPP_FIELD_MAP       => '_data_sent',
+                        ONAPP_FIELD_TYPE      => 'integer',
+                        ONAPP_FIELD_READ_ONLY => true,
+                    ),
+                            'user_id'              => array(
+                        ONAPP_FIELD_MAP       => '_user_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
+                        ONAPP_FIELD_READ_ONLY => true,
+                    ),
+                            'network_interface_id' => array(
+                        ONAPP_FIELD_MAP       => '_network_interface_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
+                        ONAPP_FIELD_READ_ONLY => true,
+                    ),
+                            'virtual_machine_id'   => array(
+                        ONAPP_FIELD_MAP       => '_virtual_machine_id',
+                        ONAPP_FIELD_TYPE      => 'integer',
+                        ONAPP_FIELD_READ_ONLY => true,
+                    )
                 );
                 break;
 
