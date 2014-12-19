@@ -114,6 +114,7 @@ class OnApp_VirtualMachine extends OnApp {
      * @var string
      */
     var $_tagRoot = 'virtual_machine';
+
     /**
      * alias processing the object data
      *
@@ -395,10 +396,22 @@ class OnApp_VirtualMachine extends OnApp {
             case 3.2:
             case 3.3:
             case 3.4:
-                $this->fields                     = $this->initFields( 2.3 );
-                $this->fields[ 'type_of_format' ] = array(
+                $this->fields                          = $this->initFields( 2.3 );
+                $this->fields[ 'type_of_format' ]      = array(
                     ONAPP_FIELD_MAP  => 'type_of_format',
                     ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'licensing_type' ]      = array(
+                    ONAPP_FIELD_MAP  => 'licensing_type',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'licensing_key' ]       = array(
+                    ONAPP_FIELD_MAP  => 'licensing_key',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'licensing_server_id' ] = array(
+                    ONAPP_FIELD_MAP  => 'licensing_server_id',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
                 break;
         }
