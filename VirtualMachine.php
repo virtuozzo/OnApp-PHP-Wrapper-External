@@ -853,12 +853,22 @@ class OnApp_VirtualMachine extends OnApp {
             }
         }
         else {
+            $tmpData = array(
+                'template_id'      => $this->_template_id ? $this->_template_id : $this->_obj->_template_id,
+                'required_startup' => $this->_required_startup
+            );
+            if( isset( $this->licensing_type ) ) {
+                $tmpData[ 'licensing_type' ] = $this->licensing_type;
+                if( ( $this->licensing_type == 'own' ) && isset( $this->licensing_key ) ) {
+                    $tmpData[ 'licensing_key' ] = $this->licensing_key;
+                }
+                elseif( ( $this->licensing_type == 'kms' ) && isset( $this->licensing_server_id ) ) {
+                    $tmpData[ 'licensing_server_id' ] = $this->licensing_server_id;
+                }
+            }
             $data = array(
                 'root' => 'virtual_machine',
-                'data' => array(
-                    'template_id'      => $this->_template_id ? $this->_template_id : $this->_obj->_template_id,
-                    'required_startup' => $this->_required_startup
-                )
+                'data' => $tmpData
             );
         }
 
