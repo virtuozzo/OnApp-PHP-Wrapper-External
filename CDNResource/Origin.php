@@ -61,6 +61,7 @@ class OnApp_CDNResource_Origin extends OnApp {
             case 3.2:
             case 3.3:
             case 3.4:
+            case 3.5:
                 $this->fields = array(
                     'value' => array(
                         ONAPP_FIELD_MAP       => '_value',
