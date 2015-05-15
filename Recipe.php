@@ -2,12 +2,7 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
- * Managing Virtual Machines
- *
- * When creating a virtual machine, users can select a Hypervisor server with
- * Data Store attached if they wish. If not, the system will find a list of
- * hypervisors with sufficient RAM and available storage and choose the one with
- * the least available RAM.
+ * Managing Recipes
  *
  * OnApp provides complete management for your virtual machines. You can start,
  * stop, reboot, and delete virtual machines. You can also move VM's between the
@@ -37,9 +32,7 @@
 define( 'ONAPP_GETRESOURCE_RUN_ON_VMS', 'run_on_vms' );
 
 /**
- * Virtual Machines
- *
- * The Virtual Machine class represents the Virtual Machines of the OnAPP installation.
+ * Recipes
  *
  * The OnApp_VirtualMachine class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
