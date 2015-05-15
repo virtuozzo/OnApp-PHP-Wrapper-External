@@ -118,42 +118,42 @@ class OnApp_Recipe extends OnApp {
                 /**
                  * ROUTE :
                  *
-                 * @name virtual_machines
+                 * @name recipes
                  * @method GET
-                 * @alias   /virtual_machines(.:format)
-                 * @format  {:controller=>"virtual_machines", :action=>"index"}
+                 * @alias   /recipes(.:format)
+                 * @format  {:controller=>"recipes", :action=>"index"}
                  */
                 /**
                  * ROUTE :
                  *
-                 * @name virtual_machine
+                 * @name recipe
                  * @method GET
-                 * @alias    /virtual_machines/:id(.:format)
-                 * @format   {:controller=>"virtual_machines", :action=>"show"}
+                 * @alias    /recipes/:id(.:format)
+                 * @format   {:controller=>"recipes", :action=>"show"}
                  */
                 /**
                  * ROUTE :
                  *
                  * @name
                  * @method POST
-                 * @alias    /virtual_machines(.:format)
-                 * @format   {:controller=>"virtual_machines", :action=>"create"}
+                 * @alias    /recipes(.:format)
+                 * @format   {:controller=>"recipes", :action=>"create"}
                  */
                 /**
                  * ROUTE :
                  *
                  * @name
                  * @method PUT
-                 * @alias  /virtual_machines/:id(.:format)
-                 * @format {:controller=>"virtual_machines", :action=>"update"}
+                 * @alias  /recipes/:id(.:format)
+                 * @format {:controller=>"recipes", :action=>"update"}
                  */
                 /**
                  * ROUTE :
                  *
                  * @name
                  * @method DELETE
-                 * @alias   /virtual_machines/:id(.:format)
-                 * @format  {:controller=>"virtual_machines", :action=>"destroy"}
+                 * @alias   /recipes/:id(.:format)
+                 * @format  {:controller=>"recipes", :action=>"destroy"}
                  */
                 $resource = parent::getResource( $action );
                 break;
@@ -171,9 +171,11 @@ class OnApp_Recipe extends OnApp {
     }
 
     /**
-     * Reboot Virtual machine
-     *
-     * @param mixed $recovery reboot mode
+     * Run recipe on set of vms
+     * @see https://docs.onapp.com/display/35API/Run+Recipe+on+Multiple+Virtual+Servers
+     * @param array $vms
+     * @param null  $id
+     * @return bool|mixed
      */
     function run_on_vms( $vms = array(), $id = null ) {
 
