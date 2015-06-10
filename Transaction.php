@@ -168,6 +168,8 @@ class OnApp_Transaction extends OnApp {
             case 3.3:
             case 3.4:
             case 3.5:
+            case 4.0:
+            case 4.1:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
