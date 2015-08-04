@@ -47,6 +47,12 @@ define( 'ONAPP_GETRESOURCE_SHUTDOWN', 'shutdown' );
  *
  *
  */
+define( 'ONAPP_GETRESOURCE_STOP', 'stop' );
+
+/**
+ *
+ *
+ */
 define( 'ONAPP_GETRESOURCE_CHANGE_OWNER', 'change_owner' );
 
 /**
@@ -96,6 +102,18 @@ define( 'ONAPP_RESET_ROOT_PASSWORD', 'resetRootPassword' );
  *
  */
 define( 'ONAPP_GETRESOURCE_MIGRATE', 'migrate' );
+
+/**
+ *
+ *
+ */
+define( 'ONAPP_GETRESOURCE_VIRTUALMACHINES_STATUSES', 'statusAll' );
+
+/**
+ *
+ *
+ */
+define( 'ONAPP_GETRESOURCE_VIRTUALMACHINE_STATUS', 'status' );
 
 /**
  * Virtual Machines
@@ -325,11 +343,6 @@ class OnApp_VirtualMachine extends OnApp {
             case 2.2:
                 $this->fields = $this->initFields( 2.1 );
 
-                $this->fields[ 'monthly_bandwidth_used' ] = array(
-                    ONAPP_FIELD_MAP       => 'monthly_bandwidth_used',
-                    ONAPP_FIELD_TYPE      => 'integer',
-                    ONAPP_FIELD_READ_ONLY => true,
-                );
                 $this->fields[ 'update_billing_stat' ]    = array(
                     ONAPP_FIELD_MAP       => 'update_billing_stat',
                     ONAPP_FIELD_TYPE      => 'integer',
@@ -416,6 +429,69 @@ class OnApp_VirtualMachine extends OnApp {
                     ONAPP_FIELD_MAP  => 'licensing_server_id',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
+
+                $this->fields[ 'cores_per_socket' ] = array(
+                    ONAPP_FIELD_MAP  => '_cores_per_socket',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields[ 'cpu_sockets' ] = array(
+                    ONAPP_FIELD_MAP  => '_cpu_sockets',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields[ 'cpu_threads' ] = array(
+                    ONAPP_FIELD_MAP  => '_cpu_threads',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields[ 'cpu_units' ] = array(
+                    ONAPP_FIELD_MAP  => '_cpu_units',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields[ 'customer_network_id' ] = array(
+                    ONAPP_FIELD_MAP  => '_customer_network_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields[ 'deleted_at' ] = array(
+                    ONAPP_FIELD_MAP  => '_deleted_at',
+                    ONAPP_FIELD_TYPE => 'datetime',
+                );
+                $this->fields[ 'edge_server_type' ] = array(
+                    ONAPP_FIELD_MAP  => '_edge_server_type',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'firewall_notrack' ] = array(
+                    ONAPP_FIELD_MAP  => '_firewall_notrack',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'initial_root_password_encrypted' ] = array(
+                    ONAPP_FIELD_MAP  => '_initial_root_password_encrypted',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'local_remote_access_ip_address' ] = array(
+                    ONAPP_FIELD_MAP  => '_local_remote_access_ip_address',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                //todo: check response for preferred_hvs
+                /*
+                $this->fields[ 'preferred_hvs' ] = array(
+                    ONAPP_FIELD_MAP  => '_preferred_hvs',
+                    ONAPP_FIELD_TYPE => 'array',
+                );
+                */
+                $this->fields[ 'service_password' ] = array(
+                    ONAPP_FIELD_MAP  => '_service_password',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'iso_id' ] = array(
+                    ONAPP_FIELD_MAP  => '_iso_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields[ 'storage_server_type' ] = array(
+                    ONAPP_FIELD_MAP  => '_storage_server_type',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+
+
+
                 break;
         }
 
@@ -490,6 +566,18 @@ class OnApp_VirtualMachine extends OnApp {
                  * @format   {:controller=>"virtual_machines", :action=>"shutdown"}
                  */
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/shutdown';
+                break;
+
+            case ONAPP_GETRESOURCE_STOP:
+                /**
+                 * ROUTE :
+                 *
+                 * @name stop_virtual_machine
+                 * @method POST
+                 * @alias    /virtual_machines/:id/stop(.:format)
+                 * @format   {:controller=>"virtual_machines", :action=>"stop"}
+                 */
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/stop';
                 break;
 
             case ONAPP_GETRESOURCE_CHANGE_OWNER:
@@ -601,7 +689,28 @@ class OnApp_VirtualMachine extends OnApp {
                  */
                 $resource = '/users/' . $this->_user_id . '/virtual_machines';
                 break;
-
+            case ONAPP_GETRESOURCE_VIRTUALMACHINES_STATUSES:
+                /**
+                 * ROUTE :
+                 *
+                 * @name virtual_machines_statuses
+                 * @method GET
+                 * @alias  /virtual_machines/status(.:format)
+                 * @format {:controller=>"virtual_machines", :action=>"statusAll"}
+                 */
+                $resource = '/virtual_machines/status';
+                break;
+            case ONAPP_GETRESOURCE_VIRTUALMACHINE_STATUS:
+                /**
+                 * ROUTE :
+                 *
+                 * @name virtual_machine_status
+                 * @method GET
+                 * @alias  /virtual_machines/:id/status(.:format)
+                 * @format {:controller=>"virtual_machines", :action=>"status"}
+                 */
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/status';
+                break;
             default:
                 /**
                  * ROUTE :
@@ -715,12 +824,21 @@ class OnApp_VirtualMachine extends OnApp {
     }
 
     /**
-     * Stop Virtual Machine
+     * Shutdown Virtual Machine
      *
      * @access public
      */
     function shutdown() {
         $this->sendPost( ONAPP_GETRESOURCE_SHUTDOWN, '' );
+    }
+
+    /**
+     * Stop Virtual Machine
+     *
+     * @access public
+     */
+    function stop() {
+        $this->sendPost( ONAPP_GETRESOURCE_STOP, '' );
     }
 
     /**
@@ -889,7 +1007,7 @@ class OnApp_VirtualMachine extends OnApp {
     function getList( $user_id = null, $url_args = null ) {
         //todo rewrite to use parent method
         if( is_null( $user_id ) ) {
-            return parent::getList();
+            return parent::getList(null, $url_args);
         }
         else {
             $this->activate( ONAPP_ACTIVATE_GETLIST );
@@ -1019,4 +1137,28 @@ class OnApp_VirtualMachine extends OnApp {
         }
         parent::save();
     }
+
+    /**
+     * Get Virtual machines statuses
+     * or Virtual machine status if _id set
+     *
+     * @param int|null    $id         virtual machine id
+     * @access public
+     *
+     * @return response object|array
+     */
+    function status($id = null) {
+        if( ! is_null($id) ) {
+            $this->_id = $id;
+        }
+        
+        if( ! is_null( $this->_id ) ) {
+            return $this->sendGet(ONAPP_GETRESOURCE_VIRTUALMACHINE_STATUS);
+            
+        } else {
+            return $this->sendGet(ONAPP_GETRESOURCE_VIRTUALMACHINES_STATUSES);
+        }    
+    }
+
+
 }

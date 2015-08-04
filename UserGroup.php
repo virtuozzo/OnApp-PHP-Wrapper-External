@@ -82,6 +82,39 @@ class OnApp_UserGroup extends OnApp {
             case 4.0:
             case 4.1:
                 $this->fields = $this->initFields( 2.3 );
+
+                $this->fields[ 'roles' ] = array(
+                    ONAPP_FIELD_MAP   => '_roles',
+                    ONAPP_FIELD_TYPE  => 'array',
+                    ONAPP_FIELD_CLASS => 'Role',
+                );
+                $this->fields[ 'billing_plans' ] = array(
+                    ONAPP_FIELD_MAP   => '_billing_plans',
+                    ONAPP_FIELD_TYPE  => 'array',
+                    ONAPP_FIELD_CLASS => 'BillingPlan',
+                );
+                $this->fields[ 'identifier' ]           = array(
+                    ONAPP_FIELD_MAP       => '_identifier',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'closed' ]        = array(
+                    ONAPP_FIELD_MAP       => '_closed',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'traded' ]        = array(
+                    ONAPP_FIELD_MAP       => '_traded',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'federation_enabled' ]        = array(
+                    ONAPP_FIELD_MAP       => '_federation_enabled',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'federation_id' ]        = array(
+                    ONAPP_FIELD_MAP       => '_federation_id',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+
+
                 break;
         }
 

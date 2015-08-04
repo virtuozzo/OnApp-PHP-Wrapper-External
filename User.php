@@ -292,8 +292,10 @@ class OnApp_User extends OnApp {
             case 3.4:
             case 3.5:
             case 4.0:
+
             case 4.1:
-                $this->fields                          = $this->initFields( 2.3 );
+
+            $this->fields                          = $this->initFields( 2.3 );
                 $this->fields[ 'firewall_id' ]         = array(
                     ONAPP_FIELD_MAP       => '_firewall_id',
                     ONAPP_FIELD_TYPE      => 'integer',
@@ -322,6 +324,20 @@ class OnApp_User extends OnApp {
                 $this->fields[ 'infoboxes' ]           = array(
                     ONAPP_FIELD_MAP => 'infoboxes',
                 );
+
+                $this->fields[ 'identifier' ]           = array(
+                    ONAPP_FIELD_MAP       => '_identifier',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'supplied' ]        = array(
+                    ONAPP_FIELD_MAP       => '_supplied',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'system_theme' ]           = array(
+                    ONAPP_FIELD_MAP       => '_system_theme',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+
                 break;
         }
 
