@@ -67,6 +67,7 @@ class OnApp_Vapp extends OnApp {
     public function initFields( $version = null, $className = '' ) {
         switch( $version ) {
             case '4.0':
+            case '4.1':
                 $this->fields = array(
                     'id'                          => array(
                         ONAPP_FIELD_MAP       => '_id',

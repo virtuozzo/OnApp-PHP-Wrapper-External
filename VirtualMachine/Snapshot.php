@@ -58,6 +58,7 @@ class OnApp_VirtualMachine_Snapshot extends OnApp {
     public function initFields( $version = null, $className = '' ) {
         switch( $version ) {
             case '4.0':
+            case '4.1':
                 $this->fields = array(
                     'id'                          => array(
                         ONAPP_FIELD_MAP       => '_id',
@@ -88,6 +89,15 @@ class OnApp_VirtualMachine_Snapshot extends OnApp {
                         ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
+                    'memory'                 => array(
+                        ONAPP_FIELD_MAP       => '_memory',
+                        ONAPP_FIELD_READ_ONLY => true,
+                    ),
+                    'quiesce'                 => array(
+                        ONAPP_FIELD_MAP       => '_quiesce ',
+                        ONAPP_FIELD_READ_ONLY => true,
+                    ),
+
                 );
                 break;
         }
@@ -263,5 +273,14 @@ class OnApp_VirtualMachine_Snapshot extends OnApp {
      */
     function build() {
         $this->sendGet(ONAPP_GETRESOURCE_SNAPSHOT_BUILD);
+    }
+
+    /**
+     * Create snapshot
+     *
+     * @access public
+     */
+    function create() {
+        $this->sendPost(ONAPP_GETRESOURCE_DEFAULT);
     }
 }
