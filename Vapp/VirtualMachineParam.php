@@ -19,7 +19,7 @@
  * Vapps
  *
  */
-class OnApp_Vapp_VirtualMachineParams extends OnApp {
+class OnApp_Vapp_VirtualMachineParam extends OnApp {
     /**
      * root tag used in the API request
      *
@@ -45,6 +45,7 @@ class OnApp_Vapp_VirtualMachineParams extends OnApp {
     public function initFields( $version = null, $className = '' ) {
         switch( $version ) {
             case '4.0':
+            case '4.1':
                 $this->fields = array(
                     'identifier'                  => array(
                         ONAPP_FIELD_MAP       => '_identifier',

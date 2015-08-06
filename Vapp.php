@@ -89,7 +89,6 @@ class OnApp_Vapp extends OnApp {
                     ),
                     'status'                       => array(
                         ONAPP_FIELD_MAP      => '_status',
-                        ONAPP_FIELD_REQUIRED => true,
                     ),
                     'updated_at'                  => array(
                         ONAPP_FIELD_MAP       => '_updated_at',
@@ -264,6 +263,46 @@ class OnApp_Vapp extends OnApp {
         $this->sendPost( ONAPP_GETRESOURCE_VAPPS_STOP);
     }
 
+    /**
+     * create vApp
+     *
+     * @param string $vmp_identifier
+     * @param string $vmp_name
+     * @param string $vmp_vcpu_per_vm
+     * @param string $vmp_core_per_socket
+     * @param string $vmp_memory
+     * @param string $vmp_hard_disks_identifier
+     * @param string $vmp_hard_disks_storage_policy
+     * @param string $vmp_hard_disks_disk_space
+     *
+     * @access    public
+     */
+    function create( $vmp_identifier, $vmp_name, $vmp_vcpu_per_vm, $vmp_core_per_socket, $vmp_memory, $vmp_hard_disks_identifier, $vmp_hard_disks_storage_policy, $vmp_hard_disks_disk_space) {
+        $virtual_machine_params = array(
+            'name' => $vmp_name,
+            'vcpu_per_vm' => $vmp_vcpu_per_vm,
+            'core_per_socket' => $vmp_core_per_socket,
+            'memory' => $vmp_memory,
+            $vmp_hard_disks_identifier => array(
+                'storage_policy' => $vmp_hard_disks_storage_policy,
+                'disk_space' => $vmp_hard_disks_disk_space,
+            ),
+        );
+        $data = array(
+            'root' => 'tmp_holder',
+            'data' => array(
+                'vapp' => array(
+                    'name' => $this->_name,
+                    'vapp_template_id' => $this->_vapp_template_id,
+                    'vdc_id' => $this->_vdc_id,
+                    'network' => $this->_network,
+                )
+            )
+        );
+        $data['data']['vapp'][$vmp_identifier] = $virtual_machine_params;
+
+        $this->sendPost( ONAPP_GETRESOURCE_DEFAULT, $data );
+    }
 
 
 }

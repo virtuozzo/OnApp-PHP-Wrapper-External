@@ -97,7 +97,7 @@ define( 'ONAPP_FIELD_REQUIRED', 'required' );
 define( 'ONAPP_FIELD_DEFAULT_VALUE', 'default' );
 
 /**
- * Specify field type to serialize and unserialize obgect using their name
+ * Specify field type to serialize and unserialize object using their name
  */
 define( 'ONAPP_FIELD_CLASS', 'class' );
 
