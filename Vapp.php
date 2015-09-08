@@ -1,6 +1,4 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * Managing Vapps
  *
@@ -12,6 +10,9 @@
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
+
+define( 'ONAPP_GETRESOURCE_VAPPS_COMPOSE', 'compose' );
+define( 'ONAPP_GETRESOURCE_VAPPS_DELETE', 'delete' );
 
 /**
  *
@@ -66,71 +67,96 @@ class OnApp_Vapp extends OnApp {
      */
     public function initFields( $version = null, $className = '' ) {
         switch( $version ) {
-            case '4.0':
-            case '4.1':
+            case 4.0:
+            case 4.1:
                 $this->fields = array(
-                    'id'                          => array(
+                    'id'                     => array(
                         ONAPP_FIELD_MAP       => '_id',
                         ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'created_at'                  => array(
+                    'created_at'             => array(
                         ONAPP_FIELD_MAP       => '_created_at',
                         ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'identifier'                  => array(
+                    'identifier'             => array(
                         ONAPP_FIELD_MAP       => '_identifier',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'name'                       => array(
+                    'name'                   => array(
                         ONAPP_FIELD_MAP      => '_name',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'status'                       => array(
-                        ONAPP_FIELD_MAP      => '_status',
+                    'status'                 => array(
+                        ONAPP_FIELD_MAP => '_status',
                     ),
-                    'updated_at'                  => array(
+                    'updated_at'             => array(
                         ONAPP_FIELD_MAP       => '_updated_at',
                         ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'user_id'                          => array(
+                    'user_id'                => array(
                         ONAPP_FIELD_MAP       => '_user_id',
                         ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
                     //todo check value type of vapp_template_id
-                    'vapp_template_id'                          => array(
+                    'vapp_template_id'       => array(
                         ONAPP_FIELD_MAP       => '_vapp_template_id',
                         ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'vdc_id'                          => array(
+                    'vdc_id'                 => array(
                         ONAPP_FIELD_MAP       => '_vdc_id',
                         ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'virtual_machine_params'                => array(
+                    'virtual_machine_params' => array(
                         ONAPP_FIELD_MAP       => '_virtual_machine_params',
                         ONAPP_FIELD_TYPE      => 'array',
                         ONAPP_FIELD_READ_ONLY => true,
                         ONAPP_FIELD_CLASS     => 'Vapp_VirtualMachineParams',
                     ),
-
-
                 );
                 break;
         }
 
         parent::initFields( $version, __CLASS__ );
-
         return $this->fields;
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         switch( $action ) {
+            case ONAPP_GETRESOURCE_VAPPS_ADD:
+                /**
+                 * ROUTE :
+                 *
+                 * @name compose
+                 * @method POST
+                 * @alias    /vapps/compose
+                 * @format   {:controller=>"vapps", :action=>"compose"}
+                 */
+                $resource = $this->_resource;
+                break;
+
+            case ONAPP_GETRESOURCE_VAPPS_COMPOSE:
+                /**
+                 * ROUTE :
+                 *
+                 * @name compose
+                 * @method POST
+                 * @alias    /vapps/compose
+                 * @format   {:controller=>"vapps", :action=>"compose"}
+                 */
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . 'compose';
+                break;
+
             case ONAPP_GETRESOURCE_VAPPS_RECOMPOSING:
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/recompose';
+                break;
+
+            case ONAPP_GETRESOURCE_VAPPS_DELETE:
                 /**
                  * ROUTE :
                  *
@@ -139,7 +165,7 @@ class OnApp_Vapp extends OnApp {
                  * @alias    /vapps/:id/reboot(.:format)
                  * @format   {:controller=>"vapps", :action=>"recompose"}
                  */
-                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/recompose';
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD );
                 break;
             case ONAPP_GETRESOURCE_VAPPS_EDITNAME:
                 /**
@@ -150,7 +176,8 @@ class OnApp_Vapp extends OnApp {
                  * @alias    /vapps/:id/edit(.:format)
                  * @format   {:controller=>"vapps", :action=>"editname"}
                  */
-                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/edit';
+                #$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/edit';
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD );
                 break;
             case ONAPP_GETRESOURCE_VAPPS_START:
                 /**
@@ -207,6 +234,26 @@ class OnApp_Vapp extends OnApp {
         return $resource;
     }
 
+    function compose( $data ) {
+        $data = array(
+            'root' => 'tmp_holder',
+            'data' => [
+                'vapp' => $data
+            ]
+        );
+        $this->sendPost( ONAPP_GETRESOURCE_VAPPS_COMPOSE, $data );
+    }
+
+    function add( $data ) {
+        $data = array(
+            'root' => 'tmp_holder',
+            'data' => [
+                'vapp' => $data
+            ]
+        );
+        $this->sendPost( ONAPP_GETRESOURCE_VAPPS_ADD, $data );
+    }
+
     /**
      * recompose vApp
      *
@@ -214,12 +261,12 @@ class OnApp_Vapp extends OnApp {
      *
      * @access    public
      */
-    function recomposing( $name ) {
+    function recompose( $id ) {
         $data = array(
             'root' => 'tmp_holder',
             'data' => array(
                 'vapp' => array(
-                    'name' => $name
+                    'vapp_template_id' => $id
                 )
             )
         );
@@ -250,8 +297,8 @@ class OnApp_Vapp extends OnApp {
      *
      * @access    public
      */
-    function start( ) {
-        $this->sendPost( ONAPP_GETRESOURCE_VAPPS_START);
+    function start() {
+        $this->sendPost( ONAPP_GETRESOURCE_VAPPS_START );
     }
 
     /**
@@ -259,8 +306,12 @@ class OnApp_Vapp extends OnApp {
      *
      * @access    public
      */
-    function stop( ) {
-        $this->sendPost( ONAPP_GETRESOURCE_VAPPS_STOP);
+    function stop() {
+        $this->sendPost( ONAPP_GETRESOURCE_VAPPS_STOP );
+    }
+
+    function delete() {
+        $this->sendDelete( ONAPP_GETRESOURCE_VAPPS_DELETE );
     }
 
     /**
@@ -277,32 +328,30 @@ class OnApp_Vapp extends OnApp {
      *
      * @access    public
      */
-    function create( $vmp_identifier, $vmp_name, $vmp_vcpu_per_vm, $vmp_core_per_socket, $vmp_memory, $vmp_hard_disks_identifier, $vmp_hard_disks_storage_policy, $vmp_hard_disks_disk_space) {
-        $virtual_machine_params = array(
-            'name' => $vmp_name,
-            'vcpu_per_vm' => $vmp_vcpu_per_vm,
-            'core_per_socket' => $vmp_core_per_socket,
-            'memory' => $vmp_memory,
+    function create( $vmp_identifier, $vmp_name, $vmp_vcpu_per_vm, $vmp_core_per_socket, $vmp_memory, $vmp_hard_disks_identifier, $vmp_hard_disks_storage_policy, $vmp_hard_disks_disk_space ) {
+        $virtual_machine_params                      = array(
+            'name'                     => $vmp_name,
+            'vcpu_per_vm'              => $vmp_vcpu_per_vm,
+            'core_per_socket'          => $vmp_core_per_socket,
+            'memory'                   => $vmp_memory,
             $vmp_hard_disks_identifier => array(
                 'storage_policy' => $vmp_hard_disks_storage_policy,
-                'disk_space' => $vmp_hard_disks_disk_space,
+                'disk_space'     => $vmp_hard_disks_disk_space,
             ),
         );
-        $data = array(
+        $data                                        = array(
             'root' => 'tmp_holder',
             'data' => array(
                 'vapp' => array(
-                    'name' => $this->_name,
+                    'name'             => $this->_name,
                     'vapp_template_id' => $this->_vapp_template_id,
-                    'vdc_id' => $this->_vdc_id,
-                    'network' => $this->_network,
+                    'vdc_id'           => $this->_vdc_id,
+                    'network'          => $this->_network,
                 )
             )
         );
-        $data['data']['vapp'][$vmp_identifier] = $virtual_machine_params;
+        $data[ 'data' ][ 'vapp' ][ $vmp_identifier ] = $virtual_machine_params;
 
         $this->sendPost( ONAPP_GETRESOURCE_DEFAULT, $data );
     }
-
-
 }

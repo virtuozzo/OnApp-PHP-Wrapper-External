@@ -1,6 +1,4 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * Managing VDCS
  *
@@ -13,7 +11,6 @@
  * @see         OnApp
  */
 
-
 /**
  * Edge Gateways
  *
@@ -24,7 +21,7 @@ class OnApp_VDCS extends OnApp {
      *
      * @var string
      */
-    var $_tagRoot = ''; //todo find out when CP is available
+    var $_tagRoot = 'vdc';
 
     /**
      * alias processing the object data
@@ -43,11 +40,28 @@ class OnApp_VDCS extends OnApp {
      */
     public function initFields( $version = null, $className = '' ) {
         switch( $version ) {
-            case '4.0':
+            case 4.0:
+            case 4.1:
                 $this->fields = array(
-                    'id'                          => array(
+                    'id' => array(
                         ONAPP_FIELD_MAP       => '_id',
                         ONAPP_FIELD_TYPE      => 'integer',
+                        ONAPP_FIELD_READ_ONLY => true
+                    ),
+                    'allocation_model' => array(
+                        ONAPP_FIELD_MAP       => '_allocation_model',
+                        ONAPP_FIELD_READ_ONLY => true
+                    ),
+                    'cpu_allocated' => array(
+                        ONAPP_FIELD_MAP       => '_cpu_allocated',
+                        ONAPP_FIELD_READ_ONLY => true
+                    ),
+                    'cpu_limit' => array(
+                        ONAPP_FIELD_MAP       => '_cpu_limit',
+                        ONAPP_FIELD_READ_ONLY => true
+                    ),
+                    'label' => array(
+                        ONAPP_FIELD_MAP       => '_label',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
                 );
@@ -68,5 +82,4 @@ class OnApp_VDCS extends OnApp {
 
         return $resource;
     }
-
 }

@@ -82,7 +82,7 @@ class OnApp_Vapp_VirtualMachineParam extends OnApp {
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         switch( $action ) {
-            case ONAPP_GETRESOURCE_VAPPS_RECOMPOSING:
+            case ONAPP_GETRESOURCE_VAPPS_RECOMPOSE:
                 /**
                  * ROUTE :
                  *
@@ -175,7 +175,7 @@ class OnApp_Vapp_VirtualMachineParam extends OnApp {
                 )
             )
         );
-        $this->sendPut( ONAPP_GETRESOURCE_VAPPS_RECOMPOSING, $data );
+        $this->sendPut( ONAPP_GETRESOURCE_VAPPS_RECOMPOSE, $data );
     }
 
     /**
