@@ -60,7 +60,8 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
         try {
             if( empty( $data ) ) {
                 if( IS_CLI ) {
-                    throw new Exception( __METHOD__ . ' Data for casting could not be empty' );
+                    // Hold output clean for debugging
+                    // throw new Exception( __METHOD__ . ' Data for casting could not be empty' );
                 }
                 else {
                     //todo add log message
