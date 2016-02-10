@@ -29,6 +29,11 @@ define( 'ONAPP_GETRESOURCE_BACKUP_RESTORE', 'restore' );
 define( 'ONAPP_GETRESOURCE_DISK_BACKUPS', 'disk_backups' );
 
 /**
+* Enable autobackups
+*/
+define( 'ONAPP_GETRESOURCE_ENABLE_BACKUP', 'autobackup_enable' );
+
+/**
  * VM Backups
  *
  * This class represents the Backups which have been taken or are waiting to be taken for Virtual Machine.
@@ -317,6 +322,31 @@ class OnApp_VirtualMachine_Backup extends OnApp {
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/restore';
                 break;
 
+            case ONAPP_GETRESOURCE_ENABLE_BACKUP:
+                /**
+                 * ROUTE :
+                 *
+                 * @name   autobackup_enable
+                 * @method POST
+                 * @alias  /virtual_machines/:virtual_machine_id/autobackup_enable(.:format)
+                 * @format {:controller=>"virtual_machines", :action=>"autobackup_enable"}
+                 */
+                if(is_null($this->_virtual_machine_id) && is_null($this->_obj->_virtual_machine_id)){
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _virtual_machine_id not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                }
+                else{
+                    if(is_null($this->_virtual_machine_id)){
+                        $this->_virtual_machine_id = $this->_obj->_virtual_machine_id;
+                    }
+                }
+
+                $resource = 'virtual_machines/' . $this->_virtual_machine_id . '/autobackup_enable';
+                break;
+
             default:
                 $resource = parent::getResource( $action );
 
@@ -427,6 +457,18 @@ class OnApp_VirtualMachine_Backup extends OnApp {
      */
     function restore() {
         $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_BACKUP_RESTORE ) );
+        $response   = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
+        $result     = $this->_castResponseToClass( $response );
+        $this->_obj = $result;
+    }
+
+    /**
+     * Enable auto-backups
+     *
+     * @access public
+     */
+    function enableAutoBackup() {
+        $this->setAPIResource( $this->getResource(ONAPP_GETRESOURCE_ENABLE_BACKUP ) );
         $response   = $this->sendRequest( ONAPP_REQUEST_METHOD_POST );
         $result     = $this->_castResponseToClass( $response );
         $this->_obj = $result;
