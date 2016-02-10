@@ -987,15 +987,10 @@ class OnApp_VirtualMachine extends OnApp {
                     $tmpData[ 'licensing_server_id' ] = $this->licensing_server_id;
                 }
             }
-
             $data = array(
                 'root' => 'virtual_machine',
                 'data' => $tmpData
             );
-
-            if (strtolower($this->_operating_system) === 'windows') {
-                $data['data']['licensing_type'] = $this->licensing_type;
-            }
         }
 
         $this->sendPost( ONAPP_GETRESOURCE_BUILD, $data );
