@@ -130,11 +130,6 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
                         ONAPP_FIELD_REQUIRED      => true,
                         ONAPP_FIELD_DEFAULT_VALUE => 'Resource::CpuShare'
                     ),
-                    'limit_type'      => array(
-                        ONAPP_FIELD_MAP      => '_limit_type',
-                        ONAPP_FIELD_TYPE     => 'string',
-                        ONAPP_FIELD_REQUIRED => true,
-                    ),
                 );
                 break;
 
@@ -169,6 +164,9 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
                     ONAPP_FIELD_MAP  => 'preferences',
                     ONAPP_FIELD_TYPE => 'string',
                 );
+                break;
+            case 4.2:
+                $this->fields                  = $this->initFields( 4.1 );
                 break;
         }
 

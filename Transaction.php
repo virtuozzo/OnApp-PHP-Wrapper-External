@@ -143,12 +143,12 @@ class OnApp_Transaction extends OnApp {
             case 2.2:
                 $this->fields                  = $this->initFields( 2.1 );
                 $this->fields[ 'started_at' ]  = array(
-                    ONAPP_FIELD_MAP       => 'started_at',
+                    ONAPP_FIELD_MAP       => '_started_at',
                     ONAPP_FIELD_TYPE      => 'datetime',
                     ONAPP_FIELD_READ_ONLY => true
                 );
                 $this->fields[ 'finished_at' ] = array(
-                    ONAPP_FIELD_MAP       => 'finished_at',
+                    ONAPP_FIELD_MAP       => '_finished_at',
                     ONAPP_FIELD_TYPE      => 'datetime',
                     ONAPP_FIELD_READ_ONLY => true
                 );
@@ -170,7 +170,20 @@ class OnApp_Transaction extends OnApp {
             case 3.5:
             case 4.0:
             case 4.1:
+            case 4.2:
                 $this->fields = $this->initFields( 2.3 );
+                $this->fields[ 'associated_object_id' ]  = array(
+                    ONAPP_FIELD_MAP       => '_associated_object_id',
+                    ONAPP_FIELD_TYPE      => 'integer'
+                );
+                $this->fields[ 'associated_object_type' ]  = array(
+                    ONAPP_FIELD_MAP       => '_associated_object_type',
+                    ONAPP_FIELD_TYPE      => 'string'
+                );
+                $this->fields[ 'scheduled' ]  = array(
+                    ONAPP_FIELD_MAP       => '_scheduled',
+                    ONAPP_FIELD_TYPE      => 'boolean'
+                );
                 break;
         }
 

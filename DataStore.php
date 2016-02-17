@@ -129,15 +129,15 @@ class OnApp_DataStore extends OnApp {
 
                 // check with OnApp, probably is nested class
                 $this->fields[ 'raw_stats' ] = array(
-                    ONAPP_FIELD_MAP       => 'raw_stats',
+                    ONAPP_FIELD_MAP       => '_raw_stats',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
                 $this->fields[ 'usage' ]     = array(
-                    ONAPP_FIELD_MAP       => 'usage',
+                    ONAPP_FIELD_MAP       => '_usage',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
                 $this->fields[ 'capacity' ]  = array(
-                    ONAPP_FIELD_MAP       => 'capacity',
+                    ONAPP_FIELD_MAP       => '_capacity',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
                 break;
@@ -163,7 +163,34 @@ class OnApp_DataStore extends OnApp {
             case 3.5:
             case 4.0:
             case 4.1:
+            case 4.2:
                 $this->fields = $this->initFields( 2.3 );
+
+                $this->fields[ 'data_store_type' ] = array(
+                    ONAPP_FIELD_MAP       => '_data_store_type',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'hypervisor_group_id' ] = array(
+                    ONAPP_FIELD_MAP       => '_hypervisor_group_id',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'integrated_storage_cache_enabled' ] = array(
+                    ONAPP_FIELD_MAP       => '_integrated_storage_cache_enabled',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'integrated_storage_cache_settings' ] = array(
+                    ONAPP_FIELD_MAP       => '_integrated_storage_cache_settings',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'iscsi_ip' ] = array(
+                    ONAPP_FIELD_MAP       => '_iscsi_ip',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'vdc_id' ] = array(
+                    ONAPP_FIELD_MAP       => '_vdc_id',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+
                 break;
         }
 

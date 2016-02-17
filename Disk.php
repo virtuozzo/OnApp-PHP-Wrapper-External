@@ -156,7 +156,58 @@ class OnApp_Disk extends OnApp {
             case 3.5:
             case 4.0:
             case 4.1:
+            case 4.2:
                 $this->fields = $this->initFields( 2.3 );
+
+                $this->fields[ 'add_to_freebsd_fstab' ]        = array(
+                    ONAPP_FIELD_MAP       => '_add_to_freebsd_fstab',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'burst_bw' ]        = array(
+                    ONAPP_FIELD_MAP       => '_burst_bw',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'burst_iops' ]        = array(
+                    ONAPP_FIELD_MAP       => '_burst_iops',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'integrated_storage_cache_enabled' ]        = array(
+                    ONAPP_FIELD_MAP       => '_integrated_storage_cache_enabled',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'integrated_storage_cache_override' ]        = array(
+                    ONAPP_FIELD_MAP       => '_integrated_storage_cache_override',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'integrated_storage_cache_settings' ]        = array(
+                    ONAPP_FIELD_MAP       => '_integrated_storage_cache_settings',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'iqn' ]        = array(
+                    ONAPP_FIELD_MAP       => '_iqn',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'label' ]        = array(
+                    ONAPP_FIELD_MAP       => '_label',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'max_bw' ]        = array(
+                    ONAPP_FIELD_MAP       => '_max_bw',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'max_iops' ]        = array(
+                    ONAPP_FIELD_MAP       => '_max_iops',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'min_iops' ]        = array(
+                    ONAPP_FIELD_MAP       => '_min_iops',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'volume_id' ]        = array(
+                    ONAPP_FIELD_MAP       => '_volume_id',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+
                 break;
         }
 

@@ -38,6 +38,17 @@ define( 'ONAPP_GETRESOURCE_HYPERVISORS_BY_HYPERVISOR_GROUP_ID', 'hypervisors' );
 define( 'ONAPP_GETRESOURCE_HYPERVISOR_REBOOT', 'hypervisor_reboot' );
 
 /**
+ * Enable Maintenance Mode for Xen/KVM Compute Resource
+ */
+define( 'ONAPP_ENABLE_MAINTENANCE_MODE', 'maintenance_mode_enable' );
+
+/**
+ * Disable Maintenance Mode for Xen/KVM Compute Resource
+ */
+define( 'ONAPP_DISABLE_MAINTENANCE_MODE', 'maintenance_mode_disable' );
+
+
+/**
  * Hypervisors
  *
  * This class represents the Hypervisors of your OnApp installation. The OnApp class is the parent of the Hypervisors class.
@@ -232,6 +243,180 @@ class OnApp_Hypervisor extends OnApp {
             case 4.0:
             case 4.1:
                 $this->fields = $this->initFields( 2.3 );
+                $this->fields[ 'maintenance_mode' ]          = array(
+                    ONAPP_FIELD_MAP  => '_maintenance_mode',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                break;
+
+            case 4.2:
+                $this->fields = $this->initFields( 4.1 );
+                $this->fields[ 'cpu_flags' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_cpu_flags',
+                    ONAPP_FIELD_TYPE => '_array',
+                );
+
+                $this->fields[ 'allow_unsafe_assigned_interrupts' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_allow_unsafe_assigned_interrupts',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields[ 'amqp_exchange_name' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_amqp_exchange_name',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'backup' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_backup',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'backup_ip_address' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_backup_ip_address',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'blocked' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_blocked',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'built' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_built',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'cloud_boot_os' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_cloud_boot_os',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'connection_options' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_connection_options',
+                    ONAPP_FIELD_TYPE => 'Hypervisor_ConnectionOptions',
+                );
+                $this->fields[ 'cpu_idle' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_cpu_idle',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields[ 'cpu_mhz' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_cpu_mhz',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'cpu_units' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_cpu_units',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields[ 'cpus' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_cpus',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'custom_config' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_custom_config',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'disks_per_storage_controller' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_disks_per_storage_controller',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields[ 'distro' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_distro',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'dom0_memory_size' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_dom0_memory_size',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields[ 'format_disks' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_format_disks',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'free_mem' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_free_mem',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields[ 'host' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_host',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'host_id' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_host_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'infiniband_identifier' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_infiniband_identifier',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'list_of_logical_volumes' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_list_of_logical_volumes',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'list_of_volume_groups' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_list_of_volume_groups',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'list_of_zombie_domains' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_list_of_zombie_domains',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'mac' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_mac',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'machine' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_machine',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'mem_info' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_mem_info',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields[ 'mtu' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_mtu',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields[ 'ovs' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_ovs',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'passthrough_disks' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_passthrough_disks',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'power_cycle_command' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_power_cycle_command',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'rebooting' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_rebooting',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'release' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_release',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'server_type' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_server_type',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'storage' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_storage',
+                    ONAPP_FIELD_TYPE => 'Hypervisor_Storage',
+                );
+                $this->fields[ 'storage_controller_memory_size' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_storage_controller_memory_size',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields[ 'threads_per_core' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_threads_per_core',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'total_mem' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_total_mem',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'total_zombie_mem' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_total_zombie_mem',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'uptime' ]                 = array(
+                    ONAPP_FIELD_MAP  => '_uptime',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+
                 break;
         }
 
@@ -252,6 +437,28 @@ class OnApp_Hypervisor extends OnApp {
                  * @format {:controller=>"hypervisors", :action=>"index"}
                  */
                 $resource = 'settings/hypervisor_zones/' . $this->_hypervisor_group_id . '/hypervisors';
+                break;
+            case ONAPP_ENABLE_MAINTENANCE_MODE:
+                /**
+                 * ROUTE :
+                 *
+                 * @name hypervisor
+                 * @method PUT
+                 * @alias  /settings/hypervisors/:hypervisor_id/maintenance_mode/enable(.:format)
+                 * @format {:controller=>"hypervisors", :action=>"index"}
+                 */
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/maintenance_mode/enable';
+                break;
+            case ONAPP_DISABLE_MAINTENANCE_MODE:
+                /**
+                 * ROUTE :
+                 *
+                 * @name hypervisor
+                 * @method PUT
+                 * @alias  /settings/hypervisors/:hypervisor_id/maintenance_mode/disable(.:format)
+                 * @format {:controller=>"hypervisors", :action=>"index"}
+                 */
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/maintenance_mode/disable';
                 break;
 
             case ONAPP_GETRESOURCE_DEFAULT:
@@ -373,10 +580,8 @@ class OnApp_Hypervisor extends OnApp {
         }
 
         $data = array(
-            'root' => 'tmp_holder',
-            'data' => array(
-                'confirm' => '1',
-            ),
+            'root' => 'force',
+            'data' =>  '1',
         );
 
         $this->sendPost( ONAPP_GETRESOURCE_HYPERVISOR_REBOOT, $data );
@@ -388,5 +593,17 @@ class OnApp_Hypervisor extends OnApp {
         }
 
         return parent::save();
+    }
+
+    function enableMaintanceMode(){
+        $data = array(
+            'root' => 'force',
+            'data' => '1'
+        );
+        return $this->sendPut(ONAPP_ENABLE_MAINTENANCE_MODE, $data);
+    }
+
+    function disableMaintanceMode(){
+        return $this->sendPut(ONAPP_DISABLE_MAINTENANCE_MODE);
     }
 }

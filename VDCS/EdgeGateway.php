@@ -43,7 +43,7 @@ class OnApp_VDCS_EdgeGateway extends OnApp {
      */
     public function initFields( $version = null, $className = '' ) {
         switch( $version ) {
-            case '4.0':
+            case 4.0:
                 $this->fields = array(
                     'id'                          => array(
                         ONAPP_FIELD_MAP       => '_id',
@@ -57,7 +57,6 @@ class OnApp_VDCS_EdgeGateway extends OnApp {
                     ),
                     'description'                       => array(
                         ONAPP_FIELD_MAP      => '_description',
-                        ONAPP_FIELD_REQUIRED => true,
                     ),
                     'identifier'                  => array(
                         ONAPP_FIELD_MAP       => '_identifier',
@@ -65,7 +64,6 @@ class OnApp_VDCS_EdgeGateway extends OnApp {
                     ),
                     'label'                       => array(
                         ONAPP_FIELD_MAP      => '_label',
-                        ONAPP_FIELD_REQUIRED => true,
                     ),
                     'updated_at'                  => array(
                         ONAPP_FIELD_MAP       => '_updated_at',
@@ -79,6 +77,35 @@ class OnApp_VDCS_EdgeGateway extends OnApp {
                     ),
                 );
                 break;
+            case 4.2:
+                $this->fields = $this->initFields( 4.0 );
+
+                //gateway_backing_config can be: compact, full, full-4
+                $this->fields[ 'gateway_backing_config' ]         = array(
+                    ONAPP_FIELD_MAP       => '_gateway_backing_config',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'ha_enabled' ]         = array(
+                    ONAPP_FIELD_MAP       => '_ha_enabled',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'status' ]         = array(
+                    ONAPP_FIELD_MAP       => '_status',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'use_default_route_for_dns_relay' ]         = array(
+                    ONAPP_FIELD_MAP       => '_use_default_route_for_dns_relay',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'external_network_ids' ]         = array(
+                    ONAPP_FIELD_MAP       => '_external_network_ids',
+                    ONAPP_FIELD_TYPE      => 'array',
+                );
+
+
+
+
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -88,38 +115,6 @@ class OnApp_VDCS_EdgeGateway extends OnApp {
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         switch( $action ) {
-            case ONAPP_GETRESOURCE_DEFAULT:
-                /**
-                 * ROUTE :
-                 *
-                 * @name vdcs_edge_gateways
-                 * @method GET
-                 * @alias    /vdcs/:vdc_id/edge_gateways(.:format)
-                 * @format    {:controller=>"edge_gateways", :action=>"index"}
-                 */
-                /**
-                 * ROUTE :
-                 *
-                 * @name vdcs_edge_gateway
-                 * @method GET
-                 * @alias    /vdcs/:vdc_id/edge_gateways/:edge_gateways_id(.:format)
-                 * @format    {:controller=>"edge_gateways", :action=>"show"}
-                 */
-                if( is_null( $this->_vdcs_id ) && is_null( $this->_obj->_vdcs_id ) ) {
-                    $this->logger->error(
-                        'getResource( ' . $action . ' ): argument _vdcs_id not set.',
-                        __FILE__,
-                        __LINE__
-                    );
-                }
-                else {
-                    if( is_null( $this->_vdcs_id ) ) {
-                        $this->_vdcs_id = $this->_obj->_vdcs_id;
-                    }
-                }
-
-                $resource = 'vdcs/' . $this->_vdcs_id . '/' . $this->_resource;
-                break;
           default:
               $resource = parent::getResource( $action );
               break;

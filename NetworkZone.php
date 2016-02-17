@@ -33,7 +33,7 @@ class OnApp_NetworkZone extends OnApp {
      *
      * @var string
      */
-    var $_resource = 'network_zones';
+    var $_resource = 'settings/network_zones';
 
     /**
      * API Fields description
@@ -75,18 +75,107 @@ class OnApp_NetworkZone extends OnApp {
 
             case 3.0:
             case 3.1:
+                $this->fields            = $this->initFields( 2.3 );
+                $this->fields[ 'location_group_id' ]    = array(
+                    ONAPP_FIELD_MAP       => '_location_group_id',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                break;
             case 3.2:
             case 3.3:
             case 3.4:
             case 3.5:
             case 4.0:
             case 4.1:
-                $this->fields = $this->initFields( 2.3 );
-                break;
+            case 4.2:
+                $this->fields = $this->initFields( 3.1 );
+                $this->fields[ 'preconfigured_only' ]    = array(
+                    ONAPP_FIELD_MAP       => '_preconfigured_only',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'closed' ]    = array(
+                    ONAPP_FIELD_MAP       => '_closed',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'draas_id' ]    = array(
+                    ONAPP_FIELD_MAP       => '_draas_id',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'federation_enabled' ]    = array(
+                    ONAPP_FIELD_MAP       => '_federation_enabled',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'federation_id' ]    = array(
+                    ONAPP_FIELD_MAP       => '_federation_id',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'hypervisor_id' ]    = array(
+                    ONAPP_FIELD_MAP       => '_hypervisor_id',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'identifier' ]    = array(
+                    ONAPP_FIELD_MAP       => '_identifier',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'traded' ]    = array(
+                    ONAPP_FIELD_MAP       => '_traded',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+
+            break;
         }
 
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
+    }
+
+    function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+        switch( $action ) {
+            default:
+                /**
+                 * ROUTE :
+                 *
+                 * @name network_zone
+                 * @method GET
+                 * @alias  /settings/network_zones(.:format)
+                 * @format {:controller=>"billing_plans", :action=>"index"}
+                 */
+                /**
+                 * ROUTE :
+                 *
+                 * @name network_zone
+                 * @method GET
+                 * @alias  /settings/network_zones/:id(.:format)
+                 * @format {:controller=>"billing_plans", :action=>"show"}
+                 */
+                /**
+                 * ROUTE :
+                 *
+                 * @name network_zone
+                 * @method POST
+                 * @alias  /settings/network_zones(.:format)
+                 * @format {:controller=>"billing_plans", :action=>"create"}
+                 */
+                /**
+                 * ROUTE :
+                 *
+                 * @name network_zone
+                 * @method PUT
+                 * @alias  /settings/network_zones/:id(.:format)
+                 * @format {:controller=>"billing_plans", :action=>"update"}
+                 */
+                /**
+                 * ROUTE :
+                 *
+                 * @name network_zone
+                 * @method DELETE
+                 * @alias  /settings/network_zones/:id(.:format)
+                 * @format {:controller=>"billing_plans", :action=>"destroy"}
+                 */
+                $resource = parent::getResource( $action );
+        }
+
+        return $resource;
     }
 }

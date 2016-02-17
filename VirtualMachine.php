@@ -33,6 +33,16 @@
 
 /**
  *
+ */
+define( 'ONAPP_GETRESOURCE_VIRTUALMACHINE_AUTOBACKUP_ENABLE', 'virtualmachine_autobackup_enable' );
+
+/**
+ *
+ */
+define( 'ONAPP_GETRESOURCE_VIRTUALMACHINE_AUTOBACKUP_DISABLE', 'virtualmachine_autobackup_disable' );
+
+/**
+ *
  *
  */
 define( 'ONAPP_GETRESOURCE_REBOOT', 'reboot' );
@@ -114,6 +124,21 @@ define( 'ONAPP_GETRESOURCE_VIRTUALMACHINES_STATUSES', 'statusAll' );
  *
  */
 define( 'ONAPP_GETRESOURCE_VIRTUALMACHINE_STATUS', 'status' );
+
+/**
+ * Enable Booting from CD for ISO Virtual Server
+ */
+define( 'ONAPP_ENABLE_BOOT_FROM_CD', 'cd_boot_enable' );
+
+/**
+ * Disable Booting from CD for ISO Virtual Server
+ */
+define( 'ONAPP_DISABLE_BOOT_FROM_CD', 'cd_boot_disable' );
+
+/**
+ * Search
+ */
+define( 'ONAPP_SEARCH', 'search' );
 
 /**
  * Virtual Machines
@@ -490,8 +515,97 @@ class OnApp_VirtualMachine extends OnApp {
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
 
-
-
+                break;
+            case 4.2:
+                $this->fields                          = $this->initFields( 4.1 );
+                $this->fields[ 'built_from_iso' ] = array(
+                    ONAPP_FIELD_MAP  => '_built_from_iso',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'acceleration' ] = array(
+                    ONAPP_FIELD_MAP  => '_acceleration',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'acceleration_status' ] = array(
+                    ONAPP_FIELD_MAP  => '_acceleration_status',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'allowed_swap' ] = array(
+                    ONAPP_FIELD_MAP  => '_allowed_swap',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'autoscale_service' ] = array(
+                    ONAPP_FIELD_MAP  => '_autoscale_service',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'cdboot' ] = array(
+                    ONAPP_FIELD_MAP  => '_cdboot',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'draas_mode' ] = array(
+                    ONAPP_FIELD_MAP  => '_draas_mode',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields[ 'hostname' ] = array(
+                    ONAPP_FIELD_MAP  => '_hostname',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'hot_add_cpu' ] = array(
+                    ONAPP_FIELD_MAP  => '_hot_add_cpu',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'hot_add_memory' ] = array(
+                    ONAPP_FIELD_MAP  => '_hot_add_memory',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'instance_type_id' ] = array(
+                    ONAPP_FIELD_MAP  => '_instance_type_id',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'local_remote_access_port' ] = array(
+                    ONAPP_FIELD_MAP  => '_local_remote_access_port',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'time_zone' ] = array(
+                    ONAPP_FIELD_MAP  => '_time_zone',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'xen_id' ] = array(
+                    ONAPP_FIELD_MAP  => '_xen_id',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'support_incremental_backups' ] = array(
+                    ONAPP_FIELD_MAP  => '_support_incremental_backups',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'cpu_priority' ] = array(
+                    ONAPP_FIELD_MAP  => '_cpu_priority',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields[ 'price_per_hour' ] = array(
+                    ONAPP_FIELD_MAP  => '_price_per_hour',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields[ 'price_per_hour_powered_off' ] = array(
+                    ONAPP_FIELD_MAP  => '_price_per_hour_powered_off',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields[ 'primary_network_group_id' ] = array(
+                    ONAPP_FIELD_MAP  => '_primary_network_group_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields[ 'draas_keys' ] = array(
+                    ONAPP_FIELD_MAP  => '_draas_keys',
+                    ONAPP_FIELD_TYPE => 'array',
+                );
+                $this->fields[ 'preferred_hvs' ] = array(
+                    ONAPP_FIELD_MAP  => '_preferred_hvs',
+                    ONAPP_FIELD_TYPE => 'array',
+                );
+                $this->fields[ 'vapp_id' ] = array(
+                    ONAPP_FIELD_MAP  => '_vapp_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
                 break;
         }
 
@@ -544,6 +658,28 @@ class OnApp_VirtualMachine extends OnApp {
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         switch( $action ) {
+            case ONAPP_GETRESOURCE_VIRTUALMACHINE_AUTOBACKUP_ENABLE:
+                /**
+                 * ROUTE :
+                 *
+                 * @name autobackup_enable_virtualmachine
+                 * @method POST
+                 * @alias     /virtual_machines/:id/autobackup_enable.json
+                 * @format    {:controller=>"virtual_machines", :action=>"autobackup_enable"}
+                 */
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/autobackup_enable';
+                break;
+            case ONAPP_GETRESOURCE_VIRTUALMACHINE_AUTOBACKUP_DISABLE:
+                /**
+                 * ROUTE :
+                 *
+                 * @name autobackup_disable_virtualmachine
+                 * @method POST
+                 * @alias     /virtual_machines/:id/autobackup_disable.json
+                 * @format    {:controller=>"virtual_machines", :action=>"autobackup_disable"}
+                 */
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/autobackup_disable';
+                break;
             case ONAPP_GETRESOURCE_REBOOT:
                 /**
                  * ROUTE :
@@ -711,6 +847,39 @@ class OnApp_VirtualMachine extends OnApp {
                  */
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/status';
                 break;
+            case ONAPP_ENABLE_BOOT_FROM_CD:
+                /**
+                 * ROUTE :
+                 *
+                 * @name virtual_machine_status
+                 * @method POST
+                 * @alias  /virtual_machines/:id/cd_boot/enable(.:format)
+                 * @format {:controller=>"virtual_machines", :action=>"status"}
+                 */
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/cd_boot/enable';
+                break;
+            case ONAPP_DISABLE_BOOT_FROM_CD:
+                /**
+                 * ROUTE :
+                 *
+                 * @name virtual_machine_status
+                 * @method POST
+                 * @alias  /virtual_machines/:id/cd_boot/disable(.:format)
+                 * @format {:controller=>"virtual_machines", :action=>"status"}
+                 */
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/cd_boot/disable';
+                break;
+            case ONAPP_SEARCH:
+                /**
+                 * ROUTE :
+                 *
+                 * @name virtual_machine_search
+                 * @method GET
+                 * @alias  /virtual_machines(.:format)?q=label
+                 * @format {:controller=>"virtual_machines", :action=>"status"}
+                 */
+                $resource = $this->_resource;
+                break;
             default:
                 /**
                  * ROUTE :
@@ -757,6 +926,8 @@ class OnApp_VirtualMachine extends OnApp {
         }
 
         $actions = array(
+            ONAPP_GETRESOURCE_VIRTUALMACHINE_AUTOBACKUP_ENABLE,
+            ONAPP_GETRESOURCE_VIRTUALMACHINE_AUTOBACKUP_DISABLE,
             ONAPP_GETRESOURCE_REBOOT,
             ONAPP_GETRESOURCE_SHUTDOWN,
             ONAPP_GETRESOURCE_STARTUP,
@@ -764,7 +935,7 @@ class OnApp_VirtualMachine extends OnApp {
             ONAPP_GETRESOURCE_BUILD,
             ONAPP_ACTIVATE_GETLIST_USER,
             ONAPP_GETRESOURCE_SUSPEND_VM,
-            ONAPP_RESET_ROOT_PASSWORD
+            ONAPP_RESET_ROOT_PASSWORD,
         );
 
         if( in_array( $action, $actions ) ) {
@@ -772,6 +943,34 @@ class OnApp_VirtualMachine extends OnApp {
         }
 
         return $resource;
+    }
+
+    /**
+     * Enable autobackup
+     *
+     * @param null $id
+     *
+     * @return void
+     */
+    function enableAutobackup( $id = null ) {
+        if( $id ) {
+            $this->_id = $id;
+        }
+        $this->sendPost( ONAPP_GETRESOURCE_VIRTUALMACHINE_AUTOBACKUP_ENABLE, '' );
+    }
+
+    /**
+     * Disable autobackup
+     *
+     * @param null $id
+     *
+     * @return void
+     */
+    function disableAutobackup( $id = null ) {
+        if( $id ) {
+            $this->_id = $id;
+        }
+        $this->sendPost( ONAPP_GETRESOURCE_VIRTUALMACHINE_AUTOBACKUP_DISABLE, '' );
     }
 
     /**
@@ -1159,6 +1358,14 @@ class OnApp_VirtualMachine extends OnApp {
             return $this->sendGet(ONAPP_GETRESOURCE_VIRTUALMACHINES_STATUSES);
         }    
     }
+    function enableCdBoot(){
+        return $this->sendPost(ONAPP_ENABLE_BOOT_FROM_CD);
+    }
+    function disableCdBoot(){
+        return $this->sendPost(ONAPP_DISABLE_BOOT_FROM_CD);
+    }
 
-
+    public function search($question) {
+        return $this->sendGet( ONAPP_SEARCH, null, array('q'=>$question));
+    }
 }

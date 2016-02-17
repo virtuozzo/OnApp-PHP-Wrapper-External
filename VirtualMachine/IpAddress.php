@@ -110,7 +110,32 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
             case 3.5:
             case 4.0:
             case 4.1:
+            case 4.2:
                 $this->fields = $this->initFields( 2.3 );
+                $this->fields[ 'customer_network_id' ]              = array(
+                    ONAPP_FIELD_MAP           => '_customer_network_id',
+                    ONAPP_FIELD_TYPE          => 'boolean'
+                );
+                $this->fields[ 'disallowed_primary' ]                = array(
+                    ONAPP_FIELD_MAP           => '_disallowed_primary',
+                    ONAPP_FIELD_TYPE          => 'boolean'
+                );
+                $this->fields[ 'hypervisor_id' ]                     = array(
+                    ONAPP_FIELD_MAP           => '_hypervisor_id',
+                    ONAPP_FIELD_TYPE          => 'boolean'
+                );
+                $this->fields[ 'ip_address_pool_id' ]                = array(
+                    ONAPP_FIELD_MAP           => '_ip_address_pool_id',
+                    ONAPP_FIELD_TYPE          => 'boolean'
+                );
+                $this->fields[ 'pxe' ]                                = array(
+                    ONAPP_FIELD_MAP           => '_pxe',
+                    ONAPP_FIELD_TYPE          => 'boolean'
+                );
+                $this->fields[ 'user_id' ]                            = array(
+                    ONAPP_FIELD_MAP           => '_user_id',
+                    ONAPP_FIELD_TYPE          => 'boolean'
+                );
                 break;
         }
 

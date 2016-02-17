@@ -105,7 +105,7 @@ class OnApp_IpAddress extends OnApp {
             case 2.3:
                 $this->fields              = $this->initFields( 2.2 );
                 $this->fields[ 'user_id' ] = array(
-                    ONAPP_FIELD_MAP       => 'user_id',
+                    ONAPP_FIELD_MAP       => '_user_id',
                     ONAPP_FIELD_TYPE      => 'integer',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
@@ -119,7 +119,26 @@ class OnApp_IpAddress extends OnApp {
             case 3.5:
             case 4.0:
             case 4.1:
+            case 4.2:
                 $this->fields = $this->initFields( 2.3 );
+
+                $this->fields[ 'customer_network_id' ] = array(
+                    ONAPP_FIELD_MAP       => '_customer_network_id',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'hypervisor_id' ] = array(
+                    ONAPP_FIELD_MAP       => '_hypervisor_id',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'ip_address_pool_id' ] = array(
+                    ONAPP_FIELD_MAP       => '_ip_address_pool_id',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'pxe' ] = array(
+                    ONAPP_FIELD_MAP       => '_pxe',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+
                 break;
         }
 

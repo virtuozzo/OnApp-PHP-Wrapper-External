@@ -113,9 +113,30 @@ class OnApp_UserGroup extends OnApp {
                     ONAPP_FIELD_MAP       => '_federation_id',
                     ONAPP_FIELD_TYPE      => 'integer',
                 );
-
-
+                $this->fields[ 'billing_plan_ids' ]        = array(
+                    ONAPP_FIELD_MAP       => 'billing_plan_ids',
+                );
                 break;
+            case 4.2:
+                $this->fields = $this->initFields( 4.1 );
+                $this->fields[ 'company_billing_plan_id' ]        = array(
+                    ONAPP_FIELD_MAP       => '_company_billing_plan_id',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'draas_id' ]        = array(
+                    ONAPP_FIELD_MAP       => '_draas_id',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'hypervisor_id' ]        = array(
+                    ONAPP_FIELD_MAP       => '_hypervisor_id',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'preconfigured_only' ]        = array(
+                    ONAPP_FIELD_MAP       => '_preconfigured_only',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                break;
+
         }
 
         parent::initFields( $version, __CLASS__ );

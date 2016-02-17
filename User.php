@@ -151,7 +151,6 @@ class OnApp_User extends OnApp {
                     'time_zone'                 => array(
                         ONAPP_FIELD_MAP           => '_time_zone',
                         ONAPP_FIELD_TYPE          => 'string',
-                        ONAPP_FIELD_DEFAULT_VALUE => '',
                     ),
                     'total_amount'              => array(
                         ONAPP_FIELD_MAP       => '_total_amount',
@@ -231,12 +230,10 @@ class OnApp_User extends OnApp {
                 $this->fields[ 'user_group_id' ]                    = array(
                     ONAPP_FIELD_MAP           => '_user_group_id',
                     ONAPP_FIELD_TYPE          => 'integer',
-                    ONAPP_FIELD_DEFAULT_VALUE => '',
                 );
                 $this->fields[ 'locale' ]                           = array(
                     ONAPP_FIELD_MAP           => '_locale',
                     ONAPP_FIELD_TYPE          => 'string',
-                    ONAPP_FIELD_DEFAULT_VALUE => 'en',
                 );
                 break;
 
@@ -292,7 +289,6 @@ class OnApp_User extends OnApp {
             case 3.4:
             case 3.5:
             case 4.0:
-
             case 4.1:
                 $this->fields                          = $this->initFields( 2.3 );
                 $this->fields[ 'firewall_id' ]         = array(
@@ -336,7 +332,22 @@ class OnApp_User extends OnApp {
                     ONAPP_FIELD_MAP       => '_system_theme',
                     ONAPP_FIELD_TYPE      => 'string',
                 );
+                break;
 
+            case 4.2:
+                $this->fields                          = $this->initFields( 4.1 );
+                $this->fields[ 'registered_yubikey' ]         = array(
+                    ONAPP_FIELD_MAP       => '_registered_yubikey',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'registered_yubikey' ]         = array(
+                    ONAPP_FIELD_MAP       => '_registered_yubikey',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'cdn_reference' ]         = array(
+                    ONAPP_FIELD_MAP       => '_cdn_reference',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
                 break;
         }
 

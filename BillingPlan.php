@@ -144,6 +144,13 @@ class OnApp_BillingPlan extends OnApp {
                     ONAPP_FIELD_CLASS     => 'BillingPlan_BaseResource',
                 );
                 break;
+            case 4.2:
+                $this->fields                             = $this->initFields( 4.1 );
+                $this->fields[ 'type' ] = array(
+                    ONAPP_FIELD_MAP       => '_type',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

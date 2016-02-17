@@ -1057,7 +1057,7 @@ class OnApp {
      *
      * @return mixed (Array of Object or Object)
      */
-    protected function _castResponseToClass( $response ) {
+    protected function _castResponseToClass( $response, $getAllFields = false  ) {
         $this->logger->debug( '_castResponseToClass: Cast response in to Object.' );
 
         if( isset( $response[ 'response_body' ] ) ) {
@@ -1069,7 +1069,7 @@ class OnApp {
                 case 404:
                 case 422:
                 case 204:
-                    return $this->castStringToClass( $response );
+                    return $this->castStringToClass( $response, $getAllFields );
                     break;
 
                 case 500:
@@ -1097,7 +1097,7 @@ class OnApp {
      *
      * @return mixed array of Objects or Object
      */
-    protected function castStringToClass( array $content ) {
+    protected function castStringToClass( array $content, $getAllFields = false ) {
         $className = $this->getClassName();
         $tagMap    = $this->fields;
 
@@ -1124,7 +1124,7 @@ class OnApp {
                     return $this;
                 }
                 else {
-                    return $objCast->unserialize( $className, $data, $tagMap, $root );
+                    return $objCast->unserialize( $className, $data, $tagMap, $root, $getAllFields );
                 }
 
             default:
@@ -1206,11 +1206,13 @@ class OnApp {
         }
 
         if( is_null( $id ) ) {
-            $this->logger->error(
+            //$this->logger->error(
+            $this->logger->debug(
                 'load: Can\'t set variable ' . $id,
                 __FILE__,
                 __LINE__
             );
+            return false;
         }
 
         $this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
@@ -1285,9 +1287,7 @@ class OnApp {
         switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
             case 'xml':
             case 'json':
-                $objCast = new OnApp_Helper_Caster( $this );
-                $data    = $objCast->serialize( $this->_tagRoot, $this->getFieldsToSend() );
-                $this->logger->debug( 'serialize: serialized data:' . PHP_EOL . $data );
+                $data = $this->getSerializedDataToSend();
                 $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_ADD ) );
                 $response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST, $data );
 
@@ -1321,12 +1321,9 @@ class OnApp {
         switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
             case 'xml':
             case 'json':
-                $objCast = new OnApp_Helper_Caster( $this );
-                $data    = $objCast->serialize( $this->_tagRoot, $this->getFieldsToSend() );
-                $this->logger->debug( 'serialize: serialized data:' . PHP_EOL . $data );
+                $data = $this->getSerializedDataToSend();
                 $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_EDIT ) );
                 $response = $this->sendRequest( ONAPP_REQUEST_METHOD_PUT, $data );
-
                 if( $response[ 'info' ][ 'http_code' ] > 201 ) {
                     $this->_castResponseToClass( $response );
                 }
@@ -1350,7 +1347,22 @@ class OnApp {
     }
 
     /**
-     * Creates data fro API response to save or change the object data
+     * Creates serialized data from API response to save or change the object data
+     *
+     * Returns serialized Hash of Object fields with values
+     *
+     * @return string
+     * @access private
+     */
+    protected function getSerializedDataToSend() {
+        $objCast = new OnApp_Helper_Caster( $this );
+        $data    = $objCast->serialize( $this->_tagRoot, $this->getFieldsToSend() );
+        $this->logger->debug( 'serialize: serialized data:' . PHP_EOL . $data );
+        return $data;
+    }
+
+    /**
+     * Creates data from API response to save or change the object data
      *
      * Returns the Hash of Object fields with values
      *
@@ -1443,12 +1455,12 @@ class OnApp {
         return $this->_action( ONAPP_REQUEST_METHOD_POST, $resource, $data );
     }
 
-    protected function sendGet( $resource, $data = null, $url_args = null ) {
-        return $this->_action( ONAPP_REQUEST_METHOD_GET, $resource, $data, $url_args );
+    protected function sendGet( $resource, $data = null, $url_args = null, $getAllFields = false ) {
+        return $this->_action( ONAPP_REQUEST_METHOD_GET, $resource, $data, $url_args, $getAllFields  );
     }
 
-    function sendPut( $resource, $data = null ) {
-        return $this->_action( ONAPP_REQUEST_METHOD_PUT, $resource, $data );
+    function sendPut( $resource, $data = null, $url_args = null ) {
+        return $this->_action( ONAPP_REQUEST_METHOD_PUT, $resource, $data, $url_args = null );
     }
 
     function sendDelete( $resource, $data = null ) {
@@ -1464,11 +1476,11 @@ class OnApp {
      *
      * @return bool|mixed (Array of Object or Object)
      */
-    protected function _action( $method, $resource, $data = null, $url_args = null ) {
+    protected function _action( $method, $resource, $data = null, $url_args = null, $getAllFields = false ) {
         switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
             case 'xml':
             case 'json':
-                if( ! is_null( $data ) ) {
+                if(  ! is_null( $data ) && is_array($data) ) {
                     $objCast = new OnApp_Helper_Caster( $this );
                     $data    = $objCast->serialize( $data[ 'root' ], $data[ 'data' ] );
                     $this->logger->debug( 'Additional parameters: ' . $data );
@@ -1480,7 +1492,7 @@ class OnApp {
 
                 $response = $this->sendRequest( $method, $data );
 
-                $result = $this->_castResponseToClass( $response );
+                $result = $this->_castResponseToClass( $response, $getAllFields );
 
                 if( $response[ 'info' ][ 'http_code' ] > 400 ) {
                     if( is_null( $result ) ) {
@@ -1709,6 +1721,15 @@ class OnApp {
         }
         else {
             unset( $this->dynamicFields[ $name ] );
+        }
+    }
+
+    public function addStringField( $fieldName ) {
+        if(!isset($this->fields[$fieldName])){
+            $this->fields[ $fieldName ] = array(
+                ONAPP_FIELD_MAP           => '_' . $fieldName,
+                ONAPP_FIELD_TYPE          => 'string',
+            );
         }
     }
 }

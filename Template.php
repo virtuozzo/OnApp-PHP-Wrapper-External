@@ -128,7 +128,7 @@ class OnApp_Template extends OnApp {
                         ONAPP_FIELD_REQUIRED  => true,
                     ),
                     'version'                     => array(
-                        ONAPP_FIELD_MAP       => '_template_version',
+                        ONAPP_FIELD_MAP       => '_version',
                         ONAPP_FIELD_READ_ONLY => true,
                         ONAPP_FIELD_REQUIRED  => true,
                     ),
@@ -169,7 +169,7 @@ class OnApp_Template extends OnApp {
                     ONAPP_FIELD_REQUIRED => true
                 );
                 $this->fields[ 'parent_template_id' ]       = array(
-                    ONAPP_FIELD_MAP       => '_template_size',
+                    ONAPP_FIELD_MAP       => '_parent_template_id',
                     ONAPP_FIELD_TYPE      => 'integer',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
@@ -178,12 +178,12 @@ class OnApp_Template extends OnApp {
             case 2.2:
                 $this->fields                         = $this->initFields( 2.1 );
                 $this->fields[ 'min_memory_size' ]    = array(
-                    ONAPP_FIELD_MAP       => 'min_memory_size',
+                    ONAPP_FIELD_MAP       => '_min_memory_size',
                     ONAPP_FIELD_TYPE      => 'integer',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
                 $this->fields[ 'disk_target_device' ] = array(
-                    ONAPP_FIELD_MAP       => 'disk_target_device',
+                    ONAPP_FIELD_MAP       => '_disk_target_device',
                     ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
@@ -191,19 +191,14 @@ class OnApp_Template extends OnApp {
 
             case 2.3:
                 $this->fields                         = $this->initFields( 2.2 );
-                $this->fields[ 'disk_target_device' ] = array(
-                    ONAPP_FIELD_MAP       => 'disk_target_device',
-                    ONAPP_FIELD_TYPE      => 'string',
-                    ONAPP_FIELD_READ_ONLY => true,
-                );
                 $this->fields[ 'cdn' ]                = array(
-                    ONAPP_FIELD_MAP       => 'cdn',
+                    ONAPP_FIELD_MAP       => '_cdn',
                     ONAPP_FIELD_TYPE      => 'boolean',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
                 // nested class
                 $this->fields[ 'template_set_ids' ] = array(
-                    ONAPP_FIELD_MAP       => 'template_set_ids',
+                    ONAPP_FIELD_MAP       => '_template_set_ids',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
                 $this->fields[ 'backup_server_id' ] = array(
@@ -220,8 +215,54 @@ class OnApp_Template extends OnApp {
             case 3.5:
             case 4.0:
             case 4.1:
+            case 4.2:
                 $this->fields = $this->initFields( 2.3 );
-                break;
+                $this->fields[ 'baremetal_server']	= array(
+                    ONAPP_FIELD_MAP => '_baremetal_server',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'ext4']	= array(
+                    ONAPP_FIELD_MAP => '_ext4',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'initial_password']	= array(
+                    ONAPP_FIELD_MAP => '_initial_password',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'initial_username']	= array(
+                    ONAPP_FIELD_MAP => '_initial_username',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'manager_id']	= array(
+                    ONAPP_FIELD_MAP => '_manager_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'remote_id']	= array(
+                    ONAPP_FIELD_MAP => '_remote_id',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'resize_without_reboot_policy']	= array(
+                    ONAPP_FIELD_MAP => '_resize_without_reboot_policy',
+                    ONAPP_FIELD_TYPE => 'array',
+                );
+                $this->fields[ 'smart_server']	= array(
+                    ONAPP_FIELD_MAP => '_smart_server',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields[ 'type']	= array(
+                    ONAPP_FIELD_MAP => '_type',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields[ 'virtualization_array']	= array(
+                    ONAPP_FIELD_MAP => '_virtualization_array',
+                    ONAPP_FIELD_TYPE => 'array',
+                );
+                $this->fields[ 'application_server']	= array(
+                    ONAPP_FIELD_MAP => '_application_server',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+
+            break;
         }
 
         parent::initFields( $version, __CLASS__ );

@@ -142,8 +142,8 @@ class OnApp_DNSZone_Record extends OnApp {
                     ),
                 );
                 break;
-            default:
-                $resource = parent::getResource( $action );
+            case 4.2:
+                $this->fields = $this->initFields( 4.1 );
                 break;
         }
 

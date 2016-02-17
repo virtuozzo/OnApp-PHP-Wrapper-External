@@ -104,6 +104,9 @@ class OnApp_BillingPlan_BaseResource_Limit extends OnApp {
                     ONAPP_FIELD_MAP => 'limit',
                 );
                 break;
+            case 4.2:
+                $this->fields = $this->initFields( 4.1 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

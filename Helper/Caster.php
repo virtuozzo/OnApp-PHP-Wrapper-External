@@ -48,11 +48,11 @@ class OnApp_Helper_Caster {
      *
      * @return array|object unserialized data
      */
-    public function unserialize( $className, $data, $map, $root ) {
+    public function unserialize( $className, $data, $map, $root, $getAllFields = false  ) {
         self::$obj->logger->debug( 'Data to unserialize into ' . $className . ':' . PHP_EOL . $data );
 
         return self::getCaster()
-                   ->unserialize( $className, $data, $map, $root );
+                   ->unserialize( $className, $data, $map, $root, $getAllFields );
     }
 
     /**

@@ -248,6 +248,9 @@ class OnApp_CDNResource_Advanced extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+            case 4.2:
+                $this->fields = $this->initFields( 4.1 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

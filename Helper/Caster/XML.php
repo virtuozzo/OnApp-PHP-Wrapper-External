@@ -50,7 +50,7 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
      *
      * @return array|object
      */
-    public function unserialize( $className, $data, $map, $root ) {
+    public function unserialize( $className, $data, $map, $root, $getAllFields = false  ) {
         parent::$obj->logger->add( 'castStringToClass: call ' . __METHOD__ );
 
         $this->map       = $map;
@@ -103,7 +103,7 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
         }
         else {
             //parse single item
-            $result = $this->process( $data );
+            $result = $this->process( $data, $getAllFields );
         }
 
         return $result;
@@ -146,7 +146,7 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
      *
      * @return object
      */
-    private function process( $item ) {
+    private function process( $item, $getAllFields = false) {
         $obj           = new $this->className;
         $obj->options  = parent::$obj->options;
         $obj->_ch      = parent::$obj->_ch;
@@ -154,6 +154,14 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
         $obj->initFields( parent::$APIVersion );
 
         foreach( $item as $name => $value ) {
+            if(!isset( $this->map[ $name ][ ONAPP_FIELD_TYPE ] ) && $getAllFields){
+                $obj->addStringField($name);
+                $this->map[ $name ] = array(
+                    ONAPP_FIELD_MAP           => '_' . $name,
+                    ONAPP_FIELD_TYPE          => 'string',
+                );
+            }
+
             $field   = $this->map[ $name ][ ONAPP_FIELD_MAP ];
             $boolean = false;
 

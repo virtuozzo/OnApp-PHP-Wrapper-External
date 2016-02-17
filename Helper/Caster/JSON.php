@@ -45,7 +45,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
      *
      * @return array|object
      */
-    public function unserialize( $className, $data, $map, $root ) {
+    public function unserialize( $className, $data, $map, $root, $getAllFields = false ) {
         parent::$obj->logger->add( 'castStringToClass ' . $className . ': call ' . __METHOD__ );
 
         $this->runBefore( $data );
@@ -100,7 +100,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
                 $data = $data[ 0 ];
             }
 
-            $result = $this->process( $this->fixRootTag( $data, $root ) );
+            $result = $this->process( $this->fixRootTag( $data, $root ), $getAllFields );
         }
 
         return $result;
@@ -113,7 +113,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
      *
      * @return object
      */
-    private function process( $item ) {
+    private function process( $item, $getAllFields = false ) {
         if( ! ( is_array( $item ) || is_object( $item ) ) ) {
             $tmp  = new $this->className;
             $item = array(
@@ -128,6 +128,13 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
         $obj->_is_auth = parent::$obj->_is_auth;
         $obj->initFields( parent::$APIVersion );
         foreach( $item as $name => $value ) {
+            if(!isset( $this->map[ $name ][ ONAPP_FIELD_TYPE ] ) && $getAllFields){
+                $obj->addStringField($name);
+                $this->map[ $name ] = array(
+                    ONAPP_FIELD_MAP           => '_' . $name,
+                    ONAPP_FIELD_TYPE          => 'string',
+                );
+            }
 
             if( isset( $this->map[ $name ][ ONAPP_FIELD_TYPE ] ) ) {
                 if( $this->map[ $name ][ ONAPP_FIELD_TYPE ] == 'array' ) {
@@ -164,16 +171,17 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
                 $obj->$field = $value;
             }
         }
-
         return $obj;
     }
 
     private function runBefore( &$data ) {
+        /*
         if( is_string( $data ) ) {
             if( strpos( $data, '{"error"' ) !== false ) {
                 $data = str_replace( '"error"', '"errors"', $data );
             }
         }
+        */
     }
 
     private function fixRootTag( $item, $root ) {

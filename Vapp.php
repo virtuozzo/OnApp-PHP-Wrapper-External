@@ -6,7 +6,7 @@
  * @category    API wrapper
  * @package     OnApp
  * @author
- * @copyright   © 2011 OnApp
+ * @copyright   © 2016 OnApp
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
@@ -120,6 +120,10 @@ class OnApp_Vapp extends OnApp {
                     ),
                 );
                 break;
+            case 4.2:
+                $this->fields = $this->initFields( 4.1 );
+                break;
+
         }
 
         parent::initFields( $version, __CLASS__ );

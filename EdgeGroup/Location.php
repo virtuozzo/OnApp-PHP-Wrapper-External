@@ -143,6 +143,9 @@ class OnApp_EdgeGroup_Location extends OnApp {
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
                 break;
+            case 4.2:
+                $this->fields = $this->initFields( 4.1 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

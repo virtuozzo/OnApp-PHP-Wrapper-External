@@ -112,7 +112,6 @@ class OnApp_CDNResource extends OnApp {
                         ONAPP_FIELD_MAP  => '_last_24h_cost',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-
                     // fields to create CDN Resource
                     'hotlink_policy'             => array(
                         ONAPP_FIELD_MAP  => '_hotlink_policy',
@@ -149,10 +148,6 @@ class OnApp_CDNResource extends OnApp {
                     'advanced_settings'          => array(
                         ONAPP_FIELD_MAP  => '_advanced_settings',
                         ONAPP_FIELD_TYPE => 'boolean',
-                    ),
-                    'hotlink_policy'             => array(
-                        ONAPP_FIELD_MAP  => '_hotlink_policy',
-                        ONAPP_FIELD_TYPE => 'string',
                     ),
                     'domains'                    => array(
                         ONAPP_FIELD_MAP  => '_domains',
@@ -312,6 +307,9 @@ class OnApp_CDNResource extends OnApp {
                     ONAPP_FIELD_MAP  => 'cdn_reference',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
+                break;
+            case 4.2:
+                $this->fields = $this->initFields( 4.1 );
                 break;
         }
 

@@ -57,8 +57,8 @@ class OnApp_VirtualMachine_Snapshot extends OnApp {
      */
     public function initFields( $version = null, $className = '' ) {
         switch( $version ) {
-            case '4.0':
-            case '4.1':
+            case 4.0:
+            case 4.1:
                 $this->fields = array(
                     'id'                          => array(
                         ONAPP_FIELD_MAP       => '_id',
@@ -99,6 +99,9 @@ class OnApp_VirtualMachine_Snapshot extends OnApp {
                     ),
 
                 );
+                break;
+            case 4.2:
+                $this->fields = $this->initFields( 4.1 );
                 break;
         }
 

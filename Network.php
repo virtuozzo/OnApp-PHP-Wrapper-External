@@ -124,7 +124,6 @@ class OnApp_Network extends OnApp {
             case 2.3:
                 $this->fields = $this->initFields( 2.1 );
                 break;
-
             case 3.0:
             case 3.1:
             case 3.2:
@@ -133,7 +132,77 @@ class OnApp_Network extends OnApp {
             case 3.5:
             case 4.0:
             case 4.1:
+            case 4.2:
                 $this->fields = $this->initFields( 2.3 );
+                $this->fields[ 'default_nat_rule_number' ] = array(
+                    ONAPP_FIELD_MAP      => '_default_nat_rule_number',
+                    ONAPP_FIELD_TYPE     => 'integer',
+                );
+                $this->fields[ 'default_outside_ip_address_id' ] = array(
+                    ONAPP_FIELD_MAP      => '_default_outside_ip_address_id',
+                    ONAPP_FIELD_TYPE     => 'string',
+                );
+                $this->fields[ 'dns_suffix' ] = array(
+                    ONAPP_FIELD_MAP      => '_dns_suffix',
+                    ONAPP_FIELD_TYPE     => 'string',
+                );
+                $this->fields[ 'dvportgroup' ] = array(
+                    ONAPP_FIELD_MAP      => '_dvportgroup',
+                    ONAPP_FIELD_TYPE     => 'string',
+                );
+                $this->fields[ 'enabled' ] = array(
+                    ONAPP_FIELD_MAP      => '_enabled',
+                    ONAPP_FIELD_TYPE     => 'boolean',
+                );
+                $this->fields[ 'fence_mode' ] = array(
+                    ONAPP_FIELD_MAP      => '_fence_mode',
+                    ONAPP_FIELD_TYPE     => 'string',
+                );
+                $this->fields[ 'gateway' ] = array(
+                    ONAPP_FIELD_MAP      => '_gateway',
+                    ONAPP_FIELD_TYPE     => 'string',
+                );
+                $this->fields[ 'ip_address_pool_id' ] = array(
+                    ONAPP_FIELD_MAP      => '_ip_address_pool_id',
+                    ONAPP_FIELD_TYPE     => 'string',
+                );
+                $this->fields[ 'is_nated' ] = array(
+                    ONAPP_FIELD_MAP      => '_is_nated',
+                    ONAPP_FIELD_TYPE     => 'boolean',
+                );
+                $this->fields[ 'netmask' ] = array(
+                    ONAPP_FIELD_MAP      => '_netmask',
+                    ONAPP_FIELD_TYPE     => 'string',
+                );
+                $this->fields[ 'prefix_size' ] = array(
+                    ONAPP_FIELD_MAP      => '_prefix_size',
+                    ONAPP_FIELD_TYPE     => 'string',
+                );
+                $this->fields[ 'primary_dns' ] = array(
+                    ONAPP_FIELD_MAP      => '_primary_dns',
+                    ONAPP_FIELD_TYPE     => 'string',
+                );
+                $this->fields[ 'secondary_dns' ] = array(
+                    ONAPP_FIELD_MAP      => '_secondary_dns',
+                    ONAPP_FIELD_TYPE     => 'string',
+                );
+                $this->fields[ 'shared' ] = array(
+                    ONAPP_FIELD_MAP      => '_shared',
+                    ONAPP_FIELD_TYPE     => 'boolean',
+                );
+                $this->fields[ 'user_id' ] = array(
+                    ONAPP_FIELD_MAP      => '_user_id',
+                    ONAPP_FIELD_TYPE     => 'integer',
+                );
+                $this->fields[ 'vapp_id' ] = array(
+                    ONAPP_FIELD_MAP      => '_vapp_id',
+                    ONAPP_FIELD_TYPE     => 'integer',
+                );
+                $this->fields[ 'vdc_id' ] = array(
+                    ONAPP_FIELD_MAP      => '_vdc_id',
+                    ONAPP_FIELD_TYPE     => 'integer',
+                );
+
                 break;
         }
 

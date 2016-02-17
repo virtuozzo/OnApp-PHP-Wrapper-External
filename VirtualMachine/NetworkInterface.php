@@ -129,7 +129,16 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
             case 3.5:
             case 4.0:
             case 4.1:
+            case 4.2:
                 $this->fields = $this->initFields( 2.3 );
+                $this->fields[ 'connected' ] = array(
+                    ONAPP_FIELD_MAP       => '_connected',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'edge_gateway_id' ] = array(
+                    ONAPP_FIELD_MAP           => '_edge_gateway_id',
+                    ONAPP_FIELD_TYPE          => 'string'
+                );
                 break;
         }
 
@@ -222,6 +231,7 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
      * @return mixed an array of Object instances on success. Otherwise false
      * @access public
      */
+
     function getList( $virtual_machine_id = null, $url_args = null ) {
         if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
             $virtual_machine_id = $this->_virtual_machine_id;

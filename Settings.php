@@ -47,15 +47,17 @@ class OnApp_Settings extends OnApp {
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         switch( $action ) {
+
             case ONAPP_GETRESOURCE_EDIT:
                 /**
                  * ROUTE :
                  *
                  * @name
                  * @method PUT
-                 * @alias  /settings(.:format)
+                 * @alias  /settings/edit(.:format)
                  * @format settings#update
                  */
+
                 $resource = $this->_resource;
                 break;
 
@@ -132,10 +134,6 @@ class OnApp_Settings extends OnApp {
                     ),
                     'update_server_url'                      => array(
                         ONAPP_FIELD_MAP  => '_update_server_url',
-                        ONAPP_FIELD_TYPE => 'string',
-                    ),
-                    'license_key'                            => array(
-                        ONAPP_FIELD_MAP  => '_license_key',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
                     'generate_comment'                       => array(
@@ -377,12 +375,324 @@ class OnApp_Settings extends OnApp {
                     'storage_enabled'                        => array(
                         ONAPP_FIELD_MAP  => '_storage_enabled',
                         ONAPP_FIELD_TYPE => 'boolean',
-                    ),
-                    'licence_key'                            => array(
-                        ONAPP_FIELD_MAP  => '_license_key',
-                        ONAPP_FIELD_TYPE => 'string',
-                    ),
+                    )
                 );
+                break;
+            case 4.2:
+                $this->fields            = $this->initFields( 4.1 );
+                $this->fields[ 'use_yubikey_login' ]    = array(
+                    ONAPP_FIELD_MAP       => '_use_yubikey_login',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'yubikey_api_id' ]    = array(
+                    ONAPP_FIELD_MAP       => '_yubikey_api_id',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'yubikey_api_key' ]    = array(
+                    ONAPP_FIELD_MAP       => '_yubikey_api_key',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'allow_to_collect_errors' ]    = array(
+                    ONAPP_FIELD_MAP       => '_allow_to_collect_errors',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'ajax_log_update_interval' ]    = array(
+                    ONAPP_FIELD_MAP       => '_ajax_log_update_interval',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'allow_connect_aws' ]    = array(
+                    ONAPP_FIELD_MAP       => '_allow_connect_aws',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'allow_hypervisor_password_encryption' ]    = array(
+                    ONAPP_FIELD_MAP       => '_allow_hypervisor_password_encryption',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'allow_incremental_backups' ]    = array(
+                    ONAPP_FIELD_MAP       => '_allow_incremental_backups',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'allow_start_vms_with_one_ip' ]    = array(
+                    ONAPP_FIELD_MAP       => '_allow_start_vms_with_one_ip',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'amount_of_service_instances' ]    = array(
+                    ONAPP_FIELD_MAP       => '_amount_of_service_instances',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'application_server_email' ]    = array(
+                    ONAPP_FIELD_MAP       => '_application_server_email',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'archive_stats_period' ]    = array(
+                    ONAPP_FIELD_MAP       => '_archive_stats_period',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'backup_convert_coefficient' ]    = array(
+                    ONAPP_FIELD_MAP       => '_backup_convert_coefficient',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'cdn_max_results_per_get_page' ]    = array(
+                    ONAPP_FIELD_MAP       => '_cdn_max_results_per_get_page',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'dashboard_api_access_token' ]    = array(
+                    ONAPP_FIELD_MAP       => '_dashboard_api_access_token',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'delete_template_source_after_install' ]    = array(
+                    ONAPP_FIELD_MAP       => '_delete_template_source_after_install',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'disable_all_as_notifications' ]    = array(
+                    ONAPP_FIELD_MAP       => '_disable_all_as_notifications',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'draas_enabled' ]    = array(
+                    ONAPP_FIELD_MAP       => '_draas_enabled',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'email_delivery_method' ]    = array(
+                    ONAPP_FIELD_MAP       => '_email_delivery_method',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'enable_daily_storage_report' ]    = array(
+                    ONAPP_FIELD_MAP       => '_enable_daily_storage_report',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'enable_hourly_storage_report' ]    = array(
+                    ONAPP_FIELD_MAP       => '_enable_hourly_storage_report',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'enable_huge_pages' ]    = array(
+                    ONAPP_FIELD_MAP       => '_enable_huge_pages',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'federation_trusts_only_private' ]    = array(
+                    ONAPP_FIELD_MAP       => '_federation_trusts_only_private',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'force_saml_login_only' ]    = array(
+                    ONAPP_FIELD_MAP       => '_force_saml_login_only',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'ha_enabled' ]    = array(
+                    ONAPP_FIELD_MAP       => '_ha_enabled',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'infiniband_cloud_boot_enabled' ]    = array(
+                    ONAPP_FIELD_MAP       => '_infiniband_cloud_boot_enabled',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'instance_types_threshold_num' ]    = array(
+                    ONAPP_FIELD_MAP       => '_instance_types_threshold_num',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'instant_stats_period' ]    = array(
+                    ONAPP_FIELD_MAP       => '_instant_stats_period',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'is_archive_stats_enabled' ]    = array(
+                    ONAPP_FIELD_MAP       => '_is_archive_stats_enabled',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'iso_path_on_cp' ]    = array(
+                    ONAPP_FIELD_MAP       => '_iso_path_on_cp',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'iso_path_on_hv' ]    = array(
+                    ONAPP_FIELD_MAP       => '_iso_path_on_hv',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'licence_key' ]    = array(
+                    ONAPP_FIELD_MAP       => '_licence_key',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'log_cleanup_enabled' ]    = array(
+                    ONAPP_FIELD_MAP       => '_log_cleanup_enabled',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'log_cleanup_period' ]    = array(
+                    ONAPP_FIELD_MAP       => '_log_cleanup_period',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'max_network_interface_port_speed' ]    = array(
+                    ONAPP_FIELD_MAP       => '_max_network_interface_port_speed',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'max_upload_size' ]    = array(
+                    ONAPP_FIELD_MAP       => '_max_upload_size',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'maximum_pending_tasks' ]    = array(
+                    ONAPP_FIELD_MAP       => '_maximum_pending_tasks',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'partition_align_offset' ]    = array(
+                    ONAPP_FIELD_MAP       => '_partition_align_offset',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'password_protection_for_deleting' ]    = array(
+                    ONAPP_FIELD_MAP       => '_password_protection_for_deleting',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'prefer_local_reads' ]    = array(
+                    ONAPP_FIELD_MAP       => '_prefer_local_reads',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'qemu_attach_device_delay' ]    = array(
+                    ONAPP_FIELD_MAP       => '_qemu_attach_device_delay',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'qemu_detach_device_delay' ]    = array(
+                    ONAPP_FIELD_MAP       => '_qemu_detach_device_delay',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'rabbitmq_host' ]    = array(
+                    ONAPP_FIELD_MAP       => '_rabbitmq_host',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'rabbitmq_login' ]    = array(
+                    ONAPP_FIELD_MAP       => '_rabbitmq_login',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'rabbitmq_password' ]    = array(
+                    ONAPP_FIELD_MAP       => '_rabbitmq_password',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'rabbitmq_vhost' ]    = array(
+                    ONAPP_FIELD_MAP       => '_rabbitmq_vhost',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'rsync_option_acls' ]    = array(
+                    ONAPP_FIELD_MAP       => '_rsync_option_acls',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'rsync_option_xattrs' ]    = array(
+                    ONAPP_FIELD_MAP       => '_rsync_option_xattrs',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'run_recipe_on_vs_sleep_seconds' ]    = array(
+                    ONAPP_FIELD_MAP       => '_run_recipe_on_vs_sleep_seconds',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'service_account_name' ]    = array(
+                    ONAPP_FIELD_MAP       => '_service_account_name',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'simultaneous_backups_per_backup_server' ]    = array(
+                    ONAPP_FIELD_MAP       => '_simultaneous_backups_per_backup_server',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'smtp_address' ]    = array(
+                    ONAPP_FIELD_MAP       => '_smtp_address',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'smtp_authentication' ]    = array(
+                    ONAPP_FIELD_MAP       => '_smtp_authentication',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'smtp_domain' ]    = array(
+                    ONAPP_FIELD_MAP       => '_smtp_domain',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'smtp_enable_starttls_auto' ]    = array(
+                    ONAPP_FIELD_MAP       => '_smtp_enable_starttls_auto',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'smtp_password' ]    = array(
+                    ONAPP_FIELD_MAP       => '_smtp_password',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'smtp_port' ]    = array(
+                    ONAPP_FIELD_MAP       => '_smtp_port',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'smtp_username' ]    = array(
+                    ONAPP_FIELD_MAP       => '_smtp_username',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'snmptrap_addresses' ]    = array(
+                    ONAPP_FIELD_MAP       => '_snmptrap_addresses',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'snmptrap_port' ]    = array(
+                    ONAPP_FIELD_MAP       => '_snmptrap_port',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'ssl_pem_path' ]    = array(
+                    ONAPP_FIELD_MAP       => '_ssl_pem_path',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'storage_endpoint_override' ]    = array(
+                    ONAPP_FIELD_MAP       => '_storage_endpoint_override',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'storage_unicast' ]    = array(
+                    ONAPP_FIELD_MAP       => '_storage_unicast',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'system_alert_reminder_period' ]    = array(
+                    ONAPP_FIELD_MAP       => '_system_alert_reminder_period',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'system_theme' ]    = array(
+                    ONAPP_FIELD_MAP       => '_system_theme',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'tc_burst' ]    = array(
+                    ONAPP_FIELD_MAP       => '_tc_burst',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'tc_latency' ]    = array(
+                    ONAPP_FIELD_MAP       => '_tc_latency',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'tc_mtu' ]    = array(
+                    ONAPP_FIELD_MAP       => '_tc_mtu',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'transaction_standby_period' ]    = array(
+                    ONAPP_FIELD_MAP       => '_transaction_standby_period',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'url_for_custom_tools' ]    = array(
+                    ONAPP_FIELD_MAP       => '_url_for_custom_tools',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'use_html5_vnc_console' ]    = array(
+                    ONAPP_FIELD_MAP       => '_use_html5_vnc_console',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'wrong_activated_logical_volume_alerts' ]    = array(
+                    ONAPP_FIELD_MAP       => '_wrong_activated_logical_volume_alerts',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'wrong_activated_logical_volume_minutes' ]    = array(
+                    ONAPP_FIELD_MAP       => '_wrong_activated_logical_volume_minutes',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'zabbix_host' ]    = array(
+                    ONAPP_FIELD_MAP       => '_zabbix_host',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'zabbix_onapp_user_password' ]    = array(
+                    ONAPP_FIELD_MAP       => '_zabbix_onapp_user_password',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'zabbix_password' ]    = array(
+                    ONAPP_FIELD_MAP       => '_zabbix_password',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'zabbix_url' ]    = array(
+                    ONAPP_FIELD_MAP       => '_zabbix_url',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'zabbix_user' ]    = array(
+                    ONAPP_FIELD_MAP       => '_zabbix_user',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+
                 break;
         }
 
@@ -390,4 +700,37 @@ class OnApp_Settings extends OnApp {
 
         return $this->fields;
     }
+
+    public function changeCustomParameters($params) {
+        $allowedParams = array('use_yubikey_login', 'yubikey_api_key', 'yubikey_api_id', 'allow_to_collect_errors');
+
+        if(!is_array($params)){
+            return false;
+        }
+
+        $settings = $this->getList();
+        if(isset($settings[0]) && $settings[0]->_license_key == ''){
+            return false;
+        }
+
+        $dataArray = array();
+        $dataArray['license_key'] = $settings[0]->_license_key;
+        foreach ($params as $key => $val) {
+            if(in_array($key, $allowedParams)) {
+                $dataArray[$key] = $val;
+            }
+        }
+
+        if(count($dataArray) == 0){
+            return false;
+        }
+
+        $data = array(
+            'root' => 'configuration',
+            'data' => $dataArray,
+        );
+        $this->sendPut( ONAPP_GETRESOURCE_EDIT, $data, array('restart'=>'1'));
+    }
+
+
 }

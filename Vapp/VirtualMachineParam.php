@@ -44,8 +44,8 @@ class OnApp_Vapp_VirtualMachineParam extends OnApp {
      */
     public function initFields( $version = null, $className = '' ) {
         switch( $version ) {
-            case '4.0':
-            case '4.1':
+            case 4.0:
+            case 4.1:
                 $this->fields = array(
                     'identifier'                  => array(
                         ONAPP_FIELD_MAP       => '_identifier',
@@ -73,6 +73,10 @@ class OnApp_Vapp_VirtualMachineParam extends OnApp {
 
                 );
                 break;
+            case 4.2:
+                $this->fields = $this->initFields( 4.1 );
+                break;
+
         }
 
         parent::initFields( $version, __CLASS__ );

@@ -16,6 +16,16 @@
 /**
  * @todo: Add description
  */
+define( 'ONAPP_GETRESOURCE_BACKUP_IMAGES', 'backup_images' );
+
+/**
+ * @todo: Add description
+ */
+define( 'ONAPP_GETRESOURCE_BACKUP_FILES', 'backup_files' );
+
+/**
+ * @todo: Add description
+ */
 define( 'ONAPP_GETRESOURCE_BACKUP_CONVERT', 'convert' );
 
 /**
@@ -181,6 +191,50 @@ class OnApp_VirtualMachine_Backup extends OnApp {
                 $this->fields                                               = $this->initFields( 3.1 );
                 $this->fields[ 'disk_id' ][ ONAPP_FIELD_SKIP_FROM_REQUEST ] = true;
                 break;
+            case 4.2:
+                $this->fields                                               = $this->initFields( 4.1 );
+                $this->fields[ 'data_store_type' ] = array(
+                    ONAPP_FIELD_MAP       => '_data_store_type',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'initiated' ] = array(
+                    ONAPP_FIELD_MAP       => '_initiated',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'iqn' ] = array(
+                    ONAPP_FIELD_MAP       => '_iqn',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'marked_for_delete' ] = array(
+                    ONAPP_FIELD_MAP       => '_marked_for_delete',
+                    ONAPP_FIELD_TYPE      => 'boolean',
+                );
+                $this->fields[ 'min_memory_size' ] = array(
+                    ONAPP_FIELD_MAP       => '_min_memory_size',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'note' ] = array(
+                    ONAPP_FIELD_MAP       => '_note',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'target_id' ] = array(
+                    ONAPP_FIELD_MAP       => '_target_id',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'target_type' ] = array(
+                    ONAPP_FIELD_MAP       => '_target_type',
+                    ONAPP_FIELD_TYPE      => 'string',
+                );
+                $this->fields[ 'user_id' ] = array(
+                    ONAPP_FIELD_MAP       => '_user_id',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                $this->fields[ 'volume_id' ] = array(
+                    ONAPP_FIELD_MAP       => '_volume_id',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -317,6 +371,20 @@ class OnApp_VirtualMachine_Backup extends OnApp {
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/restore';
                 break;
 
+            case ONAPP_GETRESOURCE_BACKUP_IMAGES:
+                /**
+                 * @alias  /virtual_machines/:virtual_machine_id/backups/images.json
+                 */
+                $resource = $this->getResource( ONAPP_GETRESOURCE_DEFAULT ) . '/images';
+                break;
+
+            case ONAPP_GETRESOURCE_BACKUP_FILES:
+                /**
+                 * @alias  /virtual_machines/:virtual_machine_id/backups/files.json
+                 */
+                $resource = $this->getResource( ONAPP_GETRESOURCE_DEFAULT ) . '/files';
+                break;
+
             default:
                 $resource = parent::getResource( $action );
 
@@ -431,4 +499,43 @@ class OnApp_VirtualMachine_Backup extends OnApp {
         $result     = $this->_castResponseToClass( $response );
         $this->_obj = $result;
     }
+
+    protected function getCustomList($resource, $virtual_machine_id = null, $url_args = null ) {
+        if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
+            $virtual_machine_id = $this->_virtual_machine_id;
+        }
+
+        if( ! is_null( $virtual_machine_id ) ) {
+            $this->_virtual_machine_id = $virtual_machine_id;
+
+            $result = $this->sendGet( $resource, null, $url_args );
+
+            if( ! is_null( $this->getErrorsAsArray() ) ) {
+                return false;
+            }
+            else {
+                if( ! is_array( $result ) && ! is_null( $result ) ) {
+                    $result = array( $result );
+                }
+
+                return $result;
+            }
+        }
+        else {
+            $this->logger->error(
+                'getList: argument _virtual_machine_id not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
+    }
+
+    function getImagesList( $virtual_machine_id = null, $url_args = null ) {
+        return $this->getCustomList(ONAPP_GETRESOURCE_BACKUP_IMAGES, $virtual_machine_id, $url_args);
+    }
+
+    function getFilesList( $virtual_machine_id = null, $url_args = null ) {
+        return $this->getCustomList(ONAPP_GETRESOURCE_BACKUP_FILES, $virtual_machine_id, $url_args);
+    }
+
 }
