@@ -79,8 +79,18 @@ class OnApp_User_Statistics extends OnApp {
                         ONAPP_FIELD_TYPE      => 'float',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
+                    'backup_count_cost' => array(
+                        ONAPP_FIELD_MAP       => '_backup_count_cost',
+                        ONAPP_FIELD_TYPE      => 'float',
+                        ONAPP_FIELD_READ_ONLY => true,
+                    ),
                     'user_resources_cost'    => array(
                         ONAPP_FIELD_MAP       => '_user_resources_cost',
+                        ONAPP_FIELD_TYPE      => 'float',
+                        ONAPP_FIELD_READ_ONLY => true,
+                    ),
+                    'backup_disk_size_cost' => array(
+                        ONAPP_FIELD_MAP       => '_backup_disk_size_cost',
                         ONAPP_FIELD_TYPE      => 'float',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
