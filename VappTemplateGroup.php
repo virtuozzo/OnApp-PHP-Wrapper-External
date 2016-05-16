@@ -36,40 +36,40 @@ class OnApp_VappTemplateGroup extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case 4.0:
             case 4.1:
                 $this->fields = array(
-                    'id'                          => array(
+                    'id'            => array(
                         ONAPP_FIELD_MAP       => '_id',
                         ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'created_at'                  => array(
+                    'created_at'    => array(
                         ONAPP_FIELD_MAP       => '_created_at',
                         ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'identifier'                  => array(
+                    'identifier'    => array(
                         ONAPP_FIELD_MAP       => '_identifier',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'label'                       => array(
+                    'label'         => array(
                         ONAPP_FIELD_MAP      => '_label',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
-                    'updated_at'                  => array(
+                    'updated_at'    => array(
                         ONAPP_FIELD_MAP       => '_updated_at',
                         ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'user_group_id'                          => array(
+                    'user_group_id' => array(
                         ONAPP_FIELD_MAP       => '_user_group_id',
                         ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
@@ -89,7 +89,7 @@ class OnApp_VappTemplateGroup extends OnApp {
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             default:
                 /**
                  * ROUTE :

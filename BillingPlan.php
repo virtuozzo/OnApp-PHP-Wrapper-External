@@ -50,13 +50,13 @@ class OnApp_BillingPlan extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case 2.0:
             case 2.1:
             case 2.2:
@@ -135,8 +135,8 @@ class OnApp_BillingPlan extends OnApp {
             case 3.5:
             case 4.0:
             case 4.1:
-                $this->fields                             = $this->initFields( 2.3 );
-                $this->fields[ 'default_base_resources' ] = array(
+                $this->fields                           = $this->initFields( 2.3 );
+                $this->fields['default_base_resources'] = array(
                     ONAPP_FIELD_MAP       => 'default_base_resources',
                     //ONAPP_FIELD_TYPE      => 'array',
                     ONAPP_FIELD_TYPE      => 'string',
@@ -145,11 +145,14 @@ class OnApp_BillingPlan extends OnApp {
                 );
                 break;
             case 4.2:
-                $this->fields                             = $this->initFields( 4.1 );
-                $this->fields[ 'type' ] = array(
-                    ONAPP_FIELD_MAP       => '_type',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields         = $this->initFields( 4.1 );
+                $this->fields['type'] = array(
+                    ONAPP_FIELD_MAP  => '_type',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 
@@ -159,7 +162,7 @@ class OnApp_BillingPlan extends OnApp {
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_GETLIST_USERS:
                 /**
                  * ROUTE :
@@ -238,8 +241,8 @@ class OnApp_BillingPlan extends OnApp {
 
         $response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-        if( ! empty( $response[ 'errors' ] ) ) {
-            $this->errors = $response[ 'errors' ];
+        if ( ! empty( $response['errors'] ) ) {
+            $this->errors = $response['errors'];
 
             return false;
         }

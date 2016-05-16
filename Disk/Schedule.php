@@ -43,13 +43,13 @@ class OnApp_Disk_Schedule extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
                 $this->fields = array(
@@ -144,6 +144,9 @@ class OnApp_Disk_Schedule extends OnApp {
             case 4.2:
                 $this->fields = $this->initFields( 2.3 );
                 break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -161,7 +164,7 @@ class OnApp_Disk_Schedule extends OnApp {
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         $show_log_msg = true;
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_LIST_BY_DISK_ID:
                 $resource = 'settings/disks/' . $this->_target_id . '/' . $this->_resource;
                 break;
@@ -171,7 +174,7 @@ class OnApp_Disk_Schedule extends OnApp {
                 break;
         }
 
-        if( $show_log_msg ) {
+        if ( $show_log_msg ) {
             $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
         }
 
@@ -188,11 +191,11 @@ class OnApp_Disk_Schedule extends OnApp {
      * @access public
      */
     function getListByDiskId( $disk_id = null ) {
-        if( $disk_id ) {
+        if ( $disk_id ) {
             $this->_target_id = $disk_id;
         }
 
-        $this->activate( ONAPP_ACTIVATE_GETLIST );
+        $this->activateCheck( ONAPP_ACTIVATE_GETLIST );
 
         $this->logger->add( 'getList: Get Transaction list.' );
 
@@ -201,7 +204,7 @@ class OnApp_Disk_Schedule extends OnApp {
 
         $result = $this->castStringToClass( $response );
 
-        if( ! empty( $response[ 'errors' ] ) ) {
+        if ( ! empty( $response['errors'] ) ) {
             return false;
         }
 
@@ -209,12 +212,12 @@ class OnApp_Disk_Schedule extends OnApp {
     }
 
     function save() {
-        if( $this->_target_id ) {
-            $this->fields[ 'target_id' ][ ONAPP_FIELD_REQUIRED ]        = true;
-            $this->fields[ 'target_type' ][ ONAPP_FIELD_REQUIRED ]      = true;
-            $this->fields[ 'target_type' ][ ONAPP_FIELD_DEFAULT_VALUE ] = 'Disk';
-            $this->fields[ 'action' ][ ONAPP_FIELD_REQUIRED ]           = true;
-            $this->fields[ 'action' ][ ONAPP_FIELD_DEFAULT_VALUE ]      = 'autobackup';
+        if ( $this->_target_id ) {
+            $this->fields['target_id'][ ONAPP_FIELD_REQUIRED ]        = true;
+            $this->fields['target_type'][ ONAPP_FIELD_REQUIRED ]      = true;
+            $this->fields['target_type'][ ONAPP_FIELD_DEFAULT_VALUE ] = 'Disk';
+            $this->fields['action'][ ONAPP_FIELD_REQUIRED ]           = true;
+            $this->fields['action'][ ONAPP_FIELD_DEFAULT_VALUE ]      = 'autobackup';
         }
 
         return parent::save();

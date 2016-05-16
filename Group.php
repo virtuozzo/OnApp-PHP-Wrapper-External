@@ -45,13 +45,13 @@ class OnApp_Group extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
                 $this->fields = array(
                     'id'                         => array(
@@ -162,6 +162,9 @@ class OnApp_Group extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = $this->initFields( 2.1 );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 

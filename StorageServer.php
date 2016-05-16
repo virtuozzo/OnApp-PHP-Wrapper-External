@@ -14,27 +14,27 @@
 /**
  * This method outputs the details for all server backups
  */
-define('ONAPP_GET_ALL_BACKUP_DETAIL', 'all_backup_detail');
+define( 'ONAPP_GET_ALL_BACKUP_DETAIL', 'all_backup_detail' );
 
 /**
  * This method outputs the details for normal server backups
  */
-define('ONAPP_GET_NORMAL_BACKUP_DETAIL', 'normal_backup_detail');
+define( 'ONAPP_GET_NORMAL_BACKUP_DETAIL', 'normal_backup_detail' );
 
 /**
  * This method outputs the details for incremental server backups
  */
-define('ONAPP_GET_INCREMENTAL_BACKUP_DETAIL', 'incremental_backup_detail');
+define( 'ONAPP_GET_INCREMENTAL_BACKUP_DETAIL', 'incremental_backup_detail' );
 
 /**
  * Use the following API request to update backup with a note
  */
-define('ONAPP_ADD_EDIT_BACKUP_NOTE', 'add_edit_backup_note');
+define( 'ONAPP_ADD_EDIT_BACKUP_NOTE', 'add_edit_backup_note' );
 
 /**
  * Use the following API request to update backup with a note
  */
-define('ONAPP_RESTORE_BACKUP', 'restore_backup');
+define( 'ONAPP_RESTORE_BACKUP', 'restore_backup' );
 
 
 /**
@@ -67,9 +67,9 @@ class OnApp_StorageServer extends OnApp {
      *
      * @return array
      */
-    public function initFields($version = null, $className = '') {
+    public function initFields( $version = null, $className = '' ) {
 
-        switch ($version) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -84,15 +84,15 @@ class OnApp_StorageServer extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'allow_resize_without_reboot'            => array(
+                    'allow_resize_without_reboot' => array(
                         ONAPP_FIELD_MAP  => '_allow_resize_without_reboot',
                         ONAPP_FIELD_TYPE => 'boolean',
                     ),
-                    'allowed_hot_migrate'            => array(
+                    'allowed_hot_migrate'         => array(
                         ONAPP_FIELD_MAP  => '_allowed_hot_migrate',
                         ONAPP_FIELD_TYPE => 'boolean',
                     ),
-                    'allowed_swap'            => array(
+                    'allowed_swap'                => array(
                         ONAPP_FIELD_MAP  => '_allowed_swap',
                         ONAPP_FIELD_TYPE => 'boolean',
                     ),
@@ -100,59 +100,59 @@ class OnApp_StorageServer extends OnApp {
                         ONAPP_FIELD_MAP  => '_backup_server_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'backup_size'            => array(
+                    'backup_size'                 => array(
                         ONAPP_FIELD_MAP  => '_backup_size',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'built'            => array(
+                    'built'                       => array(
                         ONAPP_FIELD_MAP  => '_built',
                         ONAPP_FIELD_TYPE => 'boolean',
                     ),
-                    'built_at'            => array(
+                    'built_at'                    => array(
                         ONAPP_FIELD_MAP  => '_built_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'created_at'            => array(
+                    'created_at'                  => array(
                         ONAPP_FIELD_MAP  => '_created_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'data_store_type'            => array(
+                    'data_store_type'             => array(
                         ONAPP_FIELD_MAP  => '_data_store_type',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'id'            => array(
+                    'id'                          => array(
                         ONAPP_FIELD_MAP  => '_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'identifier'            => array(
+                    'identifier'                  => array(
                         ONAPP_FIELD_MAP  => '_identifier',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'initiated'            => array(
+                    'initiated'                   => array(
                         ONAPP_FIELD_MAP  => '_initiated',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'iqn'            => array(
+                    'iqn'                         => array(
                         ONAPP_FIELD_MAP  => '_iqn',
                         ONAPP_FIELD_TYPE => 'boolean',
                     ),
-                    'locked'            => array(
+                    'locked'                      => array(
                         ONAPP_FIELD_MAP  => '_locked',
                         ONAPP_FIELD_TYPE => 'boolean',
                     ),
-                    'marked_for_delete'            => array(
+                    'marked_for_delete'           => array(
                         ONAPP_FIELD_MAP  => '_marked_for_delete',
                         ONAPP_FIELD_TYPE => 'boolean',
                     ),
-                    'min_disk_size'            => array(
+                    'min_disk_size'               => array(
                         ONAPP_FIELD_MAP  => '_min_disk_size',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'min_memory_size'            => array(
+                    'min_memory_size'             => array(
                         ONAPP_FIELD_MAP  => '_min_memory_size',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'note'            => array(
+                    'note'                        => array(
                         ONAPP_FIELD_MAP  => '_note',
                         ONAPP_FIELD_TYPE => 'boolean',
                     ),
@@ -160,59 +160,62 @@ class OnApp_StorageServer extends OnApp {
                         ONAPP_FIELD_MAP  => '_operating_system',
                         ONAPP_FIELD_TYPE => '>linux',
                     ),
-                    'operating_system_distro'            => array(
+                    'operating_system_distro'     => array(
                         ONAPP_FIELD_MAP  => '_operating_system_distro',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'target_id'            => array(
+                    'target_id'                   => array(
                         ONAPP_FIELD_MAP  => '_target_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'target_type'            => array(
+                    'target_type'                 => array(
                         ONAPP_FIELD_MAP  => '_target_type',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'template_id'            => array(
+                    'template_id'                 => array(
                         ONAPP_FIELD_MAP  => '_template_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'updated_at'            => array(
+                    'updated_at'                  => array(
                         ONAPP_FIELD_MAP  => '_updated_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'user_id'            => array(
+                    'user_id'                     => array(
                         ONAPP_FIELD_MAP  => '_user_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'volume_id'            => array(
+                    'volume_id'                   => array(
                         ONAPP_FIELD_MAP  => '_volume_id',
                         ONAPP_FIELD_TYPE => 'boolean',
                     ),
-                    'backup_type'            => array(
+                    'backup_type'                 => array(
                         ONAPP_FIELD_MAP  => '_backup_type',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'disk_id'            => array(
+                    'disk_id'                     => array(
                         ONAPP_FIELD_MAP  => '_disk_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'backup_id'            => array(
+                    'backup_id'                   => array(
                         ONAPP_FIELD_MAP  => '_backup_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
                 );
                 break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
         }
 
-        parent::initFields($version, __CLASS__);
+        parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
 
-    function getResource($action = ONAPP_GETRESOURCE_DEFAULT) {
-        switch ($action) {
+    function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
-                if (is_null($this->_id)) {
+                if ( is_null( $this->_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _id not set.',
                         __FILE__,
@@ -231,14 +234,14 @@ class OnApp_StorageServer extends OnApp {
                  * @alias  /backups/:backup_id/restore(.:format)
                  * @format {:action=>"index", :controller=>"backups"}
                  */
-                if (is_null($this->_backup_id)) {
+                if ( is_null( $this->_backup_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _backup_id not set.',
                         __FILE__,
                         __LINE__
                     );
                 }
-                $resource = '/backups/'. $this->_backup_id .'/restore';
+                $resource = '/backups/' . $this->_backup_id . '/restore';
                 break;
 
             case ONAPP_ADD_EDIT_BACKUP_NOTE :
@@ -250,14 +253,14 @@ class OnApp_StorageServer extends OnApp {
                  * @alias  /backups/:backup_id/note(.:format)
                  * @format {:action=>"index", :controller=>"backups"}
                  */
-                if (is_null($this->_backup_id)) {
+                if ( is_null( $this->_backup_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _backup_id not set.',
                         __FILE__,
                         __LINE__
                     );
                 }
-                $resource = '/backups/'. $this->_backup_id .'/note';
+                $resource = '/backups/' . $this->_backup_id . '/note';
                 break;
             case ONAPP_GET_INCREMENTAL_BACKUP_DETAIL :
                 /**
@@ -279,7 +282,7 @@ class OnApp_StorageServer extends OnApp {
                  * @alias  /storage_servers/:id/backups/images(.:format)
                  * @format {:action=>"index", :controller=>"storage_servers"}
                  */
-                if (is_null($this->_id)) {
+                if ( is_null( $this->_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _id not set.',
                         __FILE__,
@@ -297,7 +300,7 @@ class OnApp_StorageServer extends OnApp {
                  * @alias  /storage_servers/:id/backups(.:format)
                  * @format {:action=>"index", :controller=>"storage_servers"}
                  */
-                if (is_null($this->_id)) {
+                if ( is_null( $this->_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _id not set.',
                         __FILE__,
@@ -307,33 +310,39 @@ class OnApp_StorageServer extends OnApp {
                 $resource = $this->getResource() . 'backups';
                 break;
             default:
-                $resource = parent::getResource($action);
+                $resource = parent::getResource( $action );
                 break;
         }
+
         return $resource;
     }
+
     function save() {
         //todo: test if where is edit possibility
-        $this->activate( ONAPP_ACTIVATE_SAVE );
+        $this->activateCheck( ONAPP_ACTIVATE_SAVE );
         $obj = $this->_create();
-        if( isset( $obj ) && ! isset( $obj->errors ) ) {
+        if ( isset( $obj ) && ! isset( $obj->errors ) ) {
             $this->load();
         }
     }
 
-    public function getAllDetails(){
-        return $this->sendGet(ONAPP_GET_ALL_BACKUP_DETAIL);
+    public function getAllDetails() {
+        return $this->sendGet( ONAPP_GET_ALL_BACKUP_DETAIL );
     }
-    public function getNormalDetails(){
-        return $this->sendGet(ONAPP_GET_NORMAL_BACKUP_DETAIL);
+
+    public function getNormalDetails() {
+        return $this->sendGet( ONAPP_GET_NORMAL_BACKUP_DETAIL );
     }
-    public function getIncrementalDetails(){
-        return $this->sendGet(ONAPP_GET_INCREMENTAL_BACKUP_DETAIL);
+
+    public function getIncrementalDetails() {
+        return $this->sendGet( ONAPP_GET_INCREMENTAL_BACKUP_DETAIL );
     }
-    public function restoreBackUp(){
-        $this->sendPost(ONAPP_RESTORE_BACKUP);
+
+    public function restoreBackUp() {
+        $this->sendPost( ONAPP_RESTORE_BACKUP );
     }
-    public function saveNote(){
-        $this->sendPut(ONAPP_ADD_EDIT_BACKUP_NOTE);
+
+    public function saveNote() {
+        $this->sendPut( ONAPP_ADD_EDIT_BACKUP_NOTE );
     }
 }

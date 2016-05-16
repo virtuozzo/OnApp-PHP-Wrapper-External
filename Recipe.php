@@ -17,7 +17,7 @@
 /**
  * To view the list of public ISOs
  */
-define('ONAPP_GET_LIST_OF_SERVER_RECIPES', 'server_list_of_recipes');
+define( 'ONAPP_GET_LIST_OF_SERVER_RECIPES', 'server_list_of_recipes' );
 
 /**
  * Recipe
@@ -50,9 +50,9 @@ class OnApp_Recipe extends OnApp {
      *
      * @return array
      */
-    public function initFields($version = null, $className = '') {
+    public function initFields( $version = null, $className = '' ) {
 
-        switch ($version) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -67,52 +67,56 @@ class OnApp_Recipe extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'compatible_with'	 => array(
-                        ONAPP_FIELD_MAP => '_compatible_with',
+                    'compatible_with' => array(
+                        ONAPP_FIELD_MAP  => '_compatible_with',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'created_at'	 => array(
-                        ONAPP_FIELD_MAP => '_created_at',
+                    'created_at'      => array(
+                        ONAPP_FIELD_MAP  => '_created_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'description'	 => array(
-                        ONAPP_FIELD_MAP => '_description',
+                    'description'     => array(
+                        ONAPP_FIELD_MAP  => '_description',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'id'	 => array(
-                        ONAPP_FIELD_MAP => '_id',
+                    'id'              => array(
+                        ONAPP_FIELD_MAP  => '_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'label'	 => array(
-                        ONAPP_FIELD_MAP => '_label',
+                    'label'           => array(
+                        ONAPP_FIELD_MAP  => '_label',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'script_type'	 => array(
-                        ONAPP_FIELD_MAP => '_script_type',
+                    'script_type'     => array(
+                        ONAPP_FIELD_MAP  => '_script_type',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'updated_at'	 => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
+                    'updated_at'      => array(
+                        ONAPP_FIELD_MAP  => '_updated_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'user_id'	 => array(
-                        ONAPP_FIELD_MAP => '_user_id',
+                    'user_id'         => array(
+                        ONAPP_FIELD_MAP  => '_user_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'recipe_steps'	 => array(
-                        ONAPP_FIELD_MAP => '_recipe_steps',
+                    'recipe_steps'    => array(
+                        ONAPP_FIELD_MAP  => '_recipe_steps',
                         ONAPP_FIELD_TYPE => 'array',
                     ),
                 );
                 break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
         }
 
-        parent::initFields($version, __CLASS__);
+        parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 
-    function getResource($action = ONAPP_GETRESOURCE_DEFAULT)  {
-        switch ($action) {
+    function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+        switch ( $action ) {
             case ONAPP_GET_LIST_OF_SERVER_RECIPES :
                 /**
                  * ROUTE :
@@ -123,7 +127,7 @@ class OnApp_Recipe extends OnApp {
                  * @format {:action=>"index", :controller=>"applied_to_vs"}
                  */
 
-                if( is_null( $this->_id ) ) {
+                if ( is_null( $this->_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _id not set.',
                         __FILE__,
@@ -131,17 +135,17 @@ class OnApp_Recipe extends OnApp {
                     );
                 }
 
-                $resource = $this->_resource .'/'. $this->_id .'/applied_to_vs';
+                $resource = $this->_resource . '/' . $this->_id . '/applied_to_vs';
                 break;
             default:
-                $resource = parent::getResource($action);
+                $resource = parent::getResource( $action );
                 break;
         }
 
         return $resource;
     }
 
-    public function getListOfServerUsingRecipe(){
-        return $this->sendGet(ONAPP_GET_LIST_OF_SERVER_RECIPES);
+    public function getListOfServerUsingRecipe() {
+        return $this->sendGet( ONAPP_GET_LIST_OF_SERVER_RECIPES );
     }
 }

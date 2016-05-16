@@ -30,15 +30,15 @@ class OnApp_BillingUser_ResourceVmMonit extends OnApp_BillingUser_BaseResource {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
         parent::initFields( $version, __CLASS__ );
 
-        $this->fields[ 'resource_class' ] = array(
+        $this->fields['resource_class'] = array(
             ONAPP_FIELD_MAP           => '_resource_class',
             ONAPP_FIELD_TYPE          => 'string',
             ONAPP_FIELD_REQUIRED      => true,
@@ -46,9 +46,9 @@ class OnApp_BillingUser_ResourceVmMonit extends OnApp_BillingUser_BaseResource {
             ONAPP_FIELD_DEFAULT_VALUE => 'Resource::VmMonit'
         );
 
-        $this->fields[ 'id' ][ ONAPP_FIELD_REQUIRED ] = false;
+        $this->fields['id'][ ONAPP_FIELD_REQUIRED ] = false;
 
-        foreach( array( 'unit', 'price_on', 'price_off' ) as $field ) {
+        foreach ( array( 'unit', 'price_on', 'price_off' ) as $field ) {
             unset( $this->fields[ $field ] );
         }
 

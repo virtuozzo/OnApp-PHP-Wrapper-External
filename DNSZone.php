@@ -38,8 +38,8 @@ class OnApp_DNSZone extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
@@ -47,13 +47,13 @@ class OnApp_DNSZone extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case 3.0:
             case 3.1:
             case 3.2:
@@ -99,6 +99,9 @@ class OnApp_DNSZone extends OnApp {
                 break;
             case 4.2:
                 $this->fields = $this->initFields( 4.1 );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
                 break;
 
             default:

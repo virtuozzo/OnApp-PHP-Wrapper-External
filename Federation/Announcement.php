@@ -53,39 +53,42 @@ class OnApp_Federation_Announcement extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'created_at'       => array(
+                    'created_at'          => array(
                         ONAPP_FIELD_MAP  => '_created_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'finish_at'      => array(
+                    'finish_at'           => array(
                         ONAPP_FIELD_MAP  => '_finish_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'start_at'   => array(
+                    'start_at'            => array(
                         ONAPP_FIELD_MAP  => '_start_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'updated_at'   => array(
+                    'updated_at'          => array(
                         ONAPP_FIELD_MAP  => '_updated_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'text'    => array(
+                    'text'                => array(
                         ONAPP_FIELD_MAP  => '_text',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'federation_id'    => array(
+                    'federation_id'       => array(
                         ONAPP_FIELD_MAP  => '_federation_id',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'hypervisor_group_id'    => array(
+                    'hypervisor_group_id' => array(
                         ONAPP_FIELD_MAP  => '_hypervisor_group_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'kind'    => array(
+                    'kind'                => array(
                         ONAPP_FIELD_MAP  => '_kind',
                         ONAPP_FIELD_TYPE => 'boolean',
                     ),
                 );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 
@@ -93,22 +96,23 @@ class OnApp_Federation_Announcement extends OnApp {
 
         return $this->fields;
     }
+
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_ANNOUNCEMENTS_NOTIFY_USERS:
-                if( is_null( $this->_id ) ) {
+                if ( is_null( $this->_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _id not set.',
                         __FILE__,
                         __LINE__
                     );
-                } else if( is_null( $this->_hypervisor_group_id ) ) {
+                } else if ( is_null( $this->_hypervisor_group_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _hypervisor_group_id not set.',
                         __FILE__,
                         __LINE__
                     );
-                }else{
+                } else {
                     $resource = $this->_resource . '/' . $this->_hypervisor_group_id . '/announcements/' . $this->_id . '/notify_users';
                     $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 }
@@ -123,15 +127,14 @@ class OnApp_Federation_Announcement extends OnApp {
                  * @alias   /federation/hypervisor_zones/:_hypervisor_group_id/announcements(.:format)
                  * @format  {:controller=>"announcements", :action=>"index"}
                  */
-                if( is_null( $this->_hypervisor_group_id ) ) {
+                if ( is_null( $this->_hypervisor_group_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _hypervisor_group_id not set.',
                         __FILE__,
                         __LINE__
                     );
-                }
-                else {
-                    if( is_null( $this->_hypervisor_group_id ) ) {
+                } else {
+                    if ( is_null( $this->_hypervisor_group_id ) ) {
                         $this->_hypervisor_group_id = $this->_obj->_hypervisor_group_id;
                     }
                 }
@@ -154,9 +157,9 @@ class OnApp_Federation_Announcement extends OnApp {
         return $resource;
     }
 
-    public function notify_users(){
+    public function notify_users() {
         // federation/hypervisor_zones/:hypervisor_group_id/announcements/:id/notify_users
-        $this->sendPost(ONAPP_ANNOUNCEMENTS_NOTIFY_USERS);
+        $this->sendPost( ONAPP_ANNOUNCEMENTS_NOTIFY_USERS );
     }
 
 }

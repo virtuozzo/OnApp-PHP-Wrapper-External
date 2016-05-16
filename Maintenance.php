@@ -48,13 +48,13 @@ class OnApp_Maintenance extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case 2.0:
             case 2.1:
             case 2.2:
@@ -68,15 +68,16 @@ class OnApp_Maintenance extends OnApp {
             case 4.0:
             case 4.1:
                 $this->fields = array(
-                    'status'          => array(
-                        ONAPP_FIELD_MAP           => '_status',
-                        ONAPP_FIELD_TYPE          => 'string',
-                        ONAPP_FIELD_REQUIRED      => true,
+                    'status' => array(
+                        ONAPP_FIELD_MAP      => '_status',
+                        ONAPP_FIELD_TYPE     => 'string',
+                        ONAPP_FIELD_REQUIRED => true,
                     )
                 );
-            break;
+                break;
             case 4.2:
-                $this->fields                             = $this->initFields( 4.1 );
+            case 4.3:
+                $this->fields = $this->initFields( 4.1 );
                 break;
         }
 
@@ -86,7 +87,7 @@ class OnApp_Maintenance extends OnApp {
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_ENABLE:
                 /**
                  * ROUTE :
@@ -125,10 +126,10 @@ class OnApp_Maintenance extends OnApp {
     }
 
     function enable() {
-        $this->sendPut(ONAPP_ENABLE);
+        $this->sendPut( ONAPP_ENABLE );
     }
 
     function disable() {
-        $this->sendPut(ONAPP_DISABLE);
+        $this->sendPut( ONAPP_DISABLE );
     }
 }

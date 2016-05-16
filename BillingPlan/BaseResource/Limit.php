@@ -28,13 +28,13 @@ class OnApp_BillingPlan_BaseResource_Limit extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.1':
                 $this->fields = array(
                     'limit_free' => array(
@@ -63,49 +63,52 @@ class OnApp_BillingPlan_BaseResource_Limit extends OnApp {
             case 3.5:
             case 4.0:
             case 4.1:
-                $this->fields                              = $this->initFields( 2.3 );
-                $this->fields[ 'id' ]                      = array(
+                $this->fields                            = $this->initFields( 2.3 );
+                $this->fields['id']                      = array(
                     ONAPP_FIELD_MAP => '_id',
                 );
-                $this->fields[ 'billing_plan_id' ]         = array(
+                $this->fields['billing_plan_id']         = array(
                     ONAPP_FIELD_MAP => 'billing_plan_id',
                 );
-                $this->fields[ 'limit_free_cpu' ]          = array(
+                $this->fields['limit_free_cpu']          = array(
                     ONAPP_FIELD_MAP => 'limit_free_cpu',
                 );
-                $this->fields[ 'limit_free_cpu_share' ]    = array(
+                $this->fields['limit_free_cpu_share']    = array(
                     ONAPP_FIELD_MAP => 'limit_free_cpu_share',
                 );
-                $this->fields[ 'limit_free_memory' ]       = array(
+                $this->fields['limit_free_memory']       = array(
                     ONAPP_FIELD_MAP => 'limit_free_memory',
                 );
-                $this->fields[ 'limit_cpu' ]               = array(
+                $this->fields['limit_cpu']               = array(
                     ONAPP_FIELD_MAP => 'limit_cpu',
                 );
-                $this->fields[ 'limit_cpu_share' ]         = array(
+                $this->fields['limit_cpu_share']         = array(
                     ONAPP_FIELD_MAP => 'limit_cpu_share',
                 );
-                $this->fields[ 'limit_memory' ]            = array(
+                $this->fields['limit_memory']            = array(
                     ONAPP_FIELD_MAP => 'limit_memory',
                 );
-                $this->fields[ 'limit_default_cpu' ]       = array(
+                $this->fields['limit_default_cpu']       = array(
                     ONAPP_FIELD_MAP => 'limit_default_cpu',
                 );
-                $this->fields[ 'limit_default_cpu_share' ] = array(
+                $this->fields['limit_default_cpu_share'] = array(
                     ONAPP_FIELD_MAP => 'limit_default_cpu_share',
                 );
-                $this->fields[ 'limit_rate' ]              = array(
+                $this->fields['limit_rate']              = array(
                     ONAPP_FIELD_MAP => 'limit_rate',
                 );
-                $this->fields[ 'limit_ip' ]                = array(
+                $this->fields['limit_ip']                = array(
                     ONAPP_FIELD_MAP => 'limit_ip',
                 );
-                $this->fields[ 'limit' ]                   = array(
+                $this->fields['limit']                   = array(
                     ONAPP_FIELD_MAP => 'limit',
                 );
                 break;
             case 4.2:
                 $this->fields = $this->initFields( 4.1 );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 
@@ -124,7 +127,7 @@ class OnApp_BillingPlan_BaseResource_Limit extends OnApp {
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         $show_log_msg = true;
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
             case ONAPP_GETRESOURCE_EDIT:
                 /**
@@ -167,15 +170,14 @@ class OnApp_BillingPlan_BaseResource_Limit extends OnApp {
                  * @alias   /billing_plans/:billing_plan_id/base_resources/:id(.:format)
                  * @format  {:controller=>"base_resources", :action=>"destroy"}
                  */
-                if( is_null( $this->billing_plan_id ) && is_null( $this->_obj->billing_plan_id ) ) {
+                if ( is_null( $this->billing_plan_id ) && is_null( $this->_obj->billing_plan_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _billing_plan_id not set.',
                         __FILE__,
                         __LINE__
                     );
-                }
-                else {
-                    if( is_null( $this->billing_plan_id ) ) {
+                } else {
+                    if ( is_null( $this->billing_plan_id ) ) {
                         $this->billing_plan_id = $this->obj->_billing_plan_id;
                     }
                 }
@@ -189,7 +191,7 @@ class OnApp_BillingPlan_BaseResource_Limit extends OnApp {
                 break;
         }
 
-        if( $show_log_msg ) {
+        if ( $show_log_msg ) {
             $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
         }
 

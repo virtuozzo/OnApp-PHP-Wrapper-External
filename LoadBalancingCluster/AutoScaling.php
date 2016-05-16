@@ -26,13 +26,13 @@ class OnApp_LoadBalancingCluster_AutoScaling extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.2':
             case '2.3':
                 $this->fields = array(
@@ -81,6 +81,10 @@ class OnApp_LoadBalancingCluster_AutoScaling extends OnApp {
             case 4.2:
                 $this->fields = $this->initFields( 2.3 );
                 break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+
         }
 
         parent::initFields( $version, __CLASS__ );

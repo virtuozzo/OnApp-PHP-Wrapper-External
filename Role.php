@@ -20,6 +20,13 @@
  * @see         OnApp
  */
 
+
+/**
+ * To clone a role
+ */
+define( 'ONAPP_ROLE_CLONE', 'clone' );
+
+
 /**
  * Manages User Roles
  *
@@ -47,13 +54,13 @@ class OnApp_Role extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -111,11 +118,18 @@ class OnApp_Role extends OnApp {
             case 4.0:
             case 4.1:
             case 4.2:
-                $this->fields = $this->initFields( 2.3 );
-                $this->fields[ 'users_count' ]    = array(
-                    ONAPP_FIELD_MAP       => '_users_count',
-                    ONAPP_FIELD_TYPE      => 'integer',
+                $this->fields                = $this->initFields( 2.3 );
+                $this->fields['users_count'] = array(
+                    ONAPP_FIELD_MAP  => '_users_count',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
+                $this->fields['permission_ids'] = array(
+                    ONAPP_FIELD_MAP  => '_permission_ids',
+                    ONAPP_FIELD_TYPE => 'array',
+                );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 
@@ -125,46 +139,79 @@ class OnApp_Role extends OnApp {
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        return parent::getResource( $action );
-        /**
-         * ROUTE :
-         *
-         * @name roles
-         * @method GET
-         * @alias   /roles(.:format)
-         * @format  {:controller=>"roles", :action=>"index"}
-         */
-        /**
-         * ROUTE :
-         *
-         * @name role
-         * @method GET
-         * @alias   /roles/:id(.:format)
-         * @format  {:controller=>"roles", :action=>"show"}
-         */
-        /**
-         * ROUTE :
-         *
-         * @name
-         * @method POST
-         * @alias   /roles(.:format)
-         * @format  {:controller=>"roles", :action=>"create"}
-         */
-        /**
-         * ROUTE :
-         *
-         * @name
-         * @method PUT
-         * @alias  /roles/:id(.:format)
-         * @format {:controller=>"roles", :action=>"update"}
-         */
-        /**
-         * ROUTE :
-         *
-         * @name
-         * @method DELETE
-         * @alias  /roles/:id(.:format)
-         * @format {:controller=>"roles", :action=>"destroy"}
-         */
+        switch ( $action ) {
+            case ONAPP_ROLE_CLONE:
+                /**
+                 * ROUTE :
+                 *
+                 * @name roles
+                 * @method POST
+                 * @alias   /roles/:id/clone(.:format)
+                 * @format  {:controller=>"roles", :action=>"index"}
+                 */
+                if ( is_null( $this->_id ) && is_null( $this->_obj->_id ) ) {
+                    $this->logger->error(
+                        "getResource($action): argument _id not set.",
+                        __FILE__,
+                        __LINE__
+                    );
+                } else {
+                    if ( is_null( $this->_id ) ) {
+                        $this->_id = $this->_obj->_id;
+                    }
+                }
+                $resource = $this->_resource . '/' . $this->_id . '/clone';
+                break;
+            default:
+                /**
+                 * ROUTE :
+                 *
+                 * @name roles
+                 * @method GET
+                 * @alias   /roles(.:format)
+                 * @format  {:controller=>"roles", :action=>"index"}
+                 */
+                /**
+                 * ROUTE :
+                 *
+                 * @name role
+                 * @method GET
+                 * @alias   /roles/:id(.:format)
+                 * @format  {:controller=>"roles", :action=>"show"}
+                 */
+                /**
+                 * ROUTE :
+                 *
+                 * @name
+                 * @method POST
+                 * @alias   /roles(.:format)
+                 * @format  {:controller=>"roles", :action=>"create"}
+                 */
+                /**
+                 * ROUTE :
+                 *
+                 * @name
+                 * @method PUT
+                 * @alias  /roles/:id(.:format)
+                 * @format {:controller=>"roles", :action=>"update"}
+                 */
+                /**
+                 * ROUTE :
+                 *
+                 * @name
+                 * @method DELETE
+                 * @alias  /roles/:id(.:format)
+                 * @format {:controller=>"roles", :action=>"destroy"}
+                 */
+                $resource = parent::getResource( $action );
+                break;
+
+        }
+
+        return $resource;
+    }
+
+    public function cloneRole() {
+        return $this->sendPost( ONAPP_ROLE_CLONE );
     }
 }

@@ -23,15 +23,15 @@ class OnApp_BillingPlan_ResourceIpAddress extends OnApp_BillingPlan_BaseResource
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
         parent::initFields( $version, __CLASS__ );
 
-        $this->fields[ 'resource_class' ] = array(
+        $this->fields['resource_class'] = array(
             ONAPP_FIELD_MAP           => '_resource_class',
             ONAPP_FIELD_TYPE          => 'string',
             ONAPP_FIELD_REQUIRED      => true,

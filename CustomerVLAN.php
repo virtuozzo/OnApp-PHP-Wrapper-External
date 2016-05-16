@@ -71,7 +71,7 @@ class OnApp_CustomerVLAN extends OnApp {
                         ONAPP_FIELD_MAP  => '_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'user_id'         => array(
+                    'user_id'    => array(
                         ONAPP_FIELD_MAP  => '_user_id',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
@@ -80,6 +80,9 @@ class OnApp_CustomerVLAN extends OnApp {
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
                 );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 
@@ -100,12 +103,12 @@ class OnApp_CustomerVLAN extends OnApp {
         return $resource;
     }
 
-    public function addVLANsRange($start, $end){
+    public function addVLANsRange( $start, $end ) {
         $data = array(
             'root' => 'customer_vlan_range',
             'data' => array(
-                'vlan_starts' => (string)$start,
-                'vlan_ends' => (string)$end,
+                'vlan_starts' => (string) $start,
+                'vlan_ends'   => (string) $end,
             ),
         );
         $this->sendPost( ONAPP_GETRESOURCE_DEFAULT, $data );

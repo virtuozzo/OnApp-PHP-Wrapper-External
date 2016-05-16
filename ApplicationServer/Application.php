@@ -136,15 +136,15 @@ class OnApp_ApplicationServer_Application extends OnApp {
                     ONAPP_FIELD_MAP  => '_name',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields['backup_directory']                  = array(
+                $this->fields['backup_directory']      = array(
                     ONAPP_FIELD_MAP  => '_backup_directory',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields['backup_data_directory']                  = array(
+                $this->fields['backup_data_directory'] = array(
                     ONAPP_FIELD_MAP  => '_backup_data_directory',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields['backup_database']                  = array(
+                $this->fields['backup_database']       = array(
                     ONAPP_FIELD_MAP  => '_backup_database',
                     ONAPP_FIELD_TYPE => 'string',
                 );
@@ -154,6 +154,10 @@ class OnApp_ApplicationServer_Application extends OnApp {
                 );
 
                 break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -366,7 +370,7 @@ class OnApp_ApplicationServer_Application extends OnApp {
                 return false;
             } else {
                 $result->_application_server_id = $this->_application_server_id;
-                $result->_script_id = $this->_script_id;
+                $result->_script_id             = $this->_script_id;
 
                 return $result;
             }
@@ -402,23 +406,23 @@ class OnApp_ApplicationServer_Application extends OnApp {
 
         if ( ! is_null( $application_server_id ) && ! is_null( $id ) ) {
             $this->_application_server_id = $application_server_id;
-            $this->_id             = $id;
+            $this->_id                    = $id;
 
             $this->logger->add( 'Run ' . __METHOD__ );
 
             $data = array(
                 'application_id' => $this->_id,
             );
-            if($this->_backup_directory){
+            if ( $this->_backup_directory ) {
                 $data['backup_directory'] = $this->_backup_directory;
             }
-            if($this->_backup_data_directory){
+            if ( $this->_backup_data_directory ) {
                 $data['backup_data_directory'] = $this->_backup_data_directory;
             }
-            if($this->_backup_database){
+            if ( $this->_backup_database ) {
                 $data['backup_database'] = $this->_backup_database;
             }
-            if($this->_note){
+            if ( $this->_note ) {
                 $data['note'] = $this->_note;
             }
             $data = array(
@@ -426,7 +430,7 @@ class OnApp_ApplicationServer_Application extends OnApp {
                 'data' => $data,
             );
 
-            $result = $this->sendPost( ONAPP_GETRESOURCE_APPLICATION_BACKUP, $data);
+            $result = $this->sendPost( ONAPP_GETRESOURCE_APPLICATION_BACKUP, $data );
 
         } else {
             if ( is_null( $application_server_id ) ) {
@@ -460,23 +464,23 @@ class OnApp_ApplicationServer_Application extends OnApp {
 
         if ( ! is_null( $application_server_id ) && ! is_null( $id ) ) {
             $this->_application_server_id = $application_server_id;
-            $this->_id             = $id;
+            $this->_id                    = $id;
 
             $this->logger->add( 'Run ' . __METHOD__ );
 
             $data = array(
                 'application_id' => $this->_id,
             );
-            if($this->_remove_database_user){
+            if ( $this->_remove_database_user ) {
                 $data['remove_database_user'] = $this->_remove_database_user;
             }
-            if($this->_remove_database){
+            if ( $this->_remove_database ) {
                 $data['remove_database'] = $this->_remove_database;
             }
-            if($this->_remove_directory){
+            if ( $this->_remove_directory ) {
                 $data['remove_directory'] = $this->_remove_directory;
             }
-            if($this->_remove_data_directory){
+            if ( $this->_remove_data_directory ) {
                 $data['remove_data_directory'] = $this->_remove_data_directory;
             }
             $data = array(
@@ -484,7 +488,7 @@ class OnApp_ApplicationServer_Application extends OnApp {
                 'data' => $data,
             );
 
-            $result = $this->sendDelete( ONAPP_GETRESOURCE_DELETE, $data);
+            $result = $this->sendDelete( ONAPP_GETRESOURCE_DELETE, $data );
 
         } else {
             if ( is_null( $application_server_id ) ) {

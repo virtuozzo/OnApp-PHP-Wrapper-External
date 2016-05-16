@@ -65,13 +65,13 @@ class OnApp_VirtualMachine_Backup extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
                 $this->fields = array(
                     'id'                          => array(
@@ -155,13 +155,13 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 
             case '2.1':
                 $this->fields = $this->initFields( '2.0' );
-                unset( $this->fields[ 'allowed_swap' ] );
-                $this->fields[ 'allowed_hot_migrate' ] = array(
+                unset( $this->fields['allowed_swap'] );
+                $this->fields['allowed_hot_migrate'] = array(
                     ONAPP_FIELD_MAP       => '_allowed_hot_migrate',
                     ONAPP_FIELD_TYPE      => 'boolean',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'allowed_swap' ]        = array(
+                $this->fields['allowed_swap']        = array(
                     ONAPP_FIELD_MAP       => '_allowed_swap',
                     ONAPP_FIELD_TYPE      => 'boolean',
                     ONAPP_FIELD_READ_ONLY => true,
@@ -170,8 +170,8 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 
             case 2.2:
             case 2.3:
-                $this->fields                       = $this->initFields( 2.1 );
-                $this->fields[ 'backup_server_id' ] = array(
+                $this->fields                     = $this->initFields( 2.1 );
+                $this->fields['backup_server_id'] = array(
                     ONAPP_FIELD_MAP  => '_backup_server_id',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
@@ -188,52 +188,55 @@ class OnApp_VirtualMachine_Backup extends OnApp {
             case 3.5:
             case 4.0:
             case 4.1:
-                $this->fields                                               = $this->initFields( 3.1 );
-                $this->fields[ 'disk_id' ][ ONAPP_FIELD_SKIP_FROM_REQUEST ] = true;
+                $this->fields                                             = $this->initFields( 3.1 );
+                $this->fields['disk_id'][ ONAPP_FIELD_SKIP_FROM_REQUEST ] = true;
                 break;
             case 4.2:
-                $this->fields                                               = $this->initFields( 4.1 );
-                $this->fields[ 'data_store_type' ] = array(
-                    ONAPP_FIELD_MAP       => '_data_store_type',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields                      = $this->initFields( 4.1 );
+                $this->fields['data_store_type']   = array(
+                    ONAPP_FIELD_MAP  => '_data_store_type',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'initiated' ] = array(
-                    ONAPP_FIELD_MAP       => '_initiated',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['initiated']         = array(
+                    ONAPP_FIELD_MAP  => '_initiated',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'iqn' ] = array(
-                    ONAPP_FIELD_MAP       => '_iqn',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['iqn']               = array(
+                    ONAPP_FIELD_MAP  => '_iqn',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'marked_for_delete' ] = array(
-                    ONAPP_FIELD_MAP       => '_marked_for_delete',
-                    ONAPP_FIELD_TYPE      => 'boolean',
+                $this->fields['marked_for_delete'] = array(
+                    ONAPP_FIELD_MAP  => '_marked_for_delete',
+                    ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'min_memory_size' ] = array(
-                    ONAPP_FIELD_MAP       => '_min_memory_size',
-                    ONAPP_FIELD_TYPE      => 'integer',
+                $this->fields['min_memory_size']   = array(
+                    ONAPP_FIELD_MAP  => '_min_memory_size',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'note' ] = array(
-                    ONAPP_FIELD_MAP       => '_note',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['note']              = array(
+                    ONAPP_FIELD_MAP  => '_note',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'target_id' ] = array(
-                    ONAPP_FIELD_MAP       => '_target_id',
-                    ONAPP_FIELD_TYPE      => 'integer',
+                $this->fields['target_id']         = array(
+                    ONAPP_FIELD_MAP  => '_target_id',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'target_type' ] = array(
-                    ONAPP_FIELD_MAP       => '_target_type',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['target_type']       = array(
+                    ONAPP_FIELD_MAP  => '_target_type',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'user_id' ] = array(
-                    ONAPP_FIELD_MAP       => '_user_id',
-                    ONAPP_FIELD_TYPE      => 'integer',
+                $this->fields['user_id']           = array(
+                    ONAPP_FIELD_MAP  => '_user_id',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'volume_id' ] = array(
-                    ONAPP_FIELD_MAP       => '_volume_id',
-                    ONAPP_FIELD_TYPE      => 'integer',
+                $this->fields['volume_id']         = array(
+                    ONAPP_FIELD_MAP  => '_volume_id',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
 
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 
@@ -252,7 +255,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         $show_log_msg = true;
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
@@ -262,15 +265,14 @@ class OnApp_VirtualMachine_Backup extends OnApp {
                  * @alias    /virtual_machines/:virtual_machine_id/backups(.:format)
                  * @format    {:controller=>"backups", :action=>"index"}
                  */
-                if( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
+                if ( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _virtual_machine_id not set.',
                         __FILE__,
                         __LINE__
                     );
-                }
-                else {
-                    if( is_null( $this->_virtual_machine_id ) ) {
+                } else {
+                    if ( is_null( $this->_virtual_machine_id ) ) {
                         $this->_virtual_machine_id = $this->_obj->_virtual_machine_id;
                     }
                 }
@@ -287,15 +289,14 @@ class OnApp_VirtualMachine_Backup extends OnApp {
                  * @alias    /virtual_machines/:virtual_machine_id/backups(.:format)
                  * @format    {:controller=>"backups", :action=>"create"}
                  */
-                if( is_null( $this->_disk_id ) && is_null( $this->_obj->_disk_id ) ) {
+                if ( is_null( $this->_disk_id ) && is_null( $this->_obj->_disk_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _disk_id not set.',
                         __FILE__,
                         __LINE__
                     );
-                }
-                else {
-                    if( is_null( $this->_disk_id ) ) {
+                } else {
+                    if ( is_null( $this->_disk_id ) ) {
                         $this->_disk_id = $this->_obj->_disk_id;
                     }
                 }
@@ -332,15 +333,14 @@ class OnApp_VirtualMachine_Backup extends OnApp {
                  * @alias     /backups/:id(.:format)
                  * @format     {:controller=>"backups", :action=>"destroy"}
                  */
-                if( is_null( $this->_id ) && is_null( $this->_obj->_id ) ) {
+                if ( is_null( $this->_id ) && is_null( $this->_obj->_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _id not set.',
                         __FILE__,
                         __LINE__
                     );
-                }
-                else {
-                    if( is_null( $this->_id ) ) {
+                } else {
+                    if ( is_null( $this->_id ) ) {
                         $this->_id = $this->_obj->_id;
                     }
                 }
@@ -392,7 +392,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
                 break;
         }
 
-        if( $show_log_msg ) {
+        if ( $show_log_msg ) {
             $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
         }
 
@@ -404,22 +404,21 @@ class OnApp_VirtualMachine_Backup extends OnApp {
      * unserializes the received response into the array of Objects
      *
      * @param integer $virtual_machine_id Virtual Machine id
-     * @param mixed   $url_args
+     * @param mixed $url_args
      *
      * @return mixed an array of Object instances on success. Otherwise false
      * @access public
      */
     function getList( $virtual_machine_id = null, $url_args = null ) {
-        if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
+        if ( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
             $virtual_machine_id = $this->_virtual_machine_id;
         }
 
-        if( ! is_null( $virtual_machine_id ) ) {
+        if ( ! is_null( $virtual_machine_id ) ) {
             $this->_virtual_machine_id = $virtual_machine_id;
 
             return parent::getList();
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getList: argument _virtual_machine_id not set.',
                 __FILE__,
@@ -436,7 +435,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
      * @return response object
      */
     function diskBackups( $disk_id = null ) {
-        if( $disk_id ) {
+        if ( $disk_id ) {
             $this->_disk_id = $disk_id;
         }
 
@@ -444,8 +443,8 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 
         $response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-        if( ! empty( $response[ 'errors' ] ) ) {
-            $this->errors = $response[ 'errors' ];
+        if ( ! empty( $response['errors'] ) ) {
+            $this->errors = $response['errors'];
 
             return false;
         }
@@ -467,7 +466,7 @@ class OnApp_VirtualMachine_Backup extends OnApp {
 
         $this->_label = $label;
 
-        $this->fields[ 'label' ] = array(
+        $this->fields['label'] = array(
             ONAPP_FIELD_MAP      => '_label',
             ONAPP_FIELD_REQUIRED => true,
         );
@@ -500,28 +499,26 @@ class OnApp_VirtualMachine_Backup extends OnApp {
         $this->_obj = $result;
     }
 
-    protected function getCustomList($resource, $virtual_machine_id = null, $url_args = null ) {
-        if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
+    protected function getCustomList( $resource, $virtual_machine_id = null, $url_args = null ) {
+        if ( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
             $virtual_machine_id = $this->_virtual_machine_id;
         }
 
-        if( ! is_null( $virtual_machine_id ) ) {
+        if ( ! is_null( $virtual_machine_id ) ) {
             $this->_virtual_machine_id = $virtual_machine_id;
 
             $result = $this->sendGet( $resource, null, $url_args );
 
-            if( ! is_null( $this->getErrorsAsArray() ) ) {
+            if ( ! is_null( $this->getErrorsAsArray() ) ) {
                 return false;
-            }
-            else {
-                if( ! is_array( $result ) && ! is_null( $result ) ) {
+            } else {
+                if ( ! is_array( $result ) && ! is_null( $result ) ) {
                     $result = array( $result );
                 }
 
                 return $result;
             }
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getList: argument _virtual_machine_id not set.',
                 __FILE__,
@@ -531,11 +528,11 @@ class OnApp_VirtualMachine_Backup extends OnApp {
     }
 
     function getImagesList( $virtual_machine_id = null, $url_args = null ) {
-        return $this->getCustomList(ONAPP_GETRESOURCE_BACKUP_IMAGES, $virtual_machine_id, $url_args);
+        return $this->getCustomList( ONAPP_GETRESOURCE_BACKUP_IMAGES, $virtual_machine_id, $url_args );
     }
 
     function getFilesList( $virtual_machine_id = null, $url_args = null ) {
-        return $this->getCustomList(ONAPP_GETRESOURCE_BACKUP_FILES, $virtual_machine_id, $url_args);
+        return $this->getCustomList( ONAPP_GETRESOURCE_BACKUP_FILES, $virtual_machine_id, $url_args );
     }
 
 }

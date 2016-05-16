@@ -59,31 +59,34 @@ class OnApp_Availability_CommunicationInterface extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'bindnetaddr'  => array(
+                    'bindnetaddr' => array(
                         ONAPP_FIELD_MAP  => '_bindnetaddr',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'id'  => array(
+                    'id'          => array(
                         ONAPP_FIELD_MAP  => '_id',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'mcastaddr'  => array(
+                    'mcastaddr'   => array(
                         ONAPP_FIELD_MAP  => '_mcastaddr',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'mcastport'  => array(
+                    'mcastport'   => array(
                         ONAPP_FIELD_MAP  => '_mcastport',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'state'  => array(
+                    'state'       => array(
                         ONAPP_FIELD_MAP  => '_state',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'ttl'  => array(
+                    'ttl'         => array(
                         ONAPP_FIELD_MAP  => '_ttl',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
                 );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 

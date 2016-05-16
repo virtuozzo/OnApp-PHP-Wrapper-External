@@ -37,13 +37,13 @@ class OnApp_VirtualMachine_PublishingRule extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -58,47 +58,50 @@ class OnApp_VirtualMachine_PublishingRule extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'created_at'    => array(
-                        ONAPP_FIELD_MAP       => '_created_at',
-                        ONAPP_FIELD_TYPE      => 'datetime',
+                    'created_at'            => array(
+                        ONAPP_FIELD_MAP  => '_created_at',
+                        ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'customer_network_id'    => array(
-                        ONAPP_FIELD_MAP       => '_customer_network_id',
-                        ONAPP_FIELD_TYPE      => 'string',
+                    'customer_network_id'   => array(
+                        ONAPP_FIELD_MAP  => '_customer_network_id',
+                        ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'id'    => array(
-                        ONAPP_FIELD_MAP       => '_id',
-                        ONAPP_FIELD_TYPE      => 'integer',
+                    'id'                    => array(
+                        ONAPP_FIELD_MAP  => '_id',
+                        ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'is_built'    => array(
-                        ONAPP_FIELD_MAP       => '_is_built',
-                        ONAPP_FIELD_TYPE      => 'boolean',
+                    'is_built'              => array(
+                        ONAPP_FIELD_MAP  => '_is_built',
+                        ONAPP_FIELD_TYPE => 'boolean',
                     ),
-                    'outside_ip_address_id'    => array(
-                        ONAPP_FIELD_MAP       => '_outside_ip_address_id',
-                        ONAPP_FIELD_TYPE      => 'string',
+                    'outside_ip_address_id' => array(
+                        ONAPP_FIELD_MAP  => '_outside_ip_address_id',
+                        ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'port'    => array(
-                        ONAPP_FIELD_MAP       => '_port',
-                        ONAPP_FIELD_TYPE      => 'integer',
+                    'port'                  => array(
+                        ONAPP_FIELD_MAP  => '_port',
+                        ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'protocol'    => array(
-                        ONAPP_FIELD_MAP       => '_protocol',
-                        ONAPP_FIELD_TYPE      => 'string',
+                    'protocol'              => array(
+                        ONAPP_FIELD_MAP  => '_protocol',
+                        ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'rule_number'    => array(
-                        ONAPP_FIELD_MAP       => '_rule_number',
-                        ONAPP_FIELD_TYPE      => 'integer',
+                    'rule_number'           => array(
+                        ONAPP_FIELD_MAP  => '_rule_number',
+                        ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'updated_at'    => array(
-                        ONAPP_FIELD_MAP       => '_updated_at',
-                        ONAPP_FIELD_TYPE      => 'datetime',
+                    'updated_at'            => array(
+                        ONAPP_FIELD_MAP  => '_updated_at',
+                        ONAPP_FIELD_TYPE => 'datetime',
                     ),
                     'virtual_machine_id'    => array(
-                        ONAPP_FIELD_MAP       => '_virtual_machine_id',
-                        ONAPP_FIELD_TYPE      => 'integer',
+                        ONAPP_FIELD_MAP  => '_virtual_machine_id',
+                        ONAPP_FIELD_TYPE => 'integer',
                     ),
                 );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 
@@ -116,7 +119,7 @@ class OnApp_VirtualMachine_PublishingRule extends OnApp {
      * @access public
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
@@ -158,7 +161,7 @@ class OnApp_VirtualMachine_PublishingRule extends OnApp {
                  * @alias   /network_interfaces/:id(.:format)
                  * @format  {:controller=>"network_interfaces", :action=>"destroy"}
                  */
-                if( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
+                if ( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
                     $this->logger->error(
                         "getResource($action): argument _virtual_machine_id not set.",
                         __FILE__,

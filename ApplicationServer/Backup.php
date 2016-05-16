@@ -40,62 +40,65 @@ class OnApp_ApplicationServer_Backup extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case 4.0:
             case 4.1:
             case 4.2:
-                $this->fields                  = array();
+                $this->fields = array();
 
-                $this->fields[ 'application_server_id' ] = array(
+                $this->fields['application_server_id'] = array(
                     ONAPP_FIELD_MAP  => '_application_server_id',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'application_id' ] = array(
+                $this->fields['application_id']        = array(
                     ONAPP_FIELD_MAP  => '_application_id',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'application_type' ] = array(
+                $this->fields['application_type']      = array(
                     ONAPP_FIELD_MAP  => '_application_type',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'backup_note' ] = array(
+                $this->fields['backup_note']           = array(
                     ONAPP_FIELD_MAP  => '_backup_note',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'identifier' ] = array(
+                $this->fields['identifier']            = array(
                     ONAPP_FIELD_MAP  => '_identifier',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'software_url' ] = array(
+                $this->fields['software_url']          = array(
                     ONAPP_FIELD_MAP  => '_software_url',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'software_version' ] = array(
+                $this->fields['software_version']      = array(
                     ONAPP_FIELD_MAP  => '_software_version',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'size' ] = array(
+                $this->fields['size']                  = array(
                     ONAPP_FIELD_MAP  => '_size',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'restore_directory' ] = array(
+                $this->fields['restore_directory']     = array(
                     ONAPP_FIELD_MAP  => '_restore_directory',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'restore_database' ] = array(
+                $this->fields['restore_database']      = array(
                     ONAPP_FIELD_MAP  => '_restore_database',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'identifier' ] = array(
+                $this->fields['identifier']            = array(
                     ONAPP_FIELD_MAP  => '_identifier',
                     ONAPP_FIELD_TYPE => 'string',
                 );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 
@@ -114,7 +117,7 @@ class OnApp_ApplicationServer_Backup extends OnApp {
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         $show_log_msg = true;
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
@@ -123,14 +126,14 @@ class OnApp_ApplicationServer_Backup extends OnApp {
                  * @alias   /application_servers/:application_server_id/applications(.:format)
                  * @format  {:controller=>"applications", :action=>"index"}
                  */
-                if( is_null( $this->_application_server_id ) && is_null( $this->_obj->_application_server_id ) ) {
+                if ( is_null( $this->_application_server_id ) && is_null( $this->_obj->_application_server_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _application_server_id not set.',
                         __FILE__,
                         __LINE__
                     );
                 } else {
-                    if( is_null( $this->_application_server_id ) ) {
+                    if ( is_null( $this->_application_server_id ) ) {
                         $this->_application_server_id = $this->_obj->_application_server_id;
                     }
                 }
@@ -145,8 +148,8 @@ class OnApp_ApplicationServer_Backup extends OnApp {
                  * @alias   /application_servers/:application_server_id/applications/backups/:identifier/restore(.:format)
                  * @format  {:controller=>"applications", :action=>"index"}
                  */
-                if( is_null( $this->_application_server_id ) && is_null( $this->_obj->_application_server_id ) ) {
-                    if( is_null( $this->_identifier ) && is_null( $this->_obj->_identifier ) ) {
+                if ( is_null( $this->_application_server_id ) && is_null( $this->_obj->_application_server_id ) ) {
+                    if ( is_null( $this->_identifier ) && is_null( $this->_obj->_identifier ) ) {
                         $this->logger->error(
                             'getResource( ' . $action . ' ): argument _identifier not set.',
                             __FILE__,
@@ -159,10 +162,10 @@ class OnApp_ApplicationServer_Backup extends OnApp {
                         __LINE__
                     );
                 } else {
-                    if( is_null( $this->_application_server_id ) ) {
+                    if ( is_null( $this->_application_server_id ) ) {
                         $this->_application_server_id = $this->_obj->_application_server_id;
                     }
-                    if( is_null( $this->_identifier ) ) {
+                    if ( is_null( $this->_identifier ) ) {
                         $this->_identifier = $this->_obj->_identifier;
                     }
                 }
@@ -177,8 +180,8 @@ class OnApp_ApplicationServer_Backup extends OnApp {
                  * @alias   /application_servers/:application_server_id/applications/backups/:identifier/destroy(.:format)
                  * @format  {:controller=>"applications", :action=>"index"}
                  */
-                if( is_null( $this->_application_server_id ) && is_null( $this->_obj->_application_server_id ) ) {
-                    if( is_null( $this->_identifier ) && is_null( $this->_obj->_identifier ) ) {
+                if ( is_null( $this->_application_server_id ) && is_null( $this->_obj->_application_server_id ) ) {
+                    if ( is_null( $this->_identifier ) && is_null( $this->_obj->_identifier ) ) {
                         $this->logger->error(
                             'getResource( ' . $action . ' ): argument _identifier not set.',
                             __FILE__,
@@ -191,10 +194,10 @@ class OnApp_ApplicationServer_Backup extends OnApp {
                         __LINE__
                     );
                 } else {
-                    if( is_null( $this->_application_server_id ) ) {
+                    if ( is_null( $this->_application_server_id ) ) {
                         $this->_application_server_id = $this->_obj->_application_server_id;
                     }
-                    if( is_null( $this->_identifier ) ) {
+                    if ( is_null( $this->_identifier ) ) {
                         $this->_identifier = $this->_obj->_identifier;
                     }
                 }
@@ -207,30 +210,30 @@ class OnApp_ApplicationServer_Backup extends OnApp {
                 break;
         }
 
-        if( $show_log_msg ) {
+        if ( $show_log_msg ) {
             $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
         }
 
         return $resource;
     }
 
-    public function restore($application_server_id = null, $identifier = null){
-        if( is_null( $application_server_id ) && ! is_null( $this->_application_server_id ) ) {
+    public function restore( $application_server_id = null, $identifier = null ) {
+        if ( is_null( $application_server_id ) && ! is_null( $this->_application_server_id ) ) {
             $application_server_id = $this->_application_server_id;
         }
-        if( is_null( $identifier ) &&  !is_null( $this->_identifier ) ) {
+        if ( is_null( $identifier ) && ! is_null( $this->_identifier ) ) {
             $identifier = $this->_identifier;
         }
 
-        if( ! is_null( $application_server_id ) && ! is_null( $identifier ) ) {
+        if ( ! is_null( $application_server_id ) && ! is_null( $identifier ) ) {
             $this->_application_server_id = $application_server_id;
-            $this->_identifier = $identifier;
-            $data = array();
+            $this->_identifier            = $identifier;
+            $data                         = array();
 
-            if($this->_restore_directory){
+            if ( $this->_restore_directory ) {
                 $data['restore_directory'] = $this->_restore_directory;
             }
-            if($this->_restore_database){
+            if ( $this->_restore_database ) {
                 $data['restore_database'] = $this->_restore_database;
             }
             $data = array(
@@ -238,8 +241,8 @@ class OnApp_ApplicationServer_Backup extends OnApp {
                 'data' => $data
             );
 
-            return $this->sendPost(ONAPP_RESTORE_BACKUP, $data);
-        }else{
+            return $this->sendPost( ONAPP_RESTORE_BACKUP, $data );
+        } else {
             $this->logger->error(
                 'getList: argument _application_server_id or _identifier not set.',
                 __FILE__,

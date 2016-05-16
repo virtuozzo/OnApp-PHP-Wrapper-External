@@ -59,52 +59,56 @@ class OnApp_Currency extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'name' => array(
+                    'name'               => array(
                         ONAPP_FIELD_MAP  => '_name',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'format' => array(
+                    'format'             => array(
                         ONAPP_FIELD_MAP  => '_format',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'created_at' => array(
+                    'created_at'         => array(
                         ONAPP_FIELD_MAP  => '_created_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'updated_at' => array(
+                    'updated_at'         => array(
                         ONAPP_FIELD_MAP  => '_updated_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'code'  => array(
+                    'code'               => array(
                         ONAPP_FIELD_MAP  => '_code',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'id'  => array(
+                    'id'                 => array(
                         ONAPP_FIELD_MAP  => '_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'unit'  => array(
+                    'unit'               => array(
                         ONAPP_FIELD_MAP  => '_unit',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'separator'  => array(
+                    'separator'          => array(
                         ONAPP_FIELD_MAP  => '_separator',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'precision'  => array(
+                    'precision'          => array(
                         ONAPP_FIELD_MAP  => '_precision',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'precision_for_unit'  => array(
+                    'precision_for_unit' => array(
                         ONAPP_FIELD_MAP  => '_precision_for_unit',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'delimiter'  => array(
+                    'delimiter'          => array(
                         ONAPP_FIELD_MAP  => '_delimiter',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
                 );
                 break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+
         }
 
         parent::initFields( $version, __CLASS__ );

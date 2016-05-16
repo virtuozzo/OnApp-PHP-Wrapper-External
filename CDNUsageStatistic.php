@@ -41,13 +41,13 @@ class OnApp_CDNUsageStatistic extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.3':
                 $this->fields = array(
                     'target_id'  => array(
@@ -86,6 +86,10 @@ class OnApp_CDNUsageStatistic extends OnApp {
             case 4.2:
                 $this->fields = $this->initFields( 2.3 );
                 break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -100,8 +104,8 @@ class OnApp_CDNUsageStatistic extends OnApp {
      *
      * @access public
      */
-    function activate( $action_name ) {
-        switch( $action_name ) {
+    function activateCheck( $action_name ) {
+        switch ( $action_name ) {
             case ONAPP_ACTIVATE_SAVE:
             case ONAPP_ACTIVATE_LOAD:
             case ONAPP_ACTIVATE_DELETE:

@@ -36,75 +36,75 @@ class OnApp_VDCS_EdgeGateway extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case 4.0:
                 $this->fields = array(
-                    'id'                          => array(
+                    'id'          => array(
                         ONAPP_FIELD_MAP       => '_id',
                         ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'created_at'                  => array(
+                    'created_at'  => array(
                         ONAPP_FIELD_MAP       => '_created_at',
                         ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'description'                       => array(
-                        ONAPP_FIELD_MAP      => '_description',
+                    'description' => array(
+                        ONAPP_FIELD_MAP => '_description',
                     ),
-                    'identifier'                  => array(
+                    'identifier'  => array(
                         ONAPP_FIELD_MAP       => '_identifier',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'label'                       => array(
-                        ONAPP_FIELD_MAP      => '_label',
+                    'label'       => array(
+                        ONAPP_FIELD_MAP => '_label',
                     ),
-                    'updated_at'                  => array(
+                    'updated_at'  => array(
                         ONAPP_FIELD_MAP       => '_updated_at',
                         ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'vdc_id'                          => array(
+                    'vdc_id'      => array(
                         ONAPP_FIELD_MAP       => '_vdc_id',
                         ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
                 );
                 break;
+            case 4.1:
             case 4.2:
                 $this->fields = $this->initFields( 4.0 );
 
                 //gateway_backing_config can be: compact, full, full-4
-                $this->fields[ 'gateway_backing_config' ]         = array(
-                    ONAPP_FIELD_MAP       => '_gateway_backing_config',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['gateway_backing_config']          = array(
+                    ONAPP_FIELD_MAP  => '_gateway_backing_config',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'ha_enabled' ]         = array(
-                    ONAPP_FIELD_MAP       => '_ha_enabled',
-                    ONAPP_FIELD_TYPE      => 'boolean',
+                $this->fields['ha_enabled']                      = array(
+                    ONAPP_FIELD_MAP  => '_ha_enabled',
+                    ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'status' ]         = array(
-                    ONAPP_FIELD_MAP       => '_status',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['status']                          = array(
+                    ONAPP_FIELD_MAP  => '_status',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'use_default_route_for_dns_relay' ]         = array(
-                    ONAPP_FIELD_MAP       => '_use_default_route_for_dns_relay',
-                    ONAPP_FIELD_TYPE      => 'boolean',
+                $this->fields['use_default_route_for_dns_relay'] = array(
+                    ONAPP_FIELD_MAP  => '_use_default_route_for_dns_relay',
+                    ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'external_network_ids' ]         = array(
-                    ONAPP_FIELD_MAP       => '_external_network_ids',
-                    ONAPP_FIELD_TYPE      => 'array',
+                $this->fields['external_network_ids']            = array(
+                    ONAPP_FIELD_MAP  => '_external_network_ids',
+                    ONAPP_FIELD_TYPE => 'array',
                 );
-
-
-
-
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 
@@ -114,10 +114,10 @@ class OnApp_VDCS_EdgeGateway extends OnApp {
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
-          default:
-              $resource = parent::getResource( $action );
-              break;
+        switch ( $action ) {
+            default:
+                $resource = parent::getResource( $action );
+                break;
         }
 
         return $resource;

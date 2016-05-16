@@ -11,29 +11,37 @@
  * @see         OnApp
  */
 
+/**
+ *
+ */
 define( 'ONAPP_GETRESOURCE_VAPPS_COMPOSE', 'compose' );
-define( 'ONAPP_GETRESOURCE_VAPPS_DELETE', 'delete' );
 
 /**
  *
+ */
+define( 'ONAPP_GETRESOURCE_VAPPS_ADD', 'add' );
+
+/**
+ *
+ */
+define( 'ONAPP_GETRESOURCE_VAPPS_DELETE', 'delete' );
+
+/**
  *
  */
 define( 'ONAPP_GETRESOURCE_VAPPS_RECOMPOSING', 'recomposing' );
 
 /**
  *
- *
  */
 define( 'ONAPP_GETRESOURCE_VAPPS_EDITNAME', 'editname' );
 
 /**
  *
- *
  */
 define( 'ONAPP_GETRESOURCE_VAPPS_START', 'start' );
 
 /**
- *
  *
  */
 define( 'ONAPP_GETRESOURCE_VAPPS_STOP', 'stop' );
@@ -60,13 +68,13 @@ class OnApp_Vapp extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case 4.0:
             case 4.1:
                 $this->fields = array(
@@ -121,17 +129,23 @@ class OnApp_Vapp extends OnApp {
                 );
                 break;
             case 4.2:
-                $this->fields = $this->initFields( 4.1 );
-                break;
+            case 4.3:
+                $this->fields                             = $this->initFields( 4.1 );
+                $this->fields['storage_lease_expiration'] = array(
+                    ONAPP_FIELD_MAP  => '_storage_lease_expiration',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
 
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_VAPPS_ADD:
                 /**
                  * ROUTE :
@@ -180,7 +194,7 @@ class OnApp_Vapp extends OnApp {
                  * @alias    /vapps/:id/edit(.:format)
                  * @format   {:controller=>"vapps", :action=>"editname"}
                  */
-                #$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/edit';
+                //$resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/edit';
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD );
                 break;
             case ONAPP_GETRESOURCE_VAPPS_START:
@@ -333,7 +347,7 @@ class OnApp_Vapp extends OnApp {
      * @access    public
      */
     function create( $vmp_identifier, $vmp_name, $vmp_vcpu_per_vm, $vmp_core_per_socket, $vmp_memory, $vmp_hard_disks_identifier, $vmp_hard_disks_storage_policy, $vmp_hard_disks_disk_space ) {
-        $virtual_machine_params                      = array(
+        $virtual_machine_params                  = array(
             'name'                     => $vmp_name,
             'vcpu_per_vm'              => $vmp_vcpu_per_vm,
             'core_per_socket'          => $vmp_core_per_socket,
@@ -343,7 +357,7 @@ class OnApp_Vapp extends OnApp {
                 'disk_space'     => $vmp_hard_disks_disk_space,
             ),
         );
-        $data                                        = array(
+        $data                                    = array(
             'root' => 'tmp_holder',
             'data' => array(
                 'vapp' => array(
@@ -354,7 +368,7 @@ class OnApp_Vapp extends OnApp {
                 )
             )
         );
-        $data[ 'data' ][ 'vapp' ][ $vmp_identifier ] = $virtual_machine_params;
+        $data['data']['vapp'][ $vmp_identifier ] = $virtual_machine_params;
 
         $this->sendPost( ONAPP_GETRESOURCE_DEFAULT, $data );
     }

@@ -125,6 +125,10 @@ class OnApp_CloudBootIpAddress extends OnApp {
                     ),
                 );
                 break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+
         }
 
         parent::initFields( $version, __CLASS__ );

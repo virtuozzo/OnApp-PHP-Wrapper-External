@@ -40,8 +40,8 @@ class OnApp_DNSSetup extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
@@ -49,13 +49,13 @@ class OnApp_DNSSetup extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case 3.0:
             case 3.1:
             case 3.2:
@@ -66,33 +66,37 @@ class OnApp_DNSSetup extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'domain'            => array(
+                    'domain' => array(
                         ONAPP_FIELD_MAP       => '_domain',
                         ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'ns1'            => array(
+                    'ns1'    => array(
                         ONAPP_FIELD_MAP       => '_ns1',
                         ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'ns2'            => array(
+                    'ns2'    => array(
                         ONAPP_FIELD_MAP       => '_ns2',
                         ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'ns3'            => array(
+                    'ns3'    => array(
                         ONAPP_FIELD_MAP       => '_ns3',
                         ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'ns4'            => array(
+                    'ns4'    => array(
                         ONAPP_FIELD_MAP       => '_ns4',
                         ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
                 );
                 break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+
         }
     }
 
@@ -102,7 +106,7 @@ class OnApp_DNSSetup extends OnApp {
                 /**
                  * @alias   /settings/dns_setup/glue_records.json
                  */
-                $resource = $this->getResource(ONAPP_GETRESOURCE_DEFAULT) . '/glue_records';
+                $resource = $this->getResource( ONAPP_GETRESOURCE_DEFAULT ) . '/glue_records';
                 break;
             default:
                 /**
@@ -115,7 +119,7 @@ class OnApp_DNSSetup extends OnApp {
         return $resource;
     }
 
-    public function setUpDNSDomain($domain){
+    public function setUpDNSDomain( $domain ) {
         $data = array(
             'root' => $this->_tagRoot,
             'data' => array(
@@ -125,7 +129,7 @@ class OnApp_DNSSetup extends OnApp {
         $this->sendPost( ONAPP_GETRESOURCE_DEFAULT, $data );
     }
 
-    public function editDNSDomain($domain){
+    public function editDNSDomain( $domain ) {
         $data = array(
             'root' => $this->_tagRoot,
             'data' => array(

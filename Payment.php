@@ -43,13 +43,13 @@ class OnApp_Payment extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -99,7 +99,16 @@ class OnApp_Payment extends OnApp {
             case 4.0:
             case 4.1:
             case 4.2:
-                $this->fields = $this->initFields( 2.3 );
+            case 4.3:
+                $this->fields             = $this->initFields( 2.3 );
+                $this->fields['payer_id'] = array(
+                    ONAPP_FIELD_MAP  => '_payer_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['type']     = array(
+                    ONAPP_FIELD_MAP  => '_type',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
                 break;
         }
 
@@ -109,7 +118,7 @@ class OnApp_Payment extends OnApp {
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
@@ -173,16 +182,15 @@ class OnApp_Payment extends OnApp {
      * @access public
      */
     function getList( $user_id = null, $url_args = null ) {
-        if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
+        if ( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
             $user_id = $this->_user_id;
         }
 
-        if( ! is_null( $user_id ) ) {
+        if ( ! is_null( $user_id ) ) {
             $this->_user_id = $user_id;
 
             return parent::getList();
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getList: argument _user_id not set.',
                 __FILE__,
@@ -198,31 +206,31 @@ class OnApp_Payment extends OnApp {
      * The key field Parameter ID is used to load the Object. You can re-set
      * this parameter in the class inheriting OnApp class.
      *
-     * @param integer $id      Payment ID
+     * @param integer $id Payment ID
      * @param integer $user_id User ID
      *
      * @return mixed serialized Object instance from API
      * @access public
      */
     function load( $id = null, $user_id = null ) {
-        if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
+        if ( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
             $user_id = $this->_user_id;
         }
 
-        if( is_null( $id ) && ! is_null( $this->_id ) ) {
+        if ( is_null( $id ) && ! is_null( $this->_id ) ) {
             $id = $this->_id;
         }
 
-        if( is_null( $id ) &&
-            isset( $this->_obj ) &&
-            ! is_null( $this->_obj->_id )
+        if ( is_null( $id ) &&
+             isset( $this->_obj ) &&
+             ! is_null( $this->_obj->_id )
         ) {
             $id = $this->_obj->_id;
         }
 
         $this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
 
-        if( ! is_null( $id ) && ! is_null( $user_id ) ) {
+        if ( ! is_null( $id ) && ! is_null( $user_id ) ) {
             $this->_id      = $id;
             $this->_user_id = $user_id;
 
@@ -235,16 +243,14 @@ class OnApp_Payment extends OnApp {
             $this->_obj = $result;
 
             return $result;
-        }
-        else {
-            if( is_null( $id ) ) {
+        } else {
+            if ( is_null( $id ) ) {
                 $this->logger->error(
                     'load: argument _id not set.',
                     __FILE__,
                     __LINE__
                 );
-            }
-            else {
+            } else {
                 $this->logger->error(
                     'load: argument _user_id not set.',
                     __FILE__,

@@ -39,13 +39,13 @@ class OnApp_Console extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -100,6 +100,10 @@ class OnApp_Console extends OnApp {
             case 4.2:
                 $this->fields = $this->initFields( 2.3 );
                 break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -122,7 +126,7 @@ class OnApp_Console extends OnApp {
      * @see    getResource
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_LOAD:
                 /**
                  * ROUTE :
@@ -157,20 +161,20 @@ class OnApp_Console extends OnApp {
      * @access public
      */
     function load( $virtual_machine_id = null ) {
-        if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
+        if ( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
             $virtual_machine_id = $this->_virtual_machine_id;
         }
 
-        if( is_null( $virtual_machine_id ) &&
-            isset( $this->_obj ) &&
-            ! is_null( $this->_obj->_virtual_machine_id )
+        if ( is_null( $virtual_machine_id ) &&
+             isset( $this->_obj ) &&
+             ! is_null( $this->_obj->_virtual_machine_id )
         ) {
             $virtual_machine_id = $this->_obj->_virtual_machine_id;
         }
 
         $this->logger->add( "load: Load class ( id => '$virtual_machine_id')." );
 
-        if( ! is_null( $virtual_machine_id ) ) {
+        if ( ! is_null( $virtual_machine_id ) ) {
             $this->_virtual_machine_id = $virtual_machine_id;
 
             $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
@@ -182,8 +186,7 @@ class OnApp_Console extends OnApp {
             $this->_obj = $result;
 
             return $result;
-        }
-        else {
+        } else {
             $this->logger->error(
                 'load: argument _virtual_machine_id not set.',
                 __FILE__,
@@ -199,8 +202,8 @@ class OnApp_Console extends OnApp {
      *
      * @access public
      */
-    function activate( $action_name ) {
-        switch( $action_name ) {
+    function activateCheck( $action_name ) {
+        switch ( $action_name ) {
             case ONAPP_ACTIVATE_GETLIST:
             case ONAPP_ACTIVATE_SAVE:
             case ONAPP_ACTIVATE_DELETE:

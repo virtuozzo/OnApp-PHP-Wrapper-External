@@ -15,6 +15,13 @@
  * @see         OnApp
  */
 
+
+/**
+ * To view the hourly cost and amount of the resources used by a user:
+ */
+define( 'ONAPP_GET_RESOURCE_HOURLY_STATS', 'hourly_stats' );
+
+
 /**
  * User IP User Statistics
  *
@@ -40,13 +47,13 @@ class OnApp_User_Statistics extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -111,7 +118,48 @@ class OnApp_User_Statistics extends OnApp {
             case 4.0:
             case 4.1:
             case 4.2:
-                $this->fields = $this->initFields( 2.3 );
+            case 4.3:
+                $this->fields                            = $this->initFields( 2.3 );
+                $this->fields['acceleration_cost']       = array(
+                    ONAPP_FIELD_MAP  => '_acceleration_cost',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['backup_count_cost']       = array(
+                    ONAPP_FIELD_MAP  => '_backup_count_cost',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['backup_disk_size_cost']   = array(
+                    ONAPP_FIELD_MAP  => '_backup_disk_size_cost',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['currency_code']           = array(
+                    ONAPP_FIELD_MAP  => '_currency_code',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['customer_network_cost']   = array(
+                    ONAPP_FIELD_MAP  => '_customer_network_cost',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['stat_time']               = array(
+                    ONAPP_FIELD_MAP  => '_stat_time',
+                    ONAPP_FIELD_TYPE => 'datetime',
+                );
+                $this->fields['template_count_cost']     = array(
+                    ONAPP_FIELD_MAP  => '_template_count_cost',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['template_iso_cost']       = array(
+                    ONAPP_FIELD_MAP  => '_template_iso_cost',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['user_id']                 = array(
+                    ONAPP_FIELD_MAP  => '_user_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['template_disk_size_cost'] = array(
+                    ONAPP_FIELD_MAP  => '_template_disk_size_cost',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
                 break;
         }
 
@@ -129,7 +177,7 @@ class OnApp_User_Statistics extends OnApp {
      * @access public
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
@@ -139,20 +187,37 @@ class OnApp_User_Statistics extends OnApp {
                  * @alias   /users/:user_id/vm_stats(.:format)
                  * @format  {:controller=>"vm_stats", :action=>"index"}
                  */
-                if( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {
+                if ( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {
                     $this->logger->error(
                         "getResource($action): argument _user_id not set.",
                         __FILE__,
                         __LINE__
                     );
-                }
-                else {
-                    if( is_null( $this->_user_id ) ) {
+                } else {
+                    if ( is_null( $this->_user_id ) ) {
                         $this->_user_id = $this->_obj->_user_id;
                     }
                 }
                 $resource = 'users/' . $this->_user_id . '/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+                break;
+            case ONAPP_GET_RESOURCE_HOURLY_STATS :
+                /**
+                 * ROUTE :
+                 *
+                 * @name hourly_stats
+                 * @method GET
+                 * @alias  /users/:user_id/user_statistics.xml(.:format)
+                 * @format {:action=>"index", :controller=>"own"}
+                 */
+                if ( is_null( $this->_user_id ) ) {
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _user_id not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                }
+                $resource = 'users/' . $this->_user_id . '/' . $this->_resource;
                 break;
 
             default:
@@ -173,22 +238,25 @@ class OnApp_User_Statistics extends OnApp {
      * @access public
      */
     function getList( $user_id = null, $url_args = array() ) {
-        if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
+        if ( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
             $user_id = $this->_user_id;
         }
 
-        if( ! is_null( $user_id ) ) {
+        if ( ! is_null( $user_id ) ) {
             $this->_user_id = $user_id;
 
             return parent::getList( null, $url_args );
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getList: argument _user_id not set.',
                 __FILE__,
                 __LINE__
             );
         }
+    }
+
+    public function hourly_stats() {
+        return $this->sendGet( ONAPP_GET_RESOURCE_HOURLY_STATS, null, 'hourly_stats' );
     }
 
     /**
@@ -198,8 +266,8 @@ class OnApp_User_Statistics extends OnApp {
      *
      * @access public
      */
-    function activate( $action_name ) {
-        switch( $action_name ) {
+    function activateCheck( $action_name ) {
+        switch ( $action_name ) {
             case ONAPP_ACTIVATE_LOAD:
             case ONAPP_ACTIVATE_SAVE:
             case ONAPP_ACTIVATE_DELETE:

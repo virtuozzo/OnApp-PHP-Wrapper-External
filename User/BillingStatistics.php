@@ -40,13 +40,13 @@ class OnApp_User_BillingStatistics extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -109,7 +109,28 @@ class OnApp_User_BillingStatistics extends OnApp {
             case 4.0:
             case 4.1:
             case 4.2:
-                $this->fields = $this->initFields( 2.3 );
+            case 4.3:
+                $this->fields                      = $this->initFields( 2.3 );
+                $this->fields['booted']            = array(
+                    ONAPP_FIELD_MAP  => '_booted',
+                    ONAPP_FIELD_TYPE => 'boolean'
+                );
+                $this->fields['currency_code']     = array(
+                    ONAPP_FIELD_MAP  => '_currency_code',
+                    ONAPP_FIELD_TYPE => 'string'
+                );
+                $this->fields['total_cost']        = array(
+                    ONAPP_FIELD_MAP  => '_total_cost',
+                    ONAPP_FIELD_TYPE => 'integer'
+                );
+                $this->fields['usage_cost']        = array(
+                    ONAPP_FIELD_MAP  => '_usage_cost',
+                    ONAPP_FIELD_TYPE => 'integer'
+                );
+                $this->fields['vm_resources_cost'] = array(
+                    ONAPP_FIELD_MAP  => '_vm_resources_cost',
+                    ONAPP_FIELD_TYPE => 'integer'
+                );
                 break;
         }
 
@@ -127,7 +148,7 @@ class OnApp_User_BillingStatistics extends OnApp {
      * @access public
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
@@ -137,15 +158,14 @@ class OnApp_User_BillingStatistics extends OnApp {
                  * @alias   /users/:user_id/vm_stats(.:format)
                  * @format  {:controller=>"vm_stats", :action=>"index"}
                  */
-                if( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {
+                if ( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {
                     $this->logger->error(
                         "getResource($action): argument _user_id not set.",
                         __FILE__,
                         __LINE__
                     );
-                }
-                else {
-                    if( is_null( $this->_user_id ) ) {
+                } else {
+                    if ( is_null( $this->_user_id ) ) {
                         $this->_user_id = $this->_obj->_user_id;
                     }
                 }
@@ -171,16 +191,15 @@ class OnApp_User_BillingStatistics extends OnApp {
      * @access public
      */
     function getList( $user_id = null, $url_args = null ) {
-        if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
+        if ( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
             $user_id = $this->_user_id;
         }
 
-        if( ! is_null( $user_id ) ) {
+        if ( ! is_null( $user_id ) ) {
             $this->_user_id = $user_id;
 
             return parent::getList();
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getList: argument _user_id not set.',
                 __FILE__,
@@ -196,8 +215,8 @@ class OnApp_User_BillingStatistics extends OnApp {
      *
      * @access public
      */
-    function activate( $action_name ) {
-        switch( $action_name ) {
+    function activateCheck( $action_name ) {
+        switch ( $action_name ) {
             case ONAPP_ACTIVATE_LOAD:
             case ONAPP_ACTIVATE_SAVE:
             case ONAPP_ACTIVATE_DELETE:

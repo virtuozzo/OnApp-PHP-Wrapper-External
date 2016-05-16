@@ -12,11 +12,6 @@
  */
 
 /**
- * To view the list of public ISOs
- */
-define('ONAPP_GET_LIST_PUBLIC_ISO', 'public');
-
-/**
  * License
  *
  * The OnApp_License class uses the following basic methods:
@@ -46,9 +41,9 @@ class OnApp_License extends OnApp {
      *
      * @return array
      */
-    public function initFields($version = null, $className = '') {
+    public function initFields( $version = null, $className = '' ) {
 
-        switch ($version) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -63,53 +58,57 @@ class OnApp_License extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'core_limit' => array(
-                        ONAPP_FIELD_MAP => '_core_limit',
+                    'core_limit'       => array(
+                        ONAPP_FIELD_MAP  => '_core_limit',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'key' => array(
-                        ONAPP_FIELD_MAP => '_key',
+                    'key'              => array(
+                        ONAPP_FIELD_MAP  => '_key',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'status' => array(
-                        ONAPP_FIELD_MAP => '_status',
+                    'status'           => array(
+                        ONAPP_FIELD_MAP  => '_status',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
                     'supplier_allowed' => array(
-                        ONAPP_FIELD_MAP => '_supplier_allowed',
+                        ONAPP_FIELD_MAP  => '_supplier_allowed',
                         ONAPP_FIELD_TYPE => 'boolean',
                     ),
-                    'supplier_status' => array(
-                        ONAPP_FIELD_MAP => '_supplier_status',
+                    'supplier_status'  => array(
+                        ONAPP_FIELD_MAP  => '_supplier_status',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'trader_allowed' => array(
-                        ONAPP_FIELD_MAP => '_trader_allowed',
+                    'trader_allowed'   => array(
+                        ONAPP_FIELD_MAP  => '_trader_allowed',
                         ONAPP_FIELD_TYPE => 'boolean',
                     ),
-                    'trader_status' => array(
-                        ONAPP_FIELD_MAP => '_trader_status',
+                    'trader_status'    => array(
+                        ONAPP_FIELD_MAP  => '_trader_status',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'type' => array(
-                        ONAPP_FIELD_MAP => '_type',
+                    'type'             => array(
+                        ONAPP_FIELD_MAP  => '_type',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'valid' => array(
-                        ONAPP_FIELD_MAP => '_valid',
+                    'valid'            => array(
+                        ONAPP_FIELD_MAP  => '_valid',
                         ONAPP_FIELD_TYPE => 'boolean',
                     ),
                 );
                 break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
         }
 
-        parent::initFields($version, __CLASS__);
+        parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 
-    function getResource($action = ONAPP_GETRESOURCE_DEFAULT)  {
-        switch ($action) {
-            case ONAPP_GET_LIST_PUBLIC_ISO :
+    function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+        switch ( $action ) {
+            case ONAPP_GETRESOURCE_EDIT :
                 /**
                  * ROUTE :
                  *
@@ -118,17 +117,32 @@ class OnApp_License extends OnApp {
                  * @alias  /settings(.:format)
                  * @format {:action=>"index", :controller=>"system"}
                  */
-                $resource = $this->_resource . '/system';
+                $resource = '/settings';
                 break;
             default:
-                $resource = parent::getResource($action);
+                $resource = parent::getResource( $action );
                 break;
         }
 
         return $resource;
     }
 
-    public function makeISOPublic() {
-        return $this->sendPost(ONAPP__MAKE_ISO_PUBLIC);
+    public function save() {
+        $this->activateCheck( ONAPP_ACTIVATE_SAVE );
+
+        $obj = $this->_edit();
+
+        //todo handle errors
+        if ( isset( $obj ) && ! isset( $obj->errors ) ) {
+            $this->load();
+        }
+    }
+
+    function activateCheck( $action_name ) {
+        switch ( $action_name ) {
+            case ONAPP_ACTIVATE_DELETE:
+                exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
+                break;
+        }
     }
 }

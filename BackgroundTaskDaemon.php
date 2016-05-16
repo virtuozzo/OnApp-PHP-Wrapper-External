@@ -79,11 +79,14 @@ class OnApp_BackgroundTaskDaemon extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'status'             => array(
+                    'status' => array(
                         ONAPP_FIELD_MAP  => '_status',
                         ONAPP_FIELD_TYPE => 'start',
                     ),
                 );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 

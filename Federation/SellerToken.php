@@ -46,27 +46,30 @@ class OnApp_Federation_SellerToken extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'hypervisor_group_id'       => array(
+                    'hypervisor_group_id' => array(
                         ONAPP_FIELD_MAP  => '_hypervisor_group_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'id'      => array(
+                    'id'                  => array(
                         ONAPP_FIELD_MAP  => '_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'receiver'   => array(
+                    'receiver'            => array(
                         ONAPP_FIELD_MAP  => '_receiver',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'token'   => array(
+                    'token'               => array(
                         ONAPP_FIELD_MAP  => '_token',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'used'    => array(
+                    'used'                => array(
                         ONAPP_FIELD_MAP  => '_used',
                         ONAPP_FIELD_TYPE => 'boolean',
                     ),
                 );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 
@@ -74,8 +77,9 @@ class OnApp_Federation_SellerToken extends OnApp {
 
         return $this->fields;
     }
+
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
@@ -85,15 +89,14 @@ class OnApp_Federation_SellerToken extends OnApp {
                  * @alias   /federation/hypervisor_zones/:hypervisor_zone_id/supplier_tokens(.:format)
                  * @format  {:controller=>"supplier_tokens", :action=>"index"}
                  */
-                if( is_null( $this->_hypervisor_zones_id ) ) {
+                if ( is_null( $this->_hypervisor_zones_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _hypervisor_zones_id not set.',
                         __FILE__,
                         __LINE__
                     );
-                }
-                else {
-                    if( is_null( $this->_hypervisor_zones_id ) ) {
+                } else {
+                    if ( is_null( $this->_hypervisor_zones_id ) ) {
                         $this->_hypervisor_zones_id = $this->_obj->_hypervisor_zones_id;
                     }
                 }

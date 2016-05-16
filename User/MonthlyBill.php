@@ -42,13 +42,13 @@ class OnApp_User_MonthlyBill extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -76,6 +76,7 @@ class OnApp_User_MonthlyBill extends OnApp {
             case 4.0:
             case 4.1:
             case 4.2:
+            case 4.3:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
@@ -94,7 +95,7 @@ class OnApp_User_MonthlyBill extends OnApp {
      * @access public
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
@@ -104,15 +105,14 @@ class OnApp_User_MonthlyBill extends OnApp {
                  * @alias   /users/:user_id/monthly_bills(.:format)
                  * @format  {:controller=>"monthly_bills", :action=>"index"}
                  */
-                if( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {
+                if ( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {
                     $this->logger->error(
                         "getResource($action): argument _user_id not set.",
                         __FILE__,
                         __LINE__
                     );
-                }
-                else {
-                    if( is_null( $this->_user_id ) ) {
+                } else {
+                    if ( is_null( $this->_user_id ) ) {
                         $this->_user_id = $this->_obj->_user_id;
                     }
                 }
@@ -138,16 +138,15 @@ class OnApp_User_MonthlyBill extends OnApp {
      * @access public
      */
     function getList( $user_id = null, $url_args = null ) {
-        if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
+        if ( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
             $user_id = $this->_user_id;
         }
 
-        if( ! is_null( $user_id ) ) {
+        if ( ! is_null( $user_id ) ) {
             $this->_user_id = $user_id;
 
             return parent::getList( null, $url_args );
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getList: argument _user_id not set.',
                 __FILE__,
@@ -161,8 +160,8 @@ class OnApp_User_MonthlyBill extends OnApp {
      *
      * @param string $action_name Action name
      */
-    function activate( $action_name ) {
-        switch( $action_name ) {
+    function activateCheck( $action_name ) {
+        switch ( $action_name ) {
             case ONAPP_ACTIVATE_LOAD:
             case ONAPP_ACTIVATE_SAVE:
             case ONAPP_ACTIVATE_DELETE:

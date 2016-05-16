@@ -67,68 +67,68 @@ class OnApp_Schedule extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'id'              => array(
+                    'id'                 => array(
                         ONAPP_FIELD_MAP  => '_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'duration'        => array(
+                    'duration'           => array(
                         ONAPP_FIELD_MAP  => '_duration',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'target_id'       => array(
+                    'target_id'          => array(
                         ONAPP_FIELD_MAP  => '_target_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'schedule_logs'   => array(
-                        ONAPP_FIELD_MAP  => '_schedule_logs',
-                        ONAPP_FIELD_TYPE => 'array',
-                        ONAPP_FIELD_CLASS     => 'Schedule_Log',
+                    'schedule_logs'      => array(
+                        ONAPP_FIELD_MAP   => '_schedule_logs',
+                        ONAPP_FIELD_TYPE  => 'array',
+                        ONAPP_FIELD_CLASS => 'Schedule_Log',
                     ),
-                    'period'          => array(
+                    'period'             => array(
                         ONAPP_FIELD_MAP  => '_period',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'updated_at'      => array(
+                    'updated_at'         => array(
                         ONAPP_FIELD_MAP  => '_updated_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'action'          => array(
+                    'action'             => array(
                         ONAPP_FIELD_MAP  => '_action',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'start_at'        => array(
+                    'start_at'           => array(
                         ONAPP_FIELD_MAP  => '_start_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'user_id'         => array(
+                    'user_id'            => array(
                         ONAPP_FIELD_MAP  => '_user_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'failure_count'   => array(
+                    'failure_count'      => array(
                         ONAPP_FIELD_MAP  => '_failure_count',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'params'          => array(
+                    'params'             => array(
                         ONAPP_FIELD_MAP  => '_params',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'status'          => array(
+                    'status'             => array(
                         ONAPP_FIELD_MAP  => '_status',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'target_type'     => array(
+                    'target_type'        => array(
                         ONAPP_FIELD_MAP  => '_target_type',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'created_at'      => array(
+                    'created_at'         => array(
                         ONAPP_FIELD_MAP  => '_created_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'rotation_period' => array(
+                    'rotation_period'    => array(
                         ONAPP_FIELD_MAP  => '_rotation_period',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'disk_id' => array(
+                    'disk_id'            => array(
                         ONAPP_FIELD_MAP  => '_disk_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
@@ -138,7 +138,10 @@ class OnApp_Schedule extends OnApp {
                     ),
                 );
                 break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
 
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -147,7 +150,7 @@ class OnApp_Schedule extends OnApp {
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             default:
                 /**
                  * @alias   /settings/schedules/:id.json

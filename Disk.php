@@ -54,13 +54,13 @@ class OnApp_Disk extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -159,56 +159,66 @@ class OnApp_Disk extends OnApp {
             case 4.2:
                 $this->fields = $this->initFields( 2.3 );
 
-                $this->fields[ 'add_to_freebsd_fstab' ]        = array(
-                    ONAPP_FIELD_MAP       => '_add_to_freebsd_fstab',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['add_to_freebsd_fstab']              = array(
+                    ONAPP_FIELD_MAP  => '_add_to_freebsd_fstab',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'burst_bw' ]        = array(
-                    ONAPP_FIELD_MAP       => '_burst_bw',
-                    ONAPP_FIELD_TYPE      => 'integer',
+                $this->fields['burst_bw']                          = array(
+                    ONAPP_FIELD_MAP  => '_burst_bw',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'burst_iops' ]        = array(
-                    ONAPP_FIELD_MAP       => '_burst_iops',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['burst_iops']                        = array(
+                    ONAPP_FIELD_MAP  => '_burst_iops',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'integrated_storage_cache_enabled' ]        = array(
-                    ONAPP_FIELD_MAP       => '_integrated_storage_cache_enabled',
-                    ONAPP_FIELD_TYPE      => 'boolean',
+                $this->fields['integrated_storage_cache_enabled']  = array(
+                    ONAPP_FIELD_MAP  => '_integrated_storage_cache_enabled',
+                    ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'integrated_storage_cache_override' ]        = array(
-                    ONAPP_FIELD_MAP       => '_integrated_storage_cache_override',
-                    ONAPP_FIELD_TYPE      => 'boolean',
+                $this->fields['integrated_storage_cache_override'] = array(
+                    ONAPP_FIELD_MAP  => '_integrated_storage_cache_override',
+                    ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'integrated_storage_cache_settings' ]        = array(
-                    ONAPP_FIELD_MAP       => '_integrated_storage_cache_settings',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['integrated_storage_cache_settings'] = array(
+                    ONAPP_FIELD_MAP  => '_integrated_storage_cache_settings',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'iqn' ]        = array(
-                    ONAPP_FIELD_MAP       => '_iqn',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['iqn']                               = array(
+                    ONAPP_FIELD_MAP  => '_iqn',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'label' ]        = array(
-                    ONAPP_FIELD_MAP       => '_label',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['label']                             = array(
+                    ONAPP_FIELD_MAP  => '_label',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'max_bw' ]        = array(
-                    ONAPP_FIELD_MAP       => '_max_bw',
-                    ONAPP_FIELD_TYPE      => 'integer',
+                $this->fields['max_bw']                            = array(
+                    ONAPP_FIELD_MAP  => '_max_bw',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'max_iops' ]        = array(
-                    ONAPP_FIELD_MAP       => '_max_iops',
-                    ONAPP_FIELD_TYPE      => 'integer',
+                $this->fields['max_iops']                          = array(
+                    ONAPP_FIELD_MAP  => '_max_iops',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'min_iops' ]        = array(
-                    ONAPP_FIELD_MAP       => '_min_iops',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['min_iops']                          = array(
+                    ONAPP_FIELD_MAP  => '_min_iops',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'volume_id' ]        = array(
-                    ONAPP_FIELD_MAP       => '_volume_id',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['volume_id']                         = array(
+                    ONAPP_FIELD_MAP  => '_volume_id',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
 
                 break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+
+                $this->fields['mounted'] = array(
+                    ONAPP_FIELD_MAP  => '_mounted',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+
+                break;
+
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -225,7 +235,7 @@ class OnApp_Disk extends OnApp {
      * @access public
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_LIST:
                 /**
                  * ROUTE :
@@ -249,14 +259,13 @@ class OnApp_Disk extends OnApp {
                  * @alias     /virtual_machines/:virtual_machine_id/disks(.:format)
                  * @format    {:controller=>"disks", :action=>"create"}
                  */
-                if( is_null( $this->_virtual_machine_id ) ) {
+                if ( is_null( $this->_virtual_machine_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _virtual_machine_id not set.',
                         __FILE__,
                         __LINE__
                     );
-                }
-                else {
+                } else {
                     $resource = 'virtual_machines/' . $this->_virtual_machine_id . '/disks';
                 }
                 break;
@@ -305,21 +314,19 @@ class OnApp_Disk extends OnApp {
                  * @method POST
                  * @format {:controller=>"disks", :action=>"migrate"}
                  */
-                if( is_null( $this->_virtual_machine_id ) ) {
+                if ( is_null( $this->_virtual_machine_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _virtual_machine_id not set.',
                         __FILE__,
                         __LINE__
                     );
-                }
-                elseif( is_null( $this->_id ) ) {
+                } elseif ( is_null( $this->_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _id not set.',
                         __FILE__,
                         __LINE__
                     );
-                }
-                else {
+                } else {
                     $resource = 'virtual_machines/' . $this->_virtual_machine_id . '/disks/' . $this->_id . '/migrate';
                 }
                 break;
@@ -377,7 +384,7 @@ class OnApp_Disk extends OnApp {
             ONAPP_GETRESOURCE_MIGRATE,
         );
 
-        if( in_array( $action, $actions ) ) {
+        if ( in_array( $action, $actions ) ) {
             $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
         }
 
@@ -392,7 +399,7 @@ class OnApp_Disk extends OnApp {
      * @return void
      */
     function enableAutobackup( $id = null ) {
-        if( $id ) {
+        if ( $id ) {
             $this->_id = $id;
         }
         $this->sendPost( ONAPP_GETRESOURCE_AUTOBACKUP_ENABLE, '' );
@@ -406,7 +413,7 @@ class OnApp_Disk extends OnApp {
      * @return void
      */
     function disableAutobackup( $id = null ) {
-        if( $id ) {
+        if ( $id ) {
             $this->_id = $id;
         }
 
@@ -423,7 +430,7 @@ class OnApp_Disk extends OnApp {
      * @access public
      */
     function getList( $vm_id = null, $url_args = null ) {
-        if( $vm_id ) {
+        if ( $vm_id ) {
             $this->_virtual_machine_id = $vm_id;
         }
 
@@ -439,8 +446,8 @@ class OnApp_Disk extends OnApp {
      * @access private
      */
     function save() {
-        if( $this->_virtual_machine_id ) {
-            $this->fields[ 'require_format_disk' ] = array(
+        if ( $this->_virtual_machine_id ) {
+            $this->fields['require_format_disk'] = array(
                 ONAPP_FIELD_MAP           => '_require_format_disk',
                 ONAPP_FIELD_TYPE          => 'integer',
                 ONAPP_FIELD_REQUIRED      => true,
@@ -448,11 +455,11 @@ class OnApp_Disk extends OnApp {
             );
         }
 
-        if( $this->_id ) {
-            $this->fields[ 'add_to_linux_fstab' ][ ONAPP_FIELD_REQUIRED ] = false;
-            $this->fields[ 'data_store_id' ][ ONAPP_FIELD_REQUIRED ]      = false;
-            $this->fields[ 'is_swap' ][ ONAPP_FIELD_REQUIRED ]            = false;
-            $this->fields[ 'mount_point' ][ ONAPP_FIELD_REQUIRED ]        = false;
+        if ( $this->_id ) {
+            $this->fields['add_to_linux_fstab'][ ONAPP_FIELD_REQUIRED ] = false;
+            $this->fields['data_store_id'][ ONAPP_FIELD_REQUIRED ]      = false;
+            $this->fields['is_swap'][ ONAPP_FIELD_REQUIRED ]            = false;
+            $this->fields['mount_point'][ ONAPP_FIELD_REQUIRED ]        = false;
         }
 
         return parent::save();
@@ -466,7 +473,7 @@ class OnApp_Disk extends OnApp {
      * @return void
      */
     function takeBackup( $disk_id ) {
-        if( $disk_id ) {
+        if ( $disk_id ) {
             $this->_id = $disk_id;
         }
         // workaround because we get backup data in response
@@ -487,7 +494,7 @@ class OnApp_Disk extends OnApp {
      * @access    public
      */
     function migrate( $data_store_id, $id = null ) {
-        if( $id ) {
+        if ( $id ) {
             $this->_id = $id;
         }
         $data = array(

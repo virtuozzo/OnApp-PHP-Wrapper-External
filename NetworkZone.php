@@ -38,13 +38,13 @@ class OnApp_NetworkZone extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -75,10 +75,10 @@ class OnApp_NetworkZone extends OnApp {
 
             case 3.0:
             case 3.1:
-                $this->fields            = $this->initFields( 2.3 );
-                $this->fields[ 'location_group_id' ]    = array(
-                    ONAPP_FIELD_MAP       => '_location_group_id',
-                    ONAPP_FIELD_TYPE      => 'boolean',
+                $this->fields                      = $this->initFields( 2.3 );
+                $this->fields['location_group_id'] = array(
+                    ONAPP_FIELD_MAP  => '_location_group_id',
+                    ONAPP_FIELD_TYPE => 'boolean',
                 );
                 break;
             case 3.2:
@@ -88,41 +88,48 @@ class OnApp_NetworkZone extends OnApp {
             case 4.0:
             case 4.1:
             case 4.2:
-                $this->fields = $this->initFields( 3.1 );
-                $this->fields[ 'preconfigured_only' ]    = array(
-                    ONAPP_FIELD_MAP       => '_preconfigured_only',
-                    ONAPP_FIELD_TYPE      => 'boolean',
+                $this->fields                       = $this->initFields( 3.1 );
+                $this->fields['preconfigured_only'] = array(
+                    ONAPP_FIELD_MAP  => '_preconfigured_only',
+                    ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'closed' ]    = array(
-                    ONAPP_FIELD_MAP       => '_closed',
-                    ONAPP_FIELD_TYPE      => 'boolean',
+                $this->fields['closed']             = array(
+                    ONAPP_FIELD_MAP  => '_closed',
+                    ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'draas_id' ]    = array(
-                    ONAPP_FIELD_MAP       => '_draas_id',
-                    ONAPP_FIELD_TYPE      => 'integer',
+                $this->fields['draas_id']           = array(
+                    ONAPP_FIELD_MAP  => '_draas_id',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'federation_enabled' ]    = array(
-                    ONAPP_FIELD_MAP       => '_federation_enabled',
-                    ONAPP_FIELD_TYPE      => 'boolean',
+                $this->fields['federation_enabled'] = array(
+                    ONAPP_FIELD_MAP  => '_federation_enabled',
+                    ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'federation_id' ]    = array(
-                    ONAPP_FIELD_MAP       => '_federation_id',
-                    ONAPP_FIELD_TYPE      => 'integer',
+                $this->fields['federation_id']      = array(
+                    ONAPP_FIELD_MAP  => '_federation_id',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'hypervisor_id' ]    = array(
-                    ONAPP_FIELD_MAP       => '_hypervisor_id',
-                    ONAPP_FIELD_TYPE      => 'integer',
+                $this->fields['hypervisor_id']      = array(
+                    ONAPP_FIELD_MAP  => '_hypervisor_id',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'identifier' ]    = array(
-                    ONAPP_FIELD_MAP       => '_identifier',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['identifier']         = array(
+                    ONAPP_FIELD_MAP  => '_identifier',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'traded' ]    = array(
-                    ONAPP_FIELD_MAP       => '_traded',
-                    ONAPP_FIELD_TYPE      => 'boolean',
+                $this->fields['traded']             = array(
+                    ONAPP_FIELD_MAP  => '_traded',
+                    ONAPP_FIELD_TYPE => 'boolean',
                 );
+                break;
 
-            break;
+            case 4.3:
+                $this->fields                    = $this->initFields( 4.2 );
+                $this->fields['provider_vdc_id'] = array(
+                    ONAPP_FIELD_MAP  => '_provider_vdc_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -131,7 +138,7 @@ class OnApp_NetworkZone extends OnApp {
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             default:
                 /**
                  * ROUTE :

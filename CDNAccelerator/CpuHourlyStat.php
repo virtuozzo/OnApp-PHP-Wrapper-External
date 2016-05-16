@@ -35,13 +35,13 @@ class OnApp_CDNAccelerator_CpuHourlyStat extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case 2.0:
             case 2.1:
             case 2.2:
@@ -56,35 +56,38 @@ class OnApp_CDNAccelerator_CpuHourlyStat extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'cpu_time'	=> array(
-                        ONAPP_FIELD_MAP => 'cpu_time',
+                    'cpu_time'           => array(
+                        ONAPP_FIELD_MAP  => 'cpu_time',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'created_at'	=> array(
-                        ONAPP_FIELD_MAP => '_created_at',
+                    'created_at'         => array(
+                        ONAPP_FIELD_MAP  => '_created_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'id'	=> array(
-                        ONAPP_FIELD_MAP => '_id',
+                    'id'                 => array(
+                        ONAPP_FIELD_MAP  => '_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'stat_time'	=> array(
-                        ONAPP_FIELD_MAP => '_stat_time',
+                    'stat_time'          => array(
+                        ONAPP_FIELD_MAP  => '_stat_time',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'updated_at'	=> array(
-                        ONAPP_FIELD_MAP => '_updated_at',
+                    'updated_at'         => array(
+                        ONAPP_FIELD_MAP  => '_updated_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'user_id'	=> array(
-                        ONAPP_FIELD_MAP => '_user_id',
+                    'user_id'            => array(
+                        ONAPP_FIELD_MAP  => '_user_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'virtual_machine_id'	=> array(
-                        ONAPP_FIELD_MAP => '_virtual_machine_id',
+                    'virtual_machine_id' => array(
+                        ONAPP_FIELD_MAP  => '_virtual_machine_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
                 );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 
@@ -94,7 +97,7 @@ class OnApp_CDNAccelerator_CpuHourlyStat extends OnApp {
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
@@ -104,7 +107,7 @@ class OnApp_CDNAccelerator_CpuHourlyStat extends OnApp {
                  * @alias   /accelerators/:virtual_machine_id/disks(.:format)
                  * @format  {:controller=>"disks", :action=>"index"}
                  */
-                if( is_null( $this->_virtual_machine_id ) ) {
+                if ( is_null( $this->_virtual_machine_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _virtual_machine_id not set.',
                         __FILE__,
@@ -130,16 +133,15 @@ class OnApp_CDNAccelerator_CpuHourlyStat extends OnApp {
     }
 
     function getList( $virtual_machine_id = null, $url_args = null ) {
-        if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
+        if ( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
             $virtual_machine_id = $this->_virtual_machine_id;
         }
 
-        if( ! is_null( $virtual_machine_id ) ) {
+        if ( ! is_null( $virtual_machine_id ) ) {
             $this->_virtual_machine_id = $virtual_machine_id;
 
             return parent::getList();
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getList: argument _virtual_machine_id not set.',
                 __FILE__,

@@ -28,12 +28,10 @@
 
 /**
  *
- *
  */
 define( 'ONAPP_GETRESOURCE_IP_ADDRESSES', 'ip_addresses' );
 
 /**
- *
  *
  */
 define( 'ONAPP_GETRESOURCE_NETWORKS_LIST_BY_HYPERVISOR_GROUP_ID', 'networks_list_by_hypervisor_group_id' );
@@ -65,13 +63,13 @@ class OnApp_Network extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
                 $this->fields = array(
                     'id'         => array(
@@ -112,8 +110,8 @@ class OnApp_Network extends OnApp {
                 break;
 
             case '2.1':
-                $this->fields                       = $this->initFields( '2.0' );
-                $this->fields[ 'network_group_id' ] = array(
+                $this->fields                     = $this->initFields( '2.0' );
+                $this->fields['network_group_id'] = array(
                     ONAPP_FIELD_MAP      => '_network_group_id',
                     ONAPP_FIELD_TYPE     => 'integer',
                     ONAPP_FIELD_REQUIRED => true,
@@ -133,76 +131,83 @@ class OnApp_Network extends OnApp {
             case 4.0:
             case 4.1:
             case 4.2:
-                $this->fields = $this->initFields( 2.3 );
-                $this->fields[ 'default_nat_rule_number' ] = array(
-                    ONAPP_FIELD_MAP      => '_default_nat_rule_number',
-                    ONAPP_FIELD_TYPE     => 'integer',
+                $this->fields                                  = $this->initFields( 2.3 );
+                $this->fields['default_nat_rule_number']       = array(
+                    ONAPP_FIELD_MAP  => '_default_nat_rule_number',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'default_outside_ip_address_id' ] = array(
-                    ONAPP_FIELD_MAP      => '_default_outside_ip_address_id',
-                    ONAPP_FIELD_TYPE     => 'string',
+                $this->fields['default_outside_ip_address_id'] = array(
+                    ONAPP_FIELD_MAP  => '_default_outside_ip_address_id',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'dns_suffix' ] = array(
-                    ONAPP_FIELD_MAP      => '_dns_suffix',
-                    ONAPP_FIELD_TYPE     => 'string',
+                $this->fields['dns_suffix']                    = array(
+                    ONAPP_FIELD_MAP  => '_dns_suffix',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'dvportgroup' ] = array(
-                    ONAPP_FIELD_MAP      => '_dvportgroup',
-                    ONAPP_FIELD_TYPE     => 'string',
+                $this->fields['dvportgroup']                   = array(
+                    ONAPP_FIELD_MAP  => '_dvportgroup',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'enabled' ] = array(
-                    ONAPP_FIELD_MAP      => '_enabled',
-                    ONAPP_FIELD_TYPE     => 'boolean',
+                $this->fields['enabled']                       = array(
+                    ONAPP_FIELD_MAP  => '_enabled',
+                    ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'fence_mode' ] = array(
-                    ONAPP_FIELD_MAP      => '_fence_mode',
-                    ONAPP_FIELD_TYPE     => 'string',
+                $this->fields['fence_mode']                    = array(
+                    ONAPP_FIELD_MAP  => '_fence_mode',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'gateway' ] = array(
-                    ONAPP_FIELD_MAP      => '_gateway',
-                    ONAPP_FIELD_TYPE     => 'string',
+                $this->fields['gateway']                       = array(
+                    ONAPP_FIELD_MAP  => '_gateway',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'ip_address_pool_id' ] = array(
-                    ONAPP_FIELD_MAP      => '_ip_address_pool_id',
-                    ONAPP_FIELD_TYPE     => 'string',
+                $this->fields['ip_address_pool_id']            = array(
+                    ONAPP_FIELD_MAP  => '_ip_address_pool_id',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'is_nated' ] = array(
-                    ONAPP_FIELD_MAP      => '_is_nated',
-                    ONAPP_FIELD_TYPE     => 'boolean',
+                $this->fields['is_nated']                      = array(
+                    ONAPP_FIELD_MAP  => '_is_nated',
+                    ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'netmask' ] = array(
-                    ONAPP_FIELD_MAP      => '_netmask',
-                    ONAPP_FIELD_TYPE     => 'string',
+                $this->fields['netmask']                       = array(
+                    ONAPP_FIELD_MAP  => '_netmask',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'prefix_size' ] = array(
-                    ONAPP_FIELD_MAP      => '_prefix_size',
-                    ONAPP_FIELD_TYPE     => 'string',
+                $this->fields['prefix_size']                   = array(
+                    ONAPP_FIELD_MAP  => '_prefix_size',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'primary_dns' ] = array(
-                    ONAPP_FIELD_MAP      => '_primary_dns',
-                    ONAPP_FIELD_TYPE     => 'string',
+                $this->fields['primary_dns']                   = array(
+                    ONAPP_FIELD_MAP  => '_primary_dns',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'secondary_dns' ] = array(
-                    ONAPP_FIELD_MAP      => '_secondary_dns',
-                    ONAPP_FIELD_TYPE     => 'string',
+                $this->fields['secondary_dns']                 = array(
+                    ONAPP_FIELD_MAP  => '_secondary_dns',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'shared' ] = array(
-                    ONAPP_FIELD_MAP      => '_shared',
-                    ONAPP_FIELD_TYPE     => 'boolean',
+                $this->fields['shared']                        = array(
+                    ONAPP_FIELD_MAP  => '_shared',
+                    ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'user_id' ] = array(
-                    ONAPP_FIELD_MAP      => '_user_id',
-                    ONAPP_FIELD_TYPE     => 'integer',
+                $this->fields['user_id']                       = array(
+                    ONAPP_FIELD_MAP  => '_user_id',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'vapp_id' ] = array(
-                    ONAPP_FIELD_MAP      => '_vapp_id',
-                    ONAPP_FIELD_TYPE     => 'integer',
+                $this->fields['vapp_id']                       = array(
+                    ONAPP_FIELD_MAP  => '_vapp_id',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'vdc_id' ] = array(
-                    ONAPP_FIELD_MAP      => '_vdc_id',
-                    ONAPP_FIELD_TYPE     => 'integer',
+                $this->fields['vdc_id']                        = array(
+                    ONAPP_FIELD_MAP  => '_vdc_id',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
 
+                break;
+            case 4.3:
+                $this->fields                      = $this->initFields( 4.2 );
+                $this->fields['parent_network_id'] = array(
+                    ONAPP_FIELD_MAP  => '_parent_network_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
                 break;
         }
 
@@ -212,7 +217,7 @@ class OnApp_Network extends OnApp {
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_NETWORKS_LIST_BY_HYPERVISOR_GROUP_ID:
                 /**
                  * ROUTE :
@@ -269,10 +274,9 @@ class OnApp_Network extends OnApp {
      * @return bool|mixed
      */
     function getListByHypervisorGroupId( $hypervisor_group_id = null ) {
-        if( $hypervisor_group_id ) {
+        if ( $hypervisor_group_id ) {
             $this->_hypervisor_group_id = $hypervisor_group_id;
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getListByHypervisorGroupId: argument _hypervisor_group_id not set.',
                 __FILE__,
@@ -284,8 +288,8 @@ class OnApp_Network extends OnApp {
 
         $response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-        if( ! empty( $response[ 'errors' ] ) ) {
-            $this->errors = $response[ 'errors' ];
+        if ( ! empty( $response['errors'] ) ) {
+            $this->errors = $response['errors'];
 
             return false;
         }
@@ -296,8 +300,8 @@ class OnApp_Network extends OnApp {
         return ( is_array( $result ) || ! $result ) ? $result : array( $result );
     }
 
-    function activate( $action_name ) {
-        switch( $action_name ) {
+    function activateCheck( $action_name ) {
+        switch ( $action_name ) {
             case ONAPP_ACTIVATE_SAVE:
             case ONAPP_ACTIVATE_DELETE:
                 exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );

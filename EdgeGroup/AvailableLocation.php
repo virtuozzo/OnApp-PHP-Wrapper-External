@@ -23,7 +23,7 @@
  *
  *
  */
-class OnApp_EdgeGroup_AvailableLocation extends Location {
+class OnApp_EdgeGroup_AvailableLocation extends OnApp_EdgeGroup_Location {
     /**
      * root tag used in the API request
      *

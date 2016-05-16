@@ -27,13 +27,13 @@ class OnApp_CDNResource_Instructions extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case 3.1:
             case 3.2:
             case 3.3:
@@ -100,6 +100,9 @@ class OnApp_CDNResource_Instructions extends OnApp {
             case 4.2:
                 $this->fields = $this->initFields( 4.1 );
                 break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -116,7 +119,7 @@ class OnApp_CDNResource_Instructions extends OnApp {
      * @access public
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_LOAD:
                 $resource = 'cdn_resources/' . $this->_id . '/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
@@ -136,8 +139,8 @@ class OnApp_CDNResource_Instructions extends OnApp {
      *
      * @access public
      */
-    function activate( $action_name ) {
-        switch( $action_name ) {
+    function activateCheck( $action_name ) {
+        switch ( $action_name ) {
             case ONAPP_ACTIVATE_GETLIST:
             case ONAPP_ACTIVATE_SAVE:
             case ONAPP_ACTIVATE_DELETE:

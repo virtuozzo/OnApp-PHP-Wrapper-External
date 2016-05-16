@@ -36,13 +36,13 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.1':
                 $this->fields = array(
                     'id'              => array(
@@ -135,8 +135,8 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
 
             case 2.2:
             case 2.3:
-                $this->fields                = $this->initFields( 2.1 );
-                $this->fields[ 'target_id' ] = array(
+                $this->fields              = $this->initFields( 2.1 );
+                $this->fields['target_id'] = array(
                     ONAPP_FIELD_MAP       => '_target_id',
                     ONAPP_FIELD_TYPE      => 'integer',
                     ONAPP_FIELD_READ_ONLY => true
@@ -151,22 +151,25 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
             case 3.5:
             case 4.0:
             case 4.1:
-                $this->fields                  = $this->initFields( 2.3 );
-                $this->fields[ 'is_default' ]  = array(
-                    ONAPP_FIELD_MAP  => 'is_default',
+                $this->fields                = $this->initFields( 2.3 );
+                $this->fields['is_default']  = array(
+                    ONAPP_FIELD_MAP  => '_is_default',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'use_default' ] = array(
-                    ONAPP_FIELD_MAP  => 'use_default',
+                $this->fields['use_default'] = array(
+                    ONAPP_FIELD_MAP  => '_use_default',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'preferences' ] = array(
-                    ONAPP_FIELD_MAP  => 'preferences',
+                $this->fields['preferences'] = array(
+                    ONAPP_FIELD_MAP  => '_preferences',
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
             case 4.2:
-                $this->fields                  = $this->initFields( 4.1 );
+                $this->fields = $this->initFields( 4.1 );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 
@@ -185,7 +188,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         $show_log_msg = true;
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
@@ -227,15 +230,14 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
                  * @alias   /billing_plans/:billing_plan_id/base_resources/:id(.:format)
                  * @format  {:controller=>"base_resources", :action=>"destroy"}
                  */
-                if( is_null( $this->_billing_plan_id ) && is_null( $this->_obj->_billing_plan_id ) ) {
+                if ( is_null( $this->_billing_plan_id ) && is_null( $this->_obj->_billing_plan_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _billing_plan_id not set.',
                         __FILE__,
                         __LINE__
                     );
-                }
-                else {
-                    if( is_null( $this->_billing_plan_id ) ) {
+                } else {
+                    if ( is_null( $this->_billing_plan_id ) ) {
                         $this->_billing_plan_id = $this->_obj->_billing_plan_id;
                     }
                 }
@@ -249,7 +251,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
                 break;
         }
 
-        if( $show_log_msg ) {
+        if ( $show_log_msg ) {
             $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
         }
 
@@ -266,16 +268,15 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
      * @access public
      */
     function getList( $billing_plan_id = null, $url_args = null ) {
-        if( is_null( $billing_plan_id ) && ! is_null( $this->_billing_plan_id ) ) {
+        if ( is_null( $billing_plan_id ) && ! is_null( $this->_billing_plan_id ) ) {
             $billing_plan_id = $this->_billing_plan_id;
         }
 
-        if( ! is_null( $billing_plan_id ) ) {
+        if ( ! is_null( $billing_plan_id ) ) {
             $this->_billing_plan_id = $billing_plan_id;
 
             return parent::getList();
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getList: argument _billing_plan_id not set.',
                 __FILE__,
@@ -306,7 +307,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
      * @access public
      */
     function save() {
-        if( is_null( $this->_limit ) ) {
+        if ( is_null( $this->_limit ) ) {
             $this->_limit = isset( $this->_limits->_limit )
                 ? $this->_limits->_limit : (
                 isset( $this->_obj->_limits->_limit )
@@ -315,7 +316,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
                 );
         }
 
-        if( is_null( $this->_limit_free ) ) {
+        if ( is_null( $this->_limit_free ) ) {
             $this->_limit_free = isset( $this->_limits->_limit_free )
                 ? $this->_limits->_limit_free : (
                 isset( $this->_obj->_limits->_limit_free )
@@ -324,7 +325,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
                 );
         }
 
-        if( is_null( $this->_price_on ) ) {
+        if ( is_null( $this->_price_on ) ) {
             $this->_price_on = isset( $this->_prices->_price_on )
                 ? $this->_prices->_price_on : (
                 isset( $this->_obj->_prices->_price_on ) ?
@@ -333,7 +334,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
                 );
         }
 
-        if( is_null( $this->_price_off ) ) {
+        if ( is_null( $this->_price_off ) ) {
             $this->_price_off = isset( $this->_limits->_price_off )
                 ? $this->_prices->_price_off : (
                 isset( $this->_obj->_prices->_price_off )
@@ -342,7 +343,7 @@ class OnApp_BillingPlan_BaseResource extends OnApp {
                 );
         }
 
-        if( is_null( $this->_price ) ) {
+        if ( is_null( $this->_price ) ) {
             $this->_price = isset( $this->_limits->_price )
                 ? $this->_prices->_price
                 : ( isset( $this->_obj->_prices->_price )

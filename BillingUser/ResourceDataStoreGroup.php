@@ -37,15 +37,15 @@ class OnApp_BillingUser_ResourceDataStoreGroup extends OnApp_BillingUser_BaseRes
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
         parent::initFields( $version, __CLASS__ );
 
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -59,7 +59,7 @@ class OnApp_BillingUser_ResourceDataStoreGroup extends OnApp_BillingUser_BaseRes
             case 4.0:
             case 4.1:
             case 4.2:
-                $this->fields[ 'resource_class' ] = array(
+                $this->fields['resource_class'] = array(
                     ONAPP_FIELD_MAP           => '_resource_class',
                     ONAPP_FIELD_TYPE          => 'string',
                     ONAPP_FIELD_REQUIRED      => true,
@@ -67,100 +67,103 @@ class OnApp_BillingUser_ResourceDataStoreGroup extends OnApp_BillingUser_BaseRes
                     ONAPP_FIELD_DEFAULT_VALUE => 'Resource::DataStoreGroup',
                 );
 
-                $this->fields[ 'in_master_zone' ] = array(
-                    ONAPP_FIELD_MAP           => '_in_master_zone',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['in_master_zone'] = array(
+                    ONAPP_FIELD_MAP  => '_in_master_zone',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
 
-                $this->fields[ 'master' ] = array(
-                    ONAPP_FIELD_MAP           => '_master',
-                    ONAPP_FIELD_TYPE          => 'boolean',
+                $this->fields['master'] = array(
+                    ONAPP_FIELD_MAP  => '_master',
+                    ONAPP_FIELD_TYPE => 'boolean',
                 );
 
-                $this->fields[ 'target_type' ] = array(
+                $this->fields['target_type'] = array(
                     ONAPP_FIELD_MAP           => '_target_type',
                     ONAPP_FIELD_TYPE          => 'string',
                     ONAPP_FIELD_REQUIRED      => true,
                     ONAPP_FIELD_DEFAULT_VALUE => 'Pack',
                 );
 
-                $this->fields[ 'limit' ] = array(
-                    ONAPP_FIELD_MAP           => '_limit',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['limit']                       = array(
+                    ONAPP_FIELD_MAP  => '_limit',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'limit_free' ] = array(
-                    ONAPP_FIELD_MAP           => '_limit_free',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['limit_free']                  = array(
+                    ONAPP_FIELD_MAP  => '_limit_free',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'price_on' ] = array(
-                    ONAPP_FIELD_MAP           => '_price_on',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['price_on']                    = array(
+                    ONAPP_FIELD_MAP  => '_price_on',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'price_off' ] = array(
-                    ONAPP_FIELD_MAP           => '_price_off',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['price_off']                   = array(
+                    ONAPP_FIELD_MAP  => '_price_off',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'limit_data_read_free' ] = array(
-                    ONAPP_FIELD_MAP           => '_limit_data_read_free',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['limit_data_read_free']        = array(
+                    ONAPP_FIELD_MAP  => '_limit_data_read_free',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'price_data_read' ] = array(
-                    ONAPP_FIELD_MAP           => '_price_data_read',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['price_data_read']             = array(
+                    ONAPP_FIELD_MAP  => '_price_data_read',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'limit_data_written_free' ] = array(
-                    ONAPP_FIELD_MAP           => '_limit_data_written_free',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['limit_data_written_free']     = array(
+                    ONAPP_FIELD_MAP  => '_limit_data_written_free',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'price_data_written' ] = array(
-                    ONAPP_FIELD_MAP           => '_price_data_written',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['price_data_written']          = array(
+                    ONAPP_FIELD_MAP  => '_price_data_written',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'limit_reads_completed_free' ] = array(
-                    ONAPP_FIELD_MAP           => '_limit_reads_completed_free',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['limit_reads_completed_free']  = array(
+                    ONAPP_FIELD_MAP  => '_limit_reads_completed_free',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'price_reads_completed' ] = array(
-                    ONAPP_FIELD_MAP           => '_price_reads_completed',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['price_reads_completed']       = array(
+                    ONAPP_FIELD_MAP  => '_price_reads_completed',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'limit_writes_completed_free' ] = array(
-                    ONAPP_FIELD_MAP           => '_limit_writes_completed_free',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['limit_writes_completed_free'] = array(
+                    ONAPP_FIELD_MAP  => '_limit_writes_completed_free',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'price_writes_completed' ] = array(
-                    ONAPP_FIELD_MAP           => '_price_writes_completed',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['price_writes_completed']      = array(
+                    ONAPP_FIELD_MAP  => '_price_writes_completed',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
 
                 break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
         }
 
-        $this->fields[ 'id' ][ ONAPP_FIELD_REQUIRED ] = false;
+        $this->fields['id'][ ONAPP_FIELD_REQUIRED ] = false;
 
-        foreach( array( 'unit', 'price') as $field ) {
+        foreach ( array( 'unit', 'price' ) as $field ) {
             unset( $this->fields[ $field ] );
         }
 
         return $this->fields;
     }
 
-    public function editDiskSizeLimits($limit = null, $limit_free = null, $price_on = null, $price_off = null) {
+    public function editDiskSizeLimits( $limit = null, $limit_free = null, $price_on = null, $price_off = null ) {
         $dataArray = array();
-        if($limit != null){
+        if ( $limit != null ) {
             $dataArray['limit'] = $limit;
         }
-        if($limit_free != null){
+        if ( $limit_free != null ) {
             $dataArray['limit_free'] = $limit_free;
         }
-        if($price_on != null){
+        if ( $price_on != null ) {
             $dataArray['price_on'] = $price_on;
         }
-        if($price_off != null){
+        if ( $price_off != null ) {
             $dataArray['price_off'] = $price_off;
         }
 
-        if(count($dataArray) == 0){
+        if ( count( $dataArray ) == 0 ) {
             return false;
         }
 
@@ -171,16 +174,16 @@ class OnApp_BillingUser_ResourceDataStoreGroup extends OnApp_BillingUser_BaseRes
         $this->sendPut( ONAPP_GETRESOURCE_LOAD, $data );
     }
 
-    public function editDataReadLimits($limit_data_read_free = null, $price_data_read = null) {
+    public function editDataReadLimits( $limit_data_read_free = null, $price_data_read = null ) {
         $dataArray = array();
-        if($limit_data_read_free != null){
+        if ( $limit_data_read_free != null ) {
             $dataArray['limit_data_read_free'] = $limit_data_read_free;
         }
-        if($price_data_read != null){
+        if ( $price_data_read != null ) {
             $dataArray['price_data_read'] = $price_data_read;
         }
 
-        if(count($dataArray) == 0){
+        if ( count( $dataArray ) == 0 ) {
             return false;
         }
 
@@ -191,16 +194,16 @@ class OnApp_BillingUser_ResourceDataStoreGroup extends OnApp_BillingUser_BaseRes
         $this->sendPut( ONAPP_GETRESOURCE_LOAD, $data );
     }
 
-    public function editDataWrittenLimits($limit_data_written_free = null, $price_data_written = null) {
+    public function editDataWrittenLimits( $limit_data_written_free = null, $price_data_written = null ) {
         $dataArray = array();
-        if($limit_data_written_free != null){
+        if ( $limit_data_written_free != null ) {
             $dataArray['limit_data_written_free'] = $limit_data_written_free;
         }
-        if($price_data_written != null){
+        if ( $price_data_written != null ) {
             $dataArray['price_data_written'] = $price_data_written;
         }
 
-        if(count($dataArray) == 0){
+        if ( count( $dataArray ) == 0 ) {
             return false;
         }
 
@@ -211,16 +214,16 @@ class OnApp_BillingUser_ResourceDataStoreGroup extends OnApp_BillingUser_BaseRes
         $this->sendPut( ONAPP_GETRESOURCE_LOAD, $data );
     }
 
-    public function editInputRequestsLimits($limit_reads_completed_free = null, $price_reads_completed = null) {
+    public function editInputRequestsLimits( $limit_reads_completed_free = null, $price_reads_completed = null ) {
         $dataArray = array();
-        if($limit_reads_completed_free != null){
+        if ( $limit_reads_completed_free != null ) {
             $dataArray['limit_reads_completed_free'] = $limit_reads_completed_free;
         }
-        if($price_reads_completed != null){
+        if ( $price_reads_completed != null ) {
             $dataArray['price_reads_completed'] = $price_reads_completed;
         }
 
-        if(count($dataArray) == 0){
+        if ( count( $dataArray ) == 0 ) {
             return false;
         }
 
@@ -231,16 +234,16 @@ class OnApp_BillingUser_ResourceDataStoreGroup extends OnApp_BillingUser_BaseRes
         $this->sendPut( ONAPP_GETRESOURCE_LOAD, $data );
     }
 
-    public function editOutputRequestsLimits($limit_writes_completed_free = null, $price_writes_completed = null) {
+    public function editOutputRequestsLimits( $limit_writes_completed_free = null, $price_writes_completed = null ) {
         $dataArray = array();
-        if($limit_writes_completed_free != null){
+        if ( $limit_writes_completed_free != null ) {
             $dataArray['limit_writes_completed_free'] = $limit_writes_completed_free;
         }
-        if($price_writes_completed != null){
+        if ( $price_writes_completed != null ) {
             $dataArray['price_writes_completed'] = $price_writes_completed;
         }
 
-        if(count($dataArray) == 0){
+        if ( count( $dataArray ) == 0 ) {
             return false;
         }
 
@@ -250,7 +253,6 @@ class OnApp_BillingUser_ResourceDataStoreGroup extends OnApp_BillingUser_BaseRes
         );
         $this->sendPut( ONAPP_GETRESOURCE_LOAD, $data );
     }
-
 
 
 }

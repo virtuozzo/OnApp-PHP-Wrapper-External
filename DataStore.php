@@ -53,13 +53,13 @@ class OnApp_DataStore extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case 2.0:
                 $this->fields = array(
                     'id'                  => array(
@@ -112,12 +112,12 @@ class OnApp_DataStore extends OnApp {
             case 2.1:
                 $this->fields = $this->initFields( 2.0 );
 
-                $this->fields[ 'data_store_group_id' ] = array(
+                $this->fields['data_store_group_id'] = array(
                     ONAPP_FIELD_MAP      => '_data_store_group_id',
                     ONAPP_FIELD_TYPE     => 'integer',
                     ONAPP_FIELD_REQUIRED => true,
                 );
-                $this->fields[ 'ip' ]                  = array(
+                $this->fields['ip']                  = array(
                     ONAPP_FIELD_MAP      => '_ip',
                     ONAPP_FIELD_TYPE     => 'string',
                     ONAPP_FIELD_REQUIRED => true,
@@ -128,15 +128,15 @@ class OnApp_DataStore extends OnApp {
                 $this->fields = $this->initFields( 2.1 );
 
                 // check with OnApp, probably is nested class
-                $this->fields[ 'raw_stats' ] = array(
+                $this->fields['raw_stats'] = array(
                     ONAPP_FIELD_MAP       => '_raw_stats',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'usage' ]     = array(
+                $this->fields['usage']     = array(
                     ONAPP_FIELD_MAP       => '_usage',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'capacity' ]  = array(
+                $this->fields['capacity']  = array(
                     ONAPP_FIELD_MAP       => '_capacity',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
@@ -148,7 +148,7 @@ class OnApp_DataStore extends OnApp {
                     'raw_stats',
                 );
                 $this->unsetFields( $fields );
-                $this->fields[ 'usage' ] = array(
+                $this->fields['usage'] = array(
                     ONAPP_FIELD_MAP       => 'usage',
                     ONAPP_FIELD_TYPE      => 'integer',
                     ONAPP_FIELD_READ_ONLY => true,
@@ -166,32 +166,36 @@ class OnApp_DataStore extends OnApp {
             case 4.2:
                 $this->fields = $this->initFields( 2.3 );
 
-                $this->fields[ 'data_store_type' ] = array(
-                    ONAPP_FIELD_MAP       => '_data_store_type',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['data_store_type']                   = array(
+                    ONAPP_FIELD_MAP  => '_data_store_type',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'hypervisor_group_id' ] = array(
-                    ONAPP_FIELD_MAP       => '_hypervisor_group_id',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['hypervisor_group_id']               = array(
+                    ONAPP_FIELD_MAP  => '_hypervisor_group_id',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'integrated_storage_cache_enabled' ] = array(
-                    ONAPP_FIELD_MAP       => '_integrated_storage_cache_enabled',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['integrated_storage_cache_enabled']  = array(
+                    ONAPP_FIELD_MAP  => '_integrated_storage_cache_enabled',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'integrated_storage_cache_settings' ] = array(
-                    ONAPP_FIELD_MAP       => '_integrated_storage_cache_settings',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['integrated_storage_cache_settings'] = array(
+                    ONAPP_FIELD_MAP  => '_integrated_storage_cache_settings',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'iscsi_ip' ] = array(
-                    ONAPP_FIELD_MAP       => '_iscsi_ip',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['iscsi_ip']                          = array(
+                    ONAPP_FIELD_MAP  => '_iscsi_ip',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'vdc_id' ] = array(
-                    ONAPP_FIELD_MAP       => '_vdc_id',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['vdc_id']                            = array(
+                    ONAPP_FIELD_MAP  => '_vdc_id',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
 
                 break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -200,7 +204,7 @@ class OnApp_DataStore extends OnApp {
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DATASTORES_LIST_BY_HYPERVISOR_GROUP_ID:
                 /**
                  * ROUTE :
@@ -273,10 +277,9 @@ class OnApp_DataStore extends OnApp {
      * @return bool|array
      */
     function getListByHypervisorGroupId( $hypervisor_group_id ) {
-        if( $hypervisor_group_id ) {
+        if ( $hypervisor_group_id ) {
             $this->_hypervisor_group_id = $hypervisor_group_id;
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getListByHypervisorGroupId: argument _hypervisor_group_id not set.',
                 __FILE__,
@@ -289,7 +292,7 @@ class OnApp_DataStore extends OnApp {
 
         $result = $this->castStringToClass( $response );
 
-        if( ! empty( $response[ 'errors' ] ) ) {
+        if ( ! empty( $response['errors'] ) ) {
             return false;
         }
 

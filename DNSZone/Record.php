@@ -33,13 +33,13 @@ class OnApp_DNSZone_Record extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case 2.3:
             case 3.0:
             case 3.1:
@@ -145,6 +145,9 @@ class OnApp_DNSZone_Record extends OnApp {
             case 4.2:
                 $this->fields = $this->initFields( 4.1 );
                 break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -161,7 +164,7 @@ class OnApp_DNSZone_Record extends OnApp {
      * @access public
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_LOAD:
                 $resource = 'dns_zones/' . $this->_dns_zone_id . '/' . $this->_resource . '/' . $this->_id;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
@@ -193,23 +196,22 @@ class OnApp_DNSZone_Record extends OnApp {
      * @access public
      */
     function getList( $dns_zone_id = null, $url_args = null ) {
-        if( is_null( $dns_zone_id ) && ! is_null( $this->_dns_zone_id ) ) {
+        if ( is_null( $dns_zone_id ) && ! is_null( $this->_dns_zone_id ) ) {
             $dns_zone_id = $this->_dns_zone_id;
         }
 
-        if( is_null( $dns_zone_id ) &&
-            isset( $this->_obj ) &&
-            ! is_null( $this->_obj->_dns_zone_id )
+        if ( is_null( $dns_zone_id ) &&
+             isset( $this->_obj ) &&
+             ! is_null( $this->_obj->_dns_zone_id )
         ) {
             $dns_zone_id = $this->_obj->_dns_zone_id;
         }
 
-        if( ! is_null( $dns_zone_id ) ) {
+        if ( ! is_null( $dns_zone_id ) ) {
             $this->_dns_zone_id = $dns_zone_id;
 
             return parent::getList();
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getList: argument _dns_zone_id not set.',
                 __FILE__,
@@ -228,30 +230,30 @@ class OnApp_DNSZone_Record extends OnApp {
      * @access public
      */
     function load( $id = null, $dns_zone_id = null ) {
-        if( is_null( $dns_zone_id ) && ! is_null( $this->_dns_zone_id ) ) {
+        if ( is_null( $dns_zone_id ) && ! is_null( $this->_dns_zone_id ) ) {
             $dns_zone_id = $this->_dns_zone_id;
         }
 
-        if( is_null( $dns_zone_id ) &&
-            isset( $this->_obj ) &&
-            ! is_null( $this->_obj->_dns_zone_id )
+        if ( is_null( $dns_zone_id ) &&
+             isset( $this->_obj ) &&
+             ! is_null( $this->_obj->_dns_zone_id )
         ) {
             $dns_zone_id = $this->_obj->_dns_zone_id;
         }
 
-        if( is_null( $id ) && ! is_null( $this->_id ) ) {
+        if ( is_null( $id ) && ! is_null( $this->_id ) ) {
             $id = $this->_id;
         }
 
-        if( is_null( $id ) &&
-            isset( $this->_obj ) &&
-            ! is_null( $this->_obj->_id )
+        if ( is_null( $id ) &&
+             isset( $this->_obj ) &&
+             ! is_null( $this->_obj->_id )
         ) {
             $id = $this->_obj->_id;
         }
         $this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
 
-        if( ! is_null( $id ) && ! is_null( $dns_zone_id ) ) {
+        if ( ! is_null( $id ) && ! is_null( $dns_zone_id ) ) {
             $this->_id          = $id;
             $this->_dns_zone_id = $dns_zone_id;
 
@@ -264,16 +266,14 @@ class OnApp_DNSZone_Record extends OnApp {
             $this->_obj = $result;
 
             return $result;
-        }
-        else {
-            if( is_null( $id ) ) {
+        } else {
+            if ( is_null( $id ) ) {
                 $this->logger->error(
                     'load: argument _id not set.',
                     __FILE__,
                     __LINE__
                 );
-            }
-            else {
+            } else {
                 $this->logger->error(
                     'load: argument _dns_zone_id not set.',
                     __FILE__,
@@ -312,33 +312,33 @@ class OnApp_DNSZone_Record extends OnApp {
             'hostmaster'
         );
 
-        foreach( $_unset as $field ) {
+        foreach ( $_unset as $field ) {
             $this->fields[ $field ][ ONAPP_FIELD_REQUIRED ] = false;
         }
 
-        switch( $this->_type ) {
+        switch ( $this->_type ) {
             case 'MX':
-                $this->fields[ 'priority' ][ ONAPP_FIELD_REQUIRED ] =
-                $this->fields[ 'hostname' ][ ONAPP_FIELD_REQUIRED ] =
+                $this->fields['priority'][ ONAPP_FIELD_REQUIRED ] =
+                $this->fields['hostname'][ ONAPP_FIELD_REQUIRED ] =
                     true;
                 break;
             case 'SRV':
-                $this->fields[ 'port' ][ ONAPP_FIELD_REQUIRED ] =
-                $this->fields[ 'weight' ][ ONAPP_FIELD_REQUIRED ] =
-                $this->fields[ 'priority' ][ ONAPP_FIELD_REQUIRED ] =
-                $this->fields[ 'hostname' ][ ONAPP_FIELD_REQUIRED ] =
+                $this->fields['port'][ ONAPP_FIELD_REQUIRED ] =
+                $this->fields['weight'][ ONAPP_FIELD_REQUIRED ] =
+                $this->fields['priority'][ ONAPP_FIELD_REQUIRED ] =
+                $this->fields['hostname'][ ONAPP_FIELD_REQUIRED ] =
                     true;
                 break;
             case 'A':
             case 'AAAA':
-                $this->fields[ 'ip' ][ ONAPP_FIELD_REQUIRED ] = true;
+                $this->fields['ip'][ ONAPP_FIELD_REQUIRED ] = true;
                 break;
             case 'CNAME':
             case 'NS':
-                $this->fields[ 'hostname' ][ ONAPP_FIELD_REQUIRED ] = true;
+                $this->fields['hostname'][ ONAPP_FIELD_REQUIRED ] = true;
                 break;
             case 'TXT':
-                $this->fields[ 'txt' ][ ONAPP_FIELD_REQUIRED ] = true;
+                $this->fields['txt'][ ONAPP_FIELD_REQUIRED ] = true;
                 break;
             case 'SOA':
                 trigger_error( 'Cannot save SOA record', E_USER_ERROR );
@@ -348,11 +348,10 @@ class OnApp_DNSZone_Record extends OnApp {
                 break;
         }
 
-        if( isset( $this->_id ) ) {
+        if ( isset( $this->_id ) ) {
             $obj = $this->_edit();
             $this->load();
-        }
-        else {
+        } else {
             return parent::save();
         }
 
@@ -362,22 +361,22 @@ class OnApp_DNSZone_Record extends OnApp {
     protected function sendRequest( $method, $data = null ) {
         $result = parent::sendRequest( $method, $data );
 
-        $response_body = $result[ 'response_body' ];
+        $response_body = $result['response_body'];
 
         $data = json_decode( $response_body, true );
 
-        if( isset( $data[ 'dns_zone' ] ) ) {
-            $records = $data[ 'dns_zone' ][ 'records' ];
+        if ( isset( $data['dns_zone'] ) ) {
+            $records = $data['dns_zone']['records'];
 
             $dns_records = array();
 
-            foreach( array( 'MX', 'SRV', 'A', 'CNAME', 'AAAA', 'TXT', 'NS', 'SOA' ) as $type ) {
-                if( array_key_exists( $type, $records ) ) {
+            foreach ( array( 'MX', 'SRV', 'A', 'CNAME', 'AAAA', 'TXT', 'NS', 'SOA' ) as $type ) {
+                if ( array_key_exists( $type, $records ) ) {
                     $dns_records = array_merge( $dns_records, $records[ $type ] );
                 }
             }
 
-            $result[ 'response_body' ] = json_encode( $dns_records );
+            $result['response_body'] = json_encode( $dns_records );
         };
 
         return $result;

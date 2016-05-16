@@ -63,12 +63,15 @@ class OnApp_Availability_Subsystem extends OnApp {
                         ONAPP_FIELD_MAP  => '_node_name',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'services'          => array(
-                        ONAPP_FIELD_MAP       => '_services',
-                        ONAPP_FIELD_TYPE      => 'array',
-                        ONAPP_FIELD_CLASS     => 'OnApp_Availability_Subsystem_Service',
+                    'services'  => array(
+                        ONAPP_FIELD_MAP   => '_services',
+                        ONAPP_FIELD_TYPE  => 'array',
+                        ONAPP_FIELD_CLASS => 'OnApp_Availability_Subsystem_Service',
                     ),
                 );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 

@@ -50,13 +50,13 @@ class OnApp_BillingUser extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case 2.0:
             case 2.1:
             case 2.2:
@@ -91,12 +91,10 @@ class OnApp_BillingUser extends OnApp {
                     'monthly_price'  => array(
                         ONAPP_FIELD_MAP      => '_monthly_price',
                         ONAPP_FIELD_TYPE     => 'integer',
-                        ONAPP_FIELD_REQUIRED => true,
                     ),
                     'currency_code'  => array(
                         ONAPP_FIELD_MAP       => '_currency_code',
                         ONAPP_FIELD_TYPE      => 'string',
-                        ONAPP_FIELD_REQUIRED  => true,
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                     'show_price'     => array(
@@ -135,8 +133,8 @@ class OnApp_BillingUser extends OnApp {
             case 3.5:
             case 4.0:
             case 4.1:
-                $this->fields                             = $this->initFields( 2.3 );
-                $this->fields[ 'default_base_resources' ] = array(
+                $this->fields                           = $this->initFields( 2.3 );
+                $this->fields['default_base_resources'] = array(
                     ONAPP_FIELD_MAP       => 'default_base_resources',
                     //ONAPP_FIELD_TYPE      => 'array',
                     ONAPP_FIELD_TYPE      => 'string',
@@ -145,17 +143,20 @@ class OnApp_BillingUser extends OnApp {
                 );
                 break;
             case 4.2:
-                $this->fields                             = $this->initFields( 4.1 );
-                $this->fields[ 'type' ] = array(
-                    ONAPP_FIELD_MAP       => '_type',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields         = $this->initFields( 4.1 );
+                $this->fields['type'] = array(
+                    ONAPP_FIELD_MAP  => '_type',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
 
-                $this->fields[ 'associated_with_users' ] = array(
-                    ONAPP_FIELD_MAP       => '_associated_with_users',
-                    ONAPP_FIELD_TYPE      => 'integer',
+                $this->fields['associated_with_users'] = array(
+                    ONAPP_FIELD_MAP  => '_associated_with_users',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
 
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 
@@ -165,7 +166,7 @@ class OnApp_BillingUser extends OnApp {
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_GETLIST_USERS:
                 /**
                  * ROUTE :
@@ -236,6 +237,7 @@ class OnApp_BillingUser extends OnApp {
 
         return $resource;
     }
+
     function users() {
         $this->logger->add( 'getList: Get Users list.' );
 
@@ -243,8 +245,8 @@ class OnApp_BillingUser extends OnApp {
 
         $response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-        if( ! empty( $response[ 'errors' ] ) ) {
-            $this->errors = $response[ 'errors' ];
+        if ( ! empty( $response['errors'] ) ) {
+            $this->errors = $response['errors'];
 
             return false;
         }

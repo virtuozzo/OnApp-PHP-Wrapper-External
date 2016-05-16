@@ -41,13 +41,13 @@ class OnApp_ResourceLimit extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
                 $this->fields = array(
@@ -114,22 +114,22 @@ class OnApp_ResourceLimit extends OnApp {
             case 2.3:
                 $this->fields = $this->initFields( 2.1 );
 
-                $this->fields[ 'ip_address_count' ]        = array(
+                $this->fields['ip_address_count']        = array(
                     ONAPP_FIELD_MAP       => 'ip_address_count',
                     ONAPP_FIELD_TYPE      => 'integer',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'ip_address_mask' ]         = array(
+                $this->fields['ip_address_mask']         = array(
                     ONAPP_FIELD_MAP       => 'ip_address_mask',
                     ONAPP_FIELD_TYPE      => 'integer',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'backups_templates_count' ] = array(
+                $this->fields['backups_templates_count'] = array(
                     ONAPP_FIELD_MAP       => 'backups_templates_count',
                     ONAPP_FIELD_TYPE      => 'integer',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'rate' ]                    = array(
+                $this->fields['rate']                    = array(
                     ONAPP_FIELD_MAP       => 'rate',
                     ONAPP_FIELD_TYPE      => 'integer',
                     ONAPP_FIELD_READ_ONLY => true,
@@ -150,6 +150,7 @@ class OnApp_ResourceLimit extends OnApp {
             case 4.0:
             case 4.1:
             case 4.2:
+            case 4.3:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
@@ -166,7 +167,7 @@ class OnApp_ResourceLimit extends OnApp {
      * @access public
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
             case ONAPP_GETRESOURCE_EDIT:
                 /**
@@ -185,15 +186,14 @@ class OnApp_ResourceLimit extends OnApp {
                  * @alias   /users/:user_id/resource_limit(.:format)
                  * @format  {:controller=>"resource_limits", :action=>"update"}
                  */
-                if( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {
+                if ( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {
                     $this->logger->error(
                         "getResource($action): argument _user_id not set.",
                         __FILE__,
                         __LINE__
                     );
-                }
-                else {
-                    if( is_null( $this->_user_id ) ) {
+                } else {
+                    if ( is_null( $this->_user_id ) ) {
                         $this->_user_id = $this->_obj->_user_id;
                     }
                 }
@@ -214,7 +214,7 @@ class OnApp_ResourceLimit extends OnApp {
             ONAPP_GETRESOURCE_LOAD,
             ONAPP_GETRESOURCE_EDIT,
         );
-        if( in_array( $action, $actions ) ) {
+        if ( in_array( $action, $actions ) ) {
             $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
         }
 
@@ -234,20 +234,20 @@ class OnApp_ResourceLimit extends OnApp {
      * @access public
      */
     function load( $user_id = null ) {
-        if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
+        if ( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
             $user_id = $this->_user_id;
         }
 
-        if( is_null( $user_id ) &&
-            isset( $this->_obj ) &&
-            ! is_null( $this->_obj->_user_id )
+        if ( is_null( $user_id ) &&
+             isset( $this->_obj ) &&
+             ! is_null( $this->_obj->_user_id )
         ) {
             $user_id = $this->_obj->_user_id;
         }
 
         $this->logger->add( 'load: Load class ( id => ' . $user_id . ').' );
 
-        if( ! is_null( $user_id ) ) {
+        if ( ! is_null( $user_id ) ) {
             $this->_user_id = $user_id;
 
             $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
@@ -260,8 +260,7 @@ class OnApp_ResourceLimit extends OnApp {
             $this->_user_id = $this->_obj->_user_id;
 
             return $result;
-        }
-        else {
+        } else {
             $this->logger->error(
                 'load: argument _user_id not set.',
                 __FILE__,
@@ -281,17 +280,17 @@ class OnApp_ResourceLimit extends OnApp {
      * @access public
      */
     function save() {
-        if( isset( $this->_user_id ) ) {
+        if ( isset( $this->_user_id ) ) {
             $obj = $this->_edit();
 
-            if( isset( $obj ) && ! isset( $obj->errors ) ) {
+            if ( isset( $obj ) && ! isset( $obj->errors ) ) {
                 $this->load();
             }
         }
     }
 
-    function activate( $action_name ) {
-        switch( $action_name ) {
+    function activateCheck( $action_name ) {
+        switch ( $action_name ) {
             case ONAPP_ACTIVATE_DELETE:
                 exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
                 break;

@@ -36,86 +36,88 @@ class OnApp_VDCS_EdgeGateway_FirewallService_FirewallRule extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case 4.0:
             case 4.1:
             case 4.2:
                 $this->fields = array();
 
-                $this->fields[ 'address' ]         = array(
-                    ONAPP_FIELD_MAP       => '_address',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['address']              = array(
+                    ONAPP_FIELD_MAP  => '_address',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'command' ]         = array(
-                    ONAPP_FIELD_MAP       => '_command',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['command']              = array(
+                    ONAPP_FIELD_MAP  => '_command',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'created_at' ]         = array(
+                $this->fields['created_at']           = array(
                     ONAPP_FIELD_MAP       => '_created_at',
                     ONAPP_FIELD_TYPE      => 'datetime',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'description' ]         = array(
-                    ONAPP_FIELD_MAP       => '_description',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['description']          = array(
+                    ONAPP_FIELD_MAP  => '_description',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'destination_ip' ]         = array(
-                    ONAPP_FIELD_MAP       => '_destination_ip',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['destination_ip']       = array(
+                    ONAPP_FIELD_MAP  => '_destination_ip',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'enable_logging' ]         = array(
-                    ONAPP_FIELD_MAP       => '_enable_logging',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['enable_logging']       = array(
+                    ONAPP_FIELD_MAP  => '_enable_logging',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'enabled' ]         = array(
-                    ONAPP_FIELD_MAP       => '_enabled',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['enabled']              = array(
+                    ONAPP_FIELD_MAP  => '_enabled',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'firewall_service_id' ]         = array(
-                    ONAPP_FIELD_MAP       => '_firewall_service_id',
-                    ONAPP_FIELD_TYPE      => 'integer',
+                $this->fields['firewall_service_id']  = array(
+                    ONAPP_FIELD_MAP  => '_firewall_service_id',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'id' ]         = array(
+                $this->fields['id']                   = array(
                     ONAPP_FIELD_MAP       => '_id',
                     ONAPP_FIELD_TYPE      => 'integer',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-                $this->fields[ 'identifier' ]         = array(
-                    ONAPP_FIELD_MAP       => '_identifier',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['identifier']           = array(
+                    ONAPP_FIELD_MAP  => '_identifier',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'network_interface_id' ]         = array(
-                    ONAPP_FIELD_MAP       => '_network_interface_id',
-                    ONAPP_FIELD_TYPE      => 'integer',
+                $this->fields['network_interface_id'] = array(
+                    ONAPP_FIELD_MAP  => '_network_interface_id',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'port' ]         = array(
-                    ONAPP_FIELD_MAP       => '_port',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['port']                 = array(
+                    ONAPP_FIELD_MAP  => '_port',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'position' ]         = array(
-                    ONAPP_FIELD_MAP       => '_position',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['position']             = array(
+                    ONAPP_FIELD_MAP  => '_position',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'protocol' ]         = array(
-                    ONAPP_FIELD_MAP       => '_protocol',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['protocol']             = array(
+                    ONAPP_FIELD_MAP  => '_protocol',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'source_port' ]         = array(
-                    ONAPP_FIELD_MAP       => '_source_port',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['source_port']          = array(
+                    ONAPP_FIELD_MAP  => '_source_port',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'updated_at' ]         = array(
+                $this->fields['updated_at']           = array(
                     ONAPP_FIELD_MAP       => '_updated_at',
                     ONAPP_FIELD_TYPE      => 'datetime',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
-
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 

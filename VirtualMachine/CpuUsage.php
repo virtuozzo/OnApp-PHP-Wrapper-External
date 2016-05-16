@@ -39,13 +39,13 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
                 $this->fields = array(
@@ -100,7 +100,7 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
                     ),
                 );
 
-                if( $this->_release == "0" ) {
+                if ( $this->_release == "0" ) {
                     $fields = array(
                         'cpu_time_raw',
                         'elapsed_time',
@@ -130,6 +130,7 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
             case 4.0:
             case 4.1:
             case 4.2:
+            case 4.3:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
@@ -148,7 +149,7 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
      * @access public
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_LIST:
                 /**
                  * ROUTE :
@@ -158,15 +159,14 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
                  * @alias   /virtual_machines/:id/cpu_usage(.:format)
                  * @format  {:controller=>"virtual_machines", :action=>"cpu_usage"}
                  */
-                if( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
+                if ( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
                     $this->logger->error(
                         "getResource($action): argument _virtual_machine_id not set.",
                         __FILE__,
                         __LINE__
                     );
-                }
-                else {
-                    if( is_null( $this->_virtual_machine_id ) ) {
+                } else {
+                    if ( is_null( $this->_virtual_machine_id ) ) {
                         $this->_virtual_machine_id = $this->_obj->_virtual_machine_id;
                     }
                 }
@@ -193,16 +193,15 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
      * @access public
      */
     function getList( $virtual_machine_id = null, $url_args = null ) {
-        if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
+        if ( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
             $virtual_machine_id = $this->_virtual_machine_id;
         }
 
-        if( ! is_null( $virtual_machine_id ) ) {
+        if ( ! is_null( $virtual_machine_id ) ) {
             $this->_virtual_machine_id = $virtual_machine_id;
 
             return parent::getList();
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getList: argument _virtual_machine_id not set.',
                 __FILE__,
@@ -218,8 +217,8 @@ class OnApp_VirtualMachine_CpuUsage extends OnApp {
      *
      * @access public
      */
-    function activate( $action_name ) {
-        switch( $action_name ) {
+    function activateCheck( $action_name ) {
+        switch ( $action_name ) {
             case ONAPP_ACTIVATE_LOAD:
             case ONAPP_ACTIVATE_SAVE:
             case ONAPP_ACTIVATE_DELETE:
