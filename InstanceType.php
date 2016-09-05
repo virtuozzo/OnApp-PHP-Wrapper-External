@@ -90,20 +90,25 @@ class OnApp_InstanceType extends OnApp {
                     )
                 );
                 break;
+
             case 4.2:
                 $this->fields              = $this->initFields( 4.1 );
                 $this->fields['bandwidth'] = array(
                     ONAPP_FIELD_MAP  => '_bandwidth',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-
                 break;
+
             case 4.3:
                 $this->fields                     = $this->initFields( 4.2 );
                 $this->fields['billing_plan_ids'] = array(
                     ONAPP_FIELD_MAP  => '_billing_plan_ids',
                     ONAPP_FIELD_TYPE => 'array',
                 );
+                break;
+
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
                 break;
         }
 

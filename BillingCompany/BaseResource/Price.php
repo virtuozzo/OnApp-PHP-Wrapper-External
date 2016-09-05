@@ -76,6 +76,33 @@ class OnApp_BillingCompany_BaseResource_Price extends OnApp {
             case 4.3:
                 $this->fields = $this->initFields( 4.2 );
                 break;
+            case 5.0:
+                $this->fields                                               = $this->initFields( 4.3 );
+                $this->fields['price_pay_as_you_go_cpu_limit']              = array(
+                    ONAPP_FIELD_MAP => '_price_pay_as_you_go_cpu_limit',
+                );
+                $this->fields['price_pay_as_you_go_memory_limit']           = array(
+                    ONAPP_FIELD_MAP => '_price_pay_as_you_go_memory_limit',
+                );
+                $this->fields['price_pay_as_you_go_cpu_used']               = array(
+                    ONAPP_FIELD_MAP => '_price_pay_as_you_go_cpu_used',
+                );
+                $this->fields['price_pay_as_you_go_memory_used']            = array(
+                    ONAPP_FIELD_MAP => '_price_pay_as_you_go_memory_used',
+                );
+                $this->fields['price_pay_as_you_go_cpu_limit_unlimited']    = array(
+                    ONAPP_FIELD_MAP => '_price_pay_as_you_go_cpu_limit_unlimited',
+                );
+                $this->fields['price_pay_as_you_go_memory_limit_unlimited'] = array(
+                    ONAPP_FIELD_MAP => '_price_pay_as_you_go_memory_limit_unlimited',
+                );
+                $this->fields['price_disk_size_used']                       = array(
+                    ONAPP_FIELD_MAP => '_price_disk_size_used',
+                );
+                $this->fields['price_disk_size_unlimited']                  = array(
+                    ONAPP_FIELD_MAP => '_price_disk_size_unlimited',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

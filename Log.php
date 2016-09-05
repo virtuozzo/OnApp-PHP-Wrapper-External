@@ -100,6 +100,7 @@ class OnApp_Log extends OnApp {
             case 4.1:
             case 4.2:
             case 4.3:
+            case 5.0:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }

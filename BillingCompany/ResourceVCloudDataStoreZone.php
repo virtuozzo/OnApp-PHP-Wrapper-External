@@ -90,6 +90,29 @@ class OnApp_BillingCompany_ResourceVCloudDataStoreZone extends OnApp_BillingComp
             case 4.3:
                 $this->fields = $this->initFields( 4.2 );
                 break;
+            case 5.0:
+                $this->fields                              = $this->initFields( 4.3 );
+                $this->fields['limit_free_disk_size_used'] = array(
+                    ONAPP_FIELD_MAP  => '_limit_free_disk_size_used',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['limit_min_disk_size_used']  = array(
+                    ONAPP_FIELD_MAP  => '_limit_min_disk_size_used',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['limit_disk_size_used']      = array(
+                    ONAPP_FIELD_MAP  => '_limit_disk_size_used',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['price_disk_size_used']      = array(
+                    ONAPP_FIELD_MAP  => '_price_disk_size_used',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['price_disk_size_unlimited'] = array(
+                    ONAPP_FIELD_MAP  => '_price_disk_size_unlimited',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                break;
         }
 
         return $this->fields;

@@ -38,7 +38,7 @@ class OnApp_Disk_Schedule extends OnApp {
      *
      * @var string
      */
-    var $_resource = 'schedules';
+    var $_resource = 'settings/schedules';
 
     /**
      * API Fields description
@@ -136,16 +136,25 @@ class OnApp_Disk_Schedule extends OnApp {
             case 3.0:
             case 3.1:
             case 3.2:
+                $this->fields = $this->initFields( 2.3 );
+                $this->fields['rotation_period'] = array(
+                    ONAPP_FIELD_MAP       => '_rotation_period',
+                    ONAPP_FIELD_TYPE      => 'integer',
+                );
+                break;
             case 3.3:
             case 3.4:
             case 3.5:
             case 4.0:
             case 4.1:
             case 4.2:
-                $this->fields = $this->initFields( 2.3 );
+                $this->fields = $this->initFields( 3.2 );
                 break;
             case 4.3:
                 $this->fields = $this->initFields( 4.2 );
+                break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
                 break;
         }
 

@@ -146,6 +146,16 @@ define( 'ONAPP_SEARCH', 'search' );
 define( 'ONAPP_GETRESOURCE_SEGREGATION', 'segregation' );
 
 /**
+ * Purge All Content
+ */
+define( 'ONAPP_GETRESOURCE_PURGE_ALL', 'purge_all' );
+
+/**
+ * Purge File(s)
+ */
+define( 'ONAPP_GETRESOURCE_PURGE', 'purge' );
+
+/**
  * Virtual Machines
  *
  * The Virtual Machine class represents the Virtual Machines of the OnAPP installation.
@@ -627,6 +637,13 @@ class OnApp_VirtualMachine extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
+                $this->fields['purge_paths']     = array(
+                    ONAPP_FIELD_MAP  => '_purge_paths',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         if ( is_null( $this->_id ) ) {
@@ -910,6 +927,31 @@ class OnApp_VirtualMachine extends OnApp {
                  */
                 $resource = $this->_resource;
                 break;
+
+            case ONAPP_GETRESOURCE_PURGE:
+                /**
+                 * ROUTE :
+                 *
+                 * @name purge_files
+                 * @method POST
+                 * @alias    /virtual_machines/:id/purge(.:format)
+                 * @format   {:controller=>"virtual_machines", :action=>"purge"}
+                 */
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/purge';
+                break;
+
+            case ONAPP_GETRESOURCE_PURGE_ALL:
+                /**
+                 * ROUTE :
+                 *
+                 * @name purge_all_content
+                 * @method POST
+                 * @alias    /virtual_machines/:id/purge_all(.:format)
+                 * @format   {:controller=>"virtual_machines", :action=>"purge_all"}
+                 */
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/purge_all';
+                break;
+
             default:
                 /**
                  * ROUTE :
@@ -966,6 +1008,8 @@ class OnApp_VirtualMachine extends OnApp {
             ONAPP_ACTIVATE_GETLIST_USER,
             ONAPP_GETRESOURCE_SUSPEND_VM,
             ONAPP_RESET_ROOT_PASSWORD,
+            ONAPP_GETRESOURCE_PURGE_ALL,
+            ONAPP_GETRESOURCE_PURGE,
         );
 
         if ( in_array( $action, $actions ) ) {
@@ -1453,5 +1497,23 @@ class OnApp_VirtualMachine extends OnApp {
         $this->sendDelete( ONAPP_GETRESOURCE_SEGREGATION, $data );
     }
 
+    function purgeAll() {
+        return $this->sendPost( ONAPP_GETRESOURCE_PURGE_ALL );
+    }
 
+    function purge($purge_paths) {
+        if(!is_array($purge_paths)){
+            $path = $purge_paths;
+            $purge_paths = array();
+            $purge_paths[] = $path;
+        }
+        $data = array(
+            'root' => 'tmp_holder',
+            'data' => array(
+                'purge_paths' => $purge_paths
+            )
+        );
+
+        return $this->sendPost( ONAPP_GETRESOURCE_PURGE, $data );
+    }
 }

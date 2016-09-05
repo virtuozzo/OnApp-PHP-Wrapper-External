@@ -209,6 +209,10 @@ class OnApp_Network extends OnApp {
                     ONAPP_FIELD_TYPE => 'integer',
                 );
                 break;
+
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

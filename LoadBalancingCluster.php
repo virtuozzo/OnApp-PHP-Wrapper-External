@@ -45,10 +45,11 @@ class OnApp_LoadBalancingCluster extends OnApp {
      * API Fields description
      *
      * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
-    public function initFields( $version ) {
+    public function initFields( $version = null, $className = '' ) {
         switch ( $version ) {
             case '2.1':
             case '2.2':
@@ -174,6 +175,9 @@ class OnApp_LoadBalancingCluster extends OnApp {
                     ONAPP_FIELD_MAP  => '_ports',
                     ONAPP_FIELD_TYPE => 'array',
                 );
+                break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
                 break;
         }
 

@@ -386,8 +386,8 @@ class OnApp_CDNAccelerator extends OnApp {
                     ),
 
                 );
-
                 break;
+
             case 4.3:
                 $this->fields                        = $this->initFields( 4.2 );
                 $this->fields['hypervisor_type']     = array(
@@ -402,6 +402,10 @@ class OnApp_CDNAccelerator extends OnApp {
                     ONAPP_FIELD_MAP  => '_vmware_tools',
                     ONAPP_FIELD_TYPE => 'string',
                 );
+                break;
+
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
                 break;
         }
 

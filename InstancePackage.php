@@ -100,6 +100,10 @@ class OnApp_InstancePackage extends OnApp {
                     )
                 );
                 break;
+
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

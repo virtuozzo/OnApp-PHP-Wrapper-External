@@ -141,6 +141,11 @@ class OnApp_Federation extends OnApp {
                         ONAPP_FIELD_TYPE  => 'array',
                         ONAPP_FIELD_CLASS => 'Federation_DataStoreZonePricing',
                     ),
+                    'data_store_zone_pricing_attributes'     => array(
+                        ONAPP_FIELD_MAP   => '_data_store_zone_pricing_attributes',
+                        ONAPP_FIELD_TYPE  => 'array',
+                        ONAPP_FIELD_CLASS => 'Federation_DataStoreZonePricing',
+                    ),
                     'description'                 => array(
                         ONAPP_FIELD_MAP  => '_description',
                         ONAPP_FIELD_TYPE => 'string',
@@ -155,6 +160,11 @@ class OnApp_Federation extends OnApp {
                         ONAPP_FIELD_TYPE  => 'array',
                         ONAPP_FIELD_CLASS => 'Federation_HypervisorZonePricing',
                     ),
+                    'hypervisor_zone_pricing_attributes'     => array(
+                        ONAPP_FIELD_MAP   => '_hypervisor_zone_pricing_attributes',
+                        ONAPP_FIELD_TYPE  => 'array',
+                        ONAPP_FIELD_CLASS => 'Federation_HypervisorZonePricing',
+                    ),
                     'label'                       => array(
                         ONAPP_FIELD_MAP  => '_label',
                         ONAPP_FIELD_TYPE => 'string',
@@ -166,6 +176,11 @@ class OnApp_Federation extends OnApp {
                     //network_zone_pricing_attributes
                     'network_zone_pricing'        => array(
                         ONAPP_FIELD_MAP   => '_network_zone_pricing',
+                        ONAPP_FIELD_TYPE  => 'array',
+                        ONAPP_FIELD_CLASS => 'Federation_NetworkZonePricing',
+                    ),
+                    'network_zone_pricing_attributes'        => array(
+                        ONAPP_FIELD_MAP   => '_network_zone_pricing_attributes',
                         ONAPP_FIELD_TYPE  => 'array',
                         ONAPP_FIELD_CLASS => 'Federation_NetworkZonePricing',
                     ),
@@ -276,11 +291,38 @@ class OnApp_Federation extends OnApp {
                     ONAPP_FIELD_MAP  => '_vm_identifier',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-
-
+                $this->fields['private']              = array(
+                    ONAPP_FIELD_MAP  => '_private',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
                 break;
+
             case 4.3:
+            case 5.0:
                 $this->fields = $this->initFields( 4.2 );
+                $this->fields['latitude']              = array(
+                    ONAPP_FIELD_MAP  => '_latitude',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['longitude']              = array(
+                    ONAPP_FIELD_MAP  => '_longitude',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['tier']              = array(
+                    ONAPP_FIELD_MAP  => '_tier',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['tier_options']              = array(
+                    ONAPP_FIELD_MAP  => '_tier_options',
+                    ONAPP_FIELD_TYPE => 'array',
+                    ONAPP_FIELD_CLASS => 'Federation_TierOptions',
+                );
+                $this->fields['tier_options_attributes']              = array(
+                    ONAPP_FIELD_MAP  => '_tier_options_attributes',
+                    ONAPP_FIELD_TYPE => 'array',
+                    ONAPP_FIELD_CLASS => 'Federation_TierOptions',
+                );
+
                 break;
         }
 

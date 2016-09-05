@@ -203,6 +203,7 @@ class OnApp_StorageServer extends OnApp {
                 );
                 break;
             case 4.3:
+            case 5.0:
                 $this->fields = $this->initFields( 4.2 );
                 break;
         }
@@ -222,7 +223,7 @@ class OnApp_StorageServer extends OnApp {
                         __LINE__
                     );
                 }
-                $resource = $this->_resource . '/' . $this->_id . '/backups/';
+                $resource = $this->_resource . '/' . $this->_id . '/backups';
                 break;
 
             case ONAPP_RESTORE_BACKUP :

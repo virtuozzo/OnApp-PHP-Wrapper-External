@@ -224,29 +224,32 @@ class OnApp_User extends OnApp {
                 unset( $this->fields['activation_code'] );
 
                 $this->fields['group_id'][ ONAPP_FIELD_REQUIRED ] = false;
-                $this->fields['billing_plan_id']                  = array(
+
+                $this->fields['last_name'][ ONAPP_FIELD_REQUIRED ] = false;
+
+                $this->fields['billing_plan_id']         = array(
                     ONAPP_FIELD_MAP  => '_billing_plan_id',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields['image_template_group_id']          = array(
+                $this->fields['image_template_group_id'] = array(
                     ONAPP_FIELD_MAP  => '_image_template_group_id',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields['api_key']                          = array(
+                $this->fields['api_key']                 = array(
                     ONAPP_FIELD_MAP       => '_api_key',
                     ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true
                 );
-                $this->fields['suspend_at']                       = array(
+                $this->fields['suspend_at']              = array(
                     ONAPP_FIELD_MAP       => '_suspend_at',
                     ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true
                 );
-                $this->fields['user_group_id']                    = array(
+                $this->fields['user_group_id']           = array(
                     ONAPP_FIELD_MAP  => '_user_group_id',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields['locale']                           = array(
+                $this->fields['locale']                  = array(
                     ONAPP_FIELD_MAP  => '_locale',
                     ONAPP_FIELD_TYPE => 'string',
                 );
@@ -374,6 +377,7 @@ class OnApp_User extends OnApp {
                 break;
 
             case 4.3:
+            case 5.0:
                 $this->fields = $this->initFields( 4.2 );
                 break;
         }
@@ -554,6 +558,7 @@ class OnApp_User extends OnApp {
 
         return $this->sendPost( ONAPP_GETRESOURCE_UNLOCK_ACCOUNT, $data );
     }
+
     /**
      * Drop Sessions
      *

@@ -113,11 +113,11 @@ class OnApp_EdgeGroup extends OnApp {
                     ONAPP_FIELD_TYPE => 'integer',
                 );
                 break;
+
             case 4.2:
-                $this->fields = $this->initFields( 4.1 );
-                break;
             case 4.3:
-                $this->fields = $this->initFields( 4.2 );
+            case 5.0:
+                $this->fields = $this->initFields( 4.1 );
                 break;
 
         }

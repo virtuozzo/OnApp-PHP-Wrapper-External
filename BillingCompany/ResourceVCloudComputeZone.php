@@ -181,6 +181,65 @@ class OnApp_BillingCompany_ResourceVCloudComputeZone extends OnApp_BillingCompan
             case 4.3:
                 $this->fields = $this->initFields( 4.2 );
                 break;
+            case 5.0:
+                $this->fields                                               = $this->initFields( 4.3 );
+                $this->fields['limit_free_pay_as_you_go_cpu_limit']         = array(
+                    ONAPP_FIELD_MAP  => '_limit_free_pay_as_you_go_cpu_limit',
+                    ONAPP_FIELD_TYPE => 'integer'
+                );
+                $this->fields['limit_free_pay_as_you_go_memory_limit']      = array(
+                    ONAPP_FIELD_MAP  => '_limit_free_pay_as_you_go_memory_limit',
+                    ONAPP_FIELD_TYPE => 'integer'
+                );
+                $this->fields['limit_free_pay_as_you_go_cpu_used']          = array(
+                    ONAPP_FIELD_MAP  => '_limit_free_pay_as_you_go_cpu_used',
+                    ONAPP_FIELD_TYPE => 'integer'
+                );
+                $this->fields['limit_free_pay_as_you_go_memory_used']       = array(
+                    ONAPP_FIELD_MAP  => '_limit_free_pay_as_you_go_memory_used',
+                    ONAPP_FIELD_TYPE => 'integer'
+                );
+                $this->fields['limit_min_pay_as_you_go_cpu_limit']          = array(
+                    ONAPP_FIELD_MAP  => '_limit_min_pay_as_you_go_cpu_limit',
+                    ONAPP_FIELD_TYPE => 'integer'
+                );
+                $this->fields['limit_min_pay_as_you_go_memory_limit']       = array(
+                    ONAPP_FIELD_MAP  => '_limit_min_pay_as_you_go_memory_limit',
+                    ONAPP_FIELD_TYPE => 'integer'
+                );
+                $this->fields['limit_pay_as_you_go_cpu_limit']              = array(
+                    ONAPP_FIELD_MAP  => '_limit_pay_as_you_go_cpu_limit',
+                    ONAPP_FIELD_TYPE => 'integer'
+                );
+                $this->fields['limit_pay_as_you_go_memory_limit']           = array(
+                    ONAPP_FIELD_MAP  => '_limit_pay_as_you_go_memory_limit',
+                    ONAPP_FIELD_TYPE => 'integer'
+                );
+                $this->fields['price_pay_as_you_go_cpu_limit']              = array(
+                    ONAPP_FIELD_MAP  => '_price_pay_as_you_go_cpu_limit',
+                    ONAPP_FIELD_TYPE => 'integer'
+                );
+                $this->fields['price_pay_as_you_go_memory_limit']           = array(
+                    ONAPP_FIELD_MAP  => '_price_pay_as_you_go_memory_limit',
+                    ONAPP_FIELD_TYPE => 'integer'
+                );
+                $this->fields['price_pay_as_you_go_cpu_used']               = array(
+                    ONAPP_FIELD_MAP  => '_price_pay_as_you_go_cpu_used',
+                    ONAPP_FIELD_TYPE => 'integer'
+                );
+                $this->fields['price_pay_as_you_go_memory_used']            = array(
+                    ONAPP_FIELD_MAP  => '_price_pay_as_you_go_memory_used',
+                    ONAPP_FIELD_TYPE => 'integer'
+                );
+                $this->fields['price_pay_as_you_go_cpu_limit_unlimited']    = array(
+                    ONAPP_FIELD_MAP  => '_price_pay_as_you_go_cpu_limit_unlimited',
+                    ONAPP_FIELD_TYPE => 'integer'
+                );
+                $this->fields['price_pay_as_you_go_memory_limit_unlimited'] = array(
+                    ONAPP_FIELD_MAP  => '_price_pay_as_you_go_memory_limit_unlimited',
+                    ONAPP_FIELD_TYPE => 'integer'
+                );
+                break;
         }
 
         return $this->fields;

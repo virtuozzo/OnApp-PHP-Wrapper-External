@@ -207,8 +207,8 @@ class OnApp_Disk extends OnApp {
                     ONAPP_FIELD_MAP  => '_volume_id',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-
                 break;
+
             case 4.3:
                 $this->fields = $this->initFields( 4.2 );
 
@@ -216,7 +216,10 @@ class OnApp_Disk extends OnApp {
                     ONAPP_FIELD_MAP  => '_mounted',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
+                break;
 
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
                 break;
 
         }

@@ -110,6 +110,7 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
             case 4.1:
             case 4.2:
             case 4.3:
+            case 5.0:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
@@ -188,7 +189,7 @@ class OnApp_VirtualMachine_NetworkInterface_Usage extends OnApp {
      * @return mixed an array of Object instances on success. Otherwise false
      * @access public
      */
-    function getList( $virtual_machine_id = null, $network_interface_id = null, $url_args = '' ) {
+    function getList( $virtual_machine_id = null, $network_interface_id = null, $url_args = null ) {
         if ( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
             $virtual_machine_id = $this->_virtual_machine_id;
         }

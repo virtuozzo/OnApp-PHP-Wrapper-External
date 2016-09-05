@@ -161,10 +161,9 @@ class OnApp_Group extends OnApp {
             case 4.0:
             case 4.1:
             case 4.2:
-                $this->fields = $this->initFields( 2.1 );
-                break;
             case 4.3:
-                $this->fields = $this->initFields( 4.2 );
+            case 5.0:
+                $this->fields = $this->initFields( 2.1 );
                 break;
         }
 

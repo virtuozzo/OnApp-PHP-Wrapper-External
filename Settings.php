@@ -729,6 +729,49 @@ class OnApp_Settings extends OnApp {
                 );
 
                 break;
+
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
+                $this->fields['billing_transaction_runner_delay']            = array(
+                    ONAPP_FIELD_MAP  => '_billing_transaction_runner_delay',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['graceful_stop_timeout']            = array(
+                    ONAPP_FIELD_MAP  => '_graceful_stop_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['vcloud_prevent_idle_session_timeout']            = array(
+                    ONAPP_FIELD_MAP  => '_vcloud_prevent_idle_session_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['vcloud_stats_batch_size']            = array(
+                    ONAPP_FIELD_MAP  => '_vcloud_stats_batch_size',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['vcloud_stats_hibernation_time']            = array(
+                    ONAPP_FIELD_MAP  => '_vcloud_stats_hibernation_time',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+
+                $this->fields['cloud_boot_domain_name_servers'] = array(
+                    ONAPP_FIELD_MAP  => '_cloud_boot_domain_name_servers',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['google_map_token'] = array(
+                    ONAPP_FIELD_MAP  => '_google_map_token',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['log_level'] = array(
+                    ONAPP_FIELD_MAP  => '_log_level',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+
+                $this->fields['enforce_redundancy'] = array(
+                    ONAPP_FIELD_MAP  => '_enforce_redundancy',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

@@ -107,6 +107,9 @@ class OnApp_VDCS_Statistics extends OnApp {
                     ONAPP_FIELD_TYPE => 'array',
                 );
                 break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -165,7 +168,7 @@ class OnApp_VDCS_Statistics extends OnApp {
      * @return mixed an array of Object instances on success. Otherwise false
      * @access public
      */
-    function getList( $vdc_id = null, $url_args = [ ] ) {
+    function getList( $vdc_id = null, $url_args = null ) {
         if ( is_null( $vdc_id ) && ! is_null( $this->_vdc_id ) ) {
             $vdc_id = $this->_vdc_id;
         }

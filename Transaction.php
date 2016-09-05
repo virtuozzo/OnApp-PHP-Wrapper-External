@@ -186,6 +186,7 @@ class OnApp_Transaction extends OnApp {
                 );
                 break;
             case 4.3:
+            case 5.0:
                 $this->fields = $this->initFields( 4.2 );
                 break;
         }
@@ -212,7 +213,7 @@ class OnApp_Transaction extends OnApp {
      *
      * @return the array of Object instances
      */
-    function getList( $page = 1 ) {
+    function getList( $page = 1, $url_args = null ) {
         $data = array(
             'root' => 'page',
             'data' => $page,

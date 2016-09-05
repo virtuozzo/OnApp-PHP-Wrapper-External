@@ -47,7 +47,7 @@ class OnApp_User_Backup extends OnApp_VirtualMachine_Backup {
         return $resource;
     }
 
-    function getList() {
+    function getList( $params = null, $url_args = null ) {
         /*
         $grandparent = get_parent_class(get_parent_class($this));
         return $grandparent::getList();

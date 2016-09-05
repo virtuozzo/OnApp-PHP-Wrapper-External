@@ -16,7 +16,7 @@
 /**
  * User Hypervisor
  *
- * The OnApp_User_Hypervisor class support only gelList().
+ * The OnApp_User_Hypervisor class support only getList().
  *
  */
 class OnApp_User_Hypervisor extends OnApp_Hypervisor {

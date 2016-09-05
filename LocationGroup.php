@@ -97,8 +97,17 @@ class OnApp_LocationGroup extends OnApp {
                     ONAPP_FIELD_MAP  => '_federation_id',
                     ONAPP_FIELD_TYPE => 'string',
                 );
+                $this->fields['lat'] = array(
+                    ONAPP_FIELD_MAP  => '_lat',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['lng'] = array(
+                    ONAPP_FIELD_MAP  => '_lng',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
                 break;
             case 4.3:
+            case 5.0:
                 $this->fields = $this->initFields( 4.2 );
                 break;
         }

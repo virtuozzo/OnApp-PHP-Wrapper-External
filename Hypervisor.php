@@ -416,8 +416,8 @@ class OnApp_Hypervisor extends OnApp {
                     ONAPP_FIELD_MAP  => '_uptime',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-
                 break;
+
             case 4.3:
                 $this->fields                  = $this->initFields( 4.2 );
                 $this->fields['cache_mirrors'] = array(
@@ -428,6 +428,10 @@ class OnApp_Hypervisor extends OnApp {
                     ONAPP_FIELD_MAP  => '_cache_stripes',
                     ONAPP_FIELD_TYPE => 'string',
                 );
+                break;
+
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
                 break;
         }
 

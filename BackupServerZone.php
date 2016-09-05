@@ -161,12 +161,17 @@ class ONAPP_BackupServerZone extends OnApp {
                     ),
                 );
                 break;
+
             case 4.3:
                 $this->fields                    = $this->initFields( 4.2 );
                 $this->fields['provider_vdc_id'] = array(
                     ONAPP_FIELD_MAP  => '_provider_vdc_id',
                     ONAPP_FIELD_TYPE => 'string',
                 );
+                break;
+
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
                 break;
         }
 

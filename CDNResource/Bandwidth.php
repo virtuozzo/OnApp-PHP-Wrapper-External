@@ -84,6 +84,9 @@ class OnApp_CDNResource_Bandwidth extends OnApp {
             case 4.3:
                 $this->fields = $this->initFields( 4.2 );
                 break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -100,7 +103,7 @@ class OnApp_CDNResource_Bandwidth extends OnApp {
      * @return mixed an array of Object instances on success. Otherwise false
      * @access public
      */
-    public function getList( $url_args = null ) {
+    public function getList( $url_args = null, $params = null ) {
         return parent::getList( null, $url_args );
     }
 

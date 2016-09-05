@@ -104,7 +104,20 @@ class OnApp_VDCS_EdgeGateway extends OnApp {
                 );
                 break;
             case 4.3:
+            case 5.0:
                 $this->fields = $this->initFields( 4.2 );
+                $this->fields['firewall_service']            = array(
+                    ONAPP_FIELD_MAP  => '_firewall_service',
+                    ONAPP_FIELD_TYPE => 'array',
+                );
+                $this->fields['gateway_ipsec_vpn_service']            = array(
+                    ONAPP_FIELD_MAP  => '_gateway_ipsec_vpn_service',
+                    ONAPP_FIELD_TYPE => 'array',
+                );
+                $this->fields['nat_service']            = array(
+                    ONAPP_FIELD_MAP  => '_nat_service',
+                    ONAPP_FIELD_TYPE => 'array',
+                );
                 break;
         }
 

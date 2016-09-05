@@ -102,6 +102,9 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
             case 4.3:
                 $this->fields = $this->initFields( 4.2 );
                 break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -147,7 +150,7 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
      *
      * @return array of datastore join objects
      */
-    function getList( $target_join_id = null ) {
+    function getList( $target_join_id = null, $url_args = null ) {
         if ( is_null( $target_join_id ) && ! is_null( $this->_target_join_id ) ) {
             $target_join_id = $this->_target_join_id;
         }

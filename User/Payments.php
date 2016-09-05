@@ -95,6 +95,7 @@ class OnApp_User_Payments extends OnApp {
                 );
                 break;
             case 4.3:
+            case 5.0:
                 $this->fields = $this->initFields( 4.2 );
                 break;
         }
@@ -172,7 +173,7 @@ class OnApp_User_Payments extends OnApp {
         return $this->sendPut( ONAPP_GETRESOURCE_EDIT, $data );
     }
 
-    function getList() {
+    function getList( $params = null, $url_args = null ) {
         $tagRootOld     = $this->_tagRoot;
         $result         = $this->sendGet( ONAPP_GETRESOURCE_LIST );
         $this->_tagRoot = $tagRootOld;

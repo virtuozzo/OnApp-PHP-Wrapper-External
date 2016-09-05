@@ -1073,11 +1073,7 @@ class OnApp {
                     $this->setErrors( 'Bad response ( code => ' . $http_code . ', response => ' . $response['response_body'] . ' )' );
             }
         } else {
-            $this->logger->error(
-                'castResponseToClass: Can\'t parse ' . $response['response_body'],
-                __FILE__,
-                __LINE__
-            );
+            $this->logger->debug( 'castResponseToClass: Can\'t parse ' . $response['response_body'] );
         }
     }
 

@@ -51,7 +51,7 @@ class OnApp_Schedule_VirtualMachine extends OnApp_Schedule {
         return $resource;
     }
 
-    function getList( $target_id = null ) {
+    function getList( $target_id = null, $url_args = null ) {
         if ( is_null( $target_id ) ) {
             $target_id = is_null( $this->_virtual_machine_id ) ? $this->_target_id : $this->_virtual_machine_id;
         }

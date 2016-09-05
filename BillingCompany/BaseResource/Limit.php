@@ -137,6 +137,42 @@ class OnApp_BillingCompany_BaseResource_Limit extends OnApp {
             case 4.3:
                 $this->fields = $this->initFields( 4.2 );
                 break;
+            case 5.0:
+                $this->fields                                          = $this->initFields( 4.3 );
+                $this->fields['limit_free_pay_as_you_go_cpu_limit']    = array(
+                    ONAPP_FIELD_MAP => '_limit_free_pay_as_you_go_cpu_limit',
+                );
+                $this->fields['limit_free_pay_as_you_go_memory_limit'] = array(
+                    ONAPP_FIELD_MAP => '_limit_free_pay_as_you_go_memory_limit',
+                );
+                $this->fields['limit_free_pay_as_you_go_cpu_used']     = array(
+                    ONAPP_FIELD_MAP => '_limit_free_pay_as_you_go_cpu_used',
+                );
+                $this->fields['limit_free_pay_as_you_go_memory_used']  = array(
+                    ONAPP_FIELD_MAP => '_limit_free_pay_as_you_go_memory_used',
+                );
+                $this->fields['limit_min_pay_as_you_go_cpu_limit']     = array(
+                    ONAPP_FIELD_MAP => '_limit_min_pay_as_you_go_cpu_limit',
+                );
+                $this->fields['limit_min_pay_as_you_go_memory_limit']  = array(
+                    ONAPP_FIELD_MAP => '_limit_min_pay_as_you_go_memory_limit',
+                );
+                $this->fields['limit_pay_as_you_go_cpu_limit']         = array(
+                    ONAPP_FIELD_MAP => '_limit_pay_as_you_go_cpu_limit',
+                );
+                $this->fields['limit_pay_as_you_go_memory_limit']      = array(
+                    ONAPP_FIELD_MAP => '_limit_pay_as_you_go_memory_limit',
+                );
+                $this->fields['limit_free_disk_size_used']             = array(
+                    ONAPP_FIELD_MAP => '_limit_free_disk_size_used',
+                );
+                $this->fields['limit_min_disk_size_used']              = array(
+                    ONAPP_FIELD_MAP => '_limit_min_disk_size_used',
+                );
+                $this->fields['limit_disk_size_used']                  = array(
+                    ONAPP_FIELD_MAP => '_limit_disk_size_used',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

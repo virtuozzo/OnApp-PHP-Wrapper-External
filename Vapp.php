@@ -135,7 +135,9 @@ class OnApp_Vapp extends OnApp {
                     ONAPP_FIELD_MAP  => '_storage_lease_expiration',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-
+                break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
                 break;
         }
 

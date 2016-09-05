@@ -142,6 +142,7 @@ class OnApp_BillingUser extends OnApp {
                     ONAPP_FIELD_CLASS     => 'BillingPlan_BaseResource',
                 );
                 break;
+
             case 4.2:
                 $this->fields         = $this->initFields( 4.1 );
                 $this->fields['type'] = array(
@@ -153,9 +154,10 @@ class OnApp_BillingUser extends OnApp {
                     ONAPP_FIELD_MAP  => '_associated_with_users',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
-
                 break;
+
             case 4.3:
+            case 5.0:
                 $this->fields = $this->initFields( 4.2 );
                 break;
         }

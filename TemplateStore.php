@@ -143,6 +143,7 @@ class OnApp_TemplateStore extends OnApp {
                 );
                 break;
             case 4.3:
+            case 5.0:
                 $this->fields = $this->initFields( 4.2 );
                 break;
         }

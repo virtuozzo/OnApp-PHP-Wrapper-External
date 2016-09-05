@@ -82,7 +82,9 @@ class OnApp_Asset extends OnApp_Hypervisor {
                     ONAPP_FIELD_TYPE => 'array',
                 );
                 break;
+
             case 4.3:
+            case 5.0:
                 $this->fields = $this->initFields( 4.2 );
                 break;
         }
