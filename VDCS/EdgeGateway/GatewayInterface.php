@@ -78,6 +78,9 @@ class OnApp_VDCS_EdgeGateway_GatewayInterface extends OnApp {
 
                 );
                 break;
+            case 5.1:
+                $this->fields = $this->initFields( 5.0 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

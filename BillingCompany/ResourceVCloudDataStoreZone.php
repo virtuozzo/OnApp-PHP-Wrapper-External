@@ -113,6 +113,9 @@ class OnApp_BillingCompany_ResourceVCloudDataStoreZone extends OnApp_BillingComp
                     ONAPP_FIELD_TYPE => 'integer',
                 );
                 break;
+            case 5.1:
+                $this->fields = $this->initFields( 5.0 );
+                break;
         }
 
         return $this->fields;

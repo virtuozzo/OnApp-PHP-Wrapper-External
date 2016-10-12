@@ -19,6 +19,7 @@
  */
 
 define( 'ONAPP_GET_USERTEMPLATES_LIST', 'user' );
+define( 'ONAPP_GET_ALL_TEMPLATES', 'all' );
 
 /**
  * Templates
@@ -274,6 +275,15 @@ class OnApp_Template extends OnApp {
             case 5.0:
                 $this->fields = $this->initFields( 4.3 );
                 break;
+            case 5.1:
+                $this->fields = $this->initFields( 5.0 );
+                $fields       = array(
+                    'virtualization_array',
+                );
+                $this->unsetFields( $fields );
+
+
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -291,7 +301,9 @@ class OnApp_Template extends OnApp {
             case 'user':
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LIST ) . '/' . ONAPP_GET_USERTEMPLATES_LIST;
                 break;
-
+            case ONAPP_GET_ALL_TEMPLATES:
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LIST ) . '/' . ONAPP_GET_ALL_TEMPLATES;
+                break;
             default:
                 /**
                  * ROUTE :
@@ -329,5 +341,9 @@ class OnApp_Template extends OnApp {
                 exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
                 break;
         }
+    }
+
+    function getAll() {
+        return $this->sendGet( ONAPP_GET_ALL_TEMPLATES );
     }
 }

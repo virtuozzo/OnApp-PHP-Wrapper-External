@@ -1,6 +1,6 @@
 <?php
 /**
- * Ftp
+ * Email Accounts
  *
  * @category    API wrapper
  * @package     OnApp
@@ -12,24 +12,24 @@
  */
 
 /**
- * The OnApp_ApplicationServer_SystemApp uses the following basic methods:
+ * The OnApp_ApplicationServer_EmailAccounts uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
-class OnApp_ApplicationServer_Ftp extends OnApp {
+class OnApp_ApplicationServer_EmailAccount extends OnApp {
     /**
      * root tag used in the API request
      *
      * @var string
      */
-    var $_tagRoot = 'ftp_user';
+    var $_tagRoot = 'email_account';
     /**
      * alias processing the object data
      *
      * @var string
      */
-    var $_resource = 'ftp_users';
+    var $_resource = 'email_accounts';
 
     /**
      * API Fields description
@@ -41,48 +41,37 @@ class OnApp_ApplicationServer_Ftp extends OnApp {
      */
     public function initFields( $version = null, $className = '' ) {
         switch ( $version ) {
-            case 4.0:
-            case 4.1:
-            case 4.2:
+            case 5.1:
                 $this->fields = array();
 
-                $this->fields['application_server_id'] = array(
-                    ONAPP_FIELD_MAP  => '_application_server_id',
+                $this->fields['count'] = array(
+                    ONAPP_FIELD_MAP  => '_count',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
                 $this->fields['identifier']            = array(
                     ONAPP_FIELD_MAP  => '_identifier',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields['login']                 = array(
-                    ONAPP_FIELD_MAP  => '_login',
+                $this->fields['space']                 = array(
+                    ONAPP_FIELD_MAP  => '_space',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields['path']                  = array(
-                    ONAPP_FIELD_MAP  => '_path',
+                $this->fields['user']                  = array(
+                    ONAPP_FIELD_MAP  => '_user',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields['usage']                 = array(
-                    ONAPP_FIELD_MAP  => '_usage',
-                    ONAPP_FIELD_TYPE => 'string',
-                );
-                $this->fields['password']              = array(
+                $this->fields['password']                  = array(
                     ONAPP_FIELD_MAP  => '_password',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields['password_confirmation'] = array(
+                $this->fields['password_confirmation']                  = array(
                     ONAPP_FIELD_MAP  => '_password_confirmation',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                break;
-            case 4.3:
-                $this->fields = $this->initFields( 4.2 );
-                break;
-            case 5.0:
-                $this->fields = $this->initFields( 4.3 );
-                break;
-            case 5.1:
-                $this->fields = $this->initFields( 5.0 );
+                $this->fields['domain']                  = array(
+                    ONAPP_FIELD_MAP  => '_domain',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
                 break;
         }
 
@@ -107,7 +96,7 @@ class OnApp_ApplicationServer_Ftp extends OnApp {
                  * ROUTE :
                  *
                  * @method GET
-                 * @alias   /application_servers/:application_server_id/applications(.:format)
+                 * @alias   /application_servers/:application_server_id/email_accounts(.:format)
                  * @format  {:controller=>"applications", :action=>"index"}
                  */
                 if ( is_null( $this->_application_server_id ) && is_null( $this->_obj->_application_server_id ) ) {
@@ -177,15 +166,15 @@ class OnApp_ApplicationServer_Ftp extends OnApp {
      * @return mixed an array of Object instances on success. Otherwise false
      * @access public
      */
-    function getList( $application_server_id = null, $url_args = null ) {
+    function getListByDomain( $domain, $application_server_id = null) {
         if ( is_null( $application_server_id ) && ! is_null( $this->_application_server_id ) ) {
             $application_server_id = $this->_application_server_id;
         }
 
         if ( ! is_null( $application_server_id ) ) {
             $this->_application_server_id = $application_server_id;
-
-            return parent::getList();
+            $url_args = array('domain' => $domain);
+            return parent::getList(null, $url_args);
         } else {
             $this->logger->error(
                 'getList: argument _application_server_id not set.',
@@ -194,4 +183,18 @@ class OnApp_ApplicationServer_Ftp extends OnApp {
             );
         }
     }
+
+    function delete() {
+        $url_args = array();
+        if ( ! is_null( $this->_domain ) ) {
+            $url_args = array('domain_name' => $this->_domain);
+        }
+
+        $this->logger->add( 'Delete existing Object ( identifier => ' . $this->_identifier . ' ).' );
+        $this->sendDelete( ONAPP_GETRESOURCE_DELETE, null, $url_args );
+        if ( count( $this->getErrorsAsArray() ) < 1 ) {
+            $this->_is_deleted = true;
+        }
+    }
+
 }

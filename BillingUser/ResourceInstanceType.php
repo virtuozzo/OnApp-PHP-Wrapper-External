@@ -108,6 +108,9 @@ class OnApp_BillingUser_ResourceInstanceType extends OnApp_BillingUser_BaseResou
             case 5.0:
                 $this->fields = $this->initFields( 4.3 );
                 break;
+            case 5.1:
+                $this->fields = $this->initFields( 5.0 );
+                break;
         }
 
         $this->fields['id'][ ONAPP_FIELD_REQUIRED ] = false;

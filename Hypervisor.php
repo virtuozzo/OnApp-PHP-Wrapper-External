@@ -433,6 +433,17 @@ class OnApp_Hypervisor extends OnApp {
             case 5.0:
                 $this->fields = $this->initFields( 4.3 );
                 break;
+            case 5.1:
+                $this->fields = $this->initFields( 5.0 );
+                $this->fields['storage_bonding_mode'] = array(
+                    ONAPP_FIELD_MAP  => '_storage_bonding_mode',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['storage_controller_db_size'] = array(
+                    ONAPP_FIELD_MAP  => '_storage_controller_db_size',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -451,6 +462,7 @@ class OnApp_Hypervisor extends OnApp {
                  * @alias  /settings/hypervisor_zones/:hypervisor_group_id/hypervisors(.:format)
                  * @format {:controller=>"hypervisors", :action=>"index"}
                  */
+
                 $resource = 'settings/hypervisor_zones/' . $this->_hypervisor_group_id . '/hypervisors';
                 break;
             case ONAPP_ENABLE_MAINTENANCE_MODE:
@@ -462,6 +474,7 @@ class OnApp_Hypervisor extends OnApp {
                  * @alias  /settings/hypervisors/:hypervisor_id/maintenance_mode/enable(.:format)
                  * @format {:controller=>"hypervisors", :action=>"index"}
                  */
+
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/maintenance_mode/enable';
                 break;
             case ONAPP_DISABLE_MAINTENANCE_MODE:
@@ -473,7 +486,20 @@ class OnApp_Hypervisor extends OnApp {
                  * @alias  /settings/hypervisors/:hypervisor_id/maintenance_mode/disable(.:format)
                  * @format {:controller=>"hypervisors", :action=>"index"}
                  */
+
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/maintenance_mode/disable';
+                break;
+            case ONAPP_GETRESOURCE_HYPERVISOR_REBOOT:
+                /**
+                 * ROUTE :
+                 *
+                 * @name reboot_hypervisor
+                 * @method POST
+                 * @alias   /settings/hypervisors/:id/reboot(.:format)
+                 * @format  {:action=>"reboot", :controller=>"settings_hypervisors"}
+                 */
+
+                $resource = $this->_resource . '/' . $this->_id . '/reboot';
                 break;
 
             case ONAPP_GETRESOURCE_DEFAULT:
@@ -519,18 +545,6 @@ class OnApp_Hypervisor extends OnApp {
                  */
                 $resource = parent::getResource( $action );
                 break;
-            case ONAPP_GETRESOURCE_HYPERVISOR_REBOOT:
-                /**
-                 * ROUTE :
-                 *
-                 * @name reboot_hypervisor
-                 * @method POST
-                 * @alias   /settings/hypervisors/:id/reboot(.:format)
-                 * @format  {:action=>"reboot", :controller=>"settings_hypervisors"}
-                 */
-                $resource = $this->_resource . '/' . $this->_id . '/reboot';
-                break;
-
             default:
                 $resource = parent::getResource( $action );
                 break;
@@ -582,6 +596,15 @@ class OnApp_Hypervisor extends OnApp {
      *
      */
     function reboot( $hypervisor_id ) {
+        $version = parent::getAPIVersion();
+        if ( $version > 5.0 ) {
+            $this->logger->error(
+                'reboot: Removed the deprecated POST request',
+                __FILE__,
+                __LINE__
+            );
+        }
+
         if ( $hypervisor_id ) {
             $this->_id = $hypervisor_id;
         } else {

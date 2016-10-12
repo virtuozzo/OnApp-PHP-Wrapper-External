@@ -79,6 +79,9 @@ class OnApp_OrchestrationModel_DataStore extends OnApp {
                     ),
                 );
                 break;
+            case 5.1:
+                $this->fields = $this->initFields( 5.0 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

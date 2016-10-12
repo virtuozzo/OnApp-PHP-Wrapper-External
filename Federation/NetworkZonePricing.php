@@ -77,6 +77,9 @@ class OnApp_Federation_NetworkZonePricing extends OnApp {
             case 5.0:
                 $this->fields = $this->initFields( 4.3 );
                 break;
+            case 5.1:
+                $this->fields = $this->initFields( 5.0 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

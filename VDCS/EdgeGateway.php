@@ -119,6 +119,9 @@ class OnApp_VDCS_EdgeGateway extends OnApp {
                     ONAPP_FIELD_TYPE => 'array',
                 );
                 break;
+            case 5.1:
+                $this->fields = $this->initFields( 5.0 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

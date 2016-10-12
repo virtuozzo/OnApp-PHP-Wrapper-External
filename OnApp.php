@@ -1434,11 +1434,11 @@ class OnApp {
     }
 
     function sendPut( $resource, $data = null, $url_args = null ) {
-        return $this->_action( ONAPP_REQUEST_METHOD_PUT, $resource, $data, $url_args = null );
+        return $this->_action( ONAPP_REQUEST_METHOD_PUT, $resource, $data, $url_args );
     }
 
-    function sendDelete( $resource, $data = null ) {
-        return $this->_action( ONAPP_REQUEST_METHOD_DELETE, $resource, $data );
+    function sendDelete( $resource, $data = null, $url_args = null ) {
+        return $this->_action( ONAPP_REQUEST_METHOD_DELETE, $resource, $data, $url_args );
     }
 
     /**

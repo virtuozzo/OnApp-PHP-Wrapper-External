@@ -103,6 +103,9 @@ class OnApp_BillingCompany_BaseResource_Price extends OnApp {
                     ONAPP_FIELD_MAP => '_price_disk_size_unlimited',
                 );
                 break;
+            case 5.1:
+                $this->fields = $this->initFields( 5.0 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

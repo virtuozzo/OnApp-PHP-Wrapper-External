@@ -235,7 +235,9 @@ class OnApp_HypervisorZone extends OnApp {
                     ONAPP_FIELD_MAP  => '_tier',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-
+                break;
+            case 5.1:
+                $this->fields = $this->initFields( 5.0 );
                 break;
         }
 

@@ -380,6 +380,9 @@ class OnApp_User extends OnApp {
             case 5.0:
                 $this->fields = $this->initFields( 4.2 );
                 break;
+            case 5.1:
+                $this->fields = $this->initFields( 5.0 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -667,7 +670,7 @@ class OnApp_User extends OnApp {
         if ( ! empty( $this->_obj->_additional_fields ) ) {
             $tmp = new stdClass();
             foreach ( $this->_obj->_additional_fields as $field ) {
-                $tmp->{$field->additional_field->name} = $field->additional_field->value;
+                $tmp->{$field->name} = $field->value;
             }
             $this->_obj->_additional_fields = $tmp;
             unset( $tmp );

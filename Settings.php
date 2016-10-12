@@ -770,7 +770,9 @@ class OnApp_Settings extends OnApp {
                     ONAPP_FIELD_MAP  => '_enforce_redundancy',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-
+                break;
+            case 5.1:
+                $this->fields = $this->initFields( 5.0 );
                 break;
         }
 

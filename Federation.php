@@ -322,7 +322,9 @@ class OnApp_Federation extends OnApp {
                     ONAPP_FIELD_TYPE => 'array',
                     ONAPP_FIELD_CLASS => 'Federation_TierOptions',
                 );
-
+                break;
+            case 5.1:
+                $this->fields = $this->initFields( 5.0 );
                 break;
         }
 

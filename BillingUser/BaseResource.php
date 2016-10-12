@@ -186,6 +186,13 @@ class OnApp_BillingUser_BaseResource extends OnApp {
             case 5.0:
                 $this->fields = $this->initFields( 4.3 );
                 break;
+            case 5.1:
+                $this->fields                = $this->initFields( 5.0 );
+                $this->fields['price_nodes'] = array(
+                    ONAPP_FIELD_MAP  => '_price_nodes',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

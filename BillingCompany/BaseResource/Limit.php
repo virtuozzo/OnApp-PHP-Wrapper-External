@@ -173,6 +173,9 @@ class OnApp_BillingCompany_BaseResource_Limit extends OnApp {
                     ONAPP_FIELD_MAP => '_limit_disk_size_used',
                 );
                 break;
+            case 5.1:
+                $this->fields = $this->initFields( 5.0 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
