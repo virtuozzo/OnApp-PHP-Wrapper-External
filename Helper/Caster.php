@@ -67,6 +67,12 @@ class OnApp_Helper_Caster {
     public static function unserializeNested( DataHolder $object ) {
         self::$obj->logger->add( 'castStringToClass: call ' . __METHOD__ );
 
+        if (!$object->className) {
+            self::$obj->logger->add( 'Data to unserialize into NULL: Dataholder object classname missing. Return;' );
+
+            return;
+        }
+
         $className = 'OnApp_' . $object->className;
         $tmp_obj   = new $className;
         $tmp_obj->initFields( $object->APIVersion );
