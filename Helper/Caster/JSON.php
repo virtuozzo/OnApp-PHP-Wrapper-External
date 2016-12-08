@@ -78,7 +78,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
         }
 
         // get errors
-        if ( $root === 'errors' ) {
+        if ( $root === 'errors' && property_exists($data, $root) ) {
             $errors = $this->objectToArray( $data->$root );
 
             if ( is_array( $errors ) && count( $errors ) == 1 && isset( $errors[0] ) ) {
@@ -140,7 +140,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
                     } else {
                         $tmp             = new DataHolder;
                         $tmp->APIVersion = parent::$APIVersion;
-                        $tmp->className  = $this->map[ $name ][ ONAPP_FIELD_CLASS ];
+                        $tmp->className  = ( array_key_exists( ONAPP_FIELD_CLASS , $this->map[ $name ] ) ) ? $this->map[ $name ][ ONAPP_FIELD_CLASS ] : null;
                         $tmp->data       = $value;
                         $value           = $tmp;
                     }

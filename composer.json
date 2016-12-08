@@ -1,0 +1,39 @@
+ {
+  "name": "ApiHawk/OnApp-PHP-Wrapper-External",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Pavel Nikolov",
+      "email": "p.nikolov@apihawk.com",
+      "homepage": "http://apihawk.com/"
+    }
+  ],
+  "autoload": {
+        "classmap": [
+          "VirtualMachine/",
+          "VirtualMachine/NetworkInterface/",
+          "Vapp",
+          "VDCS",
+          "VDCS/EdgeGateway",
+          "User",
+          "User/Statistics",
+          "Role",
+          "LoadBalancingCluster",
+          "HypervisorZone",
+          "Hypervisor",
+          "Helper",
+          "Helper/Caster",
+          "EdgeServer",
+          "EdgeGroup",
+          "EdgeGroup/Location",
+          "EdgeGroup/Location/Operator",
+          "Disk",
+          "DNSZone",
+          "CDNResource",
+          "CDNResource/Advanced",
+          "CDNResource/AvailableEdgeGroup",
+          "BillingPlan",
+          "BillingPlan/BaseResource"
+        ]
+      }
+}
