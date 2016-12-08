@@ -104,6 +104,9 @@ class OnApp_VirtualMachine_CustomRecipeVariable extends OnApp {
             case 5.1:
                 $this->fields = $this->initFields( 5.0 );
                 break;
+            case 5.2:
+                $this->fields = $this->initFields( 5.1 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

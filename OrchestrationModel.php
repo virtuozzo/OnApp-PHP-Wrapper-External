@@ -325,9 +325,6 @@ class OnApp_OrchestrationModel extends OnApp {
                         ONAPP_FIELD_MAP  => '_user_group_id',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-
-
-
                 );
                 break;
             case 4.3:
@@ -336,6 +333,9 @@ class OnApp_OrchestrationModel extends OnApp {
                 break;
             case 5.1:
                 $this->fields = $this->initFields( 5.0 );
+                break;
+            case 5.2:
+                $this->fields = $this->initFields( 5.1 );
                 break;
         }
 

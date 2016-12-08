@@ -647,6 +647,18 @@ class OnApp_VirtualMachine extends OnApp {
             case 5.1:
                 $this->fields = $this->initFields( 5.0 );
                 break;
+            case 5.2:
+                $this->fields = $this->initFields( 5.1 );
+                $this->fields['built_from_ova']     = array(
+                    ONAPP_FIELD_MAP  => '_built_from_ova',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['vcenter_moref']     = array(
+                    ONAPP_FIELD_MAP  => '_vcenter_moref',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+
+                break;
         }
 
         if ( is_null( $this->_id ) ) {

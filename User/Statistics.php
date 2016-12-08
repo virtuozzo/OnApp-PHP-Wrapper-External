@@ -167,6 +167,57 @@ class OnApp_User_Statistics extends OnApp {
             case 5.1:
                 $this->fields = $this->initFields( 5.0 );
                 break;
+            case 5.2:
+                $this->fields                             = $this->initFields( 5.1 );
+                $this->fields['limit_ova']                = array(
+                    ONAPP_FIELD_MAP  => '_limit_ova',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['limit_ova_disk_size']      = array(
+                    ONAPP_FIELD_MAP  => '_limit_ova_disk_size',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['limit_ova_free']           = array(
+                    ONAPP_FIELD_MAP  => '_limit_ova_free',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['limit_ova_disk_size_free'] = array(
+                    ONAPP_FIELD_MAP  => '_limit_ova_disk_size_free',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['price_ova']                = array(
+                    ONAPP_FIELD_MAP  => '_price_ova',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['price_ova_disk_size']      = array(
+                    ONAPP_FIELD_MAP  => '_price_ova_disk_size',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['parameters']               = array(
+                    ONAPP_FIELD_MAP  => '_parameters',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['autoscale_cost']           = array(
+                    ONAPP_FIELD_MAP  => '_autoscale_cost',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['ova_count_cost']           = array(
+                    ONAPP_FIELD_MAP  => '_ova_count_cost',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['ova_size_cost']            = array(
+                    ONAPP_FIELD_MAP  => '_ova_size_cost',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['provider_cpu_usage']       = array(
+                    ONAPP_FIELD_MAP  => '_provider_cpu_usage',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['provider_storage_usage']   = array(
+                    ONAPP_FIELD_MAP  => '_provider_storage_usage',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

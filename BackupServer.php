@@ -113,6 +113,13 @@ class OnApp_BackupServer extends OnApp {
             case 5.1:
                 $this->fields = $this->initFields( 5.0 );
                 break;
+            case 5.2:
+                $this->fields = $this->initFields( 5.1 );
+                $this->fields['os_version'] = array(
+                    ONAPP_FIELD_MAP  => '_os_version',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

@@ -281,8 +281,13 @@ class OnApp_Template extends OnApp {
                     'virtualization_array',
                 );
                 $this->unsetFields( $fields );
-
-
+                break;
+            case 5.2:
+                $this->fields = $this->initFields( 5.1 );
+                $this->fields['properties'] = array(
+                    ONAPP_FIELD_MAP  => '_properties',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
                 break;
         }
 

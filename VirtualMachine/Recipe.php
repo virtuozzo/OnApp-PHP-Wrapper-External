@@ -109,6 +109,14 @@ class OnApp_VirtualMachine_Recipe extends OnApp {
             case 5.1:
                 $this->fields = $this->initFields( 5.0 );
                 break;
+            case 5.2:
+                $this->fields = $this->initFields( 5.1 );
+                $this->fields['vcenter_moref']     = array(
+                    ONAPP_FIELD_MAP  => '_vcenter_moref',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

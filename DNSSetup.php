@@ -101,6 +101,9 @@ class OnApp_DNSSetup extends OnApp {
             case 5.1:
                 $this->fields = $this->initFields( 5.0 );
                 break;
+            case 5.2:
+                $this->fields = $this->initFields( 5.1 );
+                break;
 
         }
     }

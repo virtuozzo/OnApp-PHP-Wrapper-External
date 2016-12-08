@@ -774,6 +774,17 @@ class OnApp_Settings extends OnApp {
             case 5.1:
                 $this->fields = $this->initFields( 5.0 );
                 break;
+            case 5.2:
+                $this->fields = $this->initFields( 5.1 );
+                $this->fields['google_map_token'] = array(
+                    ONAPP_FIELD_MAP  => '_google_map_token',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['dashboard_stats'] = array(
+                    ONAPP_FIELD_MAP  => '_dashboard_stats',
+                    ONAPP_FIELD_TYPE => 'array',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

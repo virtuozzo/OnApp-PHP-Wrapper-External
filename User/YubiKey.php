@@ -1,37 +1,39 @@
 <?php
 
 /**
- * Managing SSH
+ * User_YubiKey
  *
  * @category    API wrapper
  * @package     OnApp
+ * @subpackage  User
  * @author      Ivan Gavryliuk
  * @copyright   © 2016 OnApp
- * @link        https://docs.onapp.com/display/42API/SSH+keys
+ * @link        http://www.onapp.com/
  * @see         OnApp
  */
 
 /**
- * SSH
+ * User Yubi Key
  *
- * The OnApp_SSH class uses the following basic methods:
- * {@link load}, {@link save}, {@link delete}, and {@link getList}.
+ * The OnApp_User_YubiKey class supports the following basic methods
  *
- * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
+ * The OnApp_User_YubiKey class uses the following basic methods:
+ * {@link getList}.
+ *
  */
-class OnApp_SSH extends OnApp {
+class OnApp_User_YubiKey extends OnApp {
     /**
      * root tag used in the API request
      *
      * @var string
      */
-    var $_tagRoot = 'ssh_key';
+    var $_tagRoot = 'yubi_key';
     /**
      * alias processing the object data
      *
      * @var string
      */
-    var $_resource = '/settings/ssh_keys';
+    var $_resource = 'yubi_keys';
 
     /**
      * API Fields description
@@ -42,33 +44,12 @@ class OnApp_SSH extends OnApp {
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-
         switch ( $version ) {
-            case '2.0':
-            case '2.1':
-            case 2.2:
-            case 2.3:
-            case 3.0:
-            case 3.1:
-            case 3.2:
-            case 3.3:
-            case 3.4:
-            case 3.5:
-            case 4.0:
-            case 4.1:
-            case 4.2:
+            case 5.2:
                 $this->fields = array(
                     'id'         => array(
                         ONAPP_FIELD_MAP  => '_id',
                         ONAPP_FIELD_TYPE => 'integer',
-                    ),
-                    'user_id'    => array(
-                        ONAPP_FIELD_MAP  => '_user_id',
-                        ONAPP_FIELD_TYPE => 'integer',
-                    ),
-                    'key'        => array(
-                        ONAPP_FIELD_MAP  => '_key',
-                        ONAPP_FIELD_TYPE => 'string',
                     ),
                     'created_at' => array(
                         ONAPP_FIELD_MAP  => '_created_at',
@@ -78,17 +59,23 @@ class OnApp_SSH extends OnApp {
                         ONAPP_FIELD_MAP  => '_updated_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
+                    'user_id'    => array(
+                        ONAPP_FIELD_MAP  => '_user_id',
+                        ONAPP_FIELD_TYPE => 'integer',
+                    ),
+                    'label'      => array(
+                        ONAPP_FIELD_MAP  => '_label',
+                        ONAPP_FIELD_TYPE => 'string',
+                    ),
+                    'last_used'  => array(
+                        ONAPP_FIELD_MAP  => '_last_used',
+                        ONAPP_FIELD_TYPE => 'string',
+                    ),
+                    'otp'        => array(
+                        ONAPP_FIELD_MAP  => '_otp',
+                        ONAPP_FIELD_TYPE => 'string',
+                    ),
                 );
-                break;
-            case 4.3:
-            case 5.0:
-                $this->fields = $this->initFields( 4.2 );
-                break;
-            case 5.1:
-                $this->fields = $this->initFields( 5.0 );
-                break;
-            case 5.2:
-                $this->fields = $this->initFields( 5.1 );
                 break;
         }
 
@@ -99,23 +86,21 @@ class OnApp_SSH extends OnApp {
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         switch ( $action ) {
-            case ONAPP_GETRESOURCE_ADD :
-                /**
-                 * ROUTE :
-                 *
-                 * @name ssh
-                 * @method POST
-                 * @alias  /users/:user_id/ssh_keys(.:format)
-                 * @format {:action=>"index", :controller=>"ssh_keys"}
-                 */
-                if ( is_null( $this->_user_id ) ) {
+            case ONAPP_GETRESOURCE_DEFAULT:
+
+                if ( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _user_id not set.',
                         __FILE__,
                         __LINE__
                     );
+                } else {
+                    if ( is_null( $this->_user_id ) ) {
+                        $this->_user_id = $this->_obj->_user_id;
+                    }
                 }
-                $resource = 'users/' . $this->_user_id . '/ssh_keys';
+
+                $resource = 'users/' . $this->_user_id . '/' . $this->_resource;
                 break;
             default:
                 $resource = parent::getResource( $action );
@@ -124,4 +109,5 @@ class OnApp_SSH extends OnApp {
 
         return $resource;
     }
+
 }
