@@ -14,6 +14,16 @@
 
 /**
  *
+ */
+define( 'ONAPP_GETRESOURCE_DATASTOREZONE_WITHDATASTOREID', 'datastorezone_withdatastoreid' );
+
+/**
+ *
+ */
+define( 'ONAPP_GETRESOURCE_DATASTOREZONE_ATTACH', 'datastorezone_attach' );
+
+/**
+ *
  * Managing Data Store Zones
  *
  * The OnApp_Disk class uses the following basic methods:
@@ -157,6 +167,17 @@ class OnApp_DataStoreZone extends OnApp {
             case 5.2:
                 $this->fields = $this->initFields( 5.1 );
                 break;
+            case 5.3:
+                $this->fields = $this->initFields( 5.2 );
+                $this->fields['server_type'] = array(
+                    ONAPP_FIELD_MAP  => '_server_type',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['data_store_id'] = array(
+                    ONAPP_FIELD_MAP  => '_data_store_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -165,46 +186,94 @@ class OnApp_DataStoreZone extends OnApp {
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        return parent::getResource( $action );
-        /**
-         * ROUTE :
-         *
-         * @name user_data_store_groups
-         * @method GET
-         * @alias  /data_store_zones(.:format)
-         * @format {:controller=>"data_store_groups", :action=>"index"}
-         */
-        /**
-         * ROUTE :
-         *
-         * @name user_data_store_group
-         * @method GET
-         * @alias   /data_store_zones/:id(.:format)
-         * @format  {:controller=>"data_store_groups", :action=>"show"}
-         */
-        /**
-         * ROUTE :
-         *
-         * @name
-         * @method POST
-         * @alias   /data_store_zones(.:format)
-         * @format  {:controller=>"data_store_groups", :action=>"create"}
-         */
-        /**
-         * ROUTE :
-         *
-         * @name
-         * @method PUT
-         * @alias  /data_store_zones/:id(.:format)
-         * @format {:controller=>"data_store_groups", :action=>"update"}
-         */
-        /**
-         * ROUTE :
-         *
-         * @name
-         * @method DELETE
-         * @alias  /data_store_zones/:id(.:format)
-         * @format {:controller=>"data_store_groups", :action=>"destroy"}
-         */
+        switch ( $action ) {
+            case ONAPP_GETRESOURCE_DATASTOREZONE_WITHDATASTOREID:
+                /**
+                 * @alias     /settings/data_store_zones/:data_store_zone_id/data_stores/:id/attach.json
+                 */
+                if ( is_null( $this->_id ) && is_null( $this->_obj->_id ) ) {
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _id not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                } else {
+                    if ( is_null( $this->_id ) ) {
+                        $this->_id = $this->_obj->_id;
+                    }
+                }
+                if ( is_null( $this->_data_store_id ) && is_null( $this->_obj->_data_store_id ) ) {
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _data_store_id not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                } else {
+                    if ( is_null( $this->_data_store_id ) ) {
+                        $this->_data_store_id = $this->_obj->_data_store_id;
+                    }
+                }
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/data_stores/' . $this->_data_store_id;
+                break;
+
+            case ONAPP_GETRESOURCE_DATASTOREZONE_ATTACH:
+                /**
+                 * @alias     /settings/data_store_zones/:data_store_zone_id/data_stores/:id/attach.json
+                 */
+                $resource = $this->getResource( ONAPP_GETRESOURCE_DATASTOREZONE_WITHDATASTOREID ) . '/attach';
+                break;
+
+            default:
+                /**
+                 * ROUTE :
+                 *
+                 * @name user_data_store_groups
+                 * @method GET
+                 * @alias  /data_store_zones(.:format)
+                 * @format {:controller=>"data_store_groups", :action=>"index"}
+                 */
+                /**
+                 * ROUTE :
+                 *
+                 * @name user_data_store_group
+                 * @method GET
+                 * @alias   /data_store_zones/:id(.:format)
+                 * @format  {:controller=>"data_store_groups", :action=>"show"}
+                 */
+                /**
+                 * ROUTE :
+                 *
+                 * @name
+                 * @method POST
+                 * @alias   /data_store_zones(.:format)
+                 * @format  {:controller=>"data_store_groups", :action=>"create"}
+                 */
+                /**
+                 * ROUTE :
+                 *
+                 * @name
+                 * @method PUT
+                 * @alias  /data_store_zones/:id(.:format)
+                 * @format {:controller=>"data_store_groups", :action=>"update"}
+                 */
+                /**
+                 * ROUTE :
+                 *
+                 * @name
+                 * @method DELETE
+                 * @alias  /data_store_zones/:id(.:format)
+                 * @format {:controller=>"data_store_groups", :action=>"destroy"}
+                 */
+                $resource = parent::getResource( $action );
+        }
+        return $resource;
     }
+
+    function attach( $datastore_id = null ) {
+        if ( ! is_null( $datastore_id ) ) {
+            $this->_datastore_id = $datastore_id;
+        }
+        $this->sendPost( ONAPP_GETRESOURCE_DATASTOREZONE_ATTACH );
+    }
+
 }

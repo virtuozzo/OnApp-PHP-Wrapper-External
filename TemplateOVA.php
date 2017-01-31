@@ -45,6 +45,11 @@ define( 'ONAPP_MAKE_PUBLIC', 'make_public' );
  * */
 define( 'ONAPP_DELETE_FILES', 'delete_files' );
 
+/*
+ * To unlock OVA files
+ * */
+define( 'ONAPP_UNLOCK_OVA', 'unlock_ova' );
+
 
 class OnApp_TemplateOVA extends OnApp {
     /**
@@ -225,6 +230,13 @@ class OnApp_TemplateOVA extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+            case 5.3:
+                $this->fields = $this->initFields( 5.2 );
+                $this->fields['locked'] = array(
+                    ONAPP_FIELD_MAP  => '_locked',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -316,6 +328,30 @@ class OnApp_TemplateOVA extends OnApp {
                 $resource = $this->_resource . '/' .$this->_id .'/delete_files';
                 break;
 
+            case ONAPP_UNLOCK_OVA:
+                /**
+                 * ROUTE :
+                 *
+                 * @name template_ovas
+                 * @method POST
+                 * @alias   /template_ovas/:id/unlock.json(.:format)
+                 * @format  {:controller=>"user", :action=>"index"}
+                 */
+
+                if ( is_null( $this->_id ) && is_null( $this->_obj->_id ) ) {
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _id not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                } else {
+                    if ( is_null( $this->_id ) ) {
+                        $this->_id = $this->_obj->_id;
+                    }
+                }
+                $resource = $this->_resource . '/' . $this->_id . '/unlock';
+                break;
+
             default:
                 /**
                  * ROUTE :
@@ -371,4 +407,7 @@ class OnApp_TemplateOVA extends OnApp {
        return $this->sendPost( ONAPP_DELETE_FILES );
     }
 
+    public function unlock() {
+        return $this->sendPost( ONAPP_UNLOCK_OVA );
+    }
 }

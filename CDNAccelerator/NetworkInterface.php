@@ -135,6 +135,13 @@ class OnApp_CDNAccelerator_NetworkInterface extends OnApp {
             case 5.2:
                 $this->fields = $this->initFields( 5.1 );
                 break;
+            case 5.3:
+                $this->fields = $this->initFields( 5.2 );
+                $this->fields['use_as_gateway'] = array(
+                    ONAPP_FIELD_MAP  => '_use_as_gateway',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

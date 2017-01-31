@@ -106,12 +106,19 @@ class OnApp_VirtualMachine_Snapshot extends OnApp {
             case 4.3:
             case 5.0:
                 $this->fields = $this->initFields( 4.1 );
+                $this->fields['note'] = array(
+                    ONAPP_FIELD_MAP  => '_note',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
                 break;
             case 5.1:
                 $this->fields = $this->initFields( 5.0 );
                 break;
             case 5.2:
                 $this->fields = $this->initFields( 5.1 );
+                break;
+            case 5.3:
+                $this->fields = $this->initFields( 5.2 );
                 break;
         }
 

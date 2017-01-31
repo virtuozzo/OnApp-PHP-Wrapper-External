@@ -14,11 +14,11 @@
  */
 
 /**
- * ONAPP_Hypervisor_DataStoreJoin
+ * ONAPP_HypervisorZone_DataStoreJoin
  *
  * This class reprsents the Data Store Joins for Hypervisor Zones.
  *
- * The OnApp_Hypervisor_DataStoreJoin class uses the following basic methods:
+ * The OnApp_HypervisorZone_DataStoreJoin class uses the following basic methods:
  * {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -110,6 +110,9 @@ class OnApp_HypervisorZone_DataStoreJoin extends OnApp {
                 break;
             case 5.2:
                 $this->fields = $this->initFields( 5.1 );
+                break;
+            case 5.3:
+                $this->fields = $this->initFields( 5.2 );
                 break;
         }
 

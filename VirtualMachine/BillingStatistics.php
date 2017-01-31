@@ -155,6 +155,14 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
             case 5.2:
                 $this->fields = $this->initFields( 5.1 );
                 break;
+            case 5.3:
+                $this->fields                   = $this->initFields( 5.2 );
+                $this->fields['service_addons'] = array(
+                    ONAPP_FIELD_MAP  => '_service_addons',
+                    ONAPP_FIELD_TYPE => 'array'
+                );
+
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

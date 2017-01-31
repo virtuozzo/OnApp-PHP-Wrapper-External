@@ -109,6 +109,13 @@ class OnApp_Log extends OnApp {
             case 5.2:
                 $this->fields = $this->initFields( 5.1 );
                 break;
+            case 5.3:
+                $this->fields = $this->initFields( 5.2 );
+                $this->fields['resource_diff_id'] = array(
+                    ONAPP_FIELD_MAP  => '_resource_diff_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

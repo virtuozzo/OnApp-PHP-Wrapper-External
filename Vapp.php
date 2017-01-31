@@ -145,6 +145,9 @@ class OnApp_Vapp extends OnApp {
             case 5.2:
                 $this->fields = $this->initFields( 5.1 );
                 break;
+            case 5.3:
+                $this->fields = $this->initFields( 5.2 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -260,11 +263,46 @@ class OnApp_Vapp extends OnApp {
         return $resource;
     }
 
-    function compose( $data ) {
+    function compose( $data, $virtualMachines ) {
+        /*
+                "virtual_machines" => array(
+                    "virtual_machine_0" => array(
+                        "id"                                    => "vm-a111111-8885-4276-ac1c-479c724b9d6e",
+                        "name"                                  => "Example",
+                        "cpus"                                  => 1,
+                        "cores_per_socket"                      => 1,
+                        "memory"                                => 1024,
+                        "storage_policy"                        => 2,
+                        "hard_disks"                            => array(
+                            "hard_disk_1" => array(
+                                "disk_space" => 3,
+                            ),
+                        ),
+                        "vcloud_guest_customization"            => array(
+                            "enabled"                => "1",
+                            "admin_password_enabled" => "1",
+                            "admin_password_auto"    => "0",
+                            "admin_password"         => "password",
+                            "computer_name"          => "example",
+                        ),
+                        "recipe_ids"                            => [ 4, 5 ],
+                        "custom_recipe_variables"               => array(
+                            "variable_0" => array(
+                                "name"    => "xxx",
+                                "value"   => "xy",
+                                "enabled" => "true",
+                            )
+                        ),
+                        "boot_vm"                               => "1",
+                        "disable_guest_customization_after_run" => "0",
+                    )
+                )
+        */
         $data = array(
             'root' => 'tmp_holder',
             'data' => [
-                'vapp' => $data
+                'vapp'             => $data,
+                "virtual_machines" => $virtualMachines,
             ]
         );
         $this->sendPost( ONAPP_GETRESOURCE_VAPPS_COMPOSE, $data );
@@ -292,7 +330,8 @@ class OnApp_Vapp extends OnApp {
             'root' => 'tmp_holder',
             'data' => array(
                 'vapp' => array(
-                    'vapp_template_id' => $id
+                    'vapp_template_id' => $id,
+                    ''
                 )
             )
         );

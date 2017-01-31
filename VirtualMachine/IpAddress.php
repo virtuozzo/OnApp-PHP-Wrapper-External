@@ -147,6 +147,9 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
             case 5.2:
                 $this->fields = $this->initFields( 5.1 );
                 break;
+            case 5.3:
+                $this->fields = $this->initFields( 5.2 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -217,7 +220,6 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
             case ONAPP_ACTIVATE_GETLIST:
             case ONAPP_ACTIVATE_LOAD:
             case ONAPP_ACTIVATE_SAVE:
-            case ONAPP_ACTIVATE_DELETE:
                 exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
                 break;
         }

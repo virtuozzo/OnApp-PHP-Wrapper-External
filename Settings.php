@@ -785,6 +785,21 @@ class OnApp_Settings extends OnApp {
                     ONAPP_FIELD_TYPE => 'array',
                 );
                 break;
+            case 5.3:
+                $this->fields = $this->initFields( 5.2 );
+                $this->fields['enable_notifications'] = array(
+                    ONAPP_FIELD_MAP  => '_enable_notifications',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['ova_path_on_cp'] = array(
+                    ONAPP_FIELD_MAP  => '_ova_path_on_cp',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['simultaneous_storage_resync_transactions'] = array(
+                    ONAPP_FIELD_MAP  => '_simultaneous_storage_resync_transactions',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

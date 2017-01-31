@@ -189,6 +189,13 @@ define( 'ONAPP_REQUEST_METHOD_PUT', 'PUT' );
 define( 'ONAPP_REQUEST_METHOD_DELETE', 'DELETE' );
 
 /**
+ * Specify the PATCH request
+ *
+ */
+define( 'ONAPP_REQUEST_METHOD_PATCH', 'PATCH' );
+
+
+/**
  * API Wrapper for OnApp
  *
  *
@@ -857,6 +864,7 @@ class OnApp {
             ONAPP_REQUEST_METHOD_POST,
             ONAPP_REQUEST_METHOD_PUT,
             ONAPP_REQUEST_METHOD_DELETE,
+            ONAPP_REQUEST_METHOD_PATCH,
         );
         if ( ! in_array( $method, $alowed_methods ) ) {
             $this->logger->error( 'Wrong request method.' );
@@ -905,6 +913,14 @@ class OnApp {
                     curl_setopt( $this->_ch, CURLOPT_POSTFIELDS, $data );
                 }
                 break;
+
+            case ONAPP_REQUEST_METHOD_PATCH:
+                curl_setopt( $this->_ch, CURLOPT_CUSTOMREQUEST, 'PATCH' );
+                if ( ! is_null( $data ) ) {
+                    curl_setopt( $this->_ch, CURLOPT_POSTFIELDS, $data );
+                }
+                break;
+
         }
 
         curl_setopt( $this->_ch, CURLOPT_RETURNTRANSFER, true );
@@ -1439,6 +1455,10 @@ class OnApp {
 
     function sendDelete( $resource, $data = null, $url_args = null ) {
         return $this->_action( ONAPP_REQUEST_METHOD_DELETE, $resource, $data, $url_args );
+    }
+
+    function sendPatch( $resource, $data = null ) {
+        return $this->_action( ONAPP_REQUEST_METHOD_PATCH, $resource, $data );
     }
 
     /**

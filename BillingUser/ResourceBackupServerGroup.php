@@ -146,6 +146,9 @@ class OnApp_BillingUser_ResourceBackupServerGroup extends OnApp_BillingUser_Base
             case 5.2:
                 $this->fields = $this->initFields( 5.1 );
                 break;
+            case 5.3:
+                $this->fields = $this->initFields( 5.2 );
+                break;
         }
 
         $this->fields['id'][ ONAPP_FIELD_REQUIRED ] = false;

@@ -117,6 +117,9 @@ class OnApp_VirtualMachine_Recipe extends OnApp {
                 );
 
                 break;
+            case 5.3:
+                $this->fields = $this->initFields( 5.2 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

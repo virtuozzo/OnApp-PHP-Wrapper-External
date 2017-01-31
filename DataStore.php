@@ -202,6 +202,13 @@ class OnApp_DataStore extends OnApp {
             case 5.2:
                 $this->fields = $this->initFields( 5.1 );
                 break;
+            case 5.3:
+                $this->fields = $this->initFields( 5.2 );
+                $this->fields['auto_healing'] = array(
+                    ONAPP_FIELD_MAP  => '_auto_healing',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                break;
 
         }
 

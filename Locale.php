@@ -66,6 +66,9 @@ class OnApp_Locale extends OnApp {
             case 5.2:
                 $this->fields = $this->initFields( 5.1 );
                 break;
+            case 5.3:
+                $this->fields = $this->initFields( 5.2 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

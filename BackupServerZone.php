@@ -179,6 +179,13 @@ class ONAPP_BackupServerZone extends OnApp {
             case 5.2:
                 $this->fields = $this->initFields( 5.1 );
                 break;
+            case 5.3:
+                $this->fields = $this->initFields( 5.2 );
+                $this->fields['server_type'] = array(
+                    ONAPP_FIELD_MAP  => '_server_type',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

@@ -156,6 +156,11 @@ define( 'ONAPP_GETRESOURCE_PURGE_ALL', 'purge_all' );
 define( 'ONAPP_GETRESOURCE_PURGE', 'purge' );
 
 /**
+ * Purge File(s)
+ */
+define( 'ONAPP_GETRESOURCE_WITH_DECRYPTED_PASSWORD', 'with_decrypted_password' );
+
+/**
  * Virtual Machines
  *
  * The Virtual Machine class represents the Virtual Machines of the OnAPP installation.
@@ -659,6 +664,22 @@ class OnApp_VirtualMachine extends OnApp {
                 );
 
                 break;
+            case 5.3:
+                $this->fields = $this->initFields( 5.2 );
+                $this->fields['template_version'] = array(
+                    ONAPP_FIELD_MAP  => '_template_version',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['recipe_joins_attributes'] = array(
+                    ONAPP_FIELD_MAP  => '_recipe_joins_attributes',
+                    ONAPP_FIELD_TYPE => 'array',
+                );
+                $this->fields['custom_variables_attributes'] = array(
+                    ONAPP_FIELD_MAP   => '_custom_variables_attributes',
+                    ONAPP_FIELD_TYPE  => 'array',
+                    ONAPP_FIELD_CLASS => 'VirtualMachine_CustomVariablesAttribute',
+                );
+                break;
         }
 
         if ( is_null( $this->_id ) ) {
@@ -965,6 +986,18 @@ class OnApp_VirtualMachine extends OnApp {
                  * @format   {:controller=>"virtual_machines", :action=>"purge_all"}
                  */
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/purge_all';
+                break;
+
+            case ONAPP_GETRESOURCE_WITH_DECRYPTED_PASSWORD:
+                /**
+                 * ROUTE :
+                 *
+                 * @name with_decrypted_password
+                 * @method GET
+                 * @alias    /virtual_machines/:id/with_decrypted_password(.:format)
+                 * @format   {:controller=>"virtual_machines", :action=>"with_decrypted_password"}
+                 */
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/with_decrypted_password';
                 break;
 
             default:
@@ -1531,4 +1564,10 @@ class OnApp_VirtualMachine extends OnApp {
 
         return $this->sendPost( ONAPP_GETRESOURCE_PURGE, $data );
     }
+
+    function viewDecryptedPassword($encryptionKey) {
+        //initial_root_password_encryption_key=encryptionkey
+        return $this->sendGet( ONAPP_GETRESOURCE_WITH_DECRYPTED_PASSWORD, null, array(initial_root_password_encryption_key => $encryptionKey) );
+    }
+
 }

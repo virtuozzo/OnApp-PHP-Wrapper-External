@@ -289,6 +289,13 @@ class OnApp_Template extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+            case 5.3:
+                $this->fields = $this->initFields( 5.2 );
+                $this->fields['locked'] = array(
+                    ONAPP_FIELD_MAP  => '_locked',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

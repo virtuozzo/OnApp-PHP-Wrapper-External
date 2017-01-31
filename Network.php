@@ -37,6 +37,12 @@ define( 'ONAPP_GETRESOURCE_IP_ADDRESSES', 'ip_addresses' );
 define( 'ONAPP_GETRESOURCE_NETWORKS_LIST_BY_HYPERVISOR_GROUP_ID', 'networks_list_by_hypervisor_group_id' );
 
 /**
+ *
+ */
+define( 'ONAPP_GETRESOURCE_IP_ASSIGN', 'ip_assign' );
+
+
+/**
  * Configuring Network
  *
  * This class represents the Networks added to your system.
@@ -219,6 +225,9 @@ class OnApp_Network extends OnApp {
             case 5.2:
                 $this->fields = $this->initFields( 5.1 );
                 break;
+            case 5.3:
+                $this->fields = $this->initFields( 5.2 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -250,6 +259,14 @@ class OnApp_Network extends OnApp {
                  * @format {:controller=>"ip_addresses", :action=>"index"}
                  */
                 $resource = $this->_resource . '/' . $this->_id . '/ip_address';
+                break;
+
+            case ONAPP_GETRESOURCE_IP_ASSIGN:
+                /*
+                 * @method POST
+                 * @alias  /settings/networks/:network_id/ip_addresses/assign(.:format)
+                 */
+                $resource = $this->_resource . '/' . $this->_id . '/ip_addresses/assign';
                 break;
 
             default:
@@ -308,6 +325,28 @@ class OnApp_Network extends OnApp {
         $this->_obj = $result;
 
         return ( is_array( $result ) || ! $result ) ? $result : array( $result );
+    }
+
+    function assignIPAddressToUser( $ipAddressIDs, $userID ) {
+        if ( is_null( $this->_id ) ) {
+            $this->logger->error(
+                'cloudConfig: argument _id not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
+
+        $data = array(
+            'root' => 'tmp_holder',
+            'data' => array(
+                'ip_address' => $ipAddressIDs,
+                'user_id'    => $userID,
+            ),
+        );
+
+        $res = $this->sendPut( ONAPP_GETRESOURCE_IP_ASSIGN, $data );
+
+        return $res;
     }
 
     function activateCheck( $action_name ) {
