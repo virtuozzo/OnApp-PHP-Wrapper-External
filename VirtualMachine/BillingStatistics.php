@@ -29,7 +29,7 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
      *
      * @var string
      */
-    var $_tagRoot = 'vm_stats';
+    var $_tagRoot = 'vm_hourly_stat';
     /**
      * alias processing the object data
      *
@@ -138,6 +138,18 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
                     ONAPP_FIELD_READ_ONLY => true,
                 );
 
+                $this->fields['backup_count_cost'] = array(
+                    ONAPP_FIELD_MAP       => '_backup_count_cost',
+                    ONAPP_FIELD_TYPE      => 'float',
+                    ONAPP_FIELD_READ_ONLY => true
+                );
+
+                $this->fields['backup_disk_size_cost'] = array(
+                    ONAPP_FIELD_MAP       => '_backup_disk_size_cost',
+                    ONAPP_FIELD_TYPE      => 'float',
+                    ONAPP_FIELD_READ_ONLY => true
+                );
+
                 break;
             case 4.3:
                 $this->fields                   = $this->initFields( 4.2 );
@@ -217,8 +229,10 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
         if ( ! is_null( $virtual_machine_id ) ) {
             $this->_virtual_machine_id = $virtual_machine_id;
 
-            return parent::getList();
-        } else {
+            return parent::getList(null, $url_args);
+        }
+        else {
+
             $this->logger->error(
                 'getList: argument _virtual_machine_id not set.',
                 __FILE__,

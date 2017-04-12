@@ -100,6 +100,11 @@ class OnApp_Disk extends OnApp {
                         ONAPP_FIELD_TYPE     => 'integer',
                         ONAPP_FIELD_REQUIRED => true,
                     ),
+                    'label'               => array(
+                        ONAPP_FIELD_MAP      => '_label',
+                        ONAPP_FIELD_TYPE     => 'string',
+                        ONAPP_FIELD_REQUIRED => false,
+                    ),
                     'disk_vm_number'      => array(
                         ONAPP_FIELD_MAP       => '_disk_vm_number',
                         ONAPP_FIELD_TYPE      => 'integer',
