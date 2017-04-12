@@ -42,13 +42,13 @@ class OnApp_User_WhiteList extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -97,6 +97,8 @@ class OnApp_User_WhiteList extends OnApp {
             case 4.0:
             case 4.1:
             case 4.2:
+            case 4.3:
+            case 5.0:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
@@ -115,7 +117,7 @@ class OnApp_User_WhiteList extends OnApp {
      * @access public
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
@@ -157,15 +159,14 @@ class OnApp_User_WhiteList extends OnApp {
                  * @alias   /users/:user_id/user_white_lists/:id(.:format)
                  * @format  {:controller=>"user_white_lists", :action=>"destroy"}
                  */
-                if( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {
+                if ( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {
                     $this->logger->error(
                         "getResource($action): argument _user_id not set.",
                         __FILE__,
                         __LINE__
                     );
-                }
-                else {
-                    if( is_null( $this->_user_id ) ) {
+                } else {
+                    if ( is_null( $this->_user_id ) ) {
                         $this->_user_id = $this->_obj->_user_id;
                     }
                 }
@@ -190,17 +191,16 @@ class OnApp_User_WhiteList extends OnApp {
      * @return mixed an array of Object instances on success. Otherwise false
      * @access public
      */
-    function getList( $user_id = null ) {
-        if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
+    function getList( $user_id = null, $url_args = null ) {
+        if ( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
             $user_id = $this->_user_id;
         }
 
-        if( ! is_null( $user_id ) ) {
+        if ( ! is_null( $user_id ) ) {
             $this->_user_id = $user_id;
 
             return parent::getList();
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getList: argument _user_id not set.',
                 __FILE__,
@@ -216,38 +216,38 @@ class OnApp_User_WhiteList extends OnApp {
      * The key field Parameter ID is used to load the Object. You can re-set
      * this parameter in the class inheriting OnApp class.
      *
-     * @param integer $id      white list id
+     * @param integer $id white list id
      * @param integer $user_id User id
      *
      * @return mixed serialized Object instance from API
      * @access public
      */
     function load( $id = null, $user_id = null ) {
-        if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
+        if ( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
             $user_id = $this->_user_id;
         }
 
-        if( is_null( $user_id ) &&
-            isset( $this->_obj ) &&
-            ! is_null( $this->_obj->_user_id )
+        if ( is_null( $user_id ) &&
+             isset( $this->_obj ) &&
+             ! is_null( $this->_obj->_user_id )
         ) {
             $user_id = $this->_obj->_user_id;
         }
 
-        if( is_null( $id ) && ! is_null( $this->_id ) ) {
+        if ( is_null( $id ) && ! is_null( $this->_id ) ) {
             $id = $this->_id;
         }
 
-        if( is_null( $id ) &&
-            isset( $this->_obj ) &&
-            ! is_null( $this->_obj->_id )
+        if ( is_null( $id ) &&
+             isset( $this->_obj ) &&
+             ! is_null( $this->_obj->_id )
         ) {
             $id = $this->_obj->_id;
         }
 
         $this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
 
-        if( ! is_null( $id ) && ! is_null( $user_id ) ) {
+        if ( ! is_null( $id ) && ! is_null( $user_id ) ) {
             $this->_id      = $id;
             $this->_user_id = $user_id;
 
@@ -260,16 +260,14 @@ class OnApp_User_WhiteList extends OnApp {
             $this->_obj = $result;
 
             return $result;
-        }
-        else {
-            if( is_null( $id ) ) {
+        } else {
+            if ( is_null( $id ) ) {
                 $this->logger->error(
                     'load: argument _id not set.',
                     __FILE__,
                     __LINE__
                 );
-            }
-            else {
+            } else {
                 $this->logger->error(
                     'load: argument _user_id not set.',
                     __FILE__,

@@ -111,7 +111,7 @@ class OnApp_Helper_Logger {
      * @access public
      */
     function setDebug( $debug ) {
-        if( ! is_null( $debug ) ) {
+        if ( ! is_null( $debug ) ) {
             $this->_debug = $debug;
         }
     }
@@ -132,8 +132,8 @@ class OnApp_Helper_Logger {
      * Adds the error message to the logger buffer and stops
      * executing
      *
-     * @param string  $msg  log message
-     * @param string  $file file which initialized error
+     * @param string $msg log message
+     * @param string $file file which initialized error
      * @param integer $line string in which was initialized error
      *
      * @return void
@@ -166,7 +166,7 @@ class OnApp_Helper_Logger {
      * @access public
      */
     function debug( $msg ) {
-        if( $this->_debug ) {
+        if ( $this->_debug ) {
             $this->_log( $msg, ONAPP_LOGGER_VALUE_DEBUG );
         }
     }
@@ -175,7 +175,7 @@ class OnApp_Helper_Logger {
      * Adds the message and additional data to the buffer depending
      * on the message type
      *
-     * @param string $msg  log message
+     * @param string $msg log message
      * @param string $type log type
      *
      * @return boolean
@@ -186,8 +186,8 @@ class OnApp_Helper_Logger {
 
         $date_format = $this->_date_format;
 
-        if( strlen( $msg ) > 0 ) {
-            switch( $type ) {
+        if ( strlen( $msg ) > 0 ) {
+            switch ( $type ) {
                 case ONAPP_LOGGER_VALUE_ERROR:
                     $log = "[ERROR] $msg";
                     break;
@@ -224,8 +224,8 @@ class OnApp_Helper_Logger {
      */
     function logs() {
         $output = "";
-        foreach( $this->_log as $key => $value ) {
-            $output .= "[$key] " . $value[ 'log' ] . "\n";
+        foreach ( $this->_log as $key => $value ) {
+            $output .= "[$key] " . $value['log'] . "\n";
         }
 
         return $output;
@@ -240,25 +240,23 @@ class OnApp_Helper_Logger {
      * @access public
      */
     function setTimezone( $timezone = '' ) {
-        if( strlen( $timezone ) == 0 ) {
+        if ( strlen( $timezone ) == 0 ) {
             $timezone = $this->_timezone;
         }
 
-        if( ! function_exists( 'date_default_timezone_set' ) ) {
+        if ( ! function_exists( 'date_default_timezone_set' ) ) {
             $this->warning( "This PHP version not suport functions date_default_timezone_set or date_default_timezone_get." );
-        }
-        else {
-            if( strlen( ini_get( 'date.timezone' ) ) == 0 ) {
+        } else {
+            if ( strlen( ini_get( 'date.timezone' ) ) == 0 ) {
                 //                               date_default_timezone_set( $timezone );
                 $this->add( "setTimezone: Change default date.timezone." );
-            }
-            else {
+            } else {
                 $this->add( "setTimezone: Do not need to change default date.timezone." );
             }
 
             $script_tz = date_default_timezone_get();
 
-            if( strcmp( $script_tz, ini_get( 'date.timezone' ) ) ) {
+            if ( strcmp( $script_tz, ini_get( 'date.timezone' ) ) ) {
                 $this->warning( "setTimezone: Script timezone differs from ini-set timezone." );
             }
         }

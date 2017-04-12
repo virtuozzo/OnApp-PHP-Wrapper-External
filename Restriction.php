@@ -41,13 +41,13 @@ class OnApp_Restriction extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -62,40 +62,44 @@ class OnApp_Restriction extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'created_at'                  => array(
-                        ONAPP_FIELD_MAP       => '_created_at',
-                        ONAPP_FIELD_TYPE      => 'datetime',
+                    'created_at'             => array(
+                        ONAPP_FIELD_MAP  => '_created_at',
+                        ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'id'                  => array(
-                        ONAPP_FIELD_MAP       => '_id',
-                        ONAPP_FIELD_TYPE      => 'integer',
+                    'id'                     => array(
+                        ONAPP_FIELD_MAP  => '_id',
+                        ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'identifier'                  => array(
-                        ONAPP_FIELD_MAP       => '_identifier',
-                        ONAPP_FIELD_TYPE      => 'string',
+                    'identifier'             => array(
+                        ONAPP_FIELD_MAP  => '_identifier',
+                        ONAPP_FIELD_TYPE => 'string',
                     ),
                     'label'                  => array(
-                        ONAPP_FIELD_MAP       => '_label',
-                        ONAPP_FIELD_TYPE      => 'string',
+                        ONAPP_FIELD_MAP  => '_label',
+                        ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'updated_at'                  => array(
-                        ONAPP_FIELD_MAP       => '_updated_at',
-                        ONAPP_FIELD_TYPE      => 'datetime',
+                    'updated_at'             => array(
+                        ONAPP_FIELD_MAP  => '_updated_at',
+                        ONAPP_FIELD_TYPE => 'datetime',
                     ),
                     'roles'                  => array(
-                        ONAPP_FIELD_MAP       => '_roles',
-                        ONAPP_FIELD_TYPE      => 'array',
+                        ONAPP_FIELD_MAP  => '_roles',
+                        ONAPP_FIELD_TYPE => 'array',
                     ),
-                    'restrictions_resources'  => array(
-                        ONAPP_FIELD_MAP       => '_restrictions_resources',
-                        ONAPP_FIELD_TYPE      => 'array',
+                    'restrictions_resources' => array(
+                        ONAPP_FIELD_MAP  => '_restrictions_resources',
+                        ONAPP_FIELD_TYPE => 'array',
                     ),
                     //field for Restrictions Resources
-                    'restriction_type'  => array(
-                        ONAPP_FIELD_MAP       => '_restriction_type',
-                        ONAPP_FIELD_TYPE      => 'string',
+                    'restriction_type'       => array(
+                        ONAPP_FIELD_MAP  => '_restriction_type',
+                        ONAPP_FIELD_TYPE => 'string',
                     ),
                 );
+                break;
+            case 4.3:
+            case 5.0:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 
@@ -113,7 +117,7 @@ class OnApp_Restriction extends OnApp {
      * @access public
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GET_ALL_RESTRICTIONS_RESOURCES:
                 /**
                  * ROUTE :
@@ -124,7 +128,7 @@ class OnApp_Restriction extends OnApp {
                  * @format {:controller=>"resources", :action=>"index"}
                  */
 
-                $resource = $this->_resource .'/resources';
+                $resource = $this->_resource . '/resources';
                 break;
             default:
                 /**
@@ -170,14 +174,16 @@ class OnApp_Restriction extends OnApp {
                 $resource = parent::getResource( $action );
                 break;
         }
+
         return $resource;
     }
 
-    public function restrictionResource(){
-        $oldTagRoot = $this->_tagRoot;
+    public function restrictionResource() {
+        $oldTagRoot     = $this->_tagRoot;
         $this->_tagRoot = 'restrictions_resource';
-        $result = $this->sendGet(ONAPP_GET_ALL_RESTRICTIONS_RESOURCES);
+        $result         = $this->sendGet( ONAPP_GET_ALL_RESTRICTIONS_RESOURCES );
         $this->_tagRoot = $oldTagRoot;
+
         return $result;
     }
 }

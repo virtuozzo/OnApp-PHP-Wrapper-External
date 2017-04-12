@@ -43,9 +43,9 @@ class OnApp_RecipeGroup extends OnApp {
      *
      * @return array
      */
-    public function initFields($version = null, $className = '') {
+    public function initFields( $version = null, $className = '' ) {
 
-        switch ($version) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -60,51 +60,56 @@ class OnApp_RecipeGroup extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'id' => array(
-                        ONAPP_FIELD_MAP => '_id',
+                    'id'         => array(
+                        ONAPP_FIELD_MAP  => '_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'label' => array(
-                        ONAPP_FIELD_MAP => '_label',
+                    'label'      => array(
+                        ONAPP_FIELD_MAP  => '_label',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'parent_id' => array(
-                        ONAPP_FIELD_MAP => '_parent_id',
+                    'parent_id'  => array(
+                        ONAPP_FIELD_MAP  => '_parent_id',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'lft' => array(
-                        ONAPP_FIELD_MAP => '_lft',
+                    'lft'        => array(
+                        ONAPP_FIELD_MAP  => '_lft',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'rgt' => array(
-                        ONAPP_FIELD_MAP => '_rgt',
+                    'rgt'        => array(
+                        ONAPP_FIELD_MAP  => '_rgt',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'depth' => array(
-                        ONAPP_FIELD_MAP => '_depth',
+                    'depth'      => array(
+                        ONAPP_FIELD_MAP  => '_depth',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
                     'created_at' => array(
-                        ONAPP_FIELD_MAP => '_created_at',
+                        ONAPP_FIELD_MAP  => '_created_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
                     'updated_at' => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
+                        ONAPP_FIELD_MAP  => '_updated_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'children' => array(
-                        ONAPP_FIELD_MAP => '_children',
+                    'children'   => array(
+                        ONAPP_FIELD_MAP  => '_children',
                         ONAPP_FIELD_TYPE => 'array',
                     ),
-                    'relations' => array(
-                        ONAPP_FIELD_MAP => '_relations',
+                    'relations'  => array(
+                        ONAPP_FIELD_MAP  => '_relations',
                         ONAPP_FIELD_TYPE => 'array',
                     ),
                 );
                 break;
+            case 4.3:
+            case 5.0:
+                $this->fields = $this->initFields( 4.2 );
+                break;
         }
 
-        parent::initFields($version, __CLASS__);
+        parent::initFields( $version, __CLASS__ );
+
         return $this->fields;
     }
 }

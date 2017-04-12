@@ -14,7 +14,6 @@
  */
 
 
-
 /**
  * Vapps
  *
@@ -37,35 +36,35 @@ class OnApp_Vapp_VirtualMachineParam extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case 4.0:
             case 4.1:
                 $this->fields = array(
-                    'identifier'                  => array(
+                    'identifier'      => array(
                         ONAPP_FIELD_MAP       => '_identifier',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'name'                  => array(
+                    'name'            => array(
                         ONAPP_FIELD_MAP       => '_name',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'vcpu_per_vm'                          => array(
+                    'vcpu_per_vm'     => array(
                         ONAPP_FIELD_MAP       => '_vcpu_per_vm',
                         ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'core_per_socket'                          => array(
+                    'core_per_socket' => array(
                         ONAPP_FIELD_MAP       => '_core_per_socket',
                         ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'memory'                          => array(
+                    'memory'          => array(
                         ONAPP_FIELD_MAP       => '_memory',
                         ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
@@ -74,9 +73,10 @@ class OnApp_Vapp_VirtualMachineParam extends OnApp {
                 );
                 break;
             case 4.2:
+            case 4.3:
+            case 5.0:
                 $this->fields = $this->initFields( 4.1 );
                 break;
-
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -85,7 +85,7 @@ class OnApp_Vapp_VirtualMachineParam extends OnApp {
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_VAPPS_RECOMPOSE:
                 /**
                  * ROUTE :
@@ -206,8 +206,8 @@ class OnApp_Vapp_VirtualMachineParam extends OnApp {
      *
      * @access    public
      */
-    function start( ) {
-        $this->sendPost( ONAPP_GETRESOURCE_VAPPS_START);
+    function start() {
+        $this->sendPost( ONAPP_GETRESOURCE_VAPPS_START );
     }
 
     /**
@@ -215,10 +215,9 @@ class OnApp_Vapp_VirtualMachineParam extends OnApp {
      *
      * @access    public
      */
-    function stop( ) {
-        $this->sendPost( ONAPP_GETRESOURCE_VAPPS_STOP);
+    function stop() {
+        $this->sendPost( ONAPP_GETRESOURCE_VAPPS_STOP );
     }
-
 
 
 }

@@ -59,7 +59,7 @@ class OnApp_Availability_Subsystem_Service extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'name' => array(
+                    'name'   => array(
                         ONAPP_FIELD_MAP  => '_name',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
@@ -67,11 +67,17 @@ class OnApp_Availability_Subsystem_Service extends OnApp {
                         ONAPP_FIELD_MAP  => '_pid',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'status'         => array(
+                    'status' => array(
                         ONAPP_FIELD_MAP  => '_status',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
                 );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
                 break;
         }
 

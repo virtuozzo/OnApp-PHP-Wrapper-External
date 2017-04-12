@@ -38,13 +38,13 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -130,15 +130,19 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
             case 4.0:
             case 4.1:
             case 4.2:
-                $this->fields = $this->initFields( 2.3 );
-                $this->fields[ 'connected' ] = array(
-                    ONAPP_FIELD_MAP       => '_connected',
-                    ONAPP_FIELD_TYPE      => 'boolean',
+                $this->fields                    = $this->initFields( 2.3 );
+                $this->fields['connected']       = array(
+                    ONAPP_FIELD_MAP  => '_connected',
+                    ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'edge_gateway_id' ] = array(
-                    ONAPP_FIELD_MAP           => '_edge_gateway_id',
-                    ONAPP_FIELD_TYPE          => 'string'
+                $this->fields['edge_gateway_id'] = array(
+                    ONAPP_FIELD_MAP  => '_edge_gateway_id',
+                    ONAPP_FIELD_TYPE => 'string'
                 );
+                break;
+            case 4.3:
+            case 5.0:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 
@@ -156,7 +160,7 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
      * @access public
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
@@ -198,15 +202,14 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
                  * @alias   /network_interfaces/:id(.:format)
                  * @format  {:controller=>"network_interfaces", :action=>"destroy"}
                  */
-                if( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
+                if ( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
                     $this->logger->error(
                         "getResource($action): argument _virtual_machine_id not set.",
                         __FILE__,
                         __LINE__
                     );
-                }
-                else {
-                    if( is_null( $this->_virtual_machine_id ) ) {
+                } else {
+                    if ( is_null( $this->_virtual_machine_id ) ) {
                         $this->_virtual_machine_id = $this->_obj->_virtual_machine_id;
                     }
                 }
@@ -233,23 +236,22 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
      */
 
     function getList( $virtual_machine_id = null, $url_args = null ) {
-        if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
+        if ( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
             $virtual_machine_id = $this->_virtual_machine_id;
         }
 
-        if( is_null( $virtual_machine_id ) &&
-            isset( $this->_obj ) &&
-            ! is_null( $this->_obj->_virtual_machine_id )
+        if ( is_null( $virtual_machine_id ) &&
+             isset( $this->_obj ) &&
+             ! is_null( $this->_obj->_virtual_machine_id )
         ) {
             $virtual_machine_id = $this->_obj->_virtual_machine_id;
         }
 
-        if( ! is_null( $virtual_machine_id ) ) {
+        if ( ! is_null( $virtual_machine_id ) ) {
             $this->_virtual_machine_id = $virtual_machine_id;
 
             return parent::getList();
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getList: argument _virtual_machine_id not set.',
                 __FILE__,
@@ -265,38 +267,38 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
      * The key field Parameter ID is used to load the Object. You can re-set
      * this parameter in the class inheriting OnApp class.
      *
-     * @param integer $id                 Network Interface id
+     * @param integer $id Network Interface id
      * @param integer $virtual_machine_id Virtual Machine id
      *
      * @return mixed serialized Object instance from API
      * @access public
      */
     function load( $id = null, $virtual_machine_id = null ) {
-        if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
+        if ( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
             $virtual_machine_id = $this->_virtual_machine_id;
         }
 
-        if( is_null( $virtual_machine_id ) &&
-            isset( $this->_obj ) &&
-            ! is_null( $this->_obj->_virtual_machine_id )
+        if ( is_null( $virtual_machine_id ) &&
+             isset( $this->_obj ) &&
+             ! is_null( $this->_obj->_virtual_machine_id )
         ) {
             $virtual_machine_id = $this->_obj->_virtual_machine_id;
         }
 
-        if( is_null( $id ) && ! is_null( $this->_id ) ) {
+        if ( is_null( $id ) && ! is_null( $this->_id ) ) {
             $id = $this->_id;
         }
 
-        if( is_null( $id ) &&
-            isset( $this->_obj ) &&
-            ! is_null( $this->_obj->_id )
+        if ( is_null( $id ) &&
+             isset( $this->_obj ) &&
+             ! is_null( $this->_obj->_id )
         ) {
             $id = $this->_obj->_id;
         }
 
         $this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
 
-        if( ! is_null( $id ) && ! is_null( $virtual_machine_id ) ) {
+        if ( ! is_null( $id ) && ! is_null( $virtual_machine_id ) ) {
             $this->_id                 = $id;
             $this->_virtual_machine_id = $virtual_machine_id;
 
@@ -309,16 +311,14 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
             $this->_obj = $result;
 
             return $result;
-        }
-        else {
-            if( is_null( $id ) ) {
+        } else {
+            if ( is_null( $id ) ) {
                 $this->logger->error(
                     'load: argument _id not set.',
                     __FILE__,
                     __LINE__
                 );
-            }
-            else {
+            } else {
                 $this->logger->error(
                     'load: argument _virtual_machine_id not set.',
                     __FILE__,
@@ -339,11 +339,10 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
      * @access public
      */
     function save() {
-        if( isset( $this->_id ) ) {
+        if ( isset( $this->_id ) ) {
             $obj = $this->_edit();
             $this->load();
-        }
-        else {
+        } else {
             parent::save();
         }
     }

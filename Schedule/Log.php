@@ -37,8 +37,8 @@ class OnApp_Schedule_Log extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
@@ -58,31 +58,35 @@ class OnApp_Schedule_Log extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'created_at'      => array(
+                    'created_at'  => array(
                         ONAPP_FIELD_MAP  => '_created_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'updated_at'      => array(
+                    'updated_at'  => array(
                         ONAPP_FIELD_MAP  => '_updated_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'id'              => array(
+                    'id'          => array(
                         ONAPP_FIELD_MAP  => '_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'log_output'        => array(
+                    'log_output'  => array(
                         ONAPP_FIELD_MAP  => '_log_output',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'schedule_id'       => array(
+                    'schedule_id' => array(
                         ONAPP_FIELD_MAP  => '_schedule_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'status'          => array(
+                    'status'      => array(
                         ONAPP_FIELD_MAP  => '_status',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
                 );
+                break;
+            case 4.3:
+            case 5.0:
+                $this->fields = $this->initFields( 4.2 );
                 break;
 
         }

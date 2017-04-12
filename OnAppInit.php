@@ -8,12 +8,12 @@
  * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  */
-if( ! defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
+if ( ! defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
     /**
      * Check PHP version
      * PHP 5.3+ is required
      */
-    if( ( PHP_MAJOR_VERSION < 5 ) || ( PHP_MAJOR_VERSION == 5 && PHP_MINOR_VERSION < 3 ) ) {
+    if ( ( PHP_MAJOR_VERSION < 5 ) || ( PHP_MAJOR_VERSION == 5 && PHP_MINOR_VERSION < 3 ) ) {
         exit( 'OnApp wrapper error: PHP 5.3+ is required. You have PHP ' . PHP_VERSION . PHP_EOL );
     }
 
@@ -37,10 +37,10 @@ if( ! defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
         $path = explode( '_', $path );
         $path = ONAPP_WRAPPER_ROOT_DIR . implode( DIRECTORY_SEPARATOR, $path ) . '.php';
 
-        if( file_exists( $path ) ) {
+        if ( file_exists( $path ) ) {
             require $path;
 
-            if( class_exists( $className ) ) {
+            if ( class_exists( $className ) ) {
                 return true;
             }
             //todo add loging instead of printing
@@ -57,10 +57,9 @@ if( ! defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
     /**
      * Detect if the code run in CLI for testing purposes
      */
-    if( defined( 'STDIN' ) ) {
+    if ( defined( 'STDIN' ) ) {
         define( 'IS_CLI', true );
-    }
-    else {
+    } else {
         define( 'IS_CLI', false );
     }
 }

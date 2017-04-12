@@ -37,15 +37,15 @@ class OnApp_BillingUser_ResourceHypervisorGroup extends OnApp_BillingUser_BaseRe
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
         parent::initFields( $version, __CLASS__ );
 
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -59,7 +59,7 @@ class OnApp_BillingUser_ResourceHypervisorGroup extends OnApp_BillingUser_BaseRe
             case 4.0:
             case 4.1:
             case 4.2:
-                $this->fields[ 'resource_class' ] = array(
+                $this->fields['resource_class'] = array(
                     ONAPP_FIELD_MAP           => '_resource_class',
                     ONAPP_FIELD_TYPE          => 'string',
                     ONAPP_FIELD_REQUIRED      => true,
@@ -67,153 +67,159 @@ class OnApp_BillingUser_ResourceHypervisorGroup extends OnApp_BillingUser_BaseRe
                     ONAPP_FIELD_DEFAULT_VALUE => 'Resource::HypervisorGroup',
                 );
 
-                $this->fields[ 'in_master_zone' ] = array(
-                    ONAPP_FIELD_MAP           => '_in_master_zone',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['in_master_zone'] = array(
+                    ONAPP_FIELD_MAP  => '_in_master_zone',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
 
-                $this->fields[ 'master' ] = array(
-                    ONAPP_FIELD_MAP           => '_master',
-                    ONAPP_FIELD_TYPE          => 'boolean',
+                $this->fields['master'] = array(
+                    ONAPP_FIELD_MAP  => '_master',
+                    ONAPP_FIELD_TYPE => 'boolean',
                 );
 
-                $this->fields[ 'master_resource_id' ] = array(
-                    ONAPP_FIELD_MAP           => '_master_resource_id',
-                    ONAPP_FIELD_TYPE          => 'integer',
+                $this->fields['master_resource_id'] = array(
+                    ONAPP_FIELD_MAP  => '_master_resource_id',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
 
-                $this->fields[ 'use_cpu_units' ] = array(
-                    ONAPP_FIELD_MAP           => '_use_cpu_units',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['use_cpu_units'] = array(
+                    ONAPP_FIELD_MAP  => '_use_cpu_units',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
 
-                $this->fields[ 'target_type' ] = array(
+                $this->fields['target_type'] = array(
                     ONAPP_FIELD_MAP           => '_target_type',
                     ONAPP_FIELD_TYPE          => 'string',
                     ONAPP_FIELD_REQUIRED      => true,
                     ONAPP_FIELD_DEFAULT_VALUE => 'Pack',
                 );
 
-                $this->fields[ 'limit_cpu' ] = array(
-                    ONAPP_FIELD_MAP           => '_limit_cpu',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['limit_cpu']               = array(
+                    ONAPP_FIELD_MAP  => '_limit_cpu',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'limit_free_cpu' ] = array(
-                    ONAPP_FIELD_MAP           => '_limit_free_cpu',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['limit_free_cpu']          = array(
+                    ONAPP_FIELD_MAP  => '_limit_free_cpu',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'price_on_cpu' ] = array(
-                    ONAPP_FIELD_MAP           => '_price_on_cpu',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['price_on_cpu']            = array(
+                    ONAPP_FIELD_MAP  => '_price_on_cpu',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'price_off_cpu' ] = array(
-                    ONAPP_FIELD_MAP           => '_price_off_cpu',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['price_off_cpu']           = array(
+                    ONAPP_FIELD_MAP  => '_price_off_cpu',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'limit_default_cpu' ] = array(
-                    ONAPP_FIELD_MAP           => '_limit_default_cpu',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['limit_default_cpu']       = array(
+                    ONAPP_FIELD_MAP  => '_limit_default_cpu',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'use_default_cpu' ] = array(
-                    ONAPP_FIELD_MAP           => '_use_default_cpu',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['use_default_cpu']         = array(
+                    ONAPP_FIELD_MAP  => '_use_default_cpu',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'limit_cpu_share' ] = array(
-                    ONAPP_FIELD_MAP           => '_limit_cpu_share',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['limit_cpu_share']         = array(
+                    ONAPP_FIELD_MAP  => '_limit_cpu_share',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'limit_free_cpu_share' ] = array(
-                    ONAPP_FIELD_MAP           => '_limit_free_cpu_share',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['limit_free_cpu_share']    = array(
+                    ONAPP_FIELD_MAP  => '_limit_free_cpu_share',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'price_on_cpu_share' ] = array(
-                    ONAPP_FIELD_MAP           => '_price_on_cpu_share',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['price_on_cpu_share']      = array(
+                    ONAPP_FIELD_MAP  => '_price_on_cpu_share',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'price_off_cpu_share' ] = array(
-                    ONAPP_FIELD_MAP           => '_price_off_cpu_share',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['price_off_cpu_share']     = array(
+                    ONAPP_FIELD_MAP  => '_price_off_cpu_share',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'limit_default_cpu_share' ] = array(
-                    ONAPP_FIELD_MAP           => '_limit_default_cpu_share',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['limit_default_cpu_share'] = array(
+                    ONAPP_FIELD_MAP  => '_limit_default_cpu_share',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'use_default_cpu_share' ] = array(
-                    ONAPP_FIELD_MAP           => '_use_default_cpu_share',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['use_default_cpu_share']   = array(
+                    ONAPP_FIELD_MAP  => '_use_default_cpu_share',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'limit_memory' ] = array(
-                    ONAPP_FIELD_MAP           => '_limit_memory',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['limit_memory']            = array(
+                    ONAPP_FIELD_MAP  => '_limit_memory',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'limit_free_memory' ] = array(
-                    ONAPP_FIELD_MAP           => '_limit_free_memory',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['limit_free_memory']       = array(
+                    ONAPP_FIELD_MAP  => '_limit_free_memory',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'price_on_memory' ] = array(
-                    ONAPP_FIELD_MAP           => '_price_on_memory',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['price_on_memory']         = array(
+                    ONAPP_FIELD_MAP  => '_price_on_memory',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'price_off_memory' ] = array(
-                    ONAPP_FIELD_MAP           => '_price_off_memory',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['price_off_memory']        = array(
+                    ONAPP_FIELD_MAP  => '_price_off_memory',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'limit_cpu_units' ] = array(
-                    ONAPP_FIELD_MAP           => '_limit_cpu_units',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['limit_cpu_units']         = array(
+                    ONAPP_FIELD_MAP  => '_limit_cpu_units',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'limit_free_cpu_units' ] = array(
-                    ONAPP_FIELD_MAP           => '_limit_free_cpu_units',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['limit_free_cpu_units']    = array(
+                    ONAPP_FIELD_MAP  => '_limit_free_cpu_units',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'price_on_cpu_units' ] = array(
-                    ONAPP_FIELD_MAP           => '_price_on_cpu_units',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['price_on_cpu_units']      = array(
+                    ONAPP_FIELD_MAP  => '_price_on_cpu_units',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'price_off_cpu_units' ] = array(
-                    ONAPP_FIELD_MAP           => '_price_off_cpu_units',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['price_off_cpu_units']     = array(
+                    ONAPP_FIELD_MAP  => '_price_off_cpu_units',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'limit_min_memory' ] = array(
-                    ONAPP_FIELD_MAP           => '_limit_min_memory',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['limit_min_memory']        = array(
+                    ONAPP_FIELD_MAP  => '_limit_min_memory',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'limit_min_cpu_priority' ] = array(
-                    ONAPP_FIELD_MAP           => '_limit_min_cpu_priority',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['limit_min_cpu_priority']  = array(
+                    ONAPP_FIELD_MAP  => '_limit_min_cpu_priority',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
 
                 break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
+                break;
         }
 
-        $this->fields[ 'id' ][ ONAPP_FIELD_REQUIRED ] = false;
+        $this->fields['id'][ ONAPP_FIELD_REQUIRED ] = false;
 
-        foreach( array( 'unit', 'limit', 'limit_free', 'price', 'price_on', 'price_off' ) as $field ) {
+        foreach ( array( 'unit', 'limit', 'limit_free', 'price', 'price_on', 'price_off' ) as $field ) {
             unset( $this->fields[ $field ] );
         }
 
         return $this->fields;
     }
 
-    public function editCPULimits($limit_cpu = null, $limit_free_cpu = null, $price_on_cpu = null, $price_off_cpu = null, $limit_default_cpu = null) {
+    public function editCPULimits( $limit_cpu = null, $limit_free_cpu = null, $price_on_cpu = null, $price_off_cpu = null, $limit_default_cpu = null ) {
         $dataArray = array();
-        if($limit_cpu != null){
+        if ( $limit_cpu != null ) {
             $dataArray['limit_cpu'] = $limit_cpu;
         }
-        if($limit_free_cpu != null){
+        if ( $limit_free_cpu != null ) {
             $dataArray['limit_free_cpu'] = $limit_free_cpu;
         }
-        if($price_on_cpu != null){
+        if ( $price_on_cpu != null ) {
             $dataArray['price_on_cpu'] = $price_on_cpu;
         }
-        if($price_off_cpu != null){
+        if ( $price_off_cpu != null ) {
             $dataArray['price_off_cpu'] = $price_off_cpu;
         }
-        if($limit_default_cpu != null){
+        if ( $limit_default_cpu != null ) {
             $dataArray['limit_default_cpu'] = $limit_default_cpu;
         }
 
-        if(count($dataArray) == 0){
+        if ( count( $dataArray ) == 0 ) {
             return false;
         }
         $data = array(
@@ -227,32 +233,32 @@ class OnApp_BillingUser_ResourceHypervisorGroup extends OnApp_BillingUser_BaseRe
         $dataArray = array(
             'use_default_cpu' => true,
         );
-        $data = array(
+        $data      = array(
             'root' => 'resource',
             'data' => $dataArray,
         );
         $this->sendPut( ONAPP_GETRESOURCE_LOAD, $data );
     }
 
-    public function editCPUShareLimits($limit_cpu_share = null, $limit_free_cpu_share = null, $price_on_cpu_share = null, $price_off_cpu_share = null, $limit_default_cpu_share = null) {
+    public function editCPUShareLimits( $limit_cpu_share = null, $limit_free_cpu_share = null, $price_on_cpu_share = null, $price_off_cpu_share = null, $limit_default_cpu_share = null ) {
         $dataArray = array();
-        if($limit_cpu_share != null){
+        if ( $limit_cpu_share != null ) {
             $dataArray['limit_cpu_share'] = $limit_cpu_share;
         }
-        if($limit_free_cpu_share != null){
+        if ( $limit_free_cpu_share != null ) {
             $dataArray['limit_free_cpu_share'] = $limit_free_cpu_share;
         }
-        if($price_on_cpu_share != null){
+        if ( $price_on_cpu_share != null ) {
             $dataArray['price_on_cpu_share'] = $price_on_cpu_share;
         }
-        if($price_off_cpu_share != null){
+        if ( $price_off_cpu_share != null ) {
             $dataArray['price_off_cpu_share'] = $price_off_cpu_share;
         }
-        if($limit_default_cpu_share != null){
+        if ( $limit_default_cpu_share != null ) {
             $dataArray['limit_default_cpu_share'] = $limit_default_cpu_share;
         }
 
-        if(count($dataArray) == 0){
+        if ( count( $dataArray ) == 0 ) {
             return false;
         }
         $data = array(
@@ -266,29 +272,29 @@ class OnApp_BillingUser_ResourceHypervisorGroup extends OnApp_BillingUser_BaseRe
         $dataArray = array(
             'use_default_cpu_share' => true,
         );
-        $data = array(
+        $data      = array(
             'root' => 'resource',
             'data' => $dataArray,
         );
         $this->sendPut( ONAPP_GETRESOURCE_LOAD, $data );
     }
 
-    public function editMemoryLimits($limit_memory = null, $limit_free_memory = null, $price_on_memory = null, $price_off_memory = null) {
+    public function editMemoryLimits( $limit_memory = null, $limit_free_memory = null, $price_on_memory = null, $price_off_memory = null ) {
         $dataArray = array();
-        if($limit_memory != null){
+        if ( $limit_memory != null ) {
             $dataArray['limit_memory'] = $limit_memory;
         }
-        if($limit_free_memory != null){
+        if ( $limit_free_memory != null ) {
             $dataArray['limit_free_memory'] = $limit_free_memory;
         }
-        if($price_on_memory != null){
+        if ( $price_on_memory != null ) {
             $dataArray['price_on_memory'] = $price_on_memory;
         }
-        if($price_off_memory != null){
+        if ( $price_off_memory != null ) {
             $dataArray['price_off_memory'] = $price_off_memory;
         }
 
-        if(count($dataArray) == 0){
+        if ( count( $dataArray ) == 0 ) {
             return false;
         }
         $data = array(
@@ -298,22 +304,22 @@ class OnApp_BillingUser_ResourceHypervisorGroup extends OnApp_BillingUser_BaseRe
         $this->sendPut( ONAPP_GETRESOURCE_LOAD, $data );
     }
 
-    public function editCPUUnitsLimits($limit_cpu_units = null, $limit_free_cpu_units = null, $price_on_cpu_units = null, $price_off_cpu_units = null) {
+    public function editCPUUnitsLimits( $limit_cpu_units = null, $limit_free_cpu_units = null, $price_on_cpu_units = null, $price_off_cpu_units = null ) {
         $dataArray = array();
-        if($limit_cpu_units != null){
+        if ( $limit_cpu_units != null ) {
             $dataArray['limit_cpu_units'] = $limit_cpu_units;
         }
-        if($limit_free_cpu_units != null){
+        if ( $limit_free_cpu_units != null ) {
             $dataArray['limit_free_cpu_units'] = $limit_free_cpu_units;
         }
-        if($price_on_cpu_units != null){
+        if ( $price_on_cpu_units != null ) {
             $dataArray['price_on_cpu_units'] = $price_on_cpu_units;
         }
-        if($price_off_cpu_units != null){
+        if ( $price_off_cpu_units != null ) {
             $dataArray['price_off_cpu_units'] = $price_off_cpu_units;
         }
 
-        if(count($dataArray) == 0){
+        if ( count( $dataArray ) == 0 ) {
             return false;
         }
         $data = array(

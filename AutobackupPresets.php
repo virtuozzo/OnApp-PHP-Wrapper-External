@@ -59,35 +59,40 @@ class OnApp_AutobackupPresets extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'created_at' => array(
+                    'created_at'      => array(
                         ONAPP_FIELD_MAP  => '_created_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'updated_at' => array(
+                    'updated_at'      => array(
                         ONAPP_FIELD_MAP  => '_updated_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'period' => array(
+                    'period'          => array(
                         ONAPP_FIELD_MAP  => '_period',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'id'  => array(
+                    'id'              => array(
                         ONAPP_FIELD_MAP  => '_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'duration'  => array(
+                    'duration'        => array(
                         ONAPP_FIELD_MAP  => '_duration',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'rotation_period'  => array(
+                    'rotation_period' => array(
                         ONAPP_FIELD_MAP  => '_rotation_period',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'enabled'  => array(
+                    'enabled'         => array(
                         ONAPP_FIELD_MAP  => '_enabled',
                         ONAPP_FIELD_TYPE => 'boolean',
                     ),
                 );
+                break;
+
+            case 4.3:
+            case 5.0:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 

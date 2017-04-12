@@ -59,39 +59,39 @@ class OnApp_Firewall extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'created_at' => array(
+                    'created_at'               => array(
                         ONAPP_FIELD_MAP  => '_created_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'updated_at' => array(
+                    'updated_at'               => array(
                         ONAPP_FIELD_MAP  => '_updated_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'firewall_cluster_id'  => array(
+                    'firewall_cluster_id'      => array(
                         ONAPP_FIELD_MAP  => '_firewall_cluster_id',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'id'  => array(
+                    'id'                       => array(
                         ONAPP_FIELD_MAP  => '_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'inside_cidr'  => array(
+                    'inside_cidr'              => array(
                         ONAPP_FIELD_MAP  => '_inside_cidr',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'inside_interface'  => array(
+                    'inside_interface'         => array(
                         ONAPP_FIELD_MAP  => '_inside_interface',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'inside_ip_address'  => array(
+                    'inside_ip_address'        => array(
                         ONAPP_FIELD_MAP  => '_inside_ip_address',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'name_of_default_rule'  => array(
+                    'name_of_default_rule'     => array(
                         ONAPP_FIELD_MAP  => '_name_of_default_rule',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'outside_cidr_type'  => array(
+                    'outside_cidr_type'        => array(
                         ONAPP_FIELD_MAP  => '_outside_cidr_type',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
@@ -99,31 +99,35 @@ class OnApp_Firewall extends OnApp {
                         ONAPP_FIELD_MAP  => '_outside_gateway_address',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'outside_interface'  => array(
+                    'outside_interface'        => array(
                         ONAPP_FIELD_MAP  => '_outside_interface',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'outside_ip_address'  => array(
+                    'outside_ip_address'       => array(
                         ONAPP_FIELD_MAP  => '_outside_ip_address',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'preshared_cluster_secret'  => array(
+                    'preshared_cluster_secret' => array(
                         ONAPP_FIELD_MAP  => '_preshared_cluster_secret',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'password'  => array(
+                    'password'                 => array(
                         ONAPP_FIELD_MAP  => '_password',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'username'  => array(
+                    'username'                 => array(
                         ONAPP_FIELD_MAP  => '_username',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'outside_cidr'  => array(
+                    'outside_cidr'             => array(
                         ONAPP_FIELD_MAP  => '_outside_cidr',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
                 );
+                break;
+            case 4.3:
+            case 5.0:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 

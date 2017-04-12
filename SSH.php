@@ -19,8 +19,7 @@
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
  */
-class OnApp_SSH extends OnApp
-{
+class OnApp_SSH extends OnApp {
     /**
      * root tag used in the API request
      *
@@ -42,9 +41,9 @@ class OnApp_SSH extends OnApp
      *
      * @return array
      */
-    public function initFields($version = null, $className = '') {
+    public function initFields( $version = null, $className = '' ) {
 
-        switch ($version) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -59,37 +58,41 @@ class OnApp_SSH extends OnApp
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'id'            => array(
+                    'id'         => array(
                         ONAPP_FIELD_MAP  => '_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'user_id'            => array(
+                    'user_id'    => array(
                         ONAPP_FIELD_MAP  => '_user_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'key'            => array(
+                    'key'        => array(
                         ONAPP_FIELD_MAP  => '_key',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'created_at'            => array(
+                    'created_at' => array(
                         ONAPP_FIELD_MAP  => '_created_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'updated_at'            => array(
+                    'updated_at' => array(
                         ONAPP_FIELD_MAP  => '_updated_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
                 );
                 break;
+            case 4.3:
+            case 5.0:
+                $this->fields = $this->initFields( 4.2 );
+                break;
         }
 
-        parent::initFields($version, __CLASS__);
+        parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
 
-    function getResource($action = ONAPP_GETRESOURCE_DEFAULT) {
-        switch ($action) {
+    function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_ADD :
                 /**
                  * ROUTE :
@@ -99,7 +102,7 @@ class OnApp_SSH extends OnApp
                  * @alias  /users/:user_id/ssh_keys(.:format)
                  * @format {:action=>"index", :controller=>"ssh_keys"}
                  */
-                if (is_null($this->_user_id)) {
+                if ( is_null( $this->_user_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _user_id not set.',
                         __FILE__,
@@ -109,9 +112,10 @@ class OnApp_SSH extends OnApp
                 $resource = 'users/' . $this->_user_id . '/ssh_keys';
                 break;
             default:
-                $resource = parent::getResource($action);
+                $resource = parent::getResource( $action );
                 break;
         }
+
         return $resource;
     }
 }

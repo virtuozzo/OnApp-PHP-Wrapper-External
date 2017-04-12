@@ -30,15 +30,15 @@ class OnApp_BillingCompany_ResourceVCloudNetworkZone extends OnApp_BillingCompan
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
         parent::initFields( $version, __CLASS__ );
 
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -52,53 +52,59 @@ class OnApp_BillingCompany_ResourceVCloudNetworkZone extends OnApp_BillingCompan
             case 4.0:
             case 4.1:
             case 4.2:
-                $this->fields[ 'resource_class' ] = array(
+                $this->fields['resource_class']           = array(
                     ONAPP_FIELD_MAP           => '_resource_class',
                     ONAPP_FIELD_TYPE          => 'string',
                     ONAPP_FIELD_REQUIRED      => true,
                     ONAPP_FIELD_READ_ONLY     => true,
                     ONAPP_FIELD_DEFAULT_VALUE => 'Billing::Company::Resource::VCloud::NetworkZone',
                 );
-                $this->fields[ 'limit_free_ip' ] = array(
-                    ONAPP_FIELD_MAP           => '_limit_free_ip',
-                    ONAPP_FIELD_TYPE          => 'integer',
+                $this->fields['limit_free_ip']            = array(
+                    ONAPP_FIELD_MAP  => '_limit_free_ip',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'limit_ip' ] = array(
-                    ONAPP_FIELD_MAP           => '_limit_ip',
-                    ONAPP_FIELD_TYPE          => 'integer',
+                $this->fields['limit_ip']                 = array(
+                    ONAPP_FIELD_MAP  => '_limit_ip',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'price_ip' ] = array(
-                    ONAPP_FIELD_MAP           => '_price_ip',
-                    ONAPP_FIELD_TYPE          => 'integer',
+                $this->fields['price_ip']                 = array(
+                    ONAPP_FIELD_MAP  => '_price_ip',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'limit_free_data_sent' ] = array(
-                    ONAPP_FIELD_MAP           => '_limit_free_data_sent',
-                    ONAPP_FIELD_TYPE          => 'integer',
+                $this->fields['limit_free_data_sent']     = array(
+                    ONAPP_FIELD_MAP  => '_limit_free_data_sent',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'price_data_sent' ] = array(
-                    ONAPP_FIELD_MAP           => '_price_data_sent',
-                    ONAPP_FIELD_TYPE          => 'integer',
+                $this->fields['price_data_sent']          = array(
+                    ONAPP_FIELD_MAP  => '_price_data_sent',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'limit_free_data_received' ] = array(
-                    ONAPP_FIELD_MAP           => '_limit_free_data_received',
-                    ONAPP_FIELD_TYPE          => 'integer',
+                $this->fields['limit_free_data_received'] = array(
+                    ONAPP_FIELD_MAP  => '_limit_free_data_received',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'price_data_received' ] = array(
-                    ONAPP_FIELD_MAP           => '_price_data_received',
-                    ONAPP_FIELD_TYPE          => 'integer',
+                $this->fields['price_data_received']      = array(
+                    ONAPP_FIELD_MAP  => '_price_data_received',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'target_id' ] = array(
-                    ONAPP_FIELD_MAP           => '_target_id',
-                    ONAPP_FIELD_TYPE          => 'integer',
+                $this->fields['target_id']                = array(
+                    ONAPP_FIELD_MAP  => '_target_id',
+                    ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'target_type' ] = array(
+                $this->fields['target_type']              = array(
                     ONAPP_FIELD_MAP           => '_target_type',
                     ONAPP_FIELD_TYPE          => 'string',
                     ONAPP_FIELD_REQUIRED      => true,
                     ONAPP_FIELD_DEFAULT_VALUE => 'Pack',
                 );
 
-            break;
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
+                break;
         }
 
         return $this->fields;

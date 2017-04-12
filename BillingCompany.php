@@ -45,13 +45,13 @@ class OnApp_BillingCompany extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case 2.0:
             case 2.1:
             case 2.2:
@@ -127,6 +127,11 @@ class OnApp_BillingCompany extends OnApp {
                     )
                 );
                 break;
+
+            case 4.3:
+            case 5.0:
+                $this->fields = $this->initFields( 4.2 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -135,7 +140,7 @@ class OnApp_BillingCompany extends OnApp {
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_GETLIST_USERS:
                 /**
                  * ROUTE :

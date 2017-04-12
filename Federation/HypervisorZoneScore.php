@@ -80,6 +80,12 @@ class OnApp_Federation_HypervisorZoneScore extends OnApp {
                     ),
                 );
                 break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -108,7 +114,7 @@ class OnApp_Federation_HypervisorZoneScore extends OnApp {
         return $resource;
     }
 
-    function getList( $federation_id = null ) {
+    function getList( $federation_id = null, $url_args = null ) {
         if ( ! is_null( $federation_id ) ) {
             $this->_federation_id = $federation_id;
         }

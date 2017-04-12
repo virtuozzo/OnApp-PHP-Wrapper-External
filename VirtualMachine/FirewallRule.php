@@ -42,13 +42,13 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -111,6 +111,44 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
             case 4.2:
                 $this->fields = $this->initFields( 2.3 );
                 break;
+            case 4.3:
+                $this->fields                        = $this->initFields( 4.2 );
+                $this->fields['description']         = array(
+                    ONAPP_FIELD_MAP  => '_description',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['destination_ip']      = array(
+                    ONAPP_FIELD_MAP  => '_destination_ip',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['enable_logging']      = array(
+                    ONAPP_FIELD_MAP  => '_enable_logging',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['enabled']             = array(
+                    ONAPP_FIELD_MAP  => '_enabled',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['firewall_service_id'] = array(
+                    ONAPP_FIELD_MAP  => '_firewall_service_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['identifier']          = array(
+                    ONAPP_FIELD_MAP  => '_identifier',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['protocol_type']       = array(
+                    ONAPP_FIELD_MAP  => '_protocol_type',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['source_port']         = array(
+                    ONAPP_FIELD_MAP  => '_source_port',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -127,7 +165,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
      * @access public
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
@@ -226,16 +264,15 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
      * @access public
      */
     function getList( $virtual_machine_id = null, $url_args = null ) {
-        if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
+        if ( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
             $virtual_machine_id = $this->_virtual_machine_id;
         }
 
-        if( ! is_null( $virtual_machine_id ) ) {
+        if ( ! is_null( $virtual_machine_id ) ) {
             $this->_virtual_machine_id = $virtual_machine_id;
 
             return parent::getList();
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getList: argument _virtual_machine_id not set.',
                 __FILE__,
@@ -251,38 +288,38 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
      * The key field Parameter ID is used to load the Object. You can re-set
      * this parameter in the class inheriting OnApp class.
      *
-     * @param integer $id                 Firewall Rule id
+     * @param integer $id Firewall Rule id
      * @param integer $virtual_machine_id Virtual Machine id
      *
      * @return mixed serialized Object instance from API
      * @access public
      */
     function load( $id = null, $virtual_machine_id = null ) {
-        if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
+        if ( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
             $virtual_machine_id = $this->_virtual_machine_id;
         }
 
-        if( is_null( $virtual_machine_id ) &&
-            isset( $this->_obj ) &&
-            ! is_null( $this->_obj->_virtual_machine_id )
+        if ( is_null( $virtual_machine_id ) &&
+             isset( $this->_obj ) &&
+             ! is_null( $this->_obj->_virtual_machine_id )
         ) {
             $virtual_machine_id = $this->_obj->_virtual_machine_id;
         }
 
-        if( is_null( $id ) && ! is_null( $this->_id ) ) {
+        if ( is_null( $id ) && ! is_null( $this->_id ) ) {
             $id = $this->_id;
         }
 
-        if( is_null( $id ) &&
-            isset( $this->_obj ) &&
-            ! is_null( $this->_obj->_id )
+        if ( is_null( $id ) &&
+             isset( $this->_obj ) &&
+             ! is_null( $this->_obj->_id )
         ) {
             $id = $this->_obj->_id;
         }
 
         $this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
 
-        if( ! is_null( $id ) && ! is_null( $virtual_machine_id ) ) {
+        if ( ! is_null( $id ) && ! is_null( $virtual_machine_id ) ) {
             $this->_id                 = $id;
             $this->_virtual_machine_id = $virtual_machine_id;
 
@@ -295,16 +332,14 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
             $this->_obj = $result;
 
             return $result;
-        }
-        else {
-            if( is_null( $id ) ) {
+        } else {
+            if ( is_null( $id ) ) {
                 $this->logger->error(
                     'load: argument _id not set.',
                     __FILE__,
                     __LINE__
                 );
-            }
-            else {
+            } else {
                 $this->logger->error(
                     'load: argument _virtual_machine_id not set.',
                     __FILE__,
@@ -322,13 +357,12 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
      * @return void
      */
     function move( $position ) {
-        if( ! $position ) {
+        if ( ! $position ) {
             $this->logger->error(
                 "_GETAction: Firewall rule move position have to be specified
                 (apiVersion => '" . $this->_apiVersion . "').", __FILE__, __LINE__
             );
-        }
-        else {
+        } else {
             $data = array(
                 'root' => 'tmp_holder',
                 'data' => array(
@@ -347,7 +381,7 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
      *
      */
     function update( $virtual_machine_id = null ) {
-        if( $virtual_machine_id ) {
+        if ( $virtual_machine_id ) {
             $this->_virtual_machine_id = $virtual_machine_id;
         }
 
@@ -358,17 +392,17 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
      * Updates default firewall rules for all network interfaces for particular virtual machine
      *
      * @param integer $virtual_machine_id VM id
-     * @param array   $networkInterfaces  =  array( {$NETWORK_INTERFACE_ID} => {COMMAND} );
+     * @param array $networkInterfaces =  array( {$NETWORK_INTERFACE_ID} => {COMMAND} );
      *
      * @return void
      */
     function updateDefaults( $virtual_machine_id, $networkInterfaces ) {
-        if( $virtual_machine_id ) {
+        if ( $virtual_machine_id ) {
             $this->_virtual_machine_id = $virtual_machine_id;
         }
 
-        foreach( $networkInterfaces as $interface_id => $command ) {
-            $network_interfaces[ $interface_id ][ 'default_firewall_rule' ] = $command;
+        foreach ( $networkInterfaces as $interface_id => $command ) {
+            $network_interfaces[ $interface_id ]['default_firewall_rule'] = $command;
         }
         $data = array(
             'root' => 'network_interfaces',

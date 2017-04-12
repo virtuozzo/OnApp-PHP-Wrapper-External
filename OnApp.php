@@ -517,8 +517,8 @@ class OnApp {
      * Use this method if you do not want
      * to set all options in the constructor
      *
-     * @param string $name  option name
-     * @param mixed  $value option value
+     * @param string $name option name
+     * @param mixed $value option value
      *
      * @return void
      * @access public
@@ -561,7 +561,7 @@ class OnApp {
      * @return string API resource
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_LOAD:
             case ONAPP_GETRESOURCE_EDIT:
             case ONAPP_GETRESOURCE_DELETE:
@@ -629,7 +629,7 @@ class OnApp {
      * @access public
      */
     function logs() {
-        if( isset( $this->logger ) ) {
+        if ( isset( $this->logger ) ) {
             return $this->logger->logs();
         }
     }
@@ -641,9 +641,9 @@ class OnApp {
      * needed. When authorized, {@link load}, {@link save}, {@link delete} and
      * {@link getList} methods can be used.
      *
-     * @param string $url   API URL
-     * @param string $user  user name
-     * @param string $pass  password
+     * @param string $url API URL
+     * @param string $user user name
+     * @param string $pass password
      * @param string $proxy (optional) proxy server
      *
      * @return void
@@ -665,34 +665,32 @@ class OnApp {
 
         $response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-        if( $response[ 'info' ][ 'http_code' ] == '200' ) {
-            $this->setAPIVersion( $response[ 'response_body' ] );
+        if ( $response['info']['http_code'] == '200' ) {
+            $this->setAPIVersion( $response['response_body'] );
 
-            if( $this->getClassName() != 'OnApp' ) {
+            if ( $this->getClassName() != 'OnApp' ) {
                 $this->initFields( $this->version );
             }
             $this->setErrors();
             $this->_is_auth = true;
-        }
-        else {
-            switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
+        } else {
+            switch ( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
                 case 'xml':
                 case 'json':
                     $tag           = 'version';
                     $this->version = null;
 
                     $objCast = new OnApp_Helper_Caster( $this );
-                    $error   = $objCast->unserialize( $this->getClassName(), $response[ 'response_body' ], null, 'errors' );
+                    $error   = $objCast->unserialize( $this->getClassName(), $response['response_body'], null, 'errors' );
                     break;
 
                 default:
                     //todo add CLI check
                     $msg = 'FATAL ERROR: Caster for "' . $this->options[ ONAPP_OPTION_API_TYPE ] . '" is not defined'
-                        . ' in FILE ' . __FILE__ . ' LINE ' . __LINE__ . PHP_EOL . PHP_EOL;
+                           . ' in FILE ' . __FILE__ . ' LINE ' . __LINE__ . PHP_EOL . PHP_EOL;
                     try {
                         throw new Exception( $msg );
-                    }
-                    catch( Exception $e ) {
+                    } catch ( Exception $e ) {
                         echo $e->getMessage();
                         exit( $this->logger->logs() );
                     }
@@ -703,7 +701,7 @@ class OnApp {
     }
 
     protected function setAPIVersion( $data ) {
-        switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
+        switch ( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
             case 'xml':
             case 'json':
                 $tag           = 'version';
@@ -716,38 +714,35 @@ class OnApp {
             default:
                 //todo add CLI check
                 $msg = 'FATAL ERROR: Caster for "' . $this->options[ ONAPP_OPTION_API_TYPE ] . '" is not defined'
-                    . ' in FILE ' . __FILE__ . ' LINE ' . __LINE__ . PHP_EOL . PHP_EOL;
+                       . ' in FILE ' . __FILE__ . ' LINE ' . __LINE__ . PHP_EOL . PHP_EOL;
                 try {
                     throw new Exception( $msg );
-                }
-                catch( Exception $e ) {
+                } catch ( Exception $e ) {
                     echo $e->getMessage();
                     exit( $this->logger->logs() );
                 }
         }
-        $this->version = (float)$this->version;
+        $this->version = (float) $this->version;
     }
 
     public function initFields( $version = null, $className = '' ) {
-        if( ! is_null( $version ) ) {
+        if ( ! is_null( $version ) ) {
             $this->version = $version;
         }
 
-        if( is_null( $this->fields ) && ( $this->getClassName() != 'OnApp' ) ) {
+        if ( is_null( $this->fields ) && ( $this->getClassName() != 'OnApp' ) ) {
             $this->logger->debug( 'No fields defined for current API version [ ' . $version . ' ]' );
-        }
-        elseif( ! is_null( $version ) ) {
-            if( $version == $this->version ) {
-                if( $this->defaultOptions[ ONAPP_OPTION_DEBUG_MODE ] ) {
+        } elseif ( ! is_null( $version ) ) {
+            if ( $version == $this->version ) {
+                if ( $this->defaultOptions[ ONAPP_OPTION_DEBUG_MODE ] ) {
                     $this->logger->debug( $className . '::initFields, version ' . $version . PHP_EOL . print_r( $this->fields, true ) );
-                }
-                else {
+                } else {
                     $this->logger->add( $className . '::initFields, version ' . $version );
                 }
             }
         }
 
-        if( is_null( $this->fields ) && ! in_array( get_called_class(), array( 'OnApp', 'OnApp_Factory' ) ) ) {
+        if ( is_null( $this->fields ) && ! in_array( get_called_class(), array( 'OnApp', 'OnApp_Factory' ) ) ) {
             throw new Exception( sprintf(
                 "The wrapper class '%s' does not support OnApp version '%s'",
                 get_called_class(),
@@ -759,8 +754,8 @@ class OnApp {
     /**
      * Sets an option for a cURL transfer
      *
-     * @param string $user      user name
-     * @param string $pass      password
+     * @param string $user user name
+     * @param string $pass password
      * @param string $cookiedir Cookies directory
      *
      * @return void
@@ -776,7 +771,7 @@ class OnApp {
         //todo ???
         //$this->_is_auth = true;
 
-        if( strlen( $this->options[ ONAPP_OPTION_CURL_PROXY ] ) > 0 ) {
+        if ( strlen( $this->options[ ONAPP_OPTION_CURL_PROXY ] ) > 0 ) {
             curl_setopt(
                 $this->_ch,
                 CURLOPT_PROXY,
@@ -805,9 +800,9 @@ class OnApp {
     /**
      * Sets full API path to the variable cURL
      *
-     * @param string  $resource    API alias
+     * @param string $resource API alias
      * @param boolean $append_api_version
-     * @param string  $queryString API request
+     * @param string $queryString API request
      *
      * @return void
      * @access public
@@ -823,7 +818,7 @@ class OnApp {
             ' queryString => "' . $queryString . '" ).'
         );
 
-        if( $append_api_version ) {
+        if ( $append_api_version ) {
             curl_setopt(
                 $this->_ch,
                 CURLOPT_URL,
@@ -834,8 +829,7 @@ class OnApp {
                     $this->options[ ONAPP_OPTION_API_TYPE ],
                     $queryString )
             );
-        }
-        else {
+        } else {
             curl_setopt(
                 $this->_ch,
                 CURLOPT_URL,
@@ -852,7 +846,7 @@ class OnApp {
     /**
      * Sends API request to the API server and gets response from it
      *
-     * @param string     $method
+     * @param string $method
      * @param array|null $data
      *
      * @return array|bool cURL response
@@ -864,12 +858,12 @@ class OnApp {
             ONAPP_REQUEST_METHOD_PUT,
             ONAPP_REQUEST_METHOD_DELETE,
         );
-        if( ! in_array( $method, $alowed_methods ) ) {
+        if ( ! in_array( $method, $alowed_methods ) ) {
             $this->logger->error( 'Wrong request method.' );
         }
 
         $debug_msg = 'Send ' . $method . ' request.';
-        if( $data ) {
+        if ( $data ) {
             $debug_msg .= ' Request:' . PHP_EOL . print_r( $data, true );
         }
         $this->logger->debug( $debug_msg );
@@ -880,35 +874,34 @@ class OnApp {
         );
 
         curl_setopt( $this->_ch, CURLOPT_CUSTOMREQUEST, $method );
-        switch( $method ) {
+        switch ( $method ) {
             case ONAPP_REQUEST_METHOD_GET:
                 curl_setopt( $this->_ch, CURLOPT_HTTPGET, true );
 
-                if( ! is_null( $data ) ) {
+                if ( ! is_null( $data ) ) {
                     curl_setopt( $this->_ch, CURLOPT_POSTFIELDS, $data );
-                }
-                else {
-                    $http_header[ ] = 'Content-Length: 0';
+                } else {
+                    $http_header[] = 'Content-Length: 0';
                 }
                 break;
 
             case ONAPP_REQUEST_METHOD_POST:
-                if( ! is_null( $data ) ) {
+                if ( ! is_null( $data ) ) {
                     curl_setopt( $this->_ch, CURLOPT_POSTFIELDS, $data );
                 }
                 break;
 
             case ONAPP_REQUEST_METHOD_PUT:
-                $http_header[ ] = 'Content-Length: ' . strlen( $data );
+                $http_header[] = 'Content-Length: ' . strlen( $data );
 
-                if( ! is_null( $data ) ) {
+                if ( ! is_null( $data ) ) {
                     curl_setopt( $this->_ch, CURLOPT_POSTFIELDS, $data );
                 }
                 break;
 
             case ONAPP_REQUEST_METHOD_DELETE:
-                if( ! is_null( $data ) ) {
-                    $http_header[ ] = 'Content-Length: ' . strlen( $data );
+                if ( ! is_null( $data ) ) {
+                    $http_header[] = 'Content-Length: ' . strlen( $data );
                     curl_setopt( $this->_ch, CURLOPT_POSTFIELDS, $data );
                 }
                 break;
@@ -919,23 +912,23 @@ class OnApp {
         curl_setopt( $this->_ch, CURLOPT_HEADER, true );
         curl_setopt( $this->_ch, CURLOPT_HTTPHEADER, $http_header );
 
-        $result                    = array();
-        $result[ 'response_body' ] = curl_exec( $this->_ch );
-        $result[ 'info' ]          = curl_getinfo( $this->_ch );
-        $curlHeaderSize            = $result[ 'info' ][ 'header_size' ];
-        $result[ 'headers' ]       = mb_substr( $result[ 'response_body' ], 0, $curlHeaderSize );
-        $result[ 'response_body' ] = mb_substr( $result[ 'response_body' ], $curlHeaderSize );
+        $result                  = array();
+        $result['response_body'] = curl_exec( $this->_ch );
+        $result['info']          = curl_getinfo( $this->_ch );
+        $curlHeaderSize          = $result['info']['header_size'];
+        $result['headers']       = mb_substr( $result['response_body'], 0, $curlHeaderSize );
+        $result['response_body'] = mb_substr( $result['response_body'], $curlHeaderSize );
 
-        if( ! $result[ 'response_body' ] && $method == ONAPP_REQUEST_METHOD_DELETE ||
-            ! $result[ 'response_body' ] && $method == ONAPP_REQUEST_METHOD_PUT
+        if ( ! $result['response_body'] && $method == ONAPP_REQUEST_METHOD_DELETE ||
+             ! $result['response_body'] && $method == ONAPP_REQUEST_METHOD_PUT
         ) {
-            switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
+            switch ( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
                 case 'json':
-                    $result[ 'response_body' ] = '{}';
+                    $result['response_body'] = '{}';
                     break;
 
                 case 'xml':
-                    $result[ 'response_body' ] = ' ';
+                    $result['response_body'] = ' ';
                     break;
 
                 default:
@@ -946,7 +939,7 @@ class OnApp {
 
         $this->logger->debug( 'Receive Response ' . print_r( $result, true ) );
 
-        if( ! $result[ 'response_body' ] ) {
+        if ( ! $result['response_body'] ) {
             $this->logger->debug( 'Response body is empty for method: ' . $method );
 
             return false;
@@ -954,10 +947,10 @@ class OnApp {
 
         $this->response = $result;
 
-        $content_type = $result[ 'info' ][ 'content_type' ];
+        $content_type = $result['info']['content_type'];
 
-        if( $content_type == $this->options[ ONAPP_OPTION_API_CONTENT ] . "; " . $this->options[ ONAPP_OPTION_API_CHARSET ] ) {
-            switch( $result[ 'info' ][ 'http_code' ] ) {
+        if ( $content_type == $this->options[ ONAPP_OPTION_API_CONTENT ] . "; " . $this->options[ ONAPP_OPTION_API_CHARSET ] ) {
+            switch ( $result['info']['http_code'] ) {
                 case 200:
                 case 201:
                 case 204:
@@ -965,26 +958,25 @@ class OnApp {
 
                 case 422:
                 case 404:
-                    switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
+                    switch ( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
                         case 'xml':
                         case 'json':
-                            $this->logger->add( 'Response (code => ' . $result[ 'info' ][ 'http_code' ] . ', cast:' . PHP_EOL . $result[ 'response_body' ] );
+                            $this->logger->add( 'Response (code => ' . $result['info']['http_code'] . ', cast:' . PHP_EOL . $result['response_body'] );
                             break;
                     }
                     break;
 
                 default:
-                    $this->logger->warning( 'Response (code => ' . $result[ 'info' ][ 'http_code' ] . ', body: ' . PHP_EOL . $result[ 'response_body' ] );
-                    $result[ 'errors' ] = $result[ 'response_body' ];
+                    $this->logger->warning( 'Response (code => ' . $result['info']['http_code'] . ', body: ' . PHP_EOL . $result['response_body'] );
+                    $result['errors'] = $result['response_body'];
             }
-        }
-        else {
-            $this->logger->add( 'sendRequest: Response:' . PHP_EOL . $result[ 'response_body' ] );
-            $result[ 'errors' ]         = 'Bad response content type: ' . $content_type;
-            $result[ 'error_response' ] = $result[ 'response_body' ];
+        } else {
+            $this->logger->add( 'sendRequest: Response:' . PHP_EOL . $result['response_body'] );
+            $result['errors']         = 'Bad response content type: ' . $content_type;
+            $result['error_response'] = $result['response_body'];
         }
 
-        $this->_errno_curl( $result[ 'response_body' ] );
+        $this->_errno_curl( $result['response_body'] );
 
         return $result;
     }
@@ -996,15 +988,15 @@ class OnApp {
      * @return string
      */
     public function getHeader( $label = null ) {
-        if( ! $label ) {
-            return $this->response[ 'headers' ];
+        if ( ! $label ) {
+            return $this->response['headers'];
         }
 
         $content = '';
 
-        preg_match_all( '|' . $label . ': (.*)|', $this->response[ 'headers' ], $content );
+        preg_match_all( '|' . $label . ': (.*)|', $this->response['headers'], $content );
 
-        return implode( '', $content[ 1 ] );
+        return implode( '', $content[1] );
     }
 
     /**
@@ -1025,7 +1017,7 @@ class OnApp {
     function _errno_curl( $response_body ) {
         $error_no = curl_errno( $this->_ch );
 
-        switch( $error_no ) {
+        switch ( $error_no ) {
             case CURLE_OK:
                 // Note: the 0 code does not mean an error, but it means success
                 $this->logger->debug( 'Response Body: OK.' . PHP_EOL . $response_body );
@@ -1057,13 +1049,13 @@ class OnApp {
      *
      * @return mixed (Array of Object or Object)
      */
-    protected function _castResponseToClass( $response, $getAllFields = false  ) {
+    protected function _castResponseToClass( $response, $getAllFields = false ) {
         $this->logger->debug( '_castResponseToClass: Cast response in to Object.' );
 
-        if( isset( $response[ 'response_body' ] ) ) {
-            $http_code = $response[ 'info' ][ 'http_code' ];
+        if ( isset( $response['response_body'] ) ) {
+            $http_code = $response['info']['http_code'];
 
-            switch( $http_code ) {
+            switch ( $http_code ) {
                 case 200:
                 case 201:
                 case 404:
@@ -1078,15 +1070,10 @@ class OnApp {
                     return $this;
 
                 default:
-                    $this->setErrors( 'Bad response ( code => ' . $http_code . ', response => ' . $response[ 'response_body' ] . ' )' );
+                    $this->setErrors( 'Bad response ( code => ' . $http_code . ', response => ' . $response['response_body'] . ' )' );
             }
-        }
-        else {
-            $this->logger->error(
-                'castResponseToClass: Can\'t parse ' . $response[ 'response_body' ],
-                __FILE__,
-                __LINE__
-            );
+        } else {
+            $this->logger->debug( 'castResponseToClass: Can\'t parse ' . $response['response_body'] );
         }
     }
 
@@ -1103,15 +1090,15 @@ class OnApp {
 
         $this->logger->add( 'castStringToClass: cast data into the ' . $className . ' object.' );
 
-        switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
+        switch ( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
             case 'xml':
             case 'json':
                 $root = $this->_tagRoot;
-                $data = $content[ 'response_body' ];
+                $data = $content['response_body'];
 
                 $objCast = new OnApp_Helper_Caster( $this );
 
-                if( $content[ 'info' ][ 'http_code' ] > 201 ) {
+                if ( $content['info']['http_code'] > 201 ) {
                     $root   = 'errors';
                     $errors = $objCast->unserialize( $className, $data, $tagMap, $root );
                     $this->setErrors( $errors );
@@ -1122,18 +1109,16 @@ class OnApp {
                     //}
 
                     return $this;
-                }
-                else {
+                } else {
                     return $objCast->unserialize( $className, $data, $tagMap, $root, $getAllFields );
                 }
 
             default:
                 $msg = 'FATAL ERROR: Caster for "' . $this->options[ ONAPP_OPTION_API_TYPE ] . '" is not defined'
-                    . ' in FILE ' . __FILE__ . ' LINE ' . __LINE__ . PHP_EOL . PHP_EOL;
+                       . ' in FILE ' . __FILE__ . ' LINE ' . __LINE__ . PHP_EOL . PHP_EOL;
                 try {
                     throw new Exception( $msg );
-                }
-                catch( Exception $e ) {
+                } catch ( Exception $e ) {
                     echo $e->getMessage();
                     //todo ???
                     exit( $this->logger->logs() );
@@ -1148,7 +1133,7 @@ class OnApp {
      *
      * @access public
      */
-    function activate( $action_name ) {
+    function activateCheck( $action_name ) {
     }
 
     /**
@@ -1161,17 +1146,16 @@ class OnApp {
      * @return array|bool the array of Object instances
      */
     public function getList( $params = null, $url_args = null ) {
-        $this->activate( ONAPP_ACTIVATE_GETLIST );
+        $this->activateCheck( ONAPP_ACTIVATE_GETLIST );
 
         $this->logger->add( 'Run ' . __METHOD__ );
 
         $result = $this->sendGet( ONAPP_GETRESOURCE_LIST, $params, $url_args );
 
-        if( ! is_null( $this->getErrorsAsArray() ) ) {
+        if ( ! is_null( $this->getErrorsAsArray() ) ) {
             return false;
-        }
-        else {
-            if( ! is_array( $result ) && ! is_null( $result ) ) {
+        } else {
+            if ( ! is_array( $result ) && ! is_null( $result ) ) {
                 $result = array( $result );
             }
 
@@ -1192,32 +1176,33 @@ class OnApp {
      * @access public
      */
     function load( $id = null ) {
-        $this->activate( ONAPP_ACTIVATE_LOAD );
+        $this->activateCheck( ONAPP_ACTIVATE_LOAD );
 
-        if( is_null( $id ) && ! is_null( $this->_id ) ) {
+        if ( is_null( $id ) && ! is_null( $this->_id ) ) {
             $id = $this->_id;
         }
 
-        if( is_null( $id ) &&
-            isset( $this->_obj ) &&
-            ! is_null( $this->_obj->_id )
+        if ( is_null( $id ) &&
+             isset( $this->_obj ) &&
+             ! is_null( $this->_obj->_id )
         ) {
             $id = $this->_obj->_id;
         }
 
-        if( is_null( $id ) ) {
+        if ( is_null( $id ) ) {
             //$this->logger->error(
             $this->logger->debug(
                 'load: Can\'t set variable ' . $id,
                 __FILE__,
                 __LINE__
             );
+
             return false;
         }
 
         $this->logger->add( 'load: Load class ( id => ' . $id . ' ).' );
 
-        if( strlen( $id ) > 0 ) {
+        if ( strlen( $id ) > 0 ) {
             $this->_id = $id;
 
             $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
@@ -1228,8 +1213,7 @@ class OnApp {
             $this->_id  = $this->_obj->_id;
 
             return $result;
-        }
-        else {
+        } else {
             $this->logger->error(
                 'load: argument id not set.',
                 __FILE__,
@@ -1260,17 +1244,16 @@ class OnApp {
      * @access public
      */
     function save() {
-        $this->activate( ONAPP_ACTIVATE_SAVE );
+        $this->activateCheck( ONAPP_ACTIVATE_SAVE );
 
-        if( is_null( $this->_id ) ) {
+        if ( is_null( $this->_id ) ) {
             $obj = $this->_create();
-        }
-        else {
+        } else {
             $obj = $this->_edit();
         }
 
         //todo handle errors
-        if( isset( $obj ) && ! isset( $obj->errors ) ) {
+        if ( isset( $obj ) && ! isset( $obj->errors ) ) {
             $this->load();
         }
     }
@@ -1284,7 +1267,7 @@ class OnApp {
     function _create() {
         $this->logger->add( 'Create new Object.' );
 
-        switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
+        switch ( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
             case 'xml':
             case 'json':
                 $data = $this->getSerializedDataToSend();
@@ -1297,11 +1280,10 @@ class OnApp {
 
             default:
                 $msg = 'FATAL ERROR: Caster for "' . $this->options[ ONAPP_OPTION_API_TYPE ] . '" is not defined'
-                    . ' in FILE ' . __FILE__ . ' LINE ' . __LINE__ . PHP_EOL . PHP_EOL;
+                       . ' in FILE ' . __FILE__ . ' LINE ' . __LINE__ . PHP_EOL . PHP_EOL;
                 try {
                     throw new Exception( $msg );
-                }
-                catch( Exception $e ) {
+                } catch ( Exception $e ) {
                     echo $e->getMessage();
                     //todo ???
                     exit( $this->logger->logs() );
@@ -1318,27 +1300,25 @@ class OnApp {
      * @access private
      */
     function _edit() {
-        switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
+        switch ( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
             case 'xml':
             case 'json':
                 $data = $this->getSerializedDataToSend();
                 $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_EDIT ) );
                 $response = $this->sendRequest( ONAPP_REQUEST_METHOD_PUT, $data );
-                if( $response[ 'info' ][ 'http_code' ] > 201 ) {
+                if ( $response['info']['http_code'] > 201 ) {
                     $this->_castResponseToClass( $response );
-                }
-                else {
+                } else {
                     $this->load( $this->_id );
                 }
                 break;
 
             default:
                 $msg = 'FATAL ERROR: Caster for "' . $this->options[ ONAPP_OPTION_API_TYPE ] . '" is not defined'
-                    . ' in FILE ' . __FILE__ . ' LINE ' . __LINE__ . PHP_EOL . PHP_EOL;
+                       . ' in FILE ' . __FILE__ . ' LINE ' . __LINE__ . PHP_EOL . PHP_EOL;
                 try {
                     throw new Exception( $msg );
-                }
-                catch( Exception $e ) {
+                } catch ( Exception $e ) {
                     echo $e->getMessage();
                     //todo ???
                     exit( $this->logger->logs() );
@@ -1358,6 +1338,7 @@ class OnApp {
         $objCast = new OnApp_Helper_Caster( $this );
         $data    = $objCast->serialize( $this->_tagRoot, $this->getFieldsToSend() );
         $this->logger->debug( 'serialize: serialized data:' . PHP_EOL . $data );
+
         return $data;
     }
 
@@ -1373,48 +1354,41 @@ class OnApp {
         $this->logger->debug( 'getFieldsToSend: Prepare data array:' );
         $result = array();
 
-        foreach( $this->fields as $key => $value ) {
+        foreach ( $this->fields as $key => $value ) {
             //skip property from request
-            if( isset( $value[ ONAPP_FIELD_SKIP_FROM_REQUEST ] ) && $value[ ONAPP_FIELD_SKIP_FROM_REQUEST ] ) {
+            if ( isset( $value[ ONAPP_FIELD_SKIP_FROM_REQUEST ] ) && $value[ ONAPP_FIELD_SKIP_FROM_REQUEST ] ) {
                 //todo add log record
                 continue;
             }
 
             $property = $value[ ONAPP_FIELD_MAP ];
-            if( isset( $value[ ONAPP_FIELD_REQUIRED ] ) && $value[ ONAPP_FIELD_REQUIRED ] ) {
-                if( isset( $this->$property ) && ! empty( $this->$property ) ) {
+            if ( isset( $value[ ONAPP_FIELD_REQUIRED ] ) && $value[ ONAPP_FIELD_REQUIRED ] ) {
+                if ( isset( $this->$property ) && ! empty( $this->$property ) ) {
                     $result[ $key ] = $this->$property;
-                }
-                elseif( isset( $this->$property ) && is_bool( $this->$property ) ) {
+                } elseif ( isset( $this->$property ) && is_bool( $this->$property ) ) {
                     $result[ $key ] = $this->$property;
-                }
-                elseif( isset( $this->_obj->$property ) ) {
+                } elseif ( isset( $this->_obj->$property ) ) {
                     $result[ $key ] = $this->_obj->$property;
-                }
-                elseif( isset( $value[ ONAPP_FIELD_DEFAULT_VALUE ] ) ) {
+                } elseif ( isset( $value[ ONAPP_FIELD_DEFAULT_VALUE ] ) ) {
                     $result[ $key ] = $value[ ONAPP_FIELD_DEFAULT_VALUE ];
-                }
-                else {
+                } else {
                     $this->logger->error(
                         'getFieldsToSent: Property ' . $property . ' not defined',
                         __FILE__,
                         __LINE__
                     );
                 }
-            }
-            elseif( isset( $this->$property ) ) {
+            } elseif ( isset( $this->$property ) ) {
                 $result[ $key ] = $this->$property;
-            }
-            else {
-                if( isset( $this->_obj->$property ) ) {
+            } else {
+                if ( isset( $this->_obj->$property ) ) {
                     $result[ $key ] = $this->_obj->$property;
-                }
-                elseif( isset( $value[ ONAPP_FIELD_DEFAULT_VALUE ] ) ) {
+                } elseif ( isset( $value[ ONAPP_FIELD_DEFAULT_VALUE ] ) ) {
                     $result[ $key ] = $value[ ONAPP_FIELD_DEFAULT_VALUE ];
                 }
             }
 
-            if( isset( $result[ $key ] ) ) {
+            if ( isset( $result[ $key ] ) ) {
                 $this->logger->debug( 'getFieldsToSent: set attribute ( ' . $key . ' => ' . print_r( $result[ $key ], true ) . ' ).' );
             }
         }
@@ -1440,13 +1414,13 @@ class OnApp {
      * @access public
      */
     function delete() {
-        $this->activate( ONAPP_ACTIVATE_DELETE );
+        $this->activateCheck( ONAPP_ACTIVATE_DELETE );
 
         $this->logger->add( 'Delete existing Object ( id => ' . $this->_id . ' ).' );
 
         $this->sendDelete( ONAPP_GETRESOURCE_DELETE );
 
-        if( count( $this->getErrorsAsArray() ) < 1 ) {
+        if ( count( $this->getErrorsAsArray() ) < 1 ) {
             $this->_is_deleted = true;
         }
     }
@@ -1456,7 +1430,7 @@ class OnApp {
     }
 
     protected function sendGet( $resource, $data = null, $url_args = null, $getAllFields = false ) {
-        return $this->_action( ONAPP_REQUEST_METHOD_GET, $resource, $data, $url_args, $getAllFields  );
+        return $this->_action( ONAPP_REQUEST_METHOD_GET, $resource, $data, $url_args, $getAllFields );
     }
 
     function sendPut( $resource, $data = null, $url_args = null ) {
@@ -1470,19 +1444,19 @@ class OnApp {
     /**
      * Sends API Requests to realize not base actions
      *
-     * @param string     $method
-     * @param string     $resource
+     * @param string $method
+     * @param string $resource
      * @param array|null $data
      *
      * @return bool|mixed (Array of Object or Object)
      */
     protected function _action( $method, $resource, $data = null, $url_args = null, $getAllFields = false ) {
-        switch( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
+        switch ( $this->options[ ONAPP_OPTION_API_TYPE ] ) {
             case 'xml':
             case 'json':
-                if(  ! is_null( $data ) && is_array($data) ) {
+                if ( ! is_null( $data ) && is_array( $data ) ) {
                     $objCast = new OnApp_Helper_Caster( $this );
-                    $data    = $objCast->serialize( $data[ 'root' ], $data[ 'data' ] );
+                    $data    = $objCast->serialize( $data['root'], $data['data'] );
                     $this->logger->debug( 'Additional parameters: ' . $data );
                 }
 
@@ -1492,19 +1466,19 @@ class OnApp {
 
                 $response = $this->sendRequest( $method, $data );
 
+                $response = $this->modifyResponse($response, $resource);
+
                 $result = $this->_castResponseToClass( $response, $getAllFields );
 
-                if( $response[ 'info' ][ 'http_code' ] > 400 ) {
-                    if( is_null( $result ) ) {
+                if ( $response['info']['http_code'] > 400 ) {
+                    if ( is_null( $result ) ) {
                         $this->_obj = clone $this;
-                    }
-                    else {
+                    } else {
                         $this->_obj->errors = $result->getErrorsAsArray();
                     }
 
                     return false;
-                }
-                else {
+                } else {
                     $this->_obj = $result;
                 }
                 break;
@@ -1517,11 +1491,14 @@ class OnApp {
         return $result;
     }
 
+    public function modifyResponse($response, $resource) {
+        return $response;
+    }
+
     public function getClassName() {
-        if( is_null( $this->className ) ) {
+        if ( is_null( $this->className ) ) {
             return __CLASS__;
-        }
-        else {
+        } else {
             return $this->className;
         }
     }
@@ -1542,11 +1519,10 @@ class OnApp {
      * @return void
      */
     public function setErrors( $errors = null ) {
-        if( is_null( $errors ) ) {
+        if ( is_null( $errors ) ) {
             $this->errors = null;
-        }
-        else {
-            $this->errors = (array)$errors;
+        } else {
+            $this->errors = (array) $errors;
         }
     }
 
@@ -1560,13 +1536,12 @@ class OnApp {
     public function getErrorsAsString( $glue = '<br />' ) {
         $errors = '';
 
-        foreach( $this->errors as $key => $value ) {
-            if( is_array( $value ) ) {
-                foreach( $value as $k => $v ) {
+        foreach ( $this->errors as $key => $value ) {
+            if ( is_array( $value ) ) {
+                foreach ( $value as $k => $v ) {
                     $errors .= $key . ': ' . $v . $glue;
                 }
-            }
-            else {
+            } else {
                 $errors .= $value . $glue;
             }
         }
@@ -1593,7 +1568,7 @@ class OnApp {
      * @return void
      */
     public function unsetFields( $fields ) {
-        foreach( $fields as $field ) {
+        foreach ( $fields as $field ) {
             unset( $this->fields[ $field ] );
         }
     }
@@ -1616,7 +1591,7 @@ class OnApp {
         // legacy getting errors
         // remove after rewriting the code to use getErrors() method
         // instead of direct access
-        switch( $name ) {
+        switch ( $name ) {
             case 'error':
                 return $this->getErrorsAsArray();
                 break;
@@ -1627,24 +1602,22 @@ class OnApp {
         }
 
         // legacy vars naming
-        if( ! isset( $this->dynamicFields[ $name ] ) ) {
-            if( strpos( $name, '_' ) === 0 ) {
+        if ( ! isset( $this->dynamicFields[ $name ] ) ) {
+            if ( strpos( $name, '_' ) === 0 ) {
                 $tmpName = substr( $name, 1 );
-            }
-            else {
+            } else {
                 $tmpName = '_' . $name;
             }
 
-            if( isset( $this->dynamicFields[ $tmpName ] ) ) {
+            if ( isset( $this->dynamicFields[ $tmpName ] ) ) {
                 return $this->dynamicFields[ $tmpName ];
-            }
-            else {
+            } else {
                 return null;
             }
         }
 
-        if( is_object( $this->dynamicFields[ $name ] ) ) {
-            if( get_class( $this->dynamicFields[ $name ] ) == 'DataHolder' ) {
+        if ( is_object( $this->dynamicFields[ $name ] ) ) {
+            if ( get_class( $this->dynamicFields[ $name ] ) == 'DataHolder' ) {
                 $this->dynamicFields[ $name ] = OnApp_Helper_Caster::unserializeNested( $this->dynamicFields[ $name ] );
             }
         }
@@ -1655,7 +1628,7 @@ class OnApp {
     /**
      * Standard method to handle writing into non-existent class' property
      *
-     * @param string $name  property name
+     * @param string $name property name
      * @param string $value property value
      *
      * @return void
@@ -1675,7 +1648,7 @@ class OnApp {
         // legacy getting errors
         // remove after rewriting the code to use getErrors() method
         // instead of direct access
-        switch( $name ) {
+        switch ( $name ) {
             case 'error':
                 return isset( $this->errors );
                 break;
@@ -1685,14 +1658,13 @@ class OnApp {
                 break;
         }
 
-        if( isset( $this->dynamicFields[ $name ] ) ) {
+        if ( isset( $this->dynamicFields[ $name ] ) ) {
             return true;
         }
 
-        if( strpos( $name, '_' ) === 0 ) {
+        if ( strpos( $name, '_' ) === 0 ) {
             $tmpName = substr( $name, 1 );
-        }
-        else {
+        } else {
             $tmpName = '_' . $name;
         }
 
@@ -1707,28 +1679,26 @@ class OnApp {
      * @return void
      */
     public function __unset( $name ) {
-        if( ! isset( $this->dynamicFields[ $name ] ) ) {
-            if( strpos( $name, '_' ) === 0 ) {
+        if ( ! isset( $this->dynamicFields[ $name ] ) ) {
+            if ( strpos( $name, '_' ) === 0 ) {
                 $tmpName = substr( $name, 1 );
-            }
-            else {
+            } else {
                 $tmpName = '_' . $name;
             }
 
-            if( isset( $this->dynamicFields[ $tmpName ] ) ) {
+            if ( isset( $this->dynamicFields[ $tmpName ] ) ) {
                 unset( $this->dynamicFields[ $tmpName ] );
             }
-        }
-        else {
+        } else {
             unset( $this->dynamicFields[ $name ] );
         }
     }
 
     public function addStringField( $fieldName ) {
-        if(!isset($this->fields[$fieldName])){
+        if ( ! isset( $this->fields[ $fieldName ] ) ) {
             $this->fields[ $fieldName ] = array(
-                ONAPP_FIELD_MAP           => '_' . $fieldName,
-                ONAPP_FIELD_TYPE          => 'string',
+                ONAPP_FIELD_MAP  => '_' . $fieldName,
+                ONAPP_FIELD_TYPE => 'string',
             );
         }
     }

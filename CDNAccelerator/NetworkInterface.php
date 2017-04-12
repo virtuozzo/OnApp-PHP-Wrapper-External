@@ -36,13 +36,13 @@ class OnApp_CDNAccelerator_NetworkInterface extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case 2.0:
             case 2.1:
             case 2.2:
@@ -57,71 +57,77 @@ class OnApp_CDNAccelerator_NetworkInterface extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'connected'	=> array(
-                        ONAPP_FIELD_MAP => '_connected',
+                    'connected'             => array(
+                        ONAPP_FIELD_MAP  => '_connected',
                         ONAPP_FIELD_TYPE => 'boolean'
                     ),
-                    'created_at'	=> array(
-                        ONAPP_FIELD_MAP => '_created_at',
+                    'created_at'            => array(
+                        ONAPP_FIELD_MAP  => '_created_at',
                         ONAPP_FIELD_TYPE => 'datetime'
                     ),
-                    'default_firewall_rule'	=> array(
-                        ONAPP_FIELD_MAP => '_default_firewall_rule',
+                    'default_firewall_rule' => array(
+                        ONAPP_FIELD_MAP  => '_default_firewall_rule',
                         ONAPP_FIELD_TYPE => 'string'
                     ),
-                    'id'	=> array(
-                        ONAPP_FIELD_MAP => '_id',
+                    'id'                    => array(
+                        ONAPP_FIELD_MAP  => '_id',
                         ONAPP_FIELD_TYPE => 'integer'
                     ),
-                    'identifier'	=> array(
-                        ONAPP_FIELD_MAP => '_identifier',
+                    'identifier'            => array(
+                        ONAPP_FIELD_MAP  => '_identifier',
                         ONAPP_FIELD_TYPE => 'string'
                     ),
-                    'label'	=> array(
-                        ONAPP_FIELD_MAP => '_label',
+                    'label'                 => array(
+                        ONAPP_FIELD_MAP  => '_label',
                         ONAPP_FIELD_TYPE => 'string'
                     ),
-                    'mac_address'	=> array(
-                        ONAPP_FIELD_MAP => '_mac_address',
+                    'mac_address'           => array(
+                        ONAPP_FIELD_MAP  => '_mac_address',
                         ONAPP_FIELD_TYPE => 'string'
                     ),
-                    'network_join_id'	=> array(
-                        ONAPP_FIELD_MAP => '_network_join_id',
+                    'network_join_id'       => array(
+                        ONAPP_FIELD_MAP  => '_network_join_id',
                         ONAPP_FIELD_TYPE => 'integer'
                     ),
-                    'primary'	=> array(
-                        ONAPP_FIELD_MAP => '_primary',
+                    'primary'               => array(
+                        ONAPP_FIELD_MAP  => '_primary',
                         ONAPP_FIELD_TYPE => 'boolean'
                     ),
-                    'rate_limit'	=> array(
-                        ONAPP_FIELD_MAP => '_rate_limit',
+                    'rate_limit'            => array(
+                        ONAPP_FIELD_MAP  => '_rate_limit',
                         ONAPP_FIELD_TYPE => 'integer'
                     ),
-                    'updated_at'	=> array(
-                        ONAPP_FIELD_MAP => '_updated_at',
+                    'updated_at'            => array(
+                        ONAPP_FIELD_MAP  => '_updated_at',
                         ONAPP_FIELD_TYPE => 'datetime'
                     ),
-                    'usage'	=> array(
-                        ONAPP_FIELD_MAP => '_usage',
+                    'usage'                 => array(
+                        ONAPP_FIELD_MAP  => '_usage',
                         ONAPP_FIELD_TYPE => 'boolean'
                     ),
-                    'usage_last_reset_at'	=> array(
-                        ONAPP_FIELD_MAP => '_usage_last_reset_at',
+                    'usage_last_reset_at'   => array(
+                        ONAPP_FIELD_MAP  => '_usage_last_reset_at',
                         ONAPP_FIELD_TYPE => 'boolean'
                     ),
-                    'usage_month_rolled_at'	=> array(
-                        ONAPP_FIELD_MAP => '_usage_month_rolled_at',
+                    'usage_month_rolled_at' => array(
+                        ONAPP_FIELD_MAP  => '_usage_month_rolled_at',
                         ONAPP_FIELD_TYPE => 'boolean'
                     ),
-                    'virtual_machine_id'	=> array(
-                        ONAPP_FIELD_MAP => '_virtual_machine_id',
+                    'virtual_machine_id'    => array(
+                        ONAPP_FIELD_MAP  => '_virtual_machine_id',
                         ONAPP_FIELD_TYPE => 'integer'
                     ),
-                    'edge_gateway_id'	=> array(
-                        ONAPP_FIELD_MAP => '_edge_gateway_id',
+                    'edge_gateway_id'       => array(
+                        ONAPP_FIELD_MAP  => '_edge_gateway_id',
                         ONAPP_FIELD_TYPE => 'string'
                     ),
                 );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
                 break;
         }
 
@@ -131,7 +137,7 @@ class OnApp_CDNAccelerator_NetworkInterface extends OnApp {
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
@@ -157,7 +163,7 @@ class OnApp_CDNAccelerator_NetworkInterface extends OnApp {
                  * @alias   /accelerators/:virtual_machine_id/network_interfaces/:id(.:format)
                  * @format  {:controller=>"network_interfaces", :action=>"destroy"}
                  */
-                if( is_null( $this->_virtual_machine_id ) ) {
+                if ( is_null( $this->_virtual_machine_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _virtual_machine_id not set.',
                         __FILE__,
@@ -215,16 +221,15 @@ class OnApp_CDNAccelerator_NetworkInterface extends OnApp {
     }
 
     function getList( $virtual_machine_id = null, $url_args = null ) {
-        if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
+        if ( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
             $virtual_machine_id = $this->_virtual_machine_id;
         }
 
-        if( ! is_null( $virtual_machine_id ) ) {
+        if ( ! is_null( $virtual_machine_id ) ) {
             $this->_virtual_machine_id = $virtual_machine_id;
 
             return parent::getList();
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getList: argument _virtual_machine_id not set.',
                 __FILE__,

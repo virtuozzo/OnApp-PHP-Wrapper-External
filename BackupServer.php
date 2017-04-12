@@ -99,11 +99,16 @@ class OnApp_BackupServer extends OnApp {
                         ONAPP_FIELD_MAP  => '_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'enabled'                     => array(
+                    'enabled'                => array(
                         ONAPP_FIELD_MAP  => '_enabled',
                         ONAPP_FIELD_TYPE => 'boolean',
                     ),
                 );
+                break;
+
+            case 4.3:
+            case 5.0:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 

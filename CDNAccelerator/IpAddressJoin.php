@@ -36,13 +36,13 @@ class OnApp_CDNAccelerator_IpAddressJoin extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case 2.0:
             case 2.1:
             case 2.2:
@@ -57,53 +57,59 @@ class OnApp_CDNAccelerator_IpAddressJoin extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'created_at'	=> array(
-                        ONAPP_FIELD_MAP => '_created_at',
+                    'created_at'           => array(
+                        ONAPP_FIELD_MAP  => '_created_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'id'	=> array(
-                        ONAPP_FIELD_MAP => '_id',
+                    'id'                   => array(
+                        ONAPP_FIELD_MAP  => '_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'ip_address_id'	=> array(
-                        ONAPP_FIELD_MAP => '_ip_address_id',
+                    'ip_address_id'        => array(
+                        ONAPP_FIELD_MAP  => '_ip_address_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'network_interface_id'	=> array(
-                        ONAPP_FIELD_MAP => '_network_interface_id',
+                    'network_interface_id' => array(
+                        ONAPP_FIELD_MAP  => '_network_interface_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'updated_at'	=> array(
-                        ONAPP_FIELD_MAP => '_updated_at',
+                    'updated_at'           => array(
+                        ONAPP_FIELD_MAP  => '_updated_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'data_store_id'	=> array(
-                        ONAPP_FIELD_MAP => '_data_store_id',
+                    'data_store_id'        => array(
+                        ONAPP_FIELD_MAP  => '_data_store_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'hypervisor_id'	=> array(
-                        ONAPP_FIELD_MAP => '_hypervisor_id',
+                    'hypervisor_id'        => array(
+                        ONAPP_FIELD_MAP  => '_hypervisor_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'target_join_id'	=> array(
-                        ONAPP_FIELD_MAP => '_target_join_id',
+                    'target_join_id'       => array(
+                        ONAPP_FIELD_MAP  => '_target_join_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'target_join_type'	=> array(
-                        ONAPP_FIELD_MAP => '_target_join_type',
+                    'target_join_type'     => array(
+                        ONAPP_FIELD_MAP  => '_target_join_type',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'ip_address' => array(
-                        ONAPP_FIELD_MAP       => '_ip_address',
-                        ONAPP_FIELD_TYPE      => 'array',
-                        ONAPP_FIELD_CLASS     => 'CDNAccelerator_IpAddressJoin_IpAddress',
+                    'ip_address'           => array(
+                        ONAPP_FIELD_MAP   => '_ip_address',
+                        ONAPP_FIELD_TYPE  => 'array',
+                        ONAPP_FIELD_CLASS => 'CDNAccelerator_IpAddressJoin_IpAddress',
                     ),
-                    'accelerator_id' => array(
-                        ONAPP_FIELD_MAP       => '_accelerator_if',
-                        ONAPP_FIELD_TYPE      => 'integer',
+                    'accelerator_id'       => array(
+                        ONAPP_FIELD_MAP  => '_accelerator_if',
+                        ONAPP_FIELD_TYPE => 'integer',
                     ),
 
                 );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
                 break;
         }
         parent::initFields( $version, __CLASS__ );
@@ -111,9 +117,8 @@ class OnApp_CDNAccelerator_IpAddressJoin extends OnApp {
         return $this->fields;
     }
 
-    function getResource( $action = ONAPP_GETRESOURCE_DEFAULT )
-    {
-        switch ($action) {
+    function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
@@ -139,7 +144,7 @@ class OnApp_CDNAccelerator_IpAddressJoin extends OnApp {
                  * @alias   /accelerators/:accelerator_id/ip_addresses/:id(.:format)
                  * @format  {:controller=>"ip_addresses", :action=>"destroy"}
                  */
-                if (is_null($this->_accelerator_id)) {
+                if ( is_null( $this->_accelerator_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _accelerator_id not set.',
                         __FILE__,
@@ -190,23 +195,22 @@ class OnApp_CDNAccelerator_IpAddressJoin extends OnApp {
                  * @alias  accelerators/:accelerator_id/ip_addresses/:id(.:format)
                  * @format {:controller=>"ip_addresses", :action=>"destroy"}
                  */
-                $resource = parent::getResource($action);
+                $resource = parent::getResource( $action );
         }
 
         return $resource;
     }
 
     function getList( $accelerator_id = null, $url_args = null ) {
-        if( is_null( $accelerator_id ) && ! is_null( $this->_accelerator_id ) ) {
+        if ( is_null( $accelerator_id ) && ! is_null( $this->_accelerator_id ) ) {
             $accelerator_id = $this->_accelerator_id;
         }
 
-        if( ! is_null( $accelerator_id ) ) {
+        if ( ! is_null( $accelerator_id ) ) {
             $this->_accelerator_id = $accelerator_id;
 
             return parent::getList();
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getList: argument _accelerator_id not set.',
                 __FILE__,

@@ -39,13 +39,13 @@ class OnApp_Template_Recipe extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -60,51 +60,55 @@ class OnApp_Template_Recipe extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'compatible_with'	 => array(
-                        ONAPP_FIELD_MAP => '_compatible_with',
+                    'compatible_with' => array(
+                        ONAPP_FIELD_MAP  => '_compatible_with',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'created_at'	 => array(
-                        ONAPP_FIELD_MAP => '_created_at',
+                    'created_at'      => array(
+                        ONAPP_FIELD_MAP  => '_created_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'description'	 => array(
-                        ONAPP_FIELD_MAP => '_description',
+                    'description'     => array(
+                        ONAPP_FIELD_MAP  => '_description',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'id'	 => array(
-                        ONAPP_FIELD_MAP => '_id',
+                    'id'              => array(
+                        ONAPP_FIELD_MAP  => '_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'label'	 => array(
-                        ONAPP_FIELD_MAP => '_label',
+                    'label'           => array(
+                        ONAPP_FIELD_MAP  => '_label',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'script_type'	 => array(
-                        ONAPP_FIELD_MAP => '_script_type',
+                    'script_type'     => array(
+                        ONAPP_FIELD_MAP  => '_script_type',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'updated_at'	 => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
+                    'updated_at'      => array(
+                        ONAPP_FIELD_MAP  => '_updated_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'user_id'	 => array(
-                        ONAPP_FIELD_MAP => '_user_id',
+                    'user_id'         => array(
+                        ONAPP_FIELD_MAP  => '_user_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'recipe_steps'	 => array(
-                        ONAPP_FIELD_MAP => '_recipe_steps',
+                    'recipe_steps'    => array(
+                        ONAPP_FIELD_MAP  => '_recipe_steps',
                         ONAPP_FIELD_TYPE => 'array',
                     ),
-                    'event_type'	 => array(
-                        ONAPP_FIELD_MAP => '_recipe_steps',
+                    'event_type'      => array(
+                        ONAPP_FIELD_MAP  => '_recipe_steps',
                         ONAPP_FIELD_TYPE => 'array',
                     ),
-                    'recipe_joins'	 => array(
-                        ONAPP_FIELD_MAP => '_recipe_joins',
+                    'recipe_joins'    => array(
+                        ONAPP_FIELD_MAP  => '_recipe_joins',
                         ONAPP_FIELD_TYPE => 'array',
                     ),
                 );
+                break;
+            case 4.3:
+            case 5.0:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 
@@ -122,7 +126,7 @@ class OnApp_Template_Recipe extends OnApp {
      * @access public
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
@@ -140,7 +144,7 @@ class OnApp_Template_Recipe extends OnApp {
                  * @alias    /templates/:template_id/recipe_joins(.:format)
                  * @format    {:controller=>"recipe_joins", :action=>"recipe_joins"}
                  */
-                if( is_null( $this->_id )) {
+                if ( is_null( $this->_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _id not set.',
                         __FILE__,
@@ -155,6 +159,7 @@ class OnApp_Template_Recipe extends OnApp {
                 $resource = parent::getResource( $action );
                 break;
         }
+
         return $resource;
     }
 }

@@ -103,6 +103,12 @@ class OnApp_Availability_Host extends OnApp {
 
                 );
                 break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -122,21 +128,20 @@ class OnApp_Availability_Host extends OnApp {
         return $resource;
     }
 
-    public function getNodeList($id = null) {
-        if( !is_null( $id ) ) {
+    public function getNodeList( $id = null ) {
+        if ( ! is_null( $id ) ) {
             $this->_id = $id;
         }
 
-        $oldTagRoot = $this->_tagRoot;
+        $oldTagRoot     = $this->_tagRoot;
         $this->_tagRoot = 'availability_node';
-        $result = $this->sendGet( ONAPP_GETRESOURCE_LOAD );
+        $result         = $this->sendGet( ONAPP_GETRESOURCE_LOAD );
         $this->_tagRoot = $oldTagRoot;
 
-        if( ! is_null( $this->getErrorsAsArray() ) ) {
+        if ( ! is_null( $this->getErrorsAsArray() ) ) {
             return false;
-        }
-        else {
-            if( ! is_array( $result ) && ! is_null( $result ) ) {
+        } else {
+            if ( ! is_array( $result ) && ! is_null( $result ) ) {
                 $result = array( $result );
             }
 

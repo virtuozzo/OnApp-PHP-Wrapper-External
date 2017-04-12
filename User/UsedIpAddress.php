@@ -38,13 +38,13 @@ class OnApp_User_UsedIpAddress extends OnApp_IpAddress {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -112,6 +112,8 @@ class OnApp_User_UsedIpAddress extends OnApp_IpAddress {
             case 4.0:
             case 4.1:
             case 4.2:
+            case 4.3:
+            case 5.0:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
@@ -128,8 +130,8 @@ class OnApp_User_UsedIpAddress extends OnApp_IpAddress {
      *
      * @access public
      */
-    function activate( $action_name ) {
-        switch( $action_name ) {
+    function activateCheck( $action_name ) {
+        switch ( $action_name ) {
             case ONAPP_ACTIVATE_GETLIST:
             case ONAPP_ACTIVATE_LOAD:
             case ONAPP_ACTIVATE_SAVE:

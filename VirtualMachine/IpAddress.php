@@ -42,13 +42,13 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -111,31 +111,35 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
             case 4.0:
             case 4.1:
             case 4.2:
-                $this->fields = $this->initFields( 2.3 );
-                $this->fields[ 'customer_network_id' ]              = array(
-                    ONAPP_FIELD_MAP           => '_customer_network_id',
-                    ONAPP_FIELD_TYPE          => 'boolean'
+                $this->fields                        = $this->initFields( 2.3 );
+                $this->fields['customer_network_id'] = array(
+                    ONAPP_FIELD_MAP  => '_customer_network_id',
+                    ONAPP_FIELD_TYPE => 'boolean'
                 );
-                $this->fields[ 'disallowed_primary' ]                = array(
-                    ONAPP_FIELD_MAP           => '_disallowed_primary',
-                    ONAPP_FIELD_TYPE          => 'boolean'
+                $this->fields['disallowed_primary']  = array(
+                    ONAPP_FIELD_MAP  => '_disallowed_primary',
+                    ONAPP_FIELD_TYPE => 'boolean'
                 );
-                $this->fields[ 'hypervisor_id' ]                     = array(
-                    ONAPP_FIELD_MAP           => '_hypervisor_id',
-                    ONAPP_FIELD_TYPE          => 'boolean'
+                $this->fields['hypervisor_id']       = array(
+                    ONAPP_FIELD_MAP  => '_hypervisor_id',
+                    ONAPP_FIELD_TYPE => 'boolean'
                 );
-                $this->fields[ 'ip_address_pool_id' ]                = array(
-                    ONAPP_FIELD_MAP           => '_ip_address_pool_id',
-                    ONAPP_FIELD_TYPE          => 'boolean'
+                $this->fields['ip_address_pool_id']  = array(
+                    ONAPP_FIELD_MAP  => '_ip_address_pool_id',
+                    ONAPP_FIELD_TYPE => 'boolean'
                 );
-                $this->fields[ 'pxe' ]                                = array(
-                    ONAPP_FIELD_MAP           => '_pxe',
-                    ONAPP_FIELD_TYPE          => 'boolean'
+                $this->fields['pxe']                 = array(
+                    ONAPP_FIELD_MAP  => '_pxe',
+                    ONAPP_FIELD_TYPE => 'boolean'
                 );
-                $this->fields[ 'user_id' ]                            = array(
-                    ONAPP_FIELD_MAP           => '_user_id',
-                    ONAPP_FIELD_TYPE          => 'boolean'
+                $this->fields['user_id']             = array(
+                    ONAPP_FIELD_MAP  => '_user_id',
+                    ONAPP_FIELD_TYPE => 'boolean'
                 );
+                break;
+            case 4.3:
+            case 5.0:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 
@@ -153,7 +157,7 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
      * @access public
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_JOIN:
                 $resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
@@ -169,18 +173,18 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
     /**
      * Joins another Ip Address to particular virtual machine
      *
-     * @param integer $ip_address_id        ip address id
-     * @param integer $virtual_machine_id   virtual machine id
+     * @param integer $ip_address_id ip address id
+     * @param integer $virtual_machine_id virtual machine id
      * @param integer $network_interface_id network interface id
      */
     function join( $ip_address_id = null, $virtual_machine_id = null, $network_interface_id = null ) {
-        if( $virtual_machine_id ) {
+        if ( $virtual_machine_id ) {
             $this->_virtual_machine_id = $virtual_machine_id;
         }
-        if( $network_interface_id ) {
+        if ( $network_interface_id ) {
             $this->_network_interface_id = $network_interface_id;
         }
-        if( $ip_address_id ) {
+        if ( $ip_address_id ) {
             $this->_id = $ip_address_id;
         }
 
@@ -202,8 +206,8 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
      *
      * @access public
      */
-    function activate( $action_name ) {
-        switch( $action_name ) {
+    function activateCheck( $action_name ) {
+        switch ( $action_name ) {
             case ONAPP_ACTIVATE_GETLIST:
             case ONAPP_ACTIVATE_LOAD:
             case ONAPP_ACTIVATE_SAVE:

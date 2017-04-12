@@ -16,7 +16,7 @@ class OnApp_Helper_Caster {
 
     /**
      * @param string $version OnApp API version
-     * @param object $obj     wrapper object
+     * @param object $obj wrapper object
      */
     public function __construct( $obj ) {
         self::$obj        = $obj;
@@ -27,7 +27,7 @@ class OnApp_Helper_Caster {
      * Serialize wrapper data to JSON|XML
      *
      * @param string $root root tag
-     * @param array  $data data to serialize
+     * @param array $data data to serialize
      *
      * @return string
      */
@@ -41,14 +41,14 @@ class OnApp_Helper_Caster {
     /**
      * Unserialize data to wrapper object(s)
      *
-     * @param string       $className classname to cast into
-     * @param string|array $data      XML|JSON or array containing nested data
-     * @param array        $map       fields map
-     * @param string       $root      root tag
+     * @param string $className classname to cast into
+     * @param string|array $data XML|JSON or array containing nested data
+     * @param array $map fields map
+     * @param string $root root tag
      *
      * @return array|object unserialized data
      */
-    public function unserialize( $className, $data, $map, $root, $getAllFields = false  ) {
+    public function unserialize( $className, $data, $map, $root, $getAllFields = false ) {
         self::$obj->logger->debug( 'Data to unserialize into ' . $className . ':' . PHP_EOL . $data );
 
         return self::getCaster()
@@ -80,18 +80,17 @@ class OnApp_Helper_Caster {
         $tmp_obj->_ch      = self::$obj->_ch;
         $tmp_obj->_is_auth = self::$obj->_is_auth;
 
-        if( is_object( $object->data ) && get_class( $object->data ) == 'SimpleXMLElement'
-            && (string)$object->data->attributes()->type != 'array' || is_object( $object->data )
-            && get_class( $object->data ) == 'stdClass' && ! is_array( $object->data )
+        if ( is_object( $object->data ) && get_class( $object->data ) == 'SimpleXMLElement'
+             && (string) $object->data->attributes()->type != 'array' || is_object( $object->data )
+                                                                         && get_class( $object->data ) == 'stdClass' && ! is_array( $object->data )
         ) {
             $tmp = self::getCaster()
                        ->unserialize( $className, $object->data, $tmp_obj->getClassFields(), $tmp_obj->_tagRoot );
-        }
-        else {
+        } else {
             $tmp = array();
-            foreach( $object->data as $data ) {
-                $tmp[ ] = self::getCaster()
-                              ->unserialize( $className, $data, $tmp_obj->getClassFields(), $tmp_obj->_tagRoot );
+            foreach ( $object->data as $data ) {
+                $tmp[] = self::getCaster()
+                             ->unserialize( $className, $data, $tmp_obj->getClassFields(), $tmp_obj->_tagRoot );
             }
         }
 
@@ -110,7 +109,7 @@ class OnApp_Helper_Caster {
      * @return object
      */
     private static function getCaster() {
-        $caster = __CLASS__ . '_' . strtoupper( self::$obj->options[ 'data_type' ] );
+        $caster = __CLASS__ . '_' . strtoupper( self::$obj->options['data_type'] );
 
         return new $caster;
     }
@@ -125,6 +124,6 @@ class DataHolder extends stdClass {
 /**
  * Hide errors if running in CLI to pass unit tests
  */
-if( IS_CLI ) {
+if ( IS_CLI ) {
     error_reporting( 0 );
 }

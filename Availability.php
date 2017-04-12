@@ -135,6 +135,11 @@ class OnApp_Availability extends OnApp {
                     )
                 );
                 break;
+
+            case 4.3:
+            case 5.0:
+                $this->fields = $this->initFields( 4.2 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -227,15 +232,15 @@ class OnApp_Availability extends OnApp {
         $this->sendPut( ONAPP_GETRESOURCE_AVAILABILITY_DISABLE, '' );
     }
 
-    function deactivate($id = null) {
-        if( !is_null( $id )) {
+    function deactivate( $id = null ) {
+        if ( ! is_null( $id ) ) {
             $this->_id = $id;
         }
         $this->sendPut( ONAPP_GETRESOURCE_AVAILABILITY_DEACTIVATE, '' );
     }
 
-    function activate($id = null) {
-        if( !is_null( $id )) {
+    function activate( $id = null ) {
+        if ( ! is_null( $id ) ) {
             $this->_id = $id;
         }
         $this->sendPut( ONAPP_GETRESOURCE_AVAILABILITY_ACTIVATE, '' );

@@ -13,7 +13,6 @@
 
 /**
  * Managing Recipes
-
  * The OnApp_RecipeGroup_Recipe class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
@@ -36,13 +35,13 @@ class OnApp_RecipeGroup_Recipe extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -57,47 +56,51 @@ class OnApp_RecipeGroup_Recipe extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'compatible_with'         => array(
-                        ONAPP_FIELD_MAP       => '_compatible_with',
-                        ONAPP_FIELD_TYPE      => 'string',
+                    'compatible_with'          => array(
+                        ONAPP_FIELD_MAP  => '_compatible_with',
+                        ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'created_at'         => array(
-                        ONAPP_FIELD_MAP       => '_created_at',
-                        ONAPP_FIELD_TYPE      => 'datetime',
+                    'created_at'               => array(
+                        ONAPP_FIELD_MAP  => '_created_at',
+                        ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'description'         => array(
-                        ONAPP_FIELD_MAP       => '_description',
-                        ONAPP_FIELD_TYPE      => 'string',
+                    'description'              => array(
+                        ONAPP_FIELD_MAP  => '_description',
+                        ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'id'         => array(
-                        ONAPP_FIELD_MAP       => '_id',
-                        ONAPP_FIELD_TYPE      => 'integer',
+                    'id'                       => array(
+                        ONAPP_FIELD_MAP  => '_id',
+                        ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'label'         => array(
-                        ONAPP_FIELD_MAP       => '_label',
-                        ONAPP_FIELD_TYPE      => 'string',
+                    'label'                    => array(
+                        ONAPP_FIELD_MAP  => '_label',
+                        ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'script_type'         => array(
-                        ONAPP_FIELD_MAP       => '_script_type',
-                        ONAPP_FIELD_TYPE      => 'string',
+                    'script_type'              => array(
+                        ONAPP_FIELD_MAP  => '_script_type',
+                        ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'updated_at'         => array(
-                        ONAPP_FIELD_MAP       => '_updated_at',
-                        ONAPP_FIELD_TYPE      => 'datetime',
+                    'updated_at'               => array(
+                        ONAPP_FIELD_MAP  => '_updated_at',
+                        ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'user_id'         => array(
-                        ONAPP_FIELD_MAP       => '_user_id',
-                        ONAPP_FIELD_TYPE      => 'integer',
+                    'user_id'                  => array(
+                        ONAPP_FIELD_MAP  => '_user_id',
+                        ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'recipe_steps'         => array(
-                        ONAPP_FIELD_MAP       => '_recipe_steps',
-                        ONAPP_FIELD_TYPE      => 'array',
+                    'recipe_steps'             => array(
+                        ONAPP_FIELD_MAP  => '_recipe_steps',
+                        ONAPP_FIELD_TYPE => 'array',
                     ),
-                    'recipe_group_relation_id'  => array(
-                        ONAPP_FIELD_MAP       => '_recipe_group_relation_id',
-                        ONAPP_FIELD_TYPE      => 'array',
+                    'recipe_group_relation_id' => array(
+                        ONAPP_FIELD_MAP  => '_recipe_group_relation_id',
+                        ONAPP_FIELD_TYPE => 'array',
                     ),
                 );
+                break;
+            case 4.3:
+            case 5.0:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 
@@ -105,8 +108,9 @@ class OnApp_RecipeGroup_Recipe extends OnApp {
 
         return $this->fields;
     }
+
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
@@ -116,7 +120,7 @@ class OnApp_RecipeGroup_Recipe extends OnApp {
                  * @alias   /recipe_groups/:id/recipe_group_relations(.:format)
                  * @format  {:controller=>"recipe_group_relations", :action=>"index"}
                  */
-                if( is_null( $this->_id ) ) {
+                if ( is_null( $this->_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _id not set.',
                         __FILE__,
@@ -134,7 +138,7 @@ class OnApp_RecipeGroup_Recipe extends OnApp {
                  * @alias   /recipe_groups/:id/recipe_group_relations(.:format)
                  * @format  {:controller=>"recipe_groups", :action=>"create"}
                  */
-                if( is_null( $this->_id ) ) {
+                if ( is_null( $this->_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _id not set.',
                         __FILE__,
@@ -152,39 +156,41 @@ class OnApp_RecipeGroup_Recipe extends OnApp {
                  * @alias   /recipe_groups/:id/recipe_group_relations/recipe_group_relation_id(.:format)
                  * @format  {:controller=>"recipe_groups", :action=>"destroy"}
                  */
-                if( is_null( $this->_id ) ) {
+                if ( is_null( $this->_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _id not set.',
                         __FILE__,
                         __LINE__
                     );
                 }
-                if( is_null( $this->_recipe_group_relation_id ) ) {
+                if ( is_null( $this->_recipe_group_relation_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _recipe_group_relation_id not set.',
                         __FILE__,
                         __LINE__
                     );
                 }
-                $resource = 'recipe_groups/' . $this->_id . '/' . $this->_resource .'/'. $this->_recipe_group_relation_id;
+                $resource = 'recipe_groups/' . $this->_id . '/' . $this->_resource . '/' . $this->_recipe_group_relation_id;
                 break;
             default:
                 $resource = parent::getResource( $action );
                 break;
         }
+
         return $resource;
     }
 
-    public function save(){
+    public function save() {
 
-        if($this->_recipe_id){
+        if ( $this->_recipe_id ) {
             $data['recipe_id'] = $this->_recipe_id;
 
             $data = array(
                 'root' => 'recipe_group_relation',
                 'data' => $data
             );
-            return $this->sendPost(ONAPP_ACTIVATE_SAVE, $data);
+
+            return $this->sendPost( ONAPP_ACTIVATE_SAVE, $data );
         } else {
             $this->logger->error(
                 'argument _recipe_id not set.',

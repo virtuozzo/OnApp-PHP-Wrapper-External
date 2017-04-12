@@ -84,6 +84,7 @@ class OnApp_BackupServer_Backup extends OnApp_VirtualMachine_Backup {
         if ( ! is_null( $periodEnddate ) ) {
             $params['period[enddate]'] = $periodEnddate;
         }
+
         return $this->sendGet( ONAPP_GETRESOURCE_BACKUP_SEARCH, null, $params );
     }
 

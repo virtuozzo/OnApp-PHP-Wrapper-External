@@ -37,8 +37,8 @@ class OnApp_BillingUser_ResourceEdgeGroup extends OnApp_BillingUser_BaseResource
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
@@ -46,7 +46,7 @@ class OnApp_BillingUser_ResourceEdgeGroup extends OnApp_BillingUser_BaseResource
     public function initFields( $version = null, $className = '' ) {
         parent::initFields( $version, __CLASS__ );
 
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -60,31 +60,32 @@ class OnApp_BillingUser_ResourceEdgeGroup extends OnApp_BillingUser_BaseResource
             case 4.0:
             case 4.1:
             case 4.2:
-                $this->fields[ 'resource_class' ] = array(
+                $this->fields['resource_class'] = array(
                     ONAPP_FIELD_MAP           => '_resource_class',
                     ONAPP_FIELD_TYPE          => 'string',
                     ONAPP_FIELD_REQUIRED      => true,
                     ONAPP_FIELD_READ_ONLY     => true,
                     ONAPP_FIELD_DEFAULT_VALUE => 'Resource::EdgeGroup'
                 );
-                $this->fields[ 'target_type' ] = array(
+                $this->fields['target_type']    = array(
                     ONAPP_FIELD_MAP           => '_target_type',
                     ONAPP_FIELD_TYPE          => 'string',
                     ONAPP_FIELD_REQUIRED      => true,
                     ONAPP_FIELD_READ_ONLY     => true,
                     ONAPP_FIELD_DEFAULT_VALUE => 'EdgeGroup'
                 );
-/*                $this->fields[ 'price' ] = array(
-                    ONAPP_FIELD_MAP           => '_price',
-                    ONAPP_FIELD_TYPE          => 'string',
-                );
-*/
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
                 break;
         }
 
-        $this->fields[ 'id' ][ ONAPP_FIELD_REQUIRED ] = false;
+        $this->fields['id'][ ONAPP_FIELD_REQUIRED ] = false;
 
-        foreach( array( 'unit', 'limit', 'limit_type', 'limit_free', 'price_on', 'price_off' ) as $field ) {
+        foreach ( array( 'unit', 'limit', 'limit_type', 'limit_free', 'price_on', 'price_off' ) as $field ) {
             unset( $this->fields[ $field ] );
         }
 

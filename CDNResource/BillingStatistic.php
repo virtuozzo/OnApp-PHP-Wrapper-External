@@ -38,13 +38,13 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case '2.2':
@@ -131,19 +131,19 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
                 );
                 $this->unsetFields( $fields );
 
-                $this->fields[ 'cost' ]             = array(
+                $this->fields['cost']             = array(
                     ONAPP_FIELD_MAP  => '_cost',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'edge_group_label' ] = array(
+                $this->fields['edge_group_label'] = array(
                     ONAPP_FIELD_MAP  => '_edge_group_label',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'stat_time' ]        = array(
+                $this->fields['stat_time']        = array(
                     ONAPP_FIELD_MAP  => '_stat_time',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'value' ]            = array(
+                $this->fields['value']            = array(
                     ONAPP_FIELD_MAP  => '_value',
                     ONAPP_FIELD_TYPE => 'string',
                 );
@@ -151,6 +151,12 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
                 break;
             case 4.2:
                 $this->fields = $this->initFields( 4.1 );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
                 break;
         }
 
@@ -168,7 +174,7 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
      * @access public
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 $resource = 'cdn_resources/' . $this->_id . '/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
@@ -191,16 +197,15 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
      * @access public
      */
     public function getList( $cdn_resource_id = null, $url_args = null ) {
-        if( is_null( $cdn_resource_id ) && ! is_null( $this->_id ) ) {
+        if ( is_null( $cdn_resource_id ) && ! is_null( $this->_id ) ) {
             $cdn_resource_id = $this->_id;
         }
 
-        if( ! is_null( $cdn_resource_id ) ) {
+        if ( ! is_null( $cdn_resource_id ) ) {
             $this->_id = $cdn_resource_id;
 
             return parent::getList( null, $url_args );
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getList: argument $cdn_resource_id not set.',
                 __FILE__,
@@ -216,8 +221,8 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
      *
      * @access public
      */
-    function activate( $action_name ) {
-        switch( $action_name ) {
+    function activateCheck( $action_name ) {
+        switch ( $action_name ) {
             case ONAPP_ACTIVATE_LOAD:
             case ONAPP_ACTIVATE_SAVE:
             case ONAPP_ACTIVATE_DELETE:

@@ -37,15 +37,15 @@ class OnApp_BillingUser_ResourceInstanceType extends OnApp_BillingUser_BaseResou
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
         parent::initFields( $version, __CLASS__ );
 
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -59,7 +59,7 @@ class OnApp_BillingUser_ResourceInstanceType extends OnApp_BillingUser_BaseResou
             case 4.0:
             case 4.1:
             case 4.2:
-                $this->fields[ 'resource_class' ] = array(
+                $this->fields['resource_class'] = array(
                     ONAPP_FIELD_MAP           => '_resource_class',
                     ONAPP_FIELD_TYPE          => 'string',
                     ONAPP_FIELD_REQUIRED      => true,
@@ -67,46 +67,52 @@ class OnApp_BillingUser_ResourceInstanceType extends OnApp_BillingUser_BaseResou
                     ONAPP_FIELD_DEFAULT_VALUE => 'Billing::Resource::InstanceType',
                 );
 
-                $this->fields[ 'in_master_zone' ] = array(
-                    ONAPP_FIELD_MAP           => '_in_master_zone',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['in_master_zone'] = array(
+                    ONAPP_FIELD_MAP  => '_in_master_zone',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
 
-                $this->fields[ 'master' ] = array(
-                    ONAPP_FIELD_MAP           => '_master',
-                    ONAPP_FIELD_TYPE          => 'boolean',
+                $this->fields['master'] = array(
+                    ONAPP_FIELD_MAP  => '_master',
+                    ONAPP_FIELD_TYPE => 'boolean',
                 );
 
-                $this->fields[ 'target_type' ] = array(
+                $this->fields['target_type'] = array(
                     ONAPP_FIELD_MAP           => '_target_type',
                     ONAPP_FIELD_TYPE          => 'string',
                     ONAPP_FIELD_REQUIRED      => true,
                     ONAPP_FIELD_DEFAULT_VALUE => 'InstanceType',
                 );
 
-                $this->fields[ 'hypervisor_group_ids' ] = array(
-                    ONAPP_FIELD_MAP           => '_hypervisor_group_ids',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['hypervisor_group_ids']     = array(
+                    ONAPP_FIELD_MAP  => '_hypervisor_group_ids',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'data_store_group_ids' ] = array(
-                    ONAPP_FIELD_MAP           => '_data_store_group_ids',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['data_store_group_ids']     = array(
+                    ONAPP_FIELD_MAP  => '_data_store_group_ids',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'network_group_ids' ] = array(
-                    ONAPP_FIELD_MAP           => '_network_group_ids',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['network_group_ids']        = array(
+                    ONAPP_FIELD_MAP  => '_network_group_ids',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'price_overused_bandwidth' ] = array(
-                    ONAPP_FIELD_MAP           => '_price_overused_bandwidth',
-                    ONAPP_FIELD_TYPE          => 'string',
+                $this->fields['price_overused_bandwidth'] = array(
+                    ONAPP_FIELD_MAP  => '_price_overused_bandwidth',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
 
-            break;
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
+                break;
         }
 
-        $this->fields[ 'id' ][ ONAPP_FIELD_REQUIRED ] = false;
+        $this->fields['id'][ ONAPP_FIELD_REQUIRED ] = false;
 
-        foreach( array( 'unit', 'limit', 'limit_free', 'price', 'price_on', 'price_off' ) as $field ) {
+        foreach ( array( 'unit', 'limit', 'limit_free', 'price', 'price_on', 'price_off' ) as $field ) {
             unset( $this->fields[ $field ] );
         }
 

@@ -45,11 +45,12 @@ class OnApp_LoadBalancingCluster extends OnApp {
      * API Fields description
      *
      * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
-    public function initFields( $version ) {
-        switch( $version ) {
+    public function initFields( $version = null, $className = '' ) {
+        switch ( $version ) {
             case '2.1':
             case '2.2':
                 $this->fields = array(
@@ -136,23 +137,23 @@ class OnApp_LoadBalancingCluster extends OnApp {
                 break;
 
             case '2.3':
-                $this->fields                              = $this->initFields( 2.2 );
-                $this->fields[ 'auto_scaling_out_cpu' ]    = array(
+                $this->fields                            = $this->initFields( 2.2 );
+                $this->fields['auto_scaling_out_cpu']    = array(
                     ONAPP_FIELD_MAP      => '_auto_scaling_out_cpu',
                     ONAPP_FIELD_TYPE     => 'array',
                     ONAPP_FIELD_REQUIRED => 'LoadBalancingCluster_AutoScalingOutCpu',
                 );
-                $this->fields[ 'auto_scaling_out_memory' ] = array(
+                $this->fields['auto_scaling_out_memory'] = array(
                     ONAPP_FIELD_MAP      => '_auto_scaling_out_memory',
                     ONAPP_FIELD_TYPE     => 'array',
                     ONAPP_FIELD_REQUIRED => 'LoadBalancingCluster_AutoScalingOutMemory',
                 );
-                $this->fields[ 'auto_scaling_in_cpu' ]     = array(
+                $this->fields['auto_scaling_in_cpu']     = array(
                     ONAPP_FIELD_MAP      => '_auto_scaling_in_cpu',
                     ONAPP_FIELD_TYPE     => 'array',
                     ONAPP_FIELD_REQUIRED => 'LoadBalancingCluster_AutoScalingInCpu',
                 );
-                $this->fields[ 'auto_scaling_in_memory' ]  = array(
+                $this->fields['auto_scaling_in_memory']  = array(
                     ONAPP_FIELD_MAP      => '_auto_scaling_in_memory',
                     ONAPP_FIELD_TYPE     => 'array',
                     ONAPP_FIELD_REQUIRED => 'LoadBalancingCluster_AutoScalingInMemory',
@@ -168,7 +169,15 @@ class OnApp_LoadBalancingCluster extends OnApp {
             case 4.0:
             case 4.1:
             case 4.2:
-                $this->fields = $this->initFields( 2.3 );
+            case 4.3:
+                $this->fields          = $this->initFields( 2.3 );
+                $this->fields['ports'] = array(
+                    ONAPP_FIELD_MAP  => '_ports',
+                    ONAPP_FIELD_TYPE => 'array',
+                );
+                break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
                 break;
         }
 
@@ -178,7 +187,7 @@ class OnApp_LoadBalancingCluster extends OnApp {
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_GETLIST_BY_USER_ID:
 
                 /**
@@ -246,35 +255,33 @@ class OnApp_LoadBalancingCluster extends OnApp {
      * @return mixed API query response
      */
     function save() {
-        $this->fields[ 'load_balancer_attributes' ]                        = array(
+        $this->fields['load_balancer_attributes']                        = array(
             ONAPP_FIELD_MAP => '_load_balancer_attributes',
         );
-        $this->fields[ 'load_balancing_cluster_load_balancer_attributes' ] = array(
+        $this->fields['load_balancing_cluster_load_balancer_attributes'] = array(
             ONAPP_FIELD_MAP => '_load_balancing_cluster_load_balancer_attributes',
         );
-        $this->fields[ 'auto_scaling_out_memory_attributes' ]              = array(
+        $this->fields['auto_scaling_out_memory_attributes']              = array(
             ONAPP_FIELD_MAP => '_auto_scaling_out_memory_attributes',
         );
-        $this->fields[ 'auto_scaling_out_cpu_attributes' ]                 = array(
+        $this->fields['auto_scaling_out_cpu_attributes']                 = array(
             ONAPP_FIELD_MAP => '_auto_scaling_out_cpu_attributes',
         );
-        $this->fields[ 'auto_scaling_in_memory_attributes' ]               = array(
+        $this->fields['auto_scaling_in_memory_attributes']               = array(
             ONAPP_FIELD_MAP => '_auto_scaling_in_memory_attributes',
         );
-        $this->fields[ 'auto_scaling_in_cpu_attributes' ]                  = array(
+        $this->fields['auto_scaling_in_cpu_attributes']                  = array(
             ONAPP_FIELD_MAP => '_auto_scaling_in_cpu_attributes',
         );
-        $this->fields[ 'available_vms' ]                                   = array(
+        $this->fields['available_vms']                                   = array(
             ONAPP_FIELD_MAP => '_available_vms',
         );
-        $this->fields[ 'image_template_id' ]                               = array(
+        $this->fields['image_template_id']                               = array(
             ONAPP_FIELD_MAP => '_image_template_id',
         );
 
         parent::save();
         $this->initFields( $this->getAPIVersion() );
-
-        return $result;
     }
 
     /**
@@ -285,10 +292,9 @@ class OnApp_LoadBalancingCluster extends OnApp {
      * @return bool|mixed
      */
     function getListByUserId( $user_id = null ) {
-        if( $user_id ) {
+        if ( $user_id ) {
             $this->_user_id = $user_id;
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getListByUserId: argument _user_id not set.',
                 __FILE__,
@@ -300,8 +306,8 @@ class OnApp_LoadBalancingCluster extends OnApp {
 
         $response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
-        if( ! empty( $response[ 'errors' ] ) ) {
-            $this->errors = $response[ 'errors' ];
+        if ( ! empty( $response['errors'] ) ) {
+            $this->errors = $response['errors'];
 
             return false;
         }

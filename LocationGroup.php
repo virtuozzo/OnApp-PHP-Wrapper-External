@@ -39,13 +39,13 @@ class OnApp_LocationGroup extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -59,13 +59,13 @@ class OnApp_LocationGroup extends OnApp {
             case 4.0:
             case 4.1:
                 $this->fields = array(
-                    'city'         => array(
-                        ONAPP_FIELD_MAP       => '_city',
-                        ONAPP_FIELD_TYPE      => 'string'
+                    'city'       => array(
+                        ONAPP_FIELD_MAP  => '_city',
+                        ONAPP_FIELD_TYPE => 'string'
                     ),
-                    'country' => array(
-                        ONAPP_FIELD_MAP       => '_country',
-                        ONAPP_FIELD_TYPE      => 'string'
+                    'country'    => array(
+                        ONAPP_FIELD_MAP  => '_country',
+                        ONAPP_FIELD_TYPE => 'string'
                     ),
                     'created_at' => array(
                         ONAPP_FIELD_MAP       => '_created_at',
@@ -77,26 +77,38 @@ class OnApp_LocationGroup extends OnApp {
                         ONAPP_FIELD_TYPE      => 'datetime',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
-                    'id'      => array(
-                        ONAPP_FIELD_MAP       => '_id',
-                        ONAPP_FIELD_TYPE      => 'integer'
+                    'id'         => array(
+                        ONAPP_FIELD_MAP  => '_id',
+                        ONAPP_FIELD_TYPE => 'integer'
                     ),
                 );
                 break;
             case 4.2:
-                $this->fields = $this->initFields( 4.1 );
-                $this->fields[ 'federated' ]    = array(
-                    ONAPP_FIELD_MAP       => '_federated',
-                    ONAPP_FIELD_TYPE      => 'boolean',
+                $this->fields                  = $this->initFields( 4.1 );
+                $this->fields['federated']     = array(
+                    ONAPP_FIELD_MAP  => '_federated',
+                    ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'cdn_enabled' ]    = array(
-                    ONAPP_FIELD_MAP       => '_cdn_enabled',
-                    ONAPP_FIELD_TYPE      => 'boolean',
+                $this->fields['cdn_enabled']   = array(
+                    ONAPP_FIELD_MAP  => '_cdn_enabled',
+                    ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'federation_id' ]    = array(
-                    ONAPP_FIELD_MAP       => '_federation_id',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['federation_id'] = array(
+                    ONAPP_FIELD_MAP  => '_federation_id',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
+                $this->fields['lat'] = array(
+                    ONAPP_FIELD_MAP  => '_lat',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['lng'] = array(
+                    ONAPP_FIELD_MAP  => '_lng',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
+            case 4.3:
+            case 5.0:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 
@@ -106,7 +118,7 @@ class OnApp_LocationGroup extends OnApp {
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             default:
                 /**
                  * ROUTE :

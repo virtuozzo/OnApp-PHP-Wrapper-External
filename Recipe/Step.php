@@ -14,11 +14,10 @@
 /**
  * Swap Recipe Steps Locations
  */
-define('ONAPP_SWAP_RECIPE_LOCATION', 'swap_recipe_location');
+define( 'ONAPP_SWAP_RECIPE_LOCATION', 'swap_recipe_location' );
 
 /**
  * Managing Recipe Steps
-
  * The OnApp_Recipe_Step class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
@@ -41,13 +40,13 @@ class OnApp_Recipe_Step extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -62,67 +61,71 @@ class OnApp_Recipe_Step extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'created_at'          => array(
-                        ONAPP_FIELD_MAP       => '_created_at',
-                        ONAPP_FIELD_TYPE      => 'datetime',
+                    'created_at'         => array(
+                        ONAPP_FIELD_MAP  => '_created_at',
+                        ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'fail_anything_else'          => array(
-                        ONAPP_FIELD_MAP       => '_fail_anything_else',
-                        ONAPP_FIELD_TYPE      => 'boolean',
+                    'fail_anything_else' => array(
+                        ONAPP_FIELD_MAP  => '_fail_anything_else',
+                        ONAPP_FIELD_TYPE => 'boolean',
                     ),
-                    'fail_values'          => array(
-                        ONAPP_FIELD_MAP       => '_fail_values',
-                        ONAPP_FIELD_TYPE      => 'string',
+                    'fail_values'        => array(
+                        ONAPP_FIELD_MAP  => '_fail_values',
+                        ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'failure_goto_step'          => array(
-                        ONAPP_FIELD_MAP       => '_failure_goto_step',
-                        ONAPP_FIELD_TYPE      => 'string',
+                    'failure_goto_step'  => array(
+                        ONAPP_FIELD_MAP  => '_failure_goto_step',
+                        ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'id'          => array(
-                        ONAPP_FIELD_MAP       => '_id',
-                        ONAPP_FIELD_TYPE      => 'integer',
+                    'id'                 => array(
+                        ONAPP_FIELD_MAP  => '_id',
+                        ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'number'          => array(
-                        ONAPP_FIELD_MAP       => '_number',
-                        ONAPP_FIELD_TYPE      => 'integer',
+                    'number'             => array(
+                        ONAPP_FIELD_MAP  => '_number',
+                        ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'on_failure'          => array(
-                        ONAPP_FIELD_MAP       => '_on_failure',
-                        ONAPP_FIELD_TYPE      => 'string',
+                    'on_failure'         => array(
+                        ONAPP_FIELD_MAP  => '_on_failure',
+                        ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'on_success'          => array(
-                        ONAPP_FIELD_MAP       => '_on_success',
-                        ONAPP_FIELD_TYPE      => 'string',
+                    'on_success'         => array(
+                        ONAPP_FIELD_MAP  => '_on_success',
+                        ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'pass_anything_else'          => array(
-                        ONAPP_FIELD_MAP       => '_pass_anything_else',
-                        ONAPP_FIELD_TYPE      => 'boolean',
+                    'pass_anything_else' => array(
+                        ONAPP_FIELD_MAP  => '_pass_anything_else',
+                        ONAPP_FIELD_TYPE => 'boolean',
                     ),
-                    'pass_values'          => array(
-                        ONAPP_FIELD_MAP       => '_pass_values',
-                        ONAPP_FIELD_TYPE      => 'integer',
+                    'pass_values'        => array(
+                        ONAPP_FIELD_MAP  => '_pass_values',
+                        ONAPP_FIELD_TYPE => 'integer',
                     ),
                     'recipe_id'          => array(
-                        ONAPP_FIELD_MAP       => '_recipe_id',
-                        ONAPP_FIELD_TYPE      => 'integer',
+                        ONAPP_FIELD_MAP  => '_recipe_id',
+                        ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'result_source'          => array(
-                        ONAPP_FIELD_MAP       => '_result_source',
-                        ONAPP_FIELD_TYPE      => 'string',
+                    'result_source'      => array(
+                        ONAPP_FIELD_MAP  => '_result_source',
+                        ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'script'          => array(
-                        ONAPP_FIELD_MAP       => '_script',
-                        ONAPP_FIELD_TYPE      => 'string',
+                    'script'             => array(
+                        ONAPP_FIELD_MAP  => '_script',
+                        ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'success_goto_step'          => array(
-                        ONAPP_FIELD_MAP       => '_success_goto_step',
-                        ONAPP_FIELD_TYPE      => 'string',
+                    'success_goto_step'  => array(
+                        ONAPP_FIELD_MAP  => '_success_goto_step',
+                        ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'updated_at'              => array(
-                        ONAPP_FIELD_MAP       => '_updated_at',
-                        ONAPP_FIELD_TYPE      => 'datetime',
+                    'updated_at'         => array(
+                        ONAPP_FIELD_MAP  => '_updated_at',
+                        ONAPP_FIELD_TYPE => 'datetime',
                     ),
                 );
+                break;
+            case 4.3:
+            case 5.0:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 
@@ -130,8 +133,9 @@ class OnApp_Recipe_Step extends OnApp {
 
         return $this->fields;
     }
+
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_SWAP_RECIPE_LOCATION:
                 /**
                  * ROUTE :
@@ -141,21 +145,21 @@ class OnApp_Recipe_Step extends OnApp {
                  * @alias   /recipes/:recipe_id/recipe_steps/:recipe_step_id/move_to/:recipe_step_number(.:format)
                  * @format  {:controller=>"recipe_steps", :action=>"index"}
                  */
-                if( is_null( $this->_recipe_id ) ) {
+                if ( is_null( $this->_recipe_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _recipe_id not set.',
                         __FILE__,
                         __LINE__
                     );
                 }
-                if( is_null( $this->_id ) ) {
+                if ( is_null( $this->_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _id not set.',
                         __FILE__,
                         __LINE__
                     );
                 }
-                if( is_null( $this->_number ) ) {
+                if ( is_null( $this->_number ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _number not set.',
                         __FILE__,
@@ -174,7 +178,7 @@ class OnApp_Recipe_Step extends OnApp {
                  * @alias   /recipes/:recipe_id/recipe_steps(.:format)
                  * @format  {:controller=>"recipe_steps", :action=>"index"}
                  */
-                if( is_null( $this->_recipe_id ) ) {
+                if ( is_null( $this->_recipe_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _recipe_id not set.',
                         __FILE__,
@@ -187,10 +191,11 @@ class OnApp_Recipe_Step extends OnApp {
                 $resource = parent::getResource( $action );
                 break;
         }
+
         return $resource;
     }
 
-    public function swap(){
-        $this->sendPut(ONAPP_SWAP_RECIPE_LOCATION);
+    public function swap() {
+        $this->sendPut( ONAPP_SWAP_RECIPE_LOCATION );
     }
 }

@@ -52,13 +52,13 @@ class OnApp_EdgeGroup extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.3':
                 $this->fields = array(
                     'label'               => array(
@@ -103,19 +103,23 @@ class OnApp_EdgeGroup extends OnApp {
             case 3.5:
             case 4.0:
             case 4.1:
-                $this->fields                    = $this->initFields( 2.3 );
-                $this->fields[ 'cdn_reference' ] = array(
+                $this->fields                  = $this->initFields( 2.3 );
+                $this->fields['cdn_reference'] = array(
                     ONAPP_FIELD_MAP  => 'cdn_reference',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
-                $this->fields[ 'aflexi_id' ]     = array(
+                $this->fields['aflexi_id']     = array(
                     ONAPP_FIELD_MAP  => 'aflexi_id',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
                 break;
+
             case 4.2:
+            case 4.3:
+            case 5.0:
                 $this->fields = $this->initFields( 4.1 );
                 break;
+
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -132,7 +136,7 @@ class OnApp_EdgeGroup extends OnApp {
      * @access public
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_EDGE_GROUP_ASSIGN_LOCATION:
                 /**
                  * TODO: ADD ROUTE
@@ -166,10 +170,9 @@ class OnApp_EdgeGroup extends OnApp {
     }
 
     function assign_location( $edge_group_id, $location_id ) {
-        if( $edge_group_id ) {
+        if ( $edge_group_id ) {
             $this->_id = $edge_group_id;
-        }
-        else {
+        } else {
             $this->logger->error(
                 'assign: argument edge_group_id not set.',
                 __FILE__,
@@ -177,7 +180,7 @@ class OnApp_EdgeGroup extends OnApp {
             );
         }
 
-        if( ! $location_id ) {
+        if ( ! $location_id ) {
             $this->logger->error(
                 'assign: argument location_id not set.',
                 __FILE__,
@@ -201,10 +204,9 @@ class OnApp_EdgeGroup extends OnApp {
      * @param <type> $location_id
      */
     function unassign_location( $edge_group_id, $location_id ) {
-        if( $edge_group_id ) {
+        if ( $edge_group_id ) {
             $this->_id = $edge_group_id;
-        }
-        else {
+        } else {
             $this->logger->error(
                 'assign: argument edge_group_id not set.',
                 __FILE__,
@@ -212,7 +214,7 @@ class OnApp_EdgeGroup extends OnApp {
             );
         }
 
-        if( ! $location_id ) {
+        if ( ! $location_id ) {
             $this->logger->error(
                 'assign: argument location_id not set.',
                 __FILE__,

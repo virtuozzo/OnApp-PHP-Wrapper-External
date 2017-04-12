@@ -59,27 +59,27 @@ class OnApp_CustomerNetwork extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'created_at' => array(
+                    'created_at'                    => array(
                         ONAPP_FIELD_MAP  => '_created_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'updated_at' => array(
+                    'updated_at'                    => array(
                         ONAPP_FIELD_MAP  => '_updated_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'id'         => array(
+                    'id'                            => array(
                         ONAPP_FIELD_MAP  => '_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'user_id'         => array(
+                    'user_id'                       => array(
                         ONAPP_FIELD_MAP  => '_user_id',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'prefix_size'       => array(
+                    'prefix_size'                   => array(
                         ONAPP_FIELD_MAP  => '_prefix_size',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'is_nated'       => array(
+                    'is_nated'                      => array(
                         ONAPP_FIELD_MAP  => '_is_nated',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
@@ -87,36 +87,42 @@ class OnApp_CustomerNetwork extends OnApp {
                         ONAPP_FIELD_MAP  => '_default_nat_rule_number',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'default_outside_ip_address_id'       => array(
+                    'default_outside_ip_address_id' => array(
                         ONAPP_FIELD_MAP  => '_default_outside_ip_address_id',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'identifier'       => array(
+                    'identifier'                    => array(
                         ONAPP_FIELD_MAP  => '_identifier',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'ip_address_pool_id'       => array(
+                    'ip_address_pool_id'            => array(
                         ONAPP_FIELD_MAP  => '_ip_address_pool_id',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'label'       => array(
+                    'label'                         => array(
                         ONAPP_FIELD_MAP  => '_label',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'vlan'       => array(
+                    'vlan'                          => array(
                         ONAPP_FIELD_MAP  => '_vlan',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'network_group_id'       => array(
+                    'network_group_id'              => array(
                         ONAPP_FIELD_MAP  => '_network_group_id',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'hypervisor_id'       => array(
+                    'hypervisor_id'                 => array(
                         ONAPP_FIELD_MAP  => '_hypervisor_id',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
                 );
                 break;
+
+            case 4.3:
+            case 5.0:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -132,7 +138,7 @@ class OnApp_CustomerNetwork extends OnApp {
                  * @alias  /users/:user_id/customer_networks.json
                  */
                 $resourceAdd = '';
-                if( ! is_null( $this->_id ) ) {
+                if ( ! is_null( $this->_id ) ) {
                     $resourceAdd = 'users/' . $this->_id . '/';
                 }
                 $resource = $resourceAdd . $this->_resource;
@@ -141,15 +147,14 @@ class OnApp_CustomerNetwork extends OnApp {
                 /**
                  * @alias  /users/:user_id/customer_networks.json
                  */
-                if( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {
+                if ( is_null( $this->_user_id ) && is_null( $this->_obj->_user_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _user_id not set.',
                         __FILE__,
                         __LINE__
                     );
-                }
-                else {
-                    if( is_null( $this->_user_id ) ) {
+                } else {
+                    if ( is_null( $this->_user_id ) ) {
                         $this->_user_id = $this->_obj->_user_id;
                     }
                 }
@@ -165,18 +170,18 @@ class OnApp_CustomerNetwork extends OnApp {
         return $resource;
     }
 
-    public function save(){
+    public function save() {
         $data = array(
             'root' => $this->_tagRoot,
             'data' => array(
                 'default_outside_ip_address' => array(
                     'hypervisor_id' => $this->_hypervisor_id,
                 ),
-                'ip_address_pool_id' => $this->_ip_address_pool_id,
-                'label' => $this->_label,
-                'prefix_size' => $this->_prefix_size,
-                'network_group_id' => $this->_network_group_id,
-                'is_nated' => $this->_is_nated,
+                'ip_address_pool_id'         => $this->_ip_address_pool_id,
+                'label'                      => $this->_label,
+                'prefix_size'                => $this->_prefix_size,
+                'network_group_id'           => $this->_network_group_id,
+                'is_nated'                   => $this->_is_nated,
             ),
         );
         $this->sendPost( ONAPP_GETRESOURCE_ADD, $data );
@@ -184,16 +189,15 @@ class OnApp_CustomerNetwork extends OnApp {
     }
 
     function getList( $user_id = null, $url_args = null ) {
-        if( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
+        if ( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
             $user_id = $this->_user_id;
         }
 
-        if( ! is_null( $user_id ) ) {
+        if ( ! is_null( $user_id ) ) {
             $this->_user_id = $user_id;
 
             return parent::getList();
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getList: argument _user_id not set.',
                 __FILE__,

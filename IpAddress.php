@@ -37,14 +37,14 @@ class OnApp_IpAddress extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
 
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -103,8 +103,8 @@ class OnApp_IpAddress extends OnApp {
                 break;
 
             case 2.3:
-                $this->fields              = $this->initFields( 2.2 );
-                $this->fields[ 'user_id' ] = array(
+                $this->fields            = $this->initFields( 2.2 );
+                $this->fields['user_id'] = array(
                     ONAPP_FIELD_MAP       => '_user_id',
                     ONAPP_FIELD_TYPE      => 'integer',
                     ONAPP_FIELD_READ_ONLY => true,
@@ -122,23 +122,27 @@ class OnApp_IpAddress extends OnApp {
             case 4.2:
                 $this->fields = $this->initFields( 2.3 );
 
-                $this->fields[ 'customer_network_id' ] = array(
-                    ONAPP_FIELD_MAP       => '_customer_network_id',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['customer_network_id'] = array(
+                    ONAPP_FIELD_MAP  => '_customer_network_id',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'hypervisor_id' ] = array(
-                    ONAPP_FIELD_MAP       => '_hypervisor_id',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['hypervisor_id']       = array(
+                    ONAPP_FIELD_MAP  => '_hypervisor_id',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'ip_address_pool_id' ] = array(
-                    ONAPP_FIELD_MAP       => '_ip_address_pool_id',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['ip_address_pool_id']  = array(
+                    ONAPP_FIELD_MAP  => '_ip_address_pool_id',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields[ 'pxe' ] = array(
-                    ONAPP_FIELD_MAP       => '_pxe',
-                    ONAPP_FIELD_TYPE      => 'string',
+                $this->fields['pxe']                 = array(
+                    ONAPP_FIELD_MAP  => '_pxe',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
 
+                break;
+            case 4.3:
+            case 5.0:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 
@@ -156,7 +160,7 @@ class OnApp_IpAddress extends OnApp {
      * @access public
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
@@ -198,15 +202,14 @@ class OnApp_IpAddress extends OnApp {
                  * @alias  /settings/networks/:network_id/ip_addresses/:id(.:format)
                  * @format {:controller=>"ip_addresses", :action=>"destroy"}
                  */
-                if( is_null( $this->_network_id ) && is_null( $this->_obj->_network_id ) ) {
+                if ( is_null( $this->_network_id ) && is_null( $this->_obj->_network_id ) ) {
                     $this->logger->error(
                         "getResource($action): argument _network_id not set.",
                         __FILE__,
                         __LINE__
                     );
-                }
-                else {
-                    if( is_null( $this->_network_id ) ) {
+                } else {
+                    if ( is_null( $this->_network_id ) ) {
                         $this->_network_id = $this->_obj->_network_id;
                     }
                 }
@@ -233,16 +236,15 @@ class OnApp_IpAddress extends OnApp {
      * @access public
      */
     function getList( $network_id = null, $url_args = null ) {
-        if( is_null( $network_id ) && ! is_null( $this->_network_id ) ) {
+        if ( is_null( $network_id ) && ! is_null( $this->_network_id ) ) {
             $network_id = $this->_network_id;
         }
 
-        if( ! is_null( $network_id ) ) {
+        if ( ! is_null( $network_id ) ) {
             $this->_network_id = $network_id;
 
             return parent::getList();
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getList: argument _network_id not set.',
                 __FILE__,
@@ -258,31 +260,31 @@ class OnApp_IpAddress extends OnApp {
      * The key field Parameter ID is used to load the Object. You can re-set
      * this parameter in the class inheriting OnApp class.
      *
-     * @param integer $id                 IP Address Join id
+     * @param integer $id IP Address Join id
      * @param integer $virtual_machine_id Virtual Machine id
      *
      * @return mixed serialized Object instance from API
      * @access public
      */
     function load( $id = null, $network_id = null ) {
-        if( is_null( $network_id ) && ! is_null( $this->_network_id ) ) {
+        if ( is_null( $network_id ) && ! is_null( $this->_network_id ) ) {
             $network_id = $this->_network_id;
         }
 
-        if( is_null( $id ) && ! is_null( $this->_id ) ) {
+        if ( is_null( $id ) && ! is_null( $this->_id ) ) {
             $id = $this->_id;
         }
 
-        if( is_null( $id ) &&
-            isset( $this->_obj ) &&
-            ! is_null( $this->_obj->_id )
+        if ( is_null( $id ) &&
+             isset( $this->_obj ) &&
+             ! is_null( $this->_obj->_id )
         ) {
             $id = $this->_obj->_id;
         }
 
         $this->logger->add( "load: Load class ( id => '$id')." );
 
-        if( ! is_null( $id ) && ! is_null( $network_id ) ) {
+        if ( ! is_null( $id ) && ! is_null( $network_id ) ) {
             $this->_id         = $id;
             $this->_network_id = $network_id;
 
@@ -295,16 +297,14 @@ class OnApp_IpAddress extends OnApp {
             $this->_obj = $result;
 
             return $result;
-        }
-        else {
-            if( is_null( $id ) ) {
+        } else {
+            if ( is_null( $id ) ) {
                 $this->logger->error(
                     'load: argument _id not set.',
                     __FILE__,
                     __LINE__
                 );
-            }
-            else {
+            } else {
                 $this->logger->error(
                     'load: argument _network_id not set.',
                     __FILE__,
@@ -325,10 +325,10 @@ class OnApp_IpAddress extends OnApp {
      * @access public
      */
     function save() {
-        if( isset( $this->_id ) ) {
+        if ( isset( $this->_id ) ) {
             $obj = $this->_edit();
 
-            if( isset( $obj ) && ! isset( $obj->errors ) ) {
+            if ( isset( $obj ) && ! isset( $obj->errors ) ) {
                 $this->load();
             }
         }

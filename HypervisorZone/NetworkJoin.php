@@ -45,7 +45,7 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
      * @return array
      */
     function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
                 $this->fields = array(
                     'id'            => array(
@@ -81,13 +81,13 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
                 break;
 
             case '2.1':
-                $this->fields                       = $this->initFields( '2.0' );
-                $this->fields[ 'target_join_id' ]   = array(
+                $this->fields                     = $this->initFields( '2.0' );
+                $this->fields['target_join_id']   = array(
                     ONAPP_FIELD_MAP      => '_target_join_id',
                     ONAPP_FIELD_TYPE     => 'integer',
                     ONAPP_FIELD_REQUIRED => true
                 );
-                $this->fields[ 'target_join_type' ] = array(
+                $this->fields['target_join_type'] = array(
                     ONAPP_FIELD_MAP  => '_target_join_type',
                     ONAPP_FIELD_TYPE => 'string',
                     //ONAPP_FIELD_REQUIRED => true
@@ -110,6 +110,12 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
             case 4.2:
                 $this->fields = $this->initFields( 2.3 );
                 break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -126,7 +132,7 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
      * @access public
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
@@ -172,16 +178,15 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
      * @return array of newtwork join objects
      */
     function getList( $target_join_id = null, $url_args = null ) {
-        if( is_null( $target_join_id ) && ! is_null( $this->_target_join_id ) ) {
+        if ( is_null( $target_join_id ) && ! is_null( $this->_target_join_id ) ) {
             $target_join_id = $this->_target_join_id;
         }
 
-        if( ! is_null( $target_join_id ) ) {
+        if ( ! is_null( $target_join_id ) ) {
             $this->_target_join_id = $target_join_id;
 
             return parent::getList();
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getList: argument _target_join_id not set.',
                 __FILE__,

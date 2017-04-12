@@ -38,13 +38,13 @@ class OnApp_EdgeGroup_Location extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.3':
                 $this->fields = array(
                     'city'        => array(
@@ -121,30 +121,36 @@ class OnApp_EdgeGroup_Location extends OnApp {
             case 3.5:
             case 4.0:
             case 4.1:
-                $this->fields                            = $this->initFields( 3.0 );
-                $this->fields[ 'geoBlocking' ]           = array(
+                $this->fields                          = $this->initFields( 3.0 );
+                $this->fields['geoBlocking']           = array(
                     ONAPP_FIELD_MAP  => 'geoBlocking',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'onSaleStreamSupported' ] = array(
+                $this->fields['onSaleStreamSupported'] = array(
                     ONAPP_FIELD_MAP  => 'onSaleStreamSupported',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'onSaleHttpSupported' ]   = array(
+                $this->fields['onSaleHttpSupported']   = array(
                     ONAPP_FIELD_MAP  => 'onSaleHttpSupported',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'streamSupported' ]       = array(
+                $this->fields['streamSupported']       = array(
                     ONAPP_FIELD_MAP  => 'streamSupported',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields[ 'httpSupported' ]         = array(
+                $this->fields['httpSupported']         = array(
                     ONAPP_FIELD_MAP  => 'httpSupported',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
                 break;
             case 4.2:
                 $this->fields = $this->initFields( 4.1 );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
                 break;
         }
 
@@ -160,8 +166,8 @@ class OnApp_EdgeGroup_Location extends OnApp {
      *
      * @access public
      */
-    function activate( $action_name ) {
-        switch( $action_name ) {
+    function activateCheck( $action_name ) {
+        switch ( $action_name ) {
             case ONAPP_ACTIVATE_GETLIST:
             case ONAPP_ACTIVATE_SAVE:
             case ONAPP_ACTIVATE_DELETE:

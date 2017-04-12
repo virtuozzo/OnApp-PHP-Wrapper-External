@@ -37,13 +37,13 @@ class OnApp_Profile extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -218,7 +218,62 @@ class OnApp_Profile extends OnApp {
             case 4.0:
             case 4.1:
             case 4.2:
-                $this->fields = $this->initFields( 2.3 );
+            case 4.3:
+                $this->fields                       = $this->initFields( 2.3 );
+                $this->fields['additional_fields']  = array(
+                    ONAPP_FIELD_MAP  => '_additional_fields',
+                    ONAPP_FIELD_TYPE => 'array',
+                );
+                $this->fields['avatar']             = array(
+                    ONAPP_FIELD_MAP  => '_avatar',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['cdn_account_status'] = array(
+                    ONAPP_FIELD_MAP  => '_cdn_account_status',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['cdn_status']         = array(
+                    ONAPP_FIELD_MAP  => '_cdn_status',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['firewall_id']        = array(
+                    ONAPP_FIELD_MAP  => '_firewall_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['identifier']         = array(
+                    ONAPP_FIELD_MAP  => '_identifier',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                //todo infoboxes - object
+                $this->fields['infoboxes']           = array(
+                    ONAPP_FIELD_MAP  => '_infoboxes',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['password_changed_at'] = array(
+                    ONAPP_FIELD_MAP  => '_password_changed_at',
+                    ONAPP_FIELD_TYPE => 'datetime',
+                );
+                $this->fields['registered_yubikey']  = array(
+                    ONAPP_FIELD_MAP  => '_registered_yubikey',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['supplied']            = array(
+                    ONAPP_FIELD_MAP  => '_supplied',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['system_theme']        = array(
+                    ONAPP_FIELD_MAP  => '_system_theme',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['use_gravatar']        = array(
+                    ONAPP_FIELD_MAP  => '_use_gravatar',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+
+                break;
+
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
                 break;
         }
 
@@ -227,8 +282,8 @@ class OnApp_Profile extends OnApp {
         return $this->fields;
     }
 
-    function activate( $action_name ) {
-        switch( $action_name ) {
+    function activateCheck( $action_name ) {
+        switch ( $action_name ) {
             case ONAPP_ACTIVATE_GETLIST:
             case ONAPP_ACTIVATE_DELETE:
                 exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
@@ -272,7 +327,7 @@ class OnApp_Profile extends OnApp {
      * @access public
      */
     function load( $id = null ) {
-        $this->activate( ONAPP_ACTIVATE_LOAD );
+        $this->activateCheck( ONAPP_ACTIVATE_LOAD );
 
         $this->logger->add( "load: Load class" );
 

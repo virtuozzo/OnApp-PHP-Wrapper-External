@@ -46,19 +46,25 @@ class OnApp_Federation_BuyerToken extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'id'      => array(
+                    'id'     => array(
                         ONAPP_FIELD_MAP  => '_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'sender'   => array(
+                    'sender' => array(
                         ONAPP_FIELD_MAP  => '_sender',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'token'   => array(
+                    'token'  => array(
                         ONAPP_FIELD_MAP  => '_token',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
                 );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
                 break;
         }
 
@@ -66,8 +72,9 @@ class OnApp_Federation_BuyerToken extends OnApp {
 
         return $this->fields;
     }
+
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             default:
                 /**
                  * ROUTE :

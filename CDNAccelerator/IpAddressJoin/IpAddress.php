@@ -36,13 +36,13 @@ class OnApp_CDNAccelerator_IpAddressJoin_IpAddress extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case 2.0:
             case 2.1:
             case 2.2:
@@ -57,71 +57,77 @@ class OnApp_CDNAccelerator_IpAddressJoin_IpAddress extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'address' => array(
-                        ONAPP_FIELD_MAP => '_address',
+                    'address'             => array(
+                        ONAPP_FIELD_MAP  => '_address',
                         ONAPP_FIELD_TYPE => 'string'
                     ),
-                    'broadcast' => array(
-                        ONAPP_FIELD_MAP => '_broadcast',
+                    'broadcast'           => array(
+                        ONAPP_FIELD_MAP  => '_broadcast',
                         ONAPP_FIELD_TYPE => 'string'
                     ),
-                    'created_at'  => array(
-                        ONAPP_FIELD_MAP => '_created_at',
+                    'created_at'          => array(
+                        ONAPP_FIELD_MAP  => '_created_at',
                         ONAPP_FIELD_TYPE => 'datetime'
                     ),
                     'customer_network_id' => array(
-                        ONAPP_FIELD_MAP => '_customer_network_id',
+                        ONAPP_FIELD_MAP  => '_customer_network_id',
                         ONAPP_FIELD_TYPE => 'boolean'
                     ),
                     'disallowed_primary'  => array(
-                        ONAPP_FIELD_MAP => '_disallowed_primary',
+                        ONAPP_FIELD_MAP  => '_disallowed_primary',
                         ONAPP_FIELD_TYPE => 'boolean'
                     ),
-                    'gateway' => array(
-                        ONAPP_FIELD_MAP => '_gateway',
+                    'gateway'             => array(
+                        ONAPP_FIELD_MAP  => '_gateway',
                         ONAPP_FIELD_TYPE => 'string'
                     ),
-                    'hypervisor_id' => array(
-                        ONAPP_FIELD_MAP => '_hypervisor_id',
+                    'hypervisor_id'       => array(
+                        ONAPP_FIELD_MAP  => '_hypervisor_id',
                         ONAPP_FIELD_TYPE => 'boolean'
                     ),
-                    'id'  => array(
-                        ONAPP_FIELD_MAP => '_id',
+                    'id'                  => array(
+                        ONAPP_FIELD_MAP  => '_id',
                         ONAPP_FIELD_TYPE => 'integer'
                     ),
                     'ip_address_pool_id'  => array(
-                        ONAPP_FIELD_MAP => '_ip_address_pool_id',
+                        ONAPP_FIELD_MAP  => '_ip_address_pool_id',
                         ONAPP_FIELD_TYPE => 'boolean'
                     ),
-                    'network_address' => array(
-                        ONAPP_FIELD_MAP => '_network_address',
+                    'network_address'     => array(
+                        ONAPP_FIELD_MAP  => '_network_address',
                         ONAPP_FIELD_TYPE => 'string'
                     ),
-                    'network_id'  => array(
-                        ONAPP_FIELD_MAP => '_network_id',
+                    'network_id'          => array(
+                        ONAPP_FIELD_MAP  => '_network_id',
                         ONAPP_FIELD_TYPE => 'integer'
                     ),
-                    'pxe' => array(
-                        ONAPP_FIELD_MAP => '_pxe',
+                    'pxe'                 => array(
+                        ONAPP_FIELD_MAP  => '_pxe',
                         ONAPP_FIELD_TYPE => 'boolean'
                     ),
-                    'updated_at'  => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
+                    'updated_at'          => array(
+                        ONAPP_FIELD_MAP  => '_updated_at',
                         ONAPP_FIELD_TYPE => 'datetime'
                     ),
-                    'user_id' => array(
-                        ONAPP_FIELD_MAP => '_user_id',
+                    'user_id'             => array(
+                        ONAPP_FIELD_MAP  => '_user_id',
                         ONAPP_FIELD_TYPE => 'boolean'
                     ),
-                    'free'  => array(
-                        ONAPP_FIELD_MAP => '_free',
+                    'free'                => array(
+                        ONAPP_FIELD_MAP  => '_free',
                         ONAPP_FIELD_TYPE => 'boolean'
                     ),
-                    'netmask' => array(
-                        ONAPP_FIELD_MAP => '_netmask',
+                    'netmask'             => array(
+                        ONAPP_FIELD_MAP  => '_netmask',
                         ONAPP_FIELD_TYPE => 'string'
                     ),
                 );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
                 break;
         }
         parent::initFields( $version, __CLASS__ );

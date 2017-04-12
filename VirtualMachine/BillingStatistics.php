@@ -40,13 +40,13 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case '2.2':
@@ -111,27 +111,28 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
             case 4.2:
                 $this->fields = $this->initFields( 3.0 );
 
-                unset( $this->fields[ 'cost' ] );
+                unset( $this->fields['cost'] );
+                unset( $this->fields['billing_stats'] );
 
-                $this->fields[ 'currency_code' ] = array(
+                $this->fields['currency_code'] = array(
                     ONAPP_FIELD_MAP       => '_currency_code',
                     ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
 
-                $this->fields[ 'total_cost' ] = array(
+                $this->fields['total_cost'] = array(
                     ONAPP_FIELD_MAP       => '_total_cost',
                     ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
 
-                $this->fields[ 'vm_resources_cost' ] = array(
+                $this->fields['vm_resources_cost'] = array(
                     ONAPP_FIELD_MAP       => '_vm_resources_cost',
                     ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true,
                 );
 
-                $this->fields[ 'usage_cost' ] = array(
+                $this->fields['usage_cost'] = array(
                     ONAPP_FIELD_MAP       => '_usage_cost',
                     ONAPP_FIELD_TYPE      => 'string',
                     ONAPP_FIELD_READ_ONLY => true,
@@ -150,6 +151,16 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
                 );
 
                 break;
+            case 4.3:
+                $this->fields                   = $this->initFields( 4.2 );
+                $this->fields['vm_hourly_stat'] = array(
+                    ONAPP_FIELD_MAP  => '_vm_hourly_stat',
+                    ONAPP_FIELD_TYPE => 'array'
+                );
+                break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -166,7 +177,7 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
      * @access public
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
@@ -176,15 +187,14 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
                  * @alias  /virtual_machines/:virtual_machine_id/vm_stats(.:format)
                  * @format {:controller=>"vm_stats", :action=>"index"}
                  */
-                if( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
+                if ( is_null( $this->_virtual_machine_id ) && is_null( $this->_obj->_virtual_machine_id ) ) {
                     $this->logger->error(
                         "getResource($action): argument _virtual_machine_id not set.",
                         __FILE__,
                         __LINE__
                     );
-                }
-                else {
-                    if( is_null( $this->_virtual_machine_id ) ) {
+                } else {
+                    if ( is_null( $this->_virtual_machine_id ) ) {
                         $this->_virtual_machine_id = $this->_obj->_virtual_machine_id;
                     }
                 }
@@ -206,22 +216,23 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
      * unserializes the received response into the array of Objects
      *
      * @param integer $virtual_machine_id User ID
-     * @param mixed   $url_args
+     * @param mixed $url_args
      *
      * @return mixed an array of Object instances on success. Otherwise false
      * @access public
      */
     function getList( $virtual_machine_id = null, $url_args = null ) {
-        if( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
+        if ( is_null( $virtual_machine_id ) && ! is_null( $this->_virtual_machine_id ) ) {
             $virtual_machine_id = $this->_virtual_machine_id;
         }
 
-        if( ! is_null( $virtual_machine_id ) ) {
+        if ( ! is_null( $virtual_machine_id ) ) {
             $this->_virtual_machine_id = $virtual_machine_id;
 
             return parent::getList(null, $url_args);
         }
         else {
+
             $this->logger->error(
                 'getList: argument _virtual_machine_id not set.',
                 __FILE__,
@@ -237,8 +248,8 @@ class OnApp_VirtualMachine_BillingStatistics extends OnApp {
      *
      * @access public
      */
-    function activate( $action_name ) {
-        switch( $action_name ) {
+    function activateCheck( $action_name ) {
+        switch ( $action_name ) {
             case ONAPP_ACTIVATE_LOAD:
             case ONAPP_ACTIVATE_SAVE:
             case ONAPP_ACTIVATE_DELETE:

@@ -23,13 +23,13 @@
 class OnApp_Schedule_VirtualMachine extends OnApp_Schedule {
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_ADD:
             case ONAPP_GETRESOURCE_LIST:
                 /**
                  * @alias     /virtual_machines/:virtual_machine_id/schedules.json
                  */
-                if( is_null( $this->_virtual_machine_id ) && is_null( $this->_target_id )) {
+                if ( is_null( $this->_virtual_machine_id ) && is_null( $this->_target_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _virtual_machine_id or _target_id not set.',
                         __FILE__,
@@ -37,7 +37,7 @@ class OnApp_Schedule_VirtualMachine extends OnApp_Schedule {
                     );
                 }
                 $virtual_machine_id = is_null( $this->_virtual_machine_id ) ? $this->_target_id : $this->_virtual_machine_id;
-                $resource = '/virtual_machines/' . $virtual_machine_id . '/schedules';
+                $resource           = '/virtual_machines/' . $virtual_machine_id . '/schedules';
                 break;
 
             default:
@@ -51,17 +51,16 @@ class OnApp_Schedule_VirtualMachine extends OnApp_Schedule {
         return $resource;
     }
 
-    function getList( $target_id = null) {
-        if( is_null( $target_id ) ) {
+    function getList( $target_id = null, $url_args = null ) {
+        if ( is_null( $target_id ) ) {
             $target_id = is_null( $this->_virtual_machine_id ) ? $this->_target_id : $this->_virtual_machine_id;
         }
 
-        if( ! is_null( $target_id ) ) {
+        if ( ! is_null( $target_id ) ) {
             $this->_target_id = $target_id;
 
             return parent::getList();
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getList: argument _target_id or _virtual_machine_id not set.',
                 __FILE__,

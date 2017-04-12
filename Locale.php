@@ -27,13 +27,13 @@ class OnApp_Locale extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case 2.3:
                 $this->fields = array(
                     'code' => array(
@@ -56,6 +56,8 @@ class OnApp_Locale extends OnApp {
             case 4.0:
             case 4.1:
             case 4.2:
+            case 4.3:
+            case 5.0:
                 $this->fields = $this->initFields( 2.3 );
                 break;
         }
@@ -66,7 +68,6 @@ class OnApp_Locale extends OnApp {
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
-        return parent::getResource( $action );
         /**
          * ROUTE :
          *
@@ -107,5 +108,17 @@ class OnApp_Locale extends OnApp {
          * @alias  /roles/:id(.:format)
          * @format {:controller=>"roles", :action=>"destroy"}
          */
+        return parent::getResource( $action );
+    }
+    function activateCheck( $action_name ) {
+        switch ( $action_name ) {
+            case ONAPP_ACTIVATE_LOAD:
+            case ONAPP_ACTIVATE_SAVE:
+            case ONAPP_ACTIVATE_DELETE:
+                $this->logger->error( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()',
+                    __FILE__,
+                    __LINE__
+                );
+        }
     }
 }

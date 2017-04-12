@@ -82,6 +82,11 @@ class OnApp_Asset extends OnApp_Hypervisor {
                     ONAPP_FIELD_TYPE => 'array',
                 );
                 break;
+
+            case 4.3:
+            case 5.0:
+                $this->fields = $this->initFields( 4.2 );
+                break;
         }
 
 
@@ -111,9 +116,9 @@ class OnApp_Asset extends OnApp_Hypervisor {
 
     function getListUnassigned() {
 
-        $tagRootOld = $this->_tagRoot;
+        $tagRootOld     = $this->_tagRoot;
         $this->_tagRoot = 'hypervisor';
-        $result = $this->sendGet( ONAPP_GETRESOURCE_ASSETS_GET_UNASSIGNED );
+        $result         = $this->sendGet( ONAPP_GETRESOURCE_ASSETS_GET_UNASSIGNED );
         $this->_tagRoot = $tagRootOld;
 
         if ( ! is_null( $this->getErrorsAsArray() ) ) {

@@ -36,13 +36,13 @@ class OnApp_BillingCompany_BaseResource extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -107,33 +107,33 @@ class OnApp_BillingCompany_BaseResource extends OnApp {
                         ONAPP_FIELD_CLASS     => 'BillingCompany_BaseResource_Price',
                     ),
                     'limit'           => array(
-                        ONAPP_FIELD_MAP      => '_limit',
-                        ONAPP_FIELD_TYPE     => 'string',
+                        ONAPP_FIELD_MAP  => '_limit',
+                        ONAPP_FIELD_TYPE => 'string',
                         //ONAPP_FIELD_REQUIRED => true,
                     ),
                     'limit_type'      => array(
-                        ONAPP_FIELD_MAP      => '_limit_type',
-                        ONAPP_FIELD_TYPE     => 'string',
+                        ONAPP_FIELD_MAP  => '_limit_type',
+                        ONAPP_FIELD_TYPE => 'string',
                         //ONAPP_FIELD_REQUIRED => true,
                     ),
                     'limit_free'      => array(
-                        ONAPP_FIELD_MAP      => '_limit_free',
-                        ONAPP_FIELD_TYPE     => 'string',
+                        ONAPP_FIELD_MAP  => '_limit_free',
+                        ONAPP_FIELD_TYPE => 'string',
                         //ONAPP_FIELD_REQUIRED => true,
                     ),
                     'price'           => array(
-                        ONAPP_FIELD_MAP      => '_price',
-                        ONAPP_FIELD_TYPE     => 'string',
+                        ONAPP_FIELD_MAP  => '_price',
+                        ONAPP_FIELD_TYPE => 'string',
                         //ONAPP_FIELD_REQUIRED => true,
                     ),
                     'price_on'        => array(
-                        ONAPP_FIELD_MAP      => '_price_on',
-                        ONAPP_FIELD_TYPE     => 'string',
+                        ONAPP_FIELD_MAP  => '_price_on',
+                        ONAPP_FIELD_TYPE => 'string',
                         //ONAPP_FIELD_REQUIRED => true,
                     ),
                     'price_off'       => array(
-                        ONAPP_FIELD_MAP      => '_price_off',
-                        ONAPP_FIELD_TYPE     => 'string',
+                        ONAPP_FIELD_MAP  => '_price_off',
+                        ONAPP_FIELD_TYPE => 'string',
                         //ONAPP_FIELD_REQUIRED => true,
                     ),
                     'resource_class'  => array(
@@ -141,28 +141,34 @@ class OnApp_BillingCompany_BaseResource extends OnApp {
                         ONAPP_FIELD_TYPE          => 'string',
                         ONAPP_FIELD_DEFAULT_VALUE => 'Billing::Company::Resource::VCloud::ComputeZone'
                     ),
-                    'is_default'  => array(
+                    'is_default'      => array(
                         ONAPP_FIELD_MAP  => '_is_default',
                         ONAPP_FIELD_TYPE => 'boolean',
                     ),
-                    'use_default'  => array(
+                    'use_default'     => array(
                         ONAPP_FIELD_MAP  => '_use_default',
                         ONAPP_FIELD_TYPE => 'boolean',
                     ),
-                    'preferences'  => array(
+                    'preferences'     => array(
                         ONAPP_FIELD_MAP  => '_preferences',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'target_id'  => array(
+                    'target_id'       => array(
                         ONAPP_FIELD_MAP       => '_target_id',
                         ONAPP_FIELD_TYPE      => 'integer',
                         ONAPP_FIELD_READ_ONLY => true
                     ),
-                    'target_type'  => array(
+                    'target_type'     => array(
                         ONAPP_FIELD_MAP  => '_target_type',
                         ONAPP_FIELD_TYPE => 'string',
                     )
                 );
+                break;
+            case 4.3:
+                $this->fields = $this->initFields( 4.2 );
+                break;
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
                 break;
         }
 
@@ -181,7 +187,7 @@ class OnApp_BillingCompany_BaseResource extends OnApp {
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         $show_log_msg = true;
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
@@ -224,11 +230,11 @@ class OnApp_BillingCompany_BaseResource extends OnApp {
                  * @format  {:controller=>"base_resources", :action=>"destroy"}
                  */
 
-                if( is_null( $this->_billing_plan_id ) ) {
+                if ( is_null( $this->_billing_plan_id ) ) {
                     $this->_billing_plan_id = $this->_obj->_billing_plan_id;
                 }
                 $resourceAdd = '';
-                if( !is_null( $this->_billing_plan_id ) ) {
+                if ( ! is_null( $this->_billing_plan_id ) ) {
                     $resourceAdd = '/plans/' . $this->_billing_plan_id;
                 }
                 $resource = 'billing/company' . $resourceAdd . '/' . $this->_resource;
@@ -240,7 +246,7 @@ class OnApp_BillingCompany_BaseResource extends OnApp {
                 break;
         }
 
-        if( $show_log_msg ) {
+        if ( $show_log_msg ) {
             $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
         }
 
@@ -257,16 +263,15 @@ class OnApp_BillingCompany_BaseResource extends OnApp {
      * @access public
      */
     function getList( $billing_plan_id = null, $url_args = null ) {
-        if( is_null( $billing_plan_id ) && ! is_null( $this->_billing_plan_id ) ) {
+        if ( is_null( $billing_plan_id ) && ! is_null( $this->_billing_plan_id ) ) {
             $billing_plan_id = $this->_billing_plan_id;
         }
 
-        if( ! is_null( $billing_plan_id ) ) {
+        if ( ! is_null( $billing_plan_id ) ) {
             $this->_billing_plan_id = $billing_plan_id;
 
             return parent::getList();
-        }
-        else {
+        } else {
             $this->logger->error(
                 'getList: argument _billing_plan_id not set.',
                 __FILE__,
@@ -298,7 +303,7 @@ class OnApp_BillingCompany_BaseResource extends OnApp {
      */
 
     function save() {
-        if( is_null( $this->__target_type ) ) {
+        if ( is_null( $this->__target_type ) ) {
             $this->_limit = isset( $this->_limits->_limit )
                 ? $this->_limits->_limit : (
                 isset( $this->_obj->_limits->_limit )
@@ -307,7 +312,7 @@ class OnApp_BillingCompany_BaseResource extends OnApp {
                 );
         }
 
-        if( is_null( $this->_limit_free ) ) {
+        if ( is_null( $this->_limit_free ) ) {
             $this->_limit_free = isset( $this->_limits->_limit_free )
                 ? $this->_limits->_limit_free : (
                 isset( $this->_obj->_limits->_limit_free )
@@ -316,7 +321,7 @@ class OnApp_BillingCompany_BaseResource extends OnApp {
                 );
         }
 
-        if( is_null( $this->_price_on ) ) {
+        if ( is_null( $this->_price_on ) ) {
             $this->_price_on = isset( $this->_prices->_price_on )
                 ? $this->_prices->_price_on : (
                 isset( $this->_obj->_prices->_price_on ) ?
@@ -325,7 +330,7 @@ class OnApp_BillingCompany_BaseResource extends OnApp {
                 );
         }
 
-        if( is_null( $this->_price_off ) ) {
+        if ( is_null( $this->_price_off ) ) {
             $this->_price_off = isset( $this->_limits->_price_off )
                 ? $this->_prices->_price_off : (
                 isset( $this->_obj->_prices->_price_off )
@@ -334,7 +339,7 @@ class OnApp_BillingCompany_BaseResource extends OnApp {
                 );
         }
 
-        if( is_null( $this->_price ) ) {
+        if ( is_null( $this->_price ) ) {
             $this->_price = isset( $this->_limits->_price )
                 ? $this->_prices->_price
                 : ( isset( $this->_obj->_prices->_price )

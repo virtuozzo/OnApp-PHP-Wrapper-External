@@ -36,14 +36,14 @@ class OnApp_IPAddressPool extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
 
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -58,31 +58,35 @@ class OnApp_IPAddressPool extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'id'                 => array(
-                        ONAPP_FIELD_MAP       => '_id',
-                        ONAPP_FIELD_TYPE      => 'integer',
+                    'id'              => array(
+                        ONAPP_FIELD_MAP  => '_id',
+                        ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'cidr'                 => array(
-                        ONAPP_FIELD_MAP       => '_cidr',
-                        ONAPP_FIELD_TYPE      => 'integer',
+                    'cidr'            => array(
+                        ONAPP_FIELD_MAP  => '_cidr',
+                        ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'created_at'         => array(
-                        ONAPP_FIELD_MAP       => '_created_at',
-                        ONAPP_FIELD_TYPE      => 'datetime',
+                    'created_at'      => array(
+                        ONAPP_FIELD_MAP  => '_created_at',
+                        ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'updated_at'         => array(
-                        ONAPP_FIELD_MAP       => '_updated_at',
-                        ONAPP_FIELD_TYPE      => 'datetime',
+                    'updated_at'      => array(
+                        ONAPP_FIELD_MAP  => '_updated_at',
+                        ONAPP_FIELD_TYPE => 'datetime',
                     ),
                     'ipv4'            => array(
-                        ONAPP_FIELD_MAP      => '_ipv4',
-                        ONAPP_FIELD_TYPE      => 'boolean',
+                        ONAPP_FIELD_MAP  => '_ipv4',
+                        ONAPP_FIELD_TYPE => 'boolean',
                     ),
-                    'network_address'    => array(
-                        ONAPP_FIELD_MAP      => '_network_address',
-                        ONAPP_FIELD_TYPE      => 'string',
+                    'network_address' => array(
+                        ONAPP_FIELD_MAP  => '_network_address',
+                        ONAPP_FIELD_TYPE => 'string',
                     ),
                 );
+                break;
+            case 4.3:
+            case 5.0:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 

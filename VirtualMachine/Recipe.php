@@ -28,7 +28,7 @@ class OnApp_VirtualMachine_Recipe extends OnApp {
      *
      * @var string
      */
-    var $_tagRoot = 'recipe_join';
+    var $_tagRoot = 'recipe_joins';
     /**
      * alias processing the object data
      *
@@ -39,13 +39,13 @@ class OnApp_VirtualMachine_Recipe extends OnApp {
     /**
      * API Fields description
      *
-     * @param string|float $version   OnApp API version
-     * @param string       $className current class' name
+     * @param string|float $version OnApp API version
+     * @param string $className current class' name
      *
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
-        switch( $version ) {
+        switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
@@ -60,47 +60,51 @@ class OnApp_VirtualMachine_Recipe extends OnApp {
             case 4.1:
             case 4.2:
                 $this->fields = array(
-                    'compatible_with'	 => array(
-                        ONAPP_FIELD_MAP => '_compatible_with',
+                    'compatible_with'    => array(
+                        ONAPP_FIELD_MAP  => '_compatible_with',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'created_at'	 => array(
-                        ONAPP_FIELD_MAP => '_created_at',
+                    'created_at'         => array(
+                        ONAPP_FIELD_MAP  => '_created_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'description'	 => array(
-                        ONAPP_FIELD_MAP => '_description',
+                    'description'        => array(
+                        ONAPP_FIELD_MAP  => '_description',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'id'	 => array(
-                        ONAPP_FIELD_MAP => '_id',
+                    'id'                 => array(
+                        ONAPP_FIELD_MAP  => '_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'label'	 => array(
-                        ONAPP_FIELD_MAP => '_label',
+                    'label'              => array(
+                        ONAPP_FIELD_MAP  => '_label',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'script_type'	 => array(
-                        ONAPP_FIELD_MAP => '_script_type',
+                    'script_type'        => array(
+                        ONAPP_FIELD_MAP  => '_script_type',
                         ONAPP_FIELD_TYPE => 'string',
                     ),
-                    'updated_at'	 => array(
-                        ONAPP_FIELD_MAP => '_updated_at',
+                    'updated_at'         => array(
+                        ONAPP_FIELD_MAP  => '_updated_at',
                         ONAPP_FIELD_TYPE => 'datetime',
                     ),
-                    'user_id'	 => array(
-                        ONAPP_FIELD_MAP => '_user_id',
+                    'user_id'            => array(
+                        ONAPP_FIELD_MAP  => '_user_id',
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
-                    'recipe_steps'	 => array(
-                        ONAPP_FIELD_MAP => '_recipe_steps',
+                    'recipe_steps'       => array(
+                        ONAPP_FIELD_MAP  => '_recipe_steps',
                         ONAPP_FIELD_TYPE => 'array',
                     ),
-                    'event_type'	 => array(
-                        ONAPP_FIELD_MAP => '_recipe_steps',
-                        ONAPP_FIELD_TYPE => 'array',
+                    'virtual_machine_id' => array(
+                        ONAPP_FIELD_MAP  => '_virtual_machine_id',
+                        ONAPP_FIELD_TYPE => 'integer',
                     ),
                 );
+                break;
+            case 4.3:
+            case 5.0:
+                $this->fields = $this->initFields( 4.2 );
                 break;
         }
 
@@ -119,7 +123,7 @@ class OnApp_VirtualMachine_Recipe extends OnApp {
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         $show_log_msg = true;
-        switch( $action ) {
+        switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
@@ -137,7 +141,7 @@ class OnApp_VirtualMachine_Recipe extends OnApp {
                  * @alias    /virtual_machines/:virtual_machine_id/disk(.:format)
                  * @format    {:controller=>"snapshots", :action=>"destroy"}
                  */
-                if( is_null( $this->_virtual_machine_id )) {
+                if ( is_null( $this->_virtual_machine_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _virtual_machine_id not set.',
                         __FILE__,
@@ -152,6 +156,33 @@ class OnApp_VirtualMachine_Recipe extends OnApp {
                 $resource = parent::getResource( $action );
                 break;
         }
+
         return $resource;
+    }
+
+    /*
+     * For test purpose
+     * */
+    public function modifyResponse( $response, $resource ) {
+        switch ( $resource ) {
+            case ONAPP_GETRESOURCE_LIST:
+                $data = array();
+                if ( isset( $response['response_body'] ) ) {
+                    if ( is_string( $response['response_body'] ) ) {
+                        $data = json_decode( $response['response_body'] );
+                    }
+                }
+                $newData = array();
+                foreach ( $data as $item ) {
+                    $newData[] = $item[0]->recipe->recipe_joins;
+                }
+                $response['response_body'] = json_encode( $newData );
+
+                return $response;
+                break;
+            default:
+                return $response;
+                break;
+        }
     }
 }

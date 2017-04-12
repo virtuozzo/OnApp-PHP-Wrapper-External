@@ -17,7 +17,7 @@
  * The OnApp_LoadBalancingCluster_AutoScalingOutMemory class uses no basic methods and is nested of OnApp_LoadBalancingCluster class
  *
  */
-class OnApp_LoadBalancingCluster_AutoScalingOutMemory extends AutoScaling {
+class OnApp_LoadBalancingCluster_AutoScalingOutMemory extends OnApp_LoadBalancingCluster_AutoScaling {
     public function __construct() {
         parent::__construct();
         $this->className = __CLASS__;

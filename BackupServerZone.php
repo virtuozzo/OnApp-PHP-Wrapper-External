@@ -41,7 +41,7 @@ define( 'ONAPP_GETRESOURCE_BACKUPSERVERZONE_DETACH', 'backupserverzone_detach' )
  *
  * For full fields reference and curl request details visit: ( https://docs.onapp.com/display/42API/Get+List+of+Backup+Server+Zones )
  */
-class ONAPP_BACKUPSERVERZONE extends OnApp {
+class ONAPP_BackupServerZone extends OnApp {
     /**
      * root tag used in the API request
      *
@@ -160,6 +160,18 @@ class ONAPP_BACKUPSERVERZONE extends OnApp {
                         ONAPP_FIELD_TYPE => 'integer',
                     ),
                 );
+                break;
+
+            case 4.3:
+                $this->fields                    = $this->initFields( 4.2 );
+                $this->fields['provider_vdc_id'] = array(
+                    ONAPP_FIELD_MAP  => '_provider_vdc_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
+
+            case 5.0:
+                $this->fields = $this->initFields( 4.3 );
                 break;
         }
 
