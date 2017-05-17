@@ -4,9 +4,7 @@
   "type": "library",
   "keywords": ["onapp", "wrapper"],
   "homepage": "https://github.com/onapp/onapp-php-wrapper-external",
-  "license": {
-    "custom": "https://github.com/onapp/onapp-php-wrapper-external/blob/5.4.0/LICENSE.md"
-  },
+  "license": "unknown",
   "require": {
     "php": "^5.3.3 || ^7.0",
     "ext-mbstring": "*"
