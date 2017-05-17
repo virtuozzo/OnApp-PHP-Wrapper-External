@@ -1,11 +1,11 @@
 {
-  "name": "OnApp/OnApp-PHP-Wrapper-External",
+  "name": "onapp/onapp-php-wrapper-external",
   "description": "OnApp PHP Client Library",
   "type": "library",
   "keywords": ["onapp", "wrapper"],
-  "homepage": "https://github.com/OnApp/OnApp-PHP-Wrapper-External",
+  "homepage": "https://github.com/onapp/onapp-php-wrapper-external",
   "license": {
-    "custom": "https://github.com/OnApp/OnApp-PHP-Wrapper-External/blob/5.4.0/LICENSE.md"
+    "custom": "https://github.com/onapp/onapp-php-wrapper-external/blob/5.4.0/LICENSE.md"
   },
   "require": {
     "php": "^5.3.3 || ^7.0",
