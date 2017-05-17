@@ -141,6 +141,13 @@ class OnApp_Role extends OnApp {
             case 5.3:
                 $this->fields = $this->initFields( 5.2 );
                 break;
+            case 5.4:
+                $this->fields = $this->initFields( 5.3 );
+                $this->fields['system'] = array(
+                    ONAPP_FIELD_MAP  => '_system',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

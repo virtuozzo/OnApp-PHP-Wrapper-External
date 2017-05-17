@@ -95,6 +95,9 @@ class OnApp_Hypervisor_DataStoreJoin extends OnApp {
                     ),
                 );
                 break;
+            case 5.4:
+                $this->fields = $this->initFields( 5.3 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

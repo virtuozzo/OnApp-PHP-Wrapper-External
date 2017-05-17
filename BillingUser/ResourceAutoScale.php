@@ -14,7 +14,7 @@
  */
 
 /**
- * The OnApp_BillingUser_ResourceAutoScale class uses the following basic methods:
+ * The OnApp_BillingUser_ResourceAutoscale class uses the following basic methods:
  * {@link load}, {@link save}, {@link delete}, and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php?m=2 )
@@ -25,7 +25,7 @@ class OnApp_BillingUser_ResourceAutoScale extends OnApp_BillingUser_BaseResource
      *
      * @var string
      */
-    var $_specified_resource_name = 'autoscale';
+    var $_specified_resource_name = 'Autoscale';
 
     /**
      * API Fields description
@@ -43,7 +43,7 @@ class OnApp_BillingUser_ResourceAutoScale extends OnApp_BillingUser_BaseResource
             ONAPP_FIELD_TYPE          => 'string',
             ONAPP_FIELD_REQUIRED      => true,
             ONAPP_FIELD_READ_ONLY     => true,
-            ONAPP_FIELD_DEFAULT_VALUE => 'Resource::AutoScale'
+            ONAPP_FIELD_DEFAULT_VALUE => 'Resource::Autoscale'
         );
 
         $this->fields['id'][ ONAPP_FIELD_REQUIRED ] = false;

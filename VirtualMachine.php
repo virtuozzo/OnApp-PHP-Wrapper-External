@@ -117,6 +117,12 @@ define( 'ONAPP_GETRESOURCE_MIGRATE', 'migrate' );
  *
  *
  */
+define( 'ONAPP_GETRESOURCE_MIGRATION', 'migration' );
+
+/**
+ *
+ *
+ */
 define( 'ONAPP_GETRESOURCE_VIRTUALMACHINES_STATUSES', 'statusAll' );
 
 /**
@@ -680,6 +686,38 @@ class OnApp_VirtualMachine extends OnApp {
                     ONAPP_FIELD_CLASS => 'VirtualMachine_CustomVariablesAttribute',
                 );
                 break;
+            case 5.4:
+                $this->fields = $this->initFields( 5.3 );
+                $this->fields['domain'] = array(
+                    ONAPP_FIELD_MAP           => '_domain',
+                    ONAPP_FIELD_TYPE          => 'string',
+                    ONAPP_FIELD_DEFAULT_VALUE => 'localdomain',
+                );
+                $this->fields['user_group_id'] = array(
+                    ONAPP_FIELD_MAP  => '_user_group_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['vdc_id'] = array(
+                    ONAPP_FIELD_MAP  => '_vdc_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['data_store_id'] = array(
+                    ONAPP_FIELD_MAP  => '_data_store_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['network_id'] = array(
+                    ONAPP_FIELD_MAP  => '_network_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['openstack_id'] = array(
+                    ONAPP_FIELD_MAP  => '_openstack_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['vcenter_reserved_memory'] = array(
+                    ONAPP_FIELD_MAP  => '_vcenter_reserved_memory',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         if ( is_null( $this->_id ) ) {
@@ -859,6 +897,20 @@ class OnApp_VirtualMachine extends OnApp {
                  */
 
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/migrate';
+                break;
+
+            case ONAPP_GETRESOURCE_MIGRATION:
+
+                /**
+                 * ROUTE :
+                 *
+                 * @name migrate_virtual_machine
+                 * @method POST
+                 * @alias   /virtual_machines/:id/migration(.:format)
+                 * @format  {:controller=>"virtual_machines", :action=>"migration"}
+                 */
+
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/migration';
                 break;
 
             case ONAPP_GETRESOURCE_SUSPEND_VM:
@@ -1182,6 +1234,31 @@ class OnApp_VirtualMachine extends OnApp {
         );
 
         $this->sendPost( ONAPP_GETRESOURCE_MIGRATE, $data );
+    }
+
+    /**
+     * Migrates Virtual Machine to the other hypervisor
+     *
+     * @param int $id virtual machine id
+     * @param int $hypervisor_id destination hypervisor id
+     */
+    function migration( $id, $hypervisor_id, $cold_migrate_on_rollback = false ) {
+        if ( $id ) {
+            $this->_id = $id;
+        }
+
+        $data = array(
+            'root' => 'tmp_holder',
+            'data' => array(
+                'destination' => $hypervisor_id,
+                //'cold_migrate_on_rollback' => true
+            ),
+        );
+        if ( $cold_migrate_on_rollback ) {
+            $data['data']['cold_migrate_on_rollback'] = "1";
+        }
+
+        $this->sendPost( ONAPP_GETRESOURCE_MIGRATION, $data );
     }
 
     /**

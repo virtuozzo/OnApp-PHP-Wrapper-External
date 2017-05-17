@@ -139,6 +139,9 @@ class OnApp_CloudBootIpAddress extends OnApp {
             case 5.3:
                 $this->fields = $this->initFields( 5.2 );
                 break;
+            case 5.4:
+                $this->fields = $this->initFields( 5.3 );
+                break;
 
         }
 
@@ -158,5 +161,18 @@ class OnApp_CloudBootIpAddress extends OnApp {
 
         return $resource;
     }
+
+    function allocateIP( $ip_address = null) {
+        $data = array(
+            'root' => 'ip_address',
+            'data' => array(
+                'address' => $ip_address,
+            )
+        );
+
+        $this->sendPost( ONAPP_GETRESOURCE_DEFAULT, $data );
+    }
+
+
 
 }

@@ -142,6 +142,9 @@ class OnApp_CDNAccelerator_NetworkInterface extends OnApp {
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
                 break;
+            case 5.4:
+                $this->fields = $this->initFields( 5.3 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

@@ -260,6 +260,13 @@ class OnApp_ISO extends OnApp {
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
                 break;
+            case 5.4:
+                $this->fields = $this->initFields( 5.3 );
+                $this->fields['openstack_id'] = array(
+                    ONAPP_FIELD_MAP  => '_openstack_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

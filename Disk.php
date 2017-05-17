@@ -27,8 +27,11 @@ define( 'ONAPP_GETRESOURCE_AUTOBACKUP_DISABLE', 'autobackup_disable' );
  */
 define( 'ONAPP_GETRESOURCE_TAKE_BACKUP', 'backups' );
 
-define( 'ONAPP_GERRESOURCE_MIGRATE', 'migrate' );
+define( 'ONAPP_GETRESOURCE_MIGRATE', 'migrate' );
 
+define( 'ONAPP_GETRESOURCE_DISK_IOLIMITS', 'io_limits' );
+
+define( 'ONAPP_GETRESOURCE_DISK_ASSIGN', 'assign' );
 /**
  * Managing Disks
  *
@@ -230,7 +233,42 @@ class OnApp_Disk extends OnApp {
             case 5.3:
                 $this->fields = $this->initFields( 5.2 );
                 break;
+            case 5.4:
+                $this->fields = $this->initFields( 5.3 );
 
+                $this->fields['io_limits_override'] = array(
+                    ONAPP_FIELD_MAP  => '_io_limits_override',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['read_iops'] = array(
+                    ONAPP_FIELD_MAP  => '_read_iops',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['write_iops'] = array(
+                    ONAPP_FIELD_MAP  => '_write_iops',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['read_throughput'] = array(
+                    ONAPP_FIELD_MAP  => '_read_throughput',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['write_throughput'] = array(
+                    ONAPP_FIELD_MAP  => '_write_throughput',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['temporary_virtual_machine_id'] = array(
+                    ONAPP_FIELD_MAP  => '_temporary_virtual_machine_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['io_limits']                            = array(
+                    ONAPP_FIELD_MAP  => '_io_limits',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['openstack_id']                            = array(
+                    ONAPP_FIELD_MAP  => '_openstack_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -341,6 +379,14 @@ class OnApp_Disk extends OnApp {
                 } else {
                     $resource = 'virtual_machines/' . $this->_virtual_machine_id . '/disks/' . $this->_id . '/migrate';
                 }
+                break;
+
+            case ONAPP_GETRESOURCE_DISK_IOLIMITS:
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/io_limits';
+                break;
+
+            case ONAPP_GETRESOURCE_DISK_ASSIGN:
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/assign';
                 break;
 
             default:
@@ -519,4 +565,63 @@ class OnApp_Disk extends OnApp {
         );
         $this->sendPost( ONAPP_GETRESOURCE_MIGRATE, $data );
     }
+
+    function ioLimits( $io_limits_override = null, $read_iops = null, $write_iops = null, $read_throughput = null, $write_throughput = null, $id = null ) {
+        if ( $id ) {
+            $this->_id = $id;
+        }
+        if ( $io_limits_override !== null ) {
+            $this->_io_limits_override = $io_limits_override;
+        }
+        if ( $read_iops ) {
+            $this->_read_iops = $read_iops;
+        }
+        if ( $write_iops ) {
+            $this->_write_iops = $write_iops;
+        }
+        if ( $read_throughput ) {
+            $this->_read_throughput = $read_throughput;
+        }
+        if ( $write_throughput ) {
+            $this->_write_throughput = $write_throughput;
+        }
+
+        $data = array(
+            'root'      => 'io_limits',
+            'data' => array(
+                'io_limits_override' => $this->_io_limits_override,
+                'read_iops'          => $this->_read_iops,
+                'write_iops'         => $this->_write_iops,
+                'read_throughput'    => $this->_read_throughput,
+                'write_throughput'   => $this->_write_throughput,
+            )
+        );
+        $this->sendPut( ONAPP_GETRESOURCE_DISK_IOLIMITS, $data );
+    }
+
+    function assign( $id = null, $temporary_virtual_machine_id = null ) {
+        if ( $id ) {
+            $this->_id = $id;
+        }
+        if ( $temporary_virtual_machine_id !== null ) {
+            $this->_temporary_virtual_machine_id = $temporary_virtual_machine_id;
+        }
+
+        $data = array(
+            'root' => 'disk',
+            'data' => array(
+                'temporary_virtual_machine_id' => $this->_temporary_virtual_machine_id,
+            )
+        );
+        $this->sendPost( ONAPP_GETRESOURCE_DISK_ASSIGN, $data );
+    }
+
+    function deassign( $id = null ) {
+        if ( $id ) {
+            $this->_id = $id;
+        }
+
+        $this->sendDelete( ONAPP_GETRESOURCE_DISK_ASSIGN );
+    }
+
 }

@@ -93,6 +93,9 @@ class OnApp_Catalogs extends OnApp {
                     ONAPP_FIELD_TYPE => 'integer',
                 );
                 break;
+            case 5.4:
+                $this->fields = $this->initFields( 5.3 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

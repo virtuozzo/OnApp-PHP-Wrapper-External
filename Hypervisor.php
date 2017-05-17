@@ -229,7 +229,6 @@ class OnApp_Hypervisor extends OnApp {
                 $this->fields['free_disk_space']                 = array(
                     ONAPP_FIELD_MAP  => '_free_disk_space',
                     ONAPP_FIELD_TYPE => '_array',
-
                 );
 
                 break;
@@ -454,6 +453,17 @@ class OnApp_Hypervisor extends OnApp {
             case 5.3:
                 $this->fields = $this->initFields( 5.2 );
                 break;
+            case 5.4:
+                $this->fields = $this->initFields( 5.3 );
+                $this->fields['integrated_storage_disabled'] = array(
+                    ONAPP_FIELD_MAP  => '_integrated_storage_disabled',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['os_version_minor'] = array(
+                    ONAPP_FIELD_MAP  => '_os_version_minor',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -641,7 +651,10 @@ class OnApp_Hypervisor extends OnApp {
         return parent::save();
     }
 
-    function enableMaintanceMode() {
+    function enableMaintanceMode( $id = null ) {
+        if ( $id ) {
+            $this->_id = $id;
+        }
         $data = array(
             'root' => 'force',
             'data' => '1'
@@ -650,7 +663,11 @@ class OnApp_Hypervisor extends OnApp {
         return $this->sendPut( ONAPP_ENABLE_MAINTENANCE_MODE, $data );
     }
 
-    function disableMaintanceMode() {
+    function disableMaintanceMode( $id = null ) {
+        if ( $id ) {
+            $this->_id = $id;
+        }
+
         return $this->sendPut( ONAPP_DISABLE_MAINTENANCE_MODE );
     }
 }

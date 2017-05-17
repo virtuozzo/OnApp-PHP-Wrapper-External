@@ -800,6 +800,49 @@ class OnApp_Settings extends OnApp {
                     ONAPP_FIELD_TYPE => 'integer',
                 );
                 break;
+            case 5.4:
+                $this->fields = $this->initFields( 5.3 );
+                $this->fields['block_size'] = array(
+                    ONAPP_FIELD_MAP  => '_block_size',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['migration_rate_limit'] = array(
+                    ONAPP_FIELD_MAP  => '_migration_rate_limit',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['simultaneous_migrations_per_hypervisor'] = array(
+                    ONAPP_FIELD_MAP  => '_simultaneous_migrations_per_hypervisor',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['snmp_stats_level1_period'] = array(
+                    ONAPP_FIELD_MAP  => '_snmp_stats_level1_period',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['snmp_stats_level2_period'] = array(
+                    ONAPP_FIELD_MAP  => '_snmp_stats_level2_period',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['snmp_stats_level3_period'] = array(
+                    ONAPP_FIELD_MAP  => '_snmp_stats_level3_period',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['io_limiting_enabled'] = array(
+                    ONAPP_FIELD_MAP  => '_io_limiting_enabled',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['localdomain'] = array(
+                    ONAPP_FIELD_MAP  => '_localdomain',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['number_of_notifications_to_show'] = array(
+                    ONAPP_FIELD_MAP  => '_number_of_notifications_to_show',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['wizard_resource_reservation_ttl'] = array(
+                    ONAPP_FIELD_MAP  => '_wizard_resource_reservation_ttl',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

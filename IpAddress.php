@@ -153,6 +153,21 @@ class OnApp_IpAddress extends OnApp {
             case 5.3:
                 $this->fields = $this->initFields( 5.2 );
                 break;
+            case 5.4:
+                $this->fields = $this->initFields( 5.3 );
+                $this->fields['ip_range_id'] = array(
+                    ONAPP_FIELD_MAP  => '_ip_range_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['ipv4'] = array(
+                    ONAPP_FIELD_MAP  => '_ipv4',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['prefix'] = array(
+                    ONAPP_FIELD_MAP  => '_prefix',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

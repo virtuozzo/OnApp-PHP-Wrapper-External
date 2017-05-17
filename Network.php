@@ -41,6 +41,11 @@ define( 'ONAPP_GETRESOURCE_NETWORKS_LIST_BY_HYPERVISOR_GROUP_ID', 'networks_list
  */
 define( 'ONAPP_GETRESOURCE_IP_ASSIGN', 'ip_assign' );
 
+/**
+ *
+ */
+define( 'ONAPP_GETRESOURCE_IP_UNASSIGN', 'ip_unassign' );
+
 
 /**
  * Configuring Network
@@ -228,6 +233,18 @@ class OnApp_Network extends OnApp {
             case 5.3:
                 $this->fields = $this->initFields( 5.2 );
                 break;
+            case 5.4:
+                $this->fields = $this->initFields( 5.3 );
+                $this->fields['id'][ONAPP_FIELD_REQUIRED] = false;
+                $this->fields['created_at'][ONAPP_FIELD_REQUIRED] = false;
+                $this->fields['updated_at'][ONAPP_FIELD_REQUIRED] = false;
+                $this->fields['identifier'][ONAPP_FIELD_REQUIRED] = false;
+
+                $this->fields['type'] = array(
+                    ONAPP_FIELD_MAP  => '_type',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -267,6 +284,14 @@ class OnApp_Network extends OnApp {
                  * @alias  /settings/networks/:network_id/ip_addresses/assign(.:format)
                  */
                 $resource = $this->_resource . '/' . $this->_id . '/ip_addresses/assign';
+                break;
+
+            case ONAPP_GETRESOURCE_IP_UNASSIGN:
+                /*
+                 * @method POST
+                 * @alias  /settings/networks/:network_id/ip_addresses/assign(.:format)
+                 */
+                $resource = $this->_resource . '/' . $this->_id . '/ip_addresses/unassign';
                 break;
 
             default:
@@ -327,7 +352,7 @@ class OnApp_Network extends OnApp {
         return ( is_array( $result ) || ! $result ) ? $result : array( $result );
     }
 
-    function assignIPAddressToUser( $ipAddressIDs, $userID ) {
+    function assignIPAddressToUser( $ipAddresses, $userID ) {
         if ( is_null( $this->_id ) ) {
             $this->logger->error(
                 'cloudConfig: argument _id not set.',
@@ -335,26 +360,65 @@ class OnApp_Network extends OnApp {
                 __LINE__
             );
         }
+        $ipAddressesRes = [];
+        if ( is_array( $ipAddresses ) ) {
+            foreach ( $ipAddresses as $ip ) {
+                $ipAddressesRes[] = $ip;
+            }
+        } else {
+            $ipAddressesRes[] = $ipAddresses;
+        }
 
         $data = array(
             'root' => 'tmp_holder',
             'data' => array(
-                'ip_address' => $ipAddressIDs,
-                'user_id'    => $userID,
+                'ip_address' => $ipAddressesRes,
+                'user_id'      => $userID,
             ),
         );
 
-        $res = $this->sendPut( ONAPP_GETRESOURCE_IP_ASSIGN, $data );
+        $res = $this->sendPost( ONAPP_GETRESOURCE_IP_ASSIGN, $data );
+
+        return $res;
+    }
+
+    function unassignIPAddress( $ipAddressIDs ) {
+        if ( is_null( $this->_id ) ) {
+            $this->logger->error(
+                'cloudConfig: argument _id not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
+        $ipAddresses = [];
+        if ( is_array( $ipAddressIDs ) ) {
+            foreach ( $ipAddressIDs as $ip ) {
+                $ipAddresses[] = $ip;
+            }
+        } else {
+            $ipAddresses[] = $ipAddressIDs;
+        }
+
+        $data = array(
+            'root' => 'tmp_holder',
+            'data' => array(
+                'ip_addresses' => $ipAddresses,
+            ),
+        );
+
+        $res = $this->sendPost( ONAPP_GETRESOURCE_IP_UNASSIGN, $data );
 
         return $res;
     }
 
     function activateCheck( $action_name ) {
-        switch ( $action_name ) {
-            case ONAPP_ACTIVATE_SAVE:
-            case ONAPP_ACTIVATE_DELETE:
-                exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
-                break;
+        if($this->version < 5.3){
+            switch ( $action_name ) {
+                case ONAPP_ACTIVATE_SAVE:
+                case ONAPP_ACTIVATE_DELETE:
+                    exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
+                    break;
+            }
         }
     }
 }

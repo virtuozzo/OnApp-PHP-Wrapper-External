@@ -97,6 +97,9 @@ class OnApp_Statistics extends OnApp {
                     ONAPP_FIELD_TYPE => 'array',
                 );
                 break;
+            case 5.4:
+                $this->fields = $this->initFields( 5.3 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

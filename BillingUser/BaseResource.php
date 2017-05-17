@@ -199,6 +199,9 @@ class OnApp_BillingUser_BaseResource extends OnApp {
             case 5.3:
                 $this->fields = $this->initFields( 5.2 );
                 break;
+            case 5.4:
+                $this->fields = $this->initFields( 5.3 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -357,47 +360,33 @@ class OnApp_BillingUser_BaseResource extends OnApp {
      */
     function save() {
         if ( is_null( $this->_limit ) ) {
-            $this->_limit = isset( $this->_limits->_limit )
-                ? $this->_limits->_limit : (
-                isset( $this->_obj->_limits->_limit )
-                    ? $this->_obj->_limits->_limit
-                    : ''
-                );
+            if ( isset( $this->_limits->_limit ) || isset( $this->_obj->_limits->_limit ) ) {
+                $this->_limit = isset( $this->_limits->_limit ) ? $this->_limits->_limit : $this->_obj->_limits->_limit;
+            }
         }
 
         if ( is_null( $this->_limit_free ) ) {
-            $this->_limit_free = isset( $this->_limits->_limit_free )
-                ? $this->_limits->_limit_free : (
-                isset( $this->_obj->_limits->_limit_free )
-                    ? $this->_obj->_limits->_limit_free
-                    : ''
-                );
+            if ( isset( $this->_limits->_limit_free ) || isset( $this->_obj->_limits->_limit_free ) ) {
+                $this->_limit_free = isset( $this->_limits->_limit_free ) ? $this->_limits->_limit_free : $this->_obj->_limits->_limit_free;
+            }
         }
 
         if ( is_null( $this->_price_on ) ) {
-            $this->_price_on = isset( $this->_prices->_price_on )
-                ? $this->_prices->_price_on : (
-                isset( $this->_obj->_prices->_price_on ) ?
-                    $this->_obj->_prices->_price_on
-                    : ''
-                );
+            if ( isset( $this->_prices->_price_on ) || isset( $this->_obj->_prices->_price_on ) ) {
+                $this->_price_on = isset( $this->_prices->_price_on ) ? $this->_prices->_price_on : $this->_obj->_prices->_price_on;
+            }
         }
 
         if ( is_null( $this->_price_off ) ) {
-            $this->_price_off = isset( $this->_limits->_price_off )
-                ? $this->_prices->_price_off : (
-                isset( $this->_obj->_prices->_price_off )
-                    ? $this->_obj->_prices->_price_off
-                    : ""
-                );
+            if ( isset( $this->_limits->_price_off ) || isset( $this->_obj->_prices->_price_off ) ) {
+                $this->_price_off = isset( $this->_limits->_price_off ) ? $this->_prices->_price_off : $this->_obj->_prices->_price_off;
+            }
         }
 
         if ( is_null( $this->_price ) ) {
-            $this->_price = isset( $this->_limits->_price )
-                ? $this->_prices->_price
-                : ( isset( $this->_obj->_prices->_price )
-                    ? $this->_obj->_prices->_price
-                    : '' );
+            if ( isset( $this->_limits->_price ) || isset( $this->_obj->_prices->_price ) ) {
+                $this->_price = isset( $this->_limits->_price ) ? $this->_prices->_price : $this->_obj->_prices->_price;
+            }
         }
 
         return parent::save();

@@ -59,6 +59,9 @@ class OnApp_Container extends OnApp_VirtualMachine {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+            case 5.4:
+                $this->fields = $this->initFields( 5.3 );
+                break;
         }
 
         return $this->fields;

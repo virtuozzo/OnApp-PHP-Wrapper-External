@@ -96,6 +96,13 @@ class OnApp_Asset extends OnApp_Hypervisor {
             case 5.3:
                 $this->fields = $this->initFields( 5.2 );
                 break;
+            case 5.4:
+                $this->fields = $this->initFields( 5.3 );
+                $this->fields['integrated_storage_disabled'] = array(
+                    ONAPP_FIELD_MAP  => '_integrated_storage_disabled',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                break;
         }
 
 

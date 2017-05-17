@@ -25,13 +25,13 @@
  */
 define( 'ONAPP_GETRESOURCE_JOIN', 'ip_address_join' );
 
-class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
+class OnApp_VirtualMachine_IpAddress extends OnApp {
     /**
      * root tag used in the API request
      *
      * @var string
      */
-    var $_tagRoot = 'ip_address';
+    var $_tagRoot = 'ip_address_join';
     /**
      * alias processing the object data
      *
@@ -48,60 +48,12 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
      * @return array
      */
     public function initFields( $version = null, $className = '' ) {
+
         switch ( $version ) {
             case '2.0':
             case '2.1':
             case 2.2:
             case 2.3:
-                $this->fields = array(
-                    'id'              => array(
-                        ONAPP_FIELD_MAP       => '_id',
-                        ONAPP_FIELD_TYPE      => 'integer',
-                        ONAPP_FIELD_READ_ONLY => true,
-                    ),
-                    'created_at'      => array(
-                        ONAPP_FIELD_MAP       => '_created_at',
-                        ONAPP_FIELD_TYPE      => 'datetime',
-                        ONAPP_FIELD_READ_ONLY => true,
-                    ),
-                    'updated_at'      => array(
-                        ONAPP_FIELD_MAP       => '_updated_at',
-                        ONAPP_FIELD_TYPE      => 'datetime',
-                        ONAPP_FIELD_READ_ONLY => true,
-                    ),
-                    'address'         => array(
-                        ONAPP_FIELD_MAP       => '_address',
-                        ONAPP_FIELD_READ_ONLY => true,
-                    ),
-                    'netmask'         => array(
-                        ONAPP_FIELD_MAP       => '_netmask',
-                        ONAPP_FIELD_READ_ONLY => true,
-                    ),
-                    'broadcast'       => array(
-                        ONAPP_FIELD_MAP       => '_broadcast',
-                        ONAPP_FIELD_READ_ONLY => true,
-                    ),
-                    'network_address' => array(
-                        ONAPP_FIELD_MAP       => '_network_address',
-                        ONAPP_FIELD_READ_ONLY => true,
-                    ),
-                    'gateway'         => array(
-                        ONAPP_FIELD_MAP       => '_gateway',
-                        ONAPP_FIELD_READ_ONLY => true,
-                    ),
-                    'network_id'      => array(
-                        ONAPP_FIELD_MAP       => '_network_id',
-                        ONAPP_FIELD_TYPE      => 'integer',
-                        ONAPP_FIELD_READ_ONLY => true,
-                    ),
-                    'free'            => array(
-                        ONAPP_FIELD_MAP       => '_free',
-                        ONAPP_FIELD_TYPE      => 'boolean',
-                        ONAPP_FIELD_READ_ONLY => true,
-                    ),
-                );
-                break;
-
             case 3.0:
             case 3.1:
             case 3.2:
@@ -111,44 +63,38 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
             case 4.0:
             case 4.1:
             case 4.2:
-                $this->fields                        = $this->initFields( 2.3 );
-                $this->fields['customer_network_id'] = array(
-                    ONAPP_FIELD_MAP  => '_customer_network_id',
-                    ONAPP_FIELD_TYPE => 'boolean'
-                );
-                $this->fields['disallowed_primary']  = array(
-                    ONAPP_FIELD_MAP  => '_disallowed_primary',
-                    ONAPP_FIELD_TYPE => 'boolean'
-                );
-                $this->fields['hypervisor_id']       = array(
-                    ONAPP_FIELD_MAP  => '_hypervisor_id',
-                    ONAPP_FIELD_TYPE => 'boolean'
-                );
-                $this->fields['ip_address_pool_id']  = array(
-                    ONAPP_FIELD_MAP  => '_ip_address_pool_id',
-                    ONAPP_FIELD_TYPE => 'boolean'
-                );
-                $this->fields['pxe']                 = array(
-                    ONAPP_FIELD_MAP  => '_pxe',
-                    ONAPP_FIELD_TYPE => 'boolean'
-                );
-                $this->fields['user_id']             = array(
-                    ONAPP_FIELD_MAP  => '_user_id',
-                    ONAPP_FIELD_TYPE => 'boolean'
-                );
-                break;
             case 4.3:
             case 5.0:
-                $this->fields = $this->initFields( 4.2 );
-                break;
             case 5.1:
-                $this->fields = $this->initFields( 5.0 );
-                break;
             case 5.2:
-                $this->fields = $this->initFields( 5.1 );
-                break;
             case 5.3:
-                $this->fields = $this->initFields( 5.2 );
+            case 5.4:
+                $this->fields                         = array();
+                $this->fields['id']                   = array(
+                    ONAPP_FIELD_MAP  => '_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['created_at']           = array(
+                    ONAPP_FIELD_MAP  => '_created_at',
+                    ONAPP_FIELD_TYPE => 'datetime',
+                );
+                $this->fields['updated_at']           = array(
+                    ONAPP_FIELD_MAP  => '_updated_at',
+                    ONAPP_FIELD_TYPE => 'datetime',
+                );
+                $this->fields['ip_address_id']        = array(
+                    ONAPP_FIELD_MAP  => '_ip_address_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['network_interface_id'] = array(
+                    ONAPP_FIELD_MAP  => '_network_interface_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['ip_address']           = array(
+                    ONAPP_FIELD_MAP  => '_ip_address',
+                    ONAPP_FIELD_CLASS => 'IpAddress',
+                );
+
                 break;
         }
 
@@ -167,6 +113,7 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         switch ( $action ) {
+            case ONAPP_GETRESOURCE_DEFAULT:
             case ONAPP_GETRESOURCE_JOIN:
                 $resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
@@ -186,7 +133,7 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
      * @param integer $virtual_machine_id virtual machine id
      * @param integer $network_interface_id network interface id
      */
-    function join( $ip_address_id = null, $virtual_machine_id = null, $network_interface_id = null ) {
+    function join( $ip_address_id = null, $virtual_machine_id = null, $network_interface_id = null, $used_ip = false ) {
         if ( $virtual_machine_id ) {
             $this->_virtual_machine_id = $virtual_machine_id;
         }
@@ -204,24 +151,38 @@ class OnApp_VirtualMachine_IpAddress extends OnApp_IpAddress {
                 'ip_address_id'        => $this->_id
             )
         );
+        if ( $used_ip ) {
+            $data['data']['used_ip'] = '1';
+        }
 
         $this->sendPost( ONAPP_GETRESOURCE_JOIN, $data );
     }
 
     /**
-     * Activates action performed with object
+     * Sends an API request to get the Objects. After requesting,
+     * unserializes the received response into the array of Objects
      *
-     * @param string $action_name the name of action
+     * @param integer $network_id Network ID
      *
+     * @return mixed an array of Object instances on success. Otherwise false
      * @access public
      */
-    function activateCheck( $action_name ) {
-        switch ( $action_name ) {
-            case ONAPP_ACTIVATE_GETLIST:
-            case ONAPP_ACTIVATE_LOAD:
-            case ONAPP_ACTIVATE_SAVE:
-                exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
-                break;
+    function getList( $virtual_machine_id = null, $url_args = null ) {
+        if ( $virtual_machine_id ) {
+            $this->_virtual_machine_id = $virtual_machine_id;
         }
+
+        if ( ! $this->_virtual_machine_id ) {
+            $this->logger->error(
+                'getList: argument _virtual_machine_id not set.',
+                __FILE__,
+                __LINE__
+            );
+
+            return false;
+        }
+
+        return parent::getList();
     }
+
 }

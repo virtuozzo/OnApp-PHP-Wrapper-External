@@ -99,6 +99,9 @@ class OnApp_BillingUser_ResourceRecipeGroup extends OnApp_BillingUser_BaseResour
             case 5.3:
                 $this->fields = $this->initFields( 5.2 );
                 break;
+            case 5.4:
+                $this->fields = $this->initFields( 5.3 );
+                break;
         }
 
         $this->fields['id'][ ONAPP_FIELD_REQUIRED ] = false;

@@ -21,6 +21,10 @@ define( 'ONAPP_GETRESOURCE_NETWORKZONE_WITHNETWORKID', 'networkzone_withnetworki
  *
  */
 define( 'ONAPP_GETRESOURCE_NETWORKZONE_ATTACH', 'networkzone_attach' );
+/**
+ *
+ */
+define( 'ONAPP_GETRESOURCE_NETWORKZONE_DETACH', 'networkzone_detach' );
 
 /**
  *
@@ -161,6 +165,9 @@ class OnApp_NetworkZone extends OnApp {
                     ONAPP_FIELD_TYPE => 'integer',
                 );
                 break;
+            case 5.4:
+                $this->fields = $this->initFields( 5.3 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -204,6 +211,13 @@ class OnApp_NetworkZone extends OnApp {
                  * @alias     /settings/network_zones/:network_zone_id/networks/:id/attach.json
                  */
                 $resource = $this->getResource( ONAPP_GETRESOURCE_NETWORKZONE_WITHNETWORKID ) . '/attach';
+                break;
+
+            case ONAPP_GETRESOURCE_NETWORKZONE_DETACH:
+                /**
+                 * @alias     /settings/network_zones/:network_zone_id/networks/:id/attach.json
+                 */
+                $resource = $this->getResource( ONAPP_GETRESOURCE_NETWORKZONE_WITHNETWORKID ) . '/detach';
                 break;
 
             default:
@@ -259,5 +273,10 @@ class OnApp_NetworkZone extends OnApp {
         }
         $this->sendPost( ONAPP_GETRESOURCE_NETWORKZONE_ATTACH );
     }
-
+    function detach( $network_id = null ) {
+        if ( ! is_null( $network_id ) ) {
+            $this->_network_id = $network_id;
+        }
+        $this->sendPost( ONAPP_GETRESOURCE_NETWORKZONE_DETACH );
+    }
 }

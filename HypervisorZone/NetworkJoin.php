@@ -125,6 +125,11 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
             case 5.3:
                 $this->fields = $this->initFields( 5.2 );
                 break;
+            case 5.4:
+                $this->fields                                             = $this->initFields( 5.3 );
+                $this->fields['target_join_id'][ ONAPP_FIELD_REQUIRED ]   = false;
+                $this->fields['target_join_type'][ ONAPP_FIELD_REQUIRED ] = false;
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -167,7 +172,20 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
                  * @alias   /settings/hypervisor_zones/:hypervisor_group_id/network_joins/:id(.:format)
                  * @format  {:controller=>"network_joins", :action=>"destroy"}
                  */
-                $resource = 'settings/hypervisor_zones/' . $this->_target_join_id . '/' . $this->_resource;
+
+                if ( is_null( $this->_network_id  ) && is_null( $this->_obj->_network_id  ) ) {
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _network_id  not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                } else {
+                    if ( is_null( $this->_network_id  ) ) {
+                        $this->_network_id  = $this->_obj->_network_id ;
+                    }
+                }
+
+                $resource = 'settings/hypervisor_zones/' . $this->_network_id . '/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
 
@@ -177,30 +195,5 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
         }
 
         return $resource;
-    }
-
-    /**
-     * Gets list of network joins to particular hypervisor zone
-     *
-     * @param integet hypervisor zone id
-     *
-     * @return array of newtwork join objects
-     */
-    function getList( $target_join_id = null, $url_args = null ) {
-        if ( is_null( $target_join_id ) && ! is_null( $this->_target_join_id ) ) {
-            $target_join_id = $this->_target_join_id;
-        }
-
-        if ( ! is_null( $target_join_id ) ) {
-            $this->_target_join_id = $target_join_id;
-
-            return parent::getList();
-        } else {
-            $this->logger->error(
-                'getList: argument _target_join_id not set.',
-                __FILE__,
-                __LINE__
-            );
-        }
     }
 }

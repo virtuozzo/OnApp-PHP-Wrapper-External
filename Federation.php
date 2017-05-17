@@ -332,6 +332,29 @@ class OnApp_Federation extends OnApp {
             case 5.3:
                 $this->fields = $this->initFields( 5.2 );
                 break;
+            case 5.4:
+                $this->fields = $this->initFields( 5.3 );
+                $this->fields['certificates'] = array(
+                    ONAPP_FIELD_MAP  => '_certificates',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['tier_bandwidth_index'] = array(
+                    ONAPP_FIELD_MAP  => '_tier_bandwidth_index',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['tier_cloud_index'] = array(
+                    ONAPP_FIELD_MAP  => '_tier_cloud_index',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['tier_cpu_index'] = array(
+                    ONAPP_FIELD_MAP  => '_tier_cpu_index',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['tier_disk_index'] = array(
+                    ONAPP_FIELD_MAP  => '_tier_disk_index',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
