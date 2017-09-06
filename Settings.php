@@ -843,6 +843,21 @@ class OnApp_Settings extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+            case 5.5:
+                $this->fields                                          = $this->initFields( 5.4 );
+                $this->fields['action_global_lock_expiration_timeout'] = array(
+                    ONAPP_FIELD_MAP  => '_action_global_lock_expiration_timeout',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['action_global_lock_retry_delay']        = array(
+                    ONAPP_FIELD_MAP  => '_action_global_lock_retry_delay',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['transaction_approvals']                 = array(
+                    ONAPP_FIELD_MAP  => '_transaction_approvals',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

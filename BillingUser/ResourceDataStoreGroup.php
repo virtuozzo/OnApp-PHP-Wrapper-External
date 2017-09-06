@@ -152,6 +152,9 @@ class OnApp_BillingUser_ResourceDataStoreGroup extends OnApp_BillingUser_BaseRes
             case 5.4:
                 $this->fields = $this->initFields( 5.3 );
                 break;
+            case 5.5:
+                $this->fields = $this->initFields( 5.4 );
+                break;
         }
 
         $this->fields['id'][ ONAPP_FIELD_REQUIRED ] = false;

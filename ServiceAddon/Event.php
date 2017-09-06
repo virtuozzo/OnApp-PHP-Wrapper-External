@@ -13,6 +13,11 @@
  */
 
 /**
+ *
+ */
+define( 'ONAPP_GETRESOURCE_SERVICE_ADDON_RAISE', 'raise' );
+
+/**
  * Manages Service Addons Event
  *
  * This class represents the roles assigned  to the users in this OnApp installation
@@ -81,6 +86,17 @@ class OnApp_ServiceAddon_Event extends OnApp {
             case 5.4:
                 $this->fields = $this->initFields( 5.3 );
                 break;
+            case 5.5:
+                $this->fields                = $this->initFields( 5.4 );
+                $this->fields['destination'] = array(
+                    ONAPP_FIELD_MAP  => '_destination',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['topic_id']    = array(
+                    ONAPP_FIELD_MAP  => '_topic_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -136,6 +152,18 @@ class OnApp_ServiceAddon_Event extends OnApp {
                 $resource = '/service_addons/' . $this->_service_addons_id . '/events/recipes';
                 break;
 
+            case ONAPP_GETRESOURCE_SERVICE_ADDON_RAISE:
+                if ( is_null( $this->_service_addons_id ) ) {
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _service_addons_id not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                }
+
+                $resource = '/service_addons/' . $this->_service_addons_id . '/events/notifications';
+                break;
+
             default:
                 $resource = parent::getResource( $action );
                 break;
@@ -143,4 +171,25 @@ class OnApp_ServiceAddon_Event extends OnApp {
 
         return $resource;
     }
+
+    /**
+     * Create Service Add-on Raise Event Action
+     *
+     * @param $topic_id $event_type
+     *
+     * @access    public
+     */
+    function raiseEventAction( $topic_id, $event_type ) {
+        $data = array(
+            'root' => 'tmp_holder',
+            'data' => array(
+                'service_addon_event' => array(
+                    'topic_id'   => $topic_id,
+                    'event_type' => $event_type,
+                )
+            )
+        );
+        $this->sendPost( ONAPP_GETRESOURCE_SERVICE_ADDON_RAISE, $data );
+    }
+
 }

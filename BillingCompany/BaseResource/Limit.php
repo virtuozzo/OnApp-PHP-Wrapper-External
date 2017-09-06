@@ -185,6 +185,9 @@ class OnApp_BillingCompany_BaseResource_Limit extends OnApp {
             case 5.4:
                 $this->fields = $this->initFields( 5.3 );
                 break;
+            case 5.5:
+                $this->fields = $this->initFields( 5.4 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

@@ -236,23 +236,23 @@ class OnApp_Disk extends OnApp {
             case 5.4:
                 $this->fields = $this->initFields( 5.3 );
 
-                $this->fields['io_limits_override'] = array(
+                $this->fields['io_limits_override']           = array(
                     ONAPP_FIELD_MAP  => '_io_limits_override',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fields['read_iops'] = array(
+                $this->fields['read_iops']                    = array(
                     ONAPP_FIELD_MAP  => '_read_iops',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields['write_iops'] = array(
+                $this->fields['write_iops']                   = array(
                     ONAPP_FIELD_MAP  => '_write_iops',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields['read_throughput'] = array(
+                $this->fields['read_throughput']              = array(
                     ONAPP_FIELD_MAP  => '_read_throughput',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields['write_throughput'] = array(
+                $this->fields['write_throughput']             = array(
                     ONAPP_FIELD_MAP  => '_write_throughput',
                     ONAPP_FIELD_TYPE => 'string',
                 );
@@ -260,14 +260,17 @@ class OnApp_Disk extends OnApp {
                     ONAPP_FIELD_MAP  => '_temporary_virtual_machine_id',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields['io_limits']                            = array(
+                $this->fields['io_limits']                    = array(
                     ONAPP_FIELD_MAP  => '_io_limits',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields['openstack_id']                            = array(
+                $this->fields['openstack_id']                 = array(
                     ONAPP_FIELD_MAP  => '_openstack_id',
                     ONAPP_FIELD_TYPE => 'string',
                 );
+                break;
+            case 5.5:
+                $this->fields = $this->initFields( 5.4 );
                 break;
         }
 

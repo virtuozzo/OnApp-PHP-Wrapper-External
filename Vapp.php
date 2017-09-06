@@ -47,6 +47,31 @@ define( 'ONAPP_GETRESOURCE_VAPPS_START', 'start' );
 define( 'ONAPP_GETRESOURCE_VAPPS_STOP', 'stop' );
 
 /**
+ *
+ */
+define( 'ONAPP_GETRESOURCE_VAPPS_CHANGE_OWNER', 'change_owner' );
+
+/**
+ *
+ */
+define( 'ONAPP_GETRESOURCE_VAPPS_SUSPEND', 'suspend' );
+
+/**
+ *
+ */
+define( 'ONAPP_GETRESOURCE_VAPPS_UNSUSPEND', 'unsuspend' );
+
+/**
+ *
+ */
+define( 'ONAPP_GETRESOURCE_VAPPS_REBOOT', 'reboot' );
+
+/**
+ *
+ */
+define( 'ONAPP_GETRESOURCE_VAPPS_SHUTDOWN', 'shutdown' );
+
+/**
  * Vapps
  *
  */
@@ -151,6 +176,9 @@ class OnApp_Vapp extends OnApp {
             case 5.4:
                 $this->fields = $this->initFields( 5.3 );
                 break;
+            case 5.5:
+                $this->fields = $this->initFields( 5.4 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -186,6 +214,10 @@ class OnApp_Vapp extends OnApp {
 
             case ONAPP_GETRESOURCE_VAPPS_RECOMPOSING:
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/recompose';
+                break;
+
+            case ONAPP_GETRESOURCE_VAPPS_CHANGE_OWNER:
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/owner';
                 break;
 
             case ONAPP_GETRESOURCE_VAPPS_DELETE:
@@ -422,4 +454,60 @@ class OnApp_Vapp extends OnApp {
 
         $this->sendPost( ONAPP_GETRESOURCE_DEFAULT, $data );
     }
+
+    /**
+     * Change vApp Owner
+     *
+     * @param $new_owner_id
+     *
+     * @access    public
+     */
+    function changeOwner( $new_owner_id ) {
+        $data = array(
+            'root' => 'tmp_holder',
+            'data' => array(
+                'owner_change' => array(
+                    'new_owner_id' => $new_owner_id
+                )
+            )
+        );
+        $this->sendPut( ONAPP_GETRESOURCE_VAPPS_CHANGE_OWNER, $data );
+    }
+
+    /**
+     * Suspend vApp
+     *
+     * @access    public
+     */
+    function suspend() {
+        $this->sendPost( ONAPP_GETRESOURCE_VAPPS_SUSPEND );
+    }
+
+    /**
+     * Unsuspend vApp
+     *
+     * @access    public
+     */
+    function unsuspend() {
+        $this->sendPost( ONAPP_GETRESOURCE_VAPPS_UNSUSPEND );
+    }
+
+    /**
+     * Reboot vApp
+     *
+     * @access    public
+     */
+    function reboot() {
+        $this->sendPost( ONAPP_GETRESOURCE_VAPPS_REBOOT );
+    }
+
+    /**
+     * Shutdown vApp
+     *
+     * @access    public
+     */
+    function shutdown() {
+        $this->sendPost( ONAPP_GETRESOURCE_VAPPS_SHUTDOWN );
+    }
+
 }

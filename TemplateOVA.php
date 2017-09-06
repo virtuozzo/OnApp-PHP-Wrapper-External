@@ -244,6 +244,13 @@ class OnApp_TemplateOVA extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+            case 5.5:
+                $this->fields = $this->initFields( 5.4 );
+                $fields       = array(
+                    'min_disk_size',
+                );
+                $this->unsetFields( $fields );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

@@ -252,6 +252,9 @@ class OnApp_BillingCompany_ResourceVCloudComputeZone extends OnApp_BillingCompan
             case 5.4:
                 $this->fields = $this->initFields( 5.3 );
                 break;
+            case 5.5:
+                $this->fields = $this->initFields( 5.4 );
+                break;
         }
 
         return $this->fields;

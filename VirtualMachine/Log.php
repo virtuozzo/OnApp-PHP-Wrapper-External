@@ -109,6 +109,13 @@ class OnApp_VirtualMachine_Log extends OnApp {
             case 5.4:
                 $this->fields = $this->initFields( 5.3 );
                 break;
+            case 5.5:
+                $this->fields = $this->initFields( 5.4 );
+                $this->fields['resource_diff_ids'] = array(
+                    ONAPP_FIELD_MAP  => '_resource_diff_ids',
+                    ONAPP_FIELD_TYPE => 'array',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

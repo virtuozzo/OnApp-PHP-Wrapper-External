@@ -142,6 +142,9 @@ class OnApp_CloudBootIpAddress extends OnApp {
             case 5.4:
                 $this->fields = $this->initFields( 5.3 );
                 break;
+            case 5.5:
+                $this->fields = $this->initFields( 5.4 );
+                break;
 
         }
 

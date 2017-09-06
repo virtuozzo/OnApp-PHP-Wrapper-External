@@ -13,6 +13,17 @@
  * @see         OnApp
  */
 
+
+/**
+ * Approve Transaction
+ */
+define( 'ONAPP_APPROVE_TRANSACTION', 'approve_transaction' );
+
+/**
+ * Decline Transaction
+ */
+define( 'ONAPP_DECLINE_TRANSACTION', 'decline_transaction' );
+
 /**
  * Vm Logs
  *
@@ -110,7 +121,7 @@ class OnApp_Log extends OnApp {
                 $this->fields = $this->initFields( 5.1 );
                 break;
             case 5.3:
-                $this->fields = $this->initFields( 5.2 );
+                $this->fields                     = $this->initFields( 5.2 );
                 $this->fields['resource_diff_id'] = array(
                     ONAPP_FIELD_MAP  => '_resource_diff_id',
                     ONAPP_FIELD_TYPE => 'string',
@@ -118,6 +129,13 @@ class OnApp_Log extends OnApp {
                 break;
             case 5.4:
                 $this->fields = $this->initFields( 5.3 );
+                break;
+            case 5.5:
+                $this->fields                      = $this->initFields( 5.4 );
+                $this->fields['resource_diff_ids'] = array(
+                    ONAPP_FIELD_MAP  => 'resource_diff_ids',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
                 break;
         }
 
@@ -128,33 +146,62 @@ class OnApp_Log extends OnApp {
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         switch ( $action ) {
-            case ONAPP_GETRESOURCE_DEFAULT:
+            case ONAPP_APPROVE_TRANSACTION:
                 /**
                  * ROUTE :
                  *
-                 * @name log_items
-                 * @method GET
-                 * @alias   /logs(.:format)
-                 * @format  {:controller=>"log_items", :action=>"index"}
-                 */
-                /**
-                 * ROUTE :
-                 *
-                 * @name log_item
-                 * @method GET
-                 * @alias    /logs/:id(.:format)
-                 * @format   {:controller=>"log_items", :action=>"show"}
+                 * @name approve
+                 * @method PUT
+                 * @alias  /logs/:id/approve.xml(.:format)
+                 * @format {:controller=>"resources", :action=>"approve"}
                  */
 
-                $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $this->_resource );
+                if ( is_null( $this->_id ) && is_null( $this->_obj->_id ) ) {
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _id not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                } else {
+                    if ( is_null( $this->_id ) ) {
+                        $this->_id = $this->_obj->_id;
+                    }
+                }
+
+
+                $resource = $this->_resource . '/' . $this->_id . '/approve';
+                break;
+
+            case ONAPP_DECLINE_TRANSACTION:
+                /**
+                 * ROUTE :
+                 *
+                 * @name decline
+                 * @method PUT
+                 * @alias  /logs/:id/decline.xml(.:format)
+                 * @format {:controller=>"resources", :action=>"decline"}
+                 */
+
+                if ( is_null( $this->_id ) && is_null( $this->_obj->_id ) ) {
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _id not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                } else {
+                    if ( is_null( $this->_id ) ) {
+                        $this->_id = $this->_obj->_id;
+                    }
+                }
+                $resource = $this->_resource . '/' . $this->_id . '/decline';
                 break;
 
             default:
-                $this->_resource = parent::getResource( $action );
+                $resource = parent::getResource( $action );
                 break;
         }
 
-        return $this->_resource;
+        return $resource;
     }
 
     /**
@@ -177,5 +224,13 @@ class OnApp_Log extends OnApp {
                 exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
                 break;
         }
+    }
+
+    function approve() {
+        $this->sendPut( ONAPP_APPROVE_TRANSACTION );
+    }
+
+    function decline() {
+        $this->sendPut( ONAPP_DECLINE_TRANSACTION );
     }
 }

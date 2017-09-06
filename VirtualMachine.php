@@ -718,6 +718,13 @@ class OnApp_VirtualMachine extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+            case 5.5:
+                $this->fields = $this->initFields( 5.4 );
+                $this->fields['service_addon_ids'] = array(
+                    ONAPP_FIELD_MAP  => '_service_addon_ids',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         if ( is_null( $this->_id ) ) {

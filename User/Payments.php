@@ -110,6 +110,13 @@ class OnApp_User_Payments extends OnApp {
             case 5.4:
                 $this->fields = $this->initFields( 5.3 );
                 break;
+            case 5.5:
+                $this->fields            = $this->initFields( 5.4 );
+                $this->fields['payment'] = array(
+                    ONAPP_FIELD_MAP  => '_payment',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

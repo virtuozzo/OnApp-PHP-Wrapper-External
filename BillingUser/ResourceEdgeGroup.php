@@ -93,6 +93,9 @@ class OnApp_BillingUser_ResourceEdgeGroup extends OnApp_BillingUser_BaseResource
             case 5.4:
                 $this->fields = $this->initFields( 5.3 );
                 break;
+            case 5.5:
+                $this->fields = $this->initFields( 5.4 );
+                break;
         }
 
         $this->fields['id'][ ONAPP_FIELD_REQUIRED ] = false;

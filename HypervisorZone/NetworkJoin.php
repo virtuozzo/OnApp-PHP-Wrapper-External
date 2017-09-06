@@ -130,6 +130,9 @@ class OnApp_HypervisorZone_NetworkJoin extends OnApp {
                 $this->fields['target_join_id'][ ONAPP_FIELD_REQUIRED ]   = false;
                 $this->fields['target_join_type'][ ONAPP_FIELD_REQUIRED ] = false;
                 break;
+            case 5.5:
+                $this->fields = $this->initFields( 5.4 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
