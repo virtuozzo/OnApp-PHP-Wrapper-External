@@ -108,6 +108,7 @@ class OnApp_SSH extends OnApp {
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         switch ( $action ) {
+            case ONAPP_ACTIVATE_GETLIST_USER :
             case ONAPP_GETRESOURCE_ADD :
                 /**
                  * ROUTE :
@@ -130,7 +131,38 @@ class OnApp_SSH extends OnApp {
                 $resource = parent::getResource( $action );
                 break;
         }
-
         return $resource;
+    }
+
+
+    /**
+     * Sends an API request to get the Objects. After requesting,
+     * unserializes the received response into the array of Objects
+     *
+     * @param int|null $user_id
+     *
+     * @return array|bool
+     */
+    function getList( $user_id = null, $url_args = null ) {
+        //todo rewrite to use parent method
+        if ( is_null( $user_id ) ) {
+            return parent::getList( null, $url_args );
+        } else {
+            $this->activateCheck( ONAPP_ACTIVATE_GETLIST );
+            $this->logger->add( 'getList: Get Transaction list.' );
+            $this->_user_id = $user_id;
+            $this->setAPIResource( $this->getResource( ONAPP_ACTIVATE_GETLIST_USER ) );
+            $response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
+            $result = $this->castStringToClass( $response );
+            if ( ! empty( $response['errors'] ) ) {
+                //todo test this stuff
+                //$this->errors = $result->errors;
+                return false;
+            }
+            if ( ! is_array( $result ) && ! is_null( $result ) ) {
+                $result = array( $result );
+            }
+            return $result;
+        }
     }
 }
