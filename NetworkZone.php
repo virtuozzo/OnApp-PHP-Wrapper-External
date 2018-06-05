@@ -175,6 +175,9 @@ class OnApp_NetworkZone extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

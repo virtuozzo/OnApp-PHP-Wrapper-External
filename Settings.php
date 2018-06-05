@@ -12,6 +12,11 @@
  */
 
 /**
+ * @var
+ */
+define('ONAPP_SETTINGS_RESTART', 'restart');
+
+/**
  *
  * Managing OnApp CP Settings
  *
@@ -47,8 +52,17 @@ class OnApp_Settings extends OnApp {
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         switch ( $action ) {
-
+            
+            case ONAPP_SETTINGS_RESTART:
             case ONAPP_GETRESOURCE_EDIT:
+                /**
+                 * ROUTE :
+                 * 
+                 * @method PUT
+                 * 
+                 * @alias   PUT /settings(.:format)?restart=1
+                 * @format  {:controller=>"Settings", :action=>"restart"}
+                 */
                 /**
                  * ROUTE :
                  *
@@ -858,6 +872,122 @@ class OnApp_Settings extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                $this->fields['isolated_license']                         = array(
+                    ONAPP_FIELD_MAP  => '_isolated_license',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['allow_advanced_vs_management']             = array(
+                    ONAPP_FIELD_MAP  => '_allow_advanced_vs_management',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['compose_vapp_template_timeout']            = array(
+                    ONAPP_FIELD_MAP  => '_compose_vapp_template_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['create_edge_gateway_timeout']              = array(
+                    ONAPP_FIELD_MAP  => '_create_edge_gateway_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['create_snapshot_timeout']                  = array(
+                    ONAPP_FIELD_MAP  => '_create_snapshot_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['create_vdc_timeout']                       = array(
+                    ONAPP_FIELD_MAP  => '_create_vdc_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['default_timeout']                          = array(
+                    ONAPP_FIELD_MAP  => '_default_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['delete_media_timeout']                     = array(
+                    ONAPP_FIELD_MAP  => '_delete_media_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['delete_vapp_template_timeout']             = array(
+                    ONAPP_FIELD_MAP  => '_delete_vapp_template_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['delete_vapp_timeout']                      = array(
+                    ONAPP_FIELD_MAP  => '_delete_vapp_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['discard_suspend_timeout']                   =array(
+                    ONAPP_FIELD_MAP  => '_discard_suspend_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['http_request_timeout']                     = array(
+                    ONAPP_FIELD_MAP  => '_http_request_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['instantiate_vapp_template_timeout']        = array(
+                    ONAPP_FIELD_MAP  => '_instantiate_vapp_template_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['inter_hypervisor_balance_threshold_ratio'] = array(
+                    ONAPP_FIELD_MAP  => '_inter_hypervisor_balance_threshold_ratio',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['intra_hypervisor_balance_threshold_ratio'] = array(
+                    ONAPP_FIELD_MAP  => '_intra_hypervisor_balance_threshold_ratio',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['notification_subject_prefix']              = array(
+                    ONAPP_FIELD_MAP  => '_notification_subject_prefix',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['ova_path']                                 = array(
+                    ONAPP_FIELD_MAP  => '_ova_path',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['pagination_dashboard_pages_limit']         = array(
+                    ONAPP_FIELD_MAP  => '_pagination_dashboard_pages_limit',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['power_off_timeout']                        = array(
+                    ONAPP_FIELD_MAP  => '_power_off_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['power_on_timeout']                         = array(
+                    ONAPP_FIELD_MAP  => '_power_on_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['process_descriptor_vapp_template_timeout'] = array(
+                    ONAPP_FIELD_MAP  => '_process_descriptor_vapp_template_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['reboot_timeout']                           = array(
+                    ONAPP_FIELD_MAP  => '_reboot_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['recompose_vapp_timeout']                   = array(
+                    ONAPP_FIELD_MAP  => '_recompose_vapp_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['simultaneous_personal_deliviries']         = array(
+                    ONAPP_FIELD_MAP  => '_simultaneous_personal_deliviries',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['support_help_email']                       = array(
+                    ONAPP_FIELD_MAP  => '_support_help_email',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['suspend_timeout']                          = array(
+                    ONAPP_FIELD_MAP  => '_suspend_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['undeploy_timeout']                         = array(
+                    ONAPP_FIELD_MAP  => '_undeploy_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['uniform_node_capacity_threshold_ratio']    = array(
+                    ONAPP_FIELD_MAP  => '_uniform_node_capacity_threshold_ratio',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -866,7 +996,7 @@ class OnApp_Settings extends OnApp {
     }
 
     public function changeCustomParameters( $params ) {
-        $allowedParams = array( 'use_yubikey_login', 'yubikey_api_key', 'yubikey_api_id', 'allow_to_collect_errors' );
+        $allowedParams = array( 'use_yubikey_login', 'yubikey_api_key', 'yubikey_api_id', 'allow_to_collect_errors', 'isolated_license' );
 
         if ( ! is_array( $params ) ) {
             return false;
@@ -894,6 +1024,24 @@ class OnApp_Settings extends OnApp {
             'data' => $dataArray,
         );
         $this->sendPut( ONAPP_GETRESOURCE_EDIT, $data, array( 'restart' => '1' ) );
+    }
+    
+    public function restartNotifications( $restart ) {
+        if ( is_null($this->_enable_notifications ) ) {
+            $this->logger->error(
+                'reboot: argument _enable_notifications not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
+        $data = array(
+            'root' => 'configuration',
+            'data' => array(
+                'enable_notifications' => $this->_enable_notifications,
+            ),
+        );
+        
+        $this->sendPut( $resource, $data, array( 'restart' => $restart ) );
     }
 
 

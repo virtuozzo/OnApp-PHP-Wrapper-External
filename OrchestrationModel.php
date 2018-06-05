@@ -346,6 +346,17 @@ class OnApp_OrchestrationModel extends OnApp {
             case 5.5:
                 $this->fields = $this->initFields( 5.4 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                $this->fields['networks_created']   = array(
+                    ONAPP_FIELD_MAP  => '_networks_created',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['name']               = array(
+                    ONAPP_FIELD_MAP  => '_name',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -402,6 +413,8 @@ class OnApp_OrchestrationModel extends OnApp {
     }
 
     public function deploy() {
-        return $this->sendPost( ONAPP_GETRESOURCE_DEPLOY );
+        $data = $this->getSerializedDataToSend();
+        
+        return $this->sendPost( ONAPP_GETRESOURCE_DEPLOY, $data );
     }
 }

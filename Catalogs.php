@@ -97,11 +97,18 @@ class OnApp_Catalogs extends OnApp {
                 $this->fields = $this->initFields( 5.3 );
                 break;
             case 5.5:
+                $this->fields = $this->initFields( 5.4 );
                 $this->fields['description']    = array(
                     ONAPP_FIELD_MAP  => '_description',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields = $this->initFields( 5.4 );
+                break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                $this->fields['organization_id']    = array(
+                    ONAPP_FIELD_MAP  => '_organization_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
                 break;
         }
 

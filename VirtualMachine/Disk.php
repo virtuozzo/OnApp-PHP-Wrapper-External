@@ -223,6 +223,9 @@ class OnApp_VirtualMachine_Disk extends OnApp {
                     ONAPP_FIELD_TYPE => 'integer',
                 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

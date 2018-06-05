@@ -47,6 +47,20 @@ define( 'ONAPP_ENABLE_MAINTENANCE_MODE', 'maintenance_mode_enable' );
  */
 define( 'ONAPP_DISABLE_MAINTENANCE_MODE', 'maintenance_mode_disable' );
 
+/**
+ * Apply Hypervisor Group Custom Config
+ */
+define( 'ONAPP_APPLY_HYPERVISOR_GROUP_CUSTOM_CONFIG', 'apply_hypervisor_group_custom_config' );
+
+/**
+ * @var
+ */
+define('ONAPP_VIRTUAL_MACHINES_STARTUP', 'startup');
+
+/**
+ * @var
+ */
+define('ONAPP_VIRTUAL_MACHINES_STOP', 'stop');
 
 /**
  * Hypervisors
@@ -467,6 +481,21 @@ class OnApp_Hypervisor extends OnApp {
             case 5.5:
                 $this->fields = $this->initFields( 5.4 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                $this->fields['apply_hypervisor_group_custom_config'] = array(
+                    ONAPP_FIELD_MAP  => '_apply_hypervisor_group_custom_config',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['storage_vlan']                         = array(
+                    ONAPP_FIELD_MAP  => '_storage_vlan',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['cpu_model']                            = array(
+                    ONAPP_FIELD_MAP  => '_cpu_model',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -524,6 +553,11 @@ class OnApp_Hypervisor extends OnApp {
 
                 $resource = $this->_resource . '/' . $this->_id . '/reboot';
                 break;
+            
+            case ONAPP_APPLY_HYPERVISOR_GROUP_CUSTOM_CONFIG:
+                
+                $resource = $this->_resource . '/' . $this->_id;
+                break;
 
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
@@ -568,6 +602,51 @@ class OnApp_Hypervisor extends OnApp {
                  */
                 $resource = parent::getResource( $action );
                 break;
+            
+            case ONAPP_VIRTUAL_MACHINES_STARTUP:
+                /**
+                 * ROUTE :
+                 * 
+                 * @method POST
+                 * 
+                 * @alias   /hypervisors/:hypervisor_id/virtual_machines/startup(.:format)
+                 * @format  {:controller=>"Hypervisor", :action=>"startup"}
+                 */
+                
+                if ( is_null( $this->_id ) ) {
+                    $this->logger->error(
+                        "getResource($action): argument _id not set.",
+                        __FILE__,
+                        __LINE__
+                    );
+                }
+
+                $resource = 'hypervisors/' . $this->_id . '/virtual_machines/startup';
+                $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+                break;
+                
+            case ONAPP_VIRTUAL_MACHINES_STOP:
+                /**
+                 * ROUTE :
+                 * 
+                 * @method POST
+                 * 
+                 * @alias   /hypervisors/:hypervisor_id/virtual_machines/stop(.:format)
+                 * @format  {:controller=>"Hypervisor", :action=>"startup"}
+                 */
+                
+                if ( is_null( $this->_id ) ) {
+                    $this->logger->error(
+                        "getResource($action): argument _id not set.",
+                        __FILE__,
+                        __LINE__
+                    );
+                }
+
+                $resource = 'hypervisors/' . $this->_id . '/virtual_machines/stop';
+                $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+                break;
+                
             default:
                 $resource = parent::getResource( $action );
                 break;
@@ -649,11 +728,47 @@ class OnApp_Hypervisor extends OnApp {
     function save() {
         if ( $this->_id ) {
             $this->fields['hypervisor_group_id'][ ONAPP_FIELD_REQUIRED ] = false;
+        } else {
+            $this->unsetFields( array('hypervisor_group_id') );
         }
-
+        
         return parent::save();
     }
-
+    
+    /**
+     * Enable Hypervisor Group Custom Config
+     *
+     * @return void
+     *
+     */
+    function enableHypervisorGroupCustomConfig() {
+        $data = array(
+            'root' => $this->_tagRoot,
+            'data' => array(
+                'apply_hypervisor_group_custom_config' => 1,
+            ),
+        );
+        
+        $this->sendPatch( ONAPP_APPLY_HYPERVISOR_GROUP_CUSTOM_CONFIG, $data );
+    }
+    
+    /**
+     * Disable Hypervisor Group Custom Config
+     *
+     * @return void
+     *
+     */
+    function disableHypervisorGroupCustomConfig() {
+        $data = array(
+            'root' => $this->_tagRoot,
+            'data' => array(
+                'apply_hypervisor_group_custom_config' => 0,
+            ),
+        );
+        
+        $this->sendPatch( ONAPP_APPLY_HYPERVISOR_GROUP_CUSTOM_CONFIG, $data );
+    }
+    
     function enableMaintanceMode( $id = null ) {
         if ( $id ) {
             $this->_id = $id;
@@ -672,5 +787,84 @@ class OnApp_Hypervisor extends OnApp {
         }
 
         return $this->sendPut( ONAPP_DISABLE_MAINTENANCE_MODE );
+    }
+    
+    public function virtualMachinesStartup( $hypervisor_id, $virtual_machines ) {
+
+        if ( $hypervisor_id ) {
+            $this->_id = $hypervisor_id;
+        } else {
+            $this->logger->error(
+                'virtualMachinesStartup: argument _hypervisor_id not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
+        if ( !count($virtual_machines) ) {
+            $this->logger->error(
+                'virtualMachinesStartup: argument _virtual_machines not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
+        
+        $data = array(
+            'virtual_machines' => $virtual_machines,
+        );
+        
+        if ( ! is_null( $data ) && is_array( $data ) ) {
+            $data = json_encode($data);
+            $this->logger->debug( 'Additional parameters: ' . $data );
+        }
+
+        $this->setAPIResource( $this->getResource( ONAPP_VIRTUAL_MACHINES_STARTUP ) );
+        $response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST, $data );
+
+        $result     = $this->_castResponseToClass( $response );
+        $this->_obj = $result;
+    }
+    
+    public function virtualMachinesStop( $hypervisor_id, $virtual_machines, $shutdown_type ) {
+
+        if ( $hypervisor_id ) {
+            $this->_id = $hypervisor_id;
+        } else {
+            $this->logger->error(
+                'virtualMachinesStop: argument _hypervisor_id not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
+        if ( !count($virtual_machines) ) {
+            $this->logger->error(
+                'virtualMachinesStop: argument _virtual_machines not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
+        
+        if ( !$shutdown_type ) {
+            $this->logger->error(
+                'virtualMachinesStop: argument _shutdown_type not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
+        
+        $data = array(
+            'virtual_machines'  => $virtual_machines,
+            'shutdown_type'     => $shutdown_type,
+        );
+        
+        if ( ! is_null( $data ) && is_array( $data ) ) {
+            $data = json_encode($data);
+            $this->logger->debug( 'Additional parameters: ' . $data );
+        }
+
+        $this->setAPIResource( $this->getResource( ONAPP_VIRTUAL_MACHINES_STOP ) );
+        $response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST, $data );
+
+        $result     = $this->_castResponseToClass( $response );
+        $this->_obj = $result;
     }
 }

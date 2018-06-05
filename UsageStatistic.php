@@ -233,6 +233,14 @@ class OnApp_UsageStatistic extends OnApp {
             case 5.5:
                 $this->fields = $this->initFields( 5.4 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                $this->fields['cpu_used']        = array(
+                    ONAPP_FIELD_MAP       => '_cpu_used',
+                    ONAPP_FIELD_TYPE      => 'float',
+                    ONAPP_FIELD_READ_ONLY => true,
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

@@ -123,6 +123,13 @@ class OnApp_InstancePackage extends OnApp {
             case 5.5:
                 $this->fields = $this->initFields( 5.4 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                $this->fields['buckets_ids'] = array(
+                    ONAPP_FIELD_MAP  => '_buckets_ids',
+                    ONAPP_FIELD_TYPE => 'array',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

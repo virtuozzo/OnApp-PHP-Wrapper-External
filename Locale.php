@@ -10,6 +10,9 @@
  * @link        http://www.onapp.com/
  * @see         OnApp
  */
+
+define('ONAPP_VERSION_SIX', 6);
+
 class OnApp_Locale extends OnApp {
     /**
      * root tag used in the API request
@@ -75,6 +78,24 @@ class OnApp_Locale extends OnApp {
             case 5.5:
                 $this->fields = $this->initFields( 5.4 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                $this->fields['id']                 = array(
+                    ONAPP_FIELD_MAP             => '_id',
+                    ONAPP_FIELD_TYPE            => 'integer',
+                    ONAPP_FIELD_READ_ONLY       => true
+                );
+                $this->fields['created_at']         = array(
+                        ONAPP_FIELD_MAP         => '_created_at',
+                        ONAPP_FIELD_TYPE        => 'datetime',
+                        ONAPP_FIELD_READ_ONLY   => true
+                );
+                $this->fields['updated_at']         = array(
+                        ONAPP_FIELD_MAP         => '_updated_at',
+                        ONAPP_FIELD_TYPE        => 'datetime',
+                        ONAPP_FIELD_READ_ONLY   => true
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -123,6 +144,11 @@ class OnApp_Locale extends OnApp {
          * @alias  /roles/:id(.:format)
          * @format {:controller=>"roles", :action=>"destroy"}
          */
+        
+        if ( $this->getAPIVersion() >= ONAPP_VERSION_SIX ) {
+            $this->_resource = 'settings/locales';
+        }
+        
         return parent::getResource( $action );
     }
     function activateCheck( $action_name ) {

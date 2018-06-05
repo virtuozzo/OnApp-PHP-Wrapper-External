@@ -167,6 +167,13 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
                     ONAPP_FIELD_TYPE => 'string'
                 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                $this->fields['adapter_type'] = array(
+                    ONAPP_FIELD_MAP  => '_adapter_type',
+                    ONAPP_FIELD_TYPE => 'string'
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

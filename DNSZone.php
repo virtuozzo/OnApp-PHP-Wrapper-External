@@ -13,6 +13,12 @@
  */
 
 /**
+ *
+ *
+ */
+define( 'ONAPP_USER_DNSZONE', 'user_dnszone' );
+
+/**
  * DNS Zone
  *
  * The DNS Zone class represents the DNS Zone of the OnAPP installation.
@@ -118,9 +124,54 @@ class OnApp_DNSZone extends OnApp {
             case 5.5:
                 $this->fields = $this->initFields( 5.4 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                $this->fields['cdn_reference'] = array(
+                    ONAPP_FIELD_MAP  => '_cdn_reference',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                break;
             default:
                 $this->fields = $this->initFields( '3.0' );
                 break;
         }
+        
+        parent::initFields( $version, __CLASS__ );
+
+        return $this->fields;
+    }
+    
+    function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+        switch ( $action ) {
+            case ONAPP_USER_DNSZONE:
+                /**
+                 * ROUTE :
+                 *
+                 * @name
+                 * @method GET
+                 * @alias  /dns_zones/user
+                 * @format {:controller=>"dns_zones", :action=>"user"}
+                 */
+                $resource = $this->_resource . '/user';
+                break;
+
+            default:
+                $resource = parent::getResource( $action );
+                break;
+        }
+
+        $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+
+        return $resource;
+    }
+    
+    public function search( $question ) {
+        
+        return $this->sendGet( ONAPP_GETRESOURCE_DEFAULT, null, array( 'q' => $question ) );
+    }
+    
+    public function searchUser( $question ) {
+        
+        return $this->sendGet( ONAPP_USER_DNSZONE, null, array( 'q' => $question ) );
     }
 }

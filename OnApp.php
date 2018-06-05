@@ -730,6 +730,11 @@ class OnApp {
                 }
         }
         $this->version = (float) $this->version;
+        
+        //todo remove this block in 6.0 version
+        if (in_array($this->version, array(5.6, 5.7, 5.8))) {
+            $this->version = 6.0;
+        }
     }
 
     public function initFields( $version = null, $className = '' ) {

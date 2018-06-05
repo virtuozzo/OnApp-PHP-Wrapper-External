@@ -117,6 +117,9 @@ class OnApp_User_Payments extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -165,10 +168,10 @@ class OnApp_User_Payments extends OnApp {
 
         $data = array(
             'root' => 'payment',
-            'data' => [
+            'data' => array(
                 'amount'         => $this->_amount,
                 'invoice_number' => $this->_invoice_number,
-            ]
+            ),
         );
 
         return $this->sendPost( ONAPP_GETRESOURCE_ADD, $data );
@@ -183,10 +186,10 @@ class OnApp_User_Payments extends OnApp {
     function _edit() {
         $data = array(
             'root' => 'payment',
-            'data' => [
+            'data' => array(
                 'amount'         => $this->_amount,
                 'invoice_number' => $this->_invoice_number,
-            ]
+            ),
         );
 
         return $this->sendPut( ONAPP_GETRESOURCE_EDIT, $data );

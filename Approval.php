@@ -76,6 +76,9 @@ class OnApp_Approval extends OnApp {
                     )
                 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

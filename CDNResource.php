@@ -328,6 +328,17 @@ class OnApp_CDNResource extends OnApp {
             case 5.5:
                 $this->fields = $this->initFields( 5.4 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                $this->fields['letsencrypt_ssl_on']     = array(
+                    ONAPP_FIELD_MAP  => '_letsencrypt_ssl_on',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fileds['cdn_ssl_certificate_id'] = array(
+                    ONAPP_FIELD_MAP  => '_cdn_ssl_certificate_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

@@ -30,6 +30,11 @@
  */
 define( 'ONAPP_GET_LIST_OF_COMMON_CPU_FLAGS', 'cpu_flags/common' );
 
+/**
+ * Edit Compute Zone Custom Config
+ */
+define( 'ONAPP_EDIT_COMPUTE_ZONE_CUSTOM_CONFIG', 'edit_compute_zone_custom_config' );
+
 
 class OnApp_HypervisorZone extends OnApp {
     /**
@@ -259,6 +264,13 @@ class OnApp_HypervisorZone extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                $this->fields['custom_config']      = array(
+                    ONAPP_FIELD_MAP  => '_custom_config',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -279,6 +291,10 @@ class OnApp_HypervisorZone extends OnApp {
                  */
 
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/cpu_flags/common';
+                break;
+            case ONAPP_EDIT_COMPUTE_ZONE_CUSTOM_CONFIG:
+                
+                $resource = '/settings/hypervisor_zones/' . $this->_id;
                 break;
 
             default:
@@ -331,5 +347,24 @@ class OnApp_HypervisorZone extends OnApp {
 
     function getCommonCpuFlags() {
         return $this->sendGet( ONAPP_GET_LIST_OF_COMMON_CPU_FLAGS );
+    }
+    
+    /**
+     * Edit Hypervisor Zone Custom Config
+     *
+     * @return void
+     *
+     */
+    public function edit_Compute_Zone_Custom_Config() {
+        if ( isset( $this->_custom_config ) && !is_null( $this->_custom_config ) ) {
+            $data = array(
+                'root' => $this->_tagRoot,
+                'data' => array(
+                    'custom_config' => $this->_custom_config,
+                ),
+            );
+            
+            $this->sendPatch( ONAPP_EDIT_COMPUTE_ZONE_CUSTOM_CONFIG, $data );
+        }
     }
 }

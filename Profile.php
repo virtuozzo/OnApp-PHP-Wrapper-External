@@ -291,8 +291,27 @@ class OnApp_Profile extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
-            case 5.5:
+           case 5.5:
                 $this->fields = $this->initFields( 5.4 );
+                break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                $this->fields['bucket_id']                  = array(
+                    ONAPP_FIELD_MAP  => '_bucket_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['discount_due_to_free']       = array(
+                    ONAPP_FIELD_MAP  => '_discount_due_to_free',
+                    ONAPP_FIELD_TYPE => 'float',
+                );
+                $this->fields['monthly_price']              = array(
+                    ONAPP_FIELD_MAP  => '_monthly_price',
+                    ONAPP_FIELD_TYPE => 'float',
+                );
+                $this->fields['total_amount_with_discount'] = array(
+                    ONAPP_FIELD_MAP  => '_total_amount_with_discount',
+                    ONAPP_FIELD_TYPE => 'float',
+                );
                 break;
         }
 

@@ -227,6 +227,81 @@ class OnApp_User_Statistics extends OnApp {
             case 5.5:
                 $this->fields = $this->initFields( 5.4 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                $this->fields['acceleration_discount_due_to_free']         = array(
+                    ONAPP_FIELD_MAP  => '_acceleration_discount_due_to_free',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['autoscale_discount_due_to_free']            = array(
+                    ONAPP_FIELD_MAP  => '_autoscale_discount_due_to_free',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['backup_count_discount_due_to_free']         = array(
+                    ONAPP_FIELD_MAP  => '_backup_count_discount_due_to_free',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['backup_discount_due_to_free']               = array(
+                    ONAPP_FIELD_MAP  => '_backup_discount_due_to_free',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['backup_disk_size_discount_due_to_free']     = array(
+                    ONAPP_FIELD_MAP  => '_backup_disk_size_discount_due_to_free',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['ova_count_discount_due_to_free']            = array(
+                    ONAPP_FIELD_MAP  => '_ova_count_discount_due_to_free',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['ova_size_discount_due_to_free']             = array(
+                    ONAPP_FIELD_MAP  => '_ova_size_discount_due_to_free',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['recovery_point_cost']                       = array(
+                    ONAPP_FIELD_MAP  => '_recovery_point_cost',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['recovery_point_discount_due_to_free']       = array(
+                    ONAPP_FIELD_MAP  => '_recovery_point_discount_due_to_free',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['storage_disk_size_discount_due_to_free']    = array(
+                    ONAPP_FIELD_MAP  => '_storage_disk_size_discount_due_to_free',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['template_count_discount_due_to_free']       = array(
+                    ONAPP_FIELD_MAP  => '_template_count_discount_due_to_free',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['template_discount_due_to_free']             = array(
+                    ONAPP_FIELD_MAP  => '_template_discount_due_to_free',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['template_disk_size_discount_due_to_free']   = array(
+                    ONAPP_FIELD_MAP  => '_template_disk_size_discount_due_to_free',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['template_iso_discount_due_to_free']         = array(
+                    ONAPP_FIELD_MAP  => '_template_iso_discount_due_to_free',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['total_cost_with_discount']                  = array(
+                    ONAPP_FIELD_MAP  => '_total_cost_with_discount',
+                    ONAPP_FIELD_TYPE => 'float',
+                );
+                $this->fields['total_discount_due_to_free']                = array(
+                    ONAPP_FIELD_MAP  => '_total_discount_due_to_free',
+                    ONAPP_FIELD_TYPE => 'float',
+                );
+                $this->fields['user_resources_discount_due_to_free']       = array(
+                    ONAPP_FIELD_MAP  => '_user_resources_discount_due_to_free',
+                    ONAPP_FIELD_TYPE => 'float',
+                );
+                $this->fields['vm_discount_due_to_free']                   = array(
+                    ONAPP_FIELD_MAP  => '_vm_discount_due_to_free',
+                    ONAPP_FIELD_TYPE => 'float',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

@@ -272,6 +272,13 @@ class OnApp_Disk extends OnApp {
             case 5.5:
                 $this->fields = $this->initFields( 5.4 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                $this->fields['hot_migrate_disk']   = array(
+                    ONAPP_FIELD_MAP  => '_hot_migrate_disk',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -554,7 +561,7 @@ class OnApp_Disk extends OnApp {
      *
      * @access    public
      */
-    function migrate( $data_store_id, $id = null ) {
+    function migrate( $data_store_id, $id = null, $type=null, $virtual_machine_identifier=null, $disk_id=null ) {
         if ( $id ) {
             $this->_id = $id;
         }
@@ -566,6 +573,17 @@ class OnApp_Disk extends OnApp {
                 )
             )
         );
+        
+        if ( $type ) {
+            $data['data']['type'] = $type;
+        }
+        if ( $virtual_machine_identifier ) {
+            $data['data']['virtual_machine_identifier'] = $virtual_machine_identifier;
+        }
+        if ( $disk_id ) {
+            $data['data']['disk_id'] = $disk_id;
+        }
+        
         $this->sendPost( ONAPP_GETRESOURCE_MIGRATE, $data );
     }
 

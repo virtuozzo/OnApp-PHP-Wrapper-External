@@ -271,6 +271,14 @@ class OnApp_CDNResource_Advanced extends OnApp {
             case 5.5:
                 $this->fields = $this->initFields( 5.4 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                $fields       = array(
+                    'proxy_read_time_out',
+                    'proxy_connect_time_out',
+                );
+                $this->unsetFields( $fields );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

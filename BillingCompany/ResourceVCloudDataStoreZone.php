@@ -128,6 +128,9 @@ class OnApp_BillingCompany_ResourceVCloudDataStoreZone extends OnApp_BillingComp
             case 5.5:
                 $this->fields = $this->initFields( 5.4 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                break;
         }
 
         return $this->fields;

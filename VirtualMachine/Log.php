@@ -116,6 +116,9 @@ class OnApp_VirtualMachine_Log extends OnApp {
                     ONAPP_FIELD_TYPE => 'array',
                 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

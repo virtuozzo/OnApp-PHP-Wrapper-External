@@ -50,6 +50,11 @@ define( 'ONAPP_DELETE_FILES', 'delete_files' );
  * */
 define( 'ONAPP_UNLOCK_OVA', 'unlock_ova' );
 
+/*
+ * To convert the OVA template into a virtualization format
+ * */
+define('ONAPP_CONVERTING', 'converting');
+
 
 class OnApp_TemplateOVA extends OnApp {
     /**
@@ -251,6 +256,13 @@ class OnApp_TemplateOVA extends OnApp {
                 );
                 $this->unsetFields( $fields );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                $this->fields['make_public']                 = array(
+                    ONAPP_FIELD_MAP  => '_make_public',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -365,7 +377,31 @@ class OnApp_TemplateOVA extends OnApp {
                 }
                 $resource = $this->_resource . '/' . $this->_id . '/unlock';
                 break;
+                
+            case ONAPP_CONVERTING:
+                /**
+                 * ROUTE :
+                 *
+                 * @name template_ovas
+                 * @method POST
+                 * @alias   /template_ovas/:id/converting(.:format)
+                 * @format  {:controller=>"template_ovas", :action=>"index"}
+                 */
 
+                if ( is_null( $this->_id ) && is_null( $this->_obj->_id ) ) {
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _id not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                } else {
+                    if ( is_null( $this->_id ) ) {
+                        $this->_id = $this->_obj->_id;
+                    }
+                }
+                $resource = $this->_resource . '/' . $this->_id . '/converting';
+                break;
+                
             default:
                 /**
                  * ROUTE :
@@ -423,5 +459,26 @@ class OnApp_TemplateOVA extends OnApp {
 
     public function unlock() {
         return $this->sendPost( ONAPP_UNLOCK_OVA );
+    }
+    
+    public function converting() {
+        return $this->sendPost( ONAPP_CONVERTING );
+    }
+    
+    public function save() {
+        $fields = array(
+                'operating_system',
+                'operating_system_distro',
+                'virtualization',
+                'make_public',
+            );
+        if ( is_null( $this->_id ) ) {
+            $fields[] = 'allowed_hot_migrate';
+        } else {
+            $fields[] = 'file_url';
+        }
+        $this->unsetFields( $fields );
+        
+        parent::save();
     }
 }

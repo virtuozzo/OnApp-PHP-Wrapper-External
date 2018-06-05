@@ -18,6 +18,12 @@
 define( 'ONAPP_GETRESOURCE_ASSETS_GET_UNASSIGNED', 'assets_get_unassigned' );
 
 /**
+ *
+ *
+ */
+define( 'ONAPP_GETRESOURCE_ASSETS_EDIT_HYPERVISORS', 'assets_edit_hypervisors' );
+
+/**
  * Managing Asset
  *
  *
@@ -106,6 +112,13 @@ class OnApp_Asset extends OnApp_Hypervisor {
             case 5.5:
                 $this->fields = $this->initFields( 5.4 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                $this->fields['apply_hypervisor_group_custom_config'] = array(
+                    ONAPP_FIELD_MAP  => '_apply_hypervisor_group_custom_config',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
 
@@ -120,7 +133,26 @@ class OnApp_Asset extends OnApp_Hypervisor {
                  */
                 $resource = 'hypervisors/not_grouped';
                 break;
-
+            case ONAPP_GETRESOURCE_ASSETS_EDIT_HYPERVISORS:
+                /**
+                 * ROUTE :
+                 *
+                 * @method PUT
+                 * @alias   /settings/assets/:asset_mac_address/hypervisors
+                 */
+                if ( is_null( $this->_asset_mac_address ) && is_null( $this->_obj->_asset_mac_address ) ) {
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _asset_mac_address not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                } else {
+                    if ( is_null( $this->_asset_mac_address ) ) {
+                        $this->_asset_mac_address = $this->_obj->_asset_mac_address;
+                    }
+                }
+                $resource = 'settings/assets/' . $this->_asset_mac_address . '/hypervisors';
+                break;
             default:
                 /**
                  * @alias   /settings/assets/:asset_mac_address.json

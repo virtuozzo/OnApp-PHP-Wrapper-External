@@ -75,6 +75,9 @@ class OnApp_SIF_Group extends OnApp_Hypervisor {
                     ),
                 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                break;
         }
 
 

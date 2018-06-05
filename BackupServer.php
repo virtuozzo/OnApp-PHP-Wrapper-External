@@ -133,6 +133,29 @@ class OnApp_BackupServer extends OnApp {
             case 5.5:
                 $this->fields = $this->initFields( 5.4 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                $this->fields['cpu_mhz']    = array(
+                    ONAPP_FIELD_MAP  => '_os_cpu_mhz',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['os_cpus']       = array(
+                    ONAPP_FIELD_MAP  => '_os_cpus',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['total_mem']  = array(
+                    ONAPP_FIELD_MAP  => '_total_mem',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['uptime']     = array(
+                    ONAPP_FIELD_MAP  => '_uptime',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['release']    = array(
+                    ONAPP_FIELD_MAP  => '_release',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

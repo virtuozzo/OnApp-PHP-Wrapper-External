@@ -161,6 +161,29 @@ class OnApp_OrgNetwork extends OnApp {
             case 5.5:
                 $this->fields = $this->initFields( 5.4 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                $this->fields['openstack_id']      = array(
+                    ONAPP_FIELD_MAP      => '_openstack_id',
+                    ONAPP_FIELD_TYPE     => 'integer',
+                    ONAPP_FIELD_REQUIRED => true
+                );
+                $this->fields['parent_network_id'] = array(
+                    ONAPP_FIELD_MAP      => '_parent_network_id',
+                    ONAPP_FIELD_TYPE     => 'integer',
+                    ONAPP_FIELD_REQUIRED => true
+                );
+                $this->fields['type']               = array(
+                    ONAPP_FIELD_MAP      => '_type',
+                    ONAPP_FIELD_TYPE     => 'string',
+                    ONAPP_FIELD_REQUIRED => true
+                );
+                $this->fields['vcenter_identifier'] = array(
+                    ONAPP_FIELD_MAP      => '_vcenter_identifier',
+                    ONAPP_FIELD_TYPE     => 'string',
+                    ONAPP_FIELD_REQUIRED => true
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

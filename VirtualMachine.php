@@ -725,6 +725,17 @@ class OnApp_VirtualMachine extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+            case 6.0:
+                $this->fields = $this->initFields( 5.5 );
+                $this->fields['properties']     = array(
+                    ONAPP_FIELD_MAP  => '_properties',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['cpu_topology']   = array(
+                    ONAPP_FIELD_MAP  => '_cpu_topology',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         if ( is_null( $this->_id ) ) {
@@ -1249,18 +1260,25 @@ class OnApp_VirtualMachine extends OnApp {
      * @param int $id virtual machine id
      * @param int $hypervisor_id destination hypervisor id
      */
-    function migration( $id, $hypervisor_id, $cold_migrate_on_rollback = false ) {
+    function migration( $id, $hypervisor_id, $cold_migrate_on_rollback = false, $migration_type=null, $data_store_id=null, $virtual_machine_identifier=null ) {
         if ( $id ) {
             $this->_id = $id;
         }
-
         $data = array(
             'root' => 'tmp_holder',
             'data' => array(
                 'destination' => $hypervisor_id,
-                //'cold_migrate_on_rollback' => true
             ),
         );
+        if (  $migration_type ) {
+            $data['data']['migration_type'] = $migration_type;
+        }
+        if (  $data_store_id ) {
+            $data['data']['data_store_id'] = $data_store_id;
+        }
+        if (  $virtual_machine_identifier ) {
+            $data['data']['virtual_machine_identifier'] = $virtual_machine_identifier;
+        }
         if ( $cold_migrate_on_rollback ) {
             $data['data']['cold_migrate_on_rollback'] = "1";
         }
@@ -1449,6 +1467,8 @@ class OnApp_VirtualMachine extends OnApp {
         }
 
         $fields = $this->fields;
+        
+        $this->unsetFields( array( 'cpu_threads' ) );
 
         $this->fields['primary_disk_size']              = array(
             ONAPP_FIELD_MAP           => '_primary_disk_size',
