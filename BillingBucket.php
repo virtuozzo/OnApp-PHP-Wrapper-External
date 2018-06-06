@@ -14,6 +14,11 @@
  */
 
 /**
+ * @var
+ */
+define( 'ONAPP_BILLINGBACKET_CLONE', 'clone' );
+
+/**
  * Managing Billing Bucket
  *
  * The OnApp_BillingBucket class represents the billing plans. The OnApp class is the parent of the BillingBucket class.
@@ -117,4 +122,80 @@ class OnApp_BillingBucket extends OnApp {
 
         return $this->fields;
     }
+    
+    function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+        switch ( $action ) {
+            
+            case ONAPP_BILLINGBACKET_CLONE:
+                /**
+                 * ROUTE :
+                 *
+                 * @name BillingBucket
+                 * @method POST
+                 * @alias  /billing/buckets/:id/clone(.:format)
+                 * @format {:controller=>"BillingBucket", :action=>"clone"}
+                 */
+                $resource = $this->_resource . '/' . $this->_id . '/' . ONAPP_BILLINGBACKET_CLONE;
+                break;
+            
+            default:
+                /**
+                 * ROUTE :
+                 *
+                 * @name BillingBucket
+                 * @method GET
+                 * @alias  /billing/buckets(.:format)
+                 * @format {:controller=>"BillingBucket", :action=>"index"}
+                 */
+                /**
+                 * ROUTE :
+                 *
+                 * @name BillingBucket
+                 * @method GET
+                 * @alias  /billing/buckets/:id(.:format)
+                 * @format {:controller=>"BillingBucket", :action=>"show"}
+                 */
+                /**
+                 * ROUTE :
+                 *
+                 * @name BillingBucket
+                 * @method POST
+                 * @alias  /billing/buckets(.:format)
+                 * @format {:controller=>"BillingBucket", :action=>"create"}
+                 */
+                /**
+                 * ROUTE :
+                 *
+                 * @name BillingBucket
+                 * @method PUT
+                 * @alias  /billing/buckets/:id(.:format)
+                 * @format {:controller=>"BillingBucket", :action=>"update"}
+                 */
+                /**
+                 * ROUTE :
+                 *
+                 * @name BillingBucket
+                 * @method DELETE
+                 * @alias  /billing/buckets/:id(.:format)
+                 * @format {:controller=>"BillingBucket", :action=>"destroy"}
+                 */
+                $resource = parent::getResource( $action );
+        }
+
+        return $resource;
+    }
+    
+    public function bucketClone($id){
+        if ( ! is_null( $id ) ) {
+            $this->_id = $id;
+        } else {
+            $this->logger->error(
+                'getResource( Bucket Clone ): argument _id not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
+        $this->sendPost( ONAPP_BILLINGBACKET_CLONE );
+    }
+    
 }
