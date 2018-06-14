@@ -83,7 +83,8 @@ class OnApp_Network_IpNet extends OnApp {
                     ),
                     'network'         => array(
                         ONAPP_FIELD_MAP  => '_network',
-                        ONAPP_FIELD_TYPE => 'array'
+                        ONAPP_FIELD_TYPE => 'array',
+                        ONAPP_FIELD_CLASS=> '',
                     ),
                     'network_id'      => array(
                         ONAPP_FIELD_MAP  => '_network_id',
@@ -96,6 +97,10 @@ class OnApp_Network_IpNet extends OnApp {
                 break;
             case 6.0:
                 $this->fields = $this->initFields( 5.5 );
+                $this->fields['add_default_ip_range'] = array(
+                    ONAPP_FIELD_MAP  => '_add_default_ip_range',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
                 break;
         }
 
