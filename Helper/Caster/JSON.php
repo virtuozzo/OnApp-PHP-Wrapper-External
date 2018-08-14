@@ -88,7 +88,7 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
             return $errors;
         }
 
-        if ((is_array($data) || $data instanceof \Countable) && count( $data ) > 1 ) {
+        if (((is_array($data) || $data instanceof \Countable)) && count( $data ) > 1 ) {
             foreach ( $data as $item ) {
                 $result[] = $this->process( $this->fixRootTag( $item, $root ) );
             }
