@@ -79,6 +79,10 @@ class OnApp_Bucket_RateCards extends OnApp {
                         ONAPP_FIELD_MAP           => '_prices',
                         ONAPP_FIELD_CLASS         => 'OnApp_Bucket_RateCards_Prices',
                     ),
+                    'apply_to_all_resources_in_the_bucket'        => array(
+                        ONAPP_FIELD_MAP           => '_apply_to_all_resources_in_the_bucket',
+                        ONAPP_FIELD_TYPE          => 'string',
+                    ),
                 );
                 break;
         }
@@ -203,6 +207,9 @@ class OnApp_Bucket_RateCards extends OnApp {
                 'prices'      => $this->_prices,
             ),
         );
+        if (isset($this->_apply_to_all_resources_in_the_bucket) && !is_null($this->_apply_to_all_resources_in_the_bucket)) {
+            $data['data']['apply_to_all_resources_in_the_bucket'] = $this->_apply_to_all_resources_in_the_bucket;
+        }
         
         if ( $flag ) {
             $this->sendPut( ONAPP_GETRESOURCE_DEFAULT, $data );

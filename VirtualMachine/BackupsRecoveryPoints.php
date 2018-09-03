@@ -1,6 +1,6 @@
 <?php
 /**
- * Managing VirtualServers BackupsRecoveryPoints
+ * Managing VirtualMachine BackupsRecoveryPoints
  * 
  * much they will be charged per unit.
  *
@@ -18,15 +18,15 @@
 define('ONAPP_BACKUP_RECOVERY_POINTS_RESTORE', 'restore');
 
 /**
- * Managing VirtualServers BackupsRecoveryPoints
+ * Managing VirtualMachine BackupsRecoveryPoints
  *
- * The OnApp_VirtualServers_BackupsRecoveryPoints class uses the following basic methods:
+ * The OnApp_VirtualMachine_BackupsRecoveryPoints class uses the following basic methods:
  * {@link load}, {@link add}, {@link delete}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php )
  */
 
-class OnApp_VirtualServers_BackupsRecoveryPoints extends OnApp {
+class OnApp_VirtualMachine_BackupsRecoveryPoints extends OnApp {
     /**
      * root tag used in the API request
      *
@@ -80,8 +80,8 @@ class OnApp_VirtualServers_BackupsRecoveryPoints extends OnApp {
                         ONAPP_FIELD_TYPE        => 'datetime',
                         ONAPP_FIELD_READ_ONLY   => true
                     ),
-                    'virtual_server_id'        => array(
-                        ONAPP_FIELD_MAP         => '_virtual_server_id',
+                    'virtual_machine_id'        => array(
+                        ONAPP_FIELD_MAP         => '_virtual_machine_id',
                         ONAPP_FIELD_TYPE        => 'integer',
                         ONAPP_FIELD_READ_ONLY   => true,
                     ),
@@ -107,14 +107,14 @@ class OnApp_VirtualServers_BackupsRecoveryPoints extends OnApp {
                 /**
                  * ROUTE :
                  *
-                 * @name VirtualServers BackupsRecoveryPoints
+                 * @name VirtualMachine BackupsRecoveryPoints
                  * @method GET
                  *
-                 * @alias   /virtual_servers/:virtual_server_id/backups/recovery_points(.:format)
-                 * @format  {:controller=>"VirtualServers BackupsRecoveryPoints", :action=>"add"}
+                 * @alias   /virtual_machines/:virtual_machine_id/backups/recovery_points(.:format)
+                 * @format  {:controller=>"VirtualMachine BackupsRecoveryPoints", :action=>"add"}
                  */
                 
-                $resource = 'virtual_servers/' . $this->_virtual_server_id . '/' . $this->_resource;
+                $resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
             
@@ -122,14 +122,14 @@ class OnApp_VirtualServers_BackupsRecoveryPoints extends OnApp {
                 /**
                  * ROUTE :
                  *
-                 * @name VirtualServers BackupsRecoveryPoints
+                 * @name VirtualMachine BackupsRecoveryPoints
                  * @method POST
                  *
-                 * @alias   /virtual_servers/:virtual_server_id/backups/recovery_points/:recovery_point_id/restore(.:format)
-                 * @format  {:controller=>"VirtualServers BackupsRecoveryPoints", :action=>"add"}
+                 * @alias   /virtual_machines/:virtual_machine_id/backups/recovery_points/:recovery_point_id/restore(.:format)
+                 * @format  {:controller=>"VirtualMachine BackupsRecoveryPoints", :action=>"add"}
                  */
                 
-                $resource = 'virtual_servers/' . $this->_virtual_server_id . '/' . $this->_resource . '/' . $this->_recovery_point_id . '/' . ONAPP_BACKUP_RECOVERY_POINTS_RESTORE;
+                $resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->_resource . '/' . $this->_recovery_point_id . '/' . ONAPP_BACKUP_RECOVERY_POINTS_RESTORE;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
                 

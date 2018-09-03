@@ -13,6 +13,11 @@
  */
 
 /**
+ * @var
+ */
+define('ONAPP_RETTACH_NODES', 'reattach');
+
+/**
  * Managing Settings CDN ManagersNodes
  *
  * The OnApp_Settings_CDN_ManagersNodes class uses the following basic methods:
@@ -156,6 +161,33 @@ class OnApp_Settings_CDN_ManagersNodes extends OnApp {
                 $resource = 'settings/sdn/managers/' . $this->_manager_id . '/' . $this->_resource . '/' . $this->_compute_resource_id;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
+            case ONAPP_RETTACH_NODES:
+                /**
+                 * ROUTE :
+                 *
+                 * @name Settings CDN ManagersNodes Rettach
+                 * @method DELETE
+                 * 
+                 * @alias   /settings/sdn/managers/:manager_id/nodes/:node_id/reattach(.:format)
+                 * @format  {:controller=>"Settings_CDN_ManagersNodes", :action=>"add"}
+                 */
+                if ( is_null( $this->_manager_id ) ) {
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _manager_id not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                }
+                if ( is_null( $this->_node_id ) ) {
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _node_id not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                }
+                $resource = 'settings/sdn/managers/' . $this->_manager_id . '/' . $this->_resource . '/' . $this->_node_id . '/' . ONAPP_RETTACH_NODES;
+                $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+                break;
                 
             default:
                 $resource = parent::getResource( $action );
@@ -182,5 +214,11 @@ class OnApp_Settings_CDN_ManagersNodes extends OnApp {
 
         $result     = $this->_castResponseToClass( $response );
         $this->_obj = $result;
+    }
+    
+    function rettachNodes( $node_id ) {
+        $this->_node_id = $node_id;
+        
+        $this->sendDelete( ONAPP_RETTACH_NODES );
     }
 }

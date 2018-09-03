@@ -1,6 +1,6 @@
 <?php
 /**
- * Managing Settings BackupsResources
+ * Managing VirtualMachine BackupsResources
  * 
  * much they will be charged per unit.
  *
@@ -15,18 +15,18 @@
 /**
  * const
  */
-define('ONAPP_BACKUP_RESOURSE_ADVANSED_OPTIONS', 'advanced_options');
+define('ONAPP_BACKUP_RESOURCE', 'backup_resource');
 
 /**
- * Managing Settings BackupsResources
+ * Managing VirtualMachine BackupsResources
  *
- * The OnApp_Settings_HardwareInfo class uses the following basic methods:
- * {@link load}, {@link add}, {@link edit}, {@link delete} and {@link getList}.
+ * The OnApp_VirtualMachine_BackupsResources class uses the following basic methods:
+ * {@link load}, {@link add}, {@link delete}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php )
  */
 
-class OnApp_Settings_BackupsResources extends OnApp {
+class OnApp_VirtualMachine_BackupsResources extends OnApp {
     /**
      * root tag used in the API request
      *
@@ -39,7 +39,7 @@ class OnApp_Settings_BackupsResources extends OnApp {
      * @var string
      */
     var $_resource = 'backups/resources';
-
+    
     /**
      * API Fields description
      *
@@ -52,10 +52,9 @@ class OnApp_Settings_BackupsResources extends OnApp {
         switch ( $version ) {
             case 6.0:
                 $this->fields = array(
-                    'advanced_options'  => array(
+                    'advanced_options'            => array(
                         ONAPP_FIELD_MAP         => '_advanced_options',
-                        ONAPP_FIELD_TYPE        => 'array',
-                        ONAPP_FIELD_CLASS       => 'Settings_AdvancedOptions',
+                        ONAPP_FIELD_TYPE        => '_array',
                     ),
                     'created_at'        => array(
                         ONAPP_FIELD_MAP         => '_created_at',
@@ -120,72 +119,56 @@ class OnApp_Settings_BackupsResources extends OnApp {
      * @return string API resource
      * @access public
      */
-    function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
+    public function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         switch ( $action ) {
             case ONAPP_GETRESOURCE_DEFAULT:
                 /**
                  * ROUTE :
                  *
-                 * @name Settings BackupsResources
+                 * @name VirtualMachine BackupsResources
                  * @method GET
-                 * 
-                 * @alias   /settings/backups/resources(.:format)
-                 * @format  {:controller=>"Settings_BackupsResources", :action=>"index"}
+                 *
+                 * @alias   /virtual_machines/:virtual_server_id/backups/resources(.:format)
+                 * @format  {:controller=>"VirtualMachine BackupsResources", :action=>"index"}
                  */
+                $resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->_resource;
+                $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+                break;
+            
+            case ONAPP_BACKUP_RESOURCE:
                 /**
                  * ROUTE :
                  *
-                 * @name Settings BackupsResources
-                 * @method GET
-                 * 
-                 * @alias   /settings/backups/resources/:id(.:format)
-                 * @format  {:controller=>"Settings_BackupsResources", :action=>"index"}
-                 */
-                /**
-                 * ROUTE :
-                 *
-                 * @name Settings BackupsResources
+                 * @name VirtualMachine BackupsResources
                  * @method POST
-                 * 
-                 * @alias   /settings/backups/resources(.:format)
-                 * @format  {:controller=>"Settings_BackupsResources", :action=>"add"}
+                 *
+                 * @alias   /virtual_machines/:virtual_server_id/backups/resources/:id(.:format)
+                 * @format  {:controller=>"VirtualMachine BackupsResources", :action=>"add"}
                  */
                 /**
                  * ROUTE :
                  *
-                 * @name Settings BackupsResources
-                 * @method PUT
-                 * 
-                 * @alias   /settings/backups/resources/:id(.:format)
-                 * @format  {:controller=>"Settings_BackupsResources", :action=>"edit"}
-                 */
-                /**
-                 * ROUTE :
-                 *
-                 * @name Settings C
+                 * @name VirtualMachine BackupsResources
                  * @method DELETE
-                 * 
-                 * @alias   /settings/backups/resources/:id(.:format)
-                 * @format  {:controller=>"Settings_BackupsResources", :action=>"delete"}
-                 */
-                
-                $resource = 'settings/' . $this->_resource;
-                $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
-                break;
-            case ONAPP_BACKUP_RESOURSE_ADVANSED_OPTIONS:
-                /**
-                 * ROUTE :
                  *
-                 * @name Settings BackupsResources
-                 * @method PUT
-                 * 
-                 * @alias   /settings/backups/resources/:id/advanced_options(.:format)
-                 * @format  {:controller=>"Settings_BackupsResources", :action=>"edit"}
+                 * @alias   /virtual_machines/:virtual_server_id/backups/resources/:id(.:format)
+                 * @format  {:controller=>"VirtualMachine BackupsResources", :action=>"delete"}
                  */
-                
-                $resource = 'settings/' . $this->_resource . '/' . $this->_id . '/advanced_options';
+                if ( is_null( $this->_id ) && is_null( $this->_obj->_id ) ) {
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _id not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                } else {
+                    if ( is_null( $this->_id ) ) {
+                        $this->_id = $this->_obj->_id;
+                    }
+                }
+                $resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->_resource . '/' . $this->_id;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
+                
             default:
                 $resource = parent::getResource( $action );
                 break;
@@ -195,16 +178,16 @@ class OnApp_Settings_BackupsResources extends OnApp {
     }
     
     public function save() {
-        if ( isset( $this->_id ) && !is_null( $this->_id ) && isset( $this->_advanced_options ) && !is_null( $this->_advanced_options ) ) {
-            $data = array(
-                'root'        => 'advanced_options',
-                'data'        => $this->_advanced_options,
+        if ( isset( $this->_id ) && !is_null( $this->_id ) ) {
             
-            );
-            $this->sendPut( ONAPP_BACKUP_RESOURSE_ADVANSED_OPTIONS, $data );
-        } else {
-            parent::save();
+            $this->sendPost( ONAPP_BACKUP_RESOURCE );
         }
     }
     
+    public function delete() {
+        if ( isset( $this->_id ) && !is_null( $this->_id ) ) {
+            
+            $this->sendDelete( ONAPP_BACKUP_RESOURCE );
+        }
+    }
 }

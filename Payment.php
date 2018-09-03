@@ -218,35 +218,47 @@ class OnApp_Payment extends OnApp {
      * @access public
      */
     function getList( $user_id = null, $url_args = null ) {
-        if ( $this->getAPIVersion() < ONAPP_VERSION_SIX ) {
-            if ( is_null( $user_id ) && ! is_null( $this->_user_id ) ) {
-                $user_id = $this->_user_id;
-            }
+        if (null === $user_id && null !== $this->_user_id) {
+            $user_id = $this->_user_id;
+        }
 
-            if ( ! is_null( $user_id ) ) {
-                $this->_user_id = $user_id;
-
-                return parent::getList();
-            } else {
+        if ($this->getAPIVersion() < ONAPP_VERSION_SIX) {
+            if (null === $user_id) {
                 $this->logger->error(
                     'getList: argument _user_id not set.',
                     __FILE__,
                     __LINE__
                 );
+
+                return false;
             }
-        } else {
-            if ( is_null( $url_args ) && ! is_null( $this->_payer_type ) ) {
-                $url_args = $this->_payer_type;
-            } else {
-                $this->logger->error(
-                    'getList: argument _payer_type not set.',
-                    __FILE__,
-                    __LINE__
-                );
-            }
-            
-            return parent::getList( null, array( 'payer_type' => $url_args ) );
+
+            $this->_user_id = $user_id;
+
+            return parent::getList();
         }
+
+        if (null === $url_args) {
+            $url_args = array();
+        }
+
+        if (null !== $this->_payer_type && !array_key_exists('payer_type', $url_args)) {
+            $url_args['payer_type'] = $this->_payer_type;
+        }
+
+        if (null !== $user_id) {
+            $url_args['payer_id'] = $user_id;
+        }
+
+        if (!array_key_exists('payer_type', $url_args)) {
+            $this->logger->error(
+                'getList: argument _payer_type not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
+
+        return parent::getList(null, $url_args);
     }
 
     /**

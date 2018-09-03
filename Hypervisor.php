@@ -63,6 +63,11 @@ define('ONAPP_VIRTUAL_MACHINES_STARTUP', 'startup');
 define('ONAPP_VIRTUAL_MACHINES_STOP', 'stop');
 
 /**
+ * @var
+ */
+define('ONAPP_ENABLE_KERNEL_CRASH_DUMPING', 'crash_debug');
+
+/**
  * Hypervisors
  *
  * This class represents the Hypervisors of your OnApp installation. The OnApp class is the parent of the Hypervisors class.
@@ -495,6 +500,18 @@ class OnApp_Hypervisor extends OnApp {
                     ONAPP_FIELD_MAP  => '_cpu_model',
                     ONAPP_FIELD_TYPE => 'string',
                 );
+                $this->fields['crash_debug']                          = array(
+                    ONAPP_FIELD_MAP  => '_crash_debug',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['segregation_os_type']                  = array(
+                    ONAPP_FIELD_MAP  => '_segregation_os_type',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['failover_recipe_id']                   = array(
+                    ONAPP_FIELD_MAP  => '_failover_recipe_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
                 break;
         }
 
@@ -644,6 +661,29 @@ class OnApp_Hypervisor extends OnApp {
                 }
 
                 $resource = 'hypervisors/' . $this->_id . '/virtual_machines/stop';
+                $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+                break;
+                
+            case ONAPP_ENABLE_KERNEL_CRASH_DUMPING:
+                /**
+                 * ROUTE :
+                 *
+                 * @name HYPERVISOR
+                 * 
+                 * @method PUT
+                 *
+                 * @alias   /settings/hypervisors/:id/crash_debug(.:format)
+                 * @format  {:controller=>"HYPERVISOR", :action=>"enableKernelCrashDumping"}
+                 */
+                if ( is_null( $this->_id ) ) {
+                    $this->logger->error(
+                        "getResource($action): argument _id not set.",
+                        __FILE__,
+                        __LINE__
+                    );
+                }
+
+                $resource = 'settings/hypervisors/' . $this->_id . '/' . ONAPP_ENABLE_KERNEL_CRASH_DUMPING;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
                 
@@ -866,5 +906,16 @@ class OnApp_Hypervisor extends OnApp {
 
         $result     = $this->_castResponseToClass( $response );
         $this->_obj = $result;
+    }
+    
+    public function enableKernelCrashDumping(){
+        $data = array(
+            'root' => $this->_tagRoot,
+            'data' => array(
+                'crash_debug' => true,
+            ),
+        );
+        
+        return $this->sendPut(ONAPP_ENABLE_KERNEL_CRASH_DUMPING, $data);
     }
 }

@@ -134,6 +134,27 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
                 break;
             case 6.0:
                 $this->fields = $this->initFields( 5.5 );
+                $this->fields['used_ip']    = array(
+                    ONAPP_FIELD_MAP  => '_used_ip',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['own_ip']     = array(
+                    ONAPP_FIELD_MAP  => '_own_ip',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['ip_version'] = array(
+                    ONAPP_FIELD_MAP  => '_ip_version',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['ip_net_id']  = array(
+                    ONAPP_FIELD_MAP  => '_ip_net_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['ip_range_id'] = array(
+                    ONAPP_FIELD_MAP  => '_ip_range_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                
                 break;
         }
 
@@ -295,5 +316,11 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
                 );
             }
         }
+    }
+    
+    public function assignIPAddress() {
+        $this->_tagRoot = 'ip_address';
+        
+        parent::save();
     }
 }

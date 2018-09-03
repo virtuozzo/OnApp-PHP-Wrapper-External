@@ -167,6 +167,11 @@ define( 'ONAPP_GETRESOURCE_PURGE', 'purge' );
 define( 'ONAPP_GETRESOURCE_WITH_DECRYPTED_PASSWORD', 'with_decrypted_password' );
 
 /**
+ * Edit FQDN
+ */
+define( 'ONAPP_EDIT_FQDN', 'fqdn' );
+
+/**
  * Virtual Machines
  *
  * The Virtual Machine class represents the Virtual Machines of the OnAPP installation.
@@ -1069,6 +1074,17 @@ class OnApp_VirtualMachine extends OnApp {
                  */
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/with_decrypted_password';
                 break;
+            case ONAPP_EDIT_FQDN:
+                /**
+                 * ROUTE :
+                 *
+                 * @name edit_fqdn
+                 * @method PATCH
+                 * @alias    /virtual_machines/:id/fqdn(.:format)
+                 * @format   {:controller=>"virtual_machines", :action=>"edit_fqdn"}
+                 */
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/fqdn';
+                break;
 
             default:
                 /**
@@ -1128,6 +1144,8 @@ class OnApp_VirtualMachine extends OnApp {
             ONAPP_RESET_ROOT_PASSWORD,
             ONAPP_GETRESOURCE_PURGE_ALL,
             ONAPP_GETRESOURCE_PURGE,
+            ONAPP_GETRESOURCE_WITH_DECRYPTED_PASSWORD,
+            ONAPP_EDIT_FQDN,
         );
 
         if ( in_array( $action, $actions ) ) {
@@ -1531,7 +1549,23 @@ class OnApp_VirtualMachine extends OnApp {
             ONAPP_FIELD_MAP  => '_required_public_ip_address',
             ONAPP_FIELD_TYPE => 'boolean',
         );
-
+        $this->fields['datacenter_id']                  = array(
+            ONAPP_FIELD_MAP  => '_datacenter_id',
+            ONAPP_FIELD_TYPE => 'integer',
+        );
+        $this->fields['cluster_id']                     = array(
+            ONAPP_FIELD_MAP  => '_cluster_id',
+            ONAPP_FIELD_TYPE => 'integer',
+        );
+        $this->fields['primary_data_store_id']          = array(
+            ONAPP_FIELD_MAP  => '_primary_data_store_id',
+            ONAPP_FIELD_TYPE => 'integer',
+        );
+        $this->fields['swap_data_store_id']             = array(
+            ONAPP_FIELD_MAP  => '_swap_data_store_id',
+            ONAPP_FIELD_TYPE => 'integer',
+        );
+        
         parent::save();
 
         $this->fields = $fields;
@@ -1672,6 +1706,70 @@ class OnApp_VirtualMachine extends OnApp {
     function viewDecryptedPassword($encryptionKey) {
         //initial_root_password_encryption_key=encryptionkey
         return $this->sendGet( ONAPP_GETRESOURCE_WITH_DECRYPTED_PASSWORD, null, array(initial_root_password_encryption_key => $encryptionKey) );
+    }
+    
+    function edit_fqdn($hostname, $domain) {
+        $data = array(
+            'root' => $this->_tagRoot,
+            'data' => array(
+                'hostname'  => $hostname,
+                'domain'    => $domain,
+            )
+        );
+        
+        return $this->sendPatch( ONAPP_EDIT_FQDN, $data );
+    }
+    
+    public function addVsFromOvaTemplate($template_id, $label, $hostname, $domain='localdomain', $initial_root_password=null, $initial_root_password_confirmation=null, $hypervisor_group_id=null, $hypervisor_id=null, $memory, $cpus, $cpu_shares, $cpu_units, $cpu_topology, array $disks_attributes, array $network_interfaces_attributes, $required_automatic_backup=0, $required_virtual_machine_build=1, $required_virtual_machine_startup=0, $acceleration=false){
+        
+        $data = array(
+            'root' => $this->_tagRoot,
+            'data' => array(
+                'template_id'                      => $template_id,
+                'label'                            => $label,
+                'hostname'                         => $hostname,
+                'domain'                           => $domain,
+                'hypervisor_group_id'              => $hypervisor_group_id,
+                'hypervisor_id'                    => $hypervisor_id,
+                'memory'                           => $memory,
+                'cpus'                             => $cpus,
+                'cpu_shares'                       => $cpu_shares,
+                'cpu_units'                        => $cpu_units,
+                'cpu_topology'                     => $cpu_topology,
+                'disks_attributes'                 => $disks_attributes,
+                'network_interfaces_attributes'    => $network_interfaces_attributes,
+                'required_automatic_backup'        => $required_automatic_backup,
+                '$required_virtual_machine_build'  => $required_virtual_machine_build,
+                'required_virtual_machine_startup' => $required_virtual_machine_startup,
+                'acceleration' => $acceleration,
+            )
+        );
+        if ( ! is_null( $initial_root_password ) && $initial_root_password != "" ) {
+            $pattern = "/^\S*(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\,\.\;\:\_\-\@\~\!\*\+\{\}\[\]\`\?\#\$\=\/\\\])[a-zA-Z0-9\,\.\;\:\_\-\@\~\!\*\+\{\}\[\]\`\?\#\$\=\/\\\]{6,32}$/";
+
+            if ( preg_match( $pattern, $initial_root_password ) ) {
+                $data['data']['initial_root_password'] = $initial_root_password;
+            } else {
+                $this->logger->error(
+                    'The root password can consist of 6-32 characters, letters [A-Za-z], digits [0-9], dash [ - ] and lower dash [ _ ], and the following special characters: ~ ! @ # $ * _ - + = ` \\ { } [ ] : ; \' , . ? /. You can use both lower- and uppercase letters.',
+                    __FILE__,
+                    __LINE__
+                );
+            }
+        }
+        if ( $initial_root_password_confirmation === $initial_root_password ) {
+            if ( !is_null($initial_root_password_confirmation) ) {
+                $data['data']['initial_root_password_confirmation'] = $initial_root_password_confirmation;
+            }
+        } else {
+            $this->logger->error(
+                'segregation: argument initial_root_password_confirmation does not coincide with initial_root_password',
+                __FILE__,
+                __LINE__
+            );
+        }
+        
+        return $this->sendPost( ONAPP_GETRESOURCE_DEFAULT, $data );
     }
 
 }

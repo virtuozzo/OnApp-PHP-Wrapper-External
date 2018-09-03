@@ -796,7 +796,7 @@ class OnApp_Settings extends OnApp {
                 );
                 $this->fields['dashboard_stats'] = array(
                     ONAPP_FIELD_MAP  => '_dashboard_stats',
-                    ONAPP_FIELD_TYPE => 'array',
+                    ONAPP_FIELD_TYPE => '_array',
                 );
                 break;
             case 5.3:
@@ -986,7 +986,22 @@ class OnApp_Settings extends OnApp {
                     ONAPP_FIELD_MAP  => '_uniform_node_capacity_threshold_ratio',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
-                
+                $this->fields['disable_billing']                          = array(
+                    ONAPP_FIELD_MAP  => '_disable_billing',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['max_ip_addresses_to_assign_simultaneously']= array(
+                    ONAPP_FIELD_MAP  => '_max_ip_addresses_to_assign_simultaneously',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['ip_address_reservation_time']              = array(
+                    ONAPP_FIELD_MAP  => '_ip_address_reservation_time',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $fields       = array(
+                    'enable_huge_pages',
+                );
+                $this->unsetFields( $fields );
                 break;
         }
 
@@ -996,8 +1011,8 @@ class OnApp_Settings extends OnApp {
     }
 
     public function changeCustomParameters( $params ) {
-        $allowedParams = array( 'use_yubikey_login', 'yubikey_api_key', 'yubikey_api_id', 'allow_to_collect_errors', 'isolated_license' );
-
+        $allowedParams = array( 'use_yubikey_login', 'yubikey_api_key', 'yubikey_api_id', 'allow_to_collect_errors', 'isolated_license', 'max_ip_addresses_to_assign_simultaneously', 'ip_address_reservation_time', 'disable_billing', 'transaction_approvals' );
+        
         if ( ! is_array( $params ) ) {
             return false;
         }

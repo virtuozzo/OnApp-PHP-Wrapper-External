@@ -118,6 +118,14 @@ class OnApp_Asset extends OnApp_Hypervisor {
                     ONAPP_FIELD_MAP  => '_apply_hypervisor_group_custom_config',
                     ONAPP_FIELD_TYPE => 'string',
                 );
+                $this->fields['segregation_os_type']                  = array(
+                    ONAPP_FIELD_MAP  => '_segregation_os_type',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['failover_recipe_id']                   = array(
+                    ONAPP_FIELD_MAP  => '_failover_recipe_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
                 break;
         }
 
@@ -181,6 +189,30 @@ class OnApp_Asset extends OnApp_Hypervisor {
 
             return $result;
         }
+    }
+    
+    public function assetsAddHypervisors(){
+        
+        $this->sendPost( ONAPP_GETRESOURCE_ASSETS_EDIT_HYPERVISORS, $this->getData() );
+    }
+    
+    public function assetsEditHypervisors(){
+        
+        $this->sendPut( ONAPP_GETRESOURCE_ASSETS_EDIT_HYPERVISORS, $this->getData() );
+    }
+    
+    private function getData(){
+        $data = array(
+            'root' => 'hypervisor'
+        );
+        foreach ($this->fields as $key => $value) {
+            $property = $value[ ONAPP_FIELD_MAP ];
+            if (!is_null($this->$property) && !isset($value[ONAPP_FIELD_READ_ONLY])) {
+                $data['data'][$key] = $this->$property;
+            }
+        }
+        
+        return $data;
     }
 
 
