@@ -172,6 +172,16 @@ define( 'ONAPP_GETRESOURCE_WITH_DECRYPTED_PASSWORD', 'with_decrypted_password' )
 define( 'ONAPP_EDIT_FQDN', 'fqdn' );
 
 /**
+ * Enable Acceleration for Virtual Server
+ */
+define( 'ONAPP_ENABLE_ACCELERATION', 'acceleration.enable' );
+
+/**
+ * Disable Acceleration for Virtual Server
+ */
+define( 'ONAPP_DISABLE_ACCELERATION', 'acceleration.disable' );
+
+/**
  * Virtual Machines
  *
  * The Virtual Machine class represents the Virtual Machines of the OnAPP installation.
@@ -1085,6 +1095,28 @@ class OnApp_VirtualMachine extends OnApp {
                  */
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/fqdn';
                 break;
+            case ONAPP_ENABLE_ACCELERATION:
+                /**
+                 * ROUTE :
+                 *
+                 * @name Enable Acceleration for Virtual Server
+                 * @method PUT
+                 * @alias    /virtual_machines/:id/acceleration.enable(.:format)
+                 * @format   {:controller=>"virtual_machines", :action=>"acceleration.enable"}
+                 */
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/' . ONAPP_ENABLE_ACCELERATION;
+                break;
+            case ONAPP_DISABLE_ACCELERATION:
+                /**
+                 * ROUTE :
+                 *
+                 * @name Enable Acceleration for Virtual Server
+                 * @method PUT
+                 * @alias    /virtual_machines/:id/acceleration.disable(.:format)
+                 * @format   {:controller=>"virtual_machines", :action=>"acceleration.disable"}
+                 */
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/' . ONAPP_DISABLE_ACCELERATION;
+                break;
 
             default:
                 /**
@@ -1146,6 +1178,8 @@ class OnApp_VirtualMachine extends OnApp {
             ONAPP_GETRESOURCE_PURGE,
             ONAPP_GETRESOURCE_WITH_DECRYPTED_PASSWORD,
             ONAPP_EDIT_FQDN,
+            ONAPP_ENABLE_ACCELERATION,
+            ONAPP_DISABLE_ACCELERATION,
         );
 
         if ( in_array( $action, $actions ) ) {
@@ -1770,6 +1804,32 @@ class OnApp_VirtualMachine extends OnApp {
         }
         
         return $this->sendPost( ONAPP_GETRESOURCE_DEFAULT, $data );
+    }
+
+    public function enableAcceleration($id){
+        if ( is_null($id) ) {
+            $this->logger->error(
+                'enableAcceleration: argument _id not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
+        $this->_id = $id;
+
+        return $this->sendPut( ONAPP_ENABLE_ACCELERATION );
+    }
+
+    public function disableAcceleration($id){
+        if ( is_null($id) ) {
+            $this->logger->error(
+                'disableAcceleration: argument _id not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
+        $this->_id = $id;
+
+        return $this->sendPut( ONAPP_DISABLE_ACCELERATION );
     }
 
 }

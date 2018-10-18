@@ -184,7 +184,7 @@ class OnApp_BillingUser_ResourceNetworkGroup extends OnApp_BillingUser_BaseResou
             $dataArray['price_ip_off'] = $price_ip_off;
         }
 
-        if ( count( $dataArray ) == 0 ) {
+        if ( !is_countable($dataArray) || count( $dataArray ) == 0 ) {
             return false;
         }
         $data = array(
@@ -209,7 +209,7 @@ class OnApp_BillingUser_ResourceNetworkGroup extends OnApp_BillingUser_BaseResou
             $dataArray['price_rate_off'] = $price_rate_off;
         }
 
-        if ( count( $dataArray ) == 0 ) {
+        if ( !is_countable($dataArray) || count( $dataArray ) == 0 ) {
             return false;
         }
         $data = array(
@@ -228,7 +228,7 @@ class OnApp_BillingUser_ResourceNetworkGroup extends OnApp_BillingUser_BaseResou
             $dataArray['price_data_received'] = $price_data_received;
         }
 
-        if ( count( $dataArray ) == 0 ) {
+        if ( !is_countable($dataArray) || count( $dataArray ) == 0 ) {
             return false;
         }
         $data = array(
@@ -247,7 +247,7 @@ class OnApp_BillingUser_ResourceNetworkGroup extends OnApp_BillingUser_BaseResou
             $dataArray['price_data_sent'] = $price_data_sent;
         }
 
-        if ( count( $dataArray ) == 0 ) {
+        if ( !is_countable($dataArray) || count( $dataArray ) == 0 ) {
             return false;
         }
         $data = array(

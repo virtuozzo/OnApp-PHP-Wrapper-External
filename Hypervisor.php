@@ -568,6 +568,15 @@ class OnApp_Hypervisor extends OnApp {
                  * @format  {:action=>"reboot", :controller=>"settings_hypervisors"}
                  */
 
+                /**
+                 * ROUTE :
+                 *
+                 * @name reboot_hypervisor
+                 * @method PUT
+                 * @alias   /settings/hypervisors/:id/reboot(.:format)
+                 * @format  {:action=>"reboot", :controller=>"settings_hypervisors"}
+                 */
+
                 $resource = $this->_resource . '/' . $this->_id . '/reboot';
                 break;
             
@@ -738,15 +747,6 @@ class OnApp_Hypervisor extends OnApp {
      *
      */
     function reboot( $hypervisor_id ) {
-        $version = parent::getAPIVersion();
-        if ( $version > 5.0 ) {
-            $this->logger->error(
-                'reboot: Removed the deprecated POST request',
-                __FILE__,
-                __LINE__
-            );
-        }
-
         if ( $hypervisor_id ) {
             $this->_id = $hypervisor_id;
         } else {
@@ -757,15 +757,49 @@ class OnApp_Hypervisor extends OnApp {
             );
         }
 
-        $data = array(
-            'root' => 'force',
-            'data' => '1',
-        );
+        $version = parent::getAPIVersion();
+        if ( $version <= 5.0 ) {
+            $data = array(
+                'root' => 'force',
+                'data' => '1',
+            );
 
-        $this->sendPost( ONAPP_GETRESOURCE_HYPERVISOR_REBOOT, $data );
+            $this->sendPost( ONAPP_GETRESOURCE_HYPERVISOR_REBOOT, $data );
+
+        } else {
+            $data = array(
+                'schedule_failover'                 => '1',
+                'force'                             => '1',
+                'confirm'                           => '1',
+            );
+
+            if ($version >= 6.0) {
+                $data['skip_powered_off_vms_migration'] = '1';
+            }
+
+            if ( ! is_null( $data ) && is_array( $data ) ) {
+                $data = json_encode($data);
+                $this->logger->debug( 'Additional parameters: ' . $data );
+            }
+
+            $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_HYPERVISOR_REBOOT ) );
+            $response = $this->sendRequest( ONAPP_REQUEST_METHOD_PUT, $data );
+
+            $result     = $this->_castResponseToClass( $response );
+            $this->_obj = $result;
+
+        }
     }
 
     function save() {
+        if (parent::getAPIVersion() >= 6.0) {
+            $this->unsetFields( array('ip_address', 'backup_ip_address') );
+            $this->fields['api_url'] = array(
+                ONAPP_FIELD_MAP  => '_api_url',
+                ONAPP_FIELD_TYPE => 'string',
+            );
+        }
+
         if ( $this->_id ) {
             $this->fields['hypervisor_group_id'][ ONAPP_FIELD_REQUIRED ] = false;
         } else {
@@ -840,7 +874,7 @@ class OnApp_Hypervisor extends OnApp {
                 __LINE__
             );
         }
-        if ( !count($virtual_machines) ) {
+        if ( !is_countable($virtual_machines) || !count($virtual_machines) ) {
             $this->logger->error(
                 'virtualMachinesStartup: argument _virtual_machines not set.',
                 __FILE__,
@@ -875,7 +909,7 @@ class OnApp_Hypervisor extends OnApp {
                 __LINE__
             );
         }
-        if ( !count($virtual_machines) ) {
+        if ( !is_countable($virtual_machines) || !count($virtual_machines) ) {
             $this->logger->error(
                 'virtualMachinesStop: argument _virtual_machines not set.',
                 __FILE__,

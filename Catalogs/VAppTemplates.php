@@ -104,6 +104,10 @@ class OnApp_Catalogs_VAppTemplates extends OnApp {
                 break;
             case 6.0:
                 $this->fields = $this->initFields( 5.5 );
+                $this->fields['description']    = array(
+                    ONAPP_FIELD_MAP  => '_description',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
                 break;
         }
 

@@ -68,10 +68,6 @@ class OnApp_Settings_SamlIdProviders extends OnApp {
                         ONAPP_FIELD_MAP         => '_idp_sso_target_url',
                         ONAPP_FIELD_TYPE        => 'string',
                     ),
-                    'idp_cert_fingerprint'              => array(
-                        ONAPP_FIELD_MAP         => '_idp_cert_fingerprint',
-                        ONAPP_FIELD_TYPE        => 'string',
-                    ),
                     'idp_cert'                          => array(
                         ONAPP_FIELD_MAP         => '_idp_cert',
                         ONAPP_FIELD_TYPE        => 'string',

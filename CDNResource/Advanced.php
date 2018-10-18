@@ -304,7 +304,7 @@ class OnApp_CDNResource_Advanced extends OnApp {
             $this->_countries = array( '' );
         }
 
-        if ( is_null( $this->_secondary_hostnames ) && isset( $this->_obj ) && count( $this->_obj->_secondary_hostnames ) != 0 ) {
+        if ( is_null( $this->_secondary_hostnames ) && isset( $this->_obj ) && is_countable($this->_obj->_secondary_hostnames) && count( $this->_obj->_secondary_hostnames ) != 0 ) {
             $this->_secondary_hostnames = $this->_obj->_secondary_hostnames;
         } else {
             $this->_secondary_hostnames = array( '' );

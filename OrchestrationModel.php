@@ -19,6 +19,11 @@
 define( 'ONAPP_GETRESOURCE_DEPLOY', 'deploy' );
 
 /**
+ *
+ */
+define( 'ONAPP_CLONE_ORCHESTRATION_MODEL', 'clone' );
+
+/**
  * Orchestration Models
  *
  */
@@ -388,6 +393,17 @@ class OnApp_OrchestrationModel extends OnApp {
                 }
                 $resource = $this->_resource . '/' . $this->_id . '/deploy';
                 break;
+            case ONAPP_CLONE_ORCHESTRATION_MODEL:
+                /**
+                 * ROUTE :
+                 *
+                 * @name vcloud_template
+                 * @method PUT
+                 * @alias   /vcloud/templates/:id/clone(.:format)
+                 * @format  {:controller=>"vcloud_template", :action=>"clone"}
+                 */
+                $resource = $this->_resource . '/' . $this->_id . '/' . ONAPP_CLONE_ORCHESTRATION_MODEL;
+                break;
             default:
                 /**
                  * ROUTE :
@@ -405,6 +421,14 @@ class OnApp_OrchestrationModel extends OnApp {
                  * @alias    /vcloud/templates/:id(.:format)
                  * @format   {:controller=>"vapp_template_groups", :action=>"show"}
                  */
+                /**
+                 * ROUTE :
+                 *
+                 * @name vcloud_template
+                 * @method PUT
+                 * @alias    /vcloud/templates/:id(.:format)
+                 * @format   {:controller=>"vapp_template_groups", :action=>"edit"}
+                 */
                 $resource = parent::getResource( $action );
                 break;
         }
@@ -416,5 +440,20 @@ class OnApp_OrchestrationModel extends OnApp {
         $data = $this->getSerializedDataToSend();
         
         return $this->sendPost( ONAPP_GETRESOURCE_DEPLOY, $data );
+    }
+
+    public function cloneOrchestrationModel($id){
+        if ( is_null( $id ) ) {
+            $this->logger->error(
+                'cloudConfig: argument _id not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
+        $this->_id = $id;
+
+        $res = $this->sendPut( ONAPP_CLONE_ORCHESTRATION_MODEL );
+
+        return $res;
     }
 }

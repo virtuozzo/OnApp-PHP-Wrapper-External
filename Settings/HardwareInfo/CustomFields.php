@@ -203,14 +203,14 @@ class OnApp_Settings_HardwareInfo_CustomFields extends OnApp {
         
         if ( !isset( $this->_label ) && empty( $this->_label ) ) {
             $this->logger->error(
-                "getResource($action): argument _label not set.",
+                "save(): argument _label not set.",
                 __FILE__,
                 __LINE__
             );
         }
         if ( !isset( $this->_value ) && empty( $this->_value ) ) {
             $this->logger->error(
-                "getResource($action): argument _value not set.",
+                "save(): argument _value not set.",
                 __FILE__,
                 __LINE__
             );

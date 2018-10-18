@@ -8,6 +8,8 @@
  * @copyright   © 2011 OnApp
  * @link        http://www.onapp.com/
  */
+include_once __DIR__ . '/Helpers.php';
+
 if ( ! defined( 'ONAPP_WRAPPER_ROOT_DIR' ) ) {
     /**
      * Check PHP version

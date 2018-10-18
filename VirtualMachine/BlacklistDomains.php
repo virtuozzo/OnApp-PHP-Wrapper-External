@@ -121,9 +121,9 @@ class OnApp_VirtualMachine_BlacklistDomains extends OnApp {
      */
     public function save() {
         
-        if ( !isset( $this->_hostname_blacklists ) && !count( $this->_hostname_blacklists ) ) {
+        if ( !isset( $this->_hostname_blacklists ) ) {
             $this->logger->error(
-                "getResource($action): argument _hostname_blacklists not set.",
+                "save(): argument _hostname_blacklists not set.",
                 __FILE__,
                 __LINE__
             );

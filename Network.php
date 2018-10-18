@@ -46,6 +46,10 @@ define( 'ONAPP_GETRESOURCE_IP_ASSIGN', 'ip_assign' );
  */
 define( 'ONAPP_GETRESOURCE_IP_UNASSIGN', 'ip_unassign' );
 
+/**
+ *
+ */
+define( 'ONAPP_MANAGE_FAILOVER', 'manage_failover' );
 
 /**
  * Configuring Network
@@ -308,6 +312,14 @@ class OnApp_Network extends OnApp {
                 $resource = $this->_resource . '/' . $this->_id . '/ip_addresses/unassign';
                 break;
 
+            case ONAPP_MANAGE_FAILOVER:
+                /*
+                 * @method PATCH
+                 * @alias  /settings/hypervisor_zones/:id/manage_failover(.:format)
+                 */
+                $resource = 'settings/hypervisor_zones/' . $this->_hypervisor_group_id . '/' . ONAPP_MANAGE_FAILOVER;
+                break;
+
             default:
                 /**
                  * ROUTE :
@@ -384,7 +396,7 @@ class OnApp_Network extends OnApp {
         }
 
         $data = array(
-            'root' => 'tmp_holder',
+            'root' => (parent::getAPIVersion() <= 5.5) ? 'tmp_holder' : 'assign',
             'data' => array(
                 'ip_address' => $ipAddressesRes,
                 'user_id'      => $userID,
@@ -414,9 +426,9 @@ class OnApp_Network extends OnApp {
         }
 
         $data = array(
-            'root' => 'tmp_holder',
+            'root' => (parent::getAPIVersion() <= 5.5) ? 'tmp_holder' : 'unassign',
             'data' => array(
-                'ip_addresses' => $ipAddresses,
+                'ip_address' => $ipAddresses,
             ),
         );
 
@@ -434,5 +446,34 @@ class OnApp_Network extends OnApp {
                     break;
             }
         }
+    }
+
+    public function manageFailover ( $hypervisor_group_id, $failover_status ) {
+        if ( is_null( $hypervisor_group_id ) ) {
+            $this->logger->error(
+                'cloudConfig: argument hypervisor_group_id not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
+        if ( is_null( $failover_status ) ) {
+            $this->logger->error(
+                'cloudConfig: argument failover_status not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
+
+        $this->_hypervisor_group_id = $hypervisor_group_id;
+
+        $data = array(
+            'root' => 'hypervisor_group',
+            'data' => array(
+                'failover_status' => $failover_status,
+            ),
+        );
+        $res = $this->sendPatch( ONAPP_MANAGE_FAILOVER, $data );
+
+        return $res;
     }
 }

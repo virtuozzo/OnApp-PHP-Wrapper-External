@@ -438,6 +438,14 @@ class OnApp_Bucket_RateCards_Prices extends OnApp {
                         ONAPP_FIELD_MAP       => '_target_name',
                         ONAPP_FIELD_TYPE      => 'string',
                     ),
+                    'price_recovery_point_size'                         => array(
+                        ONAPP_FIELD_MAP       => '_price_recovery_point_size',
+                        ONAPP_FIELD_TYPE      => 'string',
+                    ),
+                    'limit_recovery_point_size_free'                     => array(
+                        ONAPP_FIELD_MAP       => '_limit_recovery_point_size_free',
+                        ONAPP_FIELD_TYPE      => 'string',
+                    ),
                 );
 
                 break;

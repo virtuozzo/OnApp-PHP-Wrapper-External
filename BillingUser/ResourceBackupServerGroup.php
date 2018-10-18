@@ -181,7 +181,7 @@ class OnApp_BillingUser_ResourceBackupServerGroup extends OnApp_BillingUser_Base
             $dataArray['price_backup'] = $price_backup;
         }
 
-        if ( count( $dataArray ) == 0 ) {
+        if ( !is_countable($dataArray) || count( $dataArray ) == 0 ) {
             return false;
         }
         $data = array(
@@ -203,7 +203,7 @@ class OnApp_BillingUser_ResourceBackupServerGroup extends OnApp_BillingUser_Base
             $dataArray['price_backup_disk_size'] = $price_backup_disk_size;
         }
 
-        if ( count( $dataArray ) == 0 ) {
+        if ( !is_countable($dataArray) || count( $dataArray ) == 0 ) {
             return false;
         }
         $data = array(
@@ -225,7 +225,7 @@ class OnApp_BillingUser_ResourceBackupServerGroup extends OnApp_BillingUser_Base
             $dataArray['price_template'] = $price_template;
         }
 
-        if ( count( $dataArray ) == 0 ) {
+        if ( !is_countable($dataArray) || count( $dataArray ) == 0 ) {
             return false;
         }
         $data = array(
@@ -247,7 +247,7 @@ class OnApp_BillingUser_ResourceBackupServerGroup extends OnApp_BillingUser_Base
             $dataArray['price_template_disk_size'] = $price_template_disk_size;
         }
 
-        if ( count( $dataArray ) == 0 ) {
+        if ( !is_countable($dataArray) || count( $dataArray ) == 0 ) {
             return false;
         }
         $data = array(

@@ -190,7 +190,7 @@ class OnApp_CDNResource_WAF extends OnApp {
         
         if ( !isset( $this->_waf_on ) && empty( $this->_waf_on ) ) {
             $this->logger->error(
-                "getResource($action): argument _waf_on not set.",
+                "save(): argument _waf_on not set.",
                 __FILE__,
                 __LINE__
             );
@@ -204,7 +204,7 @@ class OnApp_CDNResource_WAF extends OnApp {
             ),
         );
         
-        if ( $this->_waf_on && count( $this->_waf_ruleset_blacklists ) ) {
+        if ( $this->_waf_on && is_countable($this->_waf_ruleset_blacklists) && count( $this->_waf_ruleset_blacklists ) ) {
             $data['data']['waf_ruleset_blacklists'] = $this->_waf_ruleset_blacklists;
         }
         

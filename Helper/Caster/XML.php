@@ -86,7 +86,7 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
                 $errors[] = (string) $error;
             }
 
-            if ( count( $errors ) == 1 ) {
+            if ( is_countable($errors) && count( $errors ) == 1 ) {
                 $errors = $errors[0];
             }
 

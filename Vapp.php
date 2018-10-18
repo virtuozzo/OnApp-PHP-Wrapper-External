@@ -181,9 +181,13 @@ class OnApp_Vapp extends OnApp {
                 break;
             case 6.0:
                 $this->fields = $this->initFields( 5.5 );
-                $this->fields['deployed'] = array(
+                $this->fields['deployed']       = array(
                     ONAPP_FIELD_MAP  => '_deployed',
                     ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['description']    = array(
+                    ONAPP_FIELD_MAP  => '_description',
+                    ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
         }

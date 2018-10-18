@@ -81,14 +81,14 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
         if ( $root === 'errors' ) {
             $errors = $this->objectToArray( $data->$root );
 
-            if ( is_array( $errors ) && count( $errors ) == 1 && isset( $errors[0] ) ) {
+            if ( is_countable( $errors ) && count( $errors ) == 1 && isset( $errors[0] ) ) {
                 $errors = array_shift( $errors );
             }
 
             return $errors;
         }
 
-        if ( count( $data ) > 1 ) {
+        if ( is_countable( $data ) && count( $data ) > 1 ) {
             foreach ( $data as $item ) {
                 $result[] = $this->process( $this->fixRootTag( $item, $root ) );
             }

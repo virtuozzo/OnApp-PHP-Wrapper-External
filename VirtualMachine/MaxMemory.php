@@ -123,14 +123,14 @@ class OnApp_VirtualMachine_MaxMemory extends OnApp {
         
         if ( !isset( $this->_max_memory_override ) && empty( $this->_max_memory_override ) ) {
             $this->logger->error(
-                "getResource($action): argument _max_memory_override not set.",
+                "save(): argument _max_memory_override not set.",
                 __FILE__,
                 __LINE__
             );
         }
         if ( !isset( $this->_preset_max_memory ) && empty( $this->_preset_max_memory ) ) {
             $this->logger->error(
-                "getResource($action): argument _preset_max_memory not set.",
+                "save(): argument _preset_max_memory not set.",
                 __FILE__,
                 __LINE__
             );

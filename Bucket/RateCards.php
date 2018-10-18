@@ -167,7 +167,7 @@ class OnApp_Bucket_RateCards extends OnApp {
         
         if ( !isset( $this->_type ) && empty( $this->_type ) ) {
             $this->logger->error(
-                "getResource($action): argument _type not set.",
+                "save: argument _type not set.",
                 __FILE__,
                 __LINE__
             );
@@ -175,7 +175,7 @@ class OnApp_Bucket_RateCards extends OnApp {
         
         if ( !isset( $this->_server_type ) && empty( $this->_server_type ) ) {
             $this->logger->error(
-                "getResource($action): argument _server_type not set.",
+                "save: argument _server_type not set.",
                 __FILE__,
                 __LINE__
             );
@@ -183,7 +183,7 @@ class OnApp_Bucket_RateCards extends OnApp {
         
         if ( !isset( $this->_target_id ) ) {
             $this->logger->error(
-                "getResource($action): argument _target_id not set.",
+                "save: argument _target_id not set.",
                 __FILE__,
                 __LINE__
             );
@@ -191,7 +191,7 @@ class OnApp_Bucket_RateCards extends OnApp {
         
         if ( !isset( $this->_prices ) ) {
             $this->logger->error(
-                "getResource($action): argument _prices not set.",
+                "save: argument _prices not set.",
                 __FILE__,
                 __LINE__
             );
@@ -221,7 +221,7 @@ class OnApp_Bucket_RateCards extends OnApp {
     public function delete() {
         if ( !isset( $this->_type ) && empty( $this->_type ) ) {
             $this->logger->error(
-                "getResource($action): argument _type not set.",
+                "delete: argument _type not set.",
                 __FILE__,
                 __LINE__
             );
@@ -229,7 +229,7 @@ class OnApp_Bucket_RateCards extends OnApp {
         
         if ( !isset( $this->_server_type ) && empty( $this->_server_type ) ) {
             $this->logger->error(
-                "getResource($action): argument _server_type not set.",
+                "delete: argument _server_type not set.",
                 __FILE__,
                 __LINE__
             );
@@ -237,7 +237,7 @@ class OnApp_Bucket_RateCards extends OnApp {
         
         if ( !isset( $this->_target_id ) ) {
             $this->logger->error(
-                "getResource($action): argument _target_id not set.",
+                "delete: argument _target_id not set.",
                 __FILE__,
                 __LINE__
             );

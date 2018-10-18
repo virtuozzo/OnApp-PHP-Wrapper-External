@@ -90,6 +90,10 @@ class OnApp_VDCS_DataStore extends OnApp {
                 break;
             case 6.0:
                 $this->fields = $this->initFields( 5.5 );
+                $this->fields['default']    = array(
+                    ONAPP_FIELD_MAP  => '_default',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
                 break;
         }
 

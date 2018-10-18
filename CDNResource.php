@@ -489,7 +489,7 @@ class OnApp_CDNResource extends OnApp {
     }
 
     public function save() {
-        if ( count( $this->_countries ) == 0 ) {
+        if ( !is_countable($this->_countries) || count( $this->_countries ) == 0 ) {
             unset( $this->fields['countries'] );
         }
 

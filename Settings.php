@@ -998,6 +998,38 @@ class OnApp_Settings extends OnApp {
                     ONAPP_FIELD_MAP  => '_ip_address_reservation_time',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
+                $this->fields['recipe_temporary_directory']               = array(
+                    ONAPP_FIELD_MAP  => '_recipe_temporary_directory',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['drop_firewall_policy_allowed_ips']         = array(
+                    ONAPP_FIELD_MAP  => '_drop_firewall_policy_allowed_ips',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['default_custom_theme']                     = array(
+                    ONAPP_FIELD_MAP  => '_default_custom_theme',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['kvm_available_free_memory_percentage']     = array(
+                    ONAPP_FIELD_MAP  => '_kvm_available_free_memory_percentage',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['kvm_max_memory_rate']                      = array(
+                    ONAPP_FIELD_MAP  => '_kvm_max_memory_rate',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['recipe_tmp_dir']                      = array(
+                    ONAPP_FIELD_MAP  => '_recipe_tmp_dir',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['ssh_timeout']                      = array(
+                    ONAPP_FIELD_MAP  => '_ssh_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['trusted_proxies']                      = array(
+                    ONAPP_FIELD_MAP  => '_trusted_proxies',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
                 $fields       = array(
                     'enable_huge_pages',
                 );
@@ -1030,7 +1062,7 @@ class OnApp_Settings extends OnApp {
             }
         }
 
-        if ( count( $dataArray ) == 0 ) {
+        if ( !is_countable( $dataArray ) || count( $dataArray ) == 0 ) {
             return false;
         }
 
@@ -1056,7 +1088,7 @@ class OnApp_Settings extends OnApp {
             ),
         );
         
-        $this->sendPut( $resource, $data, array( 'restart' => $restart ) );
+        $this->sendPut( ONAPP_SETTINGS_RESTART, $data, array( 'restart' => $restart ) );
     }
 
 

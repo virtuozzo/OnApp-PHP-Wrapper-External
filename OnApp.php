@@ -1441,7 +1441,7 @@ class OnApp {
 
         $this->sendDelete( ONAPP_GETRESOURCE_DELETE );
 
-        if ( count( $this->getErrorsAsArray() ) < 1 ) {
+        if ( !is_countable($this->getErrorsAsArray()) || count( $this->getErrorsAsArray() ) < 1 ) {
             $this->_is_deleted = true;
         }
     }

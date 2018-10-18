@@ -207,7 +207,7 @@ class OnApp_ApplicationServer_EmailAccount extends OnApp {
 
         $this->logger->add( 'Delete existing Object ( identifier => ' . $this->_identifier . ' ).' );
         $this->sendDelete( ONAPP_GETRESOURCE_DELETE, null, $url_args );
-        if ( count( $this->getErrorsAsArray() ) < 1 ) {
+        if ( !is_countable($this->getErrorsAsArray()) || count( $this->getErrorsAsArray() ) < 1 ) {
             $this->_is_deleted = true;
         }
     }

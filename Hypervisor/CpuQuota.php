@@ -123,14 +123,14 @@ class OnApp_Hypervisor_CpuQuota extends OnApp {
         
         if ( !isset( $this->_enabled ) && empty( $this->_enabled ) ) {
             $this->logger->error(
-                "getResource($action): argument _enabled not set.",
+                "save(): argument _enabled not set.",
                 __FILE__,
                 __LINE__
             );
         }
         if ( !isset( $this->_value ) && empty( $this->_value ) ) {
             $this->logger->error(
-                "getResource($action): argument _value not set.",
+                "save(): argument _value not set.",
                 __FILE__,
                 __LINE__
             );
