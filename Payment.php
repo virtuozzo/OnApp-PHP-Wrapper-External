@@ -195,7 +195,7 @@ class OnApp_Payment extends OnApp {
                 if ( $this->getAPIVersion() < ONAPP_VERSION_SIX ) {
                     $resource = 'users/' . $this->_user_id . '/' . $this->_resource;
                 } else {
-                    $resource = 'billing/' . $this->_resource;
+                    $resource = 'billing/user/' . $this->_resource;
                 }
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
