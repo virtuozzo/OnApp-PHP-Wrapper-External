@@ -189,6 +189,10 @@ class OnApp_UserGroup extends OnApp {
                     ONAPP_FIELD_MAP   => '_user_buckets',
                     ONAPP_FIELD_TYPE  => 'array',
                 );
+                $this->fields['assign_vcloud_roles ']       = array(
+                    ONAPP_FIELD_MAP   => '_assign_vcloud_roles',
+                    ONAPP_FIELD_TYPE  => 'boolean',
+                );
                 break;
         }
 
