@@ -95,7 +95,7 @@ class OnApp_VirtualMachine_Snapshot extends OnApp {
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                     'quiesce'            => array(
-                        ONAPP_FIELD_MAP       => '_quiesce ',
+                        ONAPP_FIELD_MAP       => '_quiesce',
                         ONAPP_FIELD_TYPE      => 'string',
                         ONAPP_FIELD_READ_ONLY => true,
                     ),

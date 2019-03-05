@@ -130,8 +130,8 @@ class OnApp_VDCS_EdgeGateway extends OnApp {
                 break;
             case 5.4:
                 $this->fields = $this->initFields( 5.3 );
-                $this->fields['advanced_enabled '] = array(
-                    ONAPP_FIELD_MAP  => '_advanced_enabled ',
+                $this->fields['advanced_enabled'] = array(
+                    ONAPP_FIELD_MAP  => '_advanced_enabled',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
                 break;

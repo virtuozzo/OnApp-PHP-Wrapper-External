@@ -162,7 +162,7 @@ class OnApp_VDCS extends OnApp {
             case 5.1:
                 $this->fields = $this->initFields( 5.0 );
                 $this->fields['network_pool_identifier'] = array(
-                    ONAPP_FIELD_MAP  => '_network_pool_identifier ',
+                    ONAPP_FIELD_MAP  => '_network_pool_identifier',
                     ONAPP_FIELD_TYPE => 'string'
                 );
                 break;
@@ -181,7 +181,7 @@ class OnApp_VDCS extends OnApp {
             case 6.0:
                 $this->fields = $this->initFields( 5.5 );
                 $this->fields['organization_id'] = array(
-                    ONAPP_FIELD_MAP  => '_organization_id ',
+                    ONAPP_FIELD_MAP  => '_organization_id',
                     ONAPP_FIELD_TYPE => 'integer'
                 );
                 break;
