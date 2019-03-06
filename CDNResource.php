@@ -334,7 +334,7 @@ class OnApp_CDNResource extends OnApp {
                     ONAPP_FIELD_MAP  => '_letsencrypt_ssl_on',
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
-                $this->fileds['cdn_ssl_certificate_id'] = array(
+                $this->fields['cdn_ssl_certificate_id'] = array(
                     ONAPP_FIELD_MAP  => '_cdn_ssl_certificate_id',
                     ONAPP_FIELD_TYPE => 'integer',
                 );
