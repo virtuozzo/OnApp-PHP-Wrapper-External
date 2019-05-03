@@ -742,13 +742,17 @@ class OnApp_VirtualMachine extends OnApp {
                 break;
             case 6.0:
                 $this->fields = $this->initFields( 5.5 );
-                $this->fields['properties']     = array(
+                $this->fields['properties']             = array(
                     ONAPP_FIELD_MAP  => '_properties',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields['cpu_topology']   = array(
+                $this->fields['cpu_topology']           = array(
                     ONAPP_FIELD_MAP  => '_cpu_topology',
                     ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['acceleration_allowed']   = array(
+                    ONAPP_FIELD_MAP  => '_acceleration_allowed',
+                    ONAPP_FIELD_TYPE => 'boolean',
                 );
                 break;
         }
