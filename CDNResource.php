@@ -339,6 +339,14 @@ class OnApp_CDNResource extends OnApp {
                     ONAPP_FIELD_TYPE => 'integer',
                 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                $this->fields['cors_on']    = array(
+                    ONAPP_FIELD_MAP  => '_cors_on',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

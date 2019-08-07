@@ -357,9 +357,21 @@ class OnApp_Federation extends OnApp {
                 break;
             case 5.5:
                 $this->fields = $this->initFields( 5.4 );
+                $this->fields['backup_server_group_label']     = array(
+                    ONAPP_FIELD_MAP  => '_backup_server_group_label',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['backup_server_label']     = array(
+                    ONAPP_FIELD_MAP  => '_backup_server_label',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
                 break;
             case 6.0:
                 $this->fields = $this->initFields( 5.5 );
+                break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
                 break;
         }
 
@@ -389,7 +401,7 @@ class OnApp_Federation extends OnApp {
                         __LINE__
                     );
                 }
-                $resource = $this->getResource() . '/' . $this->_federation;
+                $resource = $this->getResource() . '/' . $this->_federation_id;
                 break;
 
             case ONAPP_GETRESOURCE_ADD_ZONE_TO_FEDERATION:
@@ -593,25 +605,36 @@ class OnApp_Federation extends OnApp {
      *
      * @access public
      */
-    function subscribe( $federation_id = null ) {
-        if ( ! is_null( $federation_id ) ) {
+    function subscribe($federation_id = null, $defaultLabel = '')
+    {
+        if (!is_null($federation_id)) {
             $this->_federation_id = $federation_id;
         }
+        $params = [
+            'hypervisor_group_label',
+            'hypervisor_label',
+            'data_store_group_label',
+            'data_store_label',
+            'network_group_label',
+            'network_label',
+            'image_template_group_label',
+        ];
+        if ($this->getAPIVersion() >= 5.5) {
+            array_push($params, 'backup_server_group_label', 'backup_server_label');
+        }
+        $data = '';
+        foreach ($params as $param) {
+            if ($data) {
+                $data .= '&';
+            }
+            $data .= 'hypervisor_zone_namer[' . $param . ']=' . urlencode((isset($this->{'_' . $param}) && $this->{'_' . $param}) ? $this->{'_' . $param} : $defaultLabel);
+        }
 
-        $data = 'hypervisor_zone_namer[hypervisor_group_label]=' . urlencode( $this->_hypervisor_group_label );
-        $data .= '&hypervisor_zone_namer[hypervisor_label]=' . urlencode( $this->_hypervisor_label );
-        $data .= '&hypervisor_zone_namer[data_store_group_label]=' . urlencode( $this->_data_store_group_label );
-        $data .= '&hypervisor_zone_namer[data_store_label]=' . urlencode( $this->_data_store_label );
-        $data .= '&hypervisor_zone_namer[network_group_label]=' . urlencode( $this->_network_group_label );
-        $data .= '&hypervisor_zone_namer[network_label]=' . urlencode( $this->_network_label );
-        $data .= '&hypervisor_zone_namer[image_template_group_label]=' . urlencode( $this->_image_template_group_label );
-
-        $contentTypeOld                            = $this->options[ ONAPP_OPTION_API_CONTENT ];
-        $this->options[ ONAPP_OPTION_API_CONTENT ] = 'application/x-www-form-urlencoded';
-        $this->sendPost( ONAPP_GETRESOURCE_SUBSCRIBE, $data );
-        $this->options[ ONAPP_OPTION_API_CONTENT ] = $contentTypeOld;
-
-    }
+        $contentTypeOld = $this->options[ONAPP_OPTION_API_CONTENT];
+        $this->options[ONAPP_OPTION_API_CONTENT] = 'application/x-www-form-urlencoded';
+        $this->sendPost(ONAPP_GETRESOURCE_SUBSCRIBE, $data);
+        $this->options[ONAPP_OPTION_API_CONTENT] = $contentTypeOld;
+     }
 
     /**
      * Unsubscribe from Federated Zone

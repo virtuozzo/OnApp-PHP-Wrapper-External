@@ -141,6 +141,47 @@ class OnApp_VDCS_EdgeGateway extends OnApp {
             case 6.0:
                 $this->fields = $this->initFields( 5.5 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                $this->fields['configure_gateway']      = array(
+                    ONAPP_FIELD_MAP  => '_configure_gateway',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['default_gateway']        = array(
+                    ONAPP_FIELD_MAP  => '_default_gateway',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['enable_rate_limits']     = array(
+                    ONAPP_FIELD_MAP  => '_enable_rate_limits',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+
+                $this->fields['incoming_rate_limit']    = array(
+                    ONAPP_FIELD_MAP  => '_incoming_rate_limit',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['outgoing_rate_limit']    = array(
+                    ONAPP_FIELD_MAP  => '_outgoing_rate_limit',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['participate']            = array(
+                    ONAPP_FIELD_MAP  => '_participate',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['auto_ip_assignment']     = array(
+                    ONAPP_FIELD_MAP  => '_auto_ip_assignment',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['ip_address']             = array(
+                    ONAPP_FIELD_MAP  => '_ip_address',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $fields       = array(
+                    'external_network_ids',
+                );
+                $this->unsetFields( $fields );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

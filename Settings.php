@@ -1035,6 +1035,66 @@ class OnApp_Settings extends OnApp {
                 );
                 $this->unsetFields( $fields );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                $this->fields['session_timeout']                    = array(
+                    ONAPP_FIELD_MAP  => '_session_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['default_acceleration_policy']        = array(
+                    ONAPP_FIELD_MAP  => '_default_acceleration_policy',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['adapter_open_connection_timeout']    = array(
+                    ONAPP_FIELD_MAP  => '_adapter_open_connection_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['adapter_response_timeout']           = array(
+                    ONAPP_FIELD_MAP  => '_adapter_response_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['capture_vapp_timeout']               = array(
+                    ONAPP_FIELD_MAP  => '_capture_vapp_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['compose_vapp_timeout']               = array(
+                    ONAPP_FIELD_MAP  => '_compose_vapp_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['create_vapp_template_timeout']       = array(
+                    ONAPP_FIELD_MAP  => '_create_vapp_template_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['default_virsh_console_policy']       = array(
+                    ONAPP_FIELD_MAP  => '_default_virsh_console_policy',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['enable_download_timeout']            = array(
+                    ONAPP_FIELD_MAP  => '_enable_download_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['reset_timeout']                      = array(
+                    ONAPP_FIELD_MAP  => '_reset_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['shutdown_timeout']                   = array(
+                    ONAPP_FIELD_MAP  => '_shutdown_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['unsuspend_timeout']                  = array(
+                    ONAPP_FIELD_MAP  => '_unsuspend_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['upload_media_timeout']               = array(
+                    ONAPP_FIELD_MAP  => '_upload_media_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['upload_vapp_template_timeout']       = array(
+                    ONAPP_FIELD_MAP  => '_upload_vapp_template_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -1043,7 +1103,7 @@ class OnApp_Settings extends OnApp {
     }
 
     public function changeCustomParameters( $params ) {
-        $allowedParams = array( 'use_yubikey_login', 'yubikey_api_key', 'yubikey_api_id', 'allow_to_collect_errors', 'isolated_license', 'max_ip_addresses_to_assign_simultaneously', 'ip_address_reservation_time', 'disable_billing', 'transaction_approvals' );
+        $allowedParams = array( 'use_yubikey_login', 'yubikey_api_key', 'yubikey_api_id', 'allow_to_collect_errors', 'isolated_license', 'max_ip_addresses_to_assign_simultaneously', 'ip_address_reservation_time', 'disable_billing', 'transaction_approvals', 'session_timeout', 'default_acceleration_policy' );
         
         if ( ! is_array( $params ) ) {
             return false;

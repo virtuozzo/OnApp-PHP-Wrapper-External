@@ -182,6 +182,26 @@ define( 'ONAPP_ENABLE_ACCELERATION', 'acceleration.enable' );
 define( 'ONAPP_DISABLE_ACCELERATION', 'acceleration.disable' );
 
 /**
+ * Acceleration Status Virtual Server
+ */
+define( 'ONAPP_ACCELERATION_STATUS', 'acceleration/status' );
+
+/**
+ * Clone Virtual Server
+ */
+define( 'ONAPP_CLONE', 'clone' );
+
+/**
+ * Convert To Virtual Router
+ */
+define( 'ONAPP_CONVERT_TO_VIRTUAL_ROUTER', 'convert_to_virtual_router' );
+
+/**
+ * @var
+ */
+define('ONAPP_VIRSH_CONSOLE', 'virsh_console');
+
+/**
  * Virtual Machines
  *
  * The Virtual Machine class represents the Virtual Machines of the OnAPP installation.
@@ -755,6 +775,18 @@ class OnApp_VirtualMachine extends OnApp {
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                $this->fields['vcenter_cluster_id'] = array(
+                    ONAPP_FIELD_MAP  => '_vcenter_cluster_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['virsh_console']      = array(
+                    ONAPP_FIELD_MAP  => '_virsh_console',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         if ( is_null( $this->_id ) ) {
@@ -1122,6 +1154,128 @@ class OnApp_VirtualMachine extends OnApp {
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/' . ONAPP_DISABLE_ACCELERATION;
                 break;
 
+            case ONAPP_ACCELERATION_STATUS:
+                /**
+                 * ROUTE :
+                 *
+                 * @name Acceleration Status
+                 * @method GET
+                 *
+                 * @alias   /virtual_machines/:virtual_machine_id/acceleration/status(.:format)
+                 *
+                 * @format  {:controller=>"virtual_machines", :action=>"accelerationStatus"}
+                 */
+
+                if ( is_null( $this->_id ) && is_null( $this->_obj->_id ) ) {
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _id not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                } else {
+                    if ( is_null( $this->_id ) ) {
+                        $this->_id = $this->_obj->_id;
+                    }
+                }
+
+                $resource = $this->_resource . '/' . $this->_id . '/' . ONAPP_ACCELERATION_STATUS;
+                $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+                break;
+
+            case ONAPP_CLONE:
+                /**
+                 * ROUTE :
+                 *
+                 * @name Clone
+                 * @method POST
+                 *
+                 * @alias   /virtual_machines/:virtual_machine_id/clone(.:format)
+                 *
+                 * @format  {:controller=>"virtual_machines", :action=>"clone"}
+                 */
+
+                if ( is_null( $this->_id ) && is_null( $this->_obj->_id ) ) {
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _id not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                } else {
+                    if ( is_null( $this->_id ) ) {
+                        $this->_id = $this->_obj->_id;
+                    }
+                }
+
+                $resource = $this->_resource . '/' . $this->_id . '/' . ONAPP_CLONE;
+                $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+                break;
+
+            case ONAPP_CONVERT_TO_VIRTUAL_ROUTER:
+                /**
+                 * ROUTE :
+                 *
+                 * @name Convert To Virtual Router
+                 * @method PUT
+                 *
+                 * @alias   /virtual_machines/:virtual_machine_id/convert_to_virtual_router(.:format)
+                 *
+                 * @format  {:controller=>"virtual_machines", :action=>"convertToVirtualRouter"}
+                 */
+
+                if ( is_null( $this->_id ) && is_null( $this->_obj->_id ) ) {
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _id not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                } else {
+                    if ( is_null( $this->_id ) ) {
+                        $this->_id = $this->_obj->_id;
+                    }
+                }
+
+                $resource = $this->_resource . '/' . $this->_id . '/' . ONAPP_CONVERT_TO_VIRTUAL_ROUTER;
+                $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+                break;
+
+            case ONAPP_VIRSH_CONSOLE:
+                /**
+                 * ROUTE :
+                 *
+                 * @name Enable Virsh Console
+                 * @method PUT
+                 *
+                 * @alias   /virtual_machines/:_id/virsh_console(.:format)
+                 *
+                 * @format  {:controller=>"virtual_machines", :action=>"enableVirshConsole"}
+                 */
+                /**
+                 * ROUTE :
+                 *
+                 * @name Disable Virsh Console
+                 * @method DELETE
+                 *
+                 * @alias   /virtual_machines/:_id/virsh_console(.:format)
+                 *
+                 * @format  {:controller=>"virtual_machines", :action=>"disableVirshConsole"}
+                 */
+
+                if ( is_null( $this->_id ) && is_null( $this->_obj->_id ) ) {
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _id not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                } else {
+                    if ( is_null( $this->_id ) ) {
+                        $this->_id = $this->_obj->_id;
+                    }
+                }
+
+                $resource = $this->_resource . '/' . $this->_id . '/' . ONAPP_VIRSH_CONSOLE;
+                $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+                break;
+
             default:
                 /**
                  * ROUTE :
@@ -1184,6 +1338,10 @@ class OnApp_VirtualMachine extends OnApp {
             ONAPP_EDIT_FQDN,
             ONAPP_ENABLE_ACCELERATION,
             ONAPP_DISABLE_ACCELERATION,
+            ONAPP_ACCELERATION_STATUS,
+            ONAPP_CLONE,
+            ONAPP_CONVERT_TO_VIRTUAL_ROUTER,
+            ONAPP_VIRSH_CONSOLE,
         );
 
         if ( in_array( $action, $actions ) ) {
@@ -1294,6 +1452,9 @@ class OnApp_VirtualMachine extends OnApp {
      * @param int $hypervisor_id destination hypervisor id
      */
     function migrate( $id, $hypervisor_id ) {
+        if ($this->version > 6) {
+            return 'Use class OnApp_VirtualMachine_Migration';
+        }
         if ( $id ) {
             $this->_id = $id;
         }
@@ -1317,6 +1478,10 @@ class OnApp_VirtualMachine extends OnApp {
      * @param int $hypervisor_id destination hypervisor id
      */
     function migration( $id, $hypervisor_id, $cold_migrate_on_rollback = false, $migration_type=null, $data_store_id=null, $virtual_machine_identifier=null ) {
+        if ($this->version > 6) {
+            return 'Use class OnApp_VirtualMachine_Migration';
+        }
+
         if ( $id ) {
             $this->_id = $id;
         }
@@ -1834,6 +1999,37 @@ class OnApp_VirtualMachine extends OnApp {
         $this->_id = $id;
 
         return $this->sendPut( ONAPP_DISABLE_ACCELERATION );
+    }
+
+    public function accelerationStatus()
+    {
+        $this->fields['acceleration_status']    = array(
+            ONAPP_FIELD_MAP         => 'acceleration_status',
+            ONAPP_FIELD_TYPE        => 'string',
+            ONAPP_FIELD_READ_ONLY   => true,
+        );
+
+        return $this->sendGet(ONAPP_ACCELERATION_STATUS);
+    }
+
+    public function clone()
+    {
+        return $this->sendPost( ONAPP_CLONE);
+    }
+
+    public function convertToVirtualRouter()
+    {
+        return $this->sendPut( ONAPP_CONVERT_TO_VIRTUAL_ROUTER);
+    }
+
+    public function enableVirshConsole()
+    {
+        return $this->sendPut( ONAPP_VIRSH_CONSOLE);
+    }
+
+    public function disableVirshConsole()
+    {
+        return $this->sendDelete( ONAPP_VIRSH_CONSOLE);
     }
 
 }

@@ -74,7 +74,13 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
 
         // get API version
         if ( is_null( parent::$obj->getAPIVersion() ) ) {
-            return $data->$root;
+            foreach (array($root, 'error', 'errors') as $property) {
+                if (property_exists($data, $property)) {
+                    return $data->$property;
+                }
+            }
+
+            return 'unknown error';
         }
 
         // get errors

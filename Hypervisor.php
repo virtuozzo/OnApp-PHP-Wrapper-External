@@ -68,6 +68,16 @@ define('ONAPP_VIRTUAL_MACHINES_STOP', 'stop');
 define('ONAPP_ENABLE_KERNEL_CRASH_DUMPING', 'crash_debug');
 
 /**
+ * @var
+ */
+define('ONAPP_SAVE_STATIC_COMPUTE_RESOURCE','save_static');
+
+/**
+ * @var
+ */
+define('ONAPP_EDIT_STATIC_COMPUTE_RESOURCE_DEVICES', 'edit_static_devices');
+
+/**
  * Hypervisors
  *
  * This class represents the Hypervisors of your OnApp installation. The OnApp class is the parent of the Hypervisors class.
@@ -513,6 +523,18 @@ class OnApp_Hypervisor extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                $this->fields['static_integrated_storage']  = array(
+                    ONAPP_FIELD_MAP  => '_static_integrated_storage',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['instance_uuid']              = array(
+                    ONAPP_FIELD_MAP  => '_instance_uuid',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -583,6 +605,43 @@ class OnApp_Hypervisor extends OnApp {
             case ONAPP_APPLY_HYPERVISOR_GROUP_CUSTOM_CONFIG:
                 
                 $resource = $this->_resource . '/' . $this->_id;
+                break;
+
+            case ONAPP_SAVE_STATIC_COMPUTE_RESOURCE:
+                /**
+                 * ROUTE :
+                 *
+                 * @name
+                 * @method POST
+                 * @alias   /settings/hypervisors(.:format)
+                 * @format  {:controller=>"settings_hypervisors", :action=>"create_static_compute_resource"}
+                 */
+                /**
+                 * ROUTE :
+                 *
+                 * @name
+                 * @method PUT
+                 * @alias  /settings/hypervisors/:id(.:format)
+                 * @format {:controller=>"settings_hypervisors", :action=>"update_static_compute_resource"}
+                 */
+
+                $resource = $this->_resource;
+                if ($this->_id) {
+                    $resource .= '/' . $this->_id;
+                }
+                break;
+
+            case ONAPP_EDIT_STATIC_COMPUTE_RESOURCE_DEVICES:
+                /**
+                 * ROUTE :
+                 *
+                 * @name
+                 * @method PUT
+                 * @alias  /settings/hypervisors/:id/devices(.:format)
+                 * @format {:controller=>"settings_hypervisors", :action=>"edit_static_compute_resource_devices"}
+                 */
+
+                $resource = $this->_resource . '/' . $this->_id . '/devices';
                 break;
 
             case ONAPP_GETRESOURCE_DEFAULT:
@@ -951,5 +1010,67 @@ class OnApp_Hypervisor extends OnApp {
         );
         
         return $this->sendPut(ONAPP_ENABLE_KERNEL_CRASH_DUMPING, $data);
+    }
+
+    public function saveStaticComputeResource() {
+        $this->fields['collect_stats']  = array(
+            ONAPP_FIELD_MAP  => '_collect_stats',
+            ONAPP_FIELD_TYPE => 'string',
+        );
+
+        $data = array(
+            'root' => $this->_tagRoot,
+            'data' => array(
+                'label' => $this->_label,
+                'hypervisor_type' => $this->_hypervisor_type,
+                'segregation_os_type' => $this->_segregation_os_type,
+                'ip_address' => $this->_ip_address,
+                'backup_ip_address' => $this->_backup_ip_address,
+                'cpu_units' => $this->_cpu_units,
+                'enabled' => $this->_enabled,
+                'collect_stats' => $this->_collect_stats,
+                'disable_failover' => $this->_disable_failover,
+                'failover_recipe_id' => $this->_failover_recipe_id,
+                'amqp_exchange_name' => $this->_amqp_exchange_name,
+                'static_integrated_storage' => $this->_static_integrated_storage,
+                'mtu' => $this->_mtu,
+                'storage_bonding_mode' => $this->_storage_bonding_mode,
+                'storage_controller_memory_size' => $this->_storage_controller_memory_size,
+                'storage_controller_db_size' => $this->_storage_controller_db_size,
+                'disks_per_storage_controller' => $this->_disks_per_storage_controller,
+                'storage_vlan' => $this->_storage_vlan,
+                'power_cycle_command' => $this->_power_cycle_command,
+            ),
+        );
+
+        if ($this->_id === null) {
+            return $this->sendPost(ONAPP_SAVE_STATIC_COMPUTE_RESOURCE, $data);
+        } else {
+            return $this->sendPut(ONAPP_SAVE_STATIC_COMPUTE_RESOURCE, $data);
+        }
+    }
+
+    public function editStaticComputeResourceDevices() {
+        $this->fields['hypervisor_devices']  = array(
+            ONAPP_FIELD_MAP  => '_hypervisor_devices',
+            ONAPP_FIELD_TYPE => '_array',
+        );
+        $this->fields['hypervisor']  = array(
+            ONAPP_FIELD_MAP  => '_hypervisor',
+            ONAPP_FIELD_TYPE => '_array',
+        );
+
+        $data = array(
+            'hypervisor_devices' => $this->_hypervisor_devices,
+            'hypervisor' => $this->_hypervisor,
+            'hypervisor_id' => $this->_id,
+        );
+
+        $dataJSON = json_encode($data);
+        $this->setAPIResource( $this->getResource( ONAPP_EDIT_STATIC_COMPUTE_RESOURCE_DEVICES ) );
+        $response = $this->sendRequest( ONAPP_REQUEST_METHOD_PUT, $dataJSON );
+
+        $result     = $this->_castResponseToClass( $response );
+        $this->_obj = $result;
     }
 }

@@ -102,6 +102,22 @@ class OnApp_Network_IpNet extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                $this->fields['default_gateway']        = array(
+                    ONAPP_FIELD_MAP  => '_default_gateway',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['gateway_ouside_ip_net']  = array(
+                    ONAPP_FIELD_MAP  => '_gateway_ouside_ip_net',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['add_default_ip_range']   = array(
+                    ONAPP_FIELD_MAP  => '_add_default_ip_range',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

@@ -95,6 +95,26 @@ class OnApp_Vapp_VirtualMachineParam extends OnApp {
             case 6.0:
                 $this->fields = $this->initFields( 5.5 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                $this->fields['storage_policy'] = array(
+                    ONAPP_FIELD_MAP  => '_storage_policy',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['hard_disks'] = array(
+                    ONAPP_FIELD_MAP  => '_hard_disks',
+                    ONAPP_FIELD_TYPE => '_array',
+                );
+                $this->fields['nics'] = array(
+                    ONAPP_FIELD_MAP  => '_nics',
+                    ONAPP_FIELD_TYPE => '_array',
+                );
+                $this->fields['boot_vm'] = array(
+                    ONAPP_FIELD_MAP  => '_boot_vm',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

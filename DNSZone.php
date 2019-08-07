@@ -131,6 +131,11 @@ class OnApp_DNSZone extends OnApp {
                     ONAPP_FIELD_TYPE => 'integer',
                 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                break;
+
             default:
                 $this->fields = $this->initFields( '3.0' );
                 break;

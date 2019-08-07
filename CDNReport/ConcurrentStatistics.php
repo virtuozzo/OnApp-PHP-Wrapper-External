@@ -55,6 +55,10 @@ class OnApp_CDNReport_ConcurrentStatistics extends OnApp {
                     ),
                 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

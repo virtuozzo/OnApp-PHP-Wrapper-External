@@ -362,6 +362,19 @@ class OnApp_OrchestrationModel extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+
+            case 6.1:
+                $this->fields['default_gateway_ip_net_id']               = array(
+                    ONAPP_FIELD_MAP  => '_default_gateway_ip_net_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['use_default_route_for_dns_relay']               = array(
+                    ONAPP_FIELD_MAP  => '_use_default_route_for_dns_relay',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+
+                $this->fields = $this->initFields( 6.0 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

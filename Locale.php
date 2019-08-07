@@ -96,6 +96,10 @@ class OnApp_Locale extends OnApp {
                         ONAPP_FIELD_READ_ONLY   => true
                 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

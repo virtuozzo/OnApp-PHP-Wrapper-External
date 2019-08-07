@@ -197,6 +197,14 @@ class OnApp_LoadBalancingCluster extends OnApp {
             case 6.0:
                 $this->fields = $this->initFields( 5.5 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                $this->fields['cpu_priority'] = array(
+                    ONAPP_FIELD_MAP  => '_cpu_priority',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

@@ -129,6 +129,51 @@ class OnApp_VirtualMachine_Recipe extends OnApp {
             case 6.0:
                 $this->fields = $this->initFields( 5.5 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+
+                $this->fields['vm_ip_address_add']      = array(
+                    ONAPP_FIELD_MAP  => '_vm_ip_address_add',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['vm_ip_address_remove']   = array(
+                    ONAPP_FIELD_MAP  => '_vm_ip_address_remove',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['vm_nic_remove']          = array(
+                    ONAPP_FIELD_MAP  => '_vm_nic_remove',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['vm_start']               = array(
+                    ONAPP_FIELD_MAP  => '_vm_start',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['vm_reboot']              = array(
+                    ONAPP_FIELD_MAP  => '_vm_reboot',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['vm_hot_migrate']         = array(
+                    ONAPP_FIELD_MAP  => '_vm_hot_migrate',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['vm_hot_full_migrate']    = array(
+                    ONAPP_FIELD_MAP  => '_vm_hot_full_migrate',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['vm_failover']            = array(
+                    ONAPP_FIELD_MAP  => '_vm_failover',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['ip_allocated_to_vm_nic'] = array(
+                    ONAPP_FIELD_MAP  => '_ip_allocated_to_vm_nic',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['ip_revoked_from_vm_nic'] = array(
+                    ONAPP_FIELD_MAP  => '_ip_revoked_from_vm_nic',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

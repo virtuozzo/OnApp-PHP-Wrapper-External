@@ -279,6 +279,10 @@ class OnApp_CDNResource_Advanced extends OnApp {
                 );
                 $this->unsetFields( $fields );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

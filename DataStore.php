@@ -244,6 +244,18 @@ class OnApp_DataStore extends OnApp {
             case 6.0:
                 $this->fields = $this->initFields( 5.5 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                $this->fields['trim']       = array(
+                    ONAPP_FIELD_MAP  => '_trim',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['default']    = array(
+                    ONAPP_FIELD_MAP  => '_default',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

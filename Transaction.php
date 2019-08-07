@@ -211,6 +211,14 @@ class OnApp_Transaction extends OnApp {
             case 6.0:
                 $this->fields = $this->initFields( 5.5 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                $this->fields['lock_version'] = array(
+                    ONAPP_FIELD_MAP  => '_lock_version',
+                    ONAPP_FIELD_TYPE => 'integer'
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

@@ -449,6 +449,19 @@ class OnApp_Bucket_RateCards_Prices extends OnApp {
                 );
 
                 break;
+
+            case 6.1:
+                $this->fields['price_space_used']               = array(
+                    ONAPP_FIELD_MAP  => '_price_space_used',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['limit_space_used_free']          = array(
+                    ONAPP_FIELD_MAP  => '_limit_space_used_free',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+
+                $this->fields = $this->initFields( 6.0 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

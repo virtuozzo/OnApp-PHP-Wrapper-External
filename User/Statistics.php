@@ -302,6 +302,30 @@ class OnApp_User_Statistics extends OnApp {
                     ONAPP_FIELD_TYPE => 'float',
                 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                $this->fields['backup_resource_usage_cost']      = array(
+                    ONAPP_FIELD_MAP  => '_backup_resource_usage_cost',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['backup_resource_usage_discount_due_to_free']     = array(
+                    ONAPP_FIELD_MAP  => '_backup_resource_usage_discount_due_to_free',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['monthly_discount_due_to_free']   = array(
+                    ONAPP_FIELD_MAP  => '_monthly_discount_due_to_free',
+                    ONAPP_FIELD_TYPE => 'float',
+                );
+                $this->fields['recovery_point_size_cost']        = array(
+                    ONAPP_FIELD_MAP  => '_recovery_point_size_cost',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['recovery_point_size_discount_due_to_free']       = array(
+                    ONAPP_FIELD_MAP  => '_recovery_point_size_discount_due_to_free',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

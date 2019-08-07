@@ -145,6 +145,10 @@ class OnApp_Hypervisor_NetworkJoin extends OnApp {
                     ONAPP_FIELD_REQUIRED => true
                 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

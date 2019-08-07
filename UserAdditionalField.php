@@ -107,6 +107,10 @@ class OnApp_UserAdditionalField extends OnApp {
                 $this->fields = $this->initFields( 5.5 );
                 break;
 
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                break;
+
             default:
                 $this->logger->error(
                     'supported only from 2.3 version',

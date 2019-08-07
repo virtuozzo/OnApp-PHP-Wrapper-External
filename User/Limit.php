@@ -159,6 +159,18 @@ class OnApp_User_Limit extends OnApp {
             case 6.0:
                 $this->fields = $this->initFields( 5.5 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                $this->fields['clusters']       = array(
+                    ONAPP_FIELD_MAP   => '_clusters',
+                    ONAPP_FIELD_TYPE  => '_array',
+                );
+                $this->fields['datacenters']    = array(
+                    ONAPP_FIELD_MAP   => '_datacenters',
+                    ONAPP_FIELD_TYPE  => '_array',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

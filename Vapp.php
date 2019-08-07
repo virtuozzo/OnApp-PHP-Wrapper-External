@@ -190,6 +190,15 @@ class OnApp_Vapp extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+
+                $this->fields['network_quota']    = array(
+                    ONAPP_FIELD_MAP  => '_network_quota',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

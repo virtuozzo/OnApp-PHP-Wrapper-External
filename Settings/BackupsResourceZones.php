@@ -82,6 +82,10 @@ class OnApp_Settings_BackupsResourceZones extends OnApp {
                     ),
                 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
@@ -105,7 +109,7 @@ class OnApp_Settings_BackupsResourceZones extends OnApp {
                  * @name Settings BackupsResourceZones
                  * @method GET
                  * 
-                 * @alias   /settings/backups/resources/:resource_id/auto_backup_presets(.:format)
+                 * @alias   /settings/backups/resource_zones(.:format)
                  * @format  {:controller=>"Settings_BackupsResourceZones", :action=>"index"}
                  */
                 /**
@@ -114,7 +118,7 @@ class OnApp_Settings_BackupsResourceZones extends OnApp {
                  * @name Settings BackupsResourceZones
                  * @method GET
                  * 
-                 * @alias   /settings/backups/resources/:resource_id/auto_backup_presets/:id(.:format)
+                 * @alias   /settings/backups/resource_zones/:id(.:format)
                  * @format  {:controller=>"Settings_BackupsResourceZones", :action=>"index"}
                  */
                 /**
@@ -123,7 +127,7 @@ class OnApp_Settings_BackupsResourceZones extends OnApp {
                  * @name Settings BackupsResourceZones
                  * @method POST
                  * 
-                 * @alias   /settings/backups/resources/:resource_id/auto_backup_presets(.:format)
+                 * @alias   /settings/backups/resource_zones(.:format)
                  * @format  {:controller=>"Settings_BackupsResourceZones", :action=>"add"}
                  */
                 /**
@@ -132,7 +136,7 @@ class OnApp_Settings_BackupsResourceZones extends OnApp {
                  * @name Settings BackupsResourceZones
                  * @method PUT
                  * 
-                 * @alias   /settings/backups/resources/:resource_id/auto_backup_presets/:id(.:format)
+                 * @alias   /settings/backups/resource_zones/:id(.:format)
                  * @format  {:controller=>"Settings_BackupsResourceZones", :action=>"edit"}
                  */
                 /**
@@ -141,7 +145,7 @@ class OnApp_Settings_BackupsResourceZones extends OnApp {
                  * @name Settings BackupsResourceZones
                  * @method DELETE
                  * 
-                 * @alias   /settings/backups/resources/:resource_id/auto_backup_presets/:id(.:format)
+                 * @alias   /settings/backups/resource_zones/:id(.:format)
                  * @format  {:controller=>"Settings_BackupsResourceZones", :action=>"delete"}
                  */
                 

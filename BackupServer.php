@@ -156,6 +156,18 @@ class OnApp_BackupServer extends OnApp {
                     ONAPP_FIELD_TYPE => 'integer',
                 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                $this->fields['cpus']               = array(
+                    ONAPP_FIELD_MAP  => '_cpus',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['integrated_storage'] = array(
+                    ONAPP_FIELD_MAP  => '_integrated_storage',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

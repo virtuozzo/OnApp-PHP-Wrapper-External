@@ -199,6 +199,26 @@ class OnApp_CDNAccelerator_Disk extends OnApp {
             case 6.0:
                 $this->fields = $this->initFields( 5.5 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                $this->fields['io_limits']                      = array(
+                    ONAPP_FIELD_MAP  => '_io_limits',
+                    ONAPP_FIELD_TYPE => '_array',
+                );
+                $this->fields['io_limits_override']             = array(
+                    ONAPP_FIELD_MAP  => '_io_limits_override',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['openstack_id']                   = array(
+                    ONAPP_FIELD_MAP  => '_openstack_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['temporary_virtual_machine_id']  = array(
+                    ONAPP_FIELD_MAP  => '_temporary_virtual_machine_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

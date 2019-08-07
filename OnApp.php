@@ -1499,6 +1499,7 @@ class OnApp {
                     if ( is_null( $result ) ) {
                         $this->_obj = clone $this;
                     } else {
+                        $this->_obj = new \stdClass();
                         $this->_obj->errors = $result->getErrorsAsArray();
                     }
 

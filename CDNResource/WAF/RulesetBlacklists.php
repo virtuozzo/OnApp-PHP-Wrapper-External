@@ -49,6 +49,10 @@ class OnApp_CDNResource_WAF_RulesetBlacklists extends OnApp {
                 );
 
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

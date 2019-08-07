@@ -184,6 +184,22 @@ class OnApp_OrgNetwork extends OnApp {
                     ONAPP_FIELD_REQUIRED => true
                 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                $this->fields['dv_switch_id']           = array(
+                    ONAPP_FIELD_MAP      => '_dv_switch_id',
+                    ONAPP_FIELD_TYPE     => 'integer',
+                );
+                $this->fields['universal_router_id']    = array(
+                    ONAPP_FIELD_MAP      => '_universal_router_id',
+                    ONAPP_FIELD_TYPE     => 'integer',
+                );
+                $this->fields['vdc_group_id']           = array(
+                    ONAPP_FIELD_MAP      => '_vdc_group_id',
+                    ONAPP_FIELD_TYPE     => 'integer',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

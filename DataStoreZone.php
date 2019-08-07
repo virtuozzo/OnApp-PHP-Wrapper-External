@@ -191,6 +191,14 @@ class OnApp_DataStoreZone extends OnApp {
             case 6.0:
                 $this->fields = $this->initFields( 5.5 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                $this->fields['datacenter_id']  = array(
+                    ONAPP_FIELD_MAP  => '_datacenter_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

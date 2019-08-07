@@ -52,6 +52,16 @@ define( 'ONAPP_GETRESOURCE_IP_UNASSIGN', 'ip_unassign' );
 define( 'ONAPP_MANAGE_FAILOVER', 'manage_failover' );
 
 /**
+ * @var
+ */
+define('ONAPP_ASSIGN_TO_USER', 'assign_to_user');
+
+/**
+ * @var
+ */
+define('ONAPP_UNASSIGN_FROM_USER', 'unassign_from_user');
+
+/**
  * Configuring Network
  *
  * This class represents the Networks added to your system.
@@ -263,6 +273,22 @@ class OnApp_Network extends OnApp {
             case 6.0:
                 $this->fields = $this->initFields( 5.5 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                $this->fields['dv_switch_id']       = array(
+                    ONAPP_FIELD_MAP      => '_dv_switch_id',
+                    ONAPP_FIELD_TYPE     => 'integer',
+                );
+                $this->fields['universal_router_id'] = array(
+                    ONAPP_FIELD_MAP      => '_universal_router_id',
+                    ONAPP_FIELD_TYPE     => 'integer',
+                );
+                $this->fields['vdc_group_id']       = array(
+                    ONAPP_FIELD_MAP      => '_vdc_group_id',
+                    ONAPP_FIELD_TYPE     => 'integer',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -318,6 +344,24 @@ class OnApp_Network extends OnApp {
                  * @alias  /settings/hypervisor_zones/:id/manage_failover(.:format)
                  */
                 $resource = 'settings/hypervisor_zones/' . $this->_hypervisor_group_id . '/' . ONAPP_MANAGE_FAILOVER;
+                break;
+
+            case ONAPP_ASSIGN_TO_USER:
+                /*
+                 * @method POST
+                 *
+                 * @alias  /settings/networks/:network_id/assign_to_user(.:format)
+                 */
+                $resource = $this->_resource . '/' . $this->_id . '/' . ONAPP_ASSIGN_TO_USER;
+                break;
+
+            case ONAPP_UNASSIGN_FROM_USER:
+                /*
+                 * @method DELETE
+                 *
+                 * @alias  /settings/networks/:network_id/unassign_from_user(.:format)
+                 */
+                $resource = $this->_resource . $this->_id . '/' . ONAPP_UNASSIGN_FROM_USER;
                 break;
 
             default:
@@ -475,5 +519,36 @@ class OnApp_Network extends OnApp {
         $res = $this->sendPatch( ONAPP_MANAGE_FAILOVER, $data );
 
         return $res;
+    }
+
+    public function assignToUser()
+    {
+        if (is_null( $this->user_id )) {
+            $this->logger->error(
+                'save: argument $_user_id not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
+
+        $data = array(
+            'user_id' => $this->_user_id
+        );
+
+        $dataJSON = json_encode($data);
+        $this->setAPIResource( $this->getResource( ONAPP_ASSIGN_TO_USER ) );
+        $response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST, $dataJSON );
+
+        $result     = $this->_castResponseToClass( $response );
+        $this->_obj = $result;
+    }
+
+    public function unassignFromUser()
+    {
+        $this->setAPIResource( $this->getResource( ONAPP_UNASSIGN_FROM_USER ) );
+        $response = $this->sendRequest( ONAPP_REQUEST_METHOD_DELETE, '' );
+
+        $result     = $this->_castResponseToClass( $response );
+        $this->_obj = $result;
     }
 }

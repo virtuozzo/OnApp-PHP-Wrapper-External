@@ -437,6 +437,38 @@ class OnApp_CDNAccelerator extends OnApp {
             case 6.0:
                 $this->fields = $this->initFields( 5.5 );
                 break;
+
+            case 6.1:
+                $this->fields = $this->initFields( 6.0 );
+                $this->fields['acceleration_allowed']   = array(
+                    ONAPP_FIELD_MAP  => '_acceleration_allowed',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['domain']                 = array(
+                    ONAPP_FIELD_MAP  => '_domain',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['openstack_id']           = array(
+                    ONAPP_FIELD_MAP  => '_openstack_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['properties']             = array(
+                    ONAPP_FIELD_MAP  => '_properties',
+                    ONAPP_FIELD_TYPE => '_array',
+                );
+                $this->fields['vcenter_cluster_id']     = array(
+                    ONAPP_FIELD_MAP  => '_vcenter_cluster_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['vcenter_reserved_memory'] = array(
+                    ONAPP_FIELD_MAP  => '_vcenter_reserved_memory',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['virsh_console']          = array(
+                    ONAPP_FIELD_MAP  => '_virsh_console',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
