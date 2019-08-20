@@ -146,7 +146,11 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
                     } else {
                         $tmp             = new DataHolder;
                         $tmp->APIVersion = parent::$APIVersion;
-                        $tmp->className  = $this->map[ $name ][ ONAPP_FIELD_CLASS ];
+                        if (isset($this->map[ $name ][ ONAPP_FIELD_CLASS ])) {
+                            $tmp->className = $this->map[ $name ][ ONAPP_FIELD_CLASS ];
+                        } else {
+                            $tmp->className = 'stdClass';
+                        }
                         $tmp->data       = $value;
                         $value           = $tmp;
                     }
