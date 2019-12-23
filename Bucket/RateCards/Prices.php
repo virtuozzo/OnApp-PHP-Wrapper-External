@@ -462,6 +462,10 @@ class OnApp_Bucket_RateCards_Prices extends OnApp {
 
                 $this->fields = $this->initFields( 6.0 );
                 break;
+
+            case 6.2:
+                $this->fields = $this->initFields( 6.1 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

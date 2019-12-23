@@ -202,6 +202,20 @@ define( 'ONAPP_CONVERT_TO_VIRTUAL_ROUTER', 'convert_to_virtual_router' );
 define('ONAPP_VIRSH_CONSOLE', 'virsh_console');
 
 /**
+ * @var
+ */
+define('ONAPP_RESYNC', 'resync');
+
+/**
+ * @var
+ */
+define('ONAPP_ADD_EDIT_OVA_VS_CONFIG', 'network_appliance_config');
+
+/**
+ * @var
+ */
+define('ONAPP_ADD_EDIT_OVA_VS_LICENSE', 'network_appliance_license');
+/**
  * Virtual Machines
  *
  * The Virtual Machine class represents the Virtual Machines of the OnAPP installation.
@@ -786,6 +800,15 @@ class OnApp_VirtualMachine extends OnApp {
                     ONAPP_FIELD_MAP  => '_virsh_console',
                     ONAPP_FIELD_TYPE => 'string',
                 );
+                $this->fields['trim_disabled']      = array(
+                    ONAPP_FIELD_MAP  => '_trim_disabled',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+
+                break;
+
+            case 6.2:
+                $this->fields = $this->initFields( 6.1 );
                 break;
         }
 
@@ -1276,6 +1299,90 @@ class OnApp_VirtualMachine extends OnApp {
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
 
+            case ONAPP_RESYNC:
+                /**
+                 * ROUTE :
+                 *
+                 * @name Re-import vCenter VS
+                 * @method POST
+                 *
+                 * @alias   /virtual_machines/:id/resync(.:format)
+                 *
+                 * @format  {:controller=>"virtual_machines", :action=>"resync"}
+                 */
+
+                if ( is_null( $this->_id ) && is_null( $this->_obj->_id ) ) {
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _id not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                } else {
+                    if ( is_null( $this->_id ) ) {
+                        $this->_id = $this->_obj->_id;
+                    }
+                }
+
+                $resource = $this->_resource . '/' . $this->_id . '/' . ONAPP_RESYNC;
+                $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+                break;
+
+            case ONAPP_ADD_EDIT_OVA_VS_CONFIG:
+                /**
+                 * ROUTE :
+                 *
+                 * @name Add/Edit OVA VS Config
+                 * @method PUT
+                 *
+                 * @alias   /virtual_machines/:id/network_appliance_config(.:format)
+                 *
+                 * @format  {:controller=>"virtual_machines", :action=>"saveOVAVSConfig"}
+                 */
+
+                if ( is_null( $this->_id ) && is_null( $this->_obj->_id ) ) {
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _id not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                } else {
+                    if ( is_null( $this->_id ) ) {
+                        $this->_id = $this->_obj->_id;
+                    }
+                }
+
+                $resource = $this->_resource . '/' . $this->_id . '/' . ONAPP_ADD_EDIT_OVA_VS_CONFIG;
+                $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+                break;
+
+            case ONAPP_ADD_EDIT_OVA_VS_LICENSE:
+                /**
+                 * ROUTE :
+                 *
+                 * @name Add/Edit OVA VS License
+                 * @method PUT
+                 *
+                 * @alias   /virtual_machines/:id/network_appliance_license(.:format)
+                 *
+                 * @format  {:controller=>"virtual_machines", :action=>"saveOVAVSLicense"}
+                 */
+
+                if ( is_null( $this->_id ) && is_null( $this->_obj->_id ) ) {
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _id not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                } else {
+                    if ( is_null( $this->_id ) ) {
+                        $this->_id = $this->_obj->_id;
+                    }
+                }
+
+                $resource = $this->_resource . '/' . $this->_id . '/' . ONAPP_ADD_EDIT_OVA_VS_LICENSE;
+                $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+                break;
+
             default:
                 /**
                  * ROUTE :
@@ -1342,6 +1449,9 @@ class OnApp_VirtualMachine extends OnApp {
             ONAPP_CLONE,
             ONAPP_CONVERT_TO_VIRTUAL_ROUTER,
             ONAPP_VIRSH_CONSOLE,
+            ONAPP_RESYNC,
+            ONAPP_ADD_EDIT_OVA_VS_CONFIG,
+            ONAPP_ADD_EDIT_OVA_VS_LICENSE,
         );
 
         if ( in_array( $action, $actions ) ) {
@@ -2032,4 +2142,34 @@ class OnApp_VirtualMachine extends OnApp {
         return $this->sendDelete( ONAPP_VIRSH_CONSOLE);
     }
 
+    public function resync()
+    {
+        return $this->sendPost( ONAPP_RESYNC);
+    }
+
+    public function saveOVAVSConfig($networkApplianceConfig, $fileUrl)
+    {
+        $data = array(
+            'root' => $this->_tagRoot,
+            'data' => array(
+                'network_appliance_config' => $networkApplianceConfig,
+                'file_url' => $fileUrl,
+            ),
+        );
+
+        return $this->sendPut( ONAPP_ADD_EDIT_OVA_VS_CONFIG, $data);
+    }
+
+    public function saveOVAVSLicense($networkApplianceLicense, $fileUrl)
+    {
+        $data = array(
+            'root' => $this->_tagRoot,
+            'data' => array(
+                'network_appliance_license' => $networkApplianceLicense,
+                'file_url' => $fileUrl,
+            ),
+        );
+
+        return $this->sendPut( ONAPP_ADD_EDIT_OVA_VS_LICENSE, $data);
+    }
 }

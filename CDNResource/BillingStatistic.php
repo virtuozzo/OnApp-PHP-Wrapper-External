@@ -108,7 +108,7 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                 );
-                $this->fields = $this->initFields( 2.1 );
+
                 break;
 
             case 3.0:
@@ -179,6 +179,10 @@ class OnApp_CDNResource_BillingStatistic extends OnApp {
 
             case 6.1:
                 $this->fields = $this->initFields( 6.0 );
+                break;
+
+            case 6.2:
+                $this->fields = $this->initFields( 6.1 );
                 break;
         }
 

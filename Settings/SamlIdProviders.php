@@ -173,6 +173,14 @@ class OnApp_Settings_SamlIdProviders extends OnApp {
             case 6.1:
                 $this->fields = $this->initFields( 6.0 );
                 break;
+
+            case 6.2:
+                $this->fields = $this->initFields( 6.1 );
+                $this->fields['certificate']    = array(
+                    ONAPP_FIELD_MAP  => '_certificate',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 

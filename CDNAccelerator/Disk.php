@@ -219,6 +219,14 @@ class OnApp_CDNAccelerator_Disk extends OnApp {
                     ONAPP_FIELD_TYPE => 'integer',
                 );
                 break;
+
+            case 6.2:
+                $this->fields = $this->initFields( 6.1 );
+                $this->fields['draas_metadata']  = array(
+                    ONAPP_FIELD_MAP  => '_draas_metadata',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

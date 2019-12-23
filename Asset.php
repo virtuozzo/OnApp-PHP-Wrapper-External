@@ -135,6 +135,10 @@ class OnApp_Asset extends OnApp_Hypervisor {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+
+            case 6.2:
+                $this->fields = $this->initFields( 6.1 );
+                break;
         }
 
 

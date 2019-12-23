@@ -373,6 +373,10 @@ class OnApp_Federation extends OnApp {
             case 6.1:
                 $this->fields = $this->initFields( 6.0 );
                 break;
+
+            case 6.2:
+                $this->fields = $this->initFields( 6.1 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -566,6 +570,7 @@ class OnApp_Federation extends OnApp {
     }
 
     function getListUnsubscribed( $query = null ) {
+        $url_args = array();
         if ( ! is_null( $query ) ) {
             $url_args['q'] = urlencode( $query );
         }

@@ -132,6 +132,10 @@ class OnApp_VDCS_Statistics extends OnApp {
             case 6.1:
                 $this->fields = $this->initFields( 6.0 );
                 break;
+
+            case 6.2:
+                $this->fields = $this->initFields( 6.1 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

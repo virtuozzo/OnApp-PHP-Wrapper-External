@@ -13,6 +13,11 @@
  */
 
 /**
+ * @var
+ */
+define('ONAPP_MIGRATE_FROM_XEN_TO_KVM', 'migration');
+
+/**
  * Managing VirtualMachine Migration
  * 
  * {@link add}
@@ -63,6 +68,22 @@ class OnApp_VirtualMachine_Migration extends OnApp {
                     ),
                 );
                 break;
+
+            case 6.2:
+                $this->fields = $this->initFields( 6.1 );
+                $this->fields['backup_before_migration']    = array(
+                    ONAPP_FIELD_MAP  => '_backup_before_migration',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['delete_old_backups']    = array(
+                    ONAPP_FIELD_MAP  => '_delete_old_backups',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['backup_after_migration']    = array(
+                    ONAPP_FIELD_MAP  => '_backup_after_migration',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                break;
         }
         
         parent::initFields( $version, __CLASS__ );
@@ -102,12 +123,78 @@ class OnApp_VirtualMachine_Migration extends OnApp {
                 $resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->_resource;
                 break;
 
+            case ONAPP_MIGRATE_FROM_XEN_TO_KVM:
+                /**
+                 * ROUTE :
+                 *
+                 * @name Migrate VS from Xen to KVM
+                 * @method POST
+                 *
+                 * @alias   /virtual_machines/:virtual_machine_id/migration(.:format)
+                 * @format  {:controller=>"OnApp_VirtualMachine_Migration", :action=>"add"}
+                 */
+
+                if ( is_null( $this->_virtual_machine_id ) ) {
+                    $this->logger->error(
+                        "getResource($action): argument _virtual_machine_id not set.",
+                        __FILE__,
+                        __LINE__
+                    );
+                }
+
+                $resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . ONAPP_MIGRATE_FROM_XEN_TO_KVM;
+                break;
+
             default:
                 $resource = parent::getResource( $action );
                 break;
         }
 
         return $resource;
+    }
+
+    public function migrateFromXenToKVM()
+    {
+        if (is_null($this->_migration_type)) {
+            $this->logger->error(
+                "migrateFromXenToKVM(): argument _migration_type not set.",
+                __FILE__,
+                __LINE__
+            );
+        }
+
+        if (is_null($this->_destination)) {
+            $this->logger->error(
+                "migrateFromXenToKVM(): argument _destination not set.",
+                __FILE__,
+                __LINE__
+            );
+        }
+
+        if (is_null($this->_backup_before_migration)) {
+            $this->_backup_before_migration = 1;
+        }
+
+        if (is_null($this->_delete_old_backups)) {
+            $this->_delete_old_backups = 1;
+        }
+
+        if (is_null($this->_backup_after_migration)) {
+            $this->_backup_after_migration = 1;
+        }
+
+        $data = array(
+            'root' => $this->_tagRoot,
+            'data' => array(
+                'migration_type' => $this->_migration_type,
+                'backup_before_migration' => $this->_backup_before_migration,
+                'delete_old_backups' => $this->_delete_old_backups,
+                'backup_after_migration' => $this->_backup_after_migration,
+                'destination' => $this->_destination,
+            )
+        );
+
+        return $this->sendPost( ONAPP_MIGRATE_FROM_XEN_TO_KVM, $data );
     }
 
     /**

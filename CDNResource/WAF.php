@@ -25,7 +25,7 @@ class OnApp_CDNResource_WAF extends OnApp {
      *
      * @var string
      */
-    var $_tagRoot = 'cdn_resource';
+    var $_tagRoot = 'resource';
     /**
      * alias processing the object data
      *
@@ -68,6 +68,10 @@ class OnApp_CDNResource_WAF extends OnApp {
 
             case 6.1:
                 $this->fields = $this->initFields( 6.0 );
+                break;
+
+            case 6.2:
+                $this->fields = $this->initFields( 6.1 );
                 break;
         }
         

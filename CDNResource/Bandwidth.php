@@ -67,7 +67,7 @@ class OnApp_CDNResource_Bandwidth extends OnApp {
                         ONAPP_FIELD_READ_ONLY => true,
                     ),
                 );
-                $this->fields = $this->initFields( 2.1 );
+
                 break;
 
             case 3.0:

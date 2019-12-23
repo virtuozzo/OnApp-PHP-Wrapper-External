@@ -171,9 +171,13 @@ class OnApp_VirtualMachine_FirewallRule extends OnApp {
             case 6.1:
                 $this->fields = $this->initFields( 6.0 );
                 $this->fields['comment']    = array(
-                    ONAPP_FIELD_MAP  => 'comment',
+                    ONAPP_FIELD_MAP  => '_comment',
                     ONAPP_FIELD_TYPE => 'string',
                 );
+                break;
+
+            case 6.2:
+                $this->fields = $this->initFields( 6.1 );
                 break;
         }
 

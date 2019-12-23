@@ -283,6 +283,14 @@ class OnApp_Disk extends OnApp {
             case 6.1:
                 $this->fields = $this->initFields( 6.0 );
                 break;
+
+            case 6.2:
+                $this->fields = $this->initFields( 6.1 );
+                $this->fields['draas_metadata']   = array(
+                    ONAPP_FIELD_MAP  => '_draas_metadata',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

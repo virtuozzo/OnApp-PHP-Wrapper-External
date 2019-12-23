@@ -83,6 +83,10 @@ class OnApp_Settings_HypervisorIntegratedStorage extends OnApp {
                     ),
                 );
                 break;
+
+            case 6.2:
+                $this->fields = $this->initFields( 6.1 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

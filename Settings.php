@@ -1095,6 +1095,46 @@ class OnApp_Settings extends OnApp {
                     ONAPP_FIELD_TYPE => 'integer',
                 );
                 break;
+
+            case 6.2:
+                $this->fields = $this->initFields( 6.1 );
+                $this->fields['draas_shadow_ssh_port']                  = array(
+                    ONAPP_FIELD_MAP  => '_draas_shadow_ssh_port',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['enable_super_admin_permissions']         = array(
+                    ONAPP_FIELD_MAP  => '_enable_super_admin_permissions',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['ip_history_keep_period']                 = array(
+                    ONAPP_FIELD_MAP  => '_ip_history_keep_period',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['iscsi_port_availability_check_timeout']  = array(
+                    ONAPP_FIELD_MAP  => '_iscsi_port_availability_check_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['nsx_polling_interval']                   = array(
+                    ONAPP_FIELD_MAP  => '_nsx_polling_interval',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['show_new_wizard']                        = array(
+                    ONAPP_FIELD_MAP  => '_show_new_wizard',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['iscsi_port_availability_check_timeout']  = array(
+                    ONAPP_FIELD_MAP  => '_iscsi_port_availability_check_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['vcenter_l1_stats_timeout']               = array(
+                    ONAPP_FIELD_MAP  => '_vcenter_l1_stats_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['vcenter_l2_stats_timeout']               = array(
+                    ONAPP_FIELD_MAP  => '_vcenter_l2_stats_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

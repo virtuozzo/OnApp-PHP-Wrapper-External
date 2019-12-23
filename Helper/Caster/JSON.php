@@ -57,6 +57,10 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
             $data = json_decode( $data );
         }
 
+        if (is_array($data) && count($data) === 0) {
+            return array();
+        }
+
         try {
             if ( empty( $data ) ) {
                 if ( IS_CLI ) {

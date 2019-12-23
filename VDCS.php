@@ -189,6 +189,14 @@ class OnApp_VDCS extends OnApp {
             case 6.1:
                 $this->fields = $this->initFields( 6.0 );
                 break;
+
+            case 6.2:
+                $this->fields = $this->initFields( 6.1 );
+                $this->fields['locked']     = array(
+                    ONAPP_FIELD_MAP  => '_locked',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

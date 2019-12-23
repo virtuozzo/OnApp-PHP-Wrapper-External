@@ -283,6 +283,22 @@ class OnApp_CDNResource_Advanced extends OnApp {
             case 6.1:
                 $this->fields = $this->initFields( 6.0 );
                 break;
+
+            case 6.2:
+                $this->fields = $this->initFields( 6.1 );
+                $this->fields['cors_on']        = array(
+                    ONAPP_FIELD_MAP  => '_cors_on',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['hls_on']         = array(
+                    ONAPP_FIELD_MAP  => '_hls_on',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['origin_policy']  = array(
+                    ONAPP_FIELD_MAP  => '_origin_policy',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

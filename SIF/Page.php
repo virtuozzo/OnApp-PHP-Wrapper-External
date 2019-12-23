@@ -111,6 +111,10 @@ class OnApp_SIF_Page extends OnApp_Hypervisor {
             case 6.1:
                 $this->fields = $this->initFields( 6.0 );
                 break;
+
+            case 6.2:
+                $this->fields = $this->initFields( 6.1 );
+                break;
         }
 
 

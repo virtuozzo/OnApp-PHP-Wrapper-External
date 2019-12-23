@@ -63,6 +63,10 @@ class OnApp_VDCS_CrossVdcNetworks extends OnApp {
                     ),
                 );
                 break;
+
+            case 6.2:
+                $this->fields = $this->initFields( 6.1 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
