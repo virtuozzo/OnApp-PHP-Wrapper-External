@@ -215,6 +215,11 @@ define('ONAPP_ADD_EDIT_OVA_VS_CONFIG', 'network_appliance_config');
  * @var
  */
 define('ONAPP_ADD_EDIT_OVA_VS_LICENSE', 'network_appliance_license');
+
+/**
+ * @var
+ */
+define('ONAPP_SET_SSH_KEYS', 'set_ssh_keys');
 /**
  * Virtual Machines
  *
@@ -810,6 +815,22 @@ class OnApp_VirtualMachine extends OnApp {
             case 6.2:
                 $this->fields = $this->initFields( 6.1 );
                 break;
+
+            case 6.3:
+                $this->fields = $this->initFields( 6.2 );
+                $this->fields['draas_shadow_ip_address_join_id']    = array(
+                    ONAPP_FIELD_MAP  => '_draas_shadow_ip_address_join_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['infrastructure_mode']                = array(
+                    ONAPP_FIELD_MAP  => '_infrastructure_mode',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['edge_status']                        = array(
+                    ONAPP_FIELD_MAP  => '_edge_status',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         if ( is_null( $this->_id ) ) {
@@ -1383,6 +1404,18 @@ class OnApp_VirtualMachine extends OnApp {
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
 
+            case ONAPP_SET_SSH_KEYS:
+                /**
+                 * ROUTE :
+                 *
+                 * @name Set SSH Keys
+                 * @method PUT
+                 * @alias    /virtual_machines/:id/set_ssh_keys(.:format)
+                 * @format   {:controller=>"virtual_machines", :action=>"setSshKeys"}
+                 */
+                $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/' . ONAPP_SET_SSH_KEYS;
+                break;
+
             default:
                 /**
                  * ROUTE :
@@ -1452,6 +1485,7 @@ class OnApp_VirtualMachine extends OnApp {
             ONAPP_RESYNC,
             ONAPP_ADD_EDIT_OVA_VS_CONFIG,
             ONAPP_ADD_EDIT_OVA_VS_LICENSE,
+            ONAPP_SET_SSH_KEYS,
         );
 
         if ( in_array( $action, $actions ) ) {
@@ -1878,6 +1912,13 @@ class OnApp_VirtualMachine extends OnApp {
             ONAPP_FIELD_MAP  => '_swap_data_store_id',
             ONAPP_FIELD_TYPE => 'integer',
         );
+
+        if (parent::getAPIVersion() > 6.2) {
+            $this->fields['infrastructure_mode']        = array(
+                ONAPP_FIELD_MAP  => 'infrastructure_mode',
+                ONAPP_FIELD_TYPE => 'boolean',
+            );
+        }
         
         parent::save();
 
@@ -2171,5 +2212,25 @@ class OnApp_VirtualMachine extends OnApp {
         );
 
         return $this->sendPut( ONAPP_ADD_EDIT_OVA_VS_LICENSE, $data);
+    }
+
+    public function setSshKeys($sshKey)
+    {
+        if ( ! $this->_id ) {
+            $this->logger->error(
+                'segregation: argument _id not set.',
+                __FILE__,
+                __LINE__
+            );
+        }
+
+        $data = array(
+            'root' => $this->_tagRoot,
+            'data' => array(
+                'ssh_key' => $sshKey,
+            ),
+        );
+
+        return $this->sendPut(ONAPP_SET_SSH_KEYS, $data);
     }
 }

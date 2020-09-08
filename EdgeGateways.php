@@ -15,6 +15,10 @@
  */
 define('ONAPP_GATEWAY_INTERFACES', 'gateway_interfaces');
 /**
+ * @var
+ */
+define('ONAPP_CONVERT_TO_ADVANCED', 'convert_to_advanced');
+/**
  * EdgeGateways
  *
  * Use the following API calls to view, assign and delete virtual server recipes in your cloud.
@@ -138,6 +142,10 @@ class OnApp_EdgeGateways extends OnApp {
             case 6.2:
                 $this->fields = $this->initFields( 6.1 );
                 break;
+
+            case 6.3:
+                $this->fields = $this->initFields( 6.2 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -219,6 +227,29 @@ class OnApp_EdgeGateways extends OnApp {
                 $resource = $this->_resource . '/' . $this->_id . '/' . ONAPP_GATEWAY_INTERFACES;
                 break;
 
+            case ONAPP_CONVERT_TO_ADVANCED:
+                /**
+                 * ROUTE :
+                 *
+                 * @name    Convert Edge Gateways to Advanced Edge Gateways
+                 * @method  PUT
+                 * @alias   /edge_gateways/:id/convert_to_advanced(.:format)
+                 */
+                if( is_null( $this->_id ) && is_null( $this->_obj->_id ) ) {
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _id not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                } else {
+                    if( is_null( $this->_id ) ) {
+                        $this->_id = $this->_obj->_id;
+                    }
+                }
+
+                $resource = $this->_resource . '/' . $this->_id . '/' . ONAPP_CONVERT_TO_ADVANCED;
+                break;
+
             default:
                 $resource = parent::getResource( $action );
                 break;
@@ -231,5 +262,9 @@ class OnApp_EdgeGateways extends OnApp {
         $this->_tagRoot = 'gateway_interface';
 
         return $this->sendGet(ONAPP_GATEWAY_INTERFACES);
+    }
+
+    public function convertToAdvanced() {
+        return $this->sendPut(ONAPP_CONVERT_TO_ADVANCED);
     }
 }

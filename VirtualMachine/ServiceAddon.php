@@ -111,6 +111,10 @@ class OnApp_VirtualMachine_ServiceAddon extends OnApp {
                     ONAPP_FIELD_TYPE      => 'boolean',
                 );
                 break;
+
+            case 6.3:
+                $this->fields = $this->initFields( 6.2 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

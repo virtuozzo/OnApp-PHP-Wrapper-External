@@ -21,9 +21,9 @@ class OnApp_Factory extends OnApp {
      * @param string $password
      * @param string|null $proxy
      */
-    public function __construct( $hostname, $username, $password, $proxy = null ) {
+    public function __construct( $hostname, $username, $password, $proxy = null, $timeout = 0 ) {
         parent::__construct();
-        $this->auth( $hostname, $username, $password, null !== $proxy ? $proxy : '' );
+        $this->auth( $hostname, $username, $password, null !== $proxy ? $proxy : '', $timeout );
         //todo ??? constructor should return instance instead of boolean value
         //return $this->_is_auth;
     }

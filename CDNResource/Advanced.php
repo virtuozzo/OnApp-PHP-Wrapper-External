@@ -299,6 +299,14 @@ class OnApp_CDNResource_Advanced extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+
+            case 6.3:
+                $this->fields = $this->initFields( 6.2 );
+                $this->fields['hls_force_cache']  = array(
+                    ONAPP_FIELD_MAP  => '_hls_force_cache',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

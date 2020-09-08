@@ -656,7 +656,7 @@ class OnApp {
      * @return void
      * @access public
      */
-    function auth( $url, $user, $pass, $proxy = '' ) {
+    function auth( $url, $user, $pass, $proxy = '', $timeout = 0 ) {
         $this->logger->setDebug( $this->options[ ONAPP_OPTION_DEBUG_MODE ] );
 
         $this->logger->setTimezone();
@@ -666,11 +666,18 @@ class OnApp {
         $this->setOption( ONAPP_OPTION_CURL_URL, $url );
         $this->setOption( ONAPP_OPTION_CURL_PROXY, $proxy );
 
-        $this->_init_curl( $user, $pass );
+        $this->_init_curl( $user, $pass, '', $timeout );
 
         $this->setAPIResource( ONAPP_GETRESOURCE_VERSION );
 
         $response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
+
+        if( !$response ){
+            $this->setErrors( 'no response' );
+            $this->_is_auth = false;
+
+            return;
+        }
 
         if ( $response['info']['http_code'] == '200' ) {
             $this->setAPIVersion( $response['response_body'] );
@@ -730,7 +737,7 @@ class OnApp {
                 }
         }
         $this->version = (float) $this->version;
-        
+
         //todo remove this block in 6.0 version
         if (in_array($this->version, array(5.6, 5.7, 5.8, 5.9, 5.10))) {
             $this->version = 6.0;
@@ -775,10 +782,15 @@ class OnApp {
      *
      * @todo   check response from basic URL
      */
-    function _init_curl( $user, $pass, $cookiedir = '' ) {
+    function _init_curl( $user, $pass, $cookiedir = '', $timeout = 0 ) {
         $this->logger->debug( "_init_curl: Init Curl (cookiedir => '$cookiedir')." );
 
         $this->_ch = curl_init();
+
+        if( $timeout ) {
+            curl_setopt($this->_ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+            curl_setopt($this->_ch, CURLOPT_TIMEOUT, $timeout);
+        }
 
         //todo ???
         //$this->_is_auth = true;
@@ -1094,7 +1106,7 @@ class OnApp {
                     $this->setErrors( 'Bad response ( code => ' . $http_code . ', response => ' . $response['response_body'] . ' )' );
             }
         } else {
-            $this->logger->debug( 'castResponseToClass: Can\'t parse ' . $response['response_body'] );
+            $this->logger->debug( 'castResponseToClass: Can\'t parse ' . print_r($response, true) );
         }
     }
 

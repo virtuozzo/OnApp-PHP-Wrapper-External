@@ -238,6 +238,36 @@ class OnApp_Bucket_AccessControls_Limits extends OnApp {
             case 6.2:
                 $this->fields = $this->initFields( 6.1 );
                 break;
+
+            case 6.3:
+                $this->fields = $this->initFields( 6.2 );
+
+                $this->fields['limit_min_allocation_vcpu']      = array(
+                    ONAPP_FIELD_MAP  => '_limit_min_allocation_vcpu',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['limit_allocation_vcpu']          = array(
+                    ONAPP_FIELD_MAP  => '_limit_allocation_vcpu',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['limit_min_reservation_vcpu']     = array(
+                    ONAPP_FIELD_MAP  => '_limit_min_reservation_vcpu',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['limit_min_pay_as_you_go_vcpu']   = array(
+                    ONAPP_FIELD_MAP  => '_limit_min_pay_as_you_go_vcpu',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['limit_pay_as_you_go_vcpu']       = array(
+                    ONAPP_FIELD_MAP  => '_limit_pay_as_you_go_vcpu',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['limit_reservation_vcpu']         = array(
+                    ONAPP_FIELD_MAP  => '_limit_reservation_vcpu',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

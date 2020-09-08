@@ -126,6 +126,10 @@ class OnApp_CDNResource_AvailableEdgeGroup extends OnApp {
                     ONAPP_FIELD_TYPE => 'integer',
                 );
                 break;
+
+            case 6.3:
+                $this->fields = $this->initFields( 6.2 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

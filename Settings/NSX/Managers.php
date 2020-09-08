@@ -121,6 +121,11 @@ class OnApp_Settings_NSX_Managers extends OnApp {
                     ),
                 );
                 break;
+
+            case 6.3:
+                $this->fields = $this->initFields( 6.2 );
+                $this->unsetFields(array('last_seen_event'));
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -256,12 +261,49 @@ class OnApp_Settings_NSX_Managers extends OnApp {
      *
      * @access public
      */
-    function activateCheck( $action_name ) {
+    public function activateCheck( $action_name ) {
         switch ( $action_name ) {
             case ONAPP_ACTIVATE_SAVE:
             case ONAPP_ACTIVATE_DELETE:
                 exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
                 break;
         }
+    }
+
+    public function getList($params = null, $url_args = null)
+    {
+        if (parent::getAPIVersion() > 6.2) {
+            $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_DEFAULT ) );
+            $response = $this->sendRequest(ONAPP_REQUEST_METHOD_GET);
+
+            if (isset( $response['response_body']) && null !== $response['response_body']) {
+                $data = array_map(function($item){
+                    $object = new \stdClass();
+                    $object->nsx_manager = $item;
+                    return $object;
+                }, json_decode($response['response_body'])->nsx_managers);
+
+                $response['response_body'] = json_encode($data);
+            }
+
+            $result = $this->_castResponseToClass( $response );
+
+            if ( $response['info']['http_code'] > 400 ) {
+                if ( is_null( $result ) ) {
+                    $this->_obj = clone $this;
+                } else {
+                    $this->_obj = new \stdClass();
+                    $this->_obj->errors = $result->getErrorsAsArray();
+                }
+
+                return false;
+            } else {
+                $this->_obj = $result;
+
+                return $result;
+            }
+        }
+
+        return parent::getList($params, $url_args);
     }
 }

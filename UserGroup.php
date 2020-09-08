@@ -206,6 +206,14 @@ class OnApp_UserGroup extends OnApp {
             case 6.2:
                 $this->fields = $this->initFields( 6.1 );
                 break;
+
+            case 6.3:
+                $this->fields = $this->initFields( 6.2 );
+                $this->fields['cpu_model_configuration'] = array(
+                    ONAPP_FIELD_MAP  => '_cpu_model_configuration',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

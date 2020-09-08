@@ -119,6 +119,10 @@ class OnApp_NSX_Edges_Firewall_Rules extends OnApp {
                     ),
                 );
                 break;
+
+            case 6.3:
+                $this->fields = $this->initFields( 6.2 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

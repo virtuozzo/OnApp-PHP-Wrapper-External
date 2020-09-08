@@ -166,6 +166,10 @@ class OnApp_BillingUser_ResourceNetworkGroup extends OnApp_BillingUser_BaseResou
             case 6.2:
                 $this->fields = $this->initFields( 6.1 );
                 break;
+
+            case 6.3:
+                $this->fields = $this->initFields( 6.2 );
+                break;
         }
 
         $this->fields['id'][ ONAPP_FIELD_REQUIRED ] = false;

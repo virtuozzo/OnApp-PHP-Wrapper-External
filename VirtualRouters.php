@@ -358,6 +358,22 @@ class OnApp_VirtualRouters extends OnApp {
             case 6.2:
                 $this->fields = $this->initFields( 6.1 );
                 break;
+
+            case 6.3:
+                $this->fields = $this->initFields( 6.2 );
+                $this->fields['draas_shadow_ip_address_join_id']    = array(
+                    ONAPP_FIELD_MAP  => '_draas_shadow_ip_address_join_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['infrastructure_mode']                = array(
+                    ONAPP_FIELD_MAP  => '_infrastructure_mode',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['trim_disabled']                      = array(
+                    ONAPP_FIELD_MAP  => '_trim_disabled',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 

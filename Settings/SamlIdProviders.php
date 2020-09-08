@@ -181,6 +181,10 @@ class OnApp_Settings_SamlIdProviders extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+
+            case 6.3:
+                $this->fields = $this->initFields( 6.2 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 

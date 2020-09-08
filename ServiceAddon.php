@@ -107,6 +107,10 @@ class OnApp_ServiceAddon extends OnApp {
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
                 break;
+
+            case 6.3:
+                $this->fields = $this->initFields( 6.2 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -163,5 +167,14 @@ class OnApp_ServiceAddon extends OnApp {
         }
 
         return $resource;
+    }
+
+    public function save()
+    {
+        if ($this->_id && parent::getAPIVersion() !== 6.2) {
+            $this->unsetFields( array('system') );
+        }
+
+        parent::save();
     }
 }
