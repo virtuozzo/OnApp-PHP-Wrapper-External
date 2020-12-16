@@ -374,6 +374,14 @@ class OnApp_VirtualRouters extends OnApp {
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
                 break;
+
+            case 6.4:
+                $this->fields = $this->initFields( 6.3 );
+                $this->fields['vcenter_resource_pool_id']    = array(
+                    ONAPP_FIELD_MAP  => '_vcenter_resource_pool_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 

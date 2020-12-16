@@ -121,6 +121,10 @@ class OnApp_BillingUser_ResourceTemplateGroup extends OnApp_BillingUser_BaseReso
             case 6.3:
                 $this->fields = $this->initFields( 6.2 );
                 break;
+
+            case 6.4:
+                $this->fields = $this->initFields( 6.3 );
+                break;
         }
 
         $this->fields['id'][ ONAPP_FIELD_REQUIRED ] = false;

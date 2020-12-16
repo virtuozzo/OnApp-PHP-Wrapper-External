@@ -114,6 +114,10 @@ class OnApp_SSH extends OnApp {
             case 6.3:
                 $this->fields = $this->initFields( 6.2 );
                 break;
+
+            case 6.4:
+                $this->fields = $this->initFields( 6.3 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

@@ -132,6 +132,10 @@ class OnApp_RecipeGroup_Recipe extends OnApp {
             case 6.3:
                 $this->fields = $this->initFields( 6.2 );
                 break;
+
+            case 6.4:
+                $this->fields = $this->initFields( 6.3 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

@@ -831,6 +831,24 @@ class OnApp_VirtualMachine extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+
+            case 6.4:
+                $this->fields = $this->initFields( 6.3 );
+
+                $this->unsetFields(array(
+                    'cluster_id',
+                ));
+
+                $this->fields['vcenter_resource_pool_id']   = array(
+                    ONAPP_FIELD_MAP  => '_vcenter_resource_pool_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+
+                $this->fields['cdn_reference']              = array(
+                    ONAPP_FIELD_MAP  => '_cdn_reference',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                break;
         }
 
         if ( is_null( $this->_id ) ) {

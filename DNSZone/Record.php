@@ -181,6 +181,10 @@ class OnApp_DNSZone_Record extends OnApp {
             case 6.3:
                 $this->fields = $this->initFields( 6.2 );
                 break;
+
+            case 6.4:
+                $this->fields = $this->initFields( 6.3 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -209,6 +213,10 @@ class OnApp_DNSZone_Record extends OnApp {
                 break;
             case ONAPP_GETRESOURCE_LIST:
                 $resource = 'dns_zones/' . $this->_dns_zone_id . '/' . $this->_resource;
+                $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
+                break;
+            case ONAPP_GETRESOURCE_DELETE:
+                $resource = 'dns_zones/' . $this->_dns_zone_id . '/' . $this->_resource . '/' . $this->_id;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
             default:
@@ -417,5 +425,10 @@ class OnApp_DNSZone_Record extends OnApp {
         };
 
         return $result;
+    }
+
+    public function delete()
+    {
+        $this->sendDelete(ONAPP_GETRESOURCE_DELETE);
     }
 }

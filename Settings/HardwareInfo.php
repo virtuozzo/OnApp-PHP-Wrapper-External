@@ -151,6 +151,14 @@ class OnApp_Settings_HardwareInfo extends OnApp {
             case 6.3:
                 $this->fields = $this->initFields( 6.2 );
                 break;
+
+            case 6.4:
+                $this->fields = $this->initFields( 6.3 );
+                $this->fields['cpu_vendor']   = array(
+                    ONAPP_FIELD_MAP  => '_cpu_vendor',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 

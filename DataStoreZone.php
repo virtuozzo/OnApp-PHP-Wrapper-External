@@ -211,6 +211,10 @@ class OnApp_DataStoreZone extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+
+            case 6.4:
+                $this->fields = $this->initFields( 6.3 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

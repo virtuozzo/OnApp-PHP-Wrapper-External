@@ -325,6 +325,14 @@ class OnApp_Profile extends OnApp {
             case 6.3:
                 $this->fields = $this->initFields( 6.2 );
                 break;
+
+            case 6.4:
+                $this->fields = $this->initFields( 6.3 );
+                $this->fields['totp_enabled']   = array(
+                    ONAPP_FIELD_MAP  => '_totp_enabled',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

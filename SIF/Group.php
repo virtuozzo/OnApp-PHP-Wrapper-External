@@ -90,6 +90,10 @@ class OnApp_SIF_Group extends OnApp_Hypervisor {
             case 6.3:
                 $this->fields = $this->initFields( 6.2 );
                 break;
+
+            case 6.4:
+                $this->fields = $this->initFields( 6.3 );
+                break;
         }
 
 

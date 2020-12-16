@@ -1139,6 +1139,50 @@ class OnApp_Settings extends OnApp {
             case 6.3:
                 $this->fields = $this->initFields( 6.2 );
                 break;
+
+            case 6.4:
+                $this->fields = $this->initFields( 6.3 );
+                $this->fields['totp_enabled']                               = array(
+                    ONAPP_FIELD_MAP  => '_totp_enabled',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['draas_shadow_vpn_port']                      = array(
+                    ONAPP_FIELD_MAP  => '_draas_shadow_vpn_port',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['draas_vpn_cidr_block']                       = array(
+                    ONAPP_FIELD_MAP  => '_draas_vpn_cidr_block',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['global_white_list_ips']                      = array(
+                    ONAPP_FIELD_MAP  => '_global_white_list_ips',
+                    ONAPP_FIELD_TYPE => '_array',
+                );
+                $this->fields['max_cpu_quota']                              = array(
+                    ONAPP_FIELD_MAP  => '_max_cpu_quota',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['max_memory_quota']                           = array(
+                    ONAPP_FIELD_MAP  => '_max_memory_quota',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['mysql_billing_transaction_retries']          = array(
+                    ONAPP_FIELD_MAP  => '_mysql_billing_transaction_retries',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['rabbitmq_continuation_timeout']              = array(
+                    ONAPP_FIELD_MAP  => '_rabbitmq_continuation_timeout',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['simultaneous_vcenter_hypervisors_sync']      = array(
+                    ONAPP_FIELD_MAP  => '_simultaneous_vcenter_hypervisors_sync',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                $this->fields['vcenter_synchronization_schedule_period']    = array(
+                    ONAPP_FIELD_MAP  => '_vcenter_synchronization_schedule_period',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

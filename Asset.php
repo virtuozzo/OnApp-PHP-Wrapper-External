@@ -143,6 +143,39 @@ class OnApp_Asset extends OnApp_Hypervisor {
             case 6.3:
                 $this->fields = $this->initFields( 6.2 );
                 break;
+
+            case 6.4:
+                $this->fields = $this->initFields( 6.3 );
+
+                $this->fields['label']                          = array(
+                    ONAPP_FIELD_MAP  => '_label',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['ip_address']                     = array(
+                    ONAPP_FIELD_MAP  => '_ip_address',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['enabled']                        = array(
+                    ONAPP_FIELD_MAP  => '_enabled',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['collect_stats']                  = array(
+                    ONAPP_FIELD_MAP  => '_collect_stats',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['hardware_devices']               = array(
+                    ONAPP_FIELD_MAP  => '_hardware_devices',
+                    ONAPP_FIELD_TYPE => '_array',
+                );
+                $this->fields['custom_pcis']                    = array(
+                    ONAPP_FIELD_MAP  => '_custom_pcis',
+                    ONAPP_FIELD_TYPE => '_array',
+                );
+                $this->fields['integrated_storage_disabled']    = array(
+                    ONAPP_FIELD_MAP  => '_integrated_storage_disabled',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                break;
         }
 
 

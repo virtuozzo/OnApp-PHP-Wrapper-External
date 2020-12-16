@@ -522,6 +522,10 @@ class OnApp_Hypervisor extends OnApp {
                     ONAPP_FIELD_MAP  => '_failover_recipe_id',
                     ONAPP_FIELD_TYPE => 'string',
                 );
+                $this->fields['api_url']                              = array(
+                    ONAPP_FIELD_MAP  => '_api_url',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
                 break;
 
             case 6.1:
@@ -534,6 +538,10 @@ class OnApp_Hypervisor extends OnApp {
                     ONAPP_FIELD_MAP  => '_instance_uuid',
                     ONAPP_FIELD_TYPE => 'string',
                 );
+                $this->fields['collect_stats']              = array(
+                    ONAPP_FIELD_MAP  => '_collect_stats',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
                 break;
 
             case 6.2:
@@ -542,6 +550,19 @@ class OnApp_Hypervisor extends OnApp {
 
             case 6.3:
                 $this->fields = $this->initFields( 6.2 );
+                break;
+
+            case 6.4:
+                $this->fields = $this->initFields( 6.3 );
+
+                $this->fields['vcenter_server_id']      = array(
+                    ONAPP_FIELD_MAP  => '_vcenter_server_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['vcenter_cluster_id']     = array(
+                    ONAPP_FIELD_MAP  => '_vcenter_cluster_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
                 break;
         }
 
@@ -861,10 +882,6 @@ class OnApp_Hypervisor extends OnApp {
     function save() {
         if (parent::getAPIVersion() >= 6.0) {
             $this->unsetFields( array('ip_address', 'backup_ip_address') );
-            $this->fields['api_url'] = array(
-                ONAPP_FIELD_MAP  => '_api_url',
-                ONAPP_FIELD_TYPE => 'string',
-            );
         }
 
         if ( $this->_id ) {
@@ -1021,11 +1038,6 @@ class OnApp_Hypervisor extends OnApp {
     }
 
     public function saveStaticComputeResource() {
-        $this->fields['collect_stats']  = array(
-            ONAPP_FIELD_MAP  => '_collect_stats',
-            ONAPP_FIELD_TYPE => 'string',
-        );
-
         $data = array(
             'root' => $this->_tagRoot,
             'data' => array(
@@ -1034,10 +1046,6 @@ class OnApp_Hypervisor extends OnApp {
                 'segregation_os_type' => $this->_segregation_os_type,
                 'ip_address' => $this->_ip_address,
                 'backup_ip_address' => $this->_backup_ip_address,
-                'cpu_units' => $this->_cpu_units,
-                'enabled' => $this->_enabled,
-                'collect_stats' => $this->_collect_stats,
-                'disable_failover' => $this->_disable_failover,
                 'failover_recipe_id' => $this->_failover_recipe_id,
                 'amqp_exchange_name' => $this->_amqp_exchange_name,
                 'static_integrated_storage' => $this->_static_integrated_storage,
@@ -1050,6 +1058,17 @@ class OnApp_Hypervisor extends OnApp {
                 'power_cycle_command' => $this->_power_cycle_command,
             ),
         );
+
+        if (parent::getAPIVersion() >= 6.4) {
+            $data['data']['vcenter_server_id'] = $this->_vcenter_server_id;
+            $data['data']['vcenter_cluster_id'] = $this->_vcenter_cluster_id;
+            $data['data']['hypervisor_group_id'] = $this->_hypervisor_group_id;
+        } else {
+            $data['data']['enabled'] = $this->_enabled;
+            $data['data']['collect_stats'] = $this->_collect_stats;
+            $data['data']['cpu_units'] = $this->_cpu_units;
+            $data['data']['disable_failover'] = $this->_disable_failover;
+        }
 
         if ($this->_id === null) {
             return $this->sendPost(ONAPP_SAVE_STATIC_COMPUTE_RESOURCE, $data);

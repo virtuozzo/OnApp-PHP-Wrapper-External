@@ -190,6 +190,14 @@ class OnApp_VDCS_EdgeGateway extends OnApp {
             case 6.3:
                 $this->fields = $this->initFields( 6.2 );
                 break;
+
+            case 6.4:
+                $this->fields = $this->initFields( 6.3 );
+                $this->fields['nsx_edge'] = array(
+                    ONAPP_FIELD_MAP  => '_nsx_edge',
+                    ONAPP_FIELD_TYPE => '_array',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
