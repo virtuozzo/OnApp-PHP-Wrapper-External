@@ -132,7 +132,15 @@ class OnApp_DNSSetup extends OnApp {
             case 6.4:
                 $this->fields = $this->initFields( 6.3 );
                 break;
+
+            case 6.5:
+                $this->fields = $this->initFields( 6.4 );
+                break;
         }
+        
+        parent::initFields( $version, __CLASS__ );
+
+        return $this->fields;
     }
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {

@@ -131,6 +131,10 @@ class OnApp_Settings_NSX_Managers extends OnApp {
                 $this->fields = $this->initFields( 6.3 );
                 $this->_tagRoot = 'nsx_managers';
                 break;
+
+            case 6.5:
+                $this->fields = $this->initFields( 6.4 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

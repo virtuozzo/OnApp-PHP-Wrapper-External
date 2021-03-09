@@ -446,6 +446,10 @@ class OnApp_User extends OnApp {
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
                 break;
+
+            case 6.5:
+                $this->fields = $this->initFields( 6.4 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

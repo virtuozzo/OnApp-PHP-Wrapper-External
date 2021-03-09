@@ -564,6 +564,10 @@ class OnApp_Hypervisor extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+
+            case 6.5:
+                $this->fields = $this->initFields( 6.4 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

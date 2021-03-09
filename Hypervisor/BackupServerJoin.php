@@ -108,6 +108,10 @@ class OnApp_Hypervisor_BackupServerJoin extends OnApp {
             case 6.4:
                 $this->fields = $this->initFields( 6.3 );
                 break;
+
+            case 6.5:
+                $this->fields = $this->initFields( 6.4 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

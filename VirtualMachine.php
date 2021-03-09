@@ -849,6 +849,10 @@ class OnApp_VirtualMachine extends OnApp {
                     ONAPP_FIELD_TYPE => 'integer',
                 );
                 break;
+
+            case 6.5:
+                $this->fields = $this->initFields( 6.4 );
+                break;
         }
 
         if ( is_null( $this->_id ) ) {
@@ -1680,14 +1684,43 @@ class OnApp_VirtualMachine extends OnApp {
         if ( ! $user_id ) {
             $this->sendPost( ONAPP_GETRESOURCE_STARTUP );
         } else {
-            $data = array(
-                'root' => 'tmp_holder',
-                'data' => array(
-                    'user_id' => $user_id
-                )
-            );
+            if ( $this->getAPIVersion() >= 6 ) {
+                $this->fields['custom_recipes_action']  = array(
+                    ONAPP_FIELD_MAP           => '_custom_recipes_action',
+                    ONAPP_FIELD_TYPE          => 'string',
+                );
+                $this->fields['backups_action']         = array(
+                    ONAPP_FIELD_MAP           => '_backups_action',
+                    ONAPP_FIELD_TYPE          => 'string',
+                );
 
-            $this->sendPost( ONAPP_GETRESOURCE_CHANGE_OWNER, $data );
+                $data = array(
+                    'user_id' => $user_id,
+                    'custom_recipes_action' => $this->_custom_recipes_action,
+                    'backups_action' => $this->_backups_action,
+                );
+
+                if (!is_null($data) && is_array($data)) {
+                    $data = json_encode($data);
+                    $this->logger->debug( 'Additional parameters: ' . $data );
+                }
+
+                $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_CHANGE_OWNER ) );
+                $response = $this->sendRequest( ONAPP_REQUEST_METHOD_POST, $data );
+
+                $result     = $this->_castResponseToClass( $response );
+                $this->_obj = $result;
+
+            } else {
+                $data = array(
+                    'root' => 'tmp_holder',
+                    'data' => array(
+                        'user_id' => $user_id
+                    )
+                );
+
+                $this->sendPost( ONAPP_GETRESOURCE_CHANGE_OWNER, $data );
+            }
         }
 
         return $this->_obj;

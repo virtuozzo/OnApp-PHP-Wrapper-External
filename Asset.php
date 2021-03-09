@@ -176,6 +176,10 @@ class OnApp_Asset extends OnApp_Hypervisor {
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
                 break;
+
+            case 6.5:
+                $this->fields = $this->initFields( 6.4 );
+                break;
         }
 
 
