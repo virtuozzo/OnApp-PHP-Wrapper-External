@@ -502,6 +502,18 @@ class OnApp_Bucket_RateCards_Prices extends OnApp {
 
             case 6.5:
                 $this->fields = $this->initFields( 6.4 );
+                $this->fields['price_nsxt_edge_gateways']       = array(
+                    ONAPP_FIELD_MAP  => '_price_nsxt_edge_gateways',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['limit_free_nsxt_edge_gateways']  = array(
+                    ONAPP_FIELD_MAP  => '_limit_free_nsxt_edge_gateways',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['limit_ip_vs_free']               = array(
+                    ONAPP_FIELD_MAP  => '_limit_ip_vs_free',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
                 break;
         }
 

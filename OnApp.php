@@ -1131,7 +1131,7 @@ class OnApp {
 
                 $objCast = new OnApp_Helper_Caster( $this );
 
-                if ( $content['info']['http_code'] > 201 ) {
+                if ( $content['info']['http_code'] > 204 ) {
                     $root   = 'errors';
                     $errors = $objCast->unserialize( $className, $data, $tagMap, $root );
                     $this->setErrors( $errors );

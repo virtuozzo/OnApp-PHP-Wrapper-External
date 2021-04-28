@@ -883,12 +883,14 @@ class OnApp_VirtualMachine extends OnApp {
                 ONAPP_FIELD_MAP  => '_rate_limit',
                 ONAPP_FIELD_TYPE => 'integer',
             );
-            $this->fields['required_ip_address_assignment'] = array(
-                ONAPP_FIELD_MAP           => '_required_ip_address_assignment',
-                ONAPP_FIELD_TYPE          => 'boolean',
-                ONAPP_FIELD_REQUIRED      => true,
-                ONAPP_FIELD_DEFAULT_VALUE => '1'
-            );
+            if (parent::getAPIVersion() < 6.3) {
+                $this->fields['required_ip_address_assignment'] = array(
+                    ONAPP_FIELD_MAP => '_required_ip_address_assignment',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                    ONAPP_FIELD_REQUIRED => true,
+                    ONAPP_FIELD_DEFAULT_VALUE => '1'
+                );
+            }
             $this->fields['required_virtual_machine_build'] = array(
                 ONAPP_FIELD_MAP           => '_required_virtual_machine_build',
                 ONAPP_FIELD_TYPE          => 'boolean',
@@ -1915,12 +1917,14 @@ class OnApp_VirtualMachine extends OnApp {
             ONAPP_FIELD_TYPE          => 'integer',
             ONAPP_FIELD_DEFAULT_VALUE => ''
         );
-        $this->fields['required_ip_address_assignment'] = array(
-            ONAPP_FIELD_MAP           => '_required_ip_address_assignment',
-            ONAPP_FIELD_TYPE          => 'boolean',
-            ONAPP_FIELD_REQUIRED      => true,
-            ONAPP_FIELD_DEFAULT_VALUE => '1'
-        );
+        if (parent::getAPIVersion() < 6.3) {
+            $this->fields['required_ip_address_assignment'] = array(
+                ONAPP_FIELD_MAP => '_required_ip_address_assignment',
+                ONAPP_FIELD_TYPE => 'boolean',
+                ONAPP_FIELD_REQUIRED => true,
+                ONAPP_FIELD_DEFAULT_VALUE => '1'
+            );
+        }
         $this->fields['required_virtual_machine_build'] = array(
             ONAPP_FIELD_MAP           => '_required_virtual_machine_build',
             ONAPP_FIELD_TYPE          => 'boolean',

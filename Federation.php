@@ -380,6 +380,10 @@ class OnApp_Federation extends OnApp {
 
             case 6.3:
                 $this->fields = $this->initFields( 6.2 );
+                $this->fields['hypervisor_zone_id']     = array(
+                    ONAPP_FIELD_MAP  => '_hypervisor_zone_id',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
                 break;
 
             case 6.4:

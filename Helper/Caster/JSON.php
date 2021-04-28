@@ -54,6 +54,10 @@ class OnApp_Helper_Caster_JSON extends OnApp_Helper_Caster {
         $this->className = $className;
 
         if ( is_string( $data ) ) {
+            // check if it is empty object that was set on delete
+            if ($data == '{}') {
+                return array();
+            }
             $data = json_decode( $data );
         }
 
