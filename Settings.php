@@ -1186,6 +1186,10 @@ class OnApp_Settings extends OnApp {
 
             case 6.5:
                 $this->fields = $this->initFields( 6.4 );
+                $this->fields['disable_plain_password_for_api']    = array(
+                    ONAPP_FIELD_MAP  => '_disable_plain_password_for_api',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
                 break;
         }
 
