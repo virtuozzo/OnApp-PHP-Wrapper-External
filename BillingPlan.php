@@ -16,12 +16,12 @@
 /**
  * TODO Add description
  */
-define( 'ONAPP_GETRESOURCE_GETLIST_USERS', 'users' );
+define( 'ONAPP_GETRESOURCE_GETLIST_USERS1', 'users' );
 
 /**
  * TODO Add description
  */
-define( 'ONAPP_GETRESOURCE_CREATE_COPY', 'copy' );
+define( 'ONAPP_GETRESOURCE_CREATE_COPY1', 'copy' );
 
 /**
  * Managing Billing Plans
@@ -195,6 +195,10 @@ class OnApp_BillingPlan extends OnApp {
             case 6.5:
                 $this->fields = $this->initFields( 6.4 );
                 break;
+
+            case 6.6:
+                $this->fields = $this->initFields( 6.5 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -204,7 +208,7 @@ class OnApp_BillingPlan extends OnApp {
 
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         switch ( $action ) {
-            case ONAPP_GETRESOURCE_GETLIST_USERS:
+            case ONAPP_GETRESOURCE_GETLIST_USERS1:
                 /**
                  * ROUTE :
                  *
@@ -216,7 +220,7 @@ class OnApp_BillingPlan extends OnApp {
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/users';
                 break;
 
-            case ONAPP_GETRESOURCE_CREATE_COPY:
+            case ONAPP_GETRESOURCE_CREATE_COPY1:
                 /**
                  * ROUTE :
                  *
@@ -278,7 +282,7 @@ class OnApp_BillingPlan extends OnApp {
     function users() {
         $this->logger->add( 'getList: Get Users list.' );
 
-        $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_GETLIST_USERS ) );
+        $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_GETLIST_USERS1 ) );
 
         $response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
 
@@ -308,7 +312,7 @@ class OnApp_BillingPlan extends OnApp {
     function create_copy() {
         $this->logger->add( 'getList: Create Billing plan copy' );
 
-        $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_CREATE_COPY ) );
+        $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_CREATE_COPY1 ) );
 
         $data = '';
 

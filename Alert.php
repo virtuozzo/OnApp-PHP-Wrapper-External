@@ -121,6 +121,14 @@ class OnApp_Alert extends OnApp {
             case 6.5:
                 $this->fields = $this->initFields( 6.4 );
                 break;
+
+            case 6.6:
+                $this->fields = $this->initFields( 6.5 );
+                $this->fields['zombie_networks_list'] = array(
+                    ONAPP_FIELD_MAP  => '_zombie_networks_list',
+                    ONAPP_FIELD_TYPE => '_array',
+                );
+                break;
         }
 
 

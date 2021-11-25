@@ -121,6 +121,14 @@ class OnApp_Settings_AutoBackupPresets extends OnApp {
             case 6.5:
                 $this->fields = $this->initFields( 6.4 );
                 break;
+
+            case 6.6:
+                $this->fields = $this->initFields( 6.5 );
+                $this->fields['month_to_run_on']             = array(
+                    ONAPP_FIELD_MAP  => '_month_to_run_on',
+                    ONAPP_FIELD_TYPE => 'integer',
+                );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 

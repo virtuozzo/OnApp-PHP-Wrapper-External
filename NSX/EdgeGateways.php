@@ -108,6 +108,14 @@ class OnApp_NSX_EdgeGateways extends OnApp {
                     ),
                 );
                 break;
+
+            case 6.6:
+                $this->fields = $this->initFields( 6.5 );
+                $this->fields['ip_settings'] = array(
+                    ONAPP_FIELD_MAP  => '_ip_settings',
+                    ONAPP_FIELD_TYPE => '_array',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

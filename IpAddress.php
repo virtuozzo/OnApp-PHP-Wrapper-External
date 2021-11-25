@@ -198,6 +198,18 @@ class OnApp_IpAddress extends OnApp {
             case 6.5:
                 $this->fields = $this->initFields( 6.4 );
                 break;
+
+            case 6.6:
+                $this->fields = $this->initFields( 6.5 );
+                $this->fields['primary']                                        = array(
+                    ONAPP_FIELD_MAP  => '_primary',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['vcloud_edge_gateways_sub_allocated_ip_range_id'] = array(
+                    ONAPP_FIELD_MAP  => '_vcloud_edge_gateways_sub_allocated_ip_range_id',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

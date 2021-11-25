@@ -89,6 +89,14 @@ class OnApp_HypervisorZone_CPUConfiguration extends OnApp {
             case 6.5:
                 $this->fields = $this->initFields( 6.4 );
                 break;
+
+            case 6.6:
+                $this->fields = $this->initFields( 6.5 );
+                $this->fields['cpu_blacklisted_flags']             = array(
+                    ONAPP_FIELD_MAP  => '_cpu_blacklisted_flags',
+                    ONAPP_FIELD_TYPE => '_array',
+                );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 

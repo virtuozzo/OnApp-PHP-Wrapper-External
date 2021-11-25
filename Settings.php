@@ -1191,6 +1191,22 @@ class OnApp_Settings extends OnApp {
                     ONAPP_FIELD_TYPE => 'boolean',
                 );
                 break;
+
+            case 6.6:
+                $this->fields = $this->initFields( 6.5 );
+                $this->fields['force_shutdown_on_poweroff_failure']         = array(
+                    ONAPP_FIELD_MAP  => '_force_shutdown_on_poweroff_failure',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['force_windows_auto_backups']                 = array(
+                    ONAPP_FIELD_MAP  => '_force_windows_auto_backups',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                $this->fields['generate_hourly_stats_monthly_new_scheme']   = array(
+                    ONAPP_FIELD_MAP  => '_generate_hourly_stats_monthly_new_scheme',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

@@ -358,10 +358,6 @@ class OnApp_User extends OnApp {
                     ONAPP_FIELD_MAP  => '_registered_yubikey',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                $this->fields['registered_yubikey'] = array(
-                    ONAPP_FIELD_MAP  => '_registered_yubikey',
-                    ONAPP_FIELD_TYPE => 'string',
-                );
                 $this->fields['cdn_reference']      = array(
                     ONAPP_FIELD_MAP  => '_cdn_reference',
                     ONAPP_FIELD_TYPE => 'integer',
@@ -449,6 +445,14 @@ class OnApp_User extends OnApp {
 
             case 6.5:
                 $this->fields = $this->initFields( 6.4 );
+                break;
+
+            case 6.6:
+                $this->fields = $this->initFields( 6.5 );
+                $this->fields['cdn_bandwidth_limit_set'] = array(
+                    ONAPP_FIELD_MAP  => '_cdn_bandwidth_limit_set',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
                 break;
         }
 

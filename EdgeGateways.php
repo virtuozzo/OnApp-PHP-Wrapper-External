@@ -154,6 +154,22 @@ class OnApp_EdgeGateways extends OnApp {
             case 6.5:
                 $this->fields = $this->initFields( 6.4 );
                 break;
+
+            case 6.6:
+                $this->fields = $this->initFields( 6.5 );
+                $this->fields['rate_limits']                = array(
+                    ONAPP_FIELD_MAP  => '_rate_limits',
+                    ONAPP_FIELD_TYPE => '_array',
+                );
+                $this->fields['nsx_edge']                   = array(
+                    ONAPP_FIELD_MAP  => '_nsx_edge',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                $this->fields['sub_allocated_ip_ranges']    = array(
+                    ONAPP_FIELD_MAP  => '_sub_allocated_ip_ranges',
+                    ONAPP_FIELD_TYPE => '_array',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

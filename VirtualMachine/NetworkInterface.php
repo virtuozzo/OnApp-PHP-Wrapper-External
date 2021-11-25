@@ -194,6 +194,14 @@ class OnApp_VirtualMachine_NetworkInterface extends OnApp {
             case 6.5:
                 $this->fields = $this->initFields( 6.4 );
                 break;
+
+            case 6.6:
+                $this->fields = $this->initFields( 6.5 );
+                $this->fields['vcloud_nsxt_edge_gateway_id'] = array(
+                    ONAPP_FIELD_MAP  => '_vcloud_nsxt_edge_gateway_id',
+                    ONAPP_FIELD_TYPE => 'string'
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

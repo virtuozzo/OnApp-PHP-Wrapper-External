@@ -152,6 +152,10 @@ class OnApp_DNSZone extends OnApp {
                 $this->fields = $this->initFields( 6.4 );
                 break;
 
+            case 6.6:
+                $this->fields = $this->initFields( 6.5 );
+                break;
+
             default:
                 $this->fields = $this->initFields( '3.0' );
                 break;

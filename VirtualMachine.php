@@ -111,7 +111,7 @@ define( 'ONAPP_RESET_ROOT_PASSWORD', 'resetRootPassword' );
  *
  *
  */
-define( 'ONAPP_GETRESOURCE_MIGRATE', 'migrate' );
+define( 'ONAPP_GETRESOURCE_MIGRATE2', 'migrate' );
 
 /**
  *
@@ -853,6 +853,10 @@ class OnApp_VirtualMachine extends OnApp {
             case 6.5:
                 $this->fields = $this->initFields( 6.4 );
                 break;
+
+            case 6.6:
+                $this->fields = $this->initFields( 6.5 );
+                break;
         }
 
         if ( is_null( $this->_id ) ) {
@@ -1022,7 +1026,7 @@ class OnApp_VirtualMachine extends OnApp {
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/unlock';
                 break;
 
-            case ONAPP_GETRESOURCE_MIGRATE:
+            case ONAPP_GETRESOURCE_MIGRATE2:
 
                 /**
                  * ROUTE :
@@ -1636,7 +1640,7 @@ class OnApp_VirtualMachine extends OnApp {
             ),
         );
 
-        $this->sendPost( ONAPP_GETRESOURCE_MIGRATE, $data );
+        $this->sendPost( ONAPP_GETRESOURCE_MIGRATE2, $data );
     }
 
     /**
@@ -1885,7 +1889,7 @@ class OnApp_VirtualMachine extends OnApp {
         }
 
         $fields = $this->fields;
-        
+
         $this->unsetFields( array( 'cpu_threads' ) );
 
         $this->fields['primary_disk_size']              = array(
@@ -1974,7 +1978,7 @@ class OnApp_VirtualMachine extends OnApp {
                 ONAPP_FIELD_TYPE => 'boolean',
             );
         }
-        
+
         parent::save();
 
         $this->fields = $fields;
@@ -2116,7 +2120,7 @@ class OnApp_VirtualMachine extends OnApp {
         //initial_root_password_encryption_key=encryptionkey
         return $this->sendGet( ONAPP_GETRESOURCE_WITH_DECRYPTED_PASSWORD, null, array(initial_root_password_encryption_key => $encryptionKey) );
     }
-    
+
     function edit_fqdn($hostname, $domain) {
         $data = array(
             'root' => $this->_tagRoot,
@@ -2125,12 +2129,12 @@ class OnApp_VirtualMachine extends OnApp {
                 'domain'    => $domain,
             )
         );
-        
+
         return $this->sendPatch( ONAPP_EDIT_FQDN, $data );
     }
-    
-    public function addVsFromOvaTemplate($template_id, $label, $hostname, $domain='localdomain', $initial_root_password=null, $initial_root_password_confirmation=null, $hypervisor_group_id=null, $hypervisor_id=null, $memory, $cpus, $cpu_shares, $cpu_units, $cpu_topology, array $disks_attributes, array $network_interfaces_attributes, $required_automatic_backup=0, $required_virtual_machine_build=1, $required_virtual_machine_startup=0, $acceleration=false){
-        
+
+    public function addVsFromOvaTemplate($template_id, $label, $hostname, $domain='localdomain', $initial_root_password=null, $initial_root_password_confirmation=null, $hypervisor_group_id=null, $hypervisor_id=null, $memory=null, $cpus=null, $cpu_shares=null, $cpu_units=null, $cpu_topology=null, array $disks_attributes=null, array $network_interfaces_attributes=null, $required_automatic_backup=0, $required_virtual_machine_build=1, $required_virtual_machine_startup=0, $acceleration=false){
+
         $data = array(
             'root' => $this->_tagRoot,
             'data' => array(
@@ -2177,7 +2181,7 @@ class OnApp_VirtualMachine extends OnApp {
                 __LINE__
             );
         }
-        
+
         return $this->sendPost( ONAPP_GETRESOURCE_DEFAULT, $data );
     }
 
@@ -2220,7 +2224,42 @@ class OnApp_VirtualMachine extends OnApp {
 
     public function clone()
     {
-        return $this->sendPost( ONAPP_CLONE);
+        $data = null;
+
+        if ( $this->getAPIVersion() >= 6.6 ) {
+            $this->fields['initial_root_password_confirmation']  = array(
+                ONAPP_FIELD_MAP           => '_initial_root_password_confirmation',
+                ONAPP_FIELD_TYPE          => 'string',
+            );
+            $this->fields['encrypt_password']         = array(
+                ONAPP_FIELD_MAP           => '_encrypt_password',
+                ONAPP_FIELD_TYPE          => 'boolean',
+            );
+            $this->fields['initial_root_password_encryption_key']  = array(
+                ONAPP_FIELD_MAP           => '_initial_root_password_encryption_key',
+                ONAPP_FIELD_TYPE          => 'string',
+            );
+            $this->fields['initial_root_password_encryption_key_confirmation']  = array(
+                ONAPP_FIELD_MAP           => '_initial_root_password_encryption_key_confirmation',
+                ONAPP_FIELD_TYPE          => 'string',
+            );
+
+            $data = array(
+                'root' => $this->_tagRoot,
+                'data' => array(
+                    'label' => $this->_label,
+                    'hostname' => $this->_hostname,
+                    'initial_root_password' => $this->_initial_root_password,
+                    'initial_root_password_confirmation' => $this->_initial_root_password_confirmation,
+                    'encrypt_password' => $this->_encrypt_password,
+                    'initial_root_password_encryption_key' => $this->_initial_root_password_encryption_key,
+                    'initial_root_password_encryption_key_confirmation' => $this->_initial_root_password_encryption_key_confirmation,
+                ),
+            );
+
+        }
+
+        return $this->sendPost( ONAPP_CLONE, $data);
     }
 
     public function convertToVirtualRouter()

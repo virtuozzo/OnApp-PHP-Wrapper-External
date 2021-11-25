@@ -209,6 +209,14 @@ class OnApp_VDCS extends OnApp {
             case 6.5:
                 $this->fields = $this->initFields( 6.4 );
                 break;
+
+            case 6.6:
+                $this->fields = $this->initFields( 6.5 );
+                $this->fields['network_provider_type'] = array(
+                    ONAPP_FIELD_MAP  => '_network_provider_type',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

@@ -110,6 +110,14 @@ class OnApp_Settings_CDN_ManagersNodes extends OnApp {
             case 6.5:
                 $this->fields = $this->initFields( 6.4 );
                 break;
+
+            case 6.6:
+                $this->fields = $this->initFields( 6.5 );
+                $this->fields['transit_ip']             = array(
+                    ONAPP_FIELD_MAP  => '_transit_ip',
+                    ONAPP_FIELD_TYPE => '_array',
+                );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
@@ -223,7 +231,11 @@ class OnApp_Settings_CDN_ManagersNodes extends OnApp {
             'connection_option_id'  => $this->_connection_option_id,
             'compute_resource_id'   => $this->_compute_resource_id,
         );
-        
+
+        if (parent::getAPIVersion() >= 6.6) {
+            $data['transit_ip'] = $this->_transit_ip;
+        }
+
         if ( ! is_null( $data ) && is_array( $data ) ) {
             $data = json_encode($data);
             $this->logger->debug( 'Additional parameters: ' . $data );

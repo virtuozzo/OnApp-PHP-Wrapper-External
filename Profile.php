@@ -337,6 +337,14 @@ class OnApp_Profile extends OnApp {
             case 6.5:
                 $this->fields = $this->initFields( 6.4 );
                 break;
+
+            case 6.6:
+                $this->fields = $this->initFields( 6.5 );
+                $this->fields['cdn_bandwidth_limit_set']   = array(
+                    ONAPP_FIELD_MAP  => '_cdn_bandwidth_limit_set',
+                    ONAPP_FIELD_TYPE => 'boolean',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

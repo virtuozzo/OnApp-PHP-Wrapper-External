@@ -98,6 +98,14 @@ class OnApp_Messaging_Gateways extends OnApp {
             case 6.5:
                 $this->fields = $this->initFields( 6.4 );
                 break;
+
+            case 6.6:
+                $this->fields = $this->initFields( 6.5 );
+                $this->fields['smtp_authentication_enabled'] = array(
+                    ONAPP_FIELD_MAP  => '_smtp_authentication_enabled',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
         
         parent::initFields( $version, __CLASS__ );

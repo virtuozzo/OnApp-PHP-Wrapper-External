@@ -37,6 +37,10 @@ define( 'ONAPP_GET_LIST_OF_OWN_ISOS', 'list_of_own_isos' );
  */
 define( 'ONAPP__MAKE_ISO_PUBLIC', 'make_public' );
 
+/**
+ * @var
+ */
+define('ONAPP_ALLOWED_HOT_MIGRATE', 'allowed_hot_migrate');
 
 /**
  * ISO
@@ -301,6 +305,10 @@ class OnApp_ISO extends OnApp {
             case 6.5:
                 $this->fields = $this->initFields( 6.4 );
                 break;
+
+            case 6.6:
+                $this->fields = $this->initFields( 6.5 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -379,12 +387,42 @@ class OnApp_ISO extends OnApp {
                 }
                 $resource = $this->_resource . '/' . $this->_id . '/make_public';
                 break;
+            case ONAPP_ALLOWED_HOT_MIGRATE :
+                /**
+                 * ROUTE :
+                 *
+                 * @name Hot Migrate VS Built from ISO
+                 * @method PUT
+                 * @alias  /template_isos(.:format)
+                 * @format {:action=>"allowedHotMigrate", :controller=>"own"}
+                 */
+                if ( is_null( $this->_id ) ) {
+                    $this->logger->error(
+                        'getResource( ' . $action . ' ): argument _id not set.',
+                        __FILE__,
+                        __LINE__
+                    );
+                }
+                $resource = $this->_resource . '/' . $this->_id;
+                break;
             default:
                 $resource = parent::getResource( $action );
                 break;
         }
 
         return $resource;
+    }
+
+    public function allowedHotMigrate()
+    {
+        $data = array(
+            'root' => $this->_tagRoot,
+            'data' => array(
+                'allowed_hot_migrate' => $this->_allowed_hot_migrate,
+            )
+        );
+
+        $this->sendPut( ONAPP_ALLOWED_HOT_MIGRATE, $data );
     }
 
     public function getPublicISO() {

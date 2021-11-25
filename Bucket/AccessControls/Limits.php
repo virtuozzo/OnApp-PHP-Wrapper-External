@@ -279,7 +279,10 @@ class OnApp_Bucket_AccessControls_Limits extends OnApp {
                     ONAPP_FIELD_MAP  => '_limit_nsxt_edge_gateways',
                     ONAPP_FIELD_TYPE => 'string',
                 );
+                break;
 
+            case 6.6:
+                $this->fields = $this->initFields( 6.5 );
                 break;
         }
 

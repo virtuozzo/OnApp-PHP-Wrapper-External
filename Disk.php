@@ -27,7 +27,7 @@ define( 'ONAPP_GETRESOURCE_AUTOBACKUP_DISABLE', 'autobackup_disable' );
  */
 define( 'ONAPP_GETRESOURCE_TAKE_BACKUP', 'backups' );
 
-define( 'ONAPP_GETRESOURCE_MIGRATE', 'migrate' );
+define( 'ONAPP_GETRESOURCE_MIGRATE1', 'migrate' );
 
 define( 'ONAPP_GETRESOURCE_DISK_IOLIMITS', 'io_limits' );
 
@@ -303,6 +303,14 @@ class OnApp_Disk extends OnApp {
             case 6.5:
                 $this->fields = $this->initFields( 6.4 );
                 break;
+
+            case 6.6:
+                $this->fields = $this->initFields( 6.5 );
+                $this->fields['virtio_enabled']   = array(
+                    ONAPP_FIELD_MAP  => '_virtio_enabled',
+                    ONAPP_FIELD_TYPE => 'string',
+                );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -390,7 +398,7 @@ class OnApp_Disk extends OnApp {
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/backups';
                 break;
 
-            case ONAPP_GETRESOURCE_MIGRATE:
+            case ONAPP_GETRESOURCE_MIGRATE1:
                 /**
                  * ROUTE :
                  *
@@ -473,7 +481,7 @@ class OnApp_Disk extends OnApp {
             ONAPP_GETRESOURCE_ADD,
             ONAPP_GETRESOURCE_AUTOBACKUP_ENABLE,
             ONAPP_GETRESOURCE_AUTOBACKUP_DISABLE,
-            ONAPP_GETRESOURCE_MIGRATE,
+            ONAPP_GETRESOURCE_MIGRATE1,
         );
 
         if ( in_array( $action, $actions ) ) {
@@ -597,7 +605,7 @@ class OnApp_Disk extends OnApp {
                 )
             )
         );
-        
+
         if ( $type ) {
             $data['data']['type'] = $type;
         }
@@ -607,8 +615,8 @@ class OnApp_Disk extends OnApp {
         if ( $disk_id ) {
             $data['data']['disk_id'] = $disk_id;
         }
-        
-        $this->sendPost( ONAPP_GETRESOURCE_MIGRATE, $data );
+
+        $this->sendPost( ONAPP_GETRESOURCE_MIGRATE1, $data );
     }
 
     function ioLimits( $io_limits_override = null, $read_iops = null, $write_iops = null, $read_throughput = null, $write_throughput = null, $id = null ) {

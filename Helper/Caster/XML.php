@@ -176,7 +176,7 @@ class OnApp_Helper_Caster_XML extends OnApp_Helper_Caster {
                     $value = array();
                 } else {
                     $arr = array();
-                    $this->convertXmlObjToArr( $value, &$arr );
+                    $this->convertXmlObjToArr( $value, $arr );
                     $value = $arr;
                 }
             } else {

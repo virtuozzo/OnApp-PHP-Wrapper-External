@@ -16,7 +16,7 @@
 /**
  * TODO Add description
  */
-define( 'ONAPP_GETRESOURCE_CREATE_COPY', 'copy' );
+define( 'ONAPP_GETRESOURCE_CREATE_COPY3', 'copy' );
 
 /**
  * Managing Company Billing Plans
@@ -170,6 +170,10 @@ class OnApp_BillingCompany extends OnApp {
             case 6.5:
                 $this->fields = $this->initFields( 6.4 );
                 break;
+
+            case 6.6:
+                $this->fields = $this->initFields( 6.5 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -191,7 +195,7 @@ class OnApp_BillingCompany extends OnApp {
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/plans';
                 break;
 
-            case ONAPP_GETRESOURCE_CREATE_COPY:
+            case ONAPP_GETRESOURCE_CREATE_COPY3:
                 /**
                  * ROUTE :
                  *
