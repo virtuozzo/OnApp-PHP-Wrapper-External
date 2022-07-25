@@ -129,6 +129,10 @@ class OnApp_Alert extends OnApp {
                     ONAPP_FIELD_TYPE => '_array',
                 );
                 break;
+
+            case 6.7:
+                $this->fields = $this->initFields( 6.6 );
+                break;
         }
 
 

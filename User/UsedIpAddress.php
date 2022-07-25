@@ -158,6 +158,10 @@ class OnApp_User_UsedIpAddress extends OnApp_IpAddress {
             case 6.6:
                 $this->fields = $this->initFields( 6.5 );
                 break;
+
+            case 6.7:
+                $this->fields = $this->initFields( 6.6 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

@@ -313,6 +313,10 @@ class OnApp_Network extends OnApp {
                     ONAPP_FIELD_TYPE => 'string',
                 );
                 break;
+
+            case 6.7:
+                $this->fields = $this->initFields( 6.6 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

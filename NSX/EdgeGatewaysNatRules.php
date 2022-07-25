@@ -129,6 +129,10 @@ class OnApp_NSX_EdgeGatewaysNatRules extends OnApp {
             case 6.6:
                 $this->fields = $this->initFields( 6.5 );
                 break;
+
+            case 6.7:
+                $this->fields = $this->initFields( 6.6 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -159,10 +163,28 @@ class OnApp_NSX_EdgeGatewaysNatRules extends OnApp {
                 /**
                  * ROUTE :
                  *
+                 * @name Get NSX-T NAT Rule Details
+                 * @method GET
+                 *
+                 * @alias  /nsxt_edge_gateways/:nsxt_edge_gateway_id/nat_rules/:id(.:format)
+                 * @format {:controller=>"NSX_EdgeGatewaystNatRules", :action=>"load"}
+                 */
+                /**
+                 * ROUTE :
+                 *
                  * @name Add NSX-T NAT Rule
                  * @method POST
                  *
                  * @alias  /nsxt_edge_gateways/:nsxt_edge_gateway_id/nat_rules(.:format)
+                 * @format {:controller=>"NSX_EdgeGatewaystNatRules", :action=>"save"}
+                 */
+                /**
+                 * ROUTE :
+                 *
+                 * @name Edit NSX-T NAT Rule
+                 * @method PUT
+                 *
+                 * @alias  /nsxt_edge_gateways/:nsxt_edge_gateway_id/nat_rules/:id(.:format)
                  * @format {:controller=>"NSX_EdgeGatewaystNatRules", :action=>"save"}
                  */
                 if ( is_null( $this->_nsxt_edge_gateway_id ) && is_null( $this->_obj->_nsxt_edge_gateway_id ) ) {
@@ -218,8 +240,18 @@ class OnApp_NSX_EdgeGatewaysNatRules extends OnApp {
 
     public function save()
     {
+        if (parent::getAPIVersion() < 6.7) {
+            $this->_tagRoot = 'nsxt_nat_rule';
+        }
+
+        if ($this->_id) {
+            parent::save();
+
+            return;
+        }
+
         $data = array(
-            'nsxt_nat_rule' => array(
+            $this->_tagRoot => array(
                 'label' => $this->_label,
                 'description' => $this->_description,
                 'vcloud_nsxt_application_port_profile_id' => $this->_vcloud_nsxt_application_port_profile_id,
@@ -266,7 +298,6 @@ class OnApp_NSX_EdgeGatewaysNatRules extends OnApp {
      */
     function activateCheck( $action_name ) {
         switch ( $action_name ) {
-            case ONAPP_ACTIVATE_LOAD:
             case ONAPP_ACTIVATE_DELETE:
                 exit( 'Call to undefined method ' . __CLASS__ . '::' . $action_name . '()' );
                 break;

@@ -92,6 +92,10 @@ class OnApp_Container extends OnApp_VirtualMachine {
             case 6.6:
                 $this->fields = $this->initFields( 6.5 );
                 break;
+
+            case 6.7:
+                $this->fields = $this->initFields( 6.6 );
+                break;
         }
 
         return $this->fields;

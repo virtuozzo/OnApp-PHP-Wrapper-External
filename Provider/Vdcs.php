@@ -117,6 +117,10 @@ class OnApp_Provider_Vdcs extends OnApp {
                     ),
                 );
                 break;
+
+            case 6.7:
+                $this->fields = $this->initFields( 6.6 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

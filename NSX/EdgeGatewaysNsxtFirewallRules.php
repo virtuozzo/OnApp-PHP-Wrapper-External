@@ -122,6 +122,32 @@ class OnApp_NSX_EdgeGatewaysNsxtFirewallRules extends OnApp {
             case 6.6:
                 $this->fields = $this->initFields( 6.5 );
                 break;
+
+            case 6.7:
+                $this->fields = $this->initFields( 6.6 );
+                $fields       = array(
+                    'rule_action',
+                );
+                $this->unsetFields( $fields );
+
+                $this->fields['sources']        = array(
+                    ONAPP_FIELD_MAP     => '_sources',
+                    ONAPP_FIELD_TYPE    => '_array',
+                );
+                $this->fields['destinations']   = array(
+                    ONAPP_FIELD_MAP     => '_destinations',
+                    ONAPP_FIELD_TYPE    => '_array',
+                );
+                $this->fields['applications']   = array(
+                    ONAPP_FIELD_MAP     => '_applications',
+                    ONAPP_FIELD_TYPE    => '_array',
+                );
+                $this->fields['action']         = array(
+                    ONAPP_FIELD_MAP     => 'action',
+                    ONAPP_FIELD_TYPE    => 'string',
+                );
+
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

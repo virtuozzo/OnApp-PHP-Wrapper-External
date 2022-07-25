@@ -97,6 +97,10 @@ class OnApp_HypervisorZone_CPUConfiguration extends OnApp {
                     ONAPP_FIELD_TYPE => '_array',
                 );
                 break;
+
+            case 6.7:
+                $this->fields = $this->initFields( 6.6 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
