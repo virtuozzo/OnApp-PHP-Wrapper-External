@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing SamlIdProviders
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -80,7 +80,7 @@ class OnApp_Settings_SamlIdProviders extends OnApp {
                         ONAPP_FIELD_MAP         => '_assertion_consumer_service_url',
                         ONAPP_FIELD_TYPE        => 'string',
                     ),
-                    
+
                     'onapp_key'                         => array(
                         ONAPP_FIELD_MAP         => '_onapp_key',
                         ONAPP_FIELD_TYPE        => 'string',
@@ -166,7 +166,7 @@ class OnApp_Settings_SamlIdProviders extends OnApp {
                     'idp_slo_target_url'                => array(
                         ONAPP_FIELD_MAP         => '_idp_slo_target_url',
                         ONAPP_FIELD_TYPE        => 'string',
-                    ), 
+                    ),
                 );
                 break;
 
@@ -206,10 +206,14 @@ class OnApp_Settings_SamlIdProviders extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
 }

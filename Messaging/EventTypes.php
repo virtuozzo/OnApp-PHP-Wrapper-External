@@ -19,7 +19,7 @@ define('ONAPP_CUSTOM_EVENT_TRIGGERS', 'custom_event_triggers');
 
 /**
  * Managing Messaging EventTypes
- * 
+ *
  * {@link getList}, {@link add}, {@link edit}, {@link delete}
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php )
@@ -68,7 +68,7 @@ class OnApp_Messaging_EventTypes extends OnApp {
                         ONAPP_FIELD_MAP         => '_updated_at',
                         ONAPP_FIELD_TYPE        => 'datetime',
                         ONAPP_FIELD_READ_ONLY   => true
-                    ),  
+                    ),
                     'kind'              => array(
                         ONAPP_FIELD_MAP         => '_kind',
                         ONAPP_FIELD_TYPE        => 'string',
@@ -115,13 +115,17 @@ class OnApp_Messaging_EventTypes extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
-        
+
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
    /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -169,7 +173,7 @@ class OnApp_Messaging_EventTypes extends OnApp {
                 $resource = $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-            
+
             case ONAPP_CUSTOM_EVENT_TRIGGERS:
                 /**
                  * ROUTE :
@@ -179,7 +183,7 @@ class OnApp_Messaging_EventTypes extends OnApp {
                  * @alias   /messaging/event_types/:id/custom_event_triggers(.:format)
                  * @format  {:controller=>"Messaging_EventTypes", :action=>"add"}
                  */
-                
+
                 if ( is_null( $this->_id ) ) {
                     $this->logger->error(
                         "getResource($action): argument _id not set.",
@@ -199,7 +203,7 @@ class OnApp_Messaging_EventTypes extends OnApp {
 
         return $resource;
     }
-    
+
     public function save() {
         if ( isset($this->_message) && !is_null( $this->_message ) ) {
             $data = array(
@@ -213,5 +217,5 @@ class OnApp_Messaging_EventTypes extends OnApp {
             parent::save();
         }
     }
-   
+
 }

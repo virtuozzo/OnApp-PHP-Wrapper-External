@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing Settings AutoBackupPresets
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -133,12 +133,16 @@ class OnApp_Settings_AutoBackupPresets extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
     /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -155,7 +159,7 @@ class OnApp_Settings_AutoBackupPresets extends OnApp {
                  *
                  * @name Settings AutoBackupPresets
                  * @method GET
-                 * 
+                 *
                  * @alias   /settings/backups/resources/:resource_id/auto_backup_presets(.:format)
                  * @format  {:controller=>"Settings_AutoBackupPresets", :action=>"index"}
                  */
@@ -164,7 +168,7 @@ class OnApp_Settings_AutoBackupPresets extends OnApp {
                  *
                  * @name Settings AutoBackupPresets
                  * @method GET
-                 * 
+                 *
                  * @alias   /settings/backups/resources/:resource_id/auto_backup_presets/:id(.:format)
                  * @format  {:controller=>"Settings_AutoBackupPresets", :action=>"index"}
                  */
@@ -173,7 +177,7 @@ class OnApp_Settings_AutoBackupPresets extends OnApp {
                  *
                  * @name Settings AutoBackupPresets
                  * @method POST
-                 * 
+                 *
                  * @alias   /settings/backups/resources/:resource_id/auto_backup_presets(.:format)
                  * @format  {:controller=>"Settings_AutoBackupPresets", :action=>"add"}
                  */
@@ -182,7 +186,7 @@ class OnApp_Settings_AutoBackupPresets extends OnApp {
                  *
                  * @name Settings AutoBackupPresets
                  * @method PUT
-                 * 
+                 *
                  * @alias   /settings/backups/resources/:resource_id/auto_backup_presets/:id(.:format)
                  * @format  {:controller=>"Settings_AutoBackupPresets", :action=>"edit"}
                  */
@@ -191,11 +195,11 @@ class OnApp_Settings_AutoBackupPresets extends OnApp {
                  *
                  * @name Settings AutoBackupPresets
                  * @method DELETE
-                 * 
+                 *
                  * @alias   /settings/backups/resources/:resource_id/auto_backup_presets/:id(.:format)
                  * @format  {:controller=>"Settings_AutoBackupPresets", :action=>"delete"}
                  */
-                
+
                 $resource = 'settings/backups/resources/' . $this->_resource_id .'/'. $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;

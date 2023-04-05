@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing Hypervisor CpuQuota
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -88,12 +88,16 @@ class OnApp_Hypervisor_CpuQuota extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
     /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -110,7 +114,7 @@ class OnApp_Hypervisor_CpuQuota extends OnApp {
                  *
                  * @name Hypervisor CpuQuota
                  * @method GET
-                 * 
+                 *
                  * @alias   /settings/hypervisors/:hv_id/cpu_quota(.:format)
                  * @format  {:controller=>"Hypervisor CpuQuota", :action=>"index"}
                  */
@@ -133,7 +137,7 @@ class OnApp_Hypervisor_CpuQuota extends OnApp {
                 $resource = 'settings/hypervisors/' . $this->_hv_id . '/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-                
+
             default:
                 $resource = parent::getResource( $action );
                 break;
@@ -141,14 +145,14 @@ class OnApp_Hypervisor_CpuQuota extends OnApp {
 
         return $resource;
     }
-    
+
     /**
      * The method saves an Object
      *
      * @return void
      */
     public function save() {
-        
+
         if ( !isset( $this->_enabled ) && empty( $this->_enabled ) ) {
             $this->logger->error(
                 "save(): argument _enabled not set.",
@@ -163,7 +167,7 @@ class OnApp_Hypervisor_CpuQuota extends OnApp {
                 __LINE__
             );
         }
-        
+
         $data = array(
             'root'        => $this->_tagRoot,
             'data'        => array(
@@ -171,8 +175,8 @@ class OnApp_Hypervisor_CpuQuota extends OnApp {
                 'value'     => $this->_value,
             ),
         );
-        
+
         $this->sendPut( ONAPP_GETRESOURCE_DEFAULT, $data );
-            
+
     }
 }

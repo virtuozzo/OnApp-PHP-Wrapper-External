@@ -72,6 +72,10 @@ class OnApp_AccelerationDashboard_SummaryCharts extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing VirtualServers BackupsResources
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -133,12 +133,16 @@ class OnApp_VirtualServers_BackupsResources extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
     /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -162,7 +166,7 @@ class OnApp_VirtualServers_BackupsResources extends OnApp {
                 $resource = 'virtual_servers/' . $this->_virtual_server_id . '/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-            
+
             case ONAPP_BACKUP_RESOURCE:
                 /**
                  * ROUTE :
@@ -196,7 +200,7 @@ class OnApp_VirtualServers_BackupsResources extends OnApp {
                 $resource = 'virtual_servers/' . $this->_virtual_server_id . '/' . $this->_resource . '/' . $this->_id;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-                
+
             default:
                 $resource = parent::getResource( $action );
                 break;
@@ -204,17 +208,17 @@ class OnApp_VirtualServers_BackupsResources extends OnApp {
 
         return $resource;
     }
-    
+
     public function save() {
         if ( isset( $this->_id ) && !is_null( $this->_id ) ) {
-            
+
             $this->sendPost( ONAPP_BACKUP_RESOURCE );
         }
     }
-    
+
     public function delete() {
         if ( isset( $this->_id ) && !is_null( $this->_id ) ) {
-            
+
             $this->sendDelete( ONAPP_BACKUP_RESOURCE );
         }
     }

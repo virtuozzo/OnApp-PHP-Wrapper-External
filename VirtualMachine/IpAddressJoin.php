@@ -158,7 +158,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
                     ONAPP_FIELD_MAP  => '_ip_range_id',
                     ONAPP_FIELD_TYPE => 'string',
                 );
-                
+
                 break;
 
             case 6.1:
@@ -187,6 +187,10 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
 
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
+                break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
                 break;
         }
 
@@ -349,7 +353,7 @@ class OnApp_VirtualMachine_IpAddressJoin extends OnApp {
             }
         }
     }
-    
+
     public function assignIPAddress() {
         if ($this->version >= 6) {
             $this->_tagRoot = 'ip_address';

@@ -161,15 +161,15 @@ class OnApp_DNSZone extends OnApp {
                 break;
 
             default:
-                $this->fields = $this->initFields( '3.0' );
+                $this->fields = $this->initFields( 6.7 );
                 break;
         }
-        
+
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         switch ( $action ) {
             case ONAPP_USER_DNSZONE:
@@ -193,14 +193,14 @@ class OnApp_DNSZone extends OnApp {
 
         return $resource;
     }
-    
+
     public function search( $question ) {
-        
+
         return $this->sendGet( ONAPP_GETRESOURCE_DEFAULT, null, array( 'q' => $question ) );
     }
-    
+
     public function searchUser( $question ) {
-        
+
         return $this->sendGet( ONAPP_USER_DNSZONE, null, array( 'q' => $question ) );
     }
 }

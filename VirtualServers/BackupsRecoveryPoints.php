@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing VirtualServers BackupsRecoveryPoints
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -115,12 +115,16 @@ class OnApp_VirtualServers_BackupsRecoveryPoints extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
     /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -141,11 +145,11 @@ class OnApp_VirtualServers_BackupsRecoveryPoints extends OnApp {
                  * @alias   /virtual_servers/:virtual_server_id/backups/recovery_points(.:format)
                  * @format  {:controller=>"VirtualServers BackupsRecoveryPoints", :action=>"add"}
                  */
-                
+
                 $resource = 'virtual_servers/' . $this->_virtual_server_id . '/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-            
+
             case ONAPP_BACKUP_RECOVERY_POINTS_RESTORE:
                 /**
                  * ROUTE :
@@ -156,11 +160,11 @@ class OnApp_VirtualServers_BackupsRecoveryPoints extends OnApp {
                  * @alias   /virtual_servers/:virtual_server_id/backups/recovery_points/:recovery_point_id/restore(.:format)
                  * @format  {:controller=>"VirtualServers BackupsRecoveryPoints", :action=>"add"}
                  */
-                
+
                 $resource = 'virtual_servers/' . $this->_virtual_server_id . '/' . $this->_resource . '/' . $this->_recovery_point_id . '/' . ONAPP_BACKUP_RECOVERY_POINTS_RESTORE;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-                
+
             default:
                 $resource = parent::getResource( $action );
                 break;
@@ -168,11 +172,11 @@ class OnApp_VirtualServers_BackupsRecoveryPoints extends OnApp {
 
         return $resource;
     }
-    
+
     /**
      * Restore from recovery point
      *
-     * @param integer $recovery_point_id 
+     * @param integer $recovery_point_id
      */
     public function restore( $recovery_point_id = null ) {
         if ( ! is_null( $recovery_point_id ) ) {
@@ -180,7 +184,7 @@ class OnApp_VirtualServers_BackupsRecoveryPoints extends OnApp {
         }
         $this->sendPost( ONAPP_BACKUP_RECOVERY_POINTS_RESTORE );
     }
-    
+
     /**
      * Create recovery point
      *
@@ -188,7 +192,7 @@ class OnApp_VirtualServers_BackupsRecoveryPoints extends OnApp {
      */
     public function createRecoveryPoint( $resource_id ) {
         $data = array( 'resource_id' => $resource_id );
-        
+
         if ( ! is_null( $data ) && is_array( $data ) ) {
             $data = json_encode($data);
             $this->logger->debug( 'Additional parameters: ' . $data );

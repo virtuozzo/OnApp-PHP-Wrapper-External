@@ -113,12 +113,16 @@ class OnApp_Bucket_RateCards extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
    /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -192,7 +196,7 @@ class OnApp_Bucket_RateCards extends OnApp {
      * @return void
      */
     public function save( $flag = false ) {
-        
+
         if ( !isset( $this->_type ) && empty( $this->_type ) ) {
             $this->logger->error(
                 "save: argument _type not set.",
@@ -200,7 +204,7 @@ class OnApp_Bucket_RateCards extends OnApp {
                 __LINE__
             );
         }
-        
+
         if ( !isset( $this->_server_type ) && empty( $this->_server_type ) ) {
             $this->logger->error(
                 "save: argument _server_type not set.",
@@ -208,7 +212,7 @@ class OnApp_Bucket_RateCards extends OnApp {
                 __LINE__
             );
         }
-        
+
         if ( !isset( $this->_target_id ) ) {
             $this->logger->error(
                 "save: argument _target_id not set.",
@@ -216,7 +220,7 @@ class OnApp_Bucket_RateCards extends OnApp {
                 __LINE__
             );
         }
-        
+
         if ( !isset( $this->_prices ) ) {
             $this->logger->error(
                 "save: argument _prices not set.",
@@ -224,7 +228,7 @@ class OnApp_Bucket_RateCards extends OnApp {
                 __LINE__
             );
         }
-        
+
         $data = array(
             'root'        => $this->_tagRoot,
             'data'        => array(
@@ -238,14 +242,14 @@ class OnApp_Bucket_RateCards extends OnApp {
         if (isset($this->_apply_to_all_resources_in_the_bucket) && !is_null($this->_apply_to_all_resources_in_the_bucket)) {
             $data['data']['apply_to_all_resources_in_the_bucket'] = $this->_apply_to_all_resources_in_the_bucket;
         }
-        
+
         if ( $flag ) {
             $this->sendPut( ONAPP_GETRESOURCE_DEFAULT, $data );
         } else {
             $this->sendPost( ONAPP_GETRESOURCE_DEFAULT, $data );
         }
     }
-    
+
     public function delete() {
         if ( !isset( $this->_type ) && empty( $this->_type ) ) {
             $this->logger->error(
@@ -254,7 +258,7 @@ class OnApp_Bucket_RateCards extends OnApp {
                 __LINE__
             );
         }
-        
+
         if ( !isset( $this->_server_type ) && empty( $this->_server_type ) ) {
             $this->logger->error(
                 "delete: argument _server_type not set.",
@@ -262,7 +266,7 @@ class OnApp_Bucket_RateCards extends OnApp {
                 __LINE__
             );
         }
-        
+
         if ( !isset( $this->_target_id ) ) {
             $this->logger->error(
                 "delete: argument _target_id not set.",
@@ -270,7 +274,7 @@ class OnApp_Bucket_RateCards extends OnApp {
                 __LINE__
             );
         }
-        
+
         $data = array(
             'root'        => $this->_tagRoot,
             'data'        => array(
@@ -280,8 +284,8 @@ class OnApp_Bucket_RateCards extends OnApp {
                 'server_type' => $this->_server_type,
             ),
         );
-        
+
         $this->sendDelete( ONAPP_GETRESOURCE_DEFAULT, $data );
     }
-    
+
 }

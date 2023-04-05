@@ -114,7 +114,7 @@ class OnApp_BillingBucket extends OnApp {
                     'associated_with_users' => array(
                         ONAPP_FIELD_MAP           => '_associated_with_users',
                         ONAPP_FIELD_TYPE          => 'integer',
-                    ), 
+                    ),
                 );
                 break;
 
@@ -145,15 +145,19 @@ class OnApp_BillingBucket extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         switch ( $action ) {
-            
+
             case ONAPP_BILLINGBACKET_CLONE:
                 /**
                  * ROUTE :
@@ -165,7 +169,7 @@ class OnApp_BillingBucket extends OnApp {
                  */
                 $resource = $this->_resource . '/' . $this->_id . '/' . ONAPP_BILLINGBACKET_CLONE;
                 break;
-            
+
             default:
                 /**
                  * ROUTE :
@@ -212,7 +216,7 @@ class OnApp_BillingBucket extends OnApp {
 
         return $resource;
     }
-    
+
     public function bucketClone($id){
         if ( ! is_null( $id ) ) {
             $this->_id = $id;
@@ -225,5 +229,5 @@ class OnApp_BillingBucket extends OnApp {
         }
         $this->sendPost( ONAPP_BILLINGBACKET_CLONE );
     }
-    
+
 }

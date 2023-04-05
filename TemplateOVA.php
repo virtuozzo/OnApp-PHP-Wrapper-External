@@ -299,6 +299,10 @@ class OnApp_TemplateOVA extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -413,7 +417,7 @@ class OnApp_TemplateOVA extends OnApp {
                 }
                 $resource = $this->_resource . '/' . $this->_id . '/unlock';
                 break;
-                
+
             case ONAPP_CONVERTING:
                 /**
                  * ROUTE :
@@ -437,7 +441,7 @@ class OnApp_TemplateOVA extends OnApp {
                 }
                 $resource = $this->_resource . '/' . $this->_id . '/converting';
                 break;
-                
+
             default:
                 /**
                  * ROUTE :
@@ -496,11 +500,11 @@ class OnApp_TemplateOVA extends OnApp {
     public function unlock() {
         return $this->sendPost( ONAPP_UNLOCK_OVA );
     }
-    
+
     public function converting() {
         return $this->sendPost( ONAPP_CONVERTING );
     }
-    
+
     public function save() {
         $fields = array(
                 'operating_system',
@@ -514,7 +518,7 @@ class OnApp_TemplateOVA extends OnApp {
             $fields[] = 'file_url';
         }
         $this->unsetFields( $fields );
-        
+
         parent::save();
     }
 }

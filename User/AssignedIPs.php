@@ -54,6 +54,10 @@ class OnApp_User_AssignedIPs extends OnApp {
                     ),
                 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

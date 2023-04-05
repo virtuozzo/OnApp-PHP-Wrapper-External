@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing VirtualMachine BackupsRecoveryPointsFileEntries
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -96,12 +96,16 @@ class OnApp_VirtualMachine_BackupsRecoveryPointsFileEntries extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
     /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -122,7 +126,7 @@ class OnApp_VirtualMachine_BackupsRecoveryPointsFileEntries extends OnApp {
                  * @alias   /virtual_machines/:virtual_machine_id/backups/recovery_points/:recovery_point_id/file_entries(.:format)
                  * @format  {:controller=>"VirtualMachine BackupsRecoveryPointsFileEntries", :action=>"index"}
                  */
-                
+
                 /**
                  * ROUTE :
                  *
@@ -132,11 +136,11 @@ class OnApp_VirtualMachine_BackupsRecoveryPointsFileEntries extends OnApp {
                  * @alias   /virtual_machines/:virtual_machine_id/backups/recovery_points/:recovery_point_id/file_entries(.:format)
                  * @format  {:controller=>"VirtualMachine BackupsRecoveryPointsFileEntries", :action=>"index"}
                  */
-                
+
                 $resource = 'virtual_machines/' . $this->_virtual_machine_id . '/' . $this->_resource . '/' . $this->_recovery_point_id . '/file_entries';
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-                
+
             default:
                 $resource = parent::getResource( $action );
                 break;
@@ -144,7 +148,7 @@ class OnApp_VirtualMachine_BackupsRecoveryPointsFileEntries extends OnApp {
 
         return $resource;
     }
-    
+
     /**
      * The method saves an Object
      *
@@ -153,7 +157,7 @@ class OnApp_VirtualMachine_BackupsRecoveryPointsFileEntries extends OnApp {
      */
     public function save() {
         $data = array( 'paths' => $this->_paths );
-        
+
         if ( ! is_null( $data ) && is_array( $data ) ) {
             $data = json_encode($data);
             $this->logger->debug( 'Additional parameters: ' . $data );

@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing Settings ComputeZonesBackupsResourceZones
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -105,12 +105,16 @@ class OnApp_Settings_ComputeZonesBackupsResourceZones extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
     /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -127,17 +131,17 @@ class OnApp_Settings_ComputeZonesBackupsResourceZones extends OnApp {
                  *
                  * @name Settings ComputeZonesBackupsResourceZones
                  * @method GET
-                 * 
+                 *
                  * @alias   /settings/compute_zones/:compute_zone_id/backups/resource_zones(.:format)
                  * @format  {:controller=>"Settings_ComputeZonesBackupsResourceZones", :action=>"index"}
                  */
-                
+
                 /**
                  * ROUTE :
                  *
                  * @name Settings ComputeZonesBackupsResourceZones
                  * @method DELETE
-                 * 
+                 *
                  * @alias   /settings/compute_zones/:compute_zone_id/backups/resource_zones/:id(.:format)
                  * @format  {:controller=>"Settings_ComputeZonesBackupsResourceZones", :action=>"delete"}
                  */
@@ -152,14 +156,14 @@ class OnApp_Settings_ComputeZonesBackupsResourceZones extends OnApp {
                 $resource = 'settings/compute_zones/' . $this->_compute_zone_id . '/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-                
+
             case ONAPP_GETRESOURCE_ADD:
                 /**
                  * ROUTE :
                  *
                  * @name Settings ComputeZonesBackupsResourceZones
                  * @method POST
-                 * 
+                 *
                  * @alias   /settings/compute_zones/:compute_zone_id/backups/resource_zones/:backup_zone_id(.:format)
                  * @format  {:controller=>"Settings_ComputeZonesBackupsResourceZones", :action=>"add"}
                  */
@@ -177,11 +181,11 @@ class OnApp_Settings_ComputeZonesBackupsResourceZones extends OnApp {
                         __LINE__
                     );
                 }
-                
+
                 $resource = 'settings/compute_zones/' . $this->_compute_zone_id . '/' . $this->_resource . '/' . $this->_backup_zone_id;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-                
+
             default:
                 $resource = parent::getResource( $action );
                 break;
@@ -189,7 +193,7 @@ class OnApp_Settings_ComputeZonesBackupsResourceZones extends OnApp {
 
         return $resource;
     }
-    
+
     public function save() {
         $this->sendPost(ONAPP_GETRESOURCE_ADD);
     }

@@ -14,7 +14,7 @@
 
 /**
  * Managing CDNResource Invalidations
- * 
+ *
  * {@link save}, {@link delete}, and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php )
@@ -41,7 +41,7 @@ class OnApp_CDNResource_Invalidation extends OnApp {
      *
      * @return array
      */
-    
+
     public function initFields( $version = null, $className = '' ) {
         switch ( $version ) {
             case '6.0':
@@ -101,13 +101,17 @@ class OnApp_CDNResource_Invalidation extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
    /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -151,7 +155,7 @@ class OnApp_CDNResource_Invalidation extends OnApp {
                  * @alias   /cdn_resources/:id/invalidations(.:format)
                  * @format {:controller=>"CDNResource_Invalidation", :action=>"destroy"}
                  */
-                
+
                 $resource = 'cdn_resources/' . $this->_cdn_resource_id . '/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
@@ -162,7 +166,7 @@ class OnApp_CDNResource_Invalidation extends OnApp {
 
         return $resource;
     }
-    
+
     /**
      * Sends an API request to get the Objects. After requesting,
      * unserializes the received response into the array of Objects
@@ -175,13 +179,13 @@ class OnApp_CDNResource_Invalidation extends OnApp {
     public function getList($params = null, $url_args = null) {
 
         if ( ! is_null( $this->_cdn_resource_id ) ) {
-            
+
             $this->_tagRoot = 'invalidation';
-            
+
             $this->setAPIResource( $this->getResource() );
-            
+
             $response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
-            
+
             if ( isset( $response['response_body'] ) && !is_null( $response['response_body'] ) ) {
                 $response_body = $response['response_body'];
                 $data = json_decode( $response_body );
@@ -192,27 +196,27 @@ class OnApp_CDNResource_Invalidation extends OnApp {
             }
 
             $result = $this->_castResponseToClass( $response );
-            
+
             $this->_obj = $result;
-            
+
             return $result;
-            
+
         } else {
             $this->logger->error(
                 'getList: argument $cdn_resource_id not set.',
                 __FILE__,
                 __LINE__
             );
-        }  
+        }
     }
-    
+
     public function save() {
-        
+
         if ( is_null( $this->_id ) && !is_null( $this->wildcard_invalidation_rule_id ) ) {
             $this->_id = $this->wildcard_invalidation_rule_id;
         }
-        
+
         parent::save();
     }
-    
+
 }

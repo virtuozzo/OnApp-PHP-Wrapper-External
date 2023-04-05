@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing HardwareInfo
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -136,7 +136,7 @@ class OnApp_Settings_HardwareInfo extends OnApp {
                     'server_type_custom_fields'         => array(
                         ONAPP_FIELD_MAP         => '_server_type_custom_fields',
                         ONAPP_FIELD_TYPE        => 'string',
-                    ), 
+                    ),
                 );
                 break;
 
@@ -171,12 +171,16 @@ class OnApp_Settings_HardwareInfo extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
     /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -193,7 +197,7 @@ class OnApp_Settings_HardwareInfo extends OnApp {
                  *
                  * @name Settings HardwareInfo
                  * @method GET
-                 * 
+                 *
                  * @alias   /settings/:target/:target_id/hardware_info(.:format)
                  * @format  {:controller=>"Settings_HardwareInfo", :action=>"index"}
                  */
@@ -202,11 +206,11 @@ class OnApp_Settings_HardwareInfo extends OnApp {
                  *
                  * @name Settings HardwareInfo
                  * @method PUT
-                 * 
+                 *
                  * @alias   /settings/:target/:target_id/hardware_info(.:format)
                  * @format  {:controller=>"Settings_HardwareInfo", :action=>"edit"}
                  */
-                
+
                 if ( is_null( $this->_target_type ) ) {
                     $this->logger->error(
                         "getResource($action): argument _target_type not set.",
@@ -214,7 +218,7 @@ class OnApp_Settings_HardwareInfo extends OnApp {
                         __LINE__
                     );
                 }
-                
+
                 if ( is_null( $this->_target_id ) ) {
                     $this->logger->error(
                         "getResource($action): argument _target_id not set.",
@@ -222,7 +226,7 @@ class OnApp_Settings_HardwareInfo extends OnApp {
                         __LINE__
                     );
                 }
-                
+
                 $resource = 'settings/' . $this->_target_type . '/' . $this->_target_id . '/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
@@ -233,7 +237,7 @@ class OnApp_Settings_HardwareInfo extends OnApp {
 
         return $resource;
     }
-    
+
     /**
      * Sends an API request to get the Objects. After requesting,
      * unserializes the received response into the array of Objects
@@ -246,47 +250,47 @@ class OnApp_Settings_HardwareInfo extends OnApp {
     public function getList($params = null, $url_args = null) {
 
         if ( ! is_null( $this->_target_type ) && ! is_null( $this->_target_id ) ) {
-            
+
             $this->setAPIResource( $this->getResource() );
-            
+
             $response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
-            
+
             if ( isset( $response['response_body'] ) && !is_null( $response['response_body'] ) ) {
                 $response_body = $response['response_body'];
                 $data = json_decode( $response_body );
-                
+
                 if ( isset( $data ) ) {
                     $response_body = json_encode(array($data));
                     $response['response_body'] = $response_body;
                 }
             }
-            
+
             $result = $this->_castResponseToClass( $response );
-            
+
             $this->_obj = $result;
-            
+
             return $result;
-            
+
         } else {
             $this->logger->error(
                 'getList: argument $_id not set.',
                 __FILE__,
                 __LINE__
             );
-        }  
+        }
     }
-    
+
     public function save() {
         if ( ! is_null( $this->_target_type ) && ! is_null( $this->_target_id ) ) {
             $this->sendPut( ONAPP_GETRESOURCE_DEFAULT );
-            
+
         } else {
             $this->logger->error(
                 'getList: argument $_id not set.',
                 __FILE__,
                 __LINE__
             );
-        } 
+        }
     }
-    
+
 }

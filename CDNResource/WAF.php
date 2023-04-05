@@ -14,7 +14,7 @@
 
 /**
  * Managing CDNResource WAF
- * 
+ *
  * {@link save}, {@link delete}, and {@link getList}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php )
@@ -93,13 +93,17 @@ class OnApp_CDNResource_WAF extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
-        
+
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
    /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -165,7 +169,7 @@ class OnApp_CDNResource_WAF extends OnApp {
 
         return $resource;
     }
-    
+
     /**
      * Sends an API request to get the Objects. After requesting,
      * unserializes the received response into the array of Objects
@@ -178,36 +182,36 @@ class OnApp_CDNResource_WAF extends OnApp {
     public function getList($params = null, $url_args = null) {
 
         if ( ! is_null( $this->_id ) ) {
-            
+
             $this->setAPIResource( $this->getResource() );
-            
+
             $response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
-            
+
             if ( isset( $response['response_body'] ) && !is_null( $response['response_body'] ) ) {
                 $response_body = $response['response_body'];
                 $data = json_decode( $response_body );
-                
+
                 if ( isset( $data->cdn_resource ) ) {
                     $response_body = json_encode(array($data));
                     $response['response_body'] = $response_body;
                 }
             }
-            
+
             $result = $this->_castResponseToClass( $response );
-            
+
             $this->_obj = $result;
-            
+
             return $result;
-            
+
         } else {
             $this->logger->error(
                 'getList: argument $_id not set.',
                 __FILE__,
                 __LINE__
             );
-        }  
+        }
     }
-    
+
     /**
      * The method saves an Object
      *
@@ -215,7 +219,7 @@ class OnApp_CDNResource_WAF extends OnApp {
      * @return void
      */
     public function save() {
-        
+
         if ( !isset( $this->_waf_on ) && empty( $this->_waf_on ) ) {
             $this->logger->error(
                 "save(): argument _waf_on not set.",
@@ -223,7 +227,7 @@ class OnApp_CDNResource_WAF extends OnApp {
                 __LINE__
             );
         }
-        
+
         $data = array(
             'root'        => $this->_tagRoot,
             'data'        => array(
@@ -231,13 +235,13 @@ class OnApp_CDNResource_WAF extends OnApp {
                 'waf_ruleset_blacklists'    => $this->_waf_ruleset_blacklists,
             ),
         );
-        
+
         if ( $this->_waf_on && is_countable($this->_waf_ruleset_blacklists) && count( $this->_waf_ruleset_blacklists ) ) {
             $data['data']['waf_ruleset_blacklists'] = $this->_waf_ruleset_blacklists;
         }
-        
+
         $this->sendPut( ONAPP_GETRESOURCE_DEFAULT, $data );
-            
+
     }
-   
+
 }

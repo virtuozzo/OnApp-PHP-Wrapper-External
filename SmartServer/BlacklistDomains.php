@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing SmartServer BlacklistDomains
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -88,12 +88,16 @@ class OnApp_SmartServer_BlacklistDomains extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
     /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -110,7 +114,7 @@ class OnApp_SmartServer_BlacklistDomains extends OnApp {
                  *
                  * @name SmartServer BlacklistDomains
                  * @method GET
-                 * 
+                 *
                  * @alias   /smart_servers/:smart_server_id/blacklist_domains(.:format)
                  * @format  {:controller=>"SmartServer BackupsResources", :action=>"index"}
                  */
@@ -133,7 +137,7 @@ class OnApp_SmartServer_BlacklistDomains extends OnApp {
                 $resource = 'smart_servers/' . $this->_smart_server_id . '/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-                
+
             default:
                 $resource = parent::getResource( $action );
                 break;
@@ -141,14 +145,14 @@ class OnApp_SmartServer_BlacklistDomains extends OnApp {
 
         return $resource;
     }
-    
+
     /**
      * The method saves an Object
      *
      * @return void
      */
     public function save() {
-        
+
         if ( !isset( $this->_hostname_blacklists ) && !is_countable( $this->_hostname_blacklists ) || !count( $this->_hostname_blacklists ) ) {
             $this->logger->error(
                 "save(): argument _hostname_blacklists not set.",
@@ -156,15 +160,15 @@ class OnApp_SmartServer_BlacklistDomains extends OnApp {
                 __LINE__
             );
         }
-        
+
         $data = array(
             'root'        => $this->_tagRoot,
             'data'        => array(
                 'hostname_blacklists'   => $this->_hostname_blacklists,
             ),
         );
-        
+
         $this->sendPut( ONAPP_GETRESOURCE_DEFAULT, $data );
-            
+
     }
 }

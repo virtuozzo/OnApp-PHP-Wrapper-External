@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing Settings HardwareInfo CustomFields
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -109,12 +109,16 @@ class OnApp_Settings_HardwareInfo_CustomFields extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
     /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -131,17 +135,17 @@ class OnApp_Settings_HardwareInfo_CustomFields extends OnApp {
                  *
                  * @name Settings HardwareInfo CustomFields
                  * @method GET
-                 * 
+                 *
                  * @alias   /settings/:target/:target_id/hardware_info/custom_fields(.:format)
                  * @format  {:controller=>"Settings_HardwareInfo_CustomFields", :action=>"index"}
                  */
-                
+
                 /**
                  * ROUTE :
                  *
                  * @name Settings HardwareInfo CustomFields
                  * @method POST
-                 * 
+                 *
                  * @alias   /settings/:target/:target_id/hardware_info/custom_fields/:field/slot/:slot_id(.:format)
                  * @format  {:controller=>"Settings_HardwareInfo_CustomFields", :action=>"add with slot"}
                  */
@@ -150,7 +154,7 @@ class OnApp_Settings_HardwareInfo_CustomFields extends OnApp {
                  *
                  * @name Settings HardwareInfo CustomFields
                  * @method POST
-                 * 
+                 *
                  * @alias   /settings/:target/:target_id/hardware_info/custom_fields/:field(.:format)
                  * @format  {:controller=>"Settings_HardwareInfo_CustomFields", :action=>"add without slot"}
                  */
@@ -159,7 +163,7 @@ class OnApp_Settings_HardwareInfo_CustomFields extends OnApp {
                  *
                  * @name Settings HardwareInfo CustomFields
                  * @method PUT
-                 * 
+                 *
                  * @alias   /settings/:target/:target_id/hardware_info/custom_fields/:field/slot/:slot_id/:id(.:format)
                  * @format  {:controller=>"Settings_HardwareInfo_CustomFields", :action=>"edit with slot"}
                  */
@@ -168,7 +172,7 @@ class OnApp_Settings_HardwareInfo_CustomFields extends OnApp {
                  *
                  * @name Settings HardwareInfo CustomFields
                  * @method PUT
-                 * 
+                 *
                  * @alias   /settings/:target/:target_id/hardware_info/custom_fields/:field/:id(.:format)
                  * @format  {:controller=>"Settings_HardwareInfo_CustomFields", :action=>"edit without slot"}
                  */
@@ -177,7 +181,7 @@ class OnApp_Settings_HardwareInfo_CustomFields extends OnApp {
                  *
                  * @name Settings HardwareInfo CustomFields
                  * @method DELETE
-                 * 
+                 *
                  * @alias   /settings/:target/:target_id/hardware_info/custom_fields/:field/slot/:slot_id/:id(.:format)
                  * @format  {:controller=>"Settings_HardwareInfo_CustomFields", :action=>"delete with slot"}
                  */
@@ -186,7 +190,7 @@ class OnApp_Settings_HardwareInfo_CustomFields extends OnApp {
                  *
                  * @name Settings HardwareInfo CustomFields
                  * @method DELETE
-                 * 
+                 *
                  * @alias   /settings/:target/:target_id/hardware_info/custom_fields/:field/:id(.:format)
                  * @format  {:controller=>"Settings_HardwareInfo_CustomFields", :action=>"delete without slot"}
                  */
@@ -197,7 +201,7 @@ class OnApp_Settings_HardwareInfo_CustomFields extends OnApp {
                         __LINE__
                     );
                 }
-                
+
                 if ( is_null( $this->_target_id ) ) {
                     $this->logger->error(
                         "getResource($action): argument _target_id not set.",
@@ -205,7 +209,7 @@ class OnApp_Settings_HardwareInfo_CustomFields extends OnApp {
                         __LINE__
                     );
                 }
-                
+
                 if ( !is_null( $this->_field ) ) {
                     $query_sufix = '/' . $this->_field;
                     $query_sufix .= !is_null( $this->_slot_id ) ? '/slot/' . $this->_slot_id : null;
@@ -213,22 +217,22 @@ class OnApp_Settings_HardwareInfo_CustomFields extends OnApp {
                 } else {
                     $query_sufix = null;
                 }
-                
-                
+
+
                 $resource = 'settings/' . $this->_target_type . '/' . $this->_target_id . '/' . $this->_resource . $query_sufix;
-                
+
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
             default:
                 $resource = parent::getResource( $action );
                 break;
         }
-        
+
         return $resource;
     }
-    
+
     public function save() {
-        
+
         if ( !isset( $this->_label ) && empty( $this->_label ) ) {
             $this->logger->error(
                 "save(): argument _label not set.",
@@ -243,7 +247,7 @@ class OnApp_Settings_HardwareInfo_CustomFields extends OnApp {
                 __LINE__
             );
         }
-        
+
         $data = array(
             'root'        => 'custom_fields',
             'data'        => array(
@@ -251,19 +255,19 @@ class OnApp_Settings_HardwareInfo_CustomFields extends OnApp {
                 'value'     => $this->_value,
             ),
         );
-        
+
         if ( is_null( $this->_id ) ) {
             $this->sendPost( ONAPP_GETRESOURCE_DEFAULT, $data );
         } else {
             $this->sendPut( ONAPP_GETRESOURCE_DEFAULT, $data );
         }
-        
+
     }
-    
+
     public function delete() {
         if ( !is_null( $this->_id ) ) {
             $this->sendDelete( ONAPP_GETRESOURCE_DEFAULT );
         }
     }
-    
+
 }

@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing Settings BackupsResourceZones
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -110,12 +110,16 @@ class OnApp_Settings_BackupsResourceZones extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
     /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -132,7 +136,7 @@ class OnApp_Settings_BackupsResourceZones extends OnApp {
                  *
                  * @name Settings BackupsResourceZones
                  * @method GET
-                 * 
+                 *
                  * @alias   /settings/backups/resource_zones(.:format)
                  * @format  {:controller=>"Settings_BackupsResourceZones", :action=>"index"}
                  */
@@ -141,7 +145,7 @@ class OnApp_Settings_BackupsResourceZones extends OnApp {
                  *
                  * @name Settings BackupsResourceZones
                  * @method GET
-                 * 
+                 *
                  * @alias   /settings/backups/resource_zones/:id(.:format)
                  * @format  {:controller=>"Settings_BackupsResourceZones", :action=>"index"}
                  */
@@ -150,7 +154,7 @@ class OnApp_Settings_BackupsResourceZones extends OnApp {
                  *
                  * @name Settings BackupsResourceZones
                  * @method POST
-                 * 
+                 *
                  * @alias   /settings/backups/resource_zones(.:format)
                  * @format  {:controller=>"Settings_BackupsResourceZones", :action=>"add"}
                  */
@@ -159,7 +163,7 @@ class OnApp_Settings_BackupsResourceZones extends OnApp {
                  *
                  * @name Settings BackupsResourceZones
                  * @method PUT
-                 * 
+                 *
                  * @alias   /settings/backups/resource_zones/:id(.:format)
                  * @format  {:controller=>"Settings_BackupsResourceZones", :action=>"edit"}
                  */
@@ -168,11 +172,11 @@ class OnApp_Settings_BackupsResourceZones extends OnApp {
                  *
                  * @name Settings BackupsResourceZones
                  * @method DELETE
-                 * 
+                 *
                  * @alias   /settings/backups/resource_zones/:id(.:format)
                  * @format  {:controller=>"Settings_BackupsResourceZones", :action=>"delete"}
                  */
-                
+
                 $resource = 'settings/backups/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
@@ -182,7 +186,7 @@ class OnApp_Settings_BackupsResourceZones extends OnApp {
                  *
                  * @name Settings BackupsResourceZones
                  * @method POST
-                 * 
+                 *
                  * @alias   /settings/backups/resource_zones/:resource_zone_id/resources/:resource_id/attach(.:format)
                  * @format  {:controller=>"Settings_BackupsResourceZones", :action=>"attach"}
                  */
@@ -206,7 +210,7 @@ class OnApp_Settings_BackupsResourceZones extends OnApp {
                  *
                  * @name Settings BackupsResourceZones
                  * @method POST
-                 * 
+                 *
                  * @alias   /settings/backups/resource_zones/:resource_zone_id/resources/:resource_id/:attached_resource_id/detach(.:format)
                  * @format  {:controller=>"Settings_BackupsResourceZones", :action=>"detach"}
                  */
@@ -231,11 +235,11 @@ class OnApp_Settings_BackupsResourceZones extends OnApp {
 
         return $resource;
     }
-    
+
     /**
      * Attach
      *
-     * @param integer $resource_id 
+     * @param integer $resource_id
      */
     public function attach( $resource_id = null ) {
         if ( ! is_null( $resource_id ) ) {
@@ -247,7 +251,7 @@ class OnApp_Settings_BackupsResourceZones extends OnApp {
     /**
      * Detach
      *
-     * @param integer $resource_id 
+     * @param integer $resource_id
      */
     public function detach( $resource_id = null ) {
         if ( ! is_null( $resource_id ) ) {

@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing Settings BackupsResources
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -134,12 +134,16 @@ class OnApp_Settings_BackupsResources extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
     /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -156,7 +160,7 @@ class OnApp_Settings_BackupsResources extends OnApp {
                  *
                  * @name Settings BackupsResources
                  * @method GET
-                 * 
+                 *
                  * @alias   /settings/backups/resources(.:format)
                  * @format  {:controller=>"Settings_BackupsResources", :action=>"index"}
                  */
@@ -165,7 +169,7 @@ class OnApp_Settings_BackupsResources extends OnApp {
                  *
                  * @name Settings BackupsResources
                  * @method GET
-                 * 
+                 *
                  * @alias   /settings/backups/resources/:id(.:format)
                  * @format  {:controller=>"Settings_BackupsResources", :action=>"index"}
                  */
@@ -174,7 +178,7 @@ class OnApp_Settings_BackupsResources extends OnApp {
                  *
                  * @name Settings BackupsResources
                  * @method POST
-                 * 
+                 *
                  * @alias   /settings/backups/resources(.:format)
                  * @format  {:controller=>"Settings_BackupsResources", :action=>"add"}
                  */
@@ -183,7 +187,7 @@ class OnApp_Settings_BackupsResources extends OnApp {
                  *
                  * @name Settings BackupsResources
                  * @method PUT
-                 * 
+                 *
                  * @alias   /settings/backups/resources/:id(.:format)
                  * @format  {:controller=>"Settings_BackupsResources", :action=>"edit"}
                  */
@@ -192,11 +196,11 @@ class OnApp_Settings_BackupsResources extends OnApp {
                  *
                  * @name Settings C
                  * @method DELETE
-                 * 
+                 *
                  * @alias   /settings/backups/resources/:id(.:format)
                  * @format  {:controller=>"Settings_BackupsResources", :action=>"delete"}
                  */
-                
+
                 $resource = 'settings/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
@@ -206,11 +210,11 @@ class OnApp_Settings_BackupsResources extends OnApp {
                  *
                  * @name Settings BackupsResources
                  * @method PUT
-                 * 
+                 *
                  * @alias   /settings/backups/resources/:id/advanced_options(.:format)
                  * @format  {:controller=>"Settings_BackupsResources", :action=>"edit"}
                  */
-                
+
                 $resource = 'settings/' . $this->_resource . '/' . $this->_id . '/advanced_options';
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
@@ -221,18 +225,18 @@ class OnApp_Settings_BackupsResources extends OnApp {
 
         return $resource;
     }
-    
+
     public function save() {
         if ( isset( $this->_id ) && !is_null( $this->_id ) && isset( $this->_advanced_options ) && !is_null( $this->_advanced_options ) ) {
             $data = array(
                 'root'        => 'advanced_options',
                 'data'        => $this->_advanced_options,
-            
+
             );
             $this->sendPut( ONAPP_BACKUP_RESOURSE_ADVANSED_OPTIONS, $data );
         } else {
             parent::save();
         }
     }
-    
+
 }

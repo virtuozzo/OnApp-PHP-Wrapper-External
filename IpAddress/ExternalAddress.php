@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing IpAddress ExternalAddress
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -67,6 +67,10 @@ class OnApp_IpAddress_ExternalAddress extends OnApp {
 
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
+                break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
                 break;
         }
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing Settings CDN ManagersNodes
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -122,12 +122,16 @@ class OnApp_Settings_CDN_ManagersNodes extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
     /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -144,7 +148,7 @@ class OnApp_Settings_CDN_ManagersNodes extends OnApp {
                  *
                  * @name Settings CDN ManagersNodes
                  * @method GET
-                 * 
+                 *
                  * @alias   /settings/sdn/managers/:manager_id/nodes(.:format)
                  * @format  {:controller=>"Settings_CDN_ManagersNodes", :action=>"index"}
                  */
@@ -158,14 +162,14 @@ class OnApp_Settings_CDN_ManagersNodes extends OnApp {
                 $resource = 'settings/sdn/managers/' . $this->_manager_id . '/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-                
+
             case ONAPP_GETRESOURCE_ADD:
                 /**
                  * ROUTE :
                  *
                  * @name Settings CDN ManagersNodes
                  * @method POST
-                 * 
+                 *
                  * @alias   /settings/sdn/managers/:manager_id/nodes/:compute_resource_id(.:format)
                  * @format  {:controller=>"Settings_CDN_ManagersNodes", :action=>"add"}
                  */
@@ -199,7 +203,7 @@ class OnApp_Settings_CDN_ManagersNodes extends OnApp {
                  *
                  * @name Settings CDN ManagersNodes Rettach
                  * @method DELETE
-                 * 
+                 *
                  * @alias   /settings/sdn/managers/:manager_id/nodes/:node_id/reattach(.:format)
                  * @format  {:controller=>"Settings_CDN_ManagersNodes", :action=>"add"}
                  */
@@ -220,7 +224,7 @@ class OnApp_Settings_CDN_ManagersNodes extends OnApp {
                 $resource = 'settings/sdn/managers/' . $this->_manager_id . '/' . $this->_resource . '/' . $this->_node_id . '/' . ONAPP_RETTACH_NODES;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-                
+
             default:
                 $resource = parent::getResource( $action );
                 break;
@@ -228,7 +232,7 @@ class OnApp_Settings_CDN_ManagersNodes extends OnApp {
 
         return $resource;
     }
-    
+
     public function save() {
         $data = array(
             'manager_id'            => $this->_manager_id,
@@ -251,10 +255,10 @@ class OnApp_Settings_CDN_ManagersNodes extends OnApp {
         $result     = $this->_castResponseToClass( $response );
         $this->_obj = $result;
     }
-    
+
     function rettachNodes( $node_id ) {
         $this->_node_id = $node_id;
-        
+
         $this->sendDelete( ONAPP_RETTACH_NODES );
     }
 }

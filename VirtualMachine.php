@@ -861,6 +861,10 @@ class OnApp_VirtualMachine extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
 
         if ( is_null( $this->_id ) ) {

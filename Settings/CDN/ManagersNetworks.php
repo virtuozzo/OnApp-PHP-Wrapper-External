@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing Settings CDN ManagersNetworks
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -141,12 +141,16 @@ class OnApp_Settings_CDN_ManagersNetworks extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
     /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -163,7 +167,7 @@ class OnApp_Settings_CDN_ManagersNetworks extends OnApp {
                  *
                  * @name Settings CDN ManagersNetworks
                  * @method GET
-                 * 
+                 *
                  * @alias   /settings/sdn/managers/:manager_id/networks(.:format)
                  * @format  {:controller=>"Settings_CDN_ManagersNetworks", :action=>"index"}
                  */
@@ -172,7 +176,7 @@ class OnApp_Settings_CDN_ManagersNetworks extends OnApp {
                  *
                  * @name Settings CDN ManagersNetworks
                  * @method GET
-                 * 
+                 *
                  * @alias   /settings/sdn/managers/:manager_id/networks/:id(.:format)
                  * @format  {:controller=>"Settings_CDN_ManagersNetworks", :action=>"index"}
                  */
@@ -181,7 +185,7 @@ class OnApp_Settings_CDN_ManagersNetworks extends OnApp {
                  *
                  * @name Settings CDN ManagersNetworks
                  * @method POST
-                 * 
+                 *
                  * @alias   /settings/sdn/managers/:manager_id/networks(.:format)
                  * @format  {:controller=>"Settings_CDN_ManagersNetworks", :action=>"add"}
                  */
@@ -190,7 +194,7 @@ class OnApp_Settings_CDN_ManagersNetworks extends OnApp {
                  *
                  * @name Settings CDN ManagersNetworks
                  * @method DELETE
-                 * 
+                 *
                  * @alias   /settings/sdn/managers/:manager_id/networks/:id(.:format)
                  * @format  {:controller=>"Settings_CDN_ManagersNetworks", :action=>"delete"}
                  */
@@ -204,18 +208,18 @@ class OnApp_Settings_CDN_ManagersNetworks extends OnApp {
                 $resource = 'settings/sdn/managers/' . $this->_manager_id . '/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-                
+
             case ONAPP_RECREATE_BRIGES:
                 /**
                  * ROUTE :
                  *
                  * @name Settings CDN ManagersNetworks
                  * @method PUT
-                 * 
+                 *
                  * @alias   /settings/sdn/managers/:manager_id/networks/:id/bridges/:bridges_id/recreate(.:format)
                  * @format  {:controller=>"Settings_CDN_ManagersNetworks", :action=>"recreate_bridges"}
                  */
-                
+
                 if ( is_null( $this->_manager_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _manager_id not set.',
@@ -243,14 +247,14 @@ class OnApp_Settings_CDN_ManagersNetworks extends OnApp {
                 case ONAPP_CREATE_BRIGES:
                 /**
                  * ROUTE :
-                 * 
+                 *
                  * @name Settings CDN ManagersNetworks CreateBriges
                  * @method POST
-                 * 
+                 *
                  * @alias   /settings/sdn/managers/:manager_id/networks/:id/bridges(.:format)
                  * @format  {:controller=>"Settings_CDN_ManagersNetworks", :action=>"create_bridges"}
                  */
-                
+
                 if ( is_null( $this->_manager_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _manager_id not set.',
@@ -271,14 +275,14 @@ class OnApp_Settings_CDN_ManagersNetworks extends OnApp {
                 case ONAPP_DELETE_BRIGES:
                 /**
                  * ROUTE :
-                 * 
+                 *
                  * @name Settings CDN ManagersNetworks DeleteBriges
                  * @method DELETE
-                 * 
+                 *
                  * @alias   /settings/sdn/managers/:manager_id/networks/:id/bridges/:bridges_id(.:format)
                  * @format  {:controller=>"Settings_CDN_ManagersNetworks", :action=>"recreate_bridges"}
                  */
-                
+
                 if ( is_null( $this->_manager_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _manager_id not set.',
@@ -309,11 +313,11 @@ class OnApp_Settings_CDN_ManagersNetworks extends OnApp {
                  * POST /settings/sdn/managers/:manager_id/networks/:network_id/cleanup_zombie_tunnels.json
                  * @name Settings CDN ManagersNetworks
                  * @method PUT
-                 * 
+                 *
                  * @alias   /settings/sdn/managers/:manager_id/networks/:id/cleanup_zombie_tunnels(.:format)
                  * @format  {:controller=>"Settings_CDN_ManagersNetworks", :action=>"recreate_bridges"}
                  */
-                
+
                 if ( is_null( $this->_manager_id ) ) {
                     $this->logger->error(
                         'getResource( ' . $action . ' ): argument _manager_id not set.',
@@ -338,11 +342,11 @@ class OnApp_Settings_CDN_ManagersNetworks extends OnApp {
 
         return $resource;
     }
-    
+
     /**
      * recreateBridges
      *
-     * @param integer $resource_id 
+     * @param integer $resource_id
      */
     public function recreateBridges( $bridges_id = null ) {
         if ( ! is_null( $bridges_id ) ) {
@@ -361,16 +365,16 @@ class OnApp_Settings_CDN_ManagersNetworks extends OnApp {
                 'connecting_params'     => $this->_connecting_params,
             ),
         );
-         
+
         return $this->sendPost( ONAPP_CREATE_BRIGES, $data );
     }
-    
+
     public function deleteBridges () {
         return $this->sendDelete( ONAPP_DELETE_BRIGES );
     }
-    
+
     public function cleanupZombieTunnels () {
         return $this->sendPost( ONAPP_CLEANUP_ZOMBIE_TUNNELS );
     }
-    
+
 }

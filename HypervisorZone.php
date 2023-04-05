@@ -309,6 +309,10 @@ class OnApp_HypervisorZone extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -331,7 +335,7 @@ class OnApp_HypervisorZone extends OnApp {
                 $resource = $this->getResource( ONAPP_GETRESOURCE_LOAD ) . '/cpu_flags/common';
                 break;
             case ONAPP_EDIT_COMPUTE_ZONE_CUSTOM_CONFIG:
-                
+
                 $resource = '/settings/hypervisor_zones/' . $this->_id;
                 break;
 
@@ -386,7 +390,7 @@ class OnApp_HypervisorZone extends OnApp {
     function getCommonCpuFlags() {
         return $this->sendGet( ONAPP_GET_LIST_OF_COMMON_CPU_FLAGS );
     }
-    
+
     /**
      * Edit Hypervisor Zone Custom Config
      *
@@ -401,7 +405,7 @@ class OnApp_HypervisorZone extends OnApp {
                     'custom_config' => $this->_custom_config,
                 ),
             );
-            
+
             $this->sendPatch( ONAPP_EDIT_COMPUTE_ZONE_CUSTOM_CONFIG, $data );
         }
     }

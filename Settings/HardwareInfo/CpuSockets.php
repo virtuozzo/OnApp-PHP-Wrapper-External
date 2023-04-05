@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing Settings HardwareInfo CpuSockets
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -92,6 +92,10 @@ class OnApp_Settings_HardwareInfo_CpuSockets extends OnApp {
 
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
+                break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
                 break;
         }
 

@@ -52,14 +52,14 @@ class OnApp_Settings extends OnApp {
      */
     function getResource( $action = ONAPP_GETRESOURCE_DEFAULT ) {
         switch ( $action ) {
-            
+
             case ONAPP_SETTINGS_RESTART:
             case ONAPP_GETRESOURCE_EDIT:
                 /**
                  * ROUTE :
-                 * 
+                 *
                  * @method PUT
-                 * 
+                 *
                  * @alias   PUT /settings(.:format)?restart=1
                  * @format  {:controller=>"Settings", :action=>"restart"}
                  */
@@ -1211,6 +1211,10 @@ class OnApp_Settings extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -1220,7 +1224,7 @@ class OnApp_Settings extends OnApp {
 
     public function changeCustomParameters( $params ) {
         $allowedParams = array( 'use_yubikey_login', 'yubikey_api_key', 'yubikey_api_id', 'allow_to_collect_errors', 'isolated_license', 'max_ip_addresses_to_assign_simultaneously', 'ip_address_reservation_time', 'disable_billing', 'transaction_approvals', 'session_timeout', 'default_acceleration_policy' );
-        
+
         if ( ! is_array( $params ) ) {
             return false;
         }
@@ -1248,7 +1252,7 @@ class OnApp_Settings extends OnApp {
         );
         $this->sendPut( ONAPP_GETRESOURCE_EDIT, $data, array( 'restart' => '1' ) );
     }
-    
+
     public function restartNotifications( $restart ) {
         if ( is_null($this->_enable_notifications ) ) {
             $this->logger->error(
@@ -1263,7 +1267,7 @@ class OnApp_Settings extends OnApp {
                 'enable_notifications' => $this->_enable_notifications,
             ),
         );
-        
+
         $this->sendPut( ONAPP_SETTINGS_RESTART, $data, array( 'restart' => $restart ) );
     }
 

@@ -188,6 +188,10 @@ class OnApp_Asset extends OnApp_Hypervisor {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
 
 
@@ -251,17 +255,17 @@ class OnApp_Asset extends OnApp_Hypervisor {
             return $result;
         }
     }
-    
+
     public function assetsAddHypervisors(){
-        
+
         $this->sendPost( ONAPP_GETRESOURCE_ASSETS_EDIT_HYPERVISORS, $this->getData() );
     }
-    
+
     public function assetsEditHypervisors(){
-        
+
         $this->sendPut( ONAPP_GETRESOURCE_ASSETS_EDIT_HYPERVISORS, $this->getData() );
     }
-    
+
     private function getData(){
         $data = array(
             'root' => 'hypervisor'
@@ -272,7 +276,7 @@ class OnApp_Asset extends OnApp_Hypervisor {
                 $data['data'][$key] = $this->$property;
             }
         }
-        
+
         return $data;
     }
 

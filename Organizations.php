@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing Organizations
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -117,6 +117,10 @@ class OnApp_Organizations extends OnApp {
 
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
+                break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
                 break;
         }
         parent::initFields( $version, __CLASS__ );

@@ -106,6 +106,10 @@ class OnApp_SIF_Group extends OnApp_Hypervisor {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
 
 

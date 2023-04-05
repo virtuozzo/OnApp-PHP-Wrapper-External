@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing Settings CDN Managers
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -112,12 +112,16 @@ class OnApp_Settings_CDN_Managers extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
     /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -134,7 +138,7 @@ class OnApp_Settings_CDN_Managers extends OnApp {
                  *
                  * @name Settings CDN Managers
                  * @method GET
-                 * 
+                 *
                  * @alias   /settings/sdn/managers/:id(.:format)
                  * @format  {:controller=>"Settings_CDN_Managers", :action=>"index"}
                  */
@@ -143,7 +147,7 @@ class OnApp_Settings_CDN_Managers extends OnApp {
                  *
                  * @name Settings CDN Managers
                  * @method POST
-                 * 
+                 *
                  * @alias   /settings/sdn/managers(.:format)
                  * @format  {:controller=>"Settings_CDN_Managers", :action=>"add"}
                  */
@@ -152,7 +156,7 @@ class OnApp_Settings_CDN_Managers extends OnApp {
                  *
                  * @name Settings CDN Managers
                  * @method PUT
-                 * 
+                 *
                  * @alias   /settings/sdn/managers/:id(.:format)
                  * @format  {:controller=>"Settings_CDN_Managers", :action=>"edit"}
                  */
@@ -161,15 +165,15 @@ class OnApp_Settings_CDN_Managers extends OnApp {
                  *
                  * @name Settings CDN Managers
                  * @method DELETE
-                 * 
+                 *
                  * @alias   /settings/sdn/managers/:id(.:format)
                  * @format  {:controller=>"Settings_CDN_Managers", :action=>"delete"}
                  */
-                
+
                 $resource = $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-                
+
             default:
                 $resource = parent::getResource( $action );
                 break;

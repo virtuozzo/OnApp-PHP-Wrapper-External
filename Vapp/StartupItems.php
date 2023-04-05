@@ -107,13 +107,17 @@ class OnApp_Vapp_StartupItems extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
-        
+
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
    /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -141,11 +145,11 @@ class OnApp_Vapp_StartupItems extends OnApp {
                  * @alias   /vapps/:vapp_id/startup_items(.:format)
                  * @format  {:controller=>"Vapp_StartupItems", :action=>"edit"}
                  */
-                
+
                 $resource = 'vapps/' . $this->_vapp_id . '/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-            
+
             default:
                 $resource = parent::getResource( $action );
                 break;
@@ -153,7 +157,7 @@ class OnApp_Vapp_StartupItems extends OnApp {
 
         return $resource;
     }
-    
+
     public function save() {
         if ( isset( $this->_startup_items_attributes ) && !is_null( $this->_startup_items_attributes ) ) {
             $data = array(
@@ -164,5 +168,5 @@ class OnApp_Vapp_StartupItems extends OnApp {
             );
             $this->sendPut( ONAPP_GETRESOURCE_DEFAULT, $data );
         }
-    }    
+    }
 }

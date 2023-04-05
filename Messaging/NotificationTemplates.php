@@ -14,7 +14,7 @@
 
 /**
  * Managing Messaging NotificationTemplates
- * 
+ *
  * {@link getList}, {@link load}, {@link add}, {@link edit}, {@link delete}
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php )
@@ -102,13 +102,17 @@ class OnApp_Messaging_NotificationTemplates extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
-        
+
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
    /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -156,7 +160,7 @@ class OnApp_Messaging_NotificationTemplates extends OnApp {
                 $resource = $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-            
+
             case ONAPP_GETRESOURCE_LOAD:
                 /**
                  * ROUTE :
@@ -176,7 +180,7 @@ class OnApp_Messaging_NotificationTemplates extends OnApp {
 
         return $resource;
     }
-   
+
     public function load($id = null) {
         if ( is_null( $this->_id ) && is_null( $this->_obj->_id ) ) {
             $this->logger->error(
@@ -192,7 +196,7 @@ class OnApp_Messaging_NotificationTemplates extends OnApp {
 
         $this->setAPIResource( $this->getResource( ONAPP_GETRESOURCE_LOAD ) );
         $response = $this->sendRequest( ONAPP_REQUEST_METHOD_GET );
-        
+
         if ( isset( $response['response_body'] ) && !is_null( $response['response_body'] ) ) {
             $response_body = $response['response_body'];
             $data = json_decode( $response_body );
@@ -201,7 +205,7 @@ class OnApp_Messaging_NotificationTemplates extends OnApp {
                 $response['response_body'] = $response_body;
             }
         }
-        
+
         $result   = $this->castStringToClass( $response );
 
         $this->_obj = $result;

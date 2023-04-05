@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing HypervisorZone CPUConfiguration
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -101,12 +101,16 @@ class OnApp_HypervisorZone_CPUConfiguration extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
     /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -123,7 +127,7 @@ class OnApp_HypervisorZone_CPUConfiguration extends OnApp {
                  *
                  * @name HypervisorZone CPUConfiguration
                  * @method GET
-                 * 
+                 *
                  * @alias   /settings/hypervisor_zones/:hypervisor_zone_id/cpu_configuration(.:format)
                  * @format  {:controller=>"HypervisorZone_CPUConfiguration", :action=>"index"}
                  */
@@ -134,17 +138,17 @@ class OnApp_HypervisorZone_CPUConfiguration extends OnApp {
                         __LINE__
                     );
                 }
-                
+
                 $resource = 'settings/hypervisor_zones/' . $this->_hypervisor_zone_id . '/' .  $this->_resource;
-                
+
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
             default:
                 $resource = parent::getResource( $action );
                 break;
         }
-        
+
         return $resource;
     }
-    
+
 }

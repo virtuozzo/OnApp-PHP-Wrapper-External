@@ -148,6 +148,10 @@ class OnApp_NSX_EdgeGatewaysNsxtFirewallRules extends OnApp {
                 );
 
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );

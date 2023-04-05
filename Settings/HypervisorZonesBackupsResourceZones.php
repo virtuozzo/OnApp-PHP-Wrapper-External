@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing Settings HypervisorZonesBackupsResourceZones
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -105,12 +105,16 @@ class OnApp_Settings_HypervisorZonesBackupsResourceZones extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
     /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -127,17 +131,17 @@ class OnApp_Settings_HypervisorZonesBackupsResourceZones extends OnApp {
                  *
                  * @name Settings HypervisorZonesBackupsResourceZones
                  * @method GET
-                 * 
+                 *
                  * @alias   /settings/hypervisor_zones/:hypervisor_group_id/backups/resource_zones(.:format)
                  * @format  {:controller=>"Settings_HypervisorZonesBackupsResourceZones", :action=>"index"}
                  */
-                
+
                 /**
                  * ROUTE :
                  *
                  * @name Settings HypervisorZonesBackupsResourceZones
                  * @method DELETE
-                 * 
+                 *
                  * @alias   /settings/hypervisor_zones/:hypervisor_group_id/backups/resource_zones/:id(.:format)
                  * @format  {:controller=>"Settings_HypervisorZonesBackupsResourceZones", :action=>"delete"}
                  */
@@ -152,14 +156,14 @@ class OnApp_Settings_HypervisorZonesBackupsResourceZones extends OnApp {
                 $resource = 'settings/hypervisor_zones/' . $this->_hypervisor_group_id . '/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-                
+
             case ONAPP_GETRESOURCE_ADD:
                 /**
                  * ROUTE :
                  *
                  * @name Settings HypervisorZonesBackupsResourceZones
                  * @method POST
-                 * 
+                 *
                  * @alias   /settings/hypervisor_zones/:hypervisor_group_id/backups/resource_zones/:backup_zone_id(.:format)
                  * @format  {:controller=>"Settings_HypervisorZonesBackupsResourceZones", :action=>"add"}
                  */
@@ -177,11 +181,11 @@ class OnApp_Settings_HypervisorZonesBackupsResourceZones extends OnApp {
                         __LINE__
                     );
                 }
-                
+
                 $resource = 'settings/hypervisor_zones/' . $this->_hypervisor_group_id . '/' . $this->_resource . '/' . $this->_backup_zone_id;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-                
+
             default:
                 $resource = parent::getResource( $action );
                 break;
@@ -189,7 +193,7 @@ class OnApp_Settings_HypervisorZonesBackupsResourceZones extends OnApp {
 
         return $resource;
     }
-    
+
     public function save() {
         $this->sendPost(ONAPP_GETRESOURCE_ADD);
     }

@@ -14,7 +14,7 @@
 
 /**
  * Managing VirtualMachine XmlConfig
- * 
+ *
  * {@link getList}, {@link edit}, {@link delete}.
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php )
@@ -92,13 +92,17 @@ class OnApp_VirtualMachine_XmlConfig extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
-        
+
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
    /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -134,7 +138,7 @@ class OnApp_VirtualMachine_XmlConfig extends OnApp {
                  * @alias   /virtual_machines/:virtual_machine_id/xml_config(.:format)
                  * @format  {:controller=>"VirtualMachine_XmlConfig", :action=>"delete"}
                  */
-                
+
                 if ( is_null( $this->_virtual_machine_id ) ) {
                     $this->logger->error(
                         "getResource($action): argument _virtual_machine_id not set.",
@@ -153,7 +157,7 @@ class OnApp_VirtualMachine_XmlConfig extends OnApp {
 
         return $resource;
     }
-    
+
     public function save() {
         $data = array(
             'root'        => $this->_tagRoot,
@@ -164,9 +168,9 @@ class OnApp_VirtualMachine_XmlConfig extends OnApp {
         );
         $this->sendPut( ONAPP_GETRESOURCE_DEFAULT, $data );
     }
-    
+
     public function delete() {
         $this->sendDelete( ONAPP_GETRESOURCE_DEFAULT );
     }
-   
+
 }

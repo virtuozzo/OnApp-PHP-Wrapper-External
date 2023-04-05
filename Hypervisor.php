@@ -576,6 +576,10 @@ class OnApp_Hypervisor extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -642,9 +646,9 @@ class OnApp_Hypervisor extends OnApp {
 
                 $resource = $this->_resource . '/' . $this->_id . '/reboot';
                 break;
-            
+
             case ONAPP_APPLY_HYPERVISOR_GROUP_CUSTOM_CONFIG:
-                
+
                 $resource = $this->_resource . '/' . $this->_id;
                 break;
 
@@ -728,17 +732,17 @@ class OnApp_Hypervisor extends OnApp {
                  */
                 $resource = parent::getResource( $action );
                 break;
-            
+
             case ONAPP_VIRTUAL_MACHINES_STARTUP:
                 /**
                  * ROUTE :
-                 * 
+                 *
                  * @method POST
-                 * 
+                 *
                  * @alias   /hypervisors/:hypervisor_id/virtual_machines/startup(.:format)
                  * @format  {:controller=>"Hypervisor", :action=>"startup"}
                  */
-                
+
                 if ( is_null( $this->_id ) ) {
                     $this->logger->error(
                         "getResource($action): argument _id not set.",
@@ -750,17 +754,17 @@ class OnApp_Hypervisor extends OnApp {
                 $resource = 'hypervisors/' . $this->_id . '/virtual_machines/startup';
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-                
+
             case ONAPP_VIRTUAL_MACHINES_STOP:
                 /**
                  * ROUTE :
-                 * 
+                 *
                  * @method POST
-                 * 
+                 *
                  * @alias   /hypervisors/:hypervisor_id/virtual_machines/stop(.:format)
                  * @format  {:controller=>"Hypervisor", :action=>"startup"}
                  */
-                
+
                 if ( is_null( $this->_id ) ) {
                     $this->logger->error(
                         "getResource($action): argument _id not set.",
@@ -772,13 +776,13 @@ class OnApp_Hypervisor extends OnApp {
                 $resource = 'hypervisors/' . $this->_id . '/virtual_machines/stop';
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-                
+
             case ONAPP_ENABLE_KERNEL_CRASH_DUMPING:
                 /**
                  * ROUTE :
                  *
                  * @name HYPERVISOR
-                 * 
+                 *
                  * @method PUT
                  *
                  * @alias   /settings/hypervisors/:id/crash_debug(.:format)
@@ -795,7 +799,7 @@ class OnApp_Hypervisor extends OnApp {
                 $resource = 'settings/hypervisors/' . $this->_id . '/' . ONAPP_ENABLE_KERNEL_CRASH_DUMPING;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-                
+
             default:
                 $resource = parent::getResource( $action );
                 break;
@@ -901,10 +905,10 @@ class OnApp_Hypervisor extends OnApp {
         } else {
             $this->unsetFields( array('hypervisor_group_id') );
         }
-        
+
         return parent::save();
     }
-    
+
     /**
      * Enable Hypervisor Group Custom Config
      *
@@ -918,10 +922,10 @@ class OnApp_Hypervisor extends OnApp {
                 'apply_hypervisor_group_custom_config' => 1,
             ),
         );
-        
+
         $this->sendPatch( ONAPP_APPLY_HYPERVISOR_GROUP_CUSTOM_CONFIG, $data );
     }
-    
+
     /**
      * Disable Hypervisor Group Custom Config
      *
@@ -935,10 +939,10 @@ class OnApp_Hypervisor extends OnApp {
                 'apply_hypervisor_group_custom_config' => 0,
             ),
         );
-        
+
         $this->sendPatch( ONAPP_APPLY_HYPERVISOR_GROUP_CUSTOM_CONFIG, $data );
     }
-    
+
     function enableMaintanceMode( $id = null ) {
         if ( $id ) {
             $this->_id = $id;
@@ -958,7 +962,7 @@ class OnApp_Hypervisor extends OnApp {
 
         return $this->sendPut( ONAPP_DISABLE_MAINTENANCE_MODE );
     }
-    
+
     public function virtualMachinesStartup( $hypervisor_id, $virtual_machines ) {
 
         if ( $hypervisor_id ) {
@@ -977,11 +981,11 @@ class OnApp_Hypervisor extends OnApp {
                 __LINE__
             );
         }
-        
+
         $data = array(
             'virtual_machines' => $virtual_machines,
         );
-        
+
         if ( ! is_null( $data ) && is_array( $data ) ) {
             $data = json_encode($data);
             $this->logger->debug( 'Additional parameters: ' . $data );
@@ -993,7 +997,7 @@ class OnApp_Hypervisor extends OnApp {
         $result     = $this->_castResponseToClass( $response );
         $this->_obj = $result;
     }
-    
+
     public function virtualMachinesStop( $hypervisor_id, $virtual_machines, $shutdown_type ) {
 
         if ( $hypervisor_id ) {
@@ -1012,7 +1016,7 @@ class OnApp_Hypervisor extends OnApp {
                 __LINE__
             );
         }
-        
+
         if ( !$shutdown_type ) {
             $this->logger->error(
                 'virtualMachinesStop: argument _shutdown_type not set.',
@@ -1020,12 +1024,12 @@ class OnApp_Hypervisor extends OnApp {
                 __LINE__
             );
         }
-        
+
         $data = array(
             'virtual_machines'  => $virtual_machines,
             'shutdown_type'     => $shutdown_type,
         );
-        
+
         if ( ! is_null( $data ) && is_array( $data ) ) {
             $data = json_encode($data);
             $this->logger->debug( 'Additional parameters: ' . $data );
@@ -1037,7 +1041,7 @@ class OnApp_Hypervisor extends OnApp {
         $result     = $this->_castResponseToClass( $response );
         $this->_obj = $result;
     }
-    
+
     public function enableKernelCrashDumping(){
         $data = array(
             'root' => $this->_tagRoot,
@@ -1045,7 +1049,7 @@ class OnApp_Hypervisor extends OnApp {
                 'crash_debug' => true,
             ),
         );
-        
+
         return $this->sendPut(ONAPP_ENABLE_KERNEL_CRASH_DUMPING, $data);
     }
 

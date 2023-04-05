@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing Settings HardwareInfo Disks
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -51,7 +51,7 @@ class OnApp_Settings_HardwareInfo_Disks extends OnApp {
                         ONAPP_FIELD_TYPE        => 'string',
                     ),
                 );
-                
+
                 break;
 
             case 6.1:
@@ -80,6 +80,10 @@ class OnApp_Settings_HardwareInfo_Disks extends OnApp {
 
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
+                break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
                 break;
         }
 

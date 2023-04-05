@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing Hypervisor VirtualMachinesMigration
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -84,12 +84,16 @@ class OnApp_Hypervisor_VirtualMachinesMigration extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
     /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -106,7 +110,7 @@ class OnApp_Hypervisor_VirtualMachinesMigration extends OnApp {
                  *
                  * @name Hypervisor VirtualMachinesMigration
                  * @method POST
-                 * 
+                 *
                  * @alias   /hypervisors/:hypervisor_id/virtual_machines/migration(.:format)
                  *
                  * @format  {:controller=>"Hypervisor VirtualMachinesMigration", :action=>"save"}
@@ -121,7 +125,7 @@ class OnApp_Hypervisor_VirtualMachinesMigration extends OnApp {
                 $resource = 'hypervisors/' . $this->_hypervisor_id . '/' . $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-                
+
             default:
                 $resource = parent::getResource( $action );
                 break;

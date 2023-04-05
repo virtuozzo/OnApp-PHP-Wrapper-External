@@ -14,7 +14,7 @@
 
 /**
  * Managing Messaging Gateways
- * 
+ *
  * {@link getList}, {@link add}, {@link delete}
  *
  * For full fields reference and curl request details visit: ( http://help.onapp.com/manual.php )
@@ -110,13 +110,17 @@ class OnApp_Messaging_Gateways extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
-        
+
         parent::initFields( $version, __CLASS__ );
 
         return $this->fields;
     }
-    
+
    /**
      * Returns the URL Alias of the API Class that inherits the OnApp class
      *
@@ -156,7 +160,7 @@ class OnApp_Messaging_Gateways extends OnApp {
                 $resource = $this->_resource;
                 $this->logger->debug( 'getResource( ' . $action . ' ): return ' . $resource );
                 break;
-            
+
             default:
                 $resource = parent::getResource( $action );
                 break;

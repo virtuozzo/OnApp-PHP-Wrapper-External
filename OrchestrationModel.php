@@ -399,6 +399,10 @@ class OnApp_OrchestrationModel extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -475,7 +479,7 @@ class OnApp_OrchestrationModel extends OnApp {
 
     public function deploy() {
         $data = $this->getSerializedDataToSend();
-        
+
         return $this->sendPost( ONAPP_GETRESOURCE_DEPLOY, $data );
     }
 

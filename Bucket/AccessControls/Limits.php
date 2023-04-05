@@ -1,7 +1,7 @@
 <?php
 /**
  * Managing Bucket AccessControls Limits
- * 
+ *
  * much they will be charged per unit.
  *
  * @category    API wrapper
@@ -190,7 +190,7 @@ class OnApp_Bucket_AccessControls_Limits extends OnApp {
                         ONAPP_FIELD_MAP       => '_use_default_cpu',
                         ONAPP_FIELD_TYPE      => 'string',
                     ),
-                    
+
                     'use_default_cpu_share'                             => array(
                         ONAPP_FIELD_MAP       => '_use_default_cpu_share',
                         ONAPP_FIELD_TYPE      => 'string',
@@ -287,6 +287,10 @@ class OnApp_Bucket_AccessControls_Limits extends OnApp {
 
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
+                break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
                 break;
         }
 

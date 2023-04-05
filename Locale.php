@@ -124,6 +124,10 @@ class OnApp_Locale extends OnApp {
             case 6.7:
                 $this->fields = $this->initFields( 6.6 );
                 break;
+
+            default:
+                $this->fields = $this->initFields( 6.7 );
+                break;
         }
 
         parent::initFields( $version, __CLASS__ );
@@ -172,11 +176,11 @@ class OnApp_Locale extends OnApp {
          * @alias  /roles/:id(.:format)
          * @format {:controller=>"roles", :action=>"destroy"}
          */
-        
+
         if ( $this->getAPIVersion() >= ONAPP_VERSION_SIX ) {
             $this->_resource = 'settings/locales';
         }
-        
+
         return parent::getResource( $action );
     }
     function activateCheck( $action_name ) {
